@@ -18,3 +18,8 @@
 - Editable display name on the profile; no other personal fields, per Apple's data-minimization rule.
 - Plain-language "Your data is stored securely" summary in Settings.
 - New docs/DECISIONS.md: how each part is normally built, what we chose, and why, with sources.
+
+## 2026-11-15 · Map like Apple Maps
+- Locate button cycles: center on me and follow, follow with heading (map turns as you turn), free map. Dragging the map stops following.
+- Map style switch: street, satellite, satellite with street names, and Veneeta's original walk map from the book (pinch to zoom).
+- Preview: blue dot with direction cone, follow modes, and the book map viewer.

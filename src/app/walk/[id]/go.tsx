@@ -5,6 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Linking, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { type FollowMode, LayersButton, type Layer, LocateButton, nextFollow } from '../../../components/MapControls';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { Button, IconButton, T, tap } from '../../../components/ui';
@@ -37,6 +38,8 @@ export default function ActiveWalk() {
   const paused = useNarration((s) => s.paused);
 
   const [layout, setLayout] = useState<Layout>('split');
+  const [follow, setFollow] = useState<FollowMode>('follow');
+  const [layer, setLayer] = useState<Layer>('standard');
   const [pos, setPos] = useState<{ lat: number; lng: number; acc: number } | null>(null);
   const [heading, setHeading] = useState<number | null>(null);
   const [gps, setGps] = useState<'pending' | 'on' | 'off'>('pending');
@@ -71,6 +74,12 @@ export default function ActiveWalk() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walk.id]);
+
+  // Follow mode, as in Apple Maps: keep the walker centered (and turn the map with them).
+  useEffect(() => {
+    if (!pos || follow === 'off') return;
+    mapRef.current?.follow(pos.lat, pos.lng, follow === 'heading' && heading !== null ? heading : undefined);
+  }, [pos, heading, follow]);
 
   // Arrival detection in the foreground.
   useEffect(() => {
@@ -150,10 +159,19 @@ export default function ActiveWalk() {
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       {layout !== 'read' ? (
         <View style={{ height: mapH }}>
-          <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={layout === 'map' ? 220 : 0} />
+          <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={layout === 'map' ? 220 : 0} mapType={layer} onUserPan={() => setFollow('off')} />
           <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
-            <IconButton icon="locate" label="Center on me" onPress={() => pos && mapRef.current?.recenter(pos.lat, pos.lng)} />
-            <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => mapRef.current?.fitAll()} />
+            <LocateButton
+              mode={follow}
+              disabled={!pos}
+              onPress={() => {
+                const m = nextFollow(follow);
+                setFollow(m);
+                if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
+              }}
+            />
+            <LayersButton layer={layer} onChange={setLayer} bookMap={walk.bookMap} />
+            <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
           </View>
         </View>
       ) : null}

@@ -117,7 +117,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); } }
 .pin { min-width: 28px; height: 28px; padding: 0 5px; border-radius: 14px; border: 2px solid #fff; color: #fff; font: 800 12px var(--body); display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
 .pin.cur { transform: scale(1.25); }
-.me { width: 18px; height: 18px; border-radius: 9px; background: #1A73E8; border: 3px solid #fff; box-shadow: 0 0 0 8px rgba(26,115,232,.2); }
+.me { position: relative; width: 18px; height: 18px; border-radius: 9px; background: #1A73E8; border: 3px solid #fff; box-shadow: 0 0 0 8px rgba(26,115,232,.2); }
+.me .cone { position: absolute; left: 50%; top: 50%; width: 0; height: 0; margin-left: -14px; margin-top: -40px; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 34px solid rgba(26,115,232,.28); transform-origin: 14px 40px; }
+.mapbtn { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--card); border: 1px solid var(--line); box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+.mapbtn svg { width: 22px; height: 22px; }
+.mapbtn.on { color: #1A73E8; }
 .maprail { position: absolute; left: 0; right: 0; bottom: calc(86px + env(safe-area-inset-bottom)); display: flex; gap: 12px; overflow-x: auto; padding: 0 11%; scroll-snap-type: x mandatory; z-index: 900; }
 .maprail::-webkit-scrollbar { display: none; }
 .mcard { flex: none; width: 78%; scroll-snap-align: center; display: flex; gap: 12px; align-items: center; padding: 10px; border-radius: 20px; background: var(--card); border: 2px solid var(--line); text-align: left; box-shadow: 0 3px 8px rgba(0,0,0,.15); }
@@ -197,6 +201,7 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
 <script src="data.js"></script>
 <script src="covers.js"></script>
 <script src="tiles.js"></script>
+<script src="bookmaps.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="app.js"></script>
 </body>

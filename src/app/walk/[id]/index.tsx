@@ -9,6 +9,7 @@ import { Hibiscus, WaveRule } from '../../../components/Flora';
 import { FunFacts } from '../../../components/FunFacts';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
+import { LayersButton, type Layer } from '../../../components/MapControls';
 import { Button, Chip, IconButton, Segmented, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { TRIAL } from '../../../config';
@@ -32,6 +33,7 @@ export default function WalkOverview() {
   const activeId = useProgress((s) => s.activeWalkId);
   const [mode, setMode] = useState<Mode>('read');
   const [focus, setFocus] = useState(stopParam ? Number(stopParam) : 0);
+  const [layer, setLayer] = useState<Layer>('standard');
   const scroll = useRef<ScrollViewInstance>(null);
   const offsets = useRef<Record<number, number>>({});
   const mapRef = useRef<WalkMapHandle>(null);
@@ -117,7 +119,10 @@ export default function WalkOverview() {
         </ScrollView>
       ) : (
         <View style={{ flex: 1 }}>
-          <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} />
+          <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
+          <View style={{ position: 'absolute', right: 14, top: insets.top + 64, gap: 10 }}>
+            <LayersButton layer={layer} onChange={setLayer} bookMap={walk.bookMap} />
+          </View>
           <FlatList
             ref={cards}
             data={walk.stops}

@@ -27,6 +27,7 @@ for w in walks:
     files = {p['file'] for s in w['stops'] for p in s['photos']}
     open(f"{SITE}/img-{w['id']}.js", 'w').write(head + json.dumps({f: enc(f, 560, 68) for f in files}) + ');')
 open(f'{SITE}/covers.js', 'w').write(head + json.dumps({w['cover']: enc(w['cover'], 800, 72) for w in walks if w.get('cover')}) + ');')
+open(f'{SITE}/bookmaps.js', 'w').write(head + json.dumps({w['bookMap']: enc(w['bookMap'], 1300, 72) for w in walks if w.get('bookMap')}) + ');')
 tiles = {}
 for p in glob.glob(f'{P}/tiles/osm/*/*/*.png'):
     z, x, y = p.split('/')[-3:]

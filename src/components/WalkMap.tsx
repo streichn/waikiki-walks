@@ -5,7 +5,7 @@ import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
 
-export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void };
+export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void };
 
 type Props = {
   walk: Walk;
@@ -16,10 +16,12 @@ type Props = {
   showsUser?: boolean;
   style?: ViewStyle;
   bottomInset?: number;
+  mapType?: 'standard' | 'satellite' | 'hybrid';
+  onUserPan?: () => void;
 };
 
 /** Numbered pins in walking order with the route drawn between them. */
-export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0 }, ref) {
+export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
@@ -38,7 +40,10 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       if (c) map.current?.animateCamera({ center: c, zoom: 17 }, { duration: 600 });
     },
     fitAll: () => map.current?.fitToCoordinates(coords, { edgePadding: padding, animated: true }),
-    recenter: (lat, lng) => map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 17 }, { duration: 500 }),
+    recenter: (lat, lng) => map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 17, heading: 0 }, { duration: 500 }),
+    // Follow mode keeps the blue dot centered; with a heading the map rotates to face where you face.
+    follow: (lat, lng, heading) =>
+      map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 18, ...(heading !== undefined ? { heading, pitch: 35 } : { heading: 0, pitch: 0 }) }, { duration: 400 }),
   }));
 
   return (
@@ -47,6 +52,8 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       style={[StyleSheet.absoluteFill, style]}
       initialRegion={initial}
       showsUserLocation={showsUser}
+      mapType={mapType}
+      onPanDrag={onUserPan}
       showsMyLocationButton={false}
       showsCompass
       showsPointsOfInterests={false}

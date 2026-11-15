@@ -45,6 +45,9 @@
     apple: '<path fill="currentColor" stroke="none" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.7zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
     moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',
+    layers: '<path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/>',
+    compass: '<circle cx="12" cy="12" r="9"/><path fill="currentColor" d="M15.5 8.5 13 13l-4.5 2.5L11 11z"/>',
+    earth: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
   };
   const ic = (n, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${P[n] || ''}</svg>`;
   const hib = (size, color = '#D6336C', rot = 0) => {
@@ -68,7 +71,7 @@
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
     settings: load('settings', { theme: 'system', autoNarrate: true, arrival: 35, rate: 1, textScale: 1, alerts: true }),
     isPro: load('pro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
-    layout: 'split', sim: false, me: null, heading: 0, arrivedBanner: null,
+    layout: 'split', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
   const persist = () => { save('settings', S.settings); save('pro', S.isPro); save('profile', S.profile); save('favs', S.favs); save('progress', S.progress); save('active', S.active); };
   const walk = (id) => D.walks.find((w) => w.id === id);
@@ -204,7 +207,7 @@
         ${stops}
       </div>
     </div>
-    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0"><div class="map" id="wmap"></div><div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div></div>
+    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0"><div class="map" id="wmap"></div><div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
     <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button></div>`;
   }
@@ -215,6 +218,7 @@
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else { t.style.background = '#e9e5dc'; } t.alt = ''; return t; } });
     const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 });
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14, tileSize: 256 }).addTo(map);
+    map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     L.polyline(pts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
     const markers = w.stops.map((s, i) => {
@@ -223,7 +227,7 @@
       return m;
     });
     const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
-    const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"></div>', iconSize: [18, 18] }), interactive: false });
+    const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
       map,
       paint(cur, visited) {
@@ -237,7 +241,15 @@
       },
       fit() { map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
       focus(i) { map.setView(pts[i], 17, { animate: true }); },
-      me(p) { if (!p) return; if (!map.hasLayer(me)) me.addTo(map); me.setLatLng([p.lat, p.lng]); },
+      me(p, heading) {
+        if (!p) return;
+        if (!map.hasLayer(me)) me.addTo(map);
+        me.setLatLng([p.lat, p.lng]);
+        const c = me.getElement() && me.getElement().querySelector('.cone'); if (c) c.style.transform = `rotate(${heading || 0}deg)`;
+        // Follow mode keeps the walker centered, as in Apple Maps.
+        if (S.follow !== 'off') map.setView([p.lat, p.lng], Math.max(map.getZoom(), 17), { animate: true });
+        if (S.follow === 'heading') { el.style.transform = `rotate(${-(heading || 0)}deg) scale(1.45)`; el.style.transformOrigin = '50% 50%'; } else { el.style.transform = ''; }
+      },
     };
     api.fit();
     return api;
@@ -268,7 +280,7 @@
     return `<div id="go" class="l-${S.layout}" style="position:absolute;inset:0">
       <div class="mapwrap"><div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div></div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${w.id} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${S.layout !== 'read' ? `<div class="simbar"><button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? 'Simulating…' : 'Simulate walking'}</button><button class="iconbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${S.layout !== 'read' ? `<div class="simbar"><button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? 'Simulating…' : 'Simulate walking'}</button><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet">
         <div class="layouts">${['map', 'split', 'read'].map((l) => `<button data-layout="${l}" aria-pressed="${S.layout === l}" aria-label="${l} view">${ic(l === 'map' ? 'map' : l === 'split' ? 'split' : 'reader')}</button>`).join('')}</div>
@@ -284,7 +296,7 @@
     const w = walk(S.walkId), prog = S.progress[w.id];
     const el = document.getElementById('gmap'); if (!el || S.layout === 'read') { gmap = null; return; }
     gmap = makeMap(el, w, { showSeg: true, bottom: S.layout === 'map' ? 220 : 30, onSelect: (i) => goTo(i) });
-    gmap.paint(prog.current, prog.visited); gmap.me(S.me);
+    gmap.paint(prog.current, prog.visited); gmap.me(S.me, S.heading);
     setTimeout(() => { gmap.map.invalidateSize(); if (S.me) gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
   }
   function arrive(i) {
@@ -310,7 +322,7 @@
     S.heading = bearing(S.me, target);
     const step = 18; // meters per tick (a brisk, sped-up walk)
     if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
-    gmap && gmap.me(S.me) && null; if (gmap) gmap.map.panTo([S.me.lat, S.me.lng], { animate: true });
+    if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
     if (dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
@@ -400,6 +412,18 @@
   function openAbout() {
     modal(`<div class="stack" style="align-items:stretch"><div style="text-align:center">${hib(64, 'var(--accent)')}<h1 style="font-size:32px">Waikīkī</h1><div style="font-family:var(--display);letter-spacing:.15em">TWELVE WALKS THROUGH TIME</div><div class="italic">Veneeta Acson, Ph.D.</div></div>
       ${D.about.map((s) => `<div class="card stack" style="gap:10px"><h2 style="font-size:21px">${esc(s.title)}</h2>${s.paragraphs.map((p) => `<p class="p" style="font-size:16px">${rich(p)}</p>`).join('')}</div>`).join('')}<p class="small" style="text-align:center">Text and photographs © 2023 Island Heritage. All rights reserved.</p></div>`);
+  }
+  function openLayers(w) {
+    const m = modal(`<div class="stack"><div class="label">Map style</div>
+      <button class="plan" aria-checked="true" data-layer="street">${ic('map')}<span style="flex:1"><b>Street map</b></span></button>
+      <button class="plan" data-layer="sat">${ic('earth')}<span style="flex:1"><b>Satellite</b><div class="small">In the iPhone and Android app (Apple and Google satellite imagery)</div></span></button>
+      ${w.bookMap ? `<button class="plan" data-layer="book">${ic('book')}<span style="flex:1"><b>Veneeta’s map from the book</b><div class="small">The original walk map, pinch to zoom</div></span></button>` : ''}</div>`);
+    m.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-layer]'); if (!b) return;
+      if (b.dataset.layer === 'sat') return toast('Satellite view is built into the phone app.');
+      if (b.dataset.layer === 'book') { m.remove(); modal(`<div class="stack"><div class="label">Walk ${w.id} map from the book</div><div style="overflow:auto;max-height:75vh;border-radius:14px;background:#FBF6EC">${img(w.bookMap).replace('<img ', '<img style="width:180%;max-width:none" ')}</div><p class="small">Scroll to pan. In the app you can pinch to zoom.</p></div>`); return; }
+      m.remove();
+    });
   }
   function openCredits() {
     const sec = (t, lines) => `<div class="card stack" style="gap:6px"><div class="label">${t}</div>${lines.map((l) => `<div style="font-size:15px;line-height:1.45">${l}</div>`).join('')}</div>`;
@@ -499,7 +523,15 @@
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
       if (a === 'end') { stopSim(); stopSpeak(); S.active = null; persist(); S.view = 'walk'; toast('Walk ended. Your place is saved.'); return render(); }
       if (a === 'sim') { if (S.sim) stopSim(); else startSim(); el.setAttribute('aria-pressed', S.sim); el.textContent = S.sim ? 'Simulating…' : 'Simulate walking'; return; }
-      if (a === 'whole') return gmap && gmap.fit();
+      if (a === 'whole') { S.follow = 'off'; return gmap && gmap.fit(); }
+      if (a === 'locate') {
+        if (!S.me) { const p = S.progress[w.id]; const prev = w.stops[Math.max(0, p.current - 1)]; S.me = { lat: prev.lat - 0.0006, lng: prev.lng - 0.0004 }; }
+        S.follow = S.follow === 'off' ? 'follow' : S.follow === 'follow' ? 'heading' : 'off';
+        el.classList.toggle('on', S.follow !== 'off'); el.innerHTML = ic(S.follow === 'heading' ? 'compass' : 'navigate');
+        if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') { document.getElementById('gmap').style.transform = ''; } }
+        return toast(S.follow === 'off' ? 'Free map' : S.follow === 'follow' ? 'Following you' : 'Map turns with you');
+      }
+      if (a === 'layers') return openLayers(w);
       if (a === 'here') { stopSim(); const p = S.progress[w.id]; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return goTo(S.progress[w.id].current + 1);
       if (a === 'prev') return goTo(S.progress[w.id].current - 1);
