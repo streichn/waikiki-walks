@@ -1,0 +1,166 @@
+import Slider from '../components/Slider';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { Alert, Linking, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import type * as Speech from 'expo-speech';
+import { Card, Segmented, T } from '../components/ui';
+import { deleteAccount } from '../lib/auth';
+import { englishVoices, speakShort } from '../lib/narration';
+import { restore } from '../lib/purchases';
+import { type ThemeMode, useAccount, useProgress, useSettings } from '../store';
+import { useTheme } from '../theme';
+
+export default function Settings() {
+  const t = useTheme();
+  const s = useSettings();
+  const profile = useAccount((x) => x.profile);
+  const resetProgress = useProgress((x) => x.reset);
+  const [voices, setVoices] = useState<Speech.Voice[]>([]);
+  useEffect(() => {
+    englishVoices().then(setVoices).catch(() => undefined);
+  }, []);
+
+  return (
+    <ScrollView style={{ backgroundColor: t.bg }} contentContainerStyle={{ padding: 20, gap: 18, paddingBottom: 60 }}>
+      <Section title="Appearance">
+        <Segmented<ThemeMode>
+          value={s.themeMode}
+          onChange={(v) => s.set({ themeMode: v })}
+          options={[
+            { value: 'system', label: 'Auto', icon: 'phone-portrait' },
+            { value: 'light', label: 'Light', icon: 'sunny' },
+            { value: 'dark', label: 'Dark', icon: 'moon' },
+          ]}
+        />
+        <T variant="small" style={{ marginTop: 12 }}>
+          Text size
+        </T>
+        <Slider value={s.textScale} min={0.9} max={1.4} step={0.05} onChange={(v) => s.set({ textScale: v })} />
+        <T style={{ fontSize: 17 * s.textScale }}>Aloha ʻāina, love of the land.</T>
+      </Section>
+
+      <Section title="Walking">
+        <Toggle label="Arrival alerts" hint="Tell me when I reach a stop" value={s.arrivalAlerts} onChange={(v) => s.set({ arrivalAlerts: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Arrival distance: {s.arrivalRadius} m (about {Math.round(s.arrivalRadius * 3.28)} ft)
+        </T>
+        <Slider value={s.arrivalRadius} min={15} max={80} step={5} onChange={(v) => s.set({ arrivalRadius: v })} />
+        <Toggle label="Haptics" hint="A gentle buzz on arrival" value={s.haptics} onChange={(v) => s.set({ haptics: v })} />
+        <Segmented<'imperial' | 'metric'>
+          value={s.units}
+          onChange={(v) => s.set({ units: v })}
+          options={[
+            { value: 'imperial', label: 'Miles / feet' },
+            { value: 'metric', label: 'Kilometers / meters' },
+          ]}
+        />
+      </Section>
+
+      <Section title="Read aloud">
+        <Toggle label="Read each stop on arrival" hint="Great with headphones" value={s.autoNarrate} onChange={(v) => s.set({ autoNarrate: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Speed: {s.speechRate.toFixed(2)}×
+        </T>
+        <Slider value={s.speechRate} min={0.7} max={1.3} step={0.05} onChange={(v) => s.set({ speechRate: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Voice
+        </T>
+        <View style={{ gap: 6 }}>
+          {[{ identifier: undefined as string | undefined, name: 'Phone default', quality: 'Default' }, ...voices.slice(0, 8)].map((v) => (
+            <Pressable
+              key={v.identifier ?? 'default'}
+              onPress={() => {
+                s.set({ voiceId: v.identifier });
+                setTimeout(() => speakShort('Aloha! Welcome to Waikīkī.'), 50);
+              }}
+              style={[styles.voice, { borderColor: s.voiceId === v.identifier ? t.accent : t.border, backgroundColor: t.card }]}
+            >
+              <Ionicons name={s.voiceId === v.identifier ? 'radio-button-on' : 'radio-button-off'} size={18} color={t.accent} />
+              <T style={{ flex: 1 }}>{v.name}</T>
+              {v.quality === 'Enhanced' ? <T variant="small">Enhanced</T> : null}
+            </Pressable>
+          ))}
+        </View>
+        <T variant="small">Tip: download "Enhanced" or "Premium" voices in iPhone Settings › Accessibility › Spoken Content › Voices for a more natural reading.</T>
+      </Section>
+
+      <Section title="Purchases">
+        <Row label="Restore purchases" onPress={async () => Alert.alert((await restore().catch(() => false)) ? 'Restored' : 'Nothing to restore')} />
+        <Row label="Manage subscription" onPress={() => Linking.openURL('https://apps.apple.com/account/subscriptions')} />
+      </Section>
+
+      <Section title="Privacy and data">
+        <T variant="small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to us or stored on a server.</T>
+        <Row label="Location permission" onPress={() => Linking.openSettings()} />
+        <Row
+          label="Reset walk progress"
+          onPress={() =>
+            Alert.alert('Reset progress?', 'This clears visited stops on this device.', [
+              { text: 'Cancel', style: 'cancel' },
+              { text: 'Reset', style: 'destructive', onPress: resetProgress },
+            ])
+          }
+        />
+        {profile && profile.provider !== 'guest' ? (
+          <Row
+            danger
+            label="Delete my account"
+            onPress={() =>
+              Alert.alert('Delete account?', 'This permanently deletes your account and synced progress. Subscriptions must be cancelled separately in the App Store.', [
+                { text: 'Cancel', style: 'cancel' },
+                {
+                  text: 'Delete',
+                  style: 'destructive',
+                  onPress: async () => {
+                    await deleteAccount();
+                    router.back();
+                  },
+                },
+              ])
+            }
+          />
+        ) : null}
+      </Section>
+      <T variant="small" style={{ textAlign: 'center' }}>
+        Waikīkī Walks 0.1 · Text and photographs from "Waikīkī: Twelve Walks Through Time" by Veneeta Acson, Ph.D.
+      </T>
+    </ScrollView>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <View style={{ gap: 8 }}>
+      <T variant="label">{title}</T>
+      <Card style={{ gap: 10 }}>{children}</Card>
+    </View>
+  );
+}
+
+function Toggle({ label, hint, value, onChange }: { label: string; hint?: string; value: boolean; onChange: (v: boolean) => void }) {
+  const t = useTheme();
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      <View style={{ flex: 1 }}>
+        <T>{label}</T>
+        {hint ? <T variant="small">{hint}</T> : null}
+      </View>
+      <Switch value={value} onValueChange={onChange} trackColor={{ true: t.primary, false: t.border }} />
+    </View>
+  );
+}
+
+function Row({ label, onPress, danger }: { label: string; onPress: () => void; danger?: boolean }) {
+  const t = useTheme();
+  return (
+    <Pressable onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 8 }}>
+      <T style={{ flex: 1, color: danger ? '#D33' : t.text }}>{label}</T>
+      <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  voice: { flexDirection: 'row', alignItems: 'center', gap: 10, padding: 10, borderRadius: 12, borderWidth: 1 },
+});

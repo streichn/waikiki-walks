@@ -1,0 +1,133 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Hibiscus, Monstera, Plumeria, WaveRule } from '../../components/Flora';
+import { FunFacts } from '../../components/FunFacts';
+import { T, tap } from '../../components/ui';
+import { WalkCard } from '../../components/WalkCard';
+import { TRIAL } from '../../config';
+import { getWalk, photo, walks } from '../../data';
+import { useIsPro } from '../../lib/access';
+import { useAccount, useProgress } from '../../store';
+import { useTheme } from '../../theme';
+
+const GROUPS = [
+  { title: 'Along the beach', ids: ['II', 'III', 'IV', 'VII'] },
+  { title: 'Royal Waikīkī and the park', ids: ['V', 'VI'] },
+  { title: 'Around the canal', ids: ['I'] },
+  { title: 'Into the ahupuaʻa', ids: ['VIII', 'IX', 'X'] },
+  { title: 'University of Hawaiʻi', ids: ['XI', 'XII'] },
+];
+
+export default function Home() {
+  const t = useTheme();
+  const insets = useSafeAreaInsets();
+  const isPro = useIsPro();
+  const name = useAccount((s) => s.profile?.name);
+  const active = useProgress((s) => s.activeWalkId);
+  const trial = getWalk(TRIAL.walkId)!;
+  const hero = walks.find((w) => w.id === 'III')?.cover ?? trial.cover;
+  const hour = new Date().getHours();
+  const greet = hour < 12 ? 'Aloha kakahiaka' : hour < 17 ? 'Aloha ʻauinalā' : 'Aloha ahiahi';
+
+  return (
+    <ScrollView style={{ backgroundColor: t.bg }} contentContainerStyle={{ paddingBottom: 140 }}>
+      <View style={[styles.hero, { paddingTop: insets.top + 12 }]}>
+        {hero ? <Image source={photo(hero)} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
+        <LinearGradient colors={['rgba(4,30,34,0.35)', 'rgba(4,30,34,0.15)', t.bg]} locations={[0, 0.55, 1]} style={StyleSheet.absoluteFill} />
+        <View style={styles.flowerTL}>
+          <Hibiscus size={92} rotate={-20} color={t.palette.hibiscus} />
+        </View>
+        <View style={styles.flowerTR}>
+          <Plumeria size={54} rotate={14} />
+        </View>
+        <View style={styles.heroTop}>
+          <Pressable accessibilityLabel="What am I looking at?" onPress={() => router.push('/lens')} style={styles.heroBtn}>
+            <Ionicons name="scan" size={20} color="#fff" />
+          </Pressable>
+        </View>
+        <View style={{ paddingHorizontal: 20, marginTop: 'auto' }}>
+          <T style={{ color: t.text, fontFamily: t.font.displayItalic, fontSize: 18 }}>
+            {greet}
+            {name ? `, ${name.split(' ')[0]}` : ''}
+          </T>
+          <T variant="display" style={{ fontSize: 40, lineHeight: 44 }}>
+            Waikīkī
+          </T>
+          <T style={{ fontFamily: t.font.display, fontSize: 18, letterSpacing: 3, color: t.text }}>TWELVE WALKS THROUGH TIME</T>
+          <T variant="small" style={{ marginTop: 4 }}>
+            by Veneeta Acson, Ph.D.
+          </T>
+        </View>
+      </View>
+
+      <View style={{ paddingHorizontal: 20, gap: 18 }}>
+        {active ? null : !isPro ? (
+          <Pressable
+            onPress={() => {
+              tap();
+              router.push(`/walk/${trial.id}`);
+            }}
+            style={[styles.start, { backgroundColor: t.primary }]}
+          >
+            <View style={{ flex: 1 }}>
+              <T variant="label" style={{ color: t.dark ? '#063036' : '#BFE7E3' }}>
+                Start here, free
+              </T>
+              <T style={{ color: t.primaryText, fontFamily: t.font.display, fontSize: 22, marginTop: 2 }}>{trial.title}</T>
+              <T style={{ color: t.dark ? '#063036' : '#DDF2EF', fontSize: 14, marginTop: 2 }}>{`The first ${TRIAL.freeStops} stops are on us. ${trial.theme ?? ''}`}</T>
+            </View>
+            <Ionicons name="arrow-forward-circle" size={40} color={t.gold} />
+          </Pressable>
+        ) : null}
+
+        <FunFacts />
+
+        {GROUPS.map((g) => (
+          <View key={g.title} style={{ gap: 10 }}>
+            <View>
+              <T variant="title" style={{ fontSize: 22 }}>
+                {g.title}
+              </T>
+              <WaveRule width={90} color={t.primary} />
+            </View>
+            {g.ids.length === 1 ? (
+              <WalkCard walk={getWalk(g.ids[0])!} wide />
+            ) : (
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -20 }} contentContainerStyle={{ paddingHorizontal: 20 }}>
+                {g.ids.map((id) => {
+                  const w = getWalk(id);
+                  return w ? <WalkCard key={id} walk={w} /> : null;
+                })}
+              </ScrollView>
+            )}
+          </View>
+        ))}
+
+        <Pressable onPress={() => router.push('/about')} style={[styles.about, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
+          <View style={styles.leaf}>
+            <Monstera size={130} color={t.leaf} opacity={0.22} rotate={20} />
+          </View>
+          <T variant="h2">About the book and the author</T>
+          <T variant="small" style={{ marginTop: 4, color: t.text }}>
+            How to read the directions (mauka, makai, ʻEwa, Diamond Head), the Hawaiian alphabet, and the story behind these walks.
+          </T>
+        </Pressable>
+      </View>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  hero: { height: 380, marginBottom: 8 },
+  heroTop: { position: 'absolute', right: 16, top: 54 },
+  heroBtn: { width: 42, height: 42, borderRadius: 21, backgroundColor: 'rgba(0,0,0,0.35)', alignItems: 'center', justifyContent: 'center' },
+  flowerTL: { position: 'absolute', left: -26, top: 70, opacity: 0.95 },
+  flowerTR: { position: 'absolute', right: 70, top: 120 },
+  start: { flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 22, padding: 18 },
+  about: { borderRadius: 20, padding: 18, overflow: 'hidden', borderWidth: StyleSheet.hairlineWidth },
+  leaf: { position: 'absolute', right: -30, bottom: -40 },
+});

@@ -1,0 +1,265 @@
+"""Builds the app's data files from the parsed book.
+
+Inputs  (from the extraction step): /root/book/out/geo.json, /root/book/out/img/*.jpg, the three PDFs
+Outputs: src/data/walks.json, facts.json, glossary.json, about.json, images.ts, assets/book/*.jpg,
+         and review/stops_review.csv for Veneeta to check every pin.
+"""
+import csv, glob, json, os, re, shutil, statistics, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BOOK = '/root/book'
+SRC = json.load(open(f'{BOOK}/out/geo.json'))
+OUT = f'{ROOT}/src/data'
+ASSETS = f'{ROOT}/assets/book'
+os.makedirs(ASSETS, exist_ok=True)
+os.makedirs(f'{ROOT}/review', exist_ok=True)
+
+TITLES = {
+    'I': ('Ala Wai Canal', 'Once upon a time there were three streams'),
+    'II': ('Kālia', 'Early Hawaiian life: taro fields and fish ponds'),
+    'III': ('Helumoa', 'Residence and recreation of the early royals'),
+    'IV': ('Kalākaua Avenue', 'King Kalākaua welcomes you to his “Great Street”'),
+    'V': ('‘Āinahau and Hamohamo', 'Princess Ka‘iulani welcomes you to her ‘āina'),
+    'VI': ('Kāneloa', 'Queen Kapi‘olani welcomes you to her park!'),
+    'VII': ('Kapua', 'Diamond Head greets all visitors to Waikīkī!'),
+    'VIII': ('Kaimukī', 'Walk into a crater and the pu‘u'),
+    'IX': ('Mō‘ili‘ili', 'Watch out for the mo‘o, the giant lizard!'),
+    'X': ('Mānoa Valley', 'Chasing rainbows!'),
+    'XI': ('University of Hawai‘i', 'The main campus in Mānoa'),
+    'XII': ('Lower Campus', 'The Hawaiian center at Kānewai and the old quarry'),
+}
+COLORS = ['#0E6E74', '#3A7D44', '#B5446E', '#D1495B', '#8E5572', '#2E86AB', '#E07A5F', '#6A4C93', '#4F772D', '#1B998B', '#C1666B', '#5C6F68']
+MAP_PAGES = {'I': (1, 22), 'II': (1, 40), 'III': (1, 58), 'IV': (1, 72), 'V': (2, 1), 'VI': (2, 17), 'VII': (2, 29), 'VIII': (2, 49), 'IX': (2, 65), 'X': (3, 4), 'XII': (3, 61)}
+# Lengths and times as printed in each walk's information box.
+FACTS = {
+    'I': {'distance': '3 mi round trip', 'duration': '1.5 hr', 'steps': '6,000'},
+    'II': {'distance': '2.5 to 3 mi', 'duration': '2 to 2.5 hr', 'steps': '7,000 to 10,000'},
+    'III': {'distance': '1 mi', 'duration': '1.5 to 2 hr', 'steps': '2,000 to 4,000'},
+    'IV': {'distance': '2 mi', 'duration': '45 min to 1 hr', 'steps': '6,000'},
+    'V': {'distance': '2 mi', 'duration': '1 hr', 'steps': '6,000'},
+    'VI': {'duration': 'Wander at your own pace'},
+    'VII': {'distance': '2 mi one way', 'duration': '1.5 hr', 'steps': '7,000'},
+    'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
+    'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
+}
+OVERLAY = json.load(open(f'{BOOK}/out/overlay.json')) if os.path.exists(f'{BOOK}/out/overlay.json') else {}
+HAWAII = re.compile(r'[āēīōūĀĒĪŌŪ‘ʻ]')
+
+
+def walk_facts(info_texts):
+    blob = ' '.join(info_texts)
+    f = {}
+    m = re.search(r'(\d+(?:\.\d+)?)\s*miles?', blob)
+    if m: f['distance'] = f"{m.group(1)} mi"
+    m = re.search(r'(\d+(?:\.\d+)?\s*(?:to\s*\d+(?:\.\d+)?\s*)?hours?|\d+\s*minutes(?:\s*to\s*\d+\s*hours?)?)', blob)
+    if m: f['duration'] = m.group(1).replace('hour', 'hr').replace('minutes', 'min')
+    m = re.search(r'([\d,]+)\s*steps', blob)
+    if m: f['steps'] = m.group(1)
+    return f
+
+
+def clean_blocks(blocks):
+    out = []
+    for b in blocks or []:
+        txt = b['text'].strip()
+        if len(txt) < 2 or re.fullmatch(r'[\d\s.]+', txt):
+            continue
+        toks = txt.split(' ')
+        if len(toks) > 6 and sum(len(x) == 1 for x in toks) / len(toks) > 0.6:
+            continue  # letter-spaced decorative subtitle; the walk theme already says it
+        out.append({'kind': b['kind'], 'text': txt})
+    return out
+
+
+images_used = set()
+walks = []
+review = []
+for k, w in enumerate(SRC['walks']):
+    wid = w['roman']
+    title, theme = TITLES[wid]
+    intro_blocks = clean_blocks(w.get('blocks'))
+    info = [b['text'] for b in intro_blocks if b['kind'] == 'info' and len(b['text']) > 20]
+    intro = [b for b in intro_blocks if b['kind'] != 'info']
+    stops_in = w['stops']
+    # Drop duplicate numbers that are cross-references (keep first occurrence in order).
+    seen, stops_src = set(), []
+    for s in stops_in:
+        if s['n'] in seen:
+            continue
+        seen.add(s['n'])
+        stops_src.append(s)
+
+    # Geo sanity check: discard hits far from the walk's centre, then interpolate gaps.
+    pts = [(s['geo']['lat'], s['geo']['lng']) for s in stops_src if s.get('geo')]
+    if pts:
+        clat = statistics.median(p[0] for p in pts)
+        clng = statistics.median(p[1] for p in pts)
+    for s in stops_src:
+        g = s.get('geo')
+        if g:
+            dlat = (g['lat'] - clat) * 111000
+            dlng = (g['lng'] - clng) * 103000
+            if (dlat ** 2 + dlng ** 2) ** 0.5 > 1800:
+                s['geo_rejected'] = g
+                s['geo'] = None
+    idx = [i for i, s in enumerate(stops_src) if s.get('geo')]
+    for i, s in enumerate(stops_src):
+        if s.get('geo'):
+            continue
+        before = [j for j in idx if j < i]
+        after = [j for j in idx if j > i]
+        if before and after:
+            a, b = stops_src[before[-1]]['geo'], stops_src[after[0]]['geo']
+            f = (i - before[-1]) / (after[0] - before[-1])
+            s['geo'] = {'lat': a['lat'] + (b['lat'] - a['lat']) * f, 'lng': a['lng'] + (b['lng'] - a['lng']) * f, 'confidence': 'estimated', 'query': 'interpolated between neighbours'}
+        elif before or after:
+            a = stops_src[(before or after)[-1 if before else 0]]['geo']
+            s['geo'] = {'lat': a['lat'] + 0.0003, 'lng': a['lng'] + 0.0003, 'confidence': 'estimated', 'query': 'placed beside nearest stop'}
+        else:
+            s['geo'] = {'lat': 21.2793, 'lng': -157.8292, 'confidence': 'estimated', 'query': 'no location found'}
+
+    stops = []
+    cover = None
+    for s in stops_src:
+        photos = []
+        for im in s.get('images', []):
+            if im['w'] < 260 or im['h'] < 180:
+                continue
+            im['overlay'] = OVERLAY.get(im['file'], 0)
+            photos.append({'file': im['file'], 'w': im['w'], 'h': im['h']})
+            images_used.add(im['file'])
+        blocks = clean_blocks(s.get('blocks'))
+        # Captions in the book are short sentences next to photos; attach them to photos when we can.
+        caps = [b for b in blocks if b['kind'] == 'caption']
+        for p, c in zip(photos, caps):
+            p['caption'] = c['text']
+        blocks = [b for b in blocks if b['kind'] != 'caption' or len(photos) < len(caps)]
+        g = s['geo']
+        stitle, sub = re.sub(r'[\x00-\x1f]', '', s['title']).strip(' |-–.'), s.get('subtitle')
+        if sub and (stitle.endswith((' of', ' the', ' and', ' at', ' a')) or s['title'].rstrip().endswith(('-', '–', '|')) or sub[:1].islower()):
+            stitle, sub = f"{stitle} {sub}".replace('  ', ' '), None
+        s['title'], s['subtitle'] = stitle, sub
+        stops.append({
+            'id': f"{wid}-{s['n']:02d}", 'n': s['n'], 'title': s['title'].rstrip(' .:'),
+            **({'subtitle': sub} if sub else {}),
+            'blocks': blocks, 'photos': photos,
+            'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6), 'geo': g.get('confidence', 'medium'), 'page': s['page'],
+        })
+        if not cover:
+            for p in photos:
+                if p['w'] >= p['h'] * 1.15 and p['w'] >= 500 and OVERLAY.get(p['file'], 0) < 0.02:
+                    cover = p['file']
+                    break
+        review.append({'walk': wid, 'stop': s['n'], 'title': s['title'], 'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6),
+                       'confidence': g.get('confidence', 'medium'), 'matched': g.get('osm', g.get('query', '')),
+                       'map_link': f"https://www.google.com/maps?q={round(g['lat'], 6)},{round(g['lng'], 6)}", 'book_page': s['page']})
+    for im in w.get('images', []):
+        if im['w'] >= 260:
+            images_used.add(im['file'])
+            if not cover and im['w'] >= im['h'] * 1.15 and im['w'] >= 500 and OVERLAY.get(im['file'], 0) < 0.02:
+                cover = im['file']
+    if not cover:
+        land = [p for st in stops for p in st['photos'] if p['w'] >= p['h'] * 1.1 and p['w'] >= 400]
+        land.sort(key=lambda p: OVERLAY.get(p['file'], 0))
+        if land:
+            cover = land[0]['file']
+    # Book map page rendered as an image for the "book map" view.
+    book_map = None
+    if wid in MAP_PAGES:
+        part, pg = MAP_PAGES[wid]
+        try:
+            import pymupdf
+            pdf = glob.glob(f'{BOOK}/part{part}*.pdf')[0]
+            pix = pymupdf.open(pdf)[pg - 1].get_pixmap(dpi=110)
+            book_map = f'map-{wid}.jpg'
+            pix.save(f'{ASSETS}/{book_map}', jpg_quality=80)
+        except Exception as e:
+            print('map render failed', wid, e, file=sys.stderr)
+    walks.append({'id': wid, 'num': k + 1, 'title': title, 'theme': theme, 'facts': FACTS.get(wid, {}), 'intro': intro, 'info': info,
+                  **({'cover': cover} if cover else {}), **({'bookMap': book_map} if book_map else {}), 'color': COLORS[k % len(COLORS)], 'stops': stops})
+
+# Copy referenced images into the app and write the require() map.
+for f in images_used:
+    shutil.copy(f'{BOOK}/out/img/{f}', f'{ASSETS}/{f}')
+lines = ['/* eslint-disable */', '// Generated by scripts/build_data.py. Do not edit by hand.', 'export const images: Record<string, number> = {']
+for f in sorted(images_used | {w['bookMap'] for w in walks if w.get('bookMap')}):
+    lines.append(f"  '{f}': require('../../assets/book/{f}'),")
+lines.append('};')
+open(f'{OUT}/images.ts', 'w').write('\n'.join(lines) + '\n')
+
+# Fun facts: self-contained sentences from the book that carry a date, number, or meaning.
+facts = []
+for w in walks:
+    cands = []
+    for s in w['stops']:
+        for b in s['blocks']:
+            if b['kind'] != 'p':
+                continue
+            for sent in re.split(r'(?<=[.!])\s+(?=[A-Z‘“])', b['text']):
+                sent = sent.strip()
+                if not (70 <= len(sent) <= 210) or sent.endswith(':'):
+                    continue
+                if re.match(r'^(It|This|These|They|He|She|Its|Here|There|Then|Also|But|And|Turn|Walk|Continue|Cross|Look|Stop|You)\b', sent):
+                    continue
+                score = 0
+                if re.search(r'\b1[789]\d\d\b|\b20[0-2]\d\b', sent): score += 2
+                if re.search(r"means|meaning|named|known as|‘[a-z ,]+’", sent): score += 3
+                if HAWAII.search(sent): score += 1
+                if re.search(r'first|oldest|only|largest|tallest|original', sent, re.I): score += 2
+                if score >= 3:
+                    cands.append((score, sent, s['id']))
+    cands.sort(key=lambda x: -x[0])
+    for sc, sent, sid in cands[:8]:
+        facts.append({'id': f'f{len(facts) + 1}', 'text': sent, 'walkId': w['id'], 'stopId': sid})
+json.dump(facts, open(f'{OUT}/facts.json', 'w'), ensure_ascii=False, indent=1)
+
+# Glossary: definitions the book gives inline, e.g. "mo‘olelo (legend)" or "kapu ‘taboo,’".
+gloss = {}
+ENGLISH = {'hill', 'hope', 'home', 'lane', 'mile', 'pine', 'wine', 'line', 'mall', 'hall', 'helen', 'hawaii', 'imin', 'nuuanu'}
+pat1 = re.compile(r"\b([A-Za-zāēīōūĀĒĪŌŪ‘ʻ]{3,}(?:\s[a-zāēīōū‘ʻ]{2,})?)\s*\(([a-z][a-z ,;'-]{2,40})\)")
+pat2 = re.compile(r"\b([A-Za-zāēīōūĀĒĪŌŪ‘ʻ]{3,})\s*[‘']([a-z][a-z ,'-]{2,40})[,.]?[’']")
+pat3 = re.compile(r"([A-Z][A-Za-zāēīōūĀĒĪŌŪ‘ʻ]+(?:\s[A-Z][A-Za-zāēīōū‘ʻ]+)?) means\s*[‘“']([^’”']{3,50})[’”']")
+texts = [b['text'] for w in walks for s in w['stops'] for b in s['blocks']] + [b['text'] for w in walks for b in w['intro']]
+for txt in texts:
+    for pat in (pat1, pat2, pat3):
+        for m in pat.finditer(txt):
+            word, mean = m.group(1).strip(), m.group(2).strip(' ,;')
+            word = re.sub(r'^Hawaiian\s+', '', word)
+            plain = re.sub(r'[‘ʻ\s]', '', word.lower().translate(str.maketrans('āēīōū', 'aeiou')))
+            if not re.fullmatch(r'[aeiouhklmnpw]+', plain):
+                continue  # not spelled with the Hawaiian alphabet
+            if not HAWAII.search(word) and (len(plain) < 5 or plain in ENGLISH):
+                continue
+            if mean.startswith(('means', 'i or', 'a block', 'variant', 'the deity')) or len(mean) < 3:
+                continue
+            if word in ('Hawai', 'Kamakawiwo', 'nalu heiau', 'one mo‘olelo', 'naupaka kahakai', 'naupaka kuahiwi'):
+                continue
+            gloss.setdefault(word, mean.rstrip('.'))
+for word, mean in [('Mauka', 'toward the mountains'), ('Makai', 'toward the sea'), ('‘Ewa', 'toward the former plantation town of ‘Ewa (westward)'), ('Lē‘ahi', 'Diamond Head crater')]:
+    gloss[word] = mean
+json.dump([{'word': k, 'meaning': v} for k, v in sorted(gloss.items())], open(f'{OUT}/glossary.json', 'w'), ensure_ascii=False, indent=1)
+
+# About: the book's foreword and directional guide from the front matter.
+front = SRC['front']
+about, cur = [], None
+for b in front:
+    if b.get('kind') == 'heading' and b['text'].strip().upper() in ('FOREWORD', 'DEDICATIONS'):
+        cur = {'title': b['text'].strip().title(), 'paragraphs': []}
+        about.append(cur)
+        continue
+    if cur and b.get('kind') in ('p', 'direction') and len(b.get('text', '')) > 25:
+        if len(cur['paragraphs']) < 14:
+            cur['paragraphs'].append(b['text'])
+json.dump(about, open(f'{OUT}/about.json', 'w'), ensure_ascii=False, indent=1)
+
+json.dump(walks, open(f'{OUT}/walks.json', 'w'), ensure_ascii=False, indent=1)
+with open(f'{ROOT}/review/stops_review.csv', 'w', newline='') as fh:
+    wr = csv.DictWriter(fh, fieldnames=list(review[0].keys()))
+    wr.writeheader()
+    wr.writerows(review)
+
+conf = {}
+for r in review:
+    conf[r['confidence']] = conf.get(r['confidence'], 0) + 1
+print('walks', len(walks), 'stops', sum(len(w['stops']) for w in walks), 'images', len(images_used), 'facts', len(facts), 'glossary', len(gloss))
+print('pin confidence', conf)
