@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Card, T, tap } from '../../components/ui';
@@ -39,19 +39,17 @@ export default function Explore() {
         )}
       </MapView>
 
-      <View style={[styles.top, { top: insets.top + 8 }]}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, paddingHorizontal: 12 }}>
-          <Pressable onPress={() => setSel(null)} style={[styles.chip, { backgroundColor: !sel ? t.primary : t.card }]}>
-            <T style={{ color: !sel ? t.primaryText : t.text, fontFamily: t.font.bodyBold, fontSize: 13 }}>All walks</T>
+      <View style={[styles.top, { top: insets.top + 8, alignItems: 'center' }]}>
+        {sel ? (
+          <Pressable onPress={() => setSel(null)} style={[styles.chip, { backgroundColor: t.card, flexDirection: 'row', gap: 6, alignItems: 'center' }]}>
+            <Ionicons name="chevron-back" size={16} color={t.primary} />
+            <T style={{ color: t.text, fontFamily: t.font.bodyBold, fontSize: 13 }}>All walks</T>
           </Pressable>
-          {walks.map((w) => (
-            <Pressable key={w.id} onPress={() => setSel(w)} style={[styles.chip, { backgroundColor: sel?.id === w.id ? w.color : t.card }]}>
-              <T style={{ color: sel?.id === w.id ? '#fff' : t.text, fontFamily: t.font.bodyBold, fontSize: 13 }}>
-                {w.id} · {w.title}
-              </T>
-            </Pressable>
-          ))}
-        </ScrollView>
+        ) : (
+          <View style={[styles.chip, { backgroundColor: t.card }]}>
+            <T style={{ color: t.text, fontFamily: t.font.bodySemi, fontSize: 13 }}>Tap a walk to see its stops</T>
+          </View>
+        )}
       </View>
 
       {sel ? (

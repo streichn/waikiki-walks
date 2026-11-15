@@ -17,6 +17,7 @@ export default function Profile() {
   const insets = useSafeAreaInsets();
   const profile = useAccount((s) => s.profile);
   const isPro = useAccount((s) => s.isPro);
+  const passExpiry = useAccount((s) => s.passExpiry);
   const progress = useProgress((s) => s.progress);
   const finished = Object.values(progress).filter((p) => p.finishedAt).length;
   const visited = Object.values(progress).reduce((a, p) => a + p.visited.length, 0);
@@ -73,7 +74,13 @@ export default function Profile() {
           <Ionicons name={isPro ? 'ribbon' : 'lock-open'} size={20} color={isPro ? t.gold : t.primary} />
           <T variant="h2">{isPro ? 'All twelve walks unlocked' : 'Free preview'}</T>
         </View>
-        <T variant="small">{isPro ? 'Mahalo for supporting the book.' : 'Unlock every walk, every stop, read-aloud narration, and offline maps.'}</T>
+        <T variant="small">
+          {isPro
+            ? passExpiry
+              ? `Your 7-day pass runs until ${new Date(passExpiry).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. Mahalo for supporting the book.`
+              : 'Mahalo for supporting the book.'
+            : 'Unlock every walk, every stop, read-aloud narration, and offline maps.'}
+        </T>
         {isPro ? (
           <Button
             kind="outline"

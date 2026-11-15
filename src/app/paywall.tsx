@@ -11,14 +11,21 @@ import { Button, IconButton, T, tap } from '../components/ui';
 import { photo, walks } from '../data';
 import { buy, isConfigured, loadPackages, restore } from '../lib/purchases';
 import { LINKS } from '../legal';
+import { PLANS } from '../config';
 import { useTheme } from '../theme';
 
 // Shown only until the store products exist; real prices always come from the store.
 const PLACEHOLDER = [
-  { id: 'annual', title: 'Yearly', price: '$19.99 / year', note: '7-day free trial', best: true },
-  { id: 'monthly', title: 'Monthly', price: '$4.99 / month', note: 'Cancel anytime' },
-  { id: 'lifetime', title: 'Forever', price: '$29.99 once', note: 'All twelve walks, no subscription' },
+  { id: PLANS.weekPass.productId, title: '7-day pass', price: PLANS.weekPass.fallbackPrice, note: 'All 12 walks for your trip. Never renews.', best: false },
+  { id: PLANS.forever.productId, title: 'Yours forever', price: PLANS.forever.fallbackPrice, note: 'All 12 walks, every visit, one payment', best: true },
 ];
+
+function describe(p: PurchasesPackage) {
+  const id = p.product.identifier;
+  if (id === PLANS.weekPass.productId) return { title: '7-day pass', note: 'All 12 walks for your trip. Never renews.', best: false };
+  if (id === PLANS.forever.productId) return { title: 'Yours forever', note: 'All 12 walks, every visit, one payment', best: true };
+  return { title: p.product.title, note: p.product.description, best: false };
+}
 
 const PERKS: { icon: keyof typeof Ionicons.glyphMap; text: string }[] = [
   { icon: 'map', text: 'All 12 walks and every stop, from Kālia to Mānoa Falls' },
@@ -32,7 +39,7 @@ export default function Paywall() {
   const t = useTheme();
   const insets = useSafeAreaInsets();
   const [pkgs, setPkgs] = useState<PurchasesPackage[]>([]);
-  const [sel, setSel] = useState<string>('annual');
+  const [sel, setSel] = useState<string>(PLANS.forever.productId);
   const [busy, setBusy] = useState(false);
   const cover = walks.find((w) => w.id === 'V')?.cover;
 
@@ -40,8 +47,8 @@ export default function Paywall() {
     loadPackages()
       .then((p) => {
         setPkgs(p);
-        const annual = p.find((x) => x.packageType === 'ANNUAL');
-        if (annual) setSel(annual.identifier);
+        const forever = p.find((x) => x.product.identifier === PLANS.forever.productId);
+        if (forever) setSel(forever.identifier);
         else if (p[0]) setSel(p[0].identifier);
       })
       .catch(() => undefined);
@@ -70,10 +77,8 @@ export default function Paywall() {
   const plans = pkgs.length
     ? pkgs.map((p) => ({
         id: p.identifier,
-        title: p.packageType === 'ANNUAL' ? 'Yearly' : p.packageType === 'MONTHLY' ? 'Monthly' : p.packageType === 'LIFETIME' ? 'Forever' : p.product.title,
-        price: p.product.priceString + (p.packageType === 'ANNUAL' ? ' / year' : p.packageType === 'MONTHLY' ? ' / month' : ''),
-        note: p.product.introPrice ? `${p.product.introPrice.periodNumberOfUnits}-${p.product.introPrice.periodUnit.toLowerCase()} free trial` : p.packageType === 'LIFETIME' ? 'One purchase, yours to keep' : 'Cancel anytime',
-        best: p.packageType === 'ANNUAL',
+        price: p.product.priceString,
+        ...describe(p),
       }))
     : PLACEHOLDER;
 
@@ -132,7 +137,7 @@ export default function Paywall() {
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + 10, backgroundColor: t.bg, borderTopColor: t.border }]}>
-        <Button kind="accent" label="Continue" icon="sparkles" onPress={purchase} loading={busy} />
+        <Button kind="accent" label={`Unlock for ${plans.find((x) => x.id === sel)?.price ?? ''}`} icon="sparkles" onPress={purchase} loading={busy} />
         <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 18 }}>
           <Pressable
             onPress={async () => {
@@ -157,7 +162,7 @@ export default function Paywall() {
           </Pressable>
         </View>
         <T variant="small" style={{ textAlign: 'center', fontSize: 11 }}>
-          Subscriptions renew automatically until cancelled in your App Store or Google Play account settings.
+          One-time purchases. Nothing renews or charges you again.
         </T>
       </View>
       <IconButton icon="close" label="Close" onPress={() => router.back()} style={{ position: 'absolute', top: insets.top + 8, right: 16 }} />

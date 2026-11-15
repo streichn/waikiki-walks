@@ -9,6 +9,17 @@ export const TRIAL = {
 /** Every walk shows its overview, map, and first stop title for free so people can browse. */
 export const BROWSE_PREVIEW_STOPS = 1;
 
+/**
+ * Pricing, matched to Waikīkī tour apps in Nov 2026: single walking tours sell for $4.99 to $9.99
+ * (VoiceMap, Shaka Guide), multi-tour passes $24.99 to $34.99, a whole-island bundle $29.99.
+ * No free trial: the free part of Walk IV is the trial.
+ * These are display fallbacks only; real prices come from the App Store / Google Play.
+ */
+export const PLANS = {
+  weekPass: { productId: 'ww_week_pass', days: 7, fallbackPrice: '$9.99' }, // non-renewing: never charges again
+  forever: { productId: 'ww_forever', fallbackPrice: '$34.99' }, // one-time, all walks for good
+};
+
 /** RevenueCat: create these in the RevenueCat dashboard, then paste the public SDK keys into .env */
 export const REVENUECAT = {
   entitlement: 'all_walks',

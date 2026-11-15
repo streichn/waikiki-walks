@@ -66,7 +66,21 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Payments: in-app purchase through RevenueCat
 - **Common practice:** digital content must use Apple In-App Purchase and Google Play Billing. Many tour apps preview a few stops free and charge for the rest, sold per tour, as a bundle, or by subscription.
-- **Our choice:** a free preview of Walk IV (stops 1 to 5), then yearly, monthly, or lifetime unlock of all walks. RevenueCat validates receipts and reports the `all_walks` entitlement. The paywall has Restore Purchases and auto-renewal wording.
+- **Our choice (updated 2026-11-15):** no free trial. The free part of Walk IV (stops 1 to 5) is the trial, because a vacation-length trial would let most visitors finish without paying.
+  - Two purchases:
+    - **7-day pass, $9.99:** a non-renewing subscription that never charges again.
+    - **Yours forever, $34.99:** a non-consumable.
+  - Locked stops show their first photo and opening lines, with one-tap unlock.
+- **Market check, Nov 2026:**
+  - Single Waikīkī walking tours sell for $4.99 to $9.99 (VoiceMap, Shaka Guide).
+  - VoiceMap city passes: 3 tours for 14 days at $24.99, 5 tours for 30 days at $34.99.
+  - Shaka Guide's Oahu bundle is $29.99, and its Hawaiʻi collection $79.99.
+  - Monthly and yearly subscriptions fit locals more than visitors; they can be added later.
+- **How it works technically:**
+  - Apple sends no expiry date for non-renewing purchases, so the app computes the pass end from the purchase date.
+  - The forever unlock grants the `all_walks` entitlement in RevenueCat.
+  - Holiday specials use App Store price schedules or offer codes, with no app update needed.
+- Sources: voicemap.me/tour/honolulu-hawaii (tour prices); voicemap.me/passes; shakaguide.com (tour and bundle prices); community.revenuecat.com (non-renewing subscriptions need client-side expiry).
 - Sources: smartguide.app/museums (first stops free, rest paid); apps.apple.com/app/id1457662600 (WalknTours annual subscription); support.voicemap.me/what-am-i-paying-for
 
 ## Arrival detection

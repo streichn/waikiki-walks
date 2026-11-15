@@ -211,14 +211,7 @@ function StopSection({ stop, index, locked, walkColor, onMap, width }: { stop: S
       </View>
       <WaveRule width={70} color={walkColor} />
       {locked ? (
-        <Pressable onPress={() => router.push('/paywall')} style={[styles.lock, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
-          <Ionicons name="lock-closed" size={20} color={t.accent} />
-          <View style={{ flex: 1 }}>
-            <T variant="h2">Keep walking with Veneeta</T>
-            <T variant="small">Unlock all twelve walks to read and hear this stop.</T>
-          </View>
-          <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
-        </Pressable>
+        <LockedTeaser stop={stop} />
       ) : (
         <>
           <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -239,6 +232,48 @@ function StopSection({ stop, index, locked, walkColor, onMap, width }: { stop: S
         </>
       )}
     </View>
+  );
+}
+
+/**
+ * A locked stop still shows its first photo and opening lines, fading out, so walkers can
+ * see what they are missing. One tap opens the purchase sheet.
+ */
+function LockedTeaser({ stop }: { stop: Stop }) {
+  const t = useTheme();
+  const first = stop.photos[0];
+  const teaser = (stop.blocks.find((b) => b.kind === 'p')?.text ?? '').split(/(?<=[.!?])\s+/).slice(0, 2).join(' ');
+  return (
+    <Pressable onPress={() => router.push('/paywall')} accessibilityRole="button" accessibilityLabel={`Unlock ${stop.title}`} style={{ gap: 10 }}>
+      {first ? (
+        <View style={{ flexDirection: 'row', gap: 8 }}>
+          <Image source={photo(first.file)} style={{ height: 170, flex: 2, borderRadius: 16 }} contentFit="cover" />
+          {stop.photos.length > 1 ? (
+            <View style={{ flex: 1, borderRadius: 16, overflow: 'hidden', backgroundColor: t.cardAlt }}>
+              <Image source={photo(stop.photos[1].file)} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={22} />
+              <View style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)' }]}>
+                <Ionicons name="lock-closed" size={22} color="#fff" />
+                <T style={{ color: '#fff', fontFamily: t.font.bodyBold, fontSize: 13 }}>+{stop.photos.length - 1} photos</T>
+              </View>
+            </View>
+          ) : null}
+        </View>
+      ) : null}
+      {teaser ? (
+        <View>
+          <T>{teaser}</T>
+          <LinearGradient colors={['transparent', t.bg]} style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 40 }} />
+        </View>
+      ) : null}
+      <View style={[styles.lock, { backgroundColor: t.accent, borderColor: t.accent }]}>
+        <Ionicons name="lock-open" size={20} color="#fff" />
+        <View style={{ flex: 1 }}>
+          <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>Keep reading with Veneeta</T>
+          <T style={{ color: '#FFE3EC', fontSize: 13 }}>Unlock every walk, stop, and photo</T>
+        </View>
+        <Ionicons name="chevron-forward" size={20} color="#fff" />
+      </View>
+    </Pressable>
   );
 }
 

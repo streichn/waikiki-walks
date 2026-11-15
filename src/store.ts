@@ -114,8 +114,10 @@ export type Profile = {
 type AccountState = {
   profile?: Profile;
   isPro: boolean; // mirrors the RevenueCat entitlement; RevenueCat stays the source of truth
+  passExpiry?: number; // week pass end time (ms), if a pass is active
   setProfile: (p?: Profile) => void;
   setPro: (v: boolean) => void;
+  setPassExpiry: (t?: number) => void;
 };
 
 export const useAccount = create<AccountState>()(
@@ -125,6 +127,8 @@ export const useAccount = create<AccountState>()(
       isPro: false,
       setProfile: (profile) => set({ profile }),
       setPro: (isPro) => set({ isPro }),
+      passExpiry: undefined,
+      setPassExpiry: (passExpiry) => set({ passExpiry }),
     }),
     { name: 'account', storage: createJSONStorage(() => AsyncStorage) },
   ),

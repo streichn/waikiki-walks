@@ -23,3 +23,9 @@
 - Locate button cycles: center on me and follow, follow with heading (map turns as you turn), free map. Dragging the map stops following.
 - Map style switch: street, satellite, satellite with street names, and Veneeta's original walk map from the book (pinch to zoom).
 - Preview: blue dot with direction cone, follow modes, and the book map viewer.
+
+## 2026-11-15 · Pricing, teasers, simpler map
+- Pricing matched to Waikīkī tour apps: 7-day pass $9.99 (never renews) and Yours forever $34.99. No free trial; the free part of Walk IV is the trial.
+- Locked stops show the first photo and opening lines, with a one-tap "Unlock for $X" button.
+- Explore map: no walk list on top; tap a walk on the map to see only its route and stops.
+- Preview: the demo walk starts automatically so the moving blue dot and arrival alerts are visible.

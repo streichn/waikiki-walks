@@ -186,6 +186,18 @@
     setTimeout(() => { el.textContent = f.text; document.getElementById('fsrc').textContent = `From Walk ${f.walkId}, ${walk(f.walkId).title}`; el.style.opacity = 1; }, 220);
   }
 
+  // Locked stops show the first photo and opening lines, fading out, with a one-tap unlock.
+  function teaser(s) {
+    const first = s.photos[0], second = s.photos[1];
+    const p = (s.blocks.find((b) => b.kind === 'p') || {}).text || '';
+    const lines = p.split(/(?<=[.!?])\s+/).slice(0, 2).join(' ');
+    return `<button data-act="paywall" style="text-align:left;display:flex;flex-direction:column;gap:10px;width:100%">
+      ${first && IMG[first.file] ? `<div style="display:flex;gap:8px;width:100%"><img src="${IMG[first.file]}" alt="" style="flex:2;min-width:0;height:170px;object-fit:cover;border-radius:16px">${second && IMG[second.file] ? `<span style="flex:1;position:relative;border-radius:16px;overflow:hidden"><img src="${IMG[second.file]}" alt="" style="width:100%;height:170px;object-fit:cover;filter:blur(14px);transform:scale(1.2)"><span style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.25);color:#fff;font-weight:800;font-size:13px">${ic('lock', 'width="22" height="22"')}+${s.photos.length - 1} photos</span></span>` : ''}</div>` : ''}
+      ${lines ? `<div style="position:relative"><p class="p">${esc(lines)}</p><span style="position:absolute;left:0;right:0;bottom:0;height:44px;background:linear-gradient(transparent,var(--bg))"></span></div>` : ''}
+      <span class="lock" style="background:var(--accent);border-color:var(--accent);color:#fff">${ic('unlock', 'width="22" height="22"')}<span style="flex:1"><span style="display:block;font-weight:800">Keep reading with Veneeta</span><span style="font-size:13px;opacity:.9">Unlock every walk, stop, and photo</span></span></span>
+    </button>`;
+  }
+
   function renderWalk() {
     const w = walk(S.walkId), prog = S.progress[w.id];
     const startLabel = !canStart(w.id) ? 'Unlock this walk' : S.active === w.id ? 'Return to walk' : prog && prog.visited.length && !prog.finishedAt ? 'Continue walk' : 'Start walk';
@@ -194,7 +206,7 @@
       const locked = !canOpen(w.id, i), fav = S.favs.includes(s.id);
       return `<section class="stop pad stack" id="stop-${i}" data-i="${i}" style="gap:12px">
         <div class="stophead"><span class="num" style="background:${locked ? '#8A9A9B' : w.color}">${s.n}</span><div><h2>${esc(s.title)}</h2>${s.subtitle ? `<div class="italic small">${esc(s.subtitle)}</div>` : ''}</div></div>${wave(70, w.color)}
-        ${locked ? `<button class="lock" data-act="paywall">${ic('lock', 'width="22" height="22" style="color:var(--accent)"')}<div style="flex:1"><div style="font-weight:800">Keep walking with Veneeta</div><div class="small">Unlock all twelve walks to read and hear this stop.</div></div></button>` : `
+        ${locked ? teaser(s) : `
         <div class="actions"><button class="action" data-listen="${s.id}" data-i="${i}">${ic('volume')} Listen</button><button class="action" data-onmap="${i}">${ic('map')} On map</button><button class="action" data-fav="${s.id}" aria-label="${fav ? 'Remove from saved' : 'Save stop'}" style="color:var(--accent)">${ic(fav ? 'heartFill' : 'heart')}</button></div>
         ${photosHtml(s.photos)}${blocksHtml(s.blocks, s.id)}`}
       </section>`;
@@ -280,7 +292,7 @@
     return `<div id="go" class="l-${S.layout}" style="position:absolute;inset:0">
       <div class="mapwrap"><div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div></div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${w.id} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${S.layout !== 'read' ? `<div class="simbar"><button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? 'Simulating…' : 'Simulate walking'}</button><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${S.layout !== 'read' ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}" style="position:absolute;left:12px;z-index:1000;top:calc(${S.layout === 'map' ? '100% - 260px' : '46% - 70px'})">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet">
         <div class="layouts">${['map', 'split', 'read'].map((l) => `<button data-layout="${l}" aria-pressed="${S.layout === l}" aria-label="${l} view">${ic(l === 'map' ? 'map' : l === 'split' ? 'split' : 'reader')}</button>`).join('')}</div>
@@ -363,7 +375,8 @@
 
   function renderExplore() {
     return `<div class="screen" style="padding:0"><div class="map" id="emap"></div><div class="attrib" style="bottom:70px">© OpenStreetMap contributors</div>
-      <div style="position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 10px);z-index:900"><div class="rail" style="margin:0;padding:0 12px">${D.walks.map((w) => `<button class="chip" data-walk="${w.id}" style="flex:none;background:var(--card);box-shadow:0 2px 4px rgba(0,0,0,.15);padding:8px 12px"><span style="color:${w.color};font-family:var(--display)">${w.id}</span> ${esc(w.title)}</button>`).join('')}</div></div></div>`;
+      <div style="position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top) + 10px);z-index:900;display:flex;justify-content:center"><div id="ehint" class="chip" style="background:var(--card);box-shadow:0 2px 4px rgba(0,0,0,.15);padding:8px 14px">Tap a walk to see its stops</div></div>
+      <div id="ecard" class="card hidden" style="position:absolute;left:14px;right:14px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:900"></div></div>`;
   }
   function mountExplore() {
     const el = document.getElementById('emap'); if (!el) return;
@@ -371,20 +384,39 @@
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else t.style.background = '#e9e5dc'; return t; } });
     const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 }).setView([21.283, -157.825], 14);
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14 }).addTo(map);
-    D.walks.forEach((w) => { const s = w.stops[0]; L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${w.color};min-width:32px;height:32px">${w.id}</div>`, iconSize: [32, 32], iconAnchor: [16, 16] }) }).addTo(map).on('click', () => openWalk(w.id)); });
+    const group = L.layerGroup().addTo(map);
+    const showAll = () => {
+      group.clearLayers();
+      D.walks.forEach((w) => { const s = w.stops[0]; L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${w.color};min-width:32px;height:32px">${w.id}</div>`, iconSize: [32, 32], iconAnchor: [16, 16] }) }).addTo(group).on('click', () => showWalk(w)); });
+      document.getElementById('ehint').innerHTML = 'Tap a walk to see its stops';
+      document.getElementById('ecard').classList.add('hidden');
+      map.setView([21.283, -157.825], 14);
+    };
+    const showWalk = (w) => {
+      group.clearLayers();
+      const pts = w.stops.map((s) => [s.lat, s.lng]);
+      L.polyline(pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
+      w.stops.forEach((s, i) => L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
+      map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [30, 70], paddingBottomRight: [30, 200] });
+      const h = document.getElementById('ehint'); h.innerHTML = `${ic('back', 'width="14" height="14"')} All walks`; h.setAttribute('role', 'button'); h.onclick = showAll;
+      const c = document.getElementById('ecard'); c.classList.remove('hidden');
+      c.innerHTML = `<div class="label">Walk ${w.id}</div><h2 style="font-size:22px">${esc(w.title)}</h2><div class="small">${esc(w.theme)}</div><button class="btn block" style="margin-top:10px" data-walk="${w.id}">Open walk ${ic('fwd')}</button>`;
+    };
+    showAll();
   }
 
   // Modals
   function modal(html, center) { const m = document.createElement('div'); m.className = 'modal' + (center ? ' center' : ''); m.innerHTML = `<div class="panel" role="dialog" aria-modal="true">${html}<button class="iconbtn close" data-close aria-label="Close">${ic('close')}</button></div>`; m.addEventListener('click', (e) => { if (e.target === m || e.target.closest('[data-close]')) m.remove(); }); $app.appendChild(m); return m; }
   function openPaywall() {
-    let sel = 'annual';
-    const plans = [['annual', 'Yearly', '$19.99 / year', '7-day free trial', true], ['monthly', 'Monthly', '$4.99 / month', 'Cancel anytime'], ['lifetime', 'Forever', '$29.99 once', 'All twelve walks, no subscription']];
+    let sel = 'forever';
+    const plans = [['week', '7-day pass', '$9.99', 'All 12 walks for your trip. Never renews.', false], ['forever', 'Yours forever', '$34.99', 'All 12 walks, every visit, one payment', true]];
+    const priceOf = (id) => plans.find((p) => p[0] === id)[2];
     const perks = [['map', 'All 12 walks and every stop, from Kālia to Mānoa Falls'], ['headset', 'Read-aloud narration, hands free with headphones'], ['pin', 'Arrival alerts, even with your phone in your pocket'], ['book', 'Historic photographs from the book'], ['scan', '“What am I looking at?” for landmarks along the way']];
     const m = modal(`<div class="stack"><div class="row">${hib(64, '#D6336C', -15)}${plum(40, 20)}</div><h1 style="font-size:30px">Walk all of Waikīkī</h1><div class="italic" style="color:var(--leaf)">Twelve walks through a thousand years, in Veneeta’s own words.</div>
       ${perks.map(([i, t]) => `<div class="perk"><i>${ic(i)}</i><span>${t}</span></div>`).join('')}
       <div class="stack" role="radiogroup" style="gap:12px;margin-top:6px">${plans.map(([id, t, p, n, b]) => `<button class="plan" role="radio" aria-checked="${id === sel}" data-plan="${id}"><span style="flex:1"><b>${t}</b><div class="small">${n}</div></span><b>${p}</b>${b ? '<span class="best">BEST VALUE</span>' : ''}</button>`).join('')}</div>
-      <button class="btn accent block" data-buy>${ic('sparkles')} Continue</button><p class="small" style="text-align:center">Preview prices. In the app, real prices come from the App Store and Google Play, and subscriptions renew until cancelled.</p></div>`);
-    m.addEventListener('click', (e) => { const p = e.target.closest('[data-plan]'); if (p) { sel = p.dataset.plan; m.querySelectorAll('[data-plan]').forEach((x) => x.setAttribute('aria-checked', x.dataset.plan === sel)); } if (e.target.closest('[data-buy]')) { S.isPro = true; persist(); m.remove(); toast('Mahalo nui loa! All twelve walks are open (preview).'); render(); } });
+      <button class="btn accent block" data-buy>${ic('sparkles')} <span id="buylabel">Unlock for ${priceOf(sel)}</span></button><p class="small" style="text-align:center">One-time purchase. Nothing renews or charges you again. Preview only: no real payment.</p></div>`);
+    m.addEventListener('click', (e) => { const p = e.target.closest('[data-plan]'); if (p) { sel = p.dataset.plan; m.querySelectorAll('[data-plan]').forEach((x) => x.setAttribute('aria-checked', x.dataset.plan === sel)); m.querySelector('#buylabel').textContent = `Unlock for ${priceOf(sel)}`; } if (e.target.closest('[data-buy]')) { S.isPro = true; persist(); m.remove(); toast('Mahalo nui loa! All twelve walks are open (preview).'); render(); } });
   }
   function openAuth() {
     const m = modal(`<div class="stack">${hib(64, 'var(--accent)')}<h1 style="font-size:30px">E komo mai</h1><p class="small" style="color:var(--text)">Welcome. Sign in to keep your progress, saved stops, and purchases on every device.</p>
@@ -470,7 +502,9 @@
     if (!canStart(w.id)) return openPaywall();
     const p = S.progress[w.id];
     if (!p || p.finishedAt) S.progress[w.id] = { current: 0, visited: [], startedAt: Date.now() };
-    S.active = w.id; S.view = 'go'; S.me = null; persist(); await needImages(w.id); render();
+    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; persist(); await needImages(w.id); render();
+    // The preview can't read real GPS, so it walks the route for you; tap the demo button to pause.
+    startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
   }
 
   function render() {
@@ -522,7 +556,7 @@
       if (a === 'resume') { S.walkId = S.active; S.view = 'go'; return needImages(S.active).then(render); }
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
       if (a === 'end') { stopSim(); stopSpeak(); S.active = null; persist(); S.view = 'walk'; toast('Walk ended. Your place is saved.'); return render(); }
-      if (a === 'sim') { if (S.sim) stopSim(); else startSim(); el.setAttribute('aria-pressed', S.sim); el.textContent = S.sim ? 'Simulating…' : 'Simulate walking'; return; }
+      if (a === 'sim') { if (S.sim) stopSim(); else startSim(); el.setAttribute('aria-pressed', S.sim); el.textContent = S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'; return; }
       if (a === 'whole') { S.follow = 'off'; return gmap && gmap.fit(); }
       if (a === 'locate') {
         if (!S.me) { const p = S.progress[w.id]; const prev = w.stops[Math.max(0, p.current - 1)]; S.me = { lat: prev.lat - 0.0006, lng: prev.lng - 0.0004 }; }
