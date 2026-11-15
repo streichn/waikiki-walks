@@ -1744,7 +1744,16 @@
        "text": "From Hobron Lane, cross Ala Moana Boulevard to the ‘Ilikai Hotel, one of the early high-rise modern hotels in Waikīkī. Walk up the ramp to the front steps, through the lobby to the lānai overlooking the harbor."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2856207,
+      "lng": -157.8387641,
+      "query": "Hobron Lane / Ala Moana Boulevard",
+      "osm": "intersection of Hobron Lane and Ala Moana Boulevard (nominatim)",
+      "type": "intersection",
+      "confidence": "medium",
+      "basis": "Discovery Bay, the twin-tower condominium on the mauka-Diamond Head corner of Hobron Lane and Ala Moana Boulevard",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 9,
@@ -2341,7 +2350,16 @@
        "text": "Walk ‘Ewa on Kālia Road to the intersection at the Hale Koa Hotel at Maluhia Road. Kuroda Field is located on the mauka side of Kālia Road. The two 12 to13 acre loko of kalo and fish and, later, of rice and ducks would have been located mauka of the road."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2790623,
+      "lng": -157.8340006,
+      "query": "U.S. Army Museum of Hawaii / Battery Randolph",
+      "osm": "United States Army Museum of Hawaii, Kalia Road, Honolulu (photon)",
+      "type": "tourism/museum",
+      "confidence": "medium",
+      "basis": "Battery Randolph, U.S. Army Museum of Hawaiʻi, Saratoga Road",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 18,
@@ -3801,7 +3819,16 @@
        "text": "On the mauka corner of Kalākaua Avenue and Kālaimoku Street is a sculpture of a Hawaiian lady as “Storyteller,” a bronze statue by local artist, Shige Yamada."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2823241,
+      "lng": -157.8310376,
+      "query": "Kalakaua Avenue / Kalaimoku Street",
+      "osm": "intersection of Kalakaua Avenue and Kalaimoku Street (nominatim)",
+      "type": "intersection",
+      "confidence": "medium",
+      "basis": "On the mauka corner of Kalākaua Avenue and Kālaimoku Street",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 7,
@@ -6056,7 +6083,16 @@
        "page": "p2-19"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2710463,
+      "lng": -157.8221171,
+      "query": "Gandhi statue, Honolulu / Mahatma Gandhi",
+      "osm": "Mahatma Gandhi, Monsarrat Avenue, Honolulu (photon)",
+      "type": "historic/memorial",
+      "confidence": "medium",
+      "basis": "Mohandas K. Gandhi Statue",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 3,
@@ -6993,7 +7029,16 @@
        "page": "p2-37"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2636367,
+      "lng": -157.8217988,
+      "query": "Sans Souci Beach / Kaimana Beach",
+      "osm": "Kaimana beach, Waikīkī, East Honolulu, Honolulu, Honolulu County, Hawaii, United States (nominatim)",
+      "type": "natural/beach",
+      "confidence": "medium",
+      "basis": "The beach ... in front of the Kaimana Hotel and neighboring Sans Souci Apartments, is known as Sans Souci Beach",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 8,
@@ -7524,7 +7569,16 @@
        "page": "p2-46"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2615921,
+      "lng": -157.8165345,
+      "query": "La Pietra Hawaii School for Girls / La Pietra",
+      "osm": "La Pietra Circle, Kapahulu, East Honolulu, Honolulu, Honolulu County, Hawaii, 96828, United States (nominatim)",
+      "type": "highway/service",
+      "confidence": "low",
+      "basis": "La Pietra Hawaiʻi School for Girls",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 22,
@@ -8311,7 +8365,16 @@
        "text": "Even the Palm trees on Center Street have seen better days! If you have a few minutes, take in the view of Honolulu and the Wai‘anae range from the parking lot."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2828591,
+      "lng": -157.7991634,
+      "query": "Waialae Avenue / Center Street",
+      "osm": "intersection of Waialae Avenue and Center Street (nominatim)",
+      "type": "intersection",
+      "confidence": "medium",
+      "basis": "on the mauka side of the avenue on the corner of one of the place-named streets, Center Street",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 21,
@@ -8410,7 +8473,8 @@
        "page": "p2-59"
       }
      ],
-     "geo": {
+     "geo": null,
+     "geo_rejected": {
       "lat": 21.273381,
       "lng": -157.8188879,
       "query": "Elementary School, Honolulu",
@@ -8632,7 +8696,16 @@
        "page": "p2-62"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2730044,
+      "lng": -157.8019769,
+      "query": "Leahi Hospital",
+      "osm": "Leahi Hospital, 3675, Kilauea Avenue, Kaimukī, East Honolulu, Honolulu, Honolulu County, Hawaii, 96816, United States (nominatim)",
+      "type": "amenity/social_facility",
+      "confidence": "medium",
+      "basis": "Lēʻahi Hospital",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 29,
@@ -8984,10 +9057,11 @@
      "geo": {
       "lat": 21.27913,
       "lng": -157.8139911,
-      "confidence": "medium",
+      "confidence": "low",
       "query": "Kapahulu Avenue at Date Street",
       "osm": "intersection of Kapahulu Avenue and Date Street",
-      "type": "intersection"
+      "type": "intersection",
+      "note": "pin is where Kapahulu meets Date Street, but the stop covers the walk up Kapahulu from the beach"
      }
     },
     {
@@ -9000,7 +9074,16 @@
        "text": "Its sleek, clean lines make this building appear quite modern, but it was constructed in 1927. The firehouse was designed by architects Davis and Fishbourne and is surely one of the loveliest firehouses, especially its Hawaiian style roof line, to be found anywhere. Davis and Fishbourne were the original architects for McKinley High School."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2730551,
+      "lng": -157.8163415,
+      "query": "Honolulu Fire Department Station 7 / Waikiki Fire Station",
+      "osm": "Waikiki-Kapahulu Fire Station, 381, Kapahulu Avenue, Kapahulu, East Honolulu, Honolulu, Honolulu County, Hawaii, 96815, United States (nominatim)",
+      "type": "amenity/fire_station",
+      "confidence": "medium",
+      "basis": "Waikīkī Fire Station: Station No. 7",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 4,
@@ -9387,7 +9470,16 @@
        "page": "p2-73"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.289102,
+      "lng": -157.81978,
+      "query": "Kuhio Elementary School / Prince Jonah Kuhio Elementary",
+      "osm": "Kuhio Elementary School, Waiaka Road, Moiliili, Kapahulu, East Honolulu, Honolulu, Honolulu County, Hawaii, 96926, United States (nominatim)",
+      "type": "amenity/school",
+      "confidence": "medium",
+      "basis": "Prince Jonah Kūhiō Elementary",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 16,
@@ -9480,7 +9572,16 @@
        "page": "p2-74"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2882133,
+      "lng": -157.8249468,
+      "query": "Honolulu Fire Department Station 29 / McCully Fire Station",
+      "osm": "Moiliili-McCully Fire Station, 2425, Date Street, Moiliili, McCully, East Honolulu, Honolulu, Honolulu County, Hawaii, 96826, United States (nominatim)",
+      "type": "amenity/fire_station",
+      "confidence": "medium",
+      "basis": "McCully-Moʻiliʻili Fire Station 29",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 19,
@@ -9612,7 +9713,16 @@
        "page": "p2-76"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2937292,
+      "lng": -157.8246824,
+      "query": "Triangle Park, Moiliili / Triangle Park, Honolulu",
+      "osm": "Moiliili Triangle Park & Baseball Fields, Honolulu (photon)",
+      "type": "leisure/park",
+      "confidence": "medium",
+      "basis": "Torii at Triangle Park",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 21,
@@ -10099,7 +10209,8 @@
       "query": "Ala Wai Community Park, Honolulu",
       "osm": "Ala Wai Community Park, McCully, East Honolulu, Honolulu, Honolulu County, Hawaii, United States",
       "type": "leisure/park",
-      "confidence": "medium"
+      "confidence": "medium",
+      "keep": true
      }
     },
     {
@@ -11010,7 +11121,16 @@
        "text": "Cross E. Mānoa Road on the ‘Ewa side, where University Avenue ends, to continue mauka on O‘ahu Avenue."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.3073523,
+      "lng": -157.8168254,
+      "query": "Oahu Avenue / University Avenue",
+      "osm": "intersection of Oahu Avenue and University Avenue (nominatim)",
+      "type": "intersection",
+      "confidence": "medium",
+      "basis": "graces the ʻEwa side of the intersection of Oʻahu and University avenues",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 33,
@@ -11717,7 +11837,8 @@
       "query": "Mānoa Chinese Cemetery, Honolulu",
       "osm": "Manoa Chinese Cemetery, Mānoa, East Honolulu, Honolulu, Honolulu County, Hawaii, United States",
       "type": "landuse/cemetery",
-      "confidence": "medium"
+      "confidence": "medium",
+      "keep": true
      }
     },
     {
@@ -11956,7 +12077,8 @@
       "query": "Lyon Arboretum, Honolulu",
       "osm": "Lyon Arboretum and Botanical Garden, East Honolulu, Honolulu, Honolulu County, Hawaii, 96822, United States",
       "type": "leisure/garden",
-      "confidence": "medium"
+      "confidence": "medium",
+      "keep": true
      }
     },
     {
@@ -13903,7 +14025,16 @@
        "text": "John F. Kennedy Theater, also designed by I. M. Pei in 1963, was named for President Kennedy a month after his assassination. The theater has a full Kabuki stage, one of the few locations outside of Japan with a stage built to accommodate Kabuki, a traditional form of Japanese theater dating to the 17th century. Kennedy Theater opened with a Kabuki play, “Benten the Thief,” followed by “Hamlet.” Considering JFK’s untimely death, fitting plays."
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2993005,
+      "lng": -157.8150436,
+      "query": "Kennedy Theatre / John F. Kennedy Theatre",
+      "osm": "Kennedy Theatre, 1770, East West Road, Mānoa, East Honolulu, Honolulu, Honolulu County, Hawaii, 96822, United States (nominatim)",
+      "type": "amenity/theatre",
+      "confidence": "medium",
+      "basis": "John F. Kennedy Theater",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 29,
@@ -14546,7 +14677,16 @@
        "page": "p3-62"
       }
      ],
-     "geo": null
+     "geo": {
+      "lat": 21.2964127,
+      "lng": -157.8187954,
+      "query": "School of Law, University of Hawaii / Music Building, University of Hawaii",
+      "osm": "School of Law, Dole Street, Honolulu (photon)",
+      "type": "building/university",
+      "confidence": "medium",
+      "basis": "Music Building and Law School",
+      "pass": "geocode3"
+     }
     },
     {
      "n": 1,
@@ -14606,7 +14746,8 @@
       "query": "\u0007Thomas Jefferson, Honolulu",
       "osm": "President Thomas Jefferson Elementary School, 324, Kapahulu Avenue, Kapahulu, East Honolulu, Honolulu, Honolulu County, ",
       "type": "amenity/school",
-      "confidence": "medium"
+      "confidence": "medium",
+      "keep": true
      }
     },
     {
@@ -14658,7 +14799,8 @@
       "query": "\u0007Waikīkī Fire Station:, Honolulu",
       "osm": "Waikiki-Kapahulu Fire Station, 381, Kapahulu Avenue, Kapahulu, East Honolulu, Honolulu, Honolulu County, Hawaii, 96815, ",
       "type": "amenity/fire_station",
-      "confidence": "medium"
+      "confidence": "medium",
+      "keep": true
      }
     },
     {
@@ -14685,7 +14827,8 @@
       "query": "Waikīkī-Kapahulu Public Library, Honolulu",
       "osm": "Waikiki-Kapahulu Public Library, 400, Kapahulu Avenue, Kapahulu, East Honolulu, Honolulu, Honolulu County, Hawaii, 96815",
       "type": "amenity/library",
-      "confidence": "medium"
+      "confidence": "medium",
+      "keep": true
      }
     },
     {

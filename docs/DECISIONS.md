@@ -106,3 +106,18 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Pin accuracy (added 2026-11-15)
+- **Common practice:**
+  - VoiceMap asks publishers to put each pin on the route line, at the place the story is about or where the walker turns. Its default and minimum trigger radius is about 21 m, because phone GPS is accurate to roughly 5 to 21 m. A larger radius helps where GPS is weak, at the cost of precision.
+  - Every tour is tested on the ground before publishing, usually twice, with notes such as "move this pin 20 m toward the plaque."
+  - Reviewers of tour apps complain about missed turns and audio that plays at the wrong place.
+- **Our choice:**
+  - Place pins from what the book says: a named place found in OpenStreetMap (name must contain every key word of the search), or the exact street corner the book gives ("on the mauka corner of Kalākaua Avenue and Kālaimoku Street"). Every new pin must also lie within 900 m of a neighbouring stop already pinned by name.
+  - Results that are a street or driveway, or a landmark the book says the stop is "near," are marked "low," not "medium."
+  - The build no longer discards pins confirmed this way just because a long walk (Mānoa, the UH campus) stretches far from its middle.
+  - Walkers only see an "approximate pin" note on low and estimated stops, and those stops get a slightly wider arrival circle (+20 m and +40 m). "I'm here" remains the fallback.
+  - Nothing is marked "verified" until someone checks it on the ground.
+- **Geocoding rules:** OSM Foundation's Nominatim policy: at most 1 request per second, an identifying User-Agent, cache results (scripts/extract/geocode3_cache.json, so re-runs send nothing), and show OpenStreetMap attribution. One-time small bulk jobs are allowed. We send only place names, never personal data.
+- **Still open:** 77 estimated pins are interpolated between neighbours, mostly unnamed features (benches, plaques, views, murals). These need a ground check or Veneeta's notes.
+- Sources: docs.voicemap.me/tour-publishers/choosing-locations; docs.voicemap.me/tour-publishers/testing; operations.osmfoundation.org/policies/nominatim; appshunter.io/ios/app/1585055145/reviews/4 (Shaka Guide reviews: missed turns, unmarked trail)

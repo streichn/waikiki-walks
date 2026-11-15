@@ -1,3 +1,6 @@
+import { PIN_SLACK_M } from '../config';
+import type { GeoConfidence } from '../data/types';
+
 const R = 6371000;
 const rad = (d: number) => (d * Math.PI) / 180;
 
@@ -53,4 +56,14 @@ export function hawaiianDirection(bearing: number): string {
   let best = dirs[0];
   for (const d of dirs) if (Math.abs(headingDelta(bearing, d[0])) < Math.abs(headingDelta(bearing, best[0]))) best = d;
   return best[1];
+}
+
+/** True when a stop's map pin is only approximate (not placed from a named place or corner). */
+export function isApproximate(geo: GeoConfidence): boolean {
+  return geo === 'low' || geo === 'estimated';
+}
+
+/** Arrival radius for one stop: its own override or the walker's setting, plus slack for approximate pins. */
+export function arrivalRadius(stop: { geo: GeoConfidence; radius?: number }, base: number): number {
+  return (stop.radius ?? base) + PIN_SLACK_M[stop.geo];
 }

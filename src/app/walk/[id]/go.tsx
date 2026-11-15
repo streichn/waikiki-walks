@@ -12,7 +12,7 @@ import { Button, IconButton, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { getWalk } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
-import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
+import { arrivalRadius, bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, isApproximate, walkMinutes } from '../../../lib/geo';
 import * as LiveActivity from '../../../lib/liveActivity';
 import { play, stop as stopSpeech, togglePause, useNarration } from '../../../lib/narration';
 import { advanceBackground, requestPermissions, startBackground, stopBackground, watchForeground } from '../../../lib/tracking';
@@ -84,12 +84,12 @@ export default function ActiveWalk() {
   // Arrival detection in the foreground.
   useEffect(() => {
     if (!pos || !settings.arrivalAlerts) return;
-    const radius = (stop?.radius ?? settings.arrivalRadius) + Math.min(pos.acc, 30) * 0.5;
+    const gpsAllowance = Math.min(pos.acc, 30) * 0.5;
     // Check the target stop first, then the next few, in case the walker skipped ahead.
     for (let i = current; i < Math.min(walk.stops.length, current + 4); i++) {
       if (visited.includes(i)) continue;
       if (!canOpenStop(walk.id, i, isPro)) break;
-      if (distanceM(pos, walk.stops[i]) <= radius) {
+      if (distanceM(pos, walk.stops[i]) <= arrivalRadius(walk.stops[i], settings.arrivalRadius) + gpsAllowance) {
         arrive(i);
         break;
       }
@@ -244,9 +244,9 @@ export default function ActiveWalk() {
             <ScrollView ref={textRef} contentContainerStyle={{ padding: 20, paddingBottom: 140, gap: 14 }}>
               <PhotoStrip photos={stop.photos} height={160} />
               <StopText blocks={stop.blocks} stopId={stop.id} />
-              {stop.geo !== 'verified' ? (
+              {isApproximate(stop.geo) ? (
                 <T variant="small" style={{ fontStyle: 'italic' }}>
-                  Pin location is a draft ({stop.geo}). Use "I'm here" if the alert doesn't fire.
+                  The map pin for this stop is approximate. Follow the directions in the text, and tap "I'm here" when you arrive.
                 </T>
               ) : null}
             </ScrollView>

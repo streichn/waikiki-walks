@@ -43,3 +43,14 @@ export const GOOGLE = {
 export const LENS_ENDPOINT = process.env.EXPO_PUBLIC_LENS_ENDPOINT ?? '';
 
 export const DEFAULT_ARRIVAL_RADIUS_M = 35;
+
+/**
+ * Extra arrival distance for pins we could not place exactly (see review/stops_review.csv).
+ * A wider circle means the alert still fires when the pin is a little off; "I'm here" covers the rest.
+ */
+export const PIN_SLACK_M: Record<'verified' | 'medium' | 'low' | 'estimated', number> = {
+  verified: 0,
+  medium: 0,
+  low: 20,
+  estimated: 40,
+};

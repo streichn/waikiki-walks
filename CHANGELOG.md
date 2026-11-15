@@ -33,3 +33,12 @@
 ## 2026-11-15 · Smart home card
 - The top card on the Walks tab now adapts: continue a walk in progress, start a nearby walk (within about 2.5 km, only if location is already allowed), resume an unfinished walk, the free Walk IV for new users, or the next unfinished walk.
 - Preview has a "pretend I'm standing in Waikīkī" toggle to test the nearby card.
+
+## 2026-11-15 · More accurate pins
+- Re-geocoded estimated and low pins with OpenStreetMap, using the place names and street corners the book gives (new scripts/extract/geocode3.py, report in review/geocode3_report.csv).
+- 21 pins now come from a named place or a book-given corner, including the Army Museum at Fort DeRussy, the Gandhi statue, Sans Souci Beach, Queen Theater, Kennedy Theatre, Lyon Arboretum, and the Kapahulu Avenue start of Walks IX and XII.
+- Fixed a build rule that threw away correct pins on long walks for being far from the walk's middle.
+- Corrected two first-pass pins: Walk VIII Stop 22 had matched the wrong school, and Walk IX Stop 1 is now marked rough.
+- Pin confidence: 188 medium, 43 low, 77 estimated (was 169, 41, 98).
+- Walkers see "The map pin for this stop is approximate" only on low and estimated stops, instead of a draft note on every stop.
+- Arrival alerts use a slightly wider circle for approximate pins (20 m extra for low, 40 m for estimated).

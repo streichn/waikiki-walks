@@ -97,7 +97,8 @@ for k, w in enumerate(SRC['walks']):
         clng = statistics.median(p[1] for p in pts)
     for s in stops_src:
         g = s.get('geo')
-        if g:
+        # Pins confirmed by name or by a book-given corner (scripts/extract/geocode3.py) are kept even on long walks.
+        if g and not (g.get('keep') or g.get('pass') == 'geocode3'):
             dlat = (g['lat'] - clat) * 111000
             dlng = (g['lng'] - clng) * 103000
             if (dlat ** 2 + dlng ** 2) ** 0.5 > 1800:

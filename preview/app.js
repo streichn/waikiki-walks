@@ -325,7 +325,7 @@
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
-        <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
+        <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo === 'low' || stop.geo === 'estimated' ? `<p class="small italic">The map pin for this stop is approximate. Follow the directions in the text, and tap “I’m here” when you arrive.</p>` : ''}</div>
         <div class="controls"><button class="iconbtn" data-act="prev" aria-label="Previous stop">${ic('prev')}</button><button class="play" id="playbtn" data-act="play" aria-label="Read aloud">${ic(speaking.stopId ? 'pause' : 'headset')}</button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
@@ -362,7 +362,8 @@
     if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
-    if (dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
+    const slack = { low: 20, estimated: 40 }[target.geo] || 0; // same as PIN_SLACK_M in src/config.ts
+    if (dist(S.me, target) <= S.settings.arrival + slack && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
     const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = 'rotate(0deg)';
   }

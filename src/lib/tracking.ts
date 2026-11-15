@@ -3,6 +3,7 @@ import * as Notifications from 'expo-notifications';
 import * as TaskManager from 'expo-task-manager';
 import { AppState, Platform } from 'react-native';
 import { DEFAULT_ARRIVAL_RADIUS_M } from '../config';
+import { arrivalRadius } from './geo';
 import { getWalk } from '../data';
 import type { Walk } from '../data/types';
 import { useProgress, useSettings } from '../store';
@@ -76,7 +77,7 @@ function regionsFrom(walk: Walk, fromIndex: number): Location.LocationRegion[] {
     longitude: s.lng,
     // OS geofences are unreliable under about 100 m, so the background radius is larger;
     // the foreground watcher uses the walker's chosen radius.
-    radius: Math.max(100, s.radius ?? radius),
+    radius: Math.max(100, arrivalRadius(s, radius)),
     notifyOnEnter: true,
     notifyOnExit: false,
   }));
