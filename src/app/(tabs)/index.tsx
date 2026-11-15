@@ -6,12 +6,12 @@ import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Hibiscus, Monstera, Plumeria, WaveRule } from '../../components/Flora';
 import { FunFacts } from '../../components/FunFacts';
+import { SmartCard } from '../../components/SmartCard';
 import { T, tap } from '../../components/ui';
 import { WalkCard } from '../../components/WalkCard';
 import { TRIAL } from '../../config';
 import { getWalk, photo, walks } from '../../data';
-import { useIsPro } from '../../lib/access';
-import { useAccount, useProgress } from '../../store';
+import { useAccount } from '../../store';
 import { APP_COPYRIGHT, DEDICATION } from '../../legal';
 import { useTheme } from '../../theme';
 
@@ -26,9 +26,7 @@ const GROUPS = [
 export default function Home() {
   const t = useTheme();
   const insets = useSafeAreaInsets();
-  const isPro = useIsPro();
   const name = useAccount((s) => s.profile?.name);
-  const active = useProgress((s) => s.activeWalkId);
   const trial = getWalk(TRIAL.walkId)!;
   const hero = walks.find((w) => w.id === 'III')?.cover ?? trial.cover;
   const hour = new Date().getHours();
@@ -66,24 +64,7 @@ export default function Home() {
       </View>
 
       <View style={{ paddingHorizontal: 20, gap: 18 }}>
-        {active ? null : !isPro ? (
-          <Pressable
-            onPress={() => {
-              tap();
-              router.push(`/walk/${trial.id}`);
-            }}
-            style={[styles.start, { backgroundColor: t.primary }]}
-          >
-            <View style={{ flex: 1 }}>
-              <T variant="label" style={{ color: t.dark ? '#063036' : '#BFE7E3' }}>
-                Start here, free
-              </T>
-              <T style={{ color: t.primaryText, fontFamily: t.font.display, fontSize: 22, marginTop: 2 }}>{trial.title}</T>
-              <T style={{ color: t.dark ? '#063036' : '#DDF2EF', fontSize: 14, marginTop: 2 }}>{`The first ${TRIAL.freeStops} stops are on us. ${trial.theme ?? ''}`}</T>
-            </View>
-            <Ionicons name="arrow-forward-circle" size={40} color={t.gold} />
-          </Pressable>
-        ) : null}
+        <SmartCard />
 
         <FunFacts />
 

@@ -29,3 +29,7 @@
 - Locked stops show the first photo and opening lines, with a one-tap "Unlock for $X" button.
 - Explore map: no walk list on top; tap a walk on the map to see only its route and stops.
 - Preview: the demo walk starts automatically so the moving blue dot and arrival alerts are visible.
+
+## 2026-11-15 · Smart home card
+- The top card on the Walks tab now adapts: continue a walk in progress, start a nearby walk (within about 2.5 km, only if location is already allowed), resume an unfinished walk, the free Walk IV for new users, or the next unfinished walk.
+- Preview has a "pretend I'm standing in Waikīkī" toggle to test the nearby card.

@@ -45,6 +45,7 @@
     apple: '<path fill="currentColor" stroke="none" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.7zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
     moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',
+    play: '<circle cx="12" cy="12" r="9"/><path fill="currentColor" d="M10 8.5v7l6-3.5z"/>',
     layers: '<path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M2 13l10 5 10-5"/>',
     compass: '<circle cx="12" cy="12" r="9"/><path fill="currentColor" d="M15.5 8.5 13 13l-4.5 2.5L11 11z"/>',
     earth: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',
@@ -160,6 +161,30 @@
     return `<button class="wcard ${wide ? 'wide' : ''}" data-walk="${w.id}" aria-label="Walk ${w.id}, ${esc(w.title)}">${img(w.cover)}<span class="shade"></span><span class="badge" style="background:${w.color}">${w.id}</span>${pill}<span class="meta"><h3>${esc(w.title)}</h3><div class="theme">${esc(w.theme || '')}</div><div class="stats">${esc(stats)}</div></span></button>`;
   }
 
+  // Home screen top card, same order as the app: in progress, near you, unfinished, free walk, next walk.
+  function smartCard() {
+    const card = (kind, wid, label, title, body, href) => ({ kind, wid, label, title, body, href });
+    let c = null;
+    if (S.active) {
+      const w = walk(S.active), p = S.progress[w.id], st = w.stops[p.current];
+      c = card('continue', w.id, 'Walk in progress', `Continue ${w.title}`, `Stop ${st.n} of ${w.stops.length}: ${st.title}`, 'resume');
+    } else if (S.pretendHere) {
+      const here = { lat: 21.2775, lng: -157.8290 }; // Royal Hawaiian Center, for the preview
+      let best = null; D.walks.forEach((w) => { const d = dist(here, w.stops[0]); if (!best || d < best.d) best = { w, d }; });
+      const free = best.w.id === TRIAL.walkId && !S.isPro;
+      c = card('nearby', best.w.id, free ? 'Near you, and free' : 'Near you', best.w.title, `The start is ${fmt(best.d)} away, about ${Math.max(1, Math.round(best.d / 67))} min on foot.`, 'walk');
+    } else {
+      const un = D.walks.find((w) => S.progress[w.id] && !S.progress[w.id].finishedAt && S.progress[w.id].visited.length);
+      if (un) c = card('resume', un.id, 'Pick up where you left off', un.title, `${S.progress[un.id].visited.length} of ${un.stops.length} stops visited`, 'walk');
+      else if (!S.isPro) { const w = walk(TRIAL.walkId); c = card('free', w.id, 'Start here, free', w.title, `The first ${TRIAL.freeStops} stops are on us. ${w.theme}`, 'walk'); }
+      else { const w = D.walks.find((x) => !(S.progress[x.id] || {}).finishedAt); if (w) c = card('next', w.id, 'Your next walk', w.title, w.theme, 'walk'); }
+    }
+    if (!c) return '';
+    const bg = c.kind === 'continue' ? 'var(--accent)' : c.kind === 'nearby' ? 'var(--leaf)' : 'var(--primary)';
+    const attr = c.href === 'resume' ? 'data-act="resume"' : `data-walk="${c.wid}"`;
+    return `<button class="startcard" ${attr} style="background:${bg};color:#fff"><div style="flex:1"><div class="label" style="color:inherit;opacity:.85">${esc(c.label)}</div><h3>${esc(c.title)}</h3><div style="font-size:14px;opacity:.92">${esc(c.body)}</div></div><span style="color:var(--gold)">${ic(c.kind === 'continue' ? 'play' : c.kind === 'nearby' ? 'navigate' : 'fwd', 'width="34" height="34"')}</span></button>`;
+  }
+
   function renderHome() {
     const trial = walk(TRIAL.walkId), hero = walk('III').cover;
     const h = new Date().getHours(), greet = h < 12 ? 'Aloha kakahiaka' : h < 17 ? 'Aloha ʻauinalā' : 'Aloha ahiahi';
@@ -170,7 +195,8 @@
         <button class="iconbtn" style="position:absolute;right:16px;top:calc(env(safe-area-inset-top) + 14px)" data-act="lens" aria-label="What am I looking at?">${ic('scan')}</button>
         <div class="txt"><div class="italic" style="font-size:18px">${greet}${name}</div><h1>Waikīkī</h1><div class="sub">TWELVE WALKS THROUGH TIME</div><div class="small" style="margin-top:4px">by Veneeta Acson, Ph.D.</div></div></div>
       <div class="pad stack" style="gap:20px">
-        ${!S.isPro && !S.active ? `<button class="startcard" data-walk="${trial.id}"><div style="flex:1"><div class="label" style="color:inherit;opacity:.8">Start here, free</div><h3>${esc(trial.title)}</h3><div style="font-size:14px;opacity:.9">The first ${TRIAL.freeStops} stops are on us. ${esc(trial.theme)}</div></div><span style="color:var(--gold)">${ic('fwd', 'width="34" height="34"')}</span></button>` : ''}
+        ${smartCard()}
+        <button class="small" data-act="pretend" style="align-self:center;margin-top:-10px">${S.pretendHere ? 'Preview: stop pretending I’m in Waikīkī' : 'Preview: pretend I’m standing in Waikīkī'}</button>
         <button class="fact" id="fact" aria-label="Show another fact"><div class="flower" style="right:-8px;top:-8px">${hib(58, 'var(--accent)', -12)}</div><div class="row label" style="color:var(--leaf);margin-bottom:6px">${ic('sparkles', 'width="14" height="14"')} Did you know?</div><div class="ftxt" id="ftxt"></div><div class="small" id="fsrc" style="margin-top:6px"></div></button>
         ${GROUPS.map(([t, ids]) => `<section class="group stack" style="gap:10px"><div><h2>${t}</h2>${wave(90, 'var(--primary)')}</div>${ids.length === 1 ? walkCard(walk(ids[0]), true) : `<div class="rail">${ids.map((i) => walkCard(walk(i))).join('')}</div>`}</section>`).join('')}
         <button class="card" data-act="about" style="text-align:left;background:var(--card2)"><h3 style="font-family:var(--body);font-weight:800;font-size:17px">About the book and the author</h3><div class="small" style="color:var(--text);margin-top:4px">How to read the directions (mauka, makai, ʻEwa, Diamond Head), and the story behind these walks.</div></button>
@@ -551,6 +577,7 @@
       if (a === 'about') return openAbout();
       if (a === 'credits') return openCredits();
       if (a === 'lens') return openLens();
+      if (a === 'pretend') { S.pretendHere = !S.pretendHere; return render(); }
       if (a === 'unpro') { S.isPro = false; persist(); return render(); }
       if (a === 'signout') { S.profile = null; persist(); return render(); }
       if (a === 'resume') { S.walkId = S.active; S.view = 'go'; return needImages(S.active).then(render); }
