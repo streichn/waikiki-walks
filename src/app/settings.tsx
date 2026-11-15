@@ -98,7 +98,12 @@ export default function Settings() {
       </Section>
 
       <Section title="Privacy and data">
-        <T variant="small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to us or stored on a server.</T>
+        <T variant="small" style={{ color: t.text }}>
+          Your data is stored securely. If you sign in, we keep only your name, email, walk progress, saved stops, and settings. It is encrypted in storage and in transit, and only you can access your records.
+        </T>
+        <T variant="small">
+          Your location stays on your phone and is never sent to us. Payments are handled by Apple or Google; we never see card details. You can delete your account and data at any time below.
+        </T>
         <Row label="Location permission" onPress={() => Linking.openSettings()} />
         <Row
           label="Reset walk progress"

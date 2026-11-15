@@ -1,12 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, Linking, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Hibiscus } from '../../components/Flora';
 import { Button, Card, T } from '../../components/ui';
 import { walks } from '../../data';
-import { signOut } from '../../lib/auth';
+import { signOut, updateDisplayName } from '../../lib/auth';
 import { manageSubscriptionUrl } from '../../lib/purchases';
 import { useAccount, useProgress } from '../../store';
 import { useTheme } from '../../theme';
@@ -21,6 +22,8 @@ export default function Profile() {
   const visited = Object.values(progress).reduce((a, p) => a + p.visited.length, 0);
   const totalStops = walks.reduce((a, w) => a + w.stops.length, 0);
   const signedIn = profile && profile.provider !== 'guest';
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState('');
 
   return (
     <ScrollView style={{ backgroundColor: t.bg }} contentContainerStyle={{ paddingTop: insets.top + 16, paddingHorizontal: 20, paddingBottom: 140, gap: 16 }}>
@@ -33,7 +36,26 @@ export default function Profile() {
           </View>
         )}
         <View style={{ flex: 1 }}>
-          <T variant="title">{signedIn ? profile?.name || 'Walker' : 'Guest walker'}</T>
+          {editing ? (
+            <TextInput
+              value={name}
+              onChangeText={setName}
+              autoFocus
+              maxLength={40}
+              returnKeyType="done"
+              onSubmitEditing={async () => {
+                setEditing(false);
+                await updateDisplayName(name.trim()).catch((e) => Alert.alert('Could not save', String(e?.message ?? e)));
+              }}
+              style={{ fontFamily: t.font.display, fontSize: 24, color: t.text, borderBottomWidth: 1, borderColor: t.primary, paddingVertical: 2 }}
+              accessibilityLabel="Display name"
+            />
+          ) : (
+            <Pressable disabled={!signedIn} onPress={() => { setName(profile?.name ?? ''); setEditing(true); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              <T variant="title">{signedIn ? profile?.name || 'Walker' : 'Guest walker'}</T>
+              {signedIn ? <Ionicons name="pencil" size={16} color={t.textMuted} /> : null}
+            </Pressable>
+          )}
           <T variant="small">{signedIn ? profile?.email : 'Sign in to save your progress across devices'}</T>
         </View>
       </View>

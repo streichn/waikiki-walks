@@ -1,4 +1,4 @@
-import { type WalkProgress, useAccount, useProgress } from '../store';
+import { type WalkProgress, useAccount, useProgress, useSettings } from '../store';
 import { supabase } from './auth';
 
 /**
@@ -35,6 +35,9 @@ export async function pullFromCloud() {
       finishedAt: mine?.finishedAt ?? (r.finished_at ? Date.parse(r.finished_at) : undefined),
     };
   }
+  const { data: prof } = await supabase.from('profiles').select('settings').eq('id', uid).maybeSingle();
+  const cloud = (prof?.settings ?? {}) as Record<string, unknown>;
+  if (Object.keys(cloud).length) useSettings.getState().set(pickSettings(cloud));
   const favorites = Array.from(new Set([...local.favorites, ...(favs ?? []).map((f) => f.stop_id as string)]));
   useProgress.setState({ progress: merged, favorites });
   await pushToCloud();
@@ -54,8 +57,24 @@ export async function pushToCloud() {
     updated_at: new Date().toISOString(),
   }));
   if (rows.length) await supabase.from('walk_progress').upsert(rows);
+  await supabase.from('profiles').update({ settings: pickSettings(useSettings.getState() as unknown as Record<string, unknown>), updated_at: new Date().toISOString() }).eq('id', uid);
   await supabase.from('favorites').delete().eq('user_id', uid).not('stop_id', 'in', `(${favorites.map((f) => `"${f}"`).join(',') || '""'})`);
   if (favorites.length) await supabase.from('favorites').upsert(favorites.map((stop_id) => ({ user_id: uid, stop_id })));
+}
+
+const SYNCED = ['themeMode', 'autoNarrate', 'arrivalAlerts', 'arrivalRadius', 'speechRate', 'haptics', 'textScale', 'units'] as const;
+
+/** Only these preferences travel between phones; the voice choice stays per device. */
+function pickSettings(src: Record<string, unknown>) {
+  const out: Record<string, unknown> = {};
+  for (const k of SYNCED) if (src[k] !== undefined) out[k] = src[k];
+  return out;
+}
+
+function schedulePush() {
+  if (!userId()) return;
+  clearTimeout(timer);
+  timer = setTimeout(() => pushToCloud().catch(() => undefined), 3000);
 }
 
 /** Start syncing: pull once, then push a few seconds after any change. */
@@ -63,11 +82,8 @@ export function startSync() {
   if (started) return;
   started = true;
   pullFromCloud().catch(() => undefined);
-  useProgress.subscribe(() => {
-    if (!userId()) return;
-    clearTimeout(timer);
-    timer = setTimeout(() => pushToCloud().catch(() => undefined), 3000);
-  });
+  useProgress.subscribe(schedulePush);
+  useSettings.subscribe(schedulePush);
   useAccount.subscribe((s, prev) => {
     if (s.profile?.id !== prev.profile?.id && userId()) pullFromCloud().catch(() => undefined);
   });

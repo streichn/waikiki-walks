@@ -2,8 +2,8 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
-import * as SecureStore from 'expo-secure-store';
-import { Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AppState, Platform } from 'react-native';
 import { GOOGLE, SUPABASE } from '../config';
 import { type Profile, useAccount } from '../store';
 import { linkUser, unlinkUser } from './purchases';
@@ -15,20 +15,22 @@ import { linkUser, unlinkUser } from './purchases';
  * Apple also requires Sign in with Apple whenever Google sign-in is offered.
  */
 
-const secureStorage = {
-  getItem: (k: string) => SecureStore.getItemAsync(k),
-  setItem: (k: string, v: string) => SecureStore.setItemAsync(k, v),
-  removeItem: (k: string) => SecureStore.deleteItemAsync(k),
-};
-
 export const supabase: SupabaseClient | null =
   SUPABASE.url && SUPABASE.anonKey
     ? createClient(SUPABASE.url, SUPABASE.anonKey, {
-        auth: { storage: secureStorage, autoRefreshToken: true, persistSession: true, detectSessionInUrl: false },
+        // AsyncStorage, as in Supabase's Expo guide: SecureStore caps values at 2 KB and sessions exceed it.
+        auth: { storage: AsyncStorage, autoRefreshToken: true, persistSession: true, detectSessionInUrl: false },
       })
     : null;
 
 export const authReady = Boolean(supabase);
+
+// Refresh the session only while the app is in the foreground (Supabase's recommended pattern).
+AppState.addEventListener('change', (state) => {
+  if (!supabase) return;
+  if (state === 'active') supabase.auth.startAutoRefresh();
+  else supabase.auth.stopAutoRefresh();
+});
 
 if (GOOGLE.webClientId) {
   GoogleSignin.configure({ webClientId: GOOGLE.webClientId, iosClientId: GOOGLE.iosClientId || undefined });
@@ -81,6 +83,17 @@ export async function verifyEmailCode(email: string, token: string) {
   const { data, error } = await supabase.auth.verifyOtp({ email, token, type: 'email' });
   if (error || !data.user) throw error ?? new Error('That code did not work');
   return finish({ id: data.user.id, email: data.user.email, provider: 'email' });
+}
+
+/** The only profile detail we ask for: the name shown in the app. Optional. */
+export async function updateDisplayName(name: string) {
+  const p = useAccount.getState().profile;
+  if (!p || p.provider === 'guest') return;
+  useAccount.getState().setProfile({ ...p, name });
+  if (supabase) {
+    const { error } = await supabase.from('profiles').update({ display_name: name || null, updated_at: new Date().toISOString() }).eq('id', p.id);
+    if (error) throw error;
+  }
 }
 
 export function continueAsGuest() {
