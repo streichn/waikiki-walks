@@ -37,6 +37,11 @@ create policy "own profile" on public.profiles for all using (auth.uid() = id) w
 create policy "own progress" on public.walk_progress for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 create policy "own favorites" on public.favorites for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
+-- Let signed-in users reach these tables through the Data API (needed when
+-- "Automatically expose new tables" is off). RLS above still limits them to their own rows.
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on public.profiles, public.walk_progress, public.favorites to authenticated;
+
 -- Create a profile row automatically when someone signs up.
 create or replace function public.handle_new_user() returns trigger language plpgsql security definer set search_path = public as $$
 begin
