@@ -10,6 +10,7 @@ import { Button, IconButton, T } from '../components/ui';
 import { photo } from '../data';
 import { canOpenStop, useIsPro } from '../lib/access';
 import { formatDistance } from '../lib/geo';
+import { useOnline } from '../lib/network';
 import { candidatesInView, identifyPhoto, type LensCandidate, visionAvailable } from '../lib/lens';
 import { speakShort } from '../lib/narration';
 import { useSettings } from '../store';
@@ -32,6 +33,7 @@ export default function Lens() {
   const [cands, setCands] = useState<LensCandidate[]>([]);
   const [result, setResult] = useState<{ c: LensCandidate | null; reason: string } | null>(null);
   const [busy, setBusy] = useState(false);
+  const online = useOnline();
 
   useEffect(() => {
     let a: Location.LocationSubscription | undefined;
@@ -58,6 +60,11 @@ export default function Lens() {
     if (!cam.current) return;
     setBusy(true);
     try {
+      // Without signal, skip the photo check and don't send anything: GPS and compass alone still work.
+      if (visionAvailable && !online) {
+        setResult({ c: cands[0] ?? null, reason: 'No internet, so matched by location and direction.' });
+        return;
+      }
       const pic = await cam.current.takePictureAsync({ base64: visionAvailable, quality: 0.5, skipProcessing: true });
       const r = await identifyPhoto(pic?.base64 ?? '', cands);
       setResult({ c: cands.find((c) => c.stop.id === r.stopId) ?? null, reason: r.reason });
