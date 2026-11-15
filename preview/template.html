@@ -34,6 +34,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 #app { position: relative; height: 100%; max-width: 520px; margin: 0 auto; overflow: hidden; background: var(--bg); }
 .screen { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: calc(150px + env(safe-area-inset-bottom)); background: var(--bg); }
 .hidden { display: none !important; }
+.screen, .gobody, .modal .panel, .rail, .photos, .maprail { scrollbar-width: none; }
+.screen::-webkit-scrollbar, .gobody::-webkit-scrollbar, .modal .panel::-webkit-scrollbar { display: none; }
 .pad { padding: 0 18px; }
 .label { font: 800 11px/1.2 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .small { font-size: 14px; color: var(--muted); line-height: 1.35; }
