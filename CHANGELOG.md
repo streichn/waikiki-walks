@@ -42,3 +42,11 @@
 - Reading a walk: the overview now lists the stops; tapping one opens it as its own page. Swipe sideways or use Previous and Next to move one stop at a time.
 - Walking: the map fills the screen and the stop slides up over it in a sheet you can drag or tap to three heights (peek, half, full). The whole stop scrolls inside the sheet. Previous and Next sit at the top of the sheet; larger text.
 - Recorded narration (Gemini TTS) plays in the preview when a stop has been recorded; otherwise the device voice is used.
+
+## 2026-11-15 · Works without signal
+- Walk screen shows a calm "No internet. Your walk still works." notice when the phone loses signal, saying what still works (text, photos, pins, GPS, arrival alerts, the book's map). Screen readers hear it once.
+- Cloud sync now retries when the connection comes back. After an offline start it pulls from the cloud before pushing, so it can't overwrite progress saved on another phone.
+- "What am I looking at?" skips the photo upload with no signal and matches by location and direction instead.
+- New "Without signal" section in Settings, including the tip to turn off mobile data rather than use Airplane mode.
+- Fixed the "offline maps" claim on the profile screen; added a "Works without signal" line to the paywall.
+- Accessibility: Settings switches, rows, and voice choices now have screen reader labels, roles, and states; rows are at least 44 points tall.

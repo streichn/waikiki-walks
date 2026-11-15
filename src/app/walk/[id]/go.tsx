@@ -5,6 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { OfflineNote } from '../../../components/OfflineNote';
 import { type FollowMode, LayersButton, type Layer, LocateButton, nextFollow } from '../../../components/MapControls';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
@@ -242,6 +243,9 @@ export default function ActiveWalk() {
         </View>
         <IconButton icon="close" label="End walk" onPress={confirmEnd} />
       </View>
+
+      {/* No-signal notice sits under the header, left of the map buttons */}
+      {detent !== 'full' ? <OfflineNote hasBookMap={Boolean(walk.bookMap)} style={{ position: 'absolute', top: insets.top + 64, left: 14, right: 72, zIndex: 4 }} /> : null}
 
       {/* Arrival banner */}
       {justArrived !== null ? (

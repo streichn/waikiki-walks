@@ -31,6 +31,7 @@ const PERKS: { icon: keyof typeof Ionicons.glyphMap; text: string }[] = [
   { icon: 'map', text: 'All 12 walks and every stop, from Kālia to Mānoa Falls' },
   { icon: 'headset', text: 'Read-aloud narration, hands free with headphones' },
   { icon: 'notifications', text: 'Arrival alerts, even with your phone in your pocket' },
+  { icon: 'cloud-offline', text: 'Works without signal: text, photos, and GPS are on your phone' },
   { icon: 'images', text: 'Historic photographs from the Hawaiʻi State Archives and the book' },
   { icon: 'scan', text: '"What am I looking at?" for landmarks along the way' },
 ];

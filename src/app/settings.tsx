@@ -75,6 +75,9 @@ export default function Settings() {
                 s.set({ voiceId: v.identifier });
                 setTimeout(() => speakShort('Aloha! Welcome to Waikīkī.'), 50);
               }}
+              accessibilityRole="radio"
+              accessibilityState={{ checked: s.voiceId === v.identifier }}
+              accessibilityLabel={`${v.name}${v.quality === 'Enhanced' ? ', enhanced' : ''}`}
               style={[styles.voice, { borderColor: s.voiceId === v.identifier ? t.accent : t.border, backgroundColor: t.card }]}
             >
               <Ionicons name={s.voiceId === v.identifier ? 'radio-button-on' : 'radio-button-off'} size={18} color={t.accent} />
@@ -84,6 +87,13 @@ export default function Settings() {
           ))}
         </View>
         <T variant="small">Tip: download "Enhanced" or "Premium" voices in iPhone Settings › Accessibility › Spoken Content › Voices for a more natural reading.</T>
+      </Section>
+
+      <Section title="Without signal">
+        <T variant="small">The walk text, photos, pins, the book's walk maps, GPS, and arrival alerts are stored on your phone and work with no signal.</T>
+        <T variant="small">Street and satellite maps come from Apple Maps or Google Maps and need a connection. Areas you have viewed recently may stay saved for a while.</T>
+        <T variant="small">If you are avoiding roaming charges, turn off mobile data instead of using Airplane mode. On some phones, Airplane mode also turns off GPS.</T>
+        <T variant="small">Progress you make offline is kept on your phone. If you are signed in, it is copied to your account when you are back online.</T>
       </Section>
 
       <Section title="Purchases">
@@ -158,7 +168,7 @@ function Toggle({ label, hint, value, onChange }: { label: string; hint?: string
         <T>{label}</T>
         {hint ? <T variant="small">{hint}</T> : null}
       </View>
-      <Switch value={value} onValueChange={onChange} trackColor={{ true: t.primary, false: t.border }} />
+      <Switch value={value} onValueChange={onChange} trackColor={{ true: t.primary, false: t.border }} accessibilityLabel={label} accessibilityHint={hint} />
     </View>
   );
 }
@@ -166,7 +176,7 @@ function Toggle({ label, hint, value, onChange }: { label: string; hint?: string
 function Row({ label, onPress, danger }: { label: string; onPress: () => void; danger?: boolean }) {
   const t = useTheme();
   return (
-    <Pressable onPress={onPress} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 8 }}>
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 8, minHeight: 44 }}>
       <T style={{ flex: 1, color: danger ? '#D33' : t.text }}>{label}</T>
       <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
     </Pressable>

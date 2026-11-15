@@ -79,7 +79,7 @@ export default function Profile() {
             ? passExpiry
               ? `Your 7-day pass runs until ${new Date(passExpiry).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. Mahalo for supporting the book.`
               : 'Mahalo for supporting the book.'
-            : 'Unlock every walk, every stop, read-aloud narration, and offline maps.'}
+            : 'Unlock every walk, every stop, and read-aloud narration. Walks work without signal.'}
         </T>
         {isPro ? (
           <Button
