@@ -33,6 +33,20 @@ for p in glob.glob(f'{P}/tiles/osm/*/*/*.png'):
     z, x, y = p.split('/')[-3:]
     tiles[f'{z}/{x}/{y[:-4]}'] = 'data:image/png;base64,' + base64.b64encode(open(p, 'rb').read()).decode()
 open(f'{SITE}/tiles.js', 'w').write('window.WWTILES=' + json.dumps(tiles) + ';')
+# Recorded narration: copy every stop whose paragraphs are all recorded (see scripts/audio/make_narration.py).
+AUD = os.environ.get('WW_AUDIO_DIR', '/home/claude/waikiki-audio')
+audio = {}
+if os.path.isdir(AUD):
+    import shutil
+    for w in walks:
+        for st in w['stops']:
+            need = 1 + sum(1 for b in st['blocks'] if b['kind'] in ('p', 'direction', 'tagline'))
+            src = f"{AUD}/{w['id']}/{st['id']}"
+            if all(os.path.exists(f'{src}/{i:02d}.mp3') for i in range(need)):
+                os.makedirs(f"{SITE}/audio/{w['id']}/{st['id']}", exist_ok=True)
+                for i in range(need): shutil.copyfile(f'{src}/{i:02d}.mp3', f"{SITE}/audio/{w['id']}/{st['id']}/{i:02d}.mp3")
+                audio[st['id']] = need
+open(f'{SITE}/audio.js', 'w').write('window.WWAUDIO=' + json.dumps(audio) + ';')
 html = open(f'{P}/template.html').read().replace('/*LEAFLET_CSS*/', open(f'{P}/leaflet.css').read())
 open(f'{SITE}/index.html', 'w').write(html)
 open(f'{SITE}/app.js', 'w').write(open(f'{P}/app.js').read())

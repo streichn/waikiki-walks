@@ -37,3 +37,8 @@
 ## 2026-11-15 · Read-aloud is opt-in, with a clear stop
 - Reading each stop aloud on arrival is now off by default; turn it on in Settings.
 - The collapsed walk bar shows a stop button while reading. The walk screen's read button shows a stop icon instead of pause.
+
+## 2026-11-15 · One stop per page, and a map sheet like Apple Maps
+- Reading a walk: the overview now lists the stops; tapping one opens it as its own page. Swipe sideways or use Previous and Next to move one stop at a time.
+- Walking: the map fills the screen and the stop slides up over it in a sheet you can drag or tap to three heights (peek, half, full). The whole stop scrolls inside the sheet. Previous and Next sit at the top of the sheet; larger text.
+- Recorded narration (Gemini TTS) plays in the preview when a stop has been recorded; otherwise the device voice is used.

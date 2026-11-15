@@ -2,8 +2,8 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import * as Location from 'expo-location';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
-import { Alert, Animated, Linking, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { type FollowMode, LayersButton, type Layer, LocateButton, nextFollow } from '../../../components/MapControls';
 import { PhotoStrip } from '../../../components/Photos';
@@ -14,12 +14,13 @@ import { getWalk } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
 import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
 import * as LiveActivity from '../../../lib/liveActivity';
-import { play, stop as stopSpeech, togglePause, useNarration } from '../../../lib/narration';
+import { play, stop as stopSpeech, useNarration } from '../../../lib/narration';
 import { advanceBackground, requestPermissions, startBackground, stopBackground, watchForeground } from '../../../lib/tracking';
 import { useProgress, useSettings } from '../../../store';
 import { useTheme } from '../../../theme';
 
-type Layout = 'map' | 'split' | 'read';
+/** Resting heights of the stop sheet, as in Apple Maps: a peek over the map, half, or full. */
+type Detent = 'peek' | 'half' | 'full';
 
 export default function ActiveWalk() {
   const { id, stop: stopParam } = useLocalSearchParams<{ id: string; stop?: string }>();
@@ -35,9 +36,7 @@ export default function ActiveWalk() {
   const endWalk = useProgress((s) => s.endWalk);
   const prog = useProgress((s) => s.progress[walk.id]);
   const speakingId = useNarration((s) => s.speakingStopId);
-  const paused = useNarration((s) => s.paused);
 
-  const [layout, setLayout] = useState<Layout>('split');
   const [follow, setFollow] = useState<FollowMode>('follow');
   const [layer, setLayer] = useState<Layer>('standard');
   const [pos, setPos] = useState<{ lat: number; lng: number; acc: number } | null>(null);
@@ -47,6 +46,60 @@ export default function ActiveWalk() {
   const mapRef = useRef<WalkMapHandle>(null);
   const textRef = useRef<ScrollViewInstance>(null);
   const banner = useRef(new Animated.Value(0)).current;
+
+  // Bottom sheet: the map always fills the screen and the stop text slides up over it.
+  const headerBottom = insets.top + 62;
+  const [topBlockH, setTopBlockH] = useState(170);
+  const [controlsH, setControlsH] = useState(80);
+  const snaps = useMemo(() => {
+    const peek = topBlockH + controlsH;
+    return { peek, half: Math.max(peek + 60, Math.round(height * 0.56)), full: height - headerBottom };
+  }, [topBlockH, controlsH, height, headerBottom]);
+  const snapsRef = useRef(snaps);
+  snapsRef.current = snaps;
+  const [detent, setDetent] = useState<Detent>('half');
+  const sheetH = useRef(new Animated.Value(Math.round(height * 0.56))).current;
+  const hNow = useRef(Math.round(height * 0.56));
+  const dragStart = useRef(0);
+  useEffect(() => {
+    const sub = sheetH.addListener(({ value }) => (hNow.current = value));
+    return () => sheetH.removeListener(sub);
+  }, [sheetH]);
+  const snapTo = (d: Detent) => {
+    setDetent(d);
+    Animated.spring(sheetH, { toValue: snapsRef.current[d], useNativeDriver: false, bounciness: 0, speed: 16 }).start();
+  };
+  useEffect(() => {
+    sheetH.setValue(snaps[detent]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snaps]);
+  const pan = useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponder: (_, g) => Math.abs(g.dy) > 6 && Math.abs(g.dy) > Math.abs(g.dx),
+        onPanResponderGrant: () => {
+          dragStart.current = hNow.current;
+        },
+        onPanResponderMove: (_, g) => {
+          const s = snapsRef.current;
+          sheetH.setValue(Math.max(s.peek - 30, Math.min(s.full, dragStart.current - g.dy)));
+        },
+        onPanResponderRelease: (_, g) => {
+          const s = snapsRef.current;
+          const h = dragStart.current - g.dy;
+          let pick: Detent = (['peek', 'half', 'full'] as Detent[]).reduce((a, k) => (Math.abs(s[k] - h) < Math.abs(s[a] - h) ? k : a), 'half');
+          if (g.vy > 0.6) pick = h > s.half ? 'half' : 'peek';
+          else if (g.vy < -0.6) pick = h < s.half ? 'half' : 'full';
+          snapTo(pick);
+        },
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  const cycleSheet = () => {
+    tap();
+    snapTo(detent === 'peek' ? 'half' : detent === 'half' ? 'full' : 'peek');
+  };
 
   const current = prog?.current ?? 0;
   const stop = walk.stops[current];
@@ -101,6 +154,7 @@ export default function ActiveWalk() {
     markVisited(walk.id, i);
     goTo(walk.id, i);
     setJustArrived(i);
+    if (detent === 'peek') snapTo('half');
     LiveActivity.update(walk, i);
     if (settings.haptics) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => undefined);
     Animated.sequence([Animated.spring(banner, { toValue: 1, useNativeDriver: true }), Animated.delay(4200), Animated.timing(banner, { toValue: 0, duration: 300, useNativeDriver: true })]).start(() => setJustArrived(null));
@@ -152,32 +206,31 @@ export default function ActiveWalk() {
   const dist = pos && stop ? distanceM(pos, stop) : null;
   const brg = pos && stop ? bearingDeg(pos, stop) : null;
   const rel = brg !== null && heading !== null ? headingDelta(heading, brg) : null;
-  const mapH = layout === 'map' ? height : layout === 'split' ? height * 0.46 : 0;
   const nextLocked = !canOpenStop(walk.id, current + 1, isPro) && current + 1 < walk.stops.length;
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bg }}>
-      {layout !== 'read' ? (
-        <View style={{ height: mapH }}>
-          <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={layout === 'map' ? 220 : 0} mapType={layer} onUserPan={() => setFollow('off')} />
-          <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
-            <LocateButton
-              mode={follow}
-              disabled={!pos}
-              onPress={() => {
-                const m = nextFollow(follow);
-                setFollow(m);
-                if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
-              }}
-            />
-            <LayersButton layer={layer} onChange={setLayer} bookMap={walk.bookMap} />
-            <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
-          </View>
+      <View style={StyleSheet.absoluteFill}>
+        <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
+      </View>
+      {detent !== 'full' ? (
+        <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
+          <LocateButton
+            mode={follow}
+            disabled={!pos}
+            onPress={() => {
+              const m = nextFollow(follow);
+              setFollow(m);
+              if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
+            }}
+          />
+          <LayersButton layer={layer} onChange={setLayer} bookMap={walk.bookMap} />
+          <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
         </View>
       ) : null}
 
       {/* Header */}
-      <View style={[styles.header, { paddingTop: insets.top + 6, backgroundColor: layout === 'read' ? t.bg : 'transparent' }]}>
+      <View style={[styles.header, { paddingTop: insets.top + 6 }]}>
         <IconButton icon="chevron-down" label="Minimize walk" onPress={() => router.back()} />
         <View style={[styles.headerPill, { backgroundColor: t.card }]}>
           <T variant="label" numberOfLines={1}>
@@ -198,73 +251,75 @@ export default function ActiveWalk() {
         </Animated.View>
       ) : null}
 
-      {/* Stop sheet */}
+      {/* Stop sheet: drag the top part, or tap the handle, to resize. The text scrolls on its own. */}
       {stop ? (
-        <View style={[styles.sheet, { backgroundColor: t.bg, flex: layout === 'map' ? undefined : 1, position: layout === 'map' ? 'absolute' : 'relative', bottom: layout === 'map' ? 0 : undefined, left: 0, right: 0, paddingTop: layout === 'read' ? insets.top + 62 : 10 }]}>
-          <View style={styles.grabRow}>
-            {(['map', 'split', 'read'] as Layout[]).map((l) => (
-              <Pressable key={l} onPress={() => { tap(); setLayout(l); }} style={[styles.layoutBtn, layout === l && { backgroundColor: t.cardAlt }]} accessibilityLabel={`${l} view`}>
-                <Ionicons name={l === 'map' ? 'map' : l === 'split' ? 'albums' : 'reader'} size={16} color={layout === l ? t.primary : t.textMuted} />
-              </Pressable>
-            ))}
-          </View>
-
-          {/* Heading to / at the stop */}
-          <View style={[styles.nav, { backgroundColor: arrivedHere ? (t.dark ? '#163D27' : '#E6F4E8') : t.card, borderColor: t.border }]}>
-            {arrivedHere ? (
-              <Ionicons name="checkmark-circle" size={34} color={t.leaf} />
-            ) : (
-              <View style={{ transform: [{ rotate: `${rel ?? 0}deg` }] }}>
-                <Ionicons name="navigate" size={30} color={rel === null ? t.textMuted : t.accent} />
-              </View>
-            )}
-            <View style={{ flex: 1 }}>
-              <T variant="label">{arrivedHere ? `You're at stop ${stop.n}` : `Heading to stop ${stop.n}`}</T>
-              <T variant="h2" numberOfLines={2}>
-                {stop.title}
+        <Animated.View style={[styles.sheet, { backgroundColor: t.bg, height: sheetH }]}>
+          <View {...pan.panHandlers} onLayout={(e) => setTopBlockH(Math.round(e.nativeEvent.layout.height))}>
+            <Pressable onPress={cycleSheet} accessibilityRole="adjustable" accessibilityLabel="Resize the stop panel" style={styles.grab}>
+              <View style={[styles.handle, { backgroundColor: t.textMuted, opacity: 0.4 }]} />
+            </Pressable>
+            <View style={styles.pagerRow}>
+              <PagerButton label="Previous" icon="chevron-back" disabled={current === 0} onPress={() => go(current - 1)} />
+              <T style={{ fontFamily: t.font.bodyBold, color: t.textMuted, fontSize: 14 }}>
+                Stop {stop.n} of {walk.stops.length}
               </T>
-              <T variant="small">
-                {gps === 'off'
-                  ? 'Location is off. Use Next when you reach each stop.'
-                  : arrivedHere
-                    ? 'Read or listen below, then tap Next.'
-                    : dist !== null
-                      ? `${formatDistance(dist, settings.units)} · about ${walkMinutes(dist)} min${brg !== null ? ` · head ${hawaiianDirection(brg)}` : ''}`
-                      : 'Finding your location…'}
-              </T>
+              <PagerButton label="Next" icon="chevron-forward" iconRight disabled={current >= walk.stops.length - 1} onPress={() => go(current + 1)} />
             </View>
-            {!arrivedHere ? (
-              <Pressable onPress={openDirections} accessibilityLabel="Walking directions" style={[styles.dirBtn, { backgroundColor: t.primary }]}>
-                <Ionicons name="arrow-redo" size={18} color={t.primaryText} />
-              </Pressable>
-            ) : null}
+
+            {/* Heading to / at the stop */}
+            <View style={[styles.nav, { backgroundColor: arrivedHere ? (t.dark ? '#163D27' : '#E6F4E8') : t.card, borderColor: t.border }]}>
+              {arrivedHere ? (
+                <Ionicons name="checkmark-circle" size={34} color={t.leaf} />
+              ) : (
+                <View style={{ transform: [{ rotate: `${rel ?? 0}deg` }] }}>
+                  <Ionicons name="navigate" size={30} color={rel === null ? t.textMuted : t.accent} />
+                </View>
+              )}
+              <View style={{ flex: 1 }}>
+                <T variant="label">{arrivedHere ? `You're at stop ${stop.n}` : `Heading to stop ${stop.n}`}</T>
+                <T variant="h2" numberOfLines={2}>
+                  {stop.title}
+                </T>
+                <T variant="small">
+                  {gps === 'off'
+                    ? 'Location is off. Use Next when you reach each stop.'
+                    : arrivedHere
+                      ? 'Read or listen below, then tap Next.'
+                      : dist !== null
+                        ? `${formatDistance(dist, settings.units)} · about ${walkMinutes(dist)} min${brg !== null ? ` · head ${hawaiianDirection(brg)}` : ''}`
+                        : 'Finding your location…'}
+                </T>
+              </View>
+              {!arrivedHere ? (
+                <Pressable onPress={openDirections} accessibilityLabel="Walking directions" style={[styles.dirBtn, { backgroundColor: t.primary }]}>
+                  <Ionicons name="arrow-redo" size={18} color={t.primaryText} />
+                </Pressable>
+              ) : null}
+            </View>
           </View>
 
-          {layout !== 'map' ? (
-            <ScrollView ref={textRef} contentContainerStyle={{ padding: 20, paddingBottom: 140, gap: 14 }}>
-              <PhotoStrip photos={stop.photos} height={160} />
-              <StopText blocks={stop.blocks} stopId={stop.id} />
-              {stop.geo !== 'verified' ? (
-                <T variant="small" style={{ fontStyle: 'italic' }}>
-                  Pin location is a draft ({stop.geo}). Use "I'm here" if the alert doesn't fire.
-                </T>
-              ) : null}
-            </ScrollView>
-          ) : null}
+          <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
+            <PhotoStrip photos={stop.photos} height={170} />
+            <StopText blocks={stop.blocks} stopId={stop.id} />
+            {stop.geo !== 'verified' ? (
+              <T variant="small" style={{ fontStyle: 'italic' }}>
+                Pin location is a draft ({stop.geo}). Use "I'm here" if the alert doesn't fire.
+              </T>
+            ) : null}
+          </ScrollView>
 
           {/* Controls */}
-          <View style={[styles.controls, { paddingBottom: insets.bottom + 10, backgroundColor: t.bg, borderTopColor: t.border }]}>
-            <IconButton icon="play-skip-back" label="Previous stop" onPress={() => go(current - 1)} />
+          <View onLayout={(e) => setControlsH(Math.round(e.nativeEvent.layout.height))} style={[styles.controls, { paddingBottom: insets.bottom + 10, backgroundColor: t.bg, borderTopColor: t.border }]}>
             <Pressable
-              accessibilityLabel={speakingId === stop.id ? (paused ? 'Resume' : 'Pause') : 'Read aloud'}
+              accessibilityLabel={speakingId === stop.id ? 'Stop reading' : 'Read aloud'}
               onPress={() => {
                 tap();
-                if (speakingId === stop.id) togglePause();
+                if (speakingId === stop.id) stopSpeech();
                 else play(stop);
               }}
               style={[styles.playBtn, { backgroundColor: t.accent }]}
             >
-              <Ionicons name={speakingId === stop.id && !paused ? 'pause' : 'headset'} size={24} color="#fff" />
+              <Ionicons name={speakingId === stop.id ? 'stop' : 'headset'} size={24} color="#fff" />
             </Pressable>
             {arrivedHere ? (
               <Button
@@ -278,9 +333,20 @@ export default function ActiveWalk() {
               <Button label="I'm here" icon="flag" onPress={manualArrive} style={{ flex: 1 }} />
             )}
           </View>
-        </View>
+        </Animated.View>
       ) : null}
     </View>
+  );
+}
+
+function PagerButton({ label, icon, iconRight, disabled, onPress }: { label: string; icon: 'chevron-back' | 'chevron-forward'; iconRight?: boolean; disabled?: boolean; onPress: () => void }) {
+  const t = useTheme();
+  return (
+    <Pressable accessibilityRole="button" accessibilityLabel={`${label} stop`} disabled={disabled} onPress={onPress} hitSlop={6} style={[styles.pbtn, { backgroundColor: t.cardAlt, opacity: disabled ? 0.35 : 1 }]}>
+      {!iconRight ? <Ionicons name={icon} size={18} color={t.primary} /> : null}
+      <T style={{ fontFamily: t.font.bodyBold, color: t.primary, fontSize: 15 }}>{label}</T>
+      {iconRight ? <Ionicons name={icon} size={18} color={t.primary} /> : null}
+    </Pressable>
   );
 }
 
@@ -289,9 +355,11 @@ const styles = StyleSheet.create({
   headerPill: { flex: 1, paddingHorizontal: 14, paddingVertical: 6, borderRadius: 18, alignItems: 'center', shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 6, elevation: 3 },
   mapBtns: { position: 'absolute', right: 14, gap: 10 },
   arrived: { position: 'absolute', left: 14, right: 14, zIndex: 6, flexDirection: 'row', gap: 10, alignItems: 'center', padding: 14, borderRadius: 18 },
-  sheet: { borderTopLeftRadius: 26, borderTopRightRadius: 26, marginTop: -22, shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 12, shadowOffset: { width: 0, height: -3 }, elevation: 8 },
-  grabRow: { flexDirection: 'row', alignSelf: 'center', gap: 4, marginBottom: 8 },
-  layoutBtn: { paddingHorizontal: 14, paddingVertical: 5, borderRadius: 12 },
+  sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, borderTopLeftRadius: 24, borderTopRightRadius: 24, shadowColor: '#000', shadowOpacity: 0.16, shadowRadius: 14, shadowOffset: { width: 0, height: -4 }, elevation: 10, overflow: 'hidden', zIndex: 4 },
+  grab: { alignItems: 'center', paddingTop: 9, paddingBottom: 7 },
+  handle: { width: 40, height: 5, borderRadius: 3 },
+  pagerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14, paddingBottom: 8 },
+  pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14 },
   nav: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, padding: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
   dirBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   controls: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },

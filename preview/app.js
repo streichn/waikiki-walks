@@ -72,7 +72,7 @@
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
     settings: load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }),
     isPro: load('pro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
-    layout: 'split', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
+    layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
   const persist = () => { save('settings', S.settings); save('pro', S.isPro); save('profile', S.profile); save('favs', S.favs); save('progress', S.progress); save('active', S.active); };
   const walk = (id) => D.walks.find((w) => w.id === id);
@@ -113,10 +113,26 @@
   const prep = (t) => t.replace(/\bSt\./g, 'Street').replace(/\bAve\./g, 'Avenue').replace(/\bBlvd\./g, 'Boulevard').replace(/\bRd\./g, 'Road').replace(/[*•]/g, '');
   const speaking = { stopId: null, para: -1 };
   function speakStop(stop) {
-    if (!synth) return toast('Read aloud is not available in this browser. It uses the phone voice in the app.');
-    synth.cancel(); const tok = ++speakTok;
+    if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; }
+    const tok = ++speakTok; if (synth) synth.cancel();
+    if (!synth && (window.WWAUDIO || {})[stop.id] === undefined) return toast('Read aloud is not available in this browser. It uses the phone voice in the app.');
     const parts = [`Stop ${stop.n}. ${stop.title}.`, ...stop.blocks.filter((b) => ['p', 'direction', 'tagline'].includes(b.kind)).map((b) => prep(b.text))];
     let i = 0;
+    // Recorded narration when this stop has it; the browser voice otherwise.
+    const rec = (window.WWAUDIO || {})[stop.id] === parts.length;
+    if (rec) {
+      const wid = stop.id.split('-')[0];
+      const nextRec = () => {
+        if (tok !== speakTok) return;
+        if (i >= parts.length) { speaking.stopId = null; speaking.para = -1; speaking.audio = null; markReading(); return; }
+        speaking.stopId = stop.id; speaking.para = i - 1; markReading();
+        const a = new Audio(`audio/${wid}/${stop.id}/${String(i).padStart(2, '0')}.mp3`); speaking.audio = a;
+        a.playbackRate = Math.max(0.8, Math.min(1.5, S.settings.rate || 1));
+        a.onended = () => { i++; nextRec(); }; a.onerror = () => { i++; nextRec(); };
+        a.play().catch(() => { i++; nextRec(); });
+      };
+      return nextRec();
+    }
     const next = () => {
       if (tok !== speakTok) return;
       if (i >= parts.length) { speaking.stopId = null; speaking.para = -1; markReading(); return; }
@@ -127,7 +143,7 @@
     };
     next();
   }
-  function stopSpeak() { speakTok++; if (synth) synth.cancel(); speaking.stopId = null; speaking.para = -1; markReading(); }
+  function stopSpeak() { speakTok++; if (synth) synth.cancel(); if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
   function markReading() {
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
@@ -229,15 +245,10 @@
     const w = walk(S.walkId), prog = S.progress[w.id];
     const startLabel = !canStart(w.id) ? 'Unlock this walk' : S.active === w.id ? 'Return to walk' : prog && prog.visited.length && !prog.finishedAt ? 'Continue walk' : 'Start walk';
     const chips = [w.facts.distance && `<span class="chip">${ic('steps', 'width="14" height="14"')} ${esc(w.facts.distance)}</span>`, w.facts.duration && `<span class="chip">${ic('time', 'width="14" height="14"')} ${esc(w.facts.duration)}</span>`, `<span class="chip">${ic('pin', 'width="14" height="14"')} ${w.stops.length} stops</span>`, w.id === TRIAL.walkId && !S.isPro ? `<span class="chip" style="color:var(--gold)">${ic('gift', 'width="14" height="14"')} First ${TRIAL.freeStops} free</span>` : ''].filter(Boolean).join('');
-    const stops = w.stops.map((s, i) => {
-      const locked = !canOpen(w.id, i), fav = S.favs.includes(s.id);
-      return `<section class="stop pad stack" id="stop-${i}" data-i="${i}" style="gap:12px">
-        <div class="stophead"><span class="num" style="background:${locked ? '#8A9A9B' : w.color}">${s.n}</span><div><h2>${esc(s.title)}</h2>${s.subtitle ? `<div class="italic small">${esc(s.subtitle)}</div>` : ''}</div></div>${wave(70, w.color)}
-        ${locked ? teaser(s) : `
-        <div class="actions"><button class="action" data-listen="${s.id}" data-i="${i}">${ic('volume')} Listen</button><button class="action" data-onmap="${i}">${ic('map')} On map</button><button class="action" data-fav="${s.id}" aria-label="${fav ? 'Remove from saved' : 'Save stop'}" style="color:var(--accent)">${ic(fav ? 'heartFill' : 'heart')}</button></div>
-        ${photosHtml(s.photos)}${blocksHtml(s.blocks, s.id)}`}
-      </section>`;
-    }).join('');
+    const stops = `<div class="pad stack" style="gap:8px;margin-top:22px"><h2 style="font-size:22px">The stops</h2><p class="small" style="margin:0 0 4px">Tap a stop to read it, then swipe or use Next to go through them one at a time.</p>${w.stops.map((s, i) => {
+      const locked = !canOpen(w.id, i), seen = prog && prog.visited.includes(i);
+      return `<button class="stoprow" data-read="${i}"><span class="num" style="background:${locked ? '#8A9A9B' : w.color}">${s.n}</span><div style="flex:1;min-width:0"><div class="srt">${esc(s.title)}</div>${s.subtitle ? `<div class="small italic">${esc(s.subtitle)}</div>` : ''}</div><span class="srmark" style="color:${locked ? 'var(--muted)' : seen ? 'var(--leaf)' : 'var(--primary)'}">${ic(locked ? 'lock' : seen ? 'check' : 'fwd', 'width="18" height="18"')}</span></button>`;
+    }).join('')}</div>`;
     return `<div class="screen" id="walk" style="padding-bottom:120px">
       <div id="readview" class="${S.mode === 'read' ? '' : 'hidden'}">
         <div class="whero">${img(w.cover) || `<div style="height:100%;background:${w.color}"></div>`}<div class="fade"></div><div class="flower" style="right:-24px;bottom:40px">${hib(110, '#D6336C', 25)}</div></div>
@@ -249,6 +260,29 @@
     <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0"><div class="map" id="wmap"></div><div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
     <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button></div>`;
+  }
+
+  // One stop per page, like turning pages in the book.
+  function renderStop() {
+    const w = walk(S.walkId), i = S.stopIdx, s = w.stops[i], locked = !canOpen(w.id, i), fav = S.favs.includes(s.id);
+    return `<div class="screen" id="stopread" style="padding-bottom:150px"><div class="pad stack page ${S.pageAnim || ''}" style="gap:14px;padding-top:calc(env(safe-area-inset-top) + 76px)">
+      <div class="stophead"><span class="num" style="background:${locked ? '#8A9A9B' : w.color}">${s.n}</span><div><div class="label">Stop ${s.n} of ${w.stops.length}</div><h2>${esc(s.title)}</h2>${s.subtitle ? `<div class="italic small">${esc(s.subtitle)}</div>` : ''}</div></div>${wave(70, w.color)}
+      ${locked ? teaser(s) : `<div class="actions"><button class="action" data-listen="${s.id}" data-i="${i}">${ic('volume')} Listen</button><button class="action" data-onmap="${i}">${ic('map')} On map</button><button class="action" data-fav="${s.id}" aria-label="${fav ? 'Remove from saved' : 'Save stop'}" style="color:var(--accent)">${ic(fav ? 'heartFill' : 'heart')}</button></div>
+      ${photosHtml(s.photos)}${blocksHtml(s.blocks, s.id)}`}
+    </div></div>
+    <div class="topbar"><button class="iconbtn" data-act="stopback" aria-label="All stops">${ic('back')}</button><div class="gopill"><div class="label">Walk ${w.id}</div><div>${esc(w.title)}</div></div><span style="width:44px;flex:none"></span></div>
+    <div class="pager"><button class="pbtn" data-step="-1" ${i === 0 ? 'disabled' : ''} aria-label="Previous stop">${ic('prev')} Previous</button><span class="pcount">${s.n} / ${w.stops.length}</span><button class="pbtn" data-step="1" ${i === w.stops.length - 1 ? 'disabled' : ''} aria-label="Next stop">Next ${ic('fwd')}</button></div>`;
+  }
+  function stepStop(d) {
+    const w = walk(S.walkId), n = S.stopIdx + d;
+    if (n < 0 || n >= w.stops.length) return;
+    stopSpeak(); S.stopIdx = n; S.focus = n; S.pageAnim = d > 0 ? 'from-r' : 'from-l'; render(); S.pageAnim = '';
+    const sc = document.getElementById('stopread'); if (sc) sc.scrollTop = 0;
+  }
+  function bindSwipe(el) {
+    let x0 = null, y0 = 0, t0 = 0, skip = false;
+    el.addEventListener('touchstart', (e) => { const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); skip = !!e.target.closest('.photos, .maprail'); }, { passive: true });
+    el.addEventListener('touchend', (e) => { if (skip || x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null; if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8 && Date.now() - t0 < 700) stepStop(dx < 0 ? 1 : -1); }, { passive: true });
   }
 
   // Shared Leaflet map builder with offline tiles.
@@ -316,32 +350,78 @@
     let rot = 0;
     if (here) navLine = 'Read or listen below, then tap Next.';
     else if (S.me) { const d = dist(S.me, stop), b = bearing(S.me, stop); rot = b - S.heading; navLine = `${fmt(d)} · about ${Math.max(1, Math.round(d / 67))} min · head ${hawaiianDir(b)}`; }
-    return `<div id="go" class="l-${S.layout}" style="position:absolute;inset:0">
+    return `<div id="go" style="position:absolute;inset:0">
       <div class="mapwrap"><div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div></div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${w.id} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${S.layout !== 'read' ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}" style="position:absolute;left:12px;z-index:1000;top:calc(${S.layout === 'map' ? '100% - 260px' : '46% - 70px'})">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
-      <div class="sheet">
-        <div class="layouts">${['map', 'split', 'read'].map((l) => `<button data-layout="${l}" aria-pressed="${S.layout === l}" aria-label="${l} view">${ic(l === 'map' ? 'map' : l === 'split' ? 'split' : 'reader')}</button>`).join('')}</div>
+      <div class="sheet" id="sheet">
+        <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
+        <div class="pager inline"><button class="pbtn" data-act="prev" ${cur === 0 ? 'disabled' : ''} aria-label="Previous stop">${ic('prev')} Previous</button><span class="pcount">Stop ${stop.n} of ${w.stops.length}</span><button class="pbtn" data-act="skip" ${cur >= w.stops.length - 1 ? 'disabled' : ''} aria-label="Skip to next stop">Next ${ic('fwd')}</button></div>
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
-        <div class="controls"><button class="iconbtn" data-act="prev" aria-label="Previous stop">${ic('prev')}</button><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button>
+        <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
   }
   function mountGoMap() {
     const w = walk(S.walkId), prog = S.progress[w.id];
-    const el = document.getElementById('gmap'); if (!el || S.layout === 'read') { gmap = null; return; }
-    gmap = makeMap(el, w, { showSeg: true, bottom: S.layout === 'map' ? 220 : 30, onSelect: (i) => goTo(i) });
+    const el = document.getElementById('gmap'); if (!el) { gmap = null; return; }
+    gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => goTo(i) });
     gmap.paint(prog.current, prog.visited); gmap.me(S.me, S.heading);
     setTimeout(() => { gmap.map.invalidateSize(); if (S.me) gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
   }
+  // Bottom sheet with three resting heights, like Apple Maps: peek, half, full.
+  function detents() {
+    const go = document.getElementById('go'), H = go ? go.clientHeight : 800;
+    const part = (sel) => { const e = document.querySelector('#sheet ' + sel); return e ? e.offsetHeight : 0; };
+    const nav = document.querySelector('#sheet .nav');
+    const peek = part('.grab') + part('.pager') + (nav ? nav.offsetHeight + 12 : 0) + part('.controls') + 58;
+    const full = H - (document.querySelector('.gohead') ? document.querySelector('.gohead').getBoundingClientRect().bottom - go.getBoundingClientRect().top + 8 : 70);
+    return { peek, half: Math.max(peek + 60, Math.round(H * 0.56)), full };
+  }
+  function sheetPx() { const d = detents(); return d[S.detent] || d.half; }
+  function setSheet(px, animate) {
+    const sh = document.getElementById('sheet'), go = document.getElementById('go'); if (!sh || !go) return;
+    sh.classList.toggle('anim', !!animate); sh.style.height = px + 'px'; go.style.setProperty('--sh', px + 'px');
+    go.classList.toggle('sheet-full', px >= detents().full - 4);
+  }
+  function mountSheet() {
+    setSheet(sheetPx(), false);
+    const sh = document.getElementById('sheet'); if (!sh) return;
+    let y0 = null, h0 = 0, moved = false, fromBody = false, lastY = 0, lastT = 0, vel = 0;
+    const handles = sh.querySelectorAll('.grab, .pager, .nav');
+    const down = (e) => { if (e.target.closest('button') && !e.target.closest('.grab')) { y0 = e.clientY; h0 = sh.offsetHeight; moved = false; fromBody = false; lastY = e.clientY; lastT = Date.now(); return; } y0 = e.clientY; h0 = sh.offsetHeight; moved = false; fromBody = false; lastY = e.clientY; lastT = Date.now(); };
+    handles.forEach((hd) => hd.addEventListener('pointerdown', down));
+    const body = sh.querySelector('.gobody');
+    // At full height, pulling down from the top of the text collapses the sheet, as in Maps.
+    body.addEventListener('pointerdown', (e) => { if (body.scrollTop <= 0 && S.detent === 'full' && e.pointerType !== 'mouse') { y0 = e.clientY; h0 = sh.offsetHeight; moved = false; fromBody = true; lastY = e.clientY; lastT = Date.now(); } });
+    const move = (e) => {
+      if (y0 === null) return; const dy = e.clientY - y0;
+      if (fromBody && dy < 0) { y0 = null; return; }
+      if (!moved && Math.abs(dy) < 7) return;
+      moved = true; const d = detents(); const now = Date.now(); vel = (e.clientY - lastY) / Math.max(1, now - lastT); lastY = e.clientY; lastT = now;
+      setSheet(Math.max(d.peek - 30, Math.min(d.full, h0 - dy)), false);
+    };
+    const up = (e) => {
+      if (y0 === null) return; const wasMoved = moved; y0 = null;
+      const d = detents(), h = sh.offsetHeight;
+      if (!wasMoved) { if (e.target.closest('.grab')) { S.detent = S.detent === 'peek' ? 'half' : S.detent === 'half' ? 'full' : 'peek'; setSheet(d[S.detent], true); } return; }
+      let pick = ['peek', 'half', 'full'].reduce((a, k) => (Math.abs(d[k] - h) < Math.abs(d[a] - h) ? k : a), 'half');
+      if (vel > 0.6) pick = h > d.half ? 'half' : 'peek'; else if (vel < -0.6) pick = h < d.half ? 'half' : 'full';
+      S.detent = pick; setSheet(d[pick], true);
+      if (gmap) setTimeout(() => gmap.map.invalidateSize(), 260);
+    };
+    window.onpointermove = move; window.onpointerup = up; window.onpointercancel = up;
+  }
+
   function arrive(i) {
     const w = walk(S.walkId), prog = S.progress[w.id];
     if (!prog.visited.includes(i)) prog.visited.push(i);
     prog.current = i; persist();
+    if (S.detent === 'peek') S.detent = 'half';
     S.arrivedBanner = i; setTimeout(() => { S.arrivedBanner = null; const b = document.querySelector('.arrived'); b && b.remove(); }, 4200);
     if (navigator.vibrate) try { navigator.vibrate(120); } catch (e) {}
     render();
@@ -520,9 +600,9 @@
 
   // ---------- navigation ----------
   async function openWalk(id, stopIdx) {
-    S.walkId = id; S.view = 'walk'; S.mode = 'read'; S.focus = stopIdx || 0; wmap = null;
+    S.walkId = id; S.mode = 'read'; S.focus = stopIdx || 0; wmap = null;
+    if (stopIdx != null && !Number.isNaN(stopIdx)) { S.view = 'stop'; S.stopIdx = stopIdx; } else S.view = 'walk';
     await needImages(id); render();
-    if (stopIdx) setTimeout(() => { const el = document.getElementById('stop-' + stopIdx); el && el.scrollIntoView({ block: 'start' }); }, 60);
   }
   async function startWalk() {
     const w = walk(S.walkId);
@@ -540,10 +620,12 @@
     let html = '';
     if (S.view === 'walk') html = renderWalk();
     else if (S.view === 'go') html = renderGo();
+    else if (S.view === 'stop') html = renderStop() + minibar();
     else html = (S.tab === 'home' ? renderHome() : S.tab === 'explore' ? renderExplore() : S.tab === 'saved' ? renderSaved() : renderProfile()) + minibar() + tabs();
     $app.innerHTML = html;
     if (S.view === 'walk' && S.mode === 'map') mountWalkMap();
-    if (S.view === 'go') mountGoMap();
+    if (S.view === 'go') { mountSheet(); mountGoMap(); }
+    if (S.view === 'stop') bindSwipe(document.getElementById('stopread'));
     if (!S.view && S.tab === 'explore') mountExplore();
     if (!S.view && S.tab === 'home') { showFact(); clearInterval(factTimer); factTimer = setInterval(() => { factIdx++; showFact(); }, 9000); }
     markReading();
@@ -562,8 +644,10 @@
     if ((el = q('[data-open]'))) { const [w, i] = el.dataset.open.split(':'); return openWalk(w, Number(i)); }
     if ((el = q('#fact'))) { factIdx++; return showFact(); }
     if ((el = q('[data-mode]'))) { S.mode = el.dataset.mode; document.getElementById('readview').classList.toggle('hidden', S.mode !== 'read'); document.getElementById('mapview').classList.toggle('hidden', S.mode !== 'map'); document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-selected', b.dataset.mode === S.mode)); document.querySelector('.cta').classList.toggle('solid', S.mode === 'read'); if (S.mode === 'map') mountWalkMap(); else setTimeout(() => { const s = document.getElementById('stop-' + S.focus); s && S.focus && s.scrollIntoView({ block: 'start' }); }, 30); return; }
-    if ((el = q('[data-onmap]'))) { S.focus = Number(el.dataset.onmap); el = document.querySelector('[data-mode="map"]'); return el.click(); }
-    if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; return document.querySelector('[data-mode="read"]').click(); }
+    if ((el = q('[data-onmap]'))) { S.focus = Number(el.dataset.onmap); stopSpeak(); S.view = 'walk'; S.mode = 'map'; wmap = null; return render(); }
+    if ((el = q('[data-read]'))) { const i = Number(el.dataset.read); S.stopIdx = i; S.focus = i; S.view = 'stop'; return render(); }
+    if ((el = q('[data-step]'))) return stepStop(Number(el.dataset.step));
+    if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-listen]'))) { const w = walk(S.walkId); const s = w.stops[Number(el.dataset.i)]; return speaking.stopId === s.id ? stopSpeak() : speakStop(s); }
     if ((el = q('[data-fav]'))) { const id = el.dataset.fav; S.favs = S.favs.includes(id) ? S.favs.filter((x) => x !== id) : [...S.favs, id]; persist(); el.innerHTML = ic(S.favs.includes(id) ? 'heartFill' : 'heart'); return; }
     if ((el = q('[data-ph]'))) { const sec = el.closest('[data-i]'); const w = walk(S.walkId); const stop = sec ? w.stops[Number(sec.dataset.i)] : w.stops[S.progress[w.id].current]; return openPhotos(stop, Number(el.dataset.ph)); }
@@ -571,6 +655,8 @@
     if ((el = q('[data-act]'))) {
       const a = el.dataset.act, w = S.walkId && walk(S.walkId);
       if (a === 'back') { S.view = null; return render(); }
+      if (a === 'stopback') { stopSpeak(); S.view = 'walk'; S.mode = 'read'; render(); const r = document.querySelector(`[data-read="${S.stopIdx}"]`); r && r.scrollIntoView({ block: 'center' }); return; }
+      if (a === 'skip') return goTo(S.progress[w.id].current + 1);
       if (a === 'fit') { if (S.mode === 'map' && wmap) wmap.fit(); else document.querySelector('[data-mode="map"]').click(); return; }
       if (a === 'start') { if (S.active === S.walkId) { S.view = 'go'; return render(); } return startWalk(); }
       if (a === 'paywall') return openPaywall();

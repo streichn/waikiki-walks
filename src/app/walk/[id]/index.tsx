@@ -5,9 +5,8 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { FlatList, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Hibiscus, WaveRule } from '../../../components/Flora';
+import { Hibiscus } from '../../../components/Flora';
 import { FunFacts } from '../../../components/FunFacts';
-import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { LayersButton, type Layer } from '../../../components/MapControls';
 import { Button, Chip, IconButton, Segmented, T, tap } from '../../../components/ui';
@@ -16,14 +15,14 @@ import { TRIAL } from '../../../config';
 import { getWalk, photo } from '../../../data';
 import type { Stop } from '../../../data/types';
 import { canOpenStop, canStartWalk, useIsPro } from '../../../lib/access';
-import { play, stop as stopSpeech, useNarration } from '../../../lib/narration';
+import { stop as stopSpeech } from '../../../lib/narration';
 import { useProgress } from '../../../store';
 import { useTheme } from '../../../theme';
 
 type Mode = 'read' | 'map';
 
 export default function WalkOverview() {
-  const { id, stop: stopParam } = useLocalSearchParams<{ id: string; stop?: string }>();
+  const { id, stop: stopParam, mode: modeParam } = useLocalSearchParams<{ id: string; stop?: string; mode?: string }>();
   const walk = getWalk(id)!;
   const t = useTheme();
   const insets = useSafeAreaInsets();
@@ -31,24 +30,22 @@ export default function WalkOverview() {
   const isPro = useIsPro();
   const prog = useProgress((s) => s.progress[walk.id]);
   const activeId = useProgress((s) => s.activeWalkId);
-  const [mode, setMode] = useState<Mode>('read');
+  const [mode, setMode] = useState<Mode>(modeParam === 'map' ? 'map' : 'read');
   const [focus, setFocus] = useState(stopParam ? Number(stopParam) : 0);
   const [layer, setLayer] = useState<Layer>('standard');
   const scroll = useRef<ScrollViewInstance>(null);
-  const offsets = useRef<Record<number, number>>({});
   const mapRef = useRef<WalkMapHandle>(null);
   const cards = useRef<FlatList<Stop>>(null);
   const locked = (i: number) => !canOpenStop(walk.id, i, isPro);
 
+  // A link to a specific stop (map pin, notification, camera match) opens that stop's page, or the map.
   useEffect(() => {
-    if (stopParam) setTimeout(() => scrollToStop(Number(stopParam)), 400);
+    if (stopParam === undefined) return;
+    const i = Number(stopParam);
+    if (modeParam === 'map') showOnMap(i);
+    else router.push(`/walk/${walk.id}/stop/${i}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stopParam]);
-
-  const scrollToStop = (i: number) => {
-    const y = offsets.current[i];
-    if (y !== undefined) scroll.current?.scrollTo({ y: y - insets.top - 70, animated: true });
-  };
+  }, [stopParam, modeParam]);
 
   // Text and map are linked: choosing a stop in one jumps to it in the other.
   const showOnMap = (i: number) => {
@@ -61,8 +58,7 @@ export default function WalkOverview() {
   };
   const readStop = (i: number) => {
     setFocus(i);
-    setMode('read');
-    setTimeout(() => scrollToStop(i), 250);
+    router.push(`/walk/${walk.id}/stop/${i}`);
   };
 
   const begin = () => {
@@ -111,11 +107,25 @@ export default function WalkOverview() {
             <FunFacts walkId={walk.id} />
           </View>
 
-          {walk.stops.map((s, i) => (
-            <View key={s.id} onLayout={(e) => (offsets.current[i] = e.nativeEvent.layout.y)} style={{ paddingHorizontal: 20, paddingTop: 28 }}>
-              <StopSection stop={s} index={i} locked={locked(i)} walkColor={walk.color} onMap={() => showOnMap(i)} width={width} />
-            </View>
-          ))}
+          <View style={{ paddingHorizontal: 20, paddingTop: 26, gap: 8 }}>
+            <T variant="title" style={{ fontSize: 22 }}>The stops</T>
+            <T variant="small">Tap a stop to read it, then swipe or use Next to go through them one at a time.</T>
+            {walk.stops.map((s, i) => {
+              const seen = prog?.visited.includes(i);
+              return (
+                <Pressable key={s.id} onPress={() => readStop(i)} accessibilityRole="button" accessibilityLabel={`Stop ${s.n}, ${s.title}${locked(i) ? ', locked' : ''}`} style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}>
+                  <View style={[styles.num, { backgroundColor: locked(i) ? '#8A9A9B' : walk.color }]}>
+                    <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>{s.n}</T>
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <T style={{ fontFamily: t.font.bodyBold, fontSize: 16 }} numberOfLines={2}>{s.title}</T>
+                    {s.subtitle ? <T variant="small" style={{ fontStyle: 'italic' }} numberOfLines={1}>{s.subtitle}</T> : null}
+                  </View>
+                  <Ionicons name={locked(i) ? 'lock-closed' : seen ? 'checkmark-circle' : 'chevron-forward'} size={20} color={locked(i) ? t.textMuted : seen ? t.leaf : t.primary} />
+                </Pressable>
+              );
+            })}
+          </View>
         </ScrollView>
       ) : (
         <View style={{ flex: 1 }}>
@@ -187,96 +197,6 @@ export default function WalkOverview() {
   );
 }
 
-function StopSection({ stop, index, locked, walkColor, onMap, width }: { stop: Stop; index: number; locked: boolean; walkColor: string; onMap: () => void; width: number }) {
-  const t = useTheme();
-  const fav = useProgress((s) => s.favorites.includes(stop.id));
-  const toggleFav = useProgress((s) => s.toggleFavorite);
-  const speaking = useNarration((s) => s.speakingStopId === stop.id);
-  return (
-    <View style={{ gap: 12 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-        <View style={[styles.num, { backgroundColor: locked ? '#8A9A9B' : walkColor }]}>
-          <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>{stop.n}</T>
-        </View>
-        <View style={{ flex: 1 }}>
-          <T variant="title" style={{ fontSize: 22, lineHeight: 27 }}>
-            {stop.title}
-          </T>
-          {stop.subtitle ? (
-            <T variant="italic" style={{ color: t.textMuted }}>
-              {stop.subtitle}
-            </T>
-          ) : null}
-        </View>
-      </View>
-      <WaveRule width={70} color={walkColor} />
-      {locked ? (
-        <LockedTeaser stop={stop} />
-      ) : (
-        <>
-          <View style={{ flexDirection: 'row', gap: 8 }}>
-            <Pressable onPress={() => { tap(); speaking ? stopSpeech() : play(stop); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
-              <Ionicons name={speaking ? 'stop-circle' : 'volume-high'} size={18} color={t.primary} />
-              <T style={{ fontFamily: t.font.bodySemi, fontSize: 14 }}>{speaking ? 'Stop' : 'Listen'}</T>
-            </Pressable>
-            <Pressable onPress={() => { tap(); onMap(); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
-              <Ionicons name="map" size={18} color={t.primary} />
-              <T style={{ fontFamily: t.font.bodySemi, fontSize: 14 }}>On map</T>
-            </Pressable>
-            <Pressable accessibilityLabel={fav ? 'Remove from saved' : 'Save stop'} onPress={() => { tap(); toggleFav(stop.id); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
-              <Ionicons name={fav ? 'heart' : 'heart-outline'} size={18} color={t.accent} />
-            </Pressable>
-          </View>
-          <PhotoStrip photos={stop.photos} height={width > 400 ? 200 : 170} />
-          <StopText blocks={stop.blocks} stopId={stop.id} />
-        </>
-      )}
-    </View>
-  );
-}
-
-/**
- * A locked stop still shows its first photo and opening lines, fading out, so walkers can
- * see what they are missing. One tap opens the purchase sheet.
- */
-function LockedTeaser({ stop }: { stop: Stop }) {
-  const t = useTheme();
-  const first = stop.photos[0];
-  const teaser = (stop.blocks.find((b) => b.kind === 'p')?.text ?? '').split(/(?<=[.!?])\s+/).slice(0, 2).join(' ');
-  return (
-    <Pressable onPress={() => router.push('/paywall')} accessibilityRole="button" accessibilityLabel={`Unlock ${stop.title}`} style={{ gap: 10 }}>
-      {first ? (
-        <View style={{ flexDirection: 'row', gap: 8 }}>
-          <Image source={photo(first.file)} style={{ height: 170, flex: 2, borderRadius: 16 }} contentFit="cover" />
-          {stop.photos.length > 1 ? (
-            <View style={{ flex: 1, borderRadius: 16, overflow: 'hidden', backgroundColor: t.cardAlt }}>
-              <Image source={photo(stop.photos[1].file)} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={22} />
-              <View style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)' }]}>
-                <Ionicons name="lock-closed" size={22} color="#fff" />
-                <T style={{ color: '#fff', fontFamily: t.font.bodyBold, fontSize: 13 }}>+{stop.photos.length - 1} photos</T>
-              </View>
-            </View>
-          ) : null}
-        </View>
-      ) : null}
-      {teaser ? (
-        <View>
-          <T>{teaser}</T>
-          <LinearGradient colors={['transparent', t.bg]} style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 40 }} />
-        </View>
-      ) : null}
-      <View style={[styles.lock, { backgroundColor: t.accent, borderColor: t.accent }]}>
-        <Ionicons name="lock-open" size={20} color="#fff" />
-        <View style={{ flex: 1 }}>
-          <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>Keep reading with Veneeta</T>
-          <T style={{ color: '#FFE3EC', fontSize: 13 }}>Unlock every walk, stop, and photo</T>
-        </View>
-        <Ionicons name="chevron-forward" size={20} color="#fff" />
-      </View>
-    </Pressable>
-  );
-}
-
 const styles = StyleSheet.create({
   hero: { height: 330 },
   heroFlower: { position: 'absolute', right: -24, bottom: 40 },
@@ -284,6 +204,7 @@ const styles = StyleSheet.create({
   info: { flexDirection: 'row', gap: 8, padding: 12, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth },
   topBar: { position: 'absolute', left: 14, right: 14, flexDirection: 'row', alignItems: 'center' },
   cta: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 10, flexDirection: 'row' },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth },
   num: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   lock: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
   action: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 14, paddingVertical: 9, borderRadius: 18 },

@@ -60,6 +60,7 @@ export default function RootLayout() {
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="walk/[id]/index" options={{ headerShown: false }} />
+          <Stack.Screen name="walk/[id]/stop/[n]" options={{ headerShown: false }} />
           <Stack.Screen name="walk/[id]/go" options={{ headerShown: false, gestureEnabled: false }} />
           <Stack.Screen name="paywall" options={{ presentation: 'modal', headerShown: false }} />
           <Stack.Screen name="auth" options={{ presentation: 'modal', headerShown: false }} />

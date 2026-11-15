@@ -132,25 +132,38 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .attrib { position: absolute; right: 4px; bottom: 2px; font-size: 10px; color: #333; background: rgba(255,255,255,.7); padding: 0 4px; border-radius: 4px; z-index: 800; }
 
 /* Active walk */
-#go .mapwrap { position: absolute; left: 0; right: 0; top: 0; height: 46%; }
-#go.l-map .mapwrap { height: 100%; }
-#go.l-read .mapwrap { display: none; }
+#go .mapwrap { position: absolute; inset: 0; }
 .gohead { position: absolute; left: 12px; right: 12px; top: calc(env(safe-area-inset-top) + 10px); display: flex; gap: 10px; align-items: center; z-index: 1000; }
 .gopill { flex: 1; text-align: center; background: var(--card); border-radius: 18px; padding: 6px 12px; box-shadow: 0 2px 6px rgba(0,0,0,.12); min-width: 0; }
 .gopill div:last-child { font-family: var(--display); font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sheet { position: absolute; left: 0; right: 0; bottom: 0; top: calc(46% - 22px); background: var(--bg); border-radius: 26px 26px 0 0; box-shadow: 0 -3px 12px rgba(0,0,0,.12); display: flex; flex-direction: column; z-index: 950; }
-#go.l-map .sheet { top: auto; }
-#go.l-read .sheet { top: 0; border-radius: 0; padding-top: calc(env(safe-area-inset-top) + 62px); }
-.layouts { display: flex; gap: 4px; align-self: center; margin: 10px 0 8px; }
-.layouts button { padding: 5px 14px; border-radius: 12px; color: var(--muted); }
-.layouts button[aria-pressed="true"] { background: var(--card2); color: var(--primary); }
-.layouts svg { width: 16px; height: 16px; }
-.nav { display: flex; gap: 12px; align-items: center; margin: 0 14px; padding: 12px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 56%; background: var(--bg); border-radius: 24px 24px 0 0; box-shadow: 0 -4px 16px rgba(0,0,0,.16); display: flex; flex-direction: column; z-index: 950; touch-action: none; }
+.sheet.anim { transition: height .28s cubic-bezier(.2,.8,.2,1); }
+.sheet .gobody { touch-action: pan-y; }
+.grab { display: flex; justify-content: center; padding: 9px 0 5px; cursor: grab; flex: none; }
+.handle { width: 40px; height: 5px; border-radius: 3px; background: var(--line); background: color-mix(in srgb, var(--text) 25%, transparent); }
+.pager { position: absolute; left: 0; right: 0; bottom: 0; z-index: 950; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px calc(12px + env(safe-area-inset-bottom)); background: var(--bg); border-top: 1px solid var(--line); }
+.pager.inline { position: static; border: 0; padding: 0 14px 8px; flex: none; background: transparent; }
+.pbtn { display: inline-flex; align-items: center; gap: 4px; padding: 9px 14px; border-radius: 14px; background: var(--card2); color: var(--primary); font-weight: 800; font-size: 15px; }
+.pbtn svg { width: 18px; height: 18px; }
+.pbtn[disabled] { opacity: .35; }
+.pcount { font-weight: 800; color: var(--muted); font-size: 14px; }
+.stoprow { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); text-align: left; width: 100%; }
+.stoprow .srt { font-weight: 800; font-size: 16px; line-height: 1.3; }
+.srmark { flex: none; display: inline-flex; }
+.page.from-r { animation: fromR .22s ease-out; }
+.page.from-l { animation: fromL .22s ease-out; }
+@keyframes fromR { from { transform: translateX(36px); opacity: .2; } }
+@keyframes fromL { from { transform: translateX(-36px); opacity: .2; } }
+.simtoggle { position: absolute; left: 12px; bottom: calc(var(--sh, 56%) + 12px); z-index: 1000; transition: opacity .2s; }
+#go.sheet-full .simtoggle, #go.sheet-full .simbar { opacity: 0; pointer-events: none; }
+.simbar { transition: opacity .2s; }
+.nav { flex: none; display: flex; gap: 12px; align-items: center; margin: 0 14px; padding: 12px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
 .nav.here { background: color-mix(in srgb, var(--leaf) 16%, var(--card)); }
 .nav .arrow { width: 32px; height: 32px; flex: none; color: var(--accent); transition: transform .3s; }
-.nav h3 { font-family: var(--body); font-weight: 800; font-size: 17px; line-height: 1.25; }
-.gobody { flex: 1; overflow-y: auto; padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 14px; }
-#go.l-map .gobody { display: none; }
+.nav h3 { font-family: var(--body); font-weight: 800; font-size: 18px; line-height: 1.25; }
+#go .p { font-size: calc(18px * var(--ts, 1)); line-height: 1.65; }
+#go .dir { font-size: calc(17px * var(--ts, 1)); }
+.gobody { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 20px 28px; border-top: 1px solid var(--line); margin-top: 12px; display: flex; flex-direction: column; gap: 14px; }
 .controls { display: flex; gap: 12px; align-items: center; padding: 10px 14px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--bg); }
 .play { width: 52px; height: 52px; border-radius: 26px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
 .play svg { width: 24px; height: 24px; }
@@ -204,6 +217,7 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
 <script src="covers.js"></script>
 <script src="tiles.js"></script>
 <script src="bookmaps.js"></script>
+<script src="audio.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="app.js"></script>
 </body>
