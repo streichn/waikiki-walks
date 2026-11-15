@@ -17,9 +17,10 @@ export const REVENUECAT = {
 };
 
 /** Supabase handles accounts (Apple, Google, email). Free tier is enough to start. */
+/** The publishable key is meant to ship inside the app; Row Level Security protects the data. */
 export const SUPABASE = {
-  url: process.env.EXPO_PUBLIC_SUPABASE_URL ?? '',
-  anonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
+  url: process.env.EXPO_PUBLIC_SUPABASE_URL ?? 'https://qufuqzmrqkqsiqvfdgjr.supabase.co',
+  anonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? 'sb_publishable_eHDQdKkCaHG4Z_EqSkNltQ_1maaGREN',
 };
 
 export const GOOGLE = {
