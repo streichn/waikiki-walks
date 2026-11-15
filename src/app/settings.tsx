@@ -2,10 +2,10 @@ import Slider from '../components/Slider';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Alert, Linking, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import { Alert, Linking, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import type * as Speech from 'expo-speech';
 import { Card, Segmented, T } from '../components/ui';
-import { deleteAccount } from '../lib/auth';
+import { APPLE_MANUAL_REVOKE_URL, deleteAccount } from '../lib/auth';
 import { englishVoices, speakShort } from '../lib/narration';
 import { restore } from '../lib/purchases';
 import { type ThemeMode, useAccount, useProgress, useSettings } from '../store';
@@ -119,17 +119,40 @@ export default function Settings() {
             danger
             label="Delete my account"
             onPress={() =>
-              Alert.alert('Delete account?', 'This permanently deletes your account and synced progress. Subscriptions must be cancelled separately in the App Store.', [
-                { text: 'Cancel', style: 'cancel' },
-                {
-                  text: 'Delete',
-                  style: 'destructive',
-                  onPress: async () => {
-                    await deleteAccount();
-                    router.back();
+              Alert.alert(
+                'Delete your account?',
+                'This permanently deletes your account, synced progress, saved stops, and settings. It cannot be undone.\n\nYour purchases stay with your ' +
+                  (Platform.OS === 'ios' ? 'Apple ID' : 'Google account') +
+                  '. Use Restore purchases to get them back later.' +
+                  (profile.provider === 'apple' ? '\n\nApple will ask you to confirm once more.' : ''),
+                [
+                  { text: 'Cancel', style: 'cancel' },
+                  {
+                    text: 'Delete',
+                    style: 'destructive',
+                    onPress: async () => {
+                      try {
+                        const res = await deleteAccount();
+                        if (!res) return; // cancelled the Apple confirmation
+                        if (res.appleRevoked === false) {
+                          Alert.alert(
+                            'Account deleted',
+                            'One more step: to fully disconnect Sign in with Apple, open Settings on your iPhone, tap your name, then Sign in with Apple. Choose Waikīkī Walks and tap Delete.',
+                            [
+                              { text: 'How to', onPress: () => Linking.openURL(APPLE_MANUAL_REVOKE_URL) },
+                              { text: 'Done', onPress: () => router.back() },
+                            ],
+                          );
+                        } else {
+                          Alert.alert('Account deleted', 'Your account and synced data have been deleted.', [{ text: 'OK', onPress: () => router.back() }]);
+                        }
+                      } catch (e) {
+                        Alert.alert('Not deleted', e instanceof Error ? e.message : 'Please try again.');
+                      }
+                    },
                   },
-                },
-              ])
+                ],
+              )
             }
           />
         ) : null}

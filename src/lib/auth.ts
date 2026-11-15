@@ -5,7 +5,7 @@ import * as Crypto from 'expo-crypto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, Platform } from 'react-native';
 import { GOOGLE, SUPABASE } from '../config';
-import { type Profile, useAccount } from '../store';
+import { type Profile, useAccount, useProgress } from '../store';
 import { linkUser, unlinkUser } from './purchases';
 
 /**
@@ -107,13 +107,68 @@ export async function signOut() {
   useAccount.getState().setProfile(undefined);
 }
 
+export type DeleteResult = {
+  /** false when an Apple account's tokens could not be revoked; show the manual step. */
+  appleRevoked: boolean | null;
+};
+
 /**
- * Apple requires in-app account deletion for apps that create accounts.
- * Deleting the auth user needs the service role, so this calls a Supabase Edge Function
- * named "delete-account" (template in /server/delete-account.ts).
+ * Account deletion, the standard way (Apple Guideline 5.1.1(v), Apple TN3194, Google Play
+ * account deletion policy):
+ *  - Apple accounts: ask the walker to confirm with Apple once more. That gives a fresh,
+ *    single-use authorization code, which the server exchanges and revokes. It also confirms
+ *    that the person holding the phone is the account owner.
+ *  - Google accounts: revoke the app's Google access on the device.
+ *  - The server function "delete-account" (server/delete-account.ts) deletes the user;
+ *    synced progress, saved stops and settings go with it (on delete cascade).
+ *  - Then everything this account left on the phone is cleared, and the walker is signed out.
+ * Purchases are not affected: they belong to the walker's Apple ID or Google account and come
+ * back with Restore purchases.
+ * Throws if the server could not delete the account, so the screen can say so.
+ * Returns null if the walker cancelled the Apple confirmation.
  */
-export async function deleteAccount() {
-  if (!supabase) return signOut();
-  await supabase.functions.invoke('delete-account');
+export async function deleteAccount(): Promise<DeleteResult | null> {
+  const profile = useAccount.getState().profile;
+  if (!supabase || !profile || profile.provider === 'guest') {
+    await signOut();
+    return { appleRevoked: null };
+  }
+
+  let appleAuthorizationCode: string | undefined;
+  if (profile.provider === 'apple' && Platform.OS === 'ios') {
+    try {
+      const cred = await AppleAuthentication.signInAsync({ requestedScopes: [] });
+      appleAuthorizationCode = cred.authorizationCode ?? undefined;
+    } catch (e: unknown) {
+      if (typeof e === 'object' && e && 'code' in e && (e as { code: string }).code === 'ERR_REQUEST_CANCELED') return null;
+      // Apple could not be reached: still delete the account, and show the manual revoke step.
+    }
+  }
+
+  const { data, error } = await supabase.functions.invoke<{ ok: boolean; appleRevoked: boolean | null }>('delete-account', {
+    body: appleAuthorizationCode ? { appleAuthorizationCode } : {},
+  });
+  if (error || !data?.ok) throw new Error('We could not delete your account just now. Please check your connection and try again.');
+
+  if (profile.provider === 'google') await GoogleSignin.revokeAccess().catch(() => undefined);
+  useProgress.getState().reset();
   await signOut();
+  return { appleRevoked: data.appleRevoked };
+}
+
+/** Apple's page that explains how to stop using Sign in with Apple for an app. */
+export const APPLE_MANUAL_REVOKE_URL = 'https://support.apple.com/en-us/102571';
+
+/**
+ * If the walker stops using Sign in with Apple for this app (in iPhone Settings), Apple tells the
+ * app. TN3194 says to return to a signed-out state when that happens.
+ */
+if (Platform.OS === 'ios') {
+  try {
+    AppleAuthentication.addRevokeListener(() => {
+      if (useAccount.getState().profile?.provider === 'apple') signOut().catch(() => undefined);
+    });
+  } catch {
+    // Not available (for example on the simulator without Apple sign-in); nothing to listen for.
+  }
 }

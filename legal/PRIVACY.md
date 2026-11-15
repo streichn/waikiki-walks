@@ -10,11 +10,11 @@ Waikīkī Walks ("the app") is published by [OWNER NAME] ("we"). This policy exp
 
 **Account (optional).** If you sign in with Apple, Google, or email, we store your name, email address, walk progress, and saved stops so they sync across your devices. You can use the app as a guest without an account.
 
-**Purchases.** Subscriptions and purchases are processed by Apple or Google. We use RevenueCat to confirm what you have purchased. We never see your payment details.
+**Purchases.** Passes and purchases are processed by Apple or Google. We use RevenueCat to confirm what you have purchased. We never see your payment details.
 
 **Sharing.** We do not sell your information. We share it only with the service providers above (Supabase for accounts, RevenueCat for purchases) to run the app.
 
-**Deleting your data.** Delete your account at any time in Settings > Delete my account, or by emailing [CONTACT EMAIL]. This removes your account and synced progress.
+<a id="delete"></a>**Deleting your data.** Delete your account at any time in Settings > Delete my account, or by emailing [CONTACT EMAIL] (see the account deletion page). This removes your account, name, email, walk progress, saved stops, and settings right away; we keep no copy. If you signed in with Apple, we also revoke the app's Sign in with Apple access. Purchases stay with your Apple ID or Google account and can be restored.
 
 **Children.** The app is not directed to children under 13.
 

@@ -33,3 +33,11 @@
 ## 2026-11-15 · Smart home card
 - The top card on the Walks tab now adapts: continue a walk in progress, start a nearby walk (within about 2.5 km, only if location is already allowed), resume an unfinished walk, the free Walk IV for new users, or the next unfinished walk.
 - Preview has a "pretend I'm standing in Waikīkī" toggle to test the nearby card.
+
+## 2026-11-15 · Account deletion done right
+- Deleting an account that used Sign in with Apple now revokes the app's Apple access, as Apple requires (TN3194). Apple asks the walker to confirm once; nothing is stored.
+- Google accounts: the app's Google access is revoked on the phone.
+- Fixed the server function, which tried to delete from a table that does not exist; the database now removes everything through cascades.
+- Clear messages: what gets deleted, that purchases stay with Apple or Google, an error if deletion fails, and manual Apple steps if revocation fails.
+- The app signs out if the walker stops using Sign in with Apple from iPhone Settings.
+- Draft Google Play account deletion page (legal/DELETE-ACCOUNT.md); privacy policy and checklist updated.

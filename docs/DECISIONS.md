@@ -106,3 +106,20 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Account deletion (added 2026-11-15)
+- **Common practice:**
+  - Apple: apps that create accounts must let people start deletion inside the app (Guideline 5.1.1(v)). Apps with Sign in with Apple must also revoke the walker's Apple tokens through the REST API (`/auth/token`, then `/auth/revoke`). If the tokens can't be revoked, the account must still be deleted, and the walker is told how to stop using Sign in with Apple by hand (TN3194).
+  - Google Play: an easy-to-find in-app path, plus a public web page where people can ask for deletion without reinstalling. Associated data must be deleted, not just hidden, including data held by service providers.
+  - RevenueCat: deleting the customer never cancels or refunds store purchases; log the SDK out so it does not recreate the customer.
+- **Our choice:**
+  - Settings > Delete my account. For Apple accounts the app asks the walker to confirm with Apple once more. That gives a fresh, single-use authorization code. The `delete-account` Edge Function exchanges it and revokes it, then deletes the user. We never store Apple tokens.
+  - Google accounts: `GoogleSignin.revokeAccess()` on the device.
+  - Profiles, progress, saved stops and settings are removed by `on delete cascade`. The old function deleted from a `progress` table that does not exist; that line is gone.
+  - On-device progress is cleared and the walker is signed out. If Apple revocation failed, the app shows the manual steps from Apple's support page.
+  - The app listens for Apple's "credential revoked" event and signs out, as TN3194 asks.
+  - The dialog now says purchases stay with the Apple ID or Google account and come back with Restore purchases. The old text mentioned cancelling subscriptions, but the app sells none that renew.
+  - Draft web deletion page in `legal/DELETE-ACCOUNT.md` for Google Play.
+- **Why a fresh Apple code at deletion instead of storing refresh tokens at sign-in:** Supabase's native Apple sign-in (`signInWithIdToken`) does not keep Apple refresh tokens. Storing them ourselves would mean holding a long-lived credential for every walker just in case they delete. Asking once at deletion keeps nothing on our side and doubles as a check that the account owner is the one deleting.
+- **Not done (open):** deleting the RevenueCat customer. It holds only the anonymous account ID and store receipts, and the 7-day pass expiry is computed from those receipts, so deleting it could cut short a pass someone already paid for. Revisit if a privacy review asks for it (needs a RevenueCat secret key on the server).
+- Sources: developer.apple.com/documentation/technotes/tn3194-handling-account-deletions-and-revoking-tokens-for-sign-in-with-apple; developer.apple.com/documentation/signinwithapplerestapi/revoke-tokens; support.apple.com/102571 (manual steps); support.google.com/googleplay/android-developer/answer/13327111; revenuecat.com/blog/engineering/app-store-account-deletion
