@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { getWalk } from '../data';
-import { togglePause, useNarration } from '../lib/narration';
+import { stop as stopReading, useNarration } from '../lib/narration';
 import { useProgress } from '../store';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
@@ -16,7 +16,6 @@ export function ActiveWalkBar({ bottom }: { bottom: number }) {
   const id = useProgress((s) => s.activeWalkId);
   const prog = useProgress((s) => (id ? s.progress[id] : undefined));
   const speaking = useNarration((s) => s.speakingStopId);
-  const paused = useNarration((s) => s.paused);
   const walk = id ? getWalk(id) : undefined;
   if (!walk || !prog) return null;
   const stop = walk.stops[prog.current];
@@ -42,8 +41,8 @@ export function ActiveWalkBar({ bottom }: { bottom: number }) {
         </T>
       </View>
       {speaking ? (
-        <Pressable accessibilityLabel={paused ? 'Resume reading' : 'Pause reading'} hitSlop={10} onPress={togglePause}>
-          <Ionicons name={paused ? 'play-circle' : 'pause-circle'} size={32} color={t.primaryText} />
+        <Pressable accessibilityLabel="Stop reading" hitSlop={10} onPress={() => { tap(); stopReading(); }}>
+          <Ionicons name="stop-circle" size={32} color={t.primaryText} />
         </Pressable>
       ) : (
         <Ionicons name="chevron-up" size={22} color={t.primaryText} />

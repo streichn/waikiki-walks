@@ -22,7 +22,7 @@ export const useSettings = create<SettingsState>()(
   persist(
     (set) => ({
       themeMode: 'system',
-      autoNarrate: true,
+      autoNarrate: false,
       arrivalAlerts: true,
       arrivalRadius: 35,
       speechRate: 1.0,

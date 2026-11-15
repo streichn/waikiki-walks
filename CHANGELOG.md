@@ -33,3 +33,7 @@
 ## 2026-11-15 · Smart home card
 - The top card on the Walks tab now adapts: continue a walk in progress, start a nearby walk (within about 2.5 km, only if location is already allowed), resume an unfinished walk, the free Walk IV for new users, or the next unfinished walk.
 - Preview has a "pretend I'm standing in Waikīkī" toggle to test the nearby card.
+
+## 2026-11-15 · Read-aloud is opt-in, with a clear stop
+- Reading each stop aloud on arrival is now off by default; turn it on in Settings.
+- The collapsed walk bar shows a stop button while reading. The walk screen's read button shows a stop icon instead of pause.

@@ -70,7 +70,7 @@
   const save = (k, v) => { try { store && store.setItem('ww.' + k, JSON.stringify(v)); } catch (e) {} };
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
-    settings: load('settings', { theme: 'system', autoNarrate: true, arrival: 35, rate: 1, textScale: 1, alerts: true }),
+    settings: load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }),
     isPro: load('pro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
@@ -131,7 +131,8 @@
   function markReading() {
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
-    const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = ic(speaking.stopId ? 'pause' : 'headset');
+    const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = ic(speaking.stopId ? 'stop' : 'headset');
+    const mb = document.querySelector('.minibar'); if (mb && !speaking.stopId) { const h = mb.querySelector('.hush'); if (h) h.outerHTML = ic('down', 'width="22" height="22" style="transform:rotate(180deg)"'); }
   }
 
   // ---------- rendering helpers ----------
@@ -326,7 +327,7 @@
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
-        <div class="controls"><button class="iconbtn" data-act="prev" aria-label="Previous stop">${ic('prev')}</button><button class="play" id="playbtn" data-act="play" aria-label="Read aloud">${ic(speaking.stopId ? 'pause' : 'headset')}</button>
+        <div class="controls"><button class="iconbtn" data-act="prev" aria-label="Previous stop">${ic('prev')}</button><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
   }
@@ -396,7 +397,7 @@
   function minibar() {
     if (!S.active || S.view === 'go') return '';
     const w = walk(S.active), p = S.progress[w.id], s = w.stops[p.current];
-    return `<button class="minibar" data-act="resume"><span class="dot">${ic('walk', 'width="18" height="18"')}</span><span style="flex:1;min-width:0"><b>Stop ${s.n}: ${esc(s.title)}</b><span>Walk ${w.id} · ${esc(w.title)} · ${p.visited.length}/${w.stops.length} visited</span></span>${ic('down', 'width="22" height="22" style="transform:rotate(180deg)"')}</button>`;
+    return `<button class="minibar" data-act="resume"><span class="dot">${ic('walk', 'width="18" height="18"')}</span><span style="flex:1;min-width:0"><b>Stop ${s.n}: ${esc(s.title)}</b><span>Walk ${w.id} · ${esc(w.title)} · ${p.visited.length}/${w.stops.length} visited</span></span>${speaking.stopId ? `<span class="hush" data-hush role="button" aria-label="Stop reading">${ic('stop', 'width="20" height="20"')}</span>` : ic('down', 'width="22" height="22" style="transform:rotate(180deg)"')}</button>`;
   }
 
   function renderExplore() {
@@ -548,12 +549,13 @@
     markReading();
   }
   let lastView = null;
-  function stopSpeakIfLeaving() { const key = S.view + S.walkId; if (lastView && lastView !== key && S.view !== 'go') stopSpeak(); lastView = key; }
+  function stopSpeakIfLeaving() { const key = S.view + S.walkId; if (lastView && lastView !== key && S.view !== 'go' && !S.active) stopSpeak(); lastView = key; }
 
   $app.addEventListener('click', (e) => {
     const t = e.target;
     const q = (sel) => t.closest(sel);
     let el;
+    if ((el = q('[data-hush]'))) { stopSpeak(); return render(); }
     if ((el = q('.gw'))) return openGloss(el.dataset.word);
     if ((el = q('[data-tab]'))) { S.tab = el.dataset.tab; S.view = null; return render(); }
     if ((el = q('[data-walk]'))) return openWalk(el.dataset.walk);
