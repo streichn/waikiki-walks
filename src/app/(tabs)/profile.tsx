@@ -70,6 +70,7 @@ export default function Profile() {
         <Row icon="settings-outline" label="Settings" onPress={() => router.push('/settings')} />
         <Row icon="scan-outline" label="What am I looking at?" onPress={() => router.push('/lens')} />
         <Row icon="book-outline" label="About the book" onPress={() => router.push('/about')} />
+        <Row icon="ribbon-outline" label="Credits and copyright" onPress={() => router.push('/credits')} />
         <Row icon="mail-outline" label="Send feedback" onPress={() => Linking.openURL('mailto:?subject=Waik%C4%AB%C4%AB%20Walks%20feedback')} last={!signedIn} />
         {signedIn ? <Row icon="log-out-outline" label="Sign out" onPress={signOut} last /> : null}
       </Card>

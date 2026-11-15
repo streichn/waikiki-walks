@@ -9,6 +9,7 @@ import { Hibiscus, Plumeria } from '../components/Flora';
 import { Button, T } from '../components/ui';
 import { photo, walks } from '../data';
 import { useSettings } from '../store';
+import { AUTHOR, DEDICATION } from '../legal';
 import { useTheme } from '../theme';
 
 const SLIDES: { icon: keyof typeof Ionicons.glyphMap; title: string; body: string; walk: string }[] = [
@@ -59,6 +60,11 @@ export default function Welcome() {
                 <Ionicons name={item.icon} size={30} color={t.accent} />
                 <T variant="display">{item.title}</T>
                 <T style={{ color: t.textMuted, fontSize: 17, lineHeight: 25 }}>{item.body}</T>
+                {item.walk === 'III' ? (
+                  <T variant="italic" style={{ color: t.leaf, marginTop: 4 }}>
+                    by {AUTHOR} · {DEDICATION}
+                  </T>
+                ) : null}
               </View>
             </View>
           );

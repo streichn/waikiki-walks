@@ -2,6 +2,7 @@ import { ScrollView, View } from 'react-native';
 import { Hibiscus, WaveRule } from '../components/Flora';
 import { Card, T } from '../components/ui';
 import about from '../data/about.json';
+import { APP_COPYRIGHT } from '../legal';
 import { useTheme } from '../theme';
 
 export default function About() {
@@ -29,7 +30,8 @@ export default function About() {
         </Card>
       ))}
       <T variant="small" style={{ textAlign: 'center' }}>
-        Text and photographs © 2023 Island Heritage. All rights reserved.
+        {APP_COPYRIGHT}
+        {'\n'}Book text and photographs © 2023 Island Heritage. All rights reserved.
       </T>
     </ScrollView>
   );

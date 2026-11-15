@@ -171,6 +171,7 @@
         <button class="fact" id="fact" aria-label="Show another fact"><div class="flower" style="right:-8px;top:-8px">${hib(58, 'var(--accent)', -12)}</div><div class="row label" style="color:var(--leaf);margin-bottom:6px">${ic('sparkles', 'width="14" height="14"')} Did you know?</div><div class="ftxt" id="ftxt"></div><div class="small" id="fsrc" style="margin-top:6px"></div></button>
         ${GROUPS.map(([t, ids]) => `<section class="group stack" style="gap:10px"><div><h2>${t}</h2>${wave(90, 'var(--primary)')}</div>${ids.length === 1 ? walkCard(walk(ids[0]), true) : `<div class="rail">${ids.map((i) => walkCard(walk(i))).join('')}</div>`}</section>`).join('')}
         <button class="card" data-act="about" style="text-align:left;background:var(--card2)"><h3 style="font-family:var(--body);font-weight:800;font-size:17px">About the book and the author</h3><div class="small" style="color:var(--text);margin-top:4px">How to read the directions (mauka, makai, ʻEwa, Diamond Head), and the story behind these walks.</div></button>
+        <div style="text-align:center"><div class="italic" style="color:var(--leaf)">For Alice and Ezra</div><button class="small" data-act="credits" style="margin-top:4px">© 2026 Veneeta Acson · Credits</button></div>
       </div></div>`;
   }
 
@@ -334,7 +335,7 @@
       ${signed ? '' : `<button class="btn block" data-act="auth">${ic('person')} Sign in or create account</button>`}
       <div class="card row" style="justify-content:space-around;text-align:center">${[[fin, 'Walks finished'], [vis, 'Stops visited'], [Math.round((vis / tot) * 100), '% of the book']].map(([n, l]) => `<div><div style="font-family:var(--display);font-size:28px;color:var(--primary)">${n}</div><div class="small">${l}</div></div>`).join('')}</div>
       <div class="card stack" style="gap:10px"><div class="row" style="font-weight:800">${ic(S.isPro ? 'sparkles' : 'unlock', 'width="20" height="20"')} ${S.isPro ? 'All twelve walks unlocked' : 'Free preview'}</div><div class="small">${S.isPro ? 'Mahalo for supporting the book.' : 'Unlock every walk, every stop, read-aloud narration, and offline maps.'}</div>${S.isPro ? `<button class="btn outline" data-act="unpro">Reset preview purchase</button>` : `<button class="btn accent" data-act="paywall">${ic('sparkles')} Unlock all walks</button>`}</div>
-      <div class="card" style="padding:4px 16px">${row('settings', 'Settings', 'settings')}${row('scan', 'What am I looking at?', 'lens')}${row('book', 'About the book', 'about')}${signed ? row('back', 'Sign out', 'signout') : ''}</div>
+      <div class="card" style="padding:4px 16px">${row('settings', 'Settings', 'settings')}${row('scan', 'What am I looking at?', 'lens')}${row('book', 'About the book', 'about')}${row('sparkles', 'Credits and copyright', 'credits')}${signed ? row('back', 'Sign out', 'signout') : ''}</div>
       <p class="small" style="text-align:center">Web preview of the iPhone and Android app. Purchases and sign-in are simulated here.</p></div></div>`;
   }
 
@@ -378,7 +379,7 @@
       <button class="authbtn apple" data-sign="apple">${ic('apple', 'width="20" height="20"')} Continue with Apple</button><button class="authbtn" data-sign="google">${ic('google', 'width="20" height="20"')} Continue with Google</button>
       <div class="row small" style="justify-content:center">or use email</div><input type="email" id="authemail" placeholder="you@example.com" autocomplete="email" aria-label="Email"><button class="btn outline" data-sign="email">${ic('mail')} Email me a sign-in code</button>
       <button class="small" data-sign="guest" style="color:var(--primary);font-weight:800;margin-top:8px">Continue as a guest</button></div>`);
-    m.addEventListener('click', (e) => { const b = e.target.closest('[data-sign]'); if (!b) return; const k = b.dataset.sign; const email = (m.querySelector('#authemail') || {}).value; S.profile = k === 'guest' ? { provider: 'guest', name: 'Guest' } : { provider: k, name: k === 'apple' ? 'Apple user' : k === 'google' ? 'Google user' : (email || 'Email user').split('@')[0], email: k === 'email' ? email : null }; persist(); m.remove(); toast(k === 'guest' ? 'Browsing as a guest' : `Signed in with ${k} (preview)`); render(); });
+    m.addEventListener('click', (e) => { const b = e.target.closest('[data-sign]'); if (!b) return; const k = b.dataset.sign; const email = (m.querySelector('#authemail') || {}).value; S.profile = k === 'guest' ? { provider: 'guest', name: 'Guest' } : { provider: k, name: k === 'apple' ? 'Walker (Apple ID)' : k === 'google' ? 'Walker (Google)' : (email || 'Email user').split('@')[0], email: k === 'email' ? email : null }; persist(); m.remove(); toast(k === 'guest' ? 'Browsing as a guest' : `Signed in with ${k} (preview)`); render(); });
   }
   function openSettings() {
     const st = S.settings; const sw = (k, label, hint) => `<div class="setrow"><div style="flex:1"><div>${label}</div><div class="small">${hint}</div></div><button class="switch" role="switch" aria-checked="${st[k]}" data-sw="${k}" aria-label="${label}"></button></div>`;
@@ -399,6 +400,17 @@
   function openAbout() {
     modal(`<div class="stack" style="align-items:stretch"><div style="text-align:center">${hib(64, 'var(--accent)')}<h1 style="font-size:32px">Waikīkī</h1><div style="font-family:var(--display);letter-spacing:.15em">TWELVE WALKS THROUGH TIME</div><div class="italic">Veneeta Acson, Ph.D.</div></div>
       ${D.about.map((s) => `<div class="card stack" style="gap:10px"><h2 style="font-size:21px">${esc(s.title)}</h2>${s.paragraphs.map((p) => `<p class="p" style="font-size:16px">${rich(p)}</p>`).join('')}</div>`).join('')}<p class="small" style="text-align:center">Text and photographs © 2023 Island Heritage. All rights reserved.</p></div>`);
+  }
+  function openCredits() {
+    const sec = (t, lines) => `<div class="card stack" style="gap:6px"><div class="label">${t}</div>${lines.map((l) => `<div style="font-size:15px;line-height:1.45">${l}</div>`).join('')}</div>`;
+    modal(`<div class="stack"><div style="text-align:center">${hib(56, 'var(--accent)')}<h1 style="font-size:28px">Waikīkī Walks</h1><div class="italic">by Veneeta Acson, Ph.D.</div><div class="italic" style="color:var(--leaf)">For Alice and Ezra</div></div>
+      ${sec('Author', ['Text by Veneeta Acson, Ph.D.', 'Adapted from her book “Waikīkī: Twelve Walks Through Time” (First Edition, 2023).'])}
+      ${sec('Dedication', ['To my grandchildren, Alice and Ezra, who have learned to love walking in the ahupuaʻa of Waikīkī.', 'In memory of my mother, Alice Acson, who loved walking in Waikīkī.'])}
+      ${sec('The book', ['“Waikīkī: Twelve Walks Through Time” © 2023 Island Heritage. All rights reserved.', 'Published and distributed by Island Heritage, Mililani, Hawaiʻi.'])}
+      ${sec('Photographs', ['Contributing photography: Merina Vo and Joel Bradshaw.', 'Book cover: Cameron Brooks.', 'Historic photographs are credited in their captions, including the Hawaiʻi State Archives.'])}
+      ${sec('Maps', ['Map data © OpenStreetMap contributors, Open Database License.'])}
+      ${sec('Fonts', ['Libre Caslon Text and Nunito, SIL Open Font License.'])}
+      <p class="small" style="text-align:center">© 2026 Veneeta Acson. All rights reserved.</p></div>`);
   }
   function openLens() {
     // The real app uses the camera, GPS and compass. Here we stand the walker on Kalākaua Avenue.
@@ -479,6 +491,7 @@
       if (a === 'auth') return openAuth();
       if (a === 'settings') return openSettings();
       if (a === 'about') return openAbout();
+      if (a === 'credits') return openCredits();
       if (a === 'lens') return openLens();
       if (a === 'unpro') { S.isPro = false; persist(); return render(); }
       if (a === 'signout') { S.profile = null; persist(); return render(); }

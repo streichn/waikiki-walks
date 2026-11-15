@@ -7,3 +7,4 @@ android/
 *.log
 
 preview/site/
+node_modules

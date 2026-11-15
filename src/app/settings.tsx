@@ -9,6 +9,7 @@ import { deleteAccount } from '../lib/auth';
 import { englishVoices, speakShort } from '../lib/narration';
 import { restore } from '../lib/purchases';
 import { type ThemeMode, useAccount, useProgress, useSettings } from '../store';
+import { APP_COPYRIGHT, LINKS } from '../legal';
 import { useTheme } from '../theme';
 
 export default function Settings() {
@@ -90,6 +91,12 @@ export default function Settings() {
         <Row label="Manage subscription" onPress={() => Linking.openURL('https://apps.apple.com/account/subscriptions')} />
       </Section>
 
+      <Section title="About">
+        <Row label="Credits and copyright" onPress={() => router.push('/credits')} />
+        <Row label="Privacy policy" onPress={() => Linking.openURL(LINKS.privacy)} />
+        <Row label="Terms of use" onPress={() => Linking.openURL(LINKS.terms)} />
+      </Section>
+
       <Section title="Privacy and data">
         <T variant="small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to us or stored on a server.</T>
         <Row label="Location permission" onPress={() => Linking.openSettings()} />
@@ -123,7 +130,7 @@ export default function Settings() {
         ) : null}
       </Section>
       <T variant="small" style={{ textAlign: 'center' }}>
-        Waikīkī Walks 0.1 · Text and photographs from "Waikīkī: Twelve Walks Through Time" by Veneeta Acson, Ph.D.
+        Waikīkī Walks 0.1 · {APP_COPYRIGHT}
       </T>
     </ScrollView>
   );

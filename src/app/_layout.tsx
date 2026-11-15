@@ -10,6 +10,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import '../lib/tracking'; // registers background tasks at startup
 import { supabase } from '../lib/auth';
 import { initPurchases } from '../lib/purchases';
+import { startSync } from '../lib/sync';
 import { useAccount } from '../store';
 import { useTheme } from '../theme';
 
@@ -27,6 +28,7 @@ export default function RootLayout() {
   useEffect(() => {
     const id = useAccount.getState().profile?.id;
     initPurchases(id && id !== 'guest' ? id : undefined);
+    startSync();
     const sub = supabase?.auth.onAuthStateChange((_e, session) => {
       if (!session && useAccount.getState().profile?.provider !== 'guest') useAccount.getState().setProfile(undefined);
     });
@@ -65,6 +67,7 @@ export default function RootLayout() {
           <Stack.Screen name="settings" options={{ title: 'Settings' }} />
           <Stack.Screen name="welcome" options={{ headerShown: false, gestureEnabled: false }} />
           <Stack.Screen name="about" options={{ title: 'About the book' }} />
+          <Stack.Screen name="credits" options={{ title: 'Credits and copyright' }} />
         </Stack>
       </SafeAreaProvider>
     </GestureHandlerRootView>

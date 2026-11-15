@@ -10,6 +10,7 @@ import { Hibiscus, Plumeria } from '../components/Flora';
 import { Button, IconButton, T, tap } from '../components/ui';
 import { photo, walks } from '../data';
 import { buy, isConfigured, loadPackages, restore } from '../lib/purchases';
+import { LINKS } from '../legal';
 import { useTheme } from '../theme';
 
 // Shown only until the store products exist; real prices always come from the store.
@@ -144,12 +145,12 @@ export default function Paywall() {
               Restore purchases
             </T>
           </Pressable>
-          <Pressable onPress={() => Linking.openURL('https://example.com/terms')}>
+          <Pressable onPress={() => Linking.openURL(LINKS.terms)}>
             <T variant="small" style={{ textDecorationLine: 'underline' }}>
               Terms
             </T>
           </Pressable>
-          <Pressable onPress={() => Linking.openURL('https://example.com/privacy')}>
+          <Pressable onPress={() => Linking.openURL(LINKS.privacy)}>
             <T variant="small" style={{ textDecorationLine: 'underline' }}>
               Privacy
             </T>

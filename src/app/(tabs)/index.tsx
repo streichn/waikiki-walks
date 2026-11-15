@@ -12,6 +12,7 @@ import { TRIAL } from '../../config';
 import { getWalk, photo, walks } from '../../data';
 import { useIsPro } from '../../lib/access';
 import { useAccount, useProgress } from '../../store';
+import { APP_COPYRIGHT, DEDICATION } from '../../legal';
 import { useTheme } from '../../theme';
 
 const GROUPS = [
@@ -116,6 +117,14 @@ export default function Home() {
             How to read the directions (mauka, makai, ʻEwa, Diamond Head), the Hawaiian alphabet, and the story behind these walks.
           </T>
         </Pressable>
+        <View style={{ alignItems: 'center', gap: 4, marginTop: 6 }}>
+          <T variant="italic" style={{ color: t.leaf }}>
+            {DEDICATION}
+          </T>
+          <Pressable onPress={() => router.push('/credits')}>
+            <T variant="small">{APP_COPYRIGHT} · Credits</T>
+          </Pressable>
+        </View>
       </View>
     </ScrollView>
   );
