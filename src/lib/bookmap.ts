@@ -1,7 +1,7 @@
 import bookmapsJson from '../data/bookmaps.json';
 
 type Fit = { ctrl: number[][]; w: number[][]; a: number[][] };
-type BookMap = { file: string; w: number; h: number; origin: [number, number]; k: [number, number]; scale: number; fwd: Fit; rms_m: number };
+type BookMap = { file: string; w: number; h: number; origin: [number, number]; k: [number, number]; scale: number; fwd: Fit; rms_m: number; labels?: Record<string, number[]> };
 const maps = bookmapsJson as unknown as Record<string, BookMap>;
 
 export const hasBookGeo = (walkId: string) => Boolean(maps[walkId]);
@@ -27,4 +27,11 @@ export function bookXY(walkId: string, lat: number, lng: number): { x: number; y
     }
   });
   return { x: px / g.w, y: py / g.h };
+}
+
+/** Where her map prints a stop's number, as fractions of the image, if it has been read off the map. */
+export function bookLabel(walkId: string, n: number): { x: number; y: number } | null {
+  const g = maps[walkId];
+  const L = g?.labels?.[String(n)];
+  return g && L ? { x: L[0] / g.w, y: L[1] / g.h } : null;
 }

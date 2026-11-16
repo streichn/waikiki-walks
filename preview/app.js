@@ -273,13 +273,14 @@
     f.ctrl.forEach((c, i) => { const d = Math.hypot(x - c[0], y - c[1]); if (d > 0) { const u = d * d * Math.log(d); px += u * f.w[i][0]; py += u * f.w[i][1]; } });
     return [px / g.w * 100, py / g.h * 100];
   }
+  // Her own printed stop numbers are the pins: invisible tap areas over them, a ring on the current stop, and the walker's dot.
   function bookPins(w) {
-    if (!(D.bookmaps || {})[w.id]) return '';
+    const g = (D.bookmaps || {})[w.id]; if (!g) return '';
     const prog = S.progress[w.id] || { visited: [], current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
-    const pins = w.stops.map((s, i) => { const p = bookXY(w, s.lat, s.lng); if (!p) return ''; const locked = !canOpen(w.id, i);
-      return `<button class="bpin ${i === cur ? 'on' : ''}" data-bpin="${i}" style="left:${p[0]}%;top:${p[1]}%;background:${locked ? '#8A9A9B' : prog.visited.includes(i) ? 'var(--leaf)' : w.color}" aria-label="Stop ${s.n}">${s.n}</button>`; }).join('');
+    const hits = w.stops.map((s, i) => { const L = (g.labels || {})[String(s.n)]; if (!L) return '';
+      return `<button class="bhit ${i === cur ? 'on' : ''}" data-bpin="${i}" style="left:${L[0] / g.w * 100}%;top:${L[1] / g.h * 100}%" aria-label="Stop ${s.n}, ${esc(s.title)}"></button>`; }).join('');
     const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
-    return pins + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+    return hits + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
   }
   function bookPane(w) {
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}${bookPins(w)}</div></div></div>

@@ -57,7 +57,9 @@ for w in walks:
     fwd = tps_fit(m / 100.0, px, lam=0.05)
     inv = tps_fit(px / 100.0, m, lam=0.05)
     W, H = Image.open(os.path.join(ROOT, 'assets/book', f)).size
-    out_maps[wid] = {'file': f, 'w': W, 'h': H, 'origin': [LAT0, LNG0], 'k': [KX, KY], 'scale': 100.0, 'fwd': fwd, 'rms_m': G[wid]['rms_m']}
+    out_maps[wid] = {'file': f, 'w': W, 'h': H, 'origin': [LAT0, LNG0], 'k': [KX, KY], 'scale': 100.0, 'fwd': fwd, 'rms_m': G[wid]['rms_m'],
+                     # where her map prints each stop number, so the app can make her own numbers tappable
+                     'labels': {n: [v[0], v[1]] for n, v in STOPS.get(wid, {}).items()}}
     if wid in STOPS:
         route = route_mask(f)
         pins[wid] = {}
