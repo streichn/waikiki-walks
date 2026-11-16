@@ -432,7 +432,8 @@
     const go = document.getElementById('go'), H = go ? go.clientHeight : 800;
     const part = (sel) => { const e = document.querySelector('#sheet ' + sel); return e ? e.offsetHeight : 0; };
     const nav = document.querySelector('#sheet .nav');
-    const peek = part('.grab') + part('.pager') + (nav ? nav.offsetHeight + 12 : 0) + part('.controls') + 58;
+    // Map view: just the handle, the Map/Both/Text switch, where you are, and the buttons; no stop text.
+    const peek = part('.grab') + part('.viewsw') + part('.pager') + (nav ? nav.offsetHeight + 14 : 0) + part('.controls');
     const full = H - (document.querySelector('.gohead') ? document.querySelector('.gohead').getBoundingClientRect().bottom - go.getBoundingClientRect().top + 8 : 70);
     return { peek, half: Math.max(peek + 60, Math.round(H * 0.56)), full };
   }
@@ -441,7 +442,9 @@
   function setSheet(px, animate) {
     const sh = document.getElementById('sheet'), go = document.getElementById('go'); if (!sh || !go) return;
     sh.classList.toggle('anim', !!animate); sh.style.height = px + 'px'; go.style.setProperty('--sh', px + 'px');
-    go.classList.toggle('sheet-full', px >= detents().full - 4);
+    const d = detents();
+    go.classList.toggle('sheet-full', px >= d.full - 4);
+    go.classList.toggle('sheet-peek', px <= d.peek + 24);
   }
   function mountSheet() {
     setSheet(sheetPx(), false);
@@ -503,7 +506,23 @@
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
     const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = 'rotate(0deg)';
   }
-  function startSim() { S.sim = true; clearInterval(simTimer); simTimer = setInterval(() => { const prog = S.progress[S.walkId]; if (prog && prog.visited.includes(prog.current)) return; tickSim(); }, 700); }
+  // Demo walk: the dot walks to each stop, pauses there a few seconds, then carries on to the next one by itself.
+  let simPause = 0;
+  function startSim() {
+    S.sim = true; clearInterval(simTimer); simPause = 0;
+    simTimer = setInterval(() => {
+      const w = walk(S.walkId), prog = S.progress[S.walkId]; if (!prog) return;
+      if (prog.visited.includes(prog.current)) {
+        if (++simPause < 6) return;
+        simPause = 0;
+        const next = prog.current + 1;
+        if (next >= w.stops.length) { stopSim(); toast('Demo walk finished.'); return; }
+        if (!canOpen(w.id, next)) { stopSim(); toast('Demo walk stopped at the end of the free stops.'); render(); return; }
+        stopSpeak(); prog.current = next; persist(); render(); return;
+      }
+      tickSim();
+    }, 700);
+  }
   function stopSim() { S.sim = false; clearInterval(simTimer); }
   function finishWalk() { const prog = S.progress[S.walkId]; prog.finishedAt = Date.now(); S.active = null; stopSim(); stopSpeak(); persist(); toast(`Mahalo for walking ${walk(S.walkId).title}!`); S.view = 'walk'; render(); }
 

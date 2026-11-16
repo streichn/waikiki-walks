@@ -33,13 +33,32 @@ def speak(text, voice, out):
                 if t.strip().startswith('rate='): rate = int(t.split('=')[1])
             tmp = out + '.tmp.mp3'
             subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 's16le', '-ar', str(rate), '-ac', '1', '-i', '-', '-b:a', '64k', tmp],
-                           input=base64.b64decode(inl['data']), check=True)
+                           input=clean_tail(base64.b64decode(inl['data']), rate), check=True)
             os.replace(tmp, out); return
         except (urllib.error.HTTPError, urllib.error.URLError, KeyError, TimeoutError) as e:
             code = getattr(e, 'code', None)
             if code in (400, 401, 403): raise
             time.sleep(min(60, 5 * 2 ** attempt))
     raise RuntimeError('failed: ' + out)
+
+def clean_tail(pcm, rate):
+    """Gemini TTS clips can end with a short burst of static after the speech. Cut at the last quiet gap
+    in the final 1.5 seconds and fade out, so clips end cleanly."""
+    import numpy as np
+    a = np.frombuffer(pcm, np.int16).astype(float)
+    w = rate // 50  # 20 ms windows
+    n = len(a) // w
+    r = [np.sqrt((a[i * w:(i + 1) * w] ** 2).mean()) for i in range(n)]
+    cut = len(a)
+    for i in range(n - 3, max(0, n - 75), -1):
+        if r[i] < 150 and r[i + 1] < 150 and r[i + 2] < 150:
+            if max(r[i + 3:] or [0]) > 2000:  # loud noise after the final quiet gap
+                cut = (i + 3) * w
+            break
+    a = a[:cut]
+    f = min(len(a), rate * 3 // 100)
+    a[-f:] *= np.linspace(1, 0, f)
+    return a.astype(np.int16).tobytes()
 
 def duration(path):
     r = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', path], capture_output=True, text=True)

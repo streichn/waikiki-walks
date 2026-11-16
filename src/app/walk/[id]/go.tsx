@@ -311,6 +311,8 @@ export default function ActiveWalk() {
             </View>
           </View>
 
+          {/* Map view shows only where you are; the stop text appears at Both and Text. */}
+          {detent === 'peek' ? <View style={{ height: 14 }} /> : (
           <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
             <PhotoStrip photos={stop.photos} height={170} />
             <StopText blocks={stop.blocks} stopId={stop.id} />
@@ -320,6 +322,7 @@ export default function ActiveWalk() {
               </T>
             ) : null}
           </ScrollView>
+          )}
 
           {/* Controls */}
           <View onLayout={(e) => setControlsH(Math.round(e.nativeEvent.layout.height))} style={[styles.controls, { paddingBottom: insets.bottom + 10, backgroundColor: t.bg, borderTopColor: t.border }]}>
