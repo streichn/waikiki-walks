@@ -13,6 +13,7 @@ import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { getWalk, walkNo } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
 import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
+import { confirmEndWalk, endWalkNow } from '../../../lib/endWalk';
 import * as LiveActivity from '../../../lib/liveActivity';
 import { play, stop as stopSpeech, useNarration } from '../../../lib/narration';
 import { advanceBackground, requestPermissions, startBackground, stopBackground, watchForeground } from '../../../lib/tracking';
@@ -183,21 +184,13 @@ export default function ActiveWalk() {
     Alert.alert('Walk complete', `Mahalo for walking ${walk.title}!`, [{ text: 'Done', onPress: () => end(true) }]);
   };
 
-  const end = async (finished = false, discard = false) => {
-    stopSpeech();
-    LiveActivity.end(walk);
-    await stopBackground().catch(() => undefined);
-    endWalk(finished, discard);
+  const end = async (finished = false) => {
+    await endWalkNow(walk, false, finished);
     router.back();
   };
 
   // Ending asks whether to keep the walker's place or start fresh next time.
-  const confirmEnd = () =>
-    Alert.alert('End this walk?', 'Keep your place to pick up where you left off, or clear it to start this walk from stop 1 next time.', [
-      { text: 'End and save my place', onPress: () => end(false) },
-      { text: 'End and start over next time', style: 'destructive', onPress: () => end(false, true) },
-      { text: 'Keep walking', style: 'cancel' },
-    ]);
+  const confirmEnd = () => confirmEndWalk(walk, () => router.back());
 
   const openDirections = () => {
     if (!stop) return;

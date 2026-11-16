@@ -489,10 +489,24 @@
     const t = [['home', 'flower', 'Walks'], ['explore', 'map', 'Map'], ['saved', 'heart', 'Saved'], ['profile', 'person', 'Profile']];
     return `<nav class="tabs" role="tablist">${t.map(([k, i, l]) => `<button role="tab" aria-selected="${S.tab === k}" data-tab="${k}">${ic(i)}${l}</button>`).join('')}</nav>`;
   }
+  // Ending a walk asks whether to keep the walker's place or start over next time.
+  function endDialog(w) {
+    const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">End this walk?</h2><p class="small" style="margin:0">You can keep your place and pick up where you left off, or clear it and start this walk fresh next time.</p>
+      <button class="btn" data-endas="save">${ic('check')} End and save my place</button>
+      <button class="btn" data-endas="discard" style="background:transparent;color:var(--accent);border:2px solid var(--accent)">End and start over next time</button>
+      <button class="btn" data-close style="background:transparent;color:var(--primary)">Keep walking</button></div>`, true);
+    m.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-endas]'); if (!b) return;
+      m.remove(); stopSim(); stopSpeak(); S.active = null;
+      if (b.dataset.endas === 'discard') { delete S.progress[w.id]; toast('Walk ended. It will start from stop 1 next time.'); }
+      else toast('Walk ended. Your place is saved.');
+      persist(); if (S.view === 'go') S.view = 'walk'; render();
+    });
+  }
   function minibar() {
     if (!S.active || S.view === 'go') return '';
     const w = walk(S.active), p = S.progress[w.id], s = w.stops[p.current];
-    return `<button class="minibar" data-act="resume"><span class="dot">${ic('walk', 'width="18" height="18"')}</span><span style="flex:1;min-width:0"><b>Stop ${s.n}: ${esc(s.title)}</b><span>Walk ${wn(w.id)} · ${esc(w.title)} · ${p.visited.length}/${w.stops.length} visited</span></span>${speaking.stopId ? `<span class="hush" data-hush role="button" aria-label="Stop reading">${ic('stop', 'width="20" height="20"')}</span>` : ic('down', 'width="22" height="22" style="transform:rotate(180deg)"')}</button>`;
+    return `<button class="minibar" data-act="resume"><span class="dot">${ic('walk', 'width="18" height="18"')}</span><span style="flex:1;min-width:0"><b>Stop ${s.n}: ${esc(s.title)}</b><span>Walk ${wn(w.id)} · ${esc(w.title)} · ${p.visited.length}/${w.stops.length} visited</span></span>${speaking.stopId ? `<span class="hush" data-hush role="button" aria-label="Stop reading">${ic('stop', 'width="20" height="20"')}</span>` : ic('down', 'width="22" height="22" style="transform:rotate(180deg)"')}<span class="endx" data-endbar role="button" aria-label="End walk">${ic('close', 'width="18" height="18"')}</span></button>`;
   }
 
   function renderExplore() {
@@ -653,6 +667,7 @@
     const t = e.target;
     const q = (sel) => t.closest(sel);
     let el;
+    if ((el = q('[data-endbar]'))) return endDialog(walk(S.active));
     if ((el = q('[data-hush]'))) { stopSpeak(); return render(); }
     if ((el = q('.gw'))) return openGloss(el.dataset.word);
     if ((el = q('[data-tab]'))) { S.tab = el.dataset.tab; S.view = null; return render(); }
@@ -689,20 +704,7 @@
       if (a === 'signout') { S.profile = null; persist(); return render(); }
       if (a === 'resume') { S.walkId = S.active; S.view = 'go'; return needImages(S.active).then(render); }
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
-      if (a === 'end') {
-        const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">End this walk?</h2><p class="small" style="margin:0">You can keep your place and pick up where you left off, or clear it and start this walk fresh next time.</p>
-          <button class="btn" data-endas="save">${ic('check')} End and save my place</button>
-          <button class="btn" data-endas="discard" style="background:transparent;color:var(--accent);border:2px solid var(--accent)">End and start over next time</button>
-          <button class="btn" data-close style="background:transparent;color:var(--primary)">Keep walking</button></div>`, true);
-        m.addEventListener('click', (e) => {
-          const b = e.target.closest('[data-endas]'); if (!b) return;
-          m.remove(); stopSim(); stopSpeak(); S.active = null;
-          if (b.dataset.endas === 'discard') { delete S.progress[w.id]; toast('Walk ended. It will start from stop 1 next time.'); }
-          else toast('Walk ended. Your place is saved.');
-          persist(); S.view = 'walk'; render();
-        });
-        return;
-      }
+      if (a === 'end') return endDialog(w);
       if (a === 'sim') { if (S.sim) stopSim(); else startSim(); el.setAttribute('aria-pressed', S.sim); el.textContent = S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'; return; }
       if (a === 'whole') { S.follow = 'off'; return gmap && gmap.fit(); }
       if (a === 'locate') {

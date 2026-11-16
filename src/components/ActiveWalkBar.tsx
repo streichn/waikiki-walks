@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { getWalk, walkNo } from '../data';
+import { confirmEndWalk } from '../lib/endWalk';
 import { stop as stopReading, useNarration } from '../lib/narration';
 import { useProgress } from '../store';
 import { useTheme } from '../theme';
@@ -47,11 +48,15 @@ export function ActiveWalkBar({ bottom }: { bottom: number }) {
       ) : (
         <Ionicons name="chevron-up" size={22} color={t.primaryText} />
       )}
+      <Pressable accessibilityLabel="End walk" hitSlop={10} onPress={() => { tap(); confirmEndWalk(walk); }} style={styles.end}>
+        <Ionicons name="close" size={20} color={t.primaryText} />
+      </Pressable>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   bar: { position: 'absolute', left: 12, right: 12, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 10, paddingRight: 14, borderRadius: 18, shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 10, shadowOffset: { width: 0, height: 4 }, elevation: 6 },
+  end: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.18)' },
   dot: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });
