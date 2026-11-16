@@ -32,6 +32,11 @@
 .overlayctl input { flex: 1; accent-color: var(--accent); }
 #go .overlayctl { top: calc(env(safe-area-inset-top) + 110px); }
 #go.sheet-full .overlayctl { opacity: 0; pointer-events: none; }
+.bchk { position: absolute; transform: translate(-50%, -50%); min-width: 20px; height: 20px; padding: 0 4px; border-radius: 10px; background: rgba(214,51,108,.6); color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 2; }
+.pinchk { position: absolute; left: 12px; top: calc(env(safe-area-inset-top) + 112px); z-index: 900; padding: 7px 12px; border-radius: 14px; background: var(--card); box-shadow: 0 2px 8px rgba(0,0,0,.18); font-size: 13px; font-weight: 800; color: var(--primary); }
+.pinchk[aria-pressed="true"] { background: var(--accent); color: #fff; }
+#go .pinchk { top: calc(env(safe-area-inset-top) + 110px); }
+#go.sheet-full .pinchk { opacity: 0; pointer-events: none; }
 </style>
 <style>
 :root {

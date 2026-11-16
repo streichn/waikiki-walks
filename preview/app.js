@@ -279,8 +279,10 @@
     const prog = S.progress[w.id] || { visited: [], current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
     const hits = w.stops.map((s, i) => { const L = (g.labels || {})[String(s.n)]; if (!L) return '';
       return `<button class="bhit ${i === cur ? 'on' : ''}" data-bpin="${i}" style="left:${L[0] / g.w * 100}%;top:${L[1] / g.h * 100}%" aria-label="Stop ${s.n}, ${esc(s.title)}"></button>`; }).join('');
+    // Testing aid: where the app's own pins land on her map, to check they sit on her numbers.
+    const chk = S.showPins ? w.stops.map((s, i) => { const p = bookXY(w, s.lat, s.lng); return p ? `<span class="bchk" style="left:${p[0]}%;top:${p[1]}%">${s.n}</span>` : ''; }).join('') : '';
     const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
-    return hits + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+    return hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
   }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
   function centerBookOnMe(smooth) {
@@ -292,6 +294,7 @@
   }
   function bookPane(w) {
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}${bookPins(w)}</div></div></div>
+      <button class="pinchk" data-act="pinchk" aria-pressed="${!!S.showPins}">${S.showPins ? 'Hide' : 'Check:'} app pins</button>
       <div class="zoombtns">${S.view === 'go' ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
@@ -764,6 +767,7 @@
         return toast(S.follow === 'off' ? 'Free map' : S.follow === 'follow' ? 'Following you' : 'Map turns with you');
       }
       if (a === 'layers') return openLayers(w);
+      if (a === 'pinchk') { S.showPins = !S.showPins; const sc = document.getElementById('bookpane').scrollTop; render(); const bp = document.getElementById('bookpane'); if (bp) { S.bookAuto = Date.now(); bp.scrollTop = sc; } return; }
       if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
       if (a === 'here') { stopSim(); const p = S.progress[w.id]; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return goTo(S.progress[w.id].current + 1);
