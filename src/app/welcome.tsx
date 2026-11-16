@@ -28,8 +28,8 @@ export default function Welcome() {
 
   const done = () => {
     set({ onboarded: true });
+    // Guest first: people explore freely; sign-in is offered from Profile and when buying.
     router.replace('/');
-    setTimeout(() => router.push('/auth'), 300);
   };
 
   return (

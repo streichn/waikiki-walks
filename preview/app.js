@@ -109,7 +109,8 @@
   // ---------- glossary ----------
   const norm = (w) => w.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[‘’ʻ'`]/g, '').replace(/[^a-z]/g, '');
   const gloss = new Map(D.glossary.map((g) => [norm(g.word), g]));
-  const rich = (t) => esc(t).replace(/([A-Za-zĀāĒēĪīŌōŪū‘ʻ’']{3,})/g, (m) => { const g = gloss.get(norm(m)); return g ? `<span class="gw" role="button" tabindex="0" data-word="${esc(g.word)}">${m}</span>` : m; });
+  let richSeen = null; // when set, glossary words are underlined only on first appearance
+  const rich = (t) => esc(t).replace(/([A-Za-zĀāĒēĪīŌōŪū‘ʻ’']{3,})/g, (m) => { const g = gloss.get(norm(m)); if (g && richSeen) { if (richSeen.has(g.word)) return m; richSeen.add(g.word); } return g ? `<span class="gw" role="button" tabindex="0" data-word="${esc(g.word)}">${m}</span>` : m; });
 
   // ---------- speech ----------
   const synth = window.speechSynthesis;
@@ -158,7 +159,8 @@
   // ---------- rendering helpers ----------
   function blocksHtml(blocks, stopId) {
     let r = -1;
-    return blocks.map((b) => {
+    richSeen = new Set();
+    const html = blocks.map((b) => {
       const readable = ['p', 'direction', 'tagline'].includes(b.kind); if (readable) r++;
       const attrs = readable ? `data-stop="${stopId}" data-para="${r}"` : '';
       if (b.kind === 'direction') return `<div class="dir" ${attrs}>${ic('walk')}<div>${rich(b.text)}</div></div>`;
@@ -167,6 +169,8 @@
       if (b.kind === 'caption') return `<p class="small italic">${esc(b.text)}</p>`;
       return `<p class="p" ${attrs}>${rich(b.text)}</p>`;
     }).join('');
+    richSeen = null;
+    return html;
   }
   const photosHtml = (ph) => (ph.length ? `<div class="photos">${ph.map((p, i) => img(p.file, '', p.caption || 'Photograph from the book').replace('<img ', `<img data-ph="${i}" `)).join('')}</div>` : '');
 
@@ -835,5 +839,5 @@
   if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => S.settings.theme === 'system' && render());
 
   render();
-  if (!S.profile) setTimeout(openAuth, 700);
+  // Guest first: no sign-in wall on launch. Sign-in lives in Profile and the purchase sheet.
 })();

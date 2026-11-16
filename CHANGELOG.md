@@ -66,3 +66,12 @@
 - A speaker button on the walk screen turns reading each stop aloud on arrival on or off (off by default).
 - Arriving at a stop no longer resizes the panel or moves the map; the book map stops scrolling at its bottom edge.
 - Demo walk continues onto each stop's exact spot (her printed number) before moving on.
+
+## 2026-11-16 · Headings and captions match the book
+- Walk 4 stop 1: the location lines (Waikīkī Gateway Park, Kalākaua Avenue, Kūhiō Avenue) and "King Kalākaua welcomes you to Waikīkī!" were run together into one walking direction. They now show as the stop's location and a heading, as on page 51 of the book.
+- Fixed about 35 other stop headings that were split, merged, or picked up stray text (scripts/extract/heading_fixes.json, each checked against the book page).
+- Bold lead-in lines that the parser cut mid-sentence are rejoined; short bold sub-headings no longer show as walking directions.
+- Restored Walk 4 stop 19 and Walk 11 stop 27, which the book prints inline without a bold heading.
+- Home screen and walk covers no longer use book photos with their printed captions cut off at the edge.
+- Hawaiian glossary words are underlined only the first time they appear on a stop.
+- Guest first: no sign-in prompt at launch. Sign-in stays in Profile.

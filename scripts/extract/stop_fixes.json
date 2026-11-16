@@ -43,5 +43,25 @@
    "from": 9,
    "start": "10 A footbridge"
   }
+ ],
+ "IV": [
+  {
+   "n": 19,
+   "title": "Princess Ka‘iulani Shops and Hotel",
+   "page": "p1-88",
+   "from": 18,
+   "start": "19 Next to the International",
+   "_why": "The book prints stop 19 inline with no bold heading; title uses the book's own words."
+  }
+ ],
+ "XI": [
+  {
+   "n": 27,
+   "title": "Korean Center, Thai Pavilion, Japanese Garden and Tea House",
+   "page": "p3-53",
+   "from": 26,
+   "start": "27 On the Diamond Head side",
+   "_why": "The book prints stop 27 inline with no bold heading; title uses the book's own words."
+  }
  ]
 }

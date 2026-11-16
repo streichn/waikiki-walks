@@ -1,0 +1,175 @@
+{
+ "_note": "Stop headings the parser split or mashed. Each entry is checked against the bold heading lines on the book page given. drop_first removes the first block (a heading line that was read as text); prepend/insert add the book's sub-headings back in place.",
+ "IV-01": {
+  "page": "p1-73",
+  "subtitle": "Waikīkī Gateway Park, Kalākaua Avenue, Kūhiō Avenue",
+  "drop_first": true,
+  "prepend": [
+   {
+    "kind": "heading",
+    "text": "King Kalākaua welcomes you to Waikīkī!"
+   }
+  ]
+ },
+ "III-11": {
+  "page": "p1-69",
+  "subtitle": "Nā Pōhaku Ola Kapaemāhū ā Kapuni",
+  "drop_first": true,
+  "prepend": [
+   {
+    "kind": "heading",
+    "text": "The Stones of Life"
+   }
+  ]
+ },
+ "VIII-08": {
+  "page": "p2-54",
+  "subtitle": "Winam Avenue",
+  "drop_first": true
+ },
+ "VIII-24": {
+  "page": "p2-60",
+  "subtitle": "Kaimukī reservoir",
+  "drop_first": true
+ },
+ "IX-09": {
+  "page": "p2-70",
+  "subtitle": null,
+  "insert": [
+   {
+    "before": "Mahi‘ai means",
+    "kind": "heading",
+    "text": "Mahi‘ai Street"
+   }
+  ]
+ },
+ "X-08": {
+  "page": "p3-11",
+  "title": "A Walk Bordering Punahou School Campus",
+  "subtitle": null
+ },
+ "X-27": {
+  "page": "p3-16",
+  "subtitle": null
+ },
+ "X-38": {
+  "page": "p3-24",
+  "subtitle": "The intersection of O‘ahu Avenue, E. Mānoa Road, and Lowrey Avenue",
+  "drop_first": true
+ },
+ "X-42": {
+  "page": "p3-29",
+  "title": "To Mānoa Falls and Lyon Arboretum",
+  "subtitle": null
+ },
+ "X-44": {
+  "page": "p3-32",
+  "subtitle": "Mauka Campus of the University of Hawai‘i",
+  "drop_first": true
+ },
+ "XI-21": {
+  "page": "p3-50",
+  "subtitle": null
+ },
+ "XII-20": {
+  "page": "p3-71",
+  "title": "Stairwell to lower campus/Mō‘ili‘ili Quarry",
+  "subtitle": null
+ },
+ "II-01": {
+  "title": "Intersection of Ala Moana Boulevard and Kālia Road",
+  "subtitle": null
+ },
+ "II-06": {
+  "title": "Līpe‘epe‘e Street",
+  "subtitle": null
+ },
+ "II-17": {
+  "title": "Fort DeRussy and Battery Randolph",
+  "subtitle": "U.S. Army Museum of Hawai‘i, Saratoga Road"
+ },
+ "II-18": {
+  "title": "Kuroda Field",
+  "subtitle": "Maluhia Road"
+ },
+ "II-20": {
+  "title": "Daniel K. Inouye Asia-Pacific Center for Security Studies",
+  "subtitle": null
+ },
+ "IV-20": {
+  "title": "Waikīkī Public School",
+  "subtitle": "Waikīkī Church"
+ },
+ "IV-25": {
+  "title": "Nā Pōhaku Ola Kapaemāhū ā Kapuni",
+  "subtitle": "Kāhuna Stones"
+ },
+ "IV-27": {
+  "subtitle": null
+ },
+ "V-05": {
+  "title": "Princess Ka‘iulani Triangle",
+  "subtitle": "‘Āinahau Park"
+ },
+ "V-20": {
+  "subtitle": null
+ },
+ "VII-23": {
+  "subtitle": null
+ },
+ "VIII-11": {
+  "subtitle": null
+ },
+ "VIII-22": {
+  "title": "Queen Lydia Lili‘uokalani Elementary School",
+  "subtitle": null
+ },
+ "IX-06": {
+  "subtitle": null
+ },
+ "IX-14": {
+  "title": "Prince Jonah Kūhiō Elementary School",
+  "subtitle": null
+ },
+ "X-03": {
+  "title": "Kapi‘olani Boulevard/ along McCully Street",
+  "subtitle": null
+ },
+ "XI-12": {
+  "subtitle": null
+ },
+ "XI-15": {
+  "title": "Queen Lili‘uokalani Center for Student Services",
+  "subtitle": null
+ },
+ "XI-24": {
+  "title": "Plant courtyard of G. Donald Sherman and Harold St. John Plant Science Laboratories",
+  "subtitle": null
+ },
+ "XI-37": {
+  "title": "Andrews Outdoor Theater/Amphitheater",
+  "subtitle": null
+ },
+ "XII-02": {
+  "title": "Thomas Jefferson Elementary School",
+  "subtitle": null
+ },
+ "XII-18": {
+  "title": "Kamakakūokalani Center for Hawaiian Studies",
+  "subtitle": null
+ },
+ "XII-21": {
+  "subtitle": "Quarry, Quarry Pond"
+ },
+ "XII-23": {
+  "title": "Clarence T. C. Ching Athletics Complex",
+  "subtitle": null
+ },
+ "XII-25": {
+  "title": "Duke Kahanamoku Aquatic Complex",
+  "subtitle": null
+ },
+ "XII-28": {
+  "subtitle": "Mauoki Heiau"
+ }
+}
