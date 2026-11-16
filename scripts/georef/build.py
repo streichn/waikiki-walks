@@ -5,6 +5,7 @@
    plus a smoothed thin-plate spline through the street intersections in georef.json.
 2. For stops listed in map_stops.json (the pixel where her map prints each number), snap the point
    to her red route line and convert it to lat/lng. Writes scripts/extract/book_pins.json.
+   Walks whose route continues onto more map pages (pages.json) get pins from those pages too.
 3. Writes src/data/bookmaps.json: per walk, image size and the forward transform for the app.
 """
 import json, math, os
@@ -38,7 +39,8 @@ def tps_eval(p, pt):
     return a[0] + pt[0] * a[1] + pt[1] * a[2] + u @ w
 
 def route_mask(file):
-    im = np.asarray(Image.open(os.path.join(ROOT, 'assets/book', file)).convert('RGB')).astype(int)
+    path = file if os.path.isabs(file) else os.path.join(ROOT, 'assets/book', file)
+    im = np.asarray(Image.open(path).convert('RGB')).astype(int)
     r, g, b = im[..., 0], im[..., 1], im[..., 2]
     m = (r > 150) & (g < 80) & (b < 110) & (r - g > 110)  # the red dotted walk path
     ys, xs = np.nonzero(m)
@@ -127,6 +129,27 @@ for w in walks:
                 xm, ym = snap_to_canal(xm, ym); off = 0.0; extra = {'fix': fix['source']}
             lat, lng = to_ll(xm, ym)
             pins[wid][n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'route_offset_m': round(off * mpp), **extra}
+
+# Extra map pages (pages.json): walks whose route runs on past the first map. Same method, pins only.
+# A stop already placed from the walk's first map keeps that pin.
+PAGES = {k: v for k, v in json.load(open(os.path.join(HERE, 'pages.json'))).items() if not k.startswith('_')} if os.path.exists(os.path.join(HERE, 'pages.json')) else {}
+for pid, pg in PAGES.items():
+    if pid not in G or pid not in STOPS: continue
+    wid, f = pg['walk'], os.path.join(HERE, 'pages', f'map-{pid}.jpg')
+    ctl = G[pid]['controls']
+    px = np.array([[c['px'], c['py']] for c in ctl], float)
+    m = np.array([to_m(c['lat'], c['lng']) for c in ctl])
+    lam = np.array([2.0 if c.get('kind') else 0.05 for c in ctl])
+    inv = tps_fit(px / 100.0, m, lam=lam)
+    route = route_mask(f)
+    mpp = 1 / math.sqrt(abs(np.linalg.det(np.array(G[pid]['affine'])[:2])))
+    for n, (lx, ly, *flag) in STOPS[pid].items():
+        if n in pins.get(wid, {}): continue
+        pt = np.array([lx, ly], float)
+        off = float(np.min(np.linalg.norm(route - pt, axis=1))) if route.size else 0.0
+        lat, lng = to_ll(*tps_eval(inv, pt / 100.0))
+        pins.setdefault(wid, {})[n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'map_page': pid,
+                                       'route_offset_m': round(off * mpp), **({'confidence': pg['confidence']} if pg.get('confidence') else {})}
 
 json.dump(out_maps, open(os.path.join(ROOT, 'src/data/bookmaps.json'), 'w'))
 json.dump(pins, open(os.path.join(ROOT, 'scripts/extract/book_pins.json'), 'w'), indent=1)

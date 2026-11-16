@@ -14,7 +14,7 @@ def street(name):
     lines, seen = [], []
     for _ in range(8):
         q = {'street': name, 'city': 'Honolulu', 'format': 'json', 'polygon_geojson': 1, 'dedupe': 0, 'limit': 50,
-             'viewbox': '-157.86,21.32,-157.79,21.25', 'bounded': 1}
+             'viewbox': '-157.86,21.34,-157.79,21.25', 'bounded': 1}
         if seen: q['exclude_place_ids'] = ','.join(seen)
         d = json.load(urllib.request.urlopen(urllib.request.Request('https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode(q), headers=UA), timeout=40))
         time.sleep(1.1)

@@ -43,6 +43,7 @@ FACTS = {
     'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
+FAR_STOPS = json.load(open(f'{ROOT}/scripts/extract/far_stops.json')) if os.path.exists(f'{ROOT}/scripts/extract/far_stops.json') else {}
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
@@ -145,7 +146,9 @@ for k, w in enumerate(SRC['walks']):
         clng = statistics.median(p[1] for p in pts)
     for s in stops_src:
         g = s.get('geo')
-        if g:
+        # Pins read off her maps, and named places the book sends the walk to (scripts/extract/far_stops.json),
+        # are trusted even far from the walk's centre.
+        if g and g.get('confidence') != 'book' and str(s['n']) not in FAR_STOPS.get(wid, {}):
             dlat = (g['lat'] - clat) * 111000
             dlng = (g['lng'] - clng) * 103000
             if (dlat ** 2 + dlng ** 2) ** 0.5 > 1800:

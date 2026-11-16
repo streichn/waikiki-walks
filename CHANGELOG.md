@@ -66,3 +66,10 @@
 - New scripts/georef/author_fixes.json records each author correction and its source; scripts/georef/build.py applies it.
 - Preview: the "pin is a draft" note no longer shows on pins placed from her maps (matches the app).
 - New docs/FEEDBACK.md entries for her 16 Nov email.
+
+## 2026-11-16 · Walk X pins from the book's second map; two missed stops restored
+- Walk X has two more map pages in the book that the app had not used. The "CONTINUE WALK X" map (part 3, book page 155) is now fitted to real streets (9 street crossings, 9 m average error, 89 percent of road points on her streets) and places 19 stops: 30 to 39 and 44 to 52, from Ka‘ala Street up O‘ahu Avenue to Five Corners and back by Woodlawn Drive and University Avenue. These had been straight-line guesses.
+- Walk X stops 28 ("At the glorious Monkey Pod tree") and 30 (the "Chalet") are restored. The book prints their numbers without a bold heading, so the parser had folded them into stops 27 and 29. Their titles are the book's own opening words.
+- Mānoa Chinese Cemetery (41) and Lyon Arboretum (43) now use their OpenStreetMap places. They had been thrown out as "too far from the walk's centre" (scripts/extract/far_stops.json lists each exception with the book's words).
+- Pins read off her maps are no longer thrown out by the same distance check. This also restores Walk IX stop 3 (Waikīkī Fire Station No. 7) to the spot on her map.
+- New scripts/georef/pages.json and pages.py: extra map pages per walk, rendered for fitting only (not shown in the app). The upper-valley page (book part 3, page 5) is too schematic to fit and is not used.
