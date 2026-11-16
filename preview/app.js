@@ -259,7 +259,7 @@
         ${stops}
       </div>
     </div>
-    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>'}${styleSwitch(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
+    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>'}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
     <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button></div>`;
   }
@@ -285,6 +285,16 @@
   function bookPane(w) {
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}${bookPins(w)}</div></div></div>
       <div class="zoombtns"><button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
+  }
+  // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
+  function overlayCtl(w) {
+    if (S.mapStyle === 'book' || !(window.WWWARP || {})[w.id]) return '';
+    return `<label class="overlayctl">Street<input type="range" min="0" max="100" value="${S.overlay || 0}" data-overlay aria-label="Book map overlay strength">Book map</label>`;
+  }
+  function addOverlay(mapObj, w) {
+    const url = (window.WWWARP || {})[w.id], b = (D.bookwarp || {})[w.id]; if (!url || !b || !mapObj) return null;
+    const o = L.imageOverlay(url, b, { opacity: (S.overlay || 0) / 100, interactive: false }).addTo(mapObj);
+    return o;
   }
   function styleSwitch(w) {
     if (!w.bookMap) return '';
@@ -362,6 +372,7 @@
     const w = walk(S.walkId);
     if (!document.getElementById('wmap')) { wmap = null; return; }
     if (!wmap) {
+      setTimeout(() => { if (wmap) wmap.overlay = addOverlay(wmap.map, w); }, 0);
       wmap = makeMap(document.getElementById('wmap'), w, { bottom: 200, onSelect: (i) => { S.focus = i; syncRail(true); wmap.paint(S.focus, (S.progress[w.id] || { visited: [] }).visited); } });
     }
     setTimeout(() => { wmap.map.invalidateSize(); wmap.paint(S.focus, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(S.focus); syncRail(false); }, 50);
@@ -381,7 +392,7 @@
     if (here) navLine = 'Read or listen below, then tap Next.';
     else if (S.me) { const d = dist(S.me, stop), b = bearing(S.me, stop); rot = b - S.heading; navLine = `${fmt(d)} · about ${Math.max(1, Math.round(d / 67))} min · head ${hawaiianDir(b)}`; }
     return `<div id="go" style="position:absolute;inset:0">
-      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>'}${styleSwitch(w)}</div>
+      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>'}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
       ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
@@ -401,6 +412,7 @@
     const w = walk(S.walkId), prog = S.progress[w.id];
     const el = document.getElementById('gmap'); if (!el) { gmap = null; return; }
     gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => goTo(i) });
+    gmap.overlay = addOverlay(gmap.map, w);
     gmap.paint(prog.current, prog.visited); gmap.me(S.me, S.heading);
     setTimeout(() => { gmap.map.invalidateSize(); if (S.me) gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
   }
@@ -560,6 +572,11 @@
   }
 
   // Modals
+  document.addEventListener('input', (e) => {
+    if (!e.target.matches('[data-overlay]')) return;
+    S.overlay = Number(e.target.value);
+    [wmap, gmap].forEach((m) => m && m.overlay && m.overlay.setOpacity(S.overlay / 100));
+  });
   function modal(html, center) { const m = document.createElement('div'); m.className = 'modal' + (center ? ' center' : ''); m.innerHTML = `<div class="panel" role="dialog" aria-modal="true">${html}<button class="iconbtn close" data-close aria-label="Close">${ic('close')}</button></div>`; m.addEventListener('click', (e) => { if (e.target === m || e.target.closest('[data-close]')) m.remove(); }); $app.appendChild(m); return m; }
   function openPaywall() {
     let sel = 'forever';

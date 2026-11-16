@@ -10,7 +10,7 @@ os.makedirs(SITE, exist_ok=True)
 D = f'{ROOT}/src/data'
 walks = json.load(open(f'{D}/walks.json'))
 data = {'walks': walks, 'facts': json.load(open(f'{D}/facts.json')), 'glossary': json.load(open(f'{D}/glossary.json')),
-        'about': json.load(open(f'{D}/about.json')), 'bookmaps': json.load(open(f'{D}/bookmaps.json')) if os.path.exists(f'{D}/bookmaps.json') else {}, 'trial': {'walkId': 'IV', 'freeStops': 5}}
+        'about': json.load(open(f'{D}/about.json')), 'bookmaps': json.load(open(f'{D}/bookmaps.json')) if os.path.exists(f'{D}/bookmaps.json') else {}, 'bookwarp': json.load(open(f'{D}/bookwarp.json')) if os.path.exists(f'{D}/bookwarp.json') else {}, 'trial': {'walkId': 'IV', 'freeStops': 5}}
 open(f'{SITE}/data.js', 'w').write('window.WW=' + json.dumps(data, ensure_ascii=False) + ';')
 
 
@@ -33,6 +33,11 @@ for p in glob.glob(f'{P}/tiles/osm/*/*/*.png'):
     z, x, y = p.split('/')[-3:]
     tiles[f'{z}/{x}/{y[:-4]}'] = 'data:image/png;base64,' + base64.b64encode(open(p, 'rb').read()).decode()
 open(f'{SITE}/tiles.js', 'w').write('window.WWTILES=' + json.dumps(tiles) + ';')
+# Book maps warped onto real coordinates (scripts/georef/warp.py), for the street-map overlay.
+warp = {}
+for f in glob.glob(f'{P}/warped/*.webp'):
+    warp[os.path.basename(f)[:-5]] = 'data:image/webp;base64,' + base64.b64encode(open(f, 'rb').read()).decode()
+open(f'{SITE}/warped.js', 'w').write('window.WWWARP=' + json.dumps(warp) + ';')
 # Recorded narration: copy every stop whose paragraphs are all recorded (see scripts/audio/make_narration.py).
 AUD = os.environ.get('WW_AUDIO_DIR', '/home/claude/waikiki-audio')
 audio = {}
