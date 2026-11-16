@@ -38,3 +38,14 @@ export type Walk = {
 export type FunFact = { id: string; text: string; walkId?: string; stopId?: string };
 
 export type GlossaryEntry = { word: string; meaning: string };
+
+/** A walking path between two consecutive stops, precomputed by scripts/build_routes.py. */
+export type RouteLeg = {
+  from: string; // stop id
+  to: string;
+  a: [number, number]; // [lat, lng] of the "from" pin when the path was built
+  b: [number, number];
+  m: number; // walking meters (straight-line meters for "straight" and "same")
+  kind: 'path' | 'straight' | 'same';
+  path?: [number, number][]; // [lat, lng] points, only for kind "path"
+};

@@ -42,3 +42,12 @@
 - Reading a walk: the overview now lists the stops; tapping one opens it as its own page. Swipe sideways or use Previous and Next to move one stop at a time.
 - Walking: the map fills the screen and the stop slides up over it in a sheet you can drag or tap to three heights (peek, half, full). The whole stop scrolls inside the sheet. Previous and Next sit at the top of the sheet; larger text.
 - Recorded narration (Gemini TTS) plays in the preview when a stop has been recorded; otherwise the device voice is used.
+
+## 2026-11-16 · Walking paths between stops
+- The map now draws the walking path along streets and footways between stops, instead of a straight dashed line, wherever both pins are confident (verified or medium). Uncertain pins keep the dashed line, which means "general direction only".
+- Paths are computed once at build time (scripts/build_routes.py, OSRM foot routing on OpenStreetMap data) and ship inside the app, so they work offline.
+- A path is dropped if its pins have moved more than 20 m since it was built, so stale paths never show after pins are corrected.
+- With location off, the stop panel says how far the stop is on foot from the previous one.
+- The leg you are walking now is highlighted (before arrival: the leg into the stop; after: the leg out of it).
+- Preview: the same paths, and the demo dot now walks along them.
+- Credits: routing attribution and a link to fix missing footpaths in OpenStreetMap.

@@ -3,6 +3,7 @@ import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
+import { walkLegs } from '../lib/routes';
 import { useTheme } from '../theme';
 
 export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void };
@@ -10,6 +11,8 @@ export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void
 type Props = {
   walk: Walk;
   current?: number;
+  /** Leg to highlight, i.e. from stop activeLeg to the next. Defaults to the leg leaving `current`. */
+  activeLeg?: number;
   visited?: number[];
   isLocked?: (i: number) => boolean;
   onSelect?: (i: number) => void;
@@ -20,11 +23,14 @@ type Props = {
   onUserPan?: () => void;
 };
 
-/** Numbered pins in walking order with the route drawn between them. */
-export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
+/** Numbered pins in walking order with the route drawn between them (solid on streets, dashed where only the direction is known). */
+export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, activeLeg, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
+  // Street-level walking paths where both pins are confident; dashed straight lines elsewhere.
+  const legs = useMemo(() => walkLegs(walk), [walk]);
+  const hot = activeLeg ?? current;
   const initial: Region = useMemo(() => {
     const lats = coords.map((c) => c.latitude);
     const lngs = coords.map((c) => c.longitude);
@@ -61,8 +67,18 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       mapPadding={{ top: 0, left: 0, right: 0, bottom: bottomInset }}
       onMapReady={() => map.current?.fitToCoordinates(coords, { edgePadding: padding, animated: false })}
     >
-      <Polyline coordinates={coords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
-      {current >= 0 && current < coords.length - 1 ? <Polyline coordinates={[coords[current], coords[current + 1]]} strokeColor={t.accent} strokeWidth={6} /> : null}
+      {legs.map((l, i) => (
+        <Polyline
+          key={`leg-${i}`}
+          coordinates={l.coords}
+          strokeColor={i === hot ? t.accent : t.dark ? '#7FD1C7' : '#0E6E74'}
+          strokeWidth={i === hot ? 6 : 4}
+          lineDashPattern={l.onStreets ? undefined : [8, 6]}
+          lineCap="round"
+          lineJoin="round"
+          zIndex={i === hot ? 2 : 1}
+        />
+      ))}
       {walk.stops.map((s, i) => {
         const isCur = i === current;
         const done = visited.includes(i);

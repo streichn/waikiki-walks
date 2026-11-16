@@ -285,6 +285,27 @@
     el.addEventListener('touchend', (e) => { if (skip || x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null; if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8 && Date.now() - t0 < 700) stepStop(dx < 0 ? 1 : -1); }, { passive: true });
   }
 
+  // Walking paths between stops (same rule as src/lib/routes.ts): solid along footways when both pins
+  // are confident and unchanged since the path was built, dashed straight line otherwise.
+  function legBetween(w, i) {
+    const a = w.stops[i], b = w.stops[i + 1];
+    if (!a || !b) return null;
+    const straight = { pts: [[a.lat, a.lng], [b.lat, b.lng]], onStreets: false, m: null };
+    const leg = ((window.WW.routes || {})[w.id] || []).find((l) => l.from === a.id && l.to === b.id);
+    const sure = (g) => g === 'verified' || g === 'medium';
+    if (!leg || leg.kind !== 'path' || !leg.path || !sure(a.geo) || !sure(b.geo)) return straight;
+    if (dist(a, { lat: leg.a[0], lng: leg.a[1] }) > 20 || dist(b, { lat: leg.b[0], lng: leg.b[1] }) > 20) return straight;
+    return { pts: leg.path, onStreets: true, m: leg.m };
+  }
+  function drawLegs(w, layer, color, hot) {
+    const out = [];
+    for (let i = 0; i < w.stops.length - 1; i++) {
+      const l = legBetween(w, i);
+      out.push(L.polyline(l.pts, { color, weight: 4, dashArray: l.onStreets ? null : '8 6', lineCap: 'round', lineJoin: 'round' }).addTo(layer));
+    }
+    return out;
+  }
+
   // Shared Leaflet map builder with offline tiles.
   function makeMap(el, w, opts) {
     const T = window.WWTILES || {};
@@ -293,24 +314,25 @@
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14, tileSize: 256 }).addTo(map);
     map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
-    L.polyline(pts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    drawLegs(w, map, isDark() ? '#7FD1C7' : '#0E6E74');
     const markers = w.stops.map((s, i) => {
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
       m.on('click', () => opts.onSelect && opts.onSelect(i));
       return m;
     });
-    const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
+    const seg = L.polyline([], { color: '#D6336C', weight: 6, lineCap: 'round', lineJoin: 'round' }).addTo(map);
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
       map,
-      paint(cur, visited) {
+      paint(cur, visited, hotLeg) {
         markers.forEach((m, i) => {
           const s = w.stops[i], locked = !canOpen(w.id, i), done = visited.includes(i), isCur = i === cur;
           const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : w.color;
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });
-        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg ? [pts[cur], pts[cur + 1]] : []);
+        const h = hotLeg === undefined ? cur : hotLeg, hl = opts.showSeg ? legBetween(w, h) : null;
+        seg.setLatLngs(hl ? hl.pts : []); if (hl) seg.setStyle({ dashArray: hl.onStreets ? null : '8 6' });
       },
       fit() { map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
       focus(i) { map.setView(pts[i], 17, { animate: true }); },
@@ -370,7 +392,7 @@
     const w = walk(S.walkId), prog = S.progress[w.id];
     const el = document.getElementById('gmap'); if (!el) { gmap = null; return; }
     gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => goTo(i) });
-    gmap.paint(prog.current, prog.visited); gmap.me(S.me, S.heading);
+    gmap.paint(prog.current, prog.visited, prog.visited.includes(prog.current) ? prog.current : prog.current - 1); gmap.me(S.me, S.heading);
     setTimeout(() => { gmap.map.invalidateSize(); if (S.me) gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
   }
   // Bottom sheet with three resting heights, like Apple Maps: peek, half, full.
@@ -437,10 +459,15 @@
   function tickSim() {
     const w = walk(S.walkId), prog = S.progress[w.id], target = w.stops[prog.current];
     if (!S.me) { const prev = w.stops[Math.max(0, prog.current - 1)]; S.me = { lat: prev.lat - 0.0012, lng: prev.lng - 0.0009 }; }
-    const d = dist(S.me, target);
-    S.heading = bearing(S.me, target);
-    const step = 18; // meters per tick (a brisk, sped-up walk)
-    if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
+    // Follow the walking path to the stop when there is one, so the demo dot stays on the streets.
+    if (S.simFor !== target.id) { const l = legBetween(w, prog.current - 1); S.simFor = target.id; S.simPath = (l && l.onStreets ? l.pts.slice(1) : []).map((p) => ({ lat: p[0], lng: p[1] })).concat([target]); }
+    let step = 18; // meters per tick (a brisk, sped-up walk)
+    while (step > 0 && S.simPath.length) {
+      const wp = S.simPath[0], d = dist(S.me, wp);
+      if (d > 0.5) S.heading = bearing(S.me, wp);
+      if (d <= step) { S.me = { lat: wp.lat, lng: wp.lng }; step -= d; if (S.simPath.length > 1) S.simPath.shift(); else break; }
+      else { const f = step / d; S.me = { lat: S.me.lat + (wp.lat - S.me.lat) * f, lng: S.me.lng + (wp.lng - S.me.lng) * f }; step = 0; }
+    }
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
     if (dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
@@ -502,7 +529,7 @@
     const showWalk = (w) => {
       group.clearLayers();
       const pts = w.stops.map((s) => [s.lat, s.lng]);
-      L.polyline(pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
+      drawLegs(w, group, w.color);
       w.stops.forEach((s, i) => L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
       map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [30, 70], paddingBottomRight: [30, 200] });
       const h = document.getElementById('ehint'); h.innerHTML = `${ic('back', 'width="14" height="14"')} All walks`; h.setAttribute('role', 'button'); h.onclick = showAll;
@@ -571,7 +598,7 @@
       ${sec('Dedication', ['To my grandchildren, Alice and Ezra, who have learned to love walking in the ahupuaʻa of Waikīkī.', 'In memory of my mother, Alice Acson, who loved walking in Waikīkī.'])}
       ${sec('The book', ['“Waikīkī: Twelve Walks Through Time” © 2023 Island Heritage. All rights reserved.', 'Published and distributed by Island Heritage, Mililani, Hawaiʻi.'])}
       ${sec('Photographs', ['Contributing photography: Merina Vo and Joel Bradshaw.', 'Book cover: Cameron Brooks.', 'Historic photographs are credited in their captions, including the Hawaiʻi State Archives.'])}
-      ${sec('Maps', ['Map data © OpenStreetMap contributors, Open Database License.'])}
+      ${sec('Maps', ['Map data © OpenStreetMap contributors, Open Database License.', 'Walking paths between stops: OSRM on the FOSSGIS routing service, from OpenStreetMap data. Fix a missing footpath at openstreetmap.org/fixthemap.'])}
       ${sec('Fonts', ['Libre Caslon Text and Nunito, SIL Open Font License.'])}
       <p class="small" style="text-align:center">© 2026 Veneeta Acson. All rights reserved.</p></div>`);
   }
