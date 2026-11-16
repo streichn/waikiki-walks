@@ -113,6 +113,8 @@ for k, w in enumerate(SRC['walks']):
         bp = BOOK_PINS.get(wid, {}).get(str(s['n']))
         if bp:
             s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': 'book', 'query': 'placed from the book map'}
+            if bp.get('route_offset_m', 0) > 10:
+                s['radius'] = min(90, bp['route_offset_m'] + 30)
 
     # Geo sanity check: discard hits far from the walk's centre, then interpolate gaps.
     pts = [(s['geo']['lat'], s['geo']['lng']) for s in stops_src if s.get('geo')]
@@ -169,6 +171,7 @@ for k, w in enumerate(SRC['walks']):
             **({'subtitle': sub} if sub else {}),
             'blocks': blocks, 'photos': photos,
             'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6), 'geo': g.get('confidence', 'medium'), 'page': s['page'],
+            **({'radius': s['radius']} if s.get('radius') else {}),
         })
         if not cover:
             for p in photos:

@@ -63,16 +63,15 @@ for w in walks:
     if wid in STOPS:
         route = route_mask(f)
         pins[wid] = {}
+        mpp = 1 / math.sqrt(abs(np.linalg.det(np.array(G[wid]['affine'])[:2])))  # meters per map pixel
         for n, (lx, ly, *flag) in STOPS[wid].items():
             pt = np.array([lx, ly], float)
-            if route.size and not ('label' in flag):
-                d = np.linalg.norm(route - pt, axis=1); i = int(np.argmin(d))
-                snap, off = route[i].astype(float), float(d[i])
-            else:
-                snap, off = pt, 0.0
-            xm, ym = tps_eval(inv, snap / 100.0)
+            # The pin goes exactly where her map prints the number, so the two always agree.
+            # How far the number sits from her route line widens the arrival circle, so walkers on the route still arrive.
+            off = float(np.min(np.linalg.norm(route - pt, axis=1))) if route.size else 0.0
+            xm, ym = tps_eval(inv, pt / 100.0)
             lat, lng = to_ll(xm, ym)
-            pins[wid][n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [round(snap[0]), round(snap[1])], 'label_px': [lx, ly], 'snap_px': round(off)}
+            pins[wid][n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'route_offset_m': round(off * mpp)}
 
 json.dump(out_maps, open(os.path.join(ROOT, 'src/data/bookmaps.json'), 'w'))
 json.dump(pins, open(os.path.join(ROOT, 'scripts/extract/book_pins.json'), 'w'), indent=1)
