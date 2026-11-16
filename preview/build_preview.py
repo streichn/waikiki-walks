@@ -10,7 +10,7 @@ os.makedirs(SITE, exist_ok=True)
 D = f'{ROOT}/src/data'
 walks = json.load(open(f'{D}/walks.json'))
 data = {'walks': walks, 'facts': json.load(open(f'{D}/facts.json')), 'glossary': json.load(open(f'{D}/glossary.json')),
-        'about': json.load(open(f'{D}/about.json')), 'bookmaps': json.load(open(f'{D}/bookmaps.json')) if os.path.exists(f'{D}/bookmaps.json') else {}, 'routes': json.load(open(f'{D}/routes.json')) if os.path.exists(f'{D}/routes.json') else {}, 'bookwarp': json.load(open(f'{D}/bookwarp.json')) if os.path.exists(f'{D}/bookwarp.json') else {}, 'trial': {'walkId': 'IV', 'freeStops': 5}}
+        'about': json.load(open(f'{D}/about.json')), 'bookmaps': json.load(open(f'{D}/bookmaps.json')) if os.path.exists(f'{D}/bookmaps.json') else {}, 'routes': json.load(open(f'{D}/routes.json')) if os.path.exists(f'{D}/routes.json') else {}, 'bookwarp': json.load(open(f'{D}/bookwarp.json')) if os.path.exists(f'{D}/bookwarp.json') else {}, 'waterways': json.load(open(f'{D}/waterways.json')) if os.path.exists(f'{D}/waterways.json') else {}, 'trial': {'walkId': 'IV', 'freeStops': 5}}
 open(f'{SITE}/data.js', 'w').write('window.WW=' + json.dumps(data, ensure_ascii=False) + ';')
 
 
@@ -38,6 +38,11 @@ warp = {}
 for f in glob.glob(f'{P}/warped/*.webp'):
     warp[os.path.basename(f)[:-5]] = 'data:image/webp;base64,' + base64.b64encode(open(f, 'rb').read()).decode()
 open(f'{SITE}/warped.js', 'w').write('window.WWWARP=' + json.dumps(warp) + ';')
+# Waterways lifted from her book maps (scripts/georef/waterways.py), drawn over the street map.
+water = {}
+for f in glob.glob(f'{ROOT}/assets/waterways/*.png'):
+    water[os.path.basename(f)[:-4]] = 'data:image/png;base64,' + base64.b64encode(open(f, 'rb').read()).decode()
+open(f'{SITE}/waterways.js', 'w').write('window.WWWATER=' + json.dumps(water) + ';')
 # Recorded narration: copy every stop whose paragraphs are all recorded (see scripts/audio/make_narration.py).
 AUD = os.environ.get('WW_AUDIO_DIR', '/home/claude/waikiki-audio')
 audio = {}

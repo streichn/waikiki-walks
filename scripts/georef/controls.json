@@ -1010,5 +1010,67 @@
    "Kapahulu Avenue",
    "Kaimukī Avenue"
   ]
+ ],
+ "X-p6": [
+  [
+   216,
+   612,
+   "Oʻahu Avenue",
+   "Ānuenue Street"
+  ],
+  [
+   30,
+   686,
+   "Mānoa Road",
+   "Lowrey Avenue"
+  ],
+  [
+   405,
+   598,
+   "Oʻahu Avenue",
+   "University Avenue"
+  ],
+  [
+   360,
+   598,
+   "Oʻahu Avenue",
+   "East Mānoa Road"
+  ],
+  [
+   578,
+   602,
+   "Oʻahu Avenue",
+   "Kaʻala Street"
+  ],
+  [
+   578,
+   556,
+   "University Avenue",
+   "Kaʻala Street"
+  ],
+  [
+   592,
+   665,
+   "Hunnewell Street",
+   "Kamehameha Avenue"
+  ],
+  [
+   132,
+   640,
+   "Kaʻaipu Avenue",
+   "Oʻahu Avenue"
+  ],
+  [
+   92,
+   452,
+   "Lowrey Avenue",
+   "East Mānoa Road"
+  ],
+  [
+   103,
+   368,
+   "Lowrey Avenue",
+   "Woodlawn Drive"
+  ]
  ]
 }

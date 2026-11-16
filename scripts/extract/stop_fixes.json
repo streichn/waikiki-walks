@@ -1,5 +1,5 @@
 {
- "_note": "Stops whose headings the PDF parser missed. Titles are copied from the bold stop headings in book/*.pdf (page given). 'start' is text that begins the stop's first block; that block and the ones after it move into the stop.",
+ "_note": "Stops whose headings the PDF parser missed. Titles are copied from the bold stop headings in book/*.pdf (page given). 'start' is text that begins the stop's first block; that block and the ones after it move into the stop. When the book prints a stop number with no bold heading (Walk X stops 28 and 30), the title is the stop's own opening words.",
  "VI": [
   {
    "n": 1,
@@ -42,6 +42,22 @@
    "page": "p2-71",
    "from": 9,
    "start": "10 A footbridge"
+  }
+ ],
+ "X": [
+  {
+   "n": 28,
+   "title": "At the glorious Monkey Pod tree",
+   "page": "p3-17",
+   "from": 27,
+   "start": "28 At the glorious Monkey Pod tree"
+  },
+  {
+   "n": 30,
+   "title": "On the Diamond Head side of O‘ahu Avenue",
+   "page": "p3-18",
+   "from": 29,
+   "start": "30 On the Diamond Head side"
   }
  ]
 }

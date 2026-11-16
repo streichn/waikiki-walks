@@ -1,18 +1,20 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useEffect, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Switch, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
 import { bookLabel, bookXY } from '../lib/bookmap';
+import { useSettings } from '../store';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
 
 /**
  * Apple Maps-style controls.
  * Locate button cycles: off → follow me (blue dot centered) → follow with heading (map turns as you turn).
- * Layers button: street map, satellite, satellite with street names, or the book's own map.
+ * Layers button: street map, satellite, satellite with street names, or the book's own map,
+ * plus a switch for the waterways from her map drawn over the street and satellite maps.
  */
 
 export type FollowMode = 'off' | 'follow' | 'heading';
@@ -43,6 +45,8 @@ export function LayersButton({ layer, onChange, bookMap, bookActive, onBook }: {
   const t = useTheme();
   const [open, setOpen] = useState(false);
   const [showBook, setShowBook] = useState(false);
+  const waterways = useSettings((s) => s.waterways);
+  const setSettings = useSettings((s) => s.set);
   const opts: { key: Layer | 'book'; label: string; icon: keyof typeof Ionicons.glyphMap }[] = [
     { key: 'standard', label: 'Street map', icon: 'map-outline' },
     { key: 'satellite', label: 'Satellite', icon: 'earth' },
@@ -77,6 +81,17 @@ export function LayersButton({ layer, onChange, bookMap, bookActive, onBook }: {
                 </Pressable>
               );
             })}
+            {/* Her canal and streams over the street and satellite maps (her own map already shows them). */}
+            <View style={[styles.row, { borderColor: t.border }]}>
+              <Ionicons name="water-outline" size={20} color={t.primary} />
+              <T style={{ flex: 1 }}>Waterways from the book</T>
+              <Switch
+                accessibilityLabel="Show waterways from the book"
+                value={waterways}
+                onValueChange={(v) => { tap(); setSettings({ waterways: v }); }}
+                trackColor={{ true: t.accent }}
+              />
+            </View>
           </View>
         </Pressable>
       </Modal>

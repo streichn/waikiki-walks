@@ -15431,5 +15431,952 @@
    }
   ],
   "road_fit_pct": 78
+ },
+ "X-p6": {
+  "affine": [
+   [
+    -0.24304477897127522,
+    -0.2831841528674217
+   ],
+   [
+    -0.291180922580789,
+    0.26039866837602565
+   ],
+   [
+    1618.4058393657106,
+    195.76526218830594
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 9.4,
+  "controls": [
+   {
+    "px": 216,
+    "py": 612,
+    "lat": 21.3108919,
+    "lng": -157.8139085,
+    "name": "O\u02bbahu Avenue x \u0100nuenue Street"
+   },
+   {
+    "px": 30,
+    "py": 686,
+    "lat": 21.3153434,
+    "lng": -157.8120212,
+    "name": "M\u0101noa Road x Lowrey Avenue"
+   },
+   {
+    "px": 405,
+    "py": 598,
+    "lat": 21.3073523,
+    "lng": -157.8168254,
+    "name": "O\u02bbahu Avenue x University Avenue"
+   },
+   {
+    "px": 360,
+    "py": 598,
+    "lat": 21.3080817,
+    "lng": -157.8161509,
+    "name": "O\u02bbahu Avenue x East M\u0101noa Road"
+   },
+   {
+    "px": 578,
+    "py": 602,
+    "lat": 21.3044324,
+    "lng": -157.8198844,
+    "name": "O\u02bbahu Avenue x Ka\u02bbala Street"
+   },
+   {
+    "px": 578,
+    "py": 556,
+    "lat": 21.3037862,
+    "lng": -157.8189789,
+    "name": "University Avenue x Ka\u02bbala Street"
+   },
+   {
+    "px": 132,
+    "py": 640,
+    "lat": 21.3128047,
+    "lng": -157.8130113,
+    "name": "Ka\u02bbaipu Avenue x O\u02bbahu Avenue"
+   },
+   {
+    "px": 92,
+    "py": 452,
+    "lat": 21.3108006,
+    "lng": -157.8085435,
+    "name": "Lowrey Avenue x East M\u0101noa Road"
+   },
+   {
+    "px": 103,
+    "py": 368,
+    "lat": 21.3091521,
+    "lng": -157.8072763,
+    "name": "Lowrey Avenue x Woodlawn Drive"
+   },
+   {
+    "px": 579.0,
+    "py": 558.0,
+    "lat": 21.3037862,
+    "lng": -157.8189789,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 559.0,
+    "py": 562.0,
+    "lat": 21.30415825,
+    "lng": -157.8187488,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 423.0,
+    "py": 593.0,
+    "lat": 21.30695575,
+    "lng": -157.81707162499998,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 763.0,
+    "py": 504.0,
+    "lat": 21.299746176923076,
+    "lng": -157.82107702307692,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 749.0,
+    "py": 516.0,
+    "lat": 21.300217766666666,
+    "lng": -157.82110086666665,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 732.0,
+    "py": 531.0,
+    "lat": 21.3007531,
+    "lng": -157.8210618,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 707.0,
+    "py": 544.0,
+    "lat": 21.301247699999998,
+    "lng": -157.8208388,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 678.0,
+    "py": 546.0,
+    "lat": 21.3016959,
+    "lng": -157.8204665,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 619.0,
+    "py": 550.0,
+    "lat": 21.302845833333333,
+    "lng": -157.81953606666667,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 603.0,
+    "py": 553.0,
+    "lat": 21.30323464285714,
+    "lng": -157.81929917142855,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 649.0,
+    "py": 547.0,
+    "lat": 21.3021725,
+    "lng": -157.820007,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 583.0,
+    "py": 557.0,
+    "lat": 21.3036624,
+    "lng": -157.81904939999998,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 674.0,
+    "py": 546.0,
+    "lat": 21.3017935,
+    "lng": -157.8204224,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 712.0,
+    "py": 543.0,
+    "lat": 21.3012493,
+    "lng": -157.8209654,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 394.0,
+    "py": 593.0,
+    "lat": 21.3074483,
+    "lng": -157.8166042,
+    "name": "Alaula Way",
+    "kind": "road"
+   },
+   {
+    "px": 598.0,
+    "py": 779.0,
+    "lat": 21.3066717,
+    "lng": -157.82382,
+    "name": "East M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 563.0,
+    "py": 760.0,
+    "lat": 21.306938387499997,
+    "lng": -157.8228124,
+    "name": "East M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 547.0,
+    "py": 752.0,
+    "lat": 21.30710941,
+    "lng": -157.82234239000002,
+    "name": "East M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 123.0,
+    "py": 462.0,
+    "lat": 21.31033275,
+    "lng": -157.80936425,
+    "name": "East M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 67.0,
+    "py": 448.0,
+    "lat": 21.31113348,
+    "lng": -157.80801706,
+    "name": "East M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 347.0,
+    "py": 580.0,
+    "lat": 21.307991837499998,
+    "lng": -157.8156136375,
+    "name": "East M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 766.0,
+    "py": 584.0,
+    "lat": 21.3009072,
+    "lng": -157.82264198000001,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 744.0,
+    "py": 592.0,
+    "lat": 21.3013608,
+    "lng": -157.8225975,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 739.0,
+    "py": 609.0,
+    "lat": 21.301791,
+    "lng": -157.8229358,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 735.0,
+    "py": 615.0,
+    "lat": 21.3021011,
+    "lng": -157.8227498,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 714.0,
+    "py": 621.0,
+    "lat": 21.30249984285714,
+    "lng": -157.82251185714284,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 692.0,
+    "py": 626.0,
+    "lat": 21.302931100000002,
+    "lng": -157.8222699,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 662.0,
+    "py": 641.0,
+    "lat": 21.303403,
+    "lng": -157.821988,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 752.0,
+    "py": 609.0,
+    "lat": 21.3016882,
+    "lng": -157.82308426363636,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 761.0,
+    "py": 620.0,
+    "lat": 21.3016636,
+    "lng": -157.82354795454546,
+    "name": "Hunnewell Street",
+    "kind": "road"
+   },
+   {
+    "px": 610.0,
+    "py": 781.0,
+    "lat": 21.3065057,
+    "lng": -157.824119,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 607.0,
+    "py": 765.0,
+    "lat": 21.306291469999998,
+    "lng": -157.82370896,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 604.0,
+    "py": 746.0,
+    "lat": 21.30607724,
+    "lng": -157.82329891999998,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 595.0,
+    "py": 691.0,
+    "lat": 21.30540194117647,
+    "lng": -157.82202264705882,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 599.0,
+    "py": 662.0,
+    "lat": 21.3048824,
+    "lng": -157.821351,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 618.0,
+    "py": 652.0,
+    "lat": 21.304415833333334,
+    "lng": -157.82148976666667,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 634.0,
+    "py": 647.0,
+    "lat": 21.3039878,
+    "lng": -157.8216421,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 648.0,
+    "py": 626.0,
+    "lat": 21.3033891,
+    "lng": -157.8216855,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 645.0,
+    "py": 609.0,
+    "lat": 21.30317392857143,
+    "lng": -157.82133299999998,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 643.0,
+    "py": 595.0,
+    "lat": 21.303047,
+    "lng": -157.8208031,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 649.0,
+    "py": 594.0,
+    "lat": 21.3029255,
+    "lng": -157.8209494,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 646.0,
+    "py": 598.0,
+    "lat": 21.3030568,
+    "lng": -157.8211155,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 118.0,
+    "py": 604.0,
+    "lat": 21.31249035,
+    "lng": -157.81210125,
+    "name": "Ka\u02bbaipu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 579.0,
+    "py": 558.0,
+    "lat": 21.3037862,
+    "lng": -157.8189789,
+    "name": "Ka\u02bbala Street",
+    "kind": "road"
+   },
+   {
+    "px": 564.0,
+    "py": 537.0,
+    "lat": 21.303560383333334,
+    "lng": -157.81853803333334,
+    "name": "Ka\u02bbala Street",
+    "kind": "road"
+   },
+   {
+    "px": 568.0,
+    "py": 516.0,
+    "lat": 21.3033062,
+    "lng": -157.818019,
+    "name": "Ka\u02bbala Street",
+    "kind": "road"
+   },
+   {
+    "px": 578.0,
+    "py": 597.0,
+    "lat": 21.3042859,
+    "lng": -157.8198314,
+    "name": "Ka\u02bbala Street",
+    "kind": "road"
+   },
+   {
+    "px": 29.0,
+    "py": 681.0,
+    "lat": 21.3153434,
+    "lng": -157.8120212,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 71.0,
+    "py": 514.0,
+    "lat": 21.31202675,
+    "lng": -157.80951312500002,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 82.0,
+    "py": 474.0,
+    "lat": 21.31126652,
+    "lng": -157.80893186,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 92.0,
+    "py": 435.0,
+    "lat": 21.31050175,
+    "lng": -157.80831595,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 103.0,
+    "py": 379.0,
+    "lat": 21.30938966,
+    "lng": -157.80746094,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 107.0,
+    "py": 363.0,
+    "lat": 21.30902002,
+    "lng": -157.80718186000001,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 112.0,
+    "py": 343.0,
+    "lat": 21.30862378,
+    "lng": -157.80689854,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 117.0,
+    "py": 325.0,
+    "lat": 21.30822894,
+    "lng": -157.80662382,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 85.0,
+    "py": 462.0,
+    "lat": 21.3110316,
+    "lng": -157.8087386,
+    "name": "Lowrey Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 675.0,
+    "py": 579.0,
+    "lat": 21.3022291,
+    "lng": -157.8211919,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 675.0,
+    "py": 555.0,
+    "lat": 21.3019738,
+    "lng": -157.8207084,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 671.0,
+    "py": 527.0,
+    "lat": 21.3016108,
+    "lng": -157.82027570000002,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 682.0,
+    "py": 501.0,
+    "lat": 21.3010345,
+    "lng": -157.8196649,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 656.0,
+    "py": 479.0,
+    "lat": 21.300919,
+    "lng": -157.8191455,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 617.0,
+    "py": 448.0,
+    "lat": 21.3012943,
+    "lng": -157.8176789,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 608.0,
+    "py": 430.0,
+    "lat": 21.30131932,
+    "lng": -157.81714344,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 602.0,
+    "py": 413.0,
+    "lat": 21.301333525,
+    "lng": -157.816665925,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 578.0,
+    "py": 397.0,
+    "lat": 21.301347595,
+    "lng": -157.816193155,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 576.0,
+    "py": 399.0,
+    "lat": 21.301361665,
+    "lng": -157.815720385,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 545.0,
+    "py": 386.0,
+    "lat": 21.3013756,
+    "lng": -157.81525264,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 542.0,
+    "py": 367.0,
+    "lat": 21.3013894,
+    "lng": -157.81478992,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 540.0,
+    "py": 371.0,
+    "lat": 21.30147352,
+    "lng": -157.81489818,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 549.0,
+    "py": 390.0,
+    "lat": 21.30145676,
+    "lng": -157.81538434,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 574.0,
+    "py": 401.0,
+    "lat": 21.30144,
+    "lng": -157.8158705,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 577.0,
+    "py": 399.0,
+    "lat": 21.30142347,
+    "lng": -157.8163511,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 602.0,
+    "py": 416.0,
+    "lat": 21.30140694,
+    "lng": -157.8168317,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 662.0,
+    "py": 496.0,
+    "lat": 21.3009994,
+    "lng": -157.8193295,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 677.0,
+    "py": 507.0,
+    "lat": 21.30123195,
+    "lng": -157.81976001,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 671.0,
+    "py": 526.0,
+    "lat": 21.30156705,
+    "lng": -157.82011107,
+    "name": "Maile Way",
+    "kind": "road"
+   },
+   {
+    "px": 29.0,
+    "py": 681.0,
+    "lat": 21.3153434,
+    "lng": -157.8120212,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 13.0,
+    "py": 673.0,
+    "lat": 21.315534812499997,
+    "lng": -157.8115270125,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 79.0,
+    "py": 687.0,
+    "lat": 21.314469130769233,
+    "lng": -157.81307443076923,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 60.0,
+    "py": 685.0,
+    "lat": 21.314815714285714,
+    "lng": -157.81272287142858,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 43.0,
+    "py": 685.0,
+    "lat": 21.3151518,
+    "lng": -157.8123519,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 755.0,
+    "py": 866.0,
+    "lat": 21.305320424999998,
+    "lng": -157.82834755,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 745.0,
+    "py": 856.0,
+    "lat": 21.30532906,
+    "lng": -157.82786244,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 719.0,
+    "py": 832.0,
+    "lat": 21.3053441,
+    "lng": -157.82691066666666,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 703.0,
+    "py": 817.0,
+    "lat": 21.3053799,
+    "lng": -157.8263705,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 684.0,
+    "py": 810.0,
+    "lat": 21.3055589,
+    "lng": -157.8258051,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 660.0,
+    "py": 796.0,
+    "lat": 21.30579478,
+    "lng": -157.8253852,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 655.0,
+    "py": 789.0,
+    "lat": 21.306043166666665,
+    "lng": -157.8249412,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 631.0,
+    "py": 784.0,
+    "lat": 21.306316199999998,
+    "lng": -157.8244574,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 305.0,
+    "py": 603.0,
+    "lat": 21.30913381875,
+    "lng": -157.8152900125,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 284.0,
+    "py": 605.0,
+    "lat": 21.30948673125,
+    "lng": -157.8150050875,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 267.0,
+    "py": 607.0,
+    "lat": 21.30983964375,
+    "lng": -157.8147201625,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 249.0,
+    "py": 609.0,
+    "lat": 21.3102498,
+    "lng": -157.8144054,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 81.0,
+    "py": 658.0,
+    "lat": 21.314039743243242,
+    "lng": -157.81252962972974,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 65.0,
+    "py": 667.0,
+    "lat": 21.314451424324325,
+    "lng": -157.81236907297298,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 32.0,
+    "py": 681.0,
+    "lat": 21.315274786486487,
+    "lng": -157.81204795945948,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 595.0,
+    "py": 604.0,
+    "lat": 21.304087466666665,
+    "lng": -157.82009236666667,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 558.0,
+    "py": 611.0,
+    "lat": 21.304882726470588,
+    "lng": -157.81961522941177,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 426.0,
+    "py": 614.0,
+    "lat": 21.30719445,
+    "lng": -157.8174353,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 21.0,
+    "py": 691.0,
+    "lat": 21.3155522,
+    "lng": -157.8119153,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 394.0,
+    "py": 593.0,
+    "lat": 21.3074483,
+    "lng": -157.8166042,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 373.0,
+    "py": 598.0,
+    "lat": 21.30782834,
+    "lng": -157.81633222,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 717.0,
+    "py": 562.0,
+    "lat": 21.3017058,
+    "lng": -157.82151405,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 690.0,
+    "py": 586.0,
+    "lat": 21.302038675000002,
+    "lng": -157.821305,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 627.0,
+    "py": 598.0,
+    "lat": 21.303388650000002,
+    "lng": -157.82051274999998,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 635.0,
+    "py": 588.0,
+    "lat": 21.3030459,
+    "lng": -157.8207149,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 42.0,
+    "py": 354.0,
+    "lat": 21.310053507692306,
+    "lng": -157.80590610769232,
+    "name": "Woodlawn Drive",
+    "kind": "road"
+   }
+  ],
+  "road_fit_pct": 89
  }
 }
