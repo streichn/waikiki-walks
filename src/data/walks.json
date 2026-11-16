@@ -91,9 +91,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.297241,
-    "lng": -157.829323,
-    "geo": "low",
+    "lat": 21.288505,
+    "lng": -157.832914,
+    "geo": "book",
     "page": "p1-23"
    },
    {
@@ -167,9 +167,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.287143,
-    "lng": -157.831462,
-    "geo": "medium",
+    "lat": 21.288475,
+    "lng": -157.831882,
+    "geo": "book",
     "page": "p1-25"
    },
    {
@@ -215,9 +215,9 @@
       "h": 376
      }
     ],
-    "lat": 21.284311,
-    "lng": -157.833427,
-    "geo": "estimated",
+    "lat": 21.28689,
+    "lng": -157.829485,
+    "geo": "book",
     "page": "p1-26"
    },
    {
@@ -232,9 +232,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.28148,
-    "lng": -157.835391,
-    "geo": "medium",
+    "lat": 21.285413,
+    "lng": -157.828208,
+    "geo": "book",
     "page": "p1-27"
    },
    {
@@ -252,9 +252,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.288632,
-    "lng": -157.824899,
-    "geo": "medium",
+    "lat": 21.28538,
+    "lng": -157.827742,
+    "geo": "book",
     "page": "p1-27"
    },
    {
@@ -295,9 +295,9 @@
       "h": 558
      }
     ],
-    "lat": 21.284466,
-    "lng": -157.827219,
-    "geo": "medium",
+    "lat": 21.284255,
+    "lng": -157.827221,
+    "geo": "book",
     "page": "p1-27"
    },
    {
@@ -319,9 +319,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.285056,
-    "lng": -157.823915,
-    "geo": "medium",
+    "lat": 21.283498,
+    "lng": -157.824386,
+    "geo": "book",
     "page": "p1-28"
    },
    {
@@ -349,9 +349,9 @@
       "h": 813
      }
     ],
-    "lat": 21.283826,
-    "lng": -157.822693,
-    "geo": "estimated",
+    "lat": 21.28343,
+    "lng": -157.825271,
+    "geo": "book",
     "page": "p1-28"
    },
    {
@@ -389,9 +389,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.282596,
-    "lng": -157.821471,
-    "geo": "estimated",
+    "lat": 21.28676,
+    "lng": -157.81397,
+    "geo": "book",
     "page": "p1-29"
    },
    {
@@ -424,9 +424,9 @@
       "h": 496
      }
     ],
-    "lat": 21.281365,
-    "lng": -157.82025,
-    "geo": "estimated",
+    "lat": 21.284269,
+    "lng": -157.819904,
+    "geo": "book",
     "page": "p1-29"
    },
    {
@@ -462,9 +462,9 @@
       "h": 562
      }
     ],
-    "lat": 21.280135,
-    "lng": -157.819028,
-    "geo": "medium",
+    "lat": 21.280399,
+    "lng": -157.818401,
+    "geo": "book",
     "page": "p1-30"
    },
    {
@@ -522,9 +522,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.28829,
-    "lng": -157.824492,
-    "geo": "low",
+    "lat": 21.282559,
+    "lng": -157.817909,
+    "geo": "book",
     "page": "p1-31"
    },
    {
@@ -538,9 +538,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.273055,
-    "lng": -157.816341,
-    "geo": "medium",
+    "lat": 21.273834,
+    "lng": -157.816483,
+    "geo": "book",
     "page": "p1-31"
    },
    {
@@ -600,9 +600,9 @@
       "h": 382
      }
     ],
-    "lat": 21.274378,
-    "lng": -157.81676,
-    "geo": "medium",
+    "lat": 21.27419,
+    "lng": -157.81697,
+    "geo": "book",
     "page": "p1-31"
    },
    {
@@ -617,11 +617,19 @@
      {
       "kind": "p",
       "text": "*There are many benches along the way; please do stop, rest, and read in the shade as you go along. Also notice the bi-level Victorian lamp posts. And, as the signs state, do not eat the fish!"
-     },
-     {
-      "kind": "tagline",
-      "text": "16 \u0007Kuekaunahi Stream Hamohamo"
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.27502,
+    "lng": -157.8179,
+    "geo": "book",
+    "page": "p1-33"
+   },
+   {
+    "id": "I-16",
+    "n": 16,
+    "title": "Kuekaunahi Stream Hamohamo",
+    "blocks": [
      {
       "kind": "p",
       "text": "The water bubbling up and emptying into the canal across the way may be a remnant of Kuekaunahi Stream that once flowed into Waikīkī at this approximate area. The fresh waters flowed down from the mountains, through this section, and emptied into the Pacific Ocean near Kapahulu Avenue."
@@ -640,9 +648,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.274888,
-    "lng": -157.818001,
-    "geo": "medium",
+    "lat": 21.275345,
+    "lng": -157.818243,
+    "geo": "book",
     "page": "p1-33"
    },
    {
@@ -656,9 +664,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.275444,
-    "lng": -157.81866,
-    "geo": "medium",
+    "lat": 21.275489,
+    "lng": -157.818446,
+    "geo": "book",
     "page": "p1-34"
    },
    {
@@ -672,9 +680,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.275993,
-    "lng": -157.819283,
-    "geo": "medium",
+    "lat": 21.276152,
+    "lng": -157.819143,
+    "geo": "book",
     "page": "p1-34"
    },
    {
@@ -692,9 +700,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.276555,
-    "lng": -157.819929,
-    "geo": "medium",
+    "lat": 21.276656,
+    "lng": -157.819689,
+    "geo": "book",
     "page": "p1-34"
    },
    {
@@ -717,11 +725,25 @@
      {
       "kind": "p",
       "text": "‘Āpuakēhau Stream and the next street recall the life of Princess Ka‘iulani."
-     },
+     }
+    ],
+    "photos": [
      {
-      "kind": "tagline",
-      "text": "21 ‘Āpuakēhau Stream"
-     },
+      "file": "p1-34-75.jpg",
+      "w": 1048,
+      "h": 702
+     }
+    ],
+    "lat": 21.277296,
+    "lng": -157.820405,
+    "geo": "book",
+    "page": "p1-34"
+   },
+   {
+    "id": "I-21",
+    "n": 21,
+    "title": "‘Āpuakēhau Stream",
+    "blocks": [
      {
       "kind": "p",
       "text": "The small, bridged, palm-lined steam across the canal may be one of the branches of historic ‘Āpuakēhau Stream as it entered Waikīkī from Mānoa Valley. ‘Āpuakēhau means ‘basket of dew,’ but it also refers to a gentle rain. The royalty rinsed their bodies in this cool freshwater stream after swimming and surfing in the saltwater ocean."
@@ -743,16 +765,10 @@
       "text": "A plaque on the inside of a fence on the makai side of Ala Moana Boulevard states that this is the “site of the house on the ten-acre estate ‘Āinahau.”"
      }
     ],
-    "photos": [
-     {
-      "file": "p1-34-75.jpg",
-      "w": 1048,
-      "h": 702
-     }
-    ],
-    "lat": 21.27611,
-    "lng": -157.821644,
-    "geo": "low",
+    "photos": [],
+    "lat": 21.278483,
+    "lng": -157.821681,
+    "geo": "book",
     "page": "p1-34"
    },
    {
@@ -776,9 +792,9 @@
       "h": 330
      }
     ],
-    "lat": 21.276777,
-    "lng": -157.825785,
-    "geo": "low",
+    "lat": 21.279488,
+    "lng": -157.822828,
+    "geo": "book",
     "page": "p1-35"
    },
    {
@@ -792,9 +808,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.279267,
-    "lng": -157.823064,
-    "geo": "medium",
+    "lat": 21.279922,
+    "lng": -157.82326,
+    "geo": "book",
     "page": "p1-36"
    },
    {
@@ -808,9 +824,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.279779,
-    "lng": -157.823664,
-    "geo": "medium",
+    "lat": 21.280352,
+    "lng": -157.823758,
+    "geo": "book",
     "page": "p1-36"
    },
    {
@@ -824,9 +840,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.280404,
-    "lng": -157.82438,
-    "geo": "medium",
+    "lat": 21.28071,
+    "lng": -157.82414,
+    "geo": "book",
     "page": "p1-36"
    },
    {
@@ -840,9 +856,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.280992,
-    "lng": -157.82505,
-    "geo": "medium",
+    "lat": 21.281264,
+    "lng": -157.824812,
+    "geo": "book",
     "page": "p1-36"
    },
    {
@@ -907,9 +923,9 @@
       "h": 553
      }
     ],
-    "lat": 21.281599,
-    "lng": -157.825742,
-    "geo": "medium",
+    "lat": 21.281852,
+    "lng": -157.825647,
+    "geo": "book",
     "page": "p1-36"
    },
    {
@@ -924,20 +940,28 @@
      {
       "kind": "p",
       "text": "Lewers Street, aka Waikīkī Beach Walk, is a recently created walkway of stores and restaurants. However, it is also a tribute to Hawaiian music with the statue of Gabby Pahinui (1921-1980) at the makai end of “Beach Walk.” He played the slack key guitar and had a magnificent falsetto voice. He was instrumental in the Hawaiian Renaissance, which began in the 1970s."
-     },
-     {
-      "kind": "tagline",
-      "text": "29 Kai‘olu Street"
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.282762,
+    "lng": -157.826737,
+    "geo": "book",
+    "page": "p1-37"
+   },
+   {
+    "id": "I-29",
+    "n": 29,
+    "title": "Kai‘olu Street",
+    "blocks": [
      {
       "kind": "p",
       "text": "Kai‘olu, ‘cool ocean,’ is a reference to a time when this street may have met the ocean, which it does not today."
      }
     ],
     "photos": [],
-    "lat": 21.278977,
-    "lng": -157.830694,
-    "geo": "medium",
+    "lat": 21.283553,
+    "lng": -157.827606,
+    "geo": "book",
     "page": "p1-37"
    },
    {
@@ -963,9 +987,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.283896,
-    "lng": -157.828389,
-    "geo": "medium",
+    "lat": 21.283987,
+    "lng": -157.828072,
+    "geo": "book",
     "page": "p1-37"
    },
    {
@@ -993,9 +1017,9 @@
       "h": 319
      }
     ],
-    "lat": 21.28436,
-    "lng": -157.828933,
-    "geo": "medium",
+    "lat": 21.284603,
+    "lng": -157.828757,
+    "geo": "book",
     "page": "p1-37"
    },
    {
@@ -1013,9 +1037,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.28482,
-    "lng": -157.829478,
-    "geo": "medium",
+    "lat": 21.28508,
+    "lng": -157.829281,
+    "geo": "book",
     "page": "p1-38"
    },
    {
@@ -1033,9 +1057,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.285295,
-    "lng": -157.830017,
-    "geo": "medium",
+    "lat": 21.285555,
+    "lng": -157.829789,
+    "geo": "book",
     "page": "p1-38"
    },
    {
@@ -1063,9 +1087,9 @@
       "h": 771
      }
     ],
-    "lat": 21.285764,
-    "lng": -157.830551,
-    "geo": "medium",
+    "lat": 21.286016,
+    "lng": -157.830283,
+    "geo": "book",
     "page": "p1-38"
    },
    {
@@ -1079,9 +1103,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.285995,
-    "lng": -157.830822,
-    "geo": "estimated",
+    "lat": 21.286033,
+    "lng": -157.830267,
+    "geo": "book",
     "page": "p1-39"
    },
    {
@@ -1099,9 +1123,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.286226,
-    "lng": -157.831092,
-    "geo": "medium",
+    "lat": 21.286516,
+    "lng": -157.830824,
+    "geo": "book",
     "page": "p1-39"
    },
    {
@@ -1147,9 +1171,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.285371,
-    "lng": -157.83261,
-    "geo": "low",
+    "lat": 21.287028,
+    "lng": -157.83138,
+    "geo": "book",
     "page": "p1-39"
    },
    {
@@ -1321,9 +1345,9 @@
       "h": 496
      }
     ],
-    "lat": 21.287179,
-    "lng": -157.832161,
-    "geo": "medium",
+    "lat": 21.287545,
+    "lng": -157.831943,
+    "geo": "book",
     "page": "p1-39"
    }
   ]
@@ -2569,11 +2593,35 @@
      {
       "kind": "p",
       "text": "Notice the solitary Hau tree on the beach: beachgoers favorite spot in the shade. Grab the shade whenever you can! Hau belongs to the Malvaeceae (Mallow) family, which includes the Hibiscus. In the course of its life (one day!), the Hau blossom displays three different colors: yellow upon opening, then bright orange, and finally red-brown when it drops. The Hau tree has many traditional uses: its rough but lightweight wood is used for making canoe outriggers, its fiber is made into rope, and its sap and flowers are used medicinally."
+     }
+    ],
+    "photos": [
+     {
+      "file": "p1-60-109.jpg",
+      "w": 340,
+      "h": 566
      },
      {
-      "kind": "tagline",
-      "text": "3 Kawehewehe Kahāloa"
+      "file": "p1-60-110.jpg",
+      "w": 367,
+      "h": 368
      },
+     {
+      "file": "p1-61-111.jpg",
+      "w": 1050,
+      "h": 597
+     }
+    ],
+    "lat": 21.278525,
+    "lng": -157.830771,
+    "geo": "low",
+    "page": "p1-60"
+   },
+   {
+    "id": "III-03",
+    "n": 3,
+    "title": "Kawehewehe Kahāloa",
+    "blocks": [
      {
       "kind": "p",
       "text": "The beach and waters on the ‘Ewa side of this beach right-of way were called Kawehewehe, ‘the removal,’ by Hawaiians. According to mo‘olelo, sick and injured people were brought here for curative bathing treatments. Often, a seaweed lei was worn, to be removed and left behind as a This Hau tree provides the only shade on the beach. Walking Diamond Head, the beach ends here but resumes at the Royal Hawaiian Hotel. symbolic request that a person’s sins, believed to be the cause of illness, be forgiven. Traditional Native Hawaiians today continue to use the ocean waters therapeutically for healing and purification rites."
@@ -2603,26 +2651,10 @@
       "text": "In earlier times, the beach was also known as the ‘ili of Kahāloa, ‘long or eternal breath,’ named for one of the 4 kāhuna who came to Hawai‘i from Tahiti in ancient times (Stop 11 ). However, Hāloa, was the first Hawaiian man who, because of his birth, was responsible for the kalo (‘taro’) plant. At one time, kalo grew abundantly here."
      }
     ],
-    "photos": [
-     {
-      "file": "p1-60-109.jpg",
-      "w": 340,
-      "h": 566
-     },
-     {
-      "file": "p1-60-110.jpg",
-      "w": 367,
-      "h": 368
-     },
-     {
-      "file": "p1-61-111.jpg",
-      "w": 1050,
-      "h": 597
-     }
-    ],
-    "lat": 21.278525,
-    "lng": -157.830771,
-    "geo": "low",
+    "photos": [],
+    "lat": 21.277964,
+    "lng": -157.829926,
+    "geo": "estimated",
     "page": "p1-60"
    },
    {
@@ -2677,11 +2709,50 @@
      {
       "kind": "direction",
       "text": "Take your shoes off to walk in the sand as you read (and imagine) what this magnificent place once looked like."
+     }
+    ],
+    "photos": [
+     {
+      "file": "p1-62-112.jpg",
+      "w": 513,
+      "h": 570
      },
      {
-      "kind": "tagline",
-      "text": "5 ‘Āpuakēhau Stream"
+      "file": "p1-63-113.jpg",
+      "w": 1050,
+      "h": 570
      },
+     {
+      "file": "p1-64-114.jpg",
+      "w": 1050,
+      "h": 527
+     },
+     {
+      "file": "p1-65-115.jpg",
+      "w": 579,
+      "h": 365
+     },
+     {
+      "file": "p1-66-116.jpg",
+      "w": 387,
+      "h": 329
+     },
+     {
+      "file": "p1-66-117.jpg",
+      "w": 386,
+      "h": 291
+     }
+    ],
+    "lat": 21.277404,
+    "lng": -157.829081,
+    "geo": "medium",
+    "page": "p1-62"
+   },
+   {
+    "id": "III-05",
+    "n": 5,
+    "title": "‘Āpuakēhau Stream",
+    "blocks": [
      {
       "kind": "tagline",
       "text": "‘Āpuakēhau Stream, a wide freshwater"
@@ -2701,11 +2772,19 @@
      {
       "kind": "p",
       "text": "The name for this stream ‘Āpuakēhau, ‘basket of dew,’ may derive from the vast quantities of Ti, Hau, and Palm plants that lined its banks. There are still many areas of Hau along the beach, today. Just look for a Hibiscus-like flower"
-     },
-     {
-      "kind": "tagline",
-      "text": "6 \u0007Kahuamokomoko Athletic Field"
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.277242,
+    "lng": -157.828715,
+    "geo": "estimated",
+    "page": "p1-62"
+   },
+   {
+    "id": "III-06",
+    "n": 6,
+    "title": "Kahuamokomoko Athletic Field",
+    "blocks": [
      {
       "kind": "p",
       "text": "Kahuamokomoko, (sports field for boxing) was located ‘Ewa of ‘Āpuakēhau Stream, on the site of the Royal Hawaiian Hotel since game stones, ‘ulu maika (stone disks used in a game similar to bowling) have been unearthed there. The historian George Kanahele relates a description from a visitor in 1813-15: “a course 500 to 600 feet long and ‘ulu maika discs weighing two to three pounds… The course was… in a grove of coconut trees planted along the beach in three parallel rows nearly a quarter of a mile.”"
@@ -2725,11 +2804,19 @@
      {
       "kind": "p",
       "text": "events and admission information."
-     },
-     {
-      "kind": "tagline",
-      "text": "7 Puaali‘ili‘i or Pua‘ali‘ili‘i"
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.277079,
+    "lng": -157.828349,
+    "geo": "estimated",
+    "page": "p1-62"
+   },
+   {
+    "id": "III-07",
+    "n": 7,
+    "title": "Puaali‘ili‘i or Pua‘ali‘ili‘i",
+    "blocks": [
      {
       "kind": "p",
       "text": "Standing on the beach in front of the Outrigger Hotel, try to imagine this area 200 years ago: a stream surrounded by kings’ homes on both sides of the stream, an open religious structure (heiau), and a sports field. As a royal residence, the area was kapu, ‘taboo,’ to commoners (yes, you and me!). Whatever the actual layout of those ancient sites may have been, the area, no doubt, presented a striking panorama from the ocean."
@@ -2819,46 +2906,18 @@
       "text": "1878 photo of Hale Lama, Kamehameha V’s house"
      },
      {
+      "kind": "caption",
+      "text": "at Helumoa on ‘Āpuakēhau Stream."
+     },
+     {
       "kind": "p",
       "text": "(Hawai‘i State Archives)"
      }
     ],
-    "photos": [
-     {
-      "file": "p1-62-112.jpg",
-      "w": 513,
-      "h": 570,
-      "caption": "at Helumoa on ‘Āpuakēhau Stream."
-     },
-     {
-      "file": "p1-63-113.jpg",
-      "w": 1050,
-      "h": 570
-     },
-     {
-      "file": "p1-64-114.jpg",
-      "w": 1050,
-      "h": 527
-     },
-     {
-      "file": "p1-65-115.jpg",
-      "w": 579,
-      "h": 365
-     },
-     {
-      "file": "p1-66-116.jpg",
-      "w": 387,
-      "h": 329
-     },
-     {
-      "file": "p1-66-117.jpg",
-      "w": 386,
-      "h": 291
-     }
-    ],
-    "lat": 21.277404,
-    "lng": -157.829081,
-    "geo": "medium",
+    "photos": [],
+    "lat": 21.276917,
+    "lng": -157.827984,
+    "geo": "estimated",
     "page": "p1-62"
    },
    {
@@ -2888,8 +2947,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.276998,
-    "lng": -157.828167,
+    "lat": 21.276754,
+    "lng": -157.827618,
     "geo": "estimated",
     "page": "p1-67"
    },
@@ -2933,11 +2992,25 @@
      {
       "kind": "p",
       "text": "Do spend some time at the Moana’s Historical Room on the second floor: replete with an old video, photos, artifacts, and facts. Historic tours are offered throughout the week: check on dates and times in the main lobby."
-     },
+     }
+    ],
+    "photos": [
      {
-      "kind": "tagline",
-      "text": "10 Ulukou"
-     },
+      "file": "p1-67-118.jpg",
+      "w": 786,
+      "h": 418
+     }
+    ],
+    "lat": 21.276592,
+    "lng": -157.827252,
+    "geo": "medium",
+    "page": "p1-67"
+   },
+   {
+    "id": "III-10",
+    "n": 10,
+    "title": "Ulukou",
+    "blocks": [
      {
       "kind": "p",
       "text": "Ulukou surrounded the royal residences that were located near ‘Āpuakēhau Stream. Ulukou was an exclusive place for the chiefs, rendering it kapu, ‘taboo,’ to commoners."
@@ -2967,16 +3040,10 @@
       "text": "Continue along the beach and walk up to the grassy area close to the sidewalk at Kalākaua Avenue. In front of you are the gems of Waikīkī ! These stones are located on the sand near the Waikīkī Beach Center pavilion and are surrounded by native Naupaka plants."
      }
     ],
-    "photos": [
-     {
-      "file": "p1-67-118.jpg",
-      "w": 786,
-      "h": 418
-     }
-    ],
-    "lat": 21.276592,
-    "lng": -157.827252,
-    "geo": "medium",
+    "photos": [],
+    "lat": 21.28396,
+    "lng": -157.824113,
+    "geo": "estimated",
     "page": "p1-67"
    },
    {
@@ -3032,19 +3099,51 @@
      {
       "kind": "p",
       "text": "If this Hawaiian history interests you, be sure to read The Kāhuna: Versatile Masters of Old Hawai‘i by Likeke R. McBride, lovingly edited by his son, Andrew S. McBride."
+     }
+    ],
+    "photos": [
+     {
+      "file": "p1-69-119.jpg",
+      "w": 994,
+      "h": 494
      },
      {
-      "kind": "tagline",
-      "text": "12 Hamohamo"
+      "file": "p1-70-120.jpg",
+      "w": 393,
+      "h": 387
      },
+     {
+      "file": "p1-70-121.jpg",
+      "w": 388,
+      "h": 383
+     }
+    ],
+    "lat": 21.291329,
+    "lng": -157.820973,
+    "geo": "low",
+    "page": "p1-69"
+   },
+   {
+    "id": "III-12",
+    "n": 12,
+    "title": "Hamohamo",
+    "blocks": [
      {
       "kind": "p",
       "text": "The area between ‘Āpuakēhau and Kuekaunahi streams (at the Diamond Head end of Waikīkī ) was known as the ‘ili of Hamohamo ‘soothing or rub gently.’ Its name may have referred to the water lapping at the shoreline. This area was the home of Hawai‘i’s last reigning monarch, Queen Lili‘uokalani, who named her residences Paoakalani (‘royal perfume’) and Kealohilani (‘the royal brightness’) - both names are preserved as street names at this end of Waikīkī beach. (For more detail about Hamohamo, refer to ‘Āinahau and Hamohamo Walk V.)"
-     },
-     {
-      "kind": "tagline",
-      "text": "13 Kalehuawehe"
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.28604,
+    "lng": -157.822255,
+    "geo": "estimated",
+    "page": "p1-69"
+   },
+   {
+    "id": "III-13",
+    "n": 13,
+    "title": "Kalehuawehe",
+    "blocks": [
      {
       "kind": "p",
       "text": "Hawaiians, especially the royalty of old, traditionally enjoyed the fine surf of Waikīkī. Kalehuawehe, ‘the removed or untied lehua lei,’ was a surfing area."
@@ -3070,26 +3169,10 @@
       "text": "In 1997, the stones were raised onto a paepae (stone platform), and an ahu (altar) and fence were built to honor and protect them. The largest stone was estimated to weigh 7.5 tons. As part of the project ceremonies, Tahitians from Ra‘iatea presented a stone from the healers’ homeland which they named Ta‘ahu Ea (the life). as the board was kapu. The mo‘olelo does a flip-flop, however, and they surfed anyway after Pīkoi gave the princess his lei!"
      }
     ],
-    "photos": [
-     {
-      "file": "p1-69-119.jpg",
-      "w": 994,
-      "h": 494
-     },
-     {
-      "file": "p1-70-120.jpg",
-      "w": 393,
-      "h": 387
-     },
-     {
-      "file": "p1-70-121.jpg",
-      "w": 388,
-      "h": 383
-     }
-    ],
-    "lat": 21.291329,
-    "lng": -157.820973,
-    "geo": "low",
+    "photos": [],
+    "lat": 21.280752,
+    "lng": -157.823536,
+    "geo": "estimated",
     "page": "p1-69"
    },
    {
@@ -3422,9 +3505,9 @@
       "h": 442
      }
     ],
-    "lat": 21.283934,
-    "lng": -157.831693,
-    "geo": "medium",
+    "lat": 21.284201,
+    "lng": -157.831887,
+    "geo": "book",
     "page": "p1-73"
    },
    {
@@ -3446,9 +3529,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.284288,
-    "lng": -157.83118,
-    "geo": "estimated",
+    "lat": 21.283727,
+    "lng": -157.831644,
+    "geo": "book",
     "page": "p1-75"
    },
    {
@@ -3489,9 +3572,9 @@
       "h": 475
      }
     ],
-    "lat": 21.284642,
-    "lng": -157.830667,
-    "geo": "low",
+    "lat": 21.284078,
+    "lng": -157.831802,
+    "geo": "book",
     "page": "p1-75"
    },
    {
@@ -3509,9 +3592,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.282907,
-    "lng": -157.831343,
-    "geo": "medium",
+    "lat": 21.283319,
+    "lng": -157.831404,
+    "geo": "book",
     "page": "p1-76"
    },
    {
@@ -3537,9 +3620,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.282665,
-    "lng": -157.831682,
-    "geo": "medium",
+    "lat": 21.282594,
+    "lng": -157.83107,
+    "geo": "book",
     "page": "p1-76"
    },
    {
@@ -3553,9 +3636,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.282494,
-    "lng": -157.83136,
-    "geo": "estimated",
+    "lat": 21.2822,
+    "lng": -157.830823,
+    "geo": "book",
     "page": "p1-76"
    },
    {
@@ -3583,9 +3666,9 @@
       "h": 615
      }
     ],
-    "lat": 21.282324,
-    "lng": -157.831038,
-    "geo": "medium",
+    "lat": 21.28248,
+    "lng": -157.830968,
+    "geo": "book",
     "page": "p1-76"
    },
    {
@@ -3618,9 +3701,9 @@
       "h": 297
      }
     ],
-    "lat": 21.283476,
-    "lng": -157.830955,
-    "geo": "medium",
+    "lat": 21.28126,
+    "lng": -157.83035,
+    "geo": "book",
     "page": "p1-77"
    },
    {
@@ -3639,9 +3722,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.280003,
+    "lat": 21.27992,
     "lng": -157.829631,
-    "geo": "medium",
+    "geo": "book",
     "page": "p1-78"
    },
    {
@@ -3661,11 +3744,30 @@
      {
       "kind": "p",
       "text": "Elegant roofline on the Gump Building The fine details on this almost 100-year-old building should not be overlooked! Intricate metal work on the side staircase at the Gump Building"
+     }
+    ],
+    "photos": [
+     {
+      "file": "p1-78-134.jpg",
+      "w": 387,
+      "h": 547
      },
      {
-      "kind": "tagline",
-      "text": "11 Helumoa"
-     },
+      "file": "p1-78-135.jpg",
+      "w": 388,
+      "h": 539
+     }
+    ],
+    "lat": 21.280192,
+    "lng": -157.829847,
+    "geo": "book",
+    "page": "p1-78"
+   },
+   {
+    "id": "IV-11",
+    "n": 11,
+    "title": "Helumoa",
+    "blocks": [
      {
       "kind": "p",
       "text": "This area was known as Helumoa, with the only trace as Helumoa Road near Gabby Pahinui’s statue. Helumoa Road, ‘chicken scratch,’ is our only reminder of this important place in ancient Hawaiian times. Helumoa, where Hawaiian royalty lived, was a beach area located from here to ‘Āpuakēhau Stream at the Moana hotel."
@@ -3687,21 +3789,10 @@
       "text": "Continuing along the makai side of Kalākaua Avenue, cross at Lewers Street to access the 3-block long stretch of the Royal Hawaiian Center. A plaque in the center refers to the place name Helumoa."
      }
     ],
-    "photos": [
-     {
-      "file": "p1-78-134.jpg",
-      "w": 387,
-      "h": 547
-     },
-     {
-      "file": "p1-78-135.jpg",
-      "w": 388,
-      "h": 539
-     }
-    ],
-    "lat": 21.280101,
-    "lng": -157.829795,
-    "geo": "medium",
+    "photos": [],
+    "lat": 21.279554,
+    "lng": -157.829423,
+    "geo": "book",
     "page": "p1-78"
    },
    {
@@ -3733,9 +3824,9 @@
       "h": 615
      }
     ],
-    "lat": 21.27846,
-    "lng": -157.829284,
-    "geo": "medium",
+    "lat": 21.278139,
+    "lng": -157.827934,
+    "geo": "book",
     "page": "p1-79"
    },
    {
@@ -3795,9 +3886,9 @@
       "h": 394
      }
     ],
-    "lat": 21.278661,
-    "lng": -157.828985,
-    "geo": "estimated",
+    "lat": 21.277825,
+    "lng": -157.827582,
+    "geo": "book",
     "page": "p1-80"
    },
    {
@@ -3832,11 +3923,25 @@
      {
       "kind": "direction",
       "text": "Return to walk Diamond Head along the mauka side of Kalākaua Avenue."
-     },
+     }
+    ],
+    "photos": [
      {
-      "kind": "tagline",
-      "text": "15 Former Waikīkī Theater"
-     },
+      "file": "p1-81-138.jpg",
+      "w": 388,
+      "h": 288
+     }
+    ],
+    "lat": 21.278828,
+    "lng": -157.828648,
+    "geo": "book",
+    "page": "p1-81"
+   },
+   {
+    "id": "IV-15",
+    "n": 15,
+    "title": "Former Waikīkī Theater",
+    "blocks": [
      {
       "kind": "p",
       "text": "The Art Deco movie theater was designed by Charles W. Dickey of Halekūlani fame in 1936, closed in 2002, and was demolished in 2005. In 1937, Waikīkī This crosswalk design is based on the Mo‘olelo Kaha (‘story about the scratches’)."
@@ -3850,16 +3955,10 @@
       "text": "Continue along Kalākaua Avenue, passing Duke’s Lane -- so narrow that it’s easy to miss."
      }
     ],
-    "photos": [
-     {
-      "file": "p1-81-138.jpg",
-      "w": 388,
-      "h": 288
-     }
-    ],
-    "lat": 21.278862,
-    "lng": -157.828686,
-    "geo": "medium",
+    "photos": [],
+    "lat": 21.278459,
+    "lng": -157.828244,
+    "geo": "book",
     "page": "p1-81"
    },
    {
@@ -3881,9 +3980,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.278634,
-    "lng": -157.827429,
-    "geo": "medium",
+    "lat": 21.278226,
+    "lng": -157.827969,
+    "geo": "book",
     "page": "p1-82"
    },
    {
@@ -3916,9 +4015,9 @@
       "h": 435
      }
     ],
-    "lat": 21.277764,
-    "lng": -157.827129,
-    "geo": "medium",
+    "lat": 21.277826,
+    "lng": -157.827531,
+    "geo": "book",
     "page": "p1-82"
    },
    {
@@ -3957,20 +4056,28 @@
      {
       "kind": "p",
       "text": "19 Next to the International Marketplace are the Princess Ka‘iulani Shops and the Princess Ka‘iulani Hotel, which are visited on the ‘Āinahau-Hamohamo Walk V."
-     },
-     {
-      "kind": "tagline",
-      "text": "20 \u0007Waikīkī Public School Waikīkī Church"
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.277227,
+    "lng": -157.826841,
+    "geo": "book",
+    "page": "p1-83"
+   },
+   {
+    "id": "IV-20",
+    "n": 20,
+    "title": "Waikīkī Public School Waikīkī Church",
+    "blocks": [
      {
       "kind": "p",
       "text": "The first public school and first church in Waikīkī were established on the mauka- ‘Ewa corner of Kalākaua Avenue and Ka‘iulani Street, as located on 1874 and 1897 maps. The church was a ‘apana, ‘branch,’ of Kawaiaha‘o Church downtown. The church and school were razed to make way for the additional small Moana Hotel buildings. In the 1950s the cottage and nursery that were part of the Moana Hotel across the street were, in turn, razed to make way for the Princess Ka‘iulani Shops. The shops, as well as the Princess Ka‘iulani Hotel, were designed by architect Gardner Dailey of San Francisco, who employed a “Hawaiian Dickey-style” roof that flares out to block the harsh rays of the sun. Dailey also designed a building on the Berkeley campus of the University of California. (For more information about Princess Ka‘iulani follow the ‘ĀinahauHamohamo Walk V)"
      }
     ],
     "photos": [],
-    "lat": 21.277459,
-    "lng": -157.826838,
-    "geo": "medium",
+    "lat": 21.276762,
+    "lng": -157.826331,
+    "geo": "book",
     "page": "p1-83"
    },
    {
@@ -4005,9 +4112,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.2779,
-    "lng": -157.825067,
-    "geo": "medium",
+    "lat": 21.277139,
+    "lng": -157.826806,
+    "geo": "book",
     "page": "p1-84"
    },
    {
@@ -4065,9 +4172,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.276592,
-    "lng": -157.827252,
-    "geo": "medium",
+    "lat": 21.276591,
+    "lng": -157.826194,
+    "geo": "book",
     "page": "p1-84"
    },
    {
@@ -4105,9 +4212,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.276067,
-    "lng": -157.82509,
-    "geo": "medium",
+    "lat": 21.275557,
+    "lng": -157.825091,
+    "geo": "book",
     "page": "p1-86"
    },
    {
@@ -4121,9 +4228,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.275983,
-    "lng": -157.825799,
-    "geo": "medium",
+    "lat": 21.276019,
+    "lng": -157.825606,
+    "geo": "book",
     "page": "p1-87"
    },
    {
@@ -4192,9 +4299,9 @@
       "h": 356
      }
     ],
-    "lat": 21.27573,
-    "lng": -157.825571,
-    "geo": "estimated",
+    "lat": 21.275593,
+    "lng": -157.825182,
+    "geo": "book",
     "page": "p1-87"
    },
    {
@@ -4220,9 +4327,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.275476,
-    "lng": -157.825342,
-    "geo": "medium",
+    "lat": 21.275249,
+    "lng": -157.824834,
+    "geo": "book",
     "page": "p1-88"
    },
    {
@@ -4284,9 +4391,9 @@
       "h": 413
      }
     ],
-    "lat": 21.274854,
-    "lng": -157.817775,
-    "geo": "medium",
+    "lat": 21.274432,
+    "lng": -157.824311,
+    "geo": "book",
     "page": "p1-88"
    },
    {
@@ -4351,9 +4458,9 @@
       "h": 563
      }
     ],
-    "lat": 21.274271,
-    "lng": -157.820478,
-    "geo": "estimated",
+    "lat": 21.273483,
+    "lng": -157.823878,
+    "geo": "book",
     "page": "p1-89"
    },
    {
@@ -4583,9 +4690,9 @@
       "h": 382
      }
     ],
-    "lat": 21.273688,
-    "lng": -157.823182,
-    "geo": "medium",
+    "lat": 21.273655,
+    "lng": -157.823564,
+    "geo": "book",
     "page": "p1-90"
    }
   ]
@@ -5286,22 +5393,6 @@
      {
       "kind": "p",
       "text": "First, Waikīkī Beach Marriot Hotel across the way, then Prince Kūhiō (Hilton) Hotel at the corner of Lili‘uokalani Avenue."
-     },
-     {
-      "kind": "tagline",
-      "text": "16 Lalani Hawaiian Village"
-     },
-     {
-      "kind": "p",
-      "text": "Lalani Village, which was located at the makai -‘Ewa corner of Kalākaua and Paoakalani avenues from 1932 to 1955, was the first Hawaiian-Polynesian cultural center."
-     },
-     {
-      "kind": "p",
-      "text": "James Kapihe Palea, known as Kuluwaimaka, “Tear Drop,” for the tears of emotion brought to the eyes of his audience, was the Hawaiian chanter at the Village. Earlier in his career, he was chief chanter under King Kalākaua."
-     },
-     {
-      "kind": "p",
-      "text": "Today, the Waikīkī Beach Marriot Hotel is located on that site. Before the 1920s, Kuekaunahi Stream once flowed nearby. The two towers are named after Queen Lili‘uokalani’s homes: the mauka tower, Paoakalani; the makai tower, Kealohilani."
      }
     ],
     "photos": [
@@ -5319,6 +5410,30 @@
     "lat": 21.274056,
     "lng": -157.820606,
     "geo": "low",
+    "page": "p2-13"
+   },
+   {
+    "id": "V-16",
+    "n": 16,
+    "title": "Lalani Hawaiian Village",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "Lalani Village, which was located at the makai -‘Ewa corner of Kalākaua and Paoakalani avenues from 1932 to 1955, was the first Hawaiian-Polynesian cultural center."
+     },
+     {
+      "kind": "p",
+      "text": "James Kapihe Palea, known as Kuluwaimaka, “Tear Drop,” for the tears of emotion brought to the eyes of his audience, was the Hawaiian chanter at the Village. Earlier in his career, he was chief chanter under King Kalākaua."
+     },
+     {
+      "kind": "p",
+      "text": "Today, the Waikīkī Beach Marriot Hotel is located on that site. Before the 1920s, Kuekaunahi Stream once flowed nearby. The two towers are named after Queen Lili‘uokalani’s homes: the mauka tower, Paoakalani; the makai tower, Kealohilani."
+     }
+    ],
+    "photos": [],
+    "lat": 21.274539,
+    "lng": -157.82138,
+    "geo": "estimated",
     "page": "p2-13"
    },
    {
@@ -5727,22 +5842,6 @@
      {
       "kind": "p",
       "text": "There are 2 huge Banyan trees on the Diamond Head side of Kapi‘olani Park. Can you find the main/original trunk for each Banyan tree?"
-     },
-     {
-      "kind": "tagline",
-      "text": "5 Makee Island"
-     },
-     {
-      "kind": "p",
-      "text": "Before the zoo was established, a large man-made island, Makee Island, was located here, covering most of the present-day zoo. Captain James Makee, a Scotsman of many resources and talents, was captain of whaling ships, a rancher, and a commercial developer. In the 1860s he established Rose Ranch on the slopes of Haleakalā on Maui, developing it into a cattle ranch estate where the Hawaiian monarchy enjoyed being wined and dined. He also owned a sugar company with King Kalākaua."
-     },
-     {
-      "kind": "p",
-      "text": "In 1876, Makee was one of the organizers of Kapi‘olani Park Association and one of the developers of the long-gone racetrack in Kapi‘olani Park. Makee Road, a short diagonal road ‘Ewa of the Zoo, off Kapahulu Avenue is named for him. Makee Road was almost completely absorbed by Kapahulu Avenue when Kapahulu Avenue was extended makai."
-     },
-     {
-      "kind": "p",
-      "text": "The area around the bandstand has been landscaped with ponds and lakes to reflect Makee Island and earlier days of Kapi‘olani Park before the Ala Wai Canal. Enjoy walking around the recreated ponds, especially the sculptures, the Joy of Music and Pinao, ‘dragonfly.’"
      }
     ],
     "photos": [
@@ -5770,6 +5869,30 @@
     "lat": 21.265353,
     "lng": -157.819159,
     "geo": "medium",
+    "page": "p2-20"
+   },
+   {
+    "id": "VI-05",
+    "n": 5,
+    "title": "Makee Island",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "Before the zoo was established, a large man-made island, Makee Island, was located here, covering most of the present-day zoo. Captain James Makee, a Scotsman of many resources and talents, was captain of whaling ships, a rancher, and a commercial developer. In the 1860s he established Rose Ranch on the slopes of Haleakalā on Maui, developing it into a cattle ranch estate where the Hawaiian monarchy enjoyed being wined and dined. He also owned a sugar company with King Kalākaua."
+     },
+     {
+      "kind": "p",
+      "text": "In 1876, Makee was one of the organizers of Kapi‘olani Park Association and one of the developers of the long-gone racetrack in Kapi‘olani Park. Makee Road, a short diagonal road ‘Ewa of the Zoo, off Kapahulu Avenue is named for him. Makee Road was almost completely absorbed by Kapahulu Avenue when Kapahulu Avenue was extended makai."
+     },
+     {
+      "kind": "p",
+      "text": "The area around the bandstand has been landscaped with ponds and lakes to reflect Makee Island and earlier days of Kapi‘olani Park before the Ala Wai Canal. Enjoy walking around the recreated ponds, especially the sculptures, the Joy of Music and Pinao, ‘dragonfly.’"
+     }
+    ],
+    "photos": [],
+    "lat": 21.267206,
+    "lng": -157.819922,
+    "geo": "estimated",
     "page": "p2-20"
    },
    {
@@ -6241,11 +6364,25 @@
      {
       "kind": "direction",
       "text": "If the walkway along the beach is clear (no high tide waves and/or no construction), walk along the oceanfront until you reach the aquarium, then come back to Kalākaua Avenue for the entrance to the Waikīkī Aquarium."
-     },
+     }
+    ],
+    "photos": [
      {
-      "kind": "tagline",
-      "text": "2 Kuekaunahi Stream"
-     },
+      "file": "p2-31-195.jpg",
+      "w": 696,
+      "h": 486
+     }
+    ],
+    "lat": 21.269562,
+    "lng": -157.822565,
+    "geo": "estimated",
+    "page": "p2-31"
+   },
+   {
+    "id": "VII-02",
+    "n": 2,
+    "title": "Kuekaunahi Stream",
+    "blocks": [
      {
       "kind": "p",
       "text": "Kuekaunahi Stream originally flowed down from the mountains through Pālolo Valley and emptied into the ocean ‘Ewa of Kapahulu Pier. However, in the 1920s, Kuekaunahi Stream was diverted away from Waikīkī, into the Mānoa-Pālolo Drainage Canal (Not a very picturesque name, is it?!) and via the Ala Wai Canal out to the Pacific Ocean."
@@ -6267,13 +6404,7 @@
       "text": "Check out Art on the Zoo Fence on Monsarrat Avenue – Saturdays and Sundays, 9am to 3pm. www.artonthezoofencehi.com Art has been on display here since 1953."
      }
     ],
-    "photos": [
-     {
-      "file": "p2-31-195.jpg",
-      "w": 696,
-      "h": 486
-     }
-    ],
+    "photos": [],
     "lat": 21.269562,
     "lng": -157.822565,
     "geo": "estimated",
@@ -7941,11 +8072,30 @@
      {
       "kind": "p",
       "text": "Notice the drain spouts on the tower; are they really gargoyles in disguise? Gargoyle, from gargouille, simply means ‘drain spout’ in French."
+     }
+    ],
+    "photos": [
+     {
+      "file": "p2-60-223.jpg",
+      "w": 823,
+      "h": 495
      },
      {
-      "kind": "tagline",
-      "text": "24 \u0007Pu‘u o Kaimukī Crater!"
-     },
+      "file": "p2-60-224.jpg",
+      "w": 407,
+      "h": 354
+     }
+    ],
+    "lat": 21.278465,
+    "lng": -157.799361,
+    "geo": "medium",
+    "page": "p2-60"
+   },
+   {
+    "id": "VIII-24",
+    "n": 24,
+    "title": "Pu‘u o Kaimukī Crater!",
+    "blocks": [
      {
       "kind": "direction",
       "text": "Kaimukī reservoir"
@@ -8003,21 +8153,10 @@
       "text": "Depending on your walking stamina, you can continue or take a bus back on Wai‘alae Avenue. Alternatively, if you‘d like to walk back to Kapahulu where you started, when you reach 12th Avenue, look for Kaimukī Avenue, going ‘Ewa, and take it straight down to Kapahulu Avenue."
      }
     ],
-    "photos": [
-     {
-      "file": "p2-60-223.jpg",
-      "w": 823,
-      "h": 495
-     },
-     {
-      "file": "p2-60-224.jpg",
-      "w": 407,
-      "h": 354
-     }
-    ],
-    "lat": 21.278465,
-    "lng": -157.799361,
-    "geo": "medium",
+    "photos": [],
+    "lat": 21.277086,
+    "lng": -157.79918,
+    "geo": "estimated",
     "page": "p2-60"
    },
    {
@@ -8729,22 +8868,6 @@
      {
       "kind": "p",
       "text": "As you walk along Kahoaloha Lane, observe the huge Mango trees with the posted warning, DO NOT PICK!"
-     },
-     {
-      "kind": "tagline",
-      "text": "13 \u0007The grounds of Kamō‘ili‘ili Church and Cemetery"
-     },
-     {
-      "kind": "p",
-      "text": "As you turn the corner Diamond Head onto S. King Street, you will come face to face with the looming skyscraper of Mō‘ili‘ili, the Contessa, built on the grounds of Kamō‘ili‘ili Church and Cemetery, the second highest point in Mō‘ili‘ili. Yes, the ghost stories abound: the elevator stops mysteriously on every floor, sometimes transporting 3 people with no feet; there are eerie sounds; a dog roams the floors… The highest hill in Mō‘ili‘ili is across the way at the Hawaiian Humane Society. This hill was created when Hi‘iaka tossed the chopped up pieces of the mo’o (lizard) here. (See Stop 26 for more information.)"
-     },
-     {
-      "kind": "p",
-      "text": "Kamō‘ili‘ili Church was built in 1846 as an ‘āpana (“branch”) of the downtown main church, Kawaiaha‘o. The graves and the bell As you walk along Kahoaloha ‘the friend’ Lane, do not pick the mangoes!"
-     },
-     {
-      "kind": "p",
-      "text": "Kamō‘ili‘ili Church, 1898 (Hawai‘i State Archives) tower of Kamō‘ili‘ili Church and Cemetery were lovingly moved to the burial ground at Kawaiaha‘o Church in downtown Honolulu. A reminder that a church once flourished here is Church Lane on the Diamond Head side of the Contessa."
      }
     ],
     "photos": [
@@ -8765,6 +8888,30 @@
     "page": "p2-72"
    },
    {
+    "id": "IX-13",
+    "n": 13,
+    "title": "The grounds of Kamō‘ili‘ili Church and Cemetery",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "As you turn the corner Diamond Head onto S. King Street, you will come face to face with the looming skyscraper of Mō‘ili‘ili, the Contessa, built on the grounds of Kamō‘ili‘ili Church and Cemetery, the second highest point in Mō‘ili‘ili. Yes, the ghost stories abound: the elevator stops mysteriously on every floor, sometimes transporting 3 people with no feet; there are eerie sounds; a dog roams the floors… The highest hill in Mō‘ili‘ili is across the way at the Hawaiian Humane Society. This hill was created when Hi‘iaka tossed the chopped up pieces of the mo’o (lizard) here. (See Stop 26 for more information.)"
+     },
+     {
+      "kind": "p",
+      "text": "Kamō‘ili‘ili Church was built in 1846 as an ‘āpana (“branch”) of the downtown main church, Kawaiaha‘o. The graves and the bell As you walk along Kahoaloha ‘the friend’ Lane, do not pick the mangoes!"
+     },
+     {
+      "kind": "p",
+      "text": "Kamō‘ili‘ili Church, 1898 (Hawai‘i State Archives) tower of Kamō‘ili‘ili Church and Cemetery were lovingly moved to the burial ground at Kawaiaha‘o Church in downtown Honolulu. A reminder that a church once flourished here is Church Lane on the Diamond Head side of the Contessa."
+     }
+    ],
+    "photos": [],
+    "lat": 21.290019,
+    "lng": -157.820475,
+    "geo": "estimated",
+    "page": "p2-72"
+   },
+   {
     "id": "IX-14",
     "n": 14,
     "title": "Prince Jonah Kūhiō Elementary",
@@ -8781,11 +8928,25 @@
      {
       "kind": "direction",
       "text": "After imagining what was here, turn around to walk ‘Ewa along S. King Street to the business district of Mō‘ili‘ili and the Japanese shrine at the intersection of S. King Street, S. Beretania Street, and University Avenue."
-     },
+     }
+    ],
+    "photos": [
      {
-      "kind": "tagline",
-      "text": "15 Kahuna Lane"
-     },
+      "file": "p2-73-247.jpg",
+      "w": 365,
+      "h": 500
+     }
+    ],
+    "lat": 21.289627,
+    "lng": -157.821548,
+    "geo": "estimated",
+    "page": "p2-73"
+   },
+   {
+    "id": "IX-15",
+    "n": 15,
+    "title": "Kahuna Lane",
+    "blocks": [
      {
       "kind": "p",
       "text": "A few blocks along S. King Street you’ll find Kahuna (literally, ‘the hidden one,’ perhaps referring to a Kahuna, a religious person of authority) Lane."
@@ -8807,15 +8968,9 @@
       "text": "To continue through Mō‘ili‘ili, cross University Avenue, staying on the makai side of S. King Street."
      }
     ],
-    "photos": [
-     {
-      "file": "p2-73-247.jpg",
-      "w": 365,
-      "h": 500
-     }
-    ],
-    "lat": 21.289862,
-    "lng": -157.820904,
+    "photos": [],
+    "lat": 21.289236,
+    "lng": -157.82262,
     "geo": "estimated",
     "page": "p2-73"
    },
@@ -8830,8 +8985,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.289314,
-    "lng": -157.822406,
+    "lat": 21.288844,
+    "lng": -157.823693,
     "geo": "estimated",
     "page": "p2-74"
    },
@@ -8870,8 +9025,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.288766,
-    "lng": -157.823907,
+    "lat": 21.288453,
+    "lng": -157.824765,
     "geo": "estimated",
     "page": "p2-74"
    },
@@ -8917,8 +9072,8 @@
       "h": 330
      }
     ],
-    "lat": 21.288218,
-    "lng": -157.825409,
+    "lat": 21.288062,
+    "lng": -157.825838,
     "geo": "estimated",
     "page": "p2-74"
    },
@@ -11882,6 +12037,26 @@
   "color": "#C1666B",
   "stops": [
    {
+    "id": "XI-01",
+    "n": 1,
+    "title": "Kapahulu Avenue",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "For an interesting stroll on the lower/makai campus of the University of Hawai‘i, walk to the Diamond Head end of the Ala Wai Canal, and proceed mauka along Kapahulu Avenue."
+     },
+     {
+      "kind": "info",
+      "text": "2 hours; 3 miles; 5,000 steps Street parking along Date Street – free, but no parking 3:30-6:30 Monday through Friday. Parking lot at the Zoo or at Monsarrat and Paki avenues. Street parking along Dole Street Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+     }
+    ],
+    "photos": [],
+    "lat": 21.288057,
+    "lng": -157.812853,
+    "geo": "low",
+    "page": "p3-62"
+   },
+   {
     "id": "XI-02",
     "n": 2,
     "title": "Ala Wai Community Park",
@@ -12684,11 +12859,25 @@
      {
       "kind": "p",
       "text": "Do admire the variety of Shower Trees. The Rainbow Shower tree, the official tree of Honolulu and conceived in Hawai‘i, is a cross between the Golden Shower tree from India and the Pink and White Shower trees from Indonesia."
-     },
+     }
+    ],
+    "photos": [
      {
-      "kind": "tagline",
-      "text": "22 ‘Ili of Wailele"
-     },
+      "file": "p3-51-357.jpg",
+      "w": 885,
+      "h": 496
+     }
+    ],
+    "lat": 21.300899,
+    "lng": -157.815648,
+    "geo": "medium",
+    "page": "p3-50"
+   },
+   {
+    "id": "XI-22",
+    "n": 22,
+    "title": "‘Ili of Wailele",
+    "blocks": [
      {
       "kind": "p",
       "text": "You are now entering the ‘ili of Wailele – one of the many smaller land divisions in Mānoa."
@@ -12754,16 +12943,10 @@
       "text": "Follow the sidewalk pathway around to the front of the Biomed Science Building, reading about it. Then continue on EastWest Road to complete the campus tour."
      }
     ],
-    "photos": [
-     {
-      "file": "p3-51-357.jpg",
-      "w": 885,
-      "h": 496
-     }
-    ],
-    "lat": 21.300899,
-    "lng": -157.815648,
-    "geo": "medium",
+    "photos": [],
+    "lat": 21.302125,
+    "lng": -157.815137,
+    "geo": "estimated",
     "page": "p3-50"
    },
    {
@@ -13592,30 +13775,10 @@
       "h": 496
      }
     ],
-    "lat": 21.292632,
-    "lng": -157.816431,
+    "lat": 21.297507,
+    "lng": -157.819709,
     "geo": "estimated",
     "page": "p3-59"
-   },
-   {
-    "id": "XI-01",
-    "n": 1,
-    "title": "Kapahulu Avenue",
-    "blocks": [
-     {
-      "kind": "p",
-      "text": "For an interesting stroll on the lower/makai campus of the University of Hawai‘i, walk to the Diamond Head end of the Ala Wai Canal, and proceed mauka along Kapahulu Avenue."
-     },
-     {
-      "kind": "info",
-      "text": "2 hours; 3 miles; 5,000 steps Street parking along Date Street – free, but no parking 3:30-6:30 Monday through Friday. Parking lot at the Zoo or at Monsarrat and Paki avenues. Street parking along Dole Street Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator."
-     }
-    ],
-    "photos": [],
-    "lat": 21.288057,
-    "lng": -157.812853,
-    "geo": "low",
-    "page": "p3-62"
    }
   ]
  },
@@ -14091,20 +14254,28 @@
      {
       "kind": "direction",
       "text": "The walk to the lower/makai campus starts at the Hawaiian Center, then down to the lower campus and the athletic fields."
-     },
-     {
-      "kind": "tagline",
-      "text": "17 ‘Ili of Kānewai"
-     },
-     {
-      "kind": "p",
-      "text": "You are now entering the ‘ili of Kānewai. This walk to the University’s Hawaiian Center and later to the lower campus will take you past Kānewai Street, which leads to the local elementary school, Hokulani ‘Star of Heaven,’ the neighborhood and ‘ili of Kānewai, and Kānewai Community Park, all named for the water given by the deity Kāne."
      }
     ],
     "photos": [],
     "lat": 21.294561,
     "lng": -157.811327,
     "geo": "low",
+    "page": "p3-68"
+   },
+   {
+    "id": "XII-17",
+    "n": 17,
+    "title": "‘Ili of Kānewai",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "You are now entering the ‘ili of Kānewai. This walk to the University’s Hawaiian Center and later to the lower campus will take you past Kānewai Street, which leads to the local elementary school, Hokulani ‘Star of Heaven,’ the neighborhood and ‘ili of Kānewai, and Kānewai Community Park, all named for the water given by the deity Kāne."
+     }
+    ],
+    "photos": [],
+    "lat": 21.294849,
+    "lng": -157.811654,
+    "geo": "estimated",
     "page": "p3-68"
    },
    {

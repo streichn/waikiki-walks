@@ -1,0 +1,918 @@
+{
+ "IV": [
+  [
+   339,
+   630,
+   "Kūhiō Avenue",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   466,
+   630,
+   "Kalākaua Avenue",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   339,
+   681,
+   "Kūhiō Avenue",
+   "Lewers Street"
+  ],
+  [
+   452,
+   689,
+   "Kalākaua Avenue",
+   "Lewers Street"
+  ],
+  [
+   339,
+   737,
+   "Kūhiō Avenue",
+   "Kaʻiolu Street"
+  ],
+  [
+   339,
+   786,
+   "Kūhiō Avenue",
+   "Launiu Street"
+  ],
+  [
+   339,
+   832,
+   "Kūhiō Avenue",
+   "Kālaimoku Street"
+  ],
+  [
+   400,
+   832,
+   "Kalākaua Avenue",
+   "Kālaimoku Street"
+  ],
+  [
+   339,
+   875,
+   "Kūhiō Avenue",
+   "ʻŌlohana Street"
+  ],
+  [
+   339,
+   910,
+   "Kūhiō Avenue",
+   "Nāmāhana Street"
+  ],
+  [
+   424,
+   746,
+   "Kalākaua Avenue",
+   "Beachwalk"
+  ],
+  [
+   472,
+   567,
+   "Kalākaua Avenue",
+   "Seaside Avenue"
+  ],
+  [
+   348,
+   948,
+   "Kalākaua Avenue",
+   "Kūhiō Avenue"
+  ],
+  [
+   512,
+   192,
+   "Kalākaua Avenue",
+   "Liliʻuokalani Avenue"
+  ],
+  [
+   385,
+   155,
+   "Kūhiō Avenue",
+   "Liliʻuokalani Avenue"
+  ],
+  [
+   492,
+   265,
+   "Kalākaua Avenue",
+   "Uluniu Avenue"
+  ],
+  [
+   485,
+   375,
+   "Kalākaua Avenue",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   347,
+   517,
+   "Kūhiō Avenue",
+   "Duke's Lane"
+  ],
+  [
+   475,
+   517,
+   "Kalākaua Avenue",
+   "Duke's Lane"
+  ]
+ ],
+ "I": [
+  [
+   590,
+   235,
+   "Ala Wai Boulevard",
+   "Paoakalani Avenue"
+  ],
+  [
+   590,
+   270,
+   "Ala Wai Boulevard",
+   "ʻŌhua Avenue"
+  ],
+  [
+   590,
+   312,
+   "Ala Wai Boulevard",
+   "Liliʻuokalani Avenue"
+  ],
+  [
+   590,
+   390,
+   "Ala Wai Boulevard",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   590,
+   424,
+   "Ala Wai Boulevard",
+   "Kānekapōlei Street"
+  ],
+  [
+   590,
+   457,
+   "Ala Wai Boulevard",
+   "Walina Street"
+  ],
+  [
+   590,
+   512,
+   "Ala Wai Boulevard",
+   "Nāhua Street"
+  ],
+  [
+   590,
+   550,
+   "Ala Wai Boulevard",
+   "Nohonani Street"
+  ],
+  [
+   580,
+   585,
+   "Ala Wai Boulevard",
+   "Seaside Avenue"
+  ],
+  [
+   578,
+   637,
+   "Ala Wai Boulevard",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   578,
+   670,
+   "Ala Wai Boulevard",
+   "Lewers Street"
+  ],
+  [
+   578,
+   705,
+   "Ala Wai Boulevard",
+   "Kaʻiolu Street"
+  ],
+  [
+   578,
+   735,
+   "Ala Wai Boulevard",
+   "Launiu Street"
+  ],
+  [
+   578,
+   764,
+   "Ala Wai Boulevard",
+   "Kālaimoku Street"
+  ],
+  [
+   578,
+   792,
+   "Ala Wai Boulevard",
+   "ʻŌlohana Street"
+  ],
+  [
+   578,
+   825,
+   "Ala Wai Boulevard",
+   "Nāmāhana Street"
+  ],
+  [
+   578,
+   857,
+   "Ala Wai Boulevard",
+   "Kuamoʻo Street"
+  ],
+  [
+   578,
+   887,
+   "Ala Wai Boulevard",
+   "Keoniana Street"
+  ],
+  [
+   578,
+   980,
+   "Ala Wai Boulevard",
+   "McCully Street"
+  ],
+  [
+   343,
+   207,
+   "Date Street",
+   "Kamuela Avenue"
+  ],
+  [
+   343,
+   240,
+   "Date Street",
+   "Palani Avenue"
+  ],
+  [
+   343,
+   275,
+   "Date Street",
+   "Makaleka Avenue"
+  ],
+  [
+   343,
+   311,
+   "Date Street",
+   "Ekela Avenue"
+  ],
+  [
+   343,
+   352,
+   "Date Street",
+   "Lukepane Avenue"
+  ],
+  [
+   343,
+   388,
+   "Date Street",
+   "Olokele Avenue"
+  ]
+ ],
+ "II": [
+  [
+   247,
+   100,
+   "Kūhiō Avenue",
+   "Seaside Avenue"
+  ],
+  [
+   247,
+   161,
+   "Kūhiō Avenue",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   247,
+   215,
+   "Kūhiō Avenue",
+   "Lewers Street"
+  ],
+  [
+   372,
+   161,
+   "Kalākaua Avenue",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   377,
+   100,
+   "Kalākaua Avenue",
+   "Seaside Avenue"
+  ],
+  [
+   360,
+   216,
+   "Kalākaua Avenue",
+   "Lewers Street"
+  ],
+  [
+   517,
+   232,
+   "Kālia Road",
+   "Lewers Street"
+  ],
+  [
+   517,
+   275,
+   "Kālia Road",
+   "Beachwalk"
+  ],
+  [
+   517,
+   310,
+   "Kālia Road",
+   "Saratoga Road"
+  ],
+  [
+   310,
+   362,
+   "Kalākaua Avenue",
+   "Saratoga Road"
+  ],
+  [
+   345,
+   275,
+   "Kalākaua Avenue",
+   "Beachwalk"
+  ],
+  [
+   462,
+   860,
+   "Ala Moana Boulevard",
+   "Hobron Lane"
+  ]
+ ],
+ "III": [
+  [
+   305,
+   115,
+   "Kūhiō Avenue",
+   "Liliʻuokalani Avenue"
+  ],
+  [
+   445,
+   140,
+   "Kalākaua Avenue",
+   "Liliʻuokalani Avenue"
+  ],
+  [
+   303,
+   160,
+   "Kūhiō Avenue",
+   "Kapuni Street"
+  ],
+  [
+   405,
+   338,
+   "Kalākaua Avenue",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   295,
+   335,
+   "Kūhiō Avenue",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   266,
+   537,
+   "Kūhiō Avenue",
+   "Seaside Avenue"
+  ],
+  [
+   404,
+   537,
+   "Kalākaua Avenue",
+   "Seaside Avenue"
+  ],
+  [
+   262,
+   600,
+   "Kūhiō Avenue",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   392,
+   600,
+   "Kalākaua Avenue",
+   "Royal Hawaiian Avenue"
+  ],
+  [
+   262,
+   642,
+   "Kūhiō Avenue",
+   "Lewers Street"
+  ],
+  [
+   530,
+   667,
+   "Kālia Road",
+   "Lewers Street"
+  ],
+  [
+   540,
+   755,
+   "Kālia Road",
+   "Saratoga Road"
+  ]
+ ],
+ "V": [
+  [
+   292,
+   258,
+   "Ala Wai Boulevard",
+   "ʻĀinakea Way"
+  ],
+  [
+   292,
+   340,
+   "Ala Wai Boulevard",
+   "Wai Nani Way"
+  ],
+  [
+   292,
+   392,
+   "Ala Wai Boulevard",
+   "Paoakalani Avenue"
+  ],
+  [
+   292,
+   450,
+   "Ala Wai Boulevard",
+   "ʻŌhua Avenue"
+  ],
+  [
+   290,
+   515,
+   "Ala Wai Boulevard",
+   "Liliʻuokalani Avenue"
+  ],
+  [
+   275,
+   712,
+   "Ala Wai Boulevard",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   275,
+   758,
+   "Ala Wai Boulevard",
+   "Kānekapōlei Street"
+  ],
+  [
+   275,
+   790,
+   "Ala Wai Boulevard",
+   "Walina Street"
+  ],
+  [
+   275,
+   853,
+   "Ala Wai Boulevard",
+   "Nāhua Street"
+  ],
+  [
+   657,
+   402,
+   "Kalākaua Avenue",
+   "Paoakalani Avenue"
+  ],
+  [
+   640,
+   466,
+   "Kalākaua Avenue",
+   "ʻŌhua Avenue"
+  ],
+  [
+   555,
+   738,
+   "Kalākaua Avenue",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   450,
+   715,
+   "Kūhiō Avenue",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   452,
+   558,
+   "Kūhiō Avenue",
+   "Kapuni Street"
+  ],
+  [
+   470,
+   395,
+   "Kāneloa Road",
+   "Paoakalani Avenue"
+  ]
+ ],
+ "VI": [
+  [
+   600,
+   836,
+   "Kalākaua Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   258,
+   618,
+   "Pākī Avenue",
+   "Monsarrat Avenue"
+  ],
+  [
+   440,
+   850,
+   "Kāneloa Road",
+   "Kapahulu Avenue"
+  ],
+  [
+   590,
+   792,
+   "Kalākaua Avenue",
+   "Monsarrat Avenue"
+  ],
+  [
+   252,
+   880,
+   "Pākī Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   505,
+   75,
+   "Pākī Avenue",
+   "Kalākaua Avenue"
+  ],
+  [
+   505,
+   75,
+   "Pākī Avenue",
+   "Diamond Head Road"
+  ],
+  [
+   580,
+   95,
+   "Kalākaua Avenue",
+   "Diamond Head Road"
+  ]
+ ],
+ "VII": [
+  [
+   290,
+   765,
+   "Pākī Avenue",
+   "Monsarrat Avenue"
+  ],
+  [
+   398,
+   1048,
+   "Kalākaua Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   647,
+   600,
+   "Pākī Avenue",
+   "Kalākaua Avenue"
+  ],
+  [
+   695,
+   517,
+   "Kalākaua Avenue",
+   "Coconut Avenue"
+  ]
+ ],
+ "VIII": [
+  [
+   180,
+   905,
+   "Kalākaua Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   448,
+   825,
+   "Pākī Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   445,
+   782,
+   "Ala Wai Boulevard",
+   "Kapahulu Avenue"
+  ],
+  [
+   495,
+   1020,
+   "Pākī Avenue",
+   "Monsarrat Avenue"
+  ],
+  [
+   562,
+   518,
+   "Date Street",
+   "Kapahulu Avenue"
+  ],
+  [
+   603,
+   108,
+   "Harding Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   652,
+   28,
+   "Waiʻalae Avenue",
+   "Kapahulu Avenue"
+  ],
+  [
+   700,
+   1010,
+   "Campbell Avenue",
+   "Monsarrat Avenue"
+  ]
+ ],
+ "IX": [
+  [
+   598,
+   134,
+   "Ala Wai Boulevard",
+   "ʻĀinakea Way"
+  ],
+  [
+   598,
+   170,
+   "Ala Wai Boulevard",
+   "Wai Nani Way"
+  ],
+  [
+   598,
+   207,
+   "Ala Wai Boulevard",
+   "Paoakalani Avenue"
+  ],
+  [
+   598,
+   240,
+   "Ala Wai Boulevard",
+   "ʻŌhua Avenue"
+  ],
+  [
+   598,
+   388,
+   "Ala Wai Boulevard",
+   "Kaʻiulani Avenue"
+  ],
+  [
+   598,
+   418,
+   "Ala Wai Boulevard",
+   "Kānekapōlei Street"
+  ],
+  [
+   598,
+   441,
+   "Ala Wai Boulevard",
+   "Walina Street"
+  ],
+  [
+   598,
+   470,
+   "Ala Wai Boulevard",
+   "Nāhua Street"
+  ],
+  [
+   598,
+   513,
+   "Ala Wai Boulevard",
+   "Nohonani Street"
+  ],
+  [
+   598,
+   553,
+   "Ala Wai Boulevard",
+   "Seaside Avenue"
+  ],
+  [
+   596,
+   628,
+   "Ala Wai Boulevard",
+   "Lewers Street"
+  ],
+  [
+   596,
+   668,
+   "Ala Wai Boulevard",
+   "Kaʻiolu Street"
+  ],
+  [
+   596,
+   700,
+   "Ala Wai Boulevard",
+   "Launiu Street"
+  ],
+  [
+   596,
+   730,
+   "Ala Wai Boulevard",
+   "Kālaimoku Street"
+  ],
+  [
+   596,
+   756,
+   "Ala Wai Boulevard",
+   "ʻŌlohana Street"
+  ],
+  [
+   596,
+   785,
+   "Ala Wai Boulevard",
+   "Nāmāhana Street"
+  ],
+  [
+   596,
+   840,
+   "Ala Wai Boulevard",
+   "Keoniana Street"
+  ],
+  [
+   594,
+   937,
+   "Ala Wai Boulevard",
+   "McCully Street"
+  ],
+  [
+   350,
+   180,
+   "Date Street",
+   "Kamuela Avenue"
+  ],
+  [
+   350,
+   216,
+   "Date Street",
+   "Palani Avenue"
+  ],
+  [
+   350,
+   252,
+   "Date Street",
+   "Makaleka Avenue"
+  ],
+  [
+   350,
+   290,
+   "Date Street",
+   "Ekela Avenue"
+  ],
+  [
+   350,
+   327,
+   "Date Street",
+   "Lukepane Avenue"
+  ],
+  [
+   350,
+   364,
+   "Date Street",
+   "Olokele Avenue"
+  ],
+  [
+   500,
+   975,
+   "Kapiʻolani Boulevard",
+   "McCully Street"
+  ]
+ ],
+ "X": [
+  [
+   178,
+   640,
+   "McCully Street",
+   "South King Street"
+  ],
+  [
+   224,
+   640,
+   "McCully Street",
+   "Algaroba Street"
+  ],
+  [
+   268,
+   640,
+   "McCully Street",
+   "Waiola Street"
+  ],
+  [
+   367,
+   640,
+   "McCully Street",
+   "Date Street"
+  ],
+  [
+   523,
+   640,
+   "McCully Street",
+   "Kapiʻolani Boulevard"
+  ],
+  [
+   70,
+   642,
+   "McCully Street",
+   "South Beretania Street"
+  ],
+  [
+   640,
+   640,
+   "McCully Street",
+   "Ala Wai Boulevard"
+  ],
+  [
+   178,
+   365,
+   "South King Street",
+   "Isenberg Street"
+  ],
+  [
+   178,
+   316,
+   "South King Street",
+   "Coolidge Street"
+  ],
+  [
+   268,
+   505,
+   "Waiola Street",
+   "Paʻani Street"
+  ],
+  [
+   367,
+   505,
+   "Date Street",
+   "Paʻani Street"
+  ]
+ ],
+ "XII": [
+  [
+   612,
+   950,
+   "Kapahulu Avenue",
+   "Ala Wai Boulevard"
+  ],
+  [
+   412,
+   708,
+   "Date Street",
+   "Kapahulu Avenue"
+  ],
+  [
+   110,
+   798,
+   "Date Street",
+   "Olokele Avenue"
+  ],
+  [
+   170,
+   781,
+   "Date Street",
+   "Lukepane Avenue"
+  ],
+  [
+   222,
+   766,
+   "Date Street",
+   "Ekela Avenue"
+  ],
+  [
+   250,
+   757,
+   "Date Street",
+   "Makaleka Avenue"
+  ],
+  [
+   300,
+   743,
+   "Date Street",
+   "Palani Avenue"
+  ],
+  [
+   352,
+   728,
+   "Date Street",
+   "Kamuela Avenue"
+  ],
+  [
+   468,
+   725,
+   "Kapahulu Avenue",
+   "Campbell Avenue"
+  ],
+  [
+   128,
+   505,
+   "Kapahulu Avenue",
+   "Kaimukī Avenue"
+  ]
+ ]
+}

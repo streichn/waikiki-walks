@@ -1,0 +1,1209 @@
+{
+ "IV": {
+  "affine": [
+   [
+    -0.38208947500502205,
+    -0.43771906639943925
+   ],
+   [
+    -0.43019806784413583,
+    0.3815126493798606
+   ],
+   [
+    471.4528557110406,
+    690.3118605000215
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 9.1,
+  "controls": [
+   {
+    "px": 339,
+    "py": 630,
+    "lat": 21.2808499,
+    "lng": -157.8277563,
+    "name": "K\u016bhi\u014d Avenue x Royal Hawaiian Avenue"
+   },
+   {
+    "px": 466,
+    "py": 630,
+    "lat": 21.2793692,
+    "lng": -157.8292249,
+    "name": "Kal\u0101kaua Avenue x Royal Hawaiian Avenue"
+   },
+   {
+    "px": 339,
+    "py": 681,
+    "lat": 21.2814428,
+    "lng": -157.8284426,
+    "name": "K\u016bhi\u014d Avenue x Lewers Street"
+   },
+   {
+    "px": 339,
+    "py": 737,
+    "lat": 21.2820413,
+    "lng": -157.8291352,
+    "name": "K\u016bhi\u014d Avenue x Ka\u02bbiolu Street"
+   },
+   {
+    "px": 339,
+    "py": 786,
+    "lat": 21.2825349,
+    "lng": -157.8297065,
+    "name": "K\u016bhi\u014d Avenue x Launiu Street"
+   },
+   {
+    "px": 339,
+    "py": 832,
+    "lat": 21.2830233,
+    "lng": -157.8302718,
+    "name": "K\u016bhi\u014d Avenue x K\u0101laimoku Street"
+   },
+   {
+    "px": 339,
+    "py": 875,
+    "lat": 21.2834946,
+    "lng": -157.8308105,
+    "name": "K\u016bhi\u014d Avenue x \u02bb\u014clohana Street"
+   },
+   {
+    "px": 339,
+    "py": 910,
+    "lat": 21.2839871,
+    "lng": -157.8313151,
+    "name": "K\u016bhi\u014d Avenue x N\u0101m\u0101hana Street"
+   },
+   {
+    "px": 472,
+    "py": 567,
+    "lat": 21.2787376,
+    "lng": -157.8285531,
+    "name": "Kal\u0101kaua Avenue x Seaside Avenue"
+   },
+   {
+    "px": 512,
+    "py": 192,
+    "lat": 21.2744344,
+    "lng": -157.8242892,
+    "name": "Kal\u0101kaua Avenue x Lili\u02bbuokalani Avenue"
+   },
+   {
+    "px": 385,
+    "py": 155,
+    "lat": 21.2755224,
+    "lng": -157.8224547,
+    "name": "K\u016bhi\u014d Avenue x Lili\u02bbuokalani Avenue"
+   },
+   {
+    "px": 485,
+    "py": 375,
+    "lat": 21.2765392,
+    "lng": -157.8260791,
+    "name": "Kal\u0101kaua Avenue x Ka\u02bbiulani Avenue"
+   }
+  ]
+ },
+ "I": {
+  "affine": [
+   [
+    -0.2602905384783651,
+    -0.2955732328572326
+   ],
+   [
+    -0.29468468169118167,
+    0.2570059699800077
+   ],
+   [
+    750.7107454051059,
+    671.0293784904694
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 18.1,
+  "controls": [
+   {
+    "px": 590,
+    "py": 235,
+    "lat": 21.2759935,
+    "lng": -157.8192834,
+    "name": "Ala Wai Boulevard x Paoakalani Avenue"
+   },
+   {
+    "px": 590,
+    "py": 270,
+    "lat": 21.276555,
+    "lng": -157.8199291,
+    "name": "Ala Wai Boulevard x \u02bb\u014chua Avenue"
+   },
+   {
+    "px": 590,
+    "py": 312,
+    "lat": 21.2771387,
+    "lng": -157.8206206,
+    "name": "Ala Wai Boulevard x Lili\u02bbuokalani Avenue"
+   },
+   {
+    "px": 590,
+    "py": 390,
+    "lat": 21.2787584,
+    "lng": -157.822501,
+    "name": "Ala Wai Boulevard x Ka\u02bbiulani Avenue"
+   },
+   {
+    "px": 590,
+    "py": 424,
+    "lat": 21.2792671,
+    "lng": -157.8230637,
+    "name": "Ala Wai Boulevard x K\u0101nekap\u014dlei Street"
+   },
+   {
+    "px": 590,
+    "py": 457,
+    "lat": 21.2797792,
+    "lng": -157.8236636,
+    "name": "Ala Wai Boulevard x Walina Street"
+   },
+   {
+    "px": 590,
+    "py": 512,
+    "lat": 21.280404,
+    "lng": -157.8243803,
+    "name": "Ala Wai Boulevard x N\u0101hua Street"
+   },
+   {
+    "px": 590,
+    "py": 550,
+    "lat": 21.2809921,
+    "lng": -157.8250496,
+    "name": "Ala Wai Boulevard x Nohonani Street"
+   },
+   {
+    "px": 580,
+    "py": 585,
+    "lat": 21.2815995,
+    "lng": -157.8257416,
+    "name": "Ala Wai Boulevard x Seaside Avenue"
+   },
+   {
+    "px": 578,
+    "py": 670,
+    "lat": 21.2827901,
+    "lng": -157.8271123,
+    "name": "Ala Wai Boulevard x Lewers Street"
+   },
+   {
+    "px": 578,
+    "py": 705,
+    "lat": 21.2834068,
+    "lng": -157.8278212,
+    "name": "Ala Wai Boulevard x Ka\u02bbiolu Street"
+   },
+   {
+    "px": 578,
+    "py": 735,
+    "lat": 21.2838958,
+    "lng": -157.8283888,
+    "name": "Ala Wai Boulevard x Launiu Street"
+   },
+   {
+    "px": 578,
+    "py": 764,
+    "lat": 21.2843604,
+    "lng": -157.8289326,
+    "name": "Ala Wai Boulevard x K\u0101laimoku Street"
+   },
+   {
+    "px": 578,
+    "py": 792,
+    "lat": 21.2848198,
+    "lng": -157.8294782,
+    "name": "Ala Wai Boulevard x \u02bb\u014clohana Street"
+   },
+   {
+    "px": 578,
+    "py": 825,
+    "lat": 21.2852954,
+    "lng": -157.8300166,
+    "name": "Ala Wai Boulevard x N\u0101m\u0101hana Street"
+   },
+   {
+    "px": 578,
+    "py": 887,
+    "lat": 21.2862263,
+    "lng": -157.8310919,
+    "name": "Ala Wai Boulevard x Keoniana Street"
+   },
+   {
+    "px": 578,
+    "py": 980,
+    "lat": 21.2878866,
+    "lng": -157.8330134,
+    "name": "Ala Wai Boulevard x McCully Street"
+   },
+   {
+    "px": 343,
+    "py": 207,
+    "lat": 21.2798786,
+    "lng": -157.8148579,
+    "name": "Date Street x Kamuela Avenue"
+   },
+   {
+    "px": 343,
+    "py": 240,
+    "lat": 21.2804634,
+    "lng": -157.815517,
+    "name": "Date Street x Palani Avenue"
+   },
+   {
+    "px": 343,
+    "py": 275,
+    "lat": 21.2810272,
+    "lng": -157.8161449,
+    "name": "Date Street x Makaleka Avenue"
+   },
+   {
+    "px": 343,
+    "py": 311,
+    "lat": 21.281631,
+    "lng": -157.8168498,
+    "name": "Date Street x Ekela Avenue"
+   },
+   {
+    "px": 343,
+    "py": 352,
+    "lat": 21.282222,
+    "lng": -157.8175145,
+    "name": "Date Street x Lukepane Avenue"
+   },
+   {
+    "px": 343,
+    "py": 388,
+    "lat": 21.2827994,
+    "lng": -157.8181935,
+    "name": "Date Street x Olokele Avenue"
+   }
+  ]
+ },
+ "II": {
+  "affine": [
+   [
+    -0.3771027102817543,
+    -0.434180081429033
+   ],
+   [
+    -0.42472161170217726,
+    0.3884365238399977
+   ],
+   [
+    374.37108190272727,
+    222.78873322908845
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 3.7,
+  "controls": [
+   {
+    "px": 247,
+    "py": 100,
+    "lat": 21.2802513,
+    "lng": -157.8270635,
+    "name": "K\u016bhi\u014d Avenue x Seaside Avenue"
+   },
+   {
+    "px": 247,
+    "py": 161,
+    "lat": 21.2808499,
+    "lng": -157.8277563,
+    "name": "K\u016bhi\u014d Avenue x Royal Hawaiian Avenue"
+   },
+   {
+    "px": 247,
+    "py": 215,
+    "lat": 21.2814428,
+    "lng": -157.8284426,
+    "name": "K\u016bhi\u014d Avenue x Lewers Street"
+   },
+   {
+    "px": 372,
+    "py": 161,
+    "lat": 21.2793692,
+    "lng": -157.8292249,
+    "name": "Kal\u0101kaua Avenue x Royal Hawaiian Avenue"
+   },
+   {
+    "px": 377,
+    "py": 100,
+    "lat": 21.2787376,
+    "lng": -157.8285531,
+    "name": "Kal\u0101kaua Avenue x Seaside Avenue"
+   },
+   {
+    "px": 517,
+    "py": 232,
+    "lat": 21.2784226,
+    "lng": -157.8316972,
+    "name": "K\u0101lia Road x Lewers Street"
+   },
+   {
+    "px": 517,
+    "py": 310,
+    "lat": 21.2791747,
+    "lng": -157.8326864,
+    "name": "K\u0101lia Road x Saratoga Road"
+   },
+   {
+    "px": 462,
+    "py": 860,
+    "lat": 21.2855347,
+    "lng": -157.8388883,
+    "name": "Ala Moana Boulevard x Hobron Lane"
+   }
+  ]
+ },
+ "III": {
+  "affine": [
+   [
+    -0.37785132981162356,
+    -0.440374472105297
+   ],
+   [
+    -0.43632336979750147,
+    0.4032239978339393
+   ],
+   [
+    393.36240648086914,
+    662.4417774995786
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 17.8,
+  "controls": [
+   {
+    "px": 305,
+    "py": 115,
+    "lat": 21.2755224,
+    "lng": -157.8224547,
+    "name": "K\u016bhi\u014d Avenue x Lili\u02bbuokalani Avenue"
+   },
+   {
+    "px": 445,
+    "py": 140,
+    "lat": 21.2744344,
+    "lng": -157.8242892,
+    "name": "Kal\u0101kaua Avenue x Lili\u02bbuokalani Avenue"
+   },
+   {
+    "px": 303,
+    "py": 160,
+    "lat": 21.2760078,
+    "lng": -157.8229158,
+    "name": "K\u016bhi\u014d Avenue x Kapuni Street"
+   },
+   {
+    "px": 405,
+    "py": 338,
+    "lat": 21.2765392,
+    "lng": -157.8260791,
+    "name": "Kal\u0101kaua Avenue x Ka\u02bbiulani Avenue"
+   },
+   {
+    "px": 295,
+    "py": 335,
+    "lat": 21.2778185,
+    "lng": -157.824515,
+    "name": "K\u016bhi\u014d Avenue x Ka\u02bbiulani Avenue"
+   },
+   {
+    "px": 266,
+    "py": 537,
+    "lat": 21.2802513,
+    "lng": -157.8270635,
+    "name": "K\u016bhi\u014d Avenue x Seaside Avenue"
+   },
+   {
+    "px": 404,
+    "py": 537,
+    "lat": 21.2787376,
+    "lng": -157.8285531,
+    "name": "Kal\u0101kaua Avenue x Seaside Avenue"
+   },
+   {
+    "px": 262,
+    "py": 600,
+    "lat": 21.2808499,
+    "lng": -157.8277563,
+    "name": "K\u016bhi\u014d Avenue x Royal Hawaiian Avenue"
+   },
+   {
+    "px": 392,
+    "py": 600,
+    "lat": 21.2793692,
+    "lng": -157.8292249,
+    "name": "Kal\u0101kaua Avenue x Royal Hawaiian Avenue"
+   },
+   {
+    "px": 262,
+    "py": 642,
+    "lat": 21.2814428,
+    "lng": -157.8284426,
+    "name": "K\u016bhi\u014d Avenue x Lewers Street"
+   },
+   {
+    "px": 530,
+    "py": 667,
+    "lat": 21.2784226,
+    "lng": -157.8316972,
+    "name": "K\u0101lia Road x Lewers Street"
+   },
+   {
+    "px": 540,
+    "py": 755,
+    "lat": 21.2791747,
+    "lng": -157.8326864,
+    "name": "K\u0101lia Road x Saratoga Road"
+   }
+  ]
+ },
+ "V": {
+  "affine": [
+   [
+    -0.4185751367762128,
+    -0.47000066745408153
+   ],
+   [
+    -0.4991130395577577,
+    0.4549555236923546
+   ],
+   [
+    537.6030571506608,
+    1116.785272913281
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 20.1,
+  "controls": [
+   {
+    "px": 292,
+    "py": 258,
+    "lat": 21.2748881,
+    "lng": -157.818001,
+    "name": "Ala Wai Boulevard x \u02bb\u0100inakea Way"
+   },
+   {
+    "px": 292,
+    "py": 340,
+    "lat": 21.2754438,
+    "lng": -157.8186603,
+    "name": "Ala Wai Boulevard x Wai Nani Way"
+   },
+   {
+    "px": 292,
+    "py": 392,
+    "lat": 21.2759935,
+    "lng": -157.8192834,
+    "name": "Ala Wai Boulevard x Paoakalani Avenue"
+   },
+   {
+    "px": 292,
+    "py": 450,
+    "lat": 21.276555,
+    "lng": -157.8199291,
+    "name": "Ala Wai Boulevard x \u02bb\u014chua Avenue"
+   },
+   {
+    "px": 290,
+    "py": 515,
+    "lat": 21.2771387,
+    "lng": -157.8206206,
+    "name": "Ala Wai Boulevard x Lili\u02bbuokalani Avenue"
+   },
+   {
+    "px": 275,
+    "py": 712,
+    "lat": 21.2787584,
+    "lng": -157.822501,
+    "name": "Ala Wai Boulevard x Ka\u02bbiulani Avenue"
+   },
+   {
+    "px": 275,
+    "py": 758,
+    "lat": 21.2792671,
+    "lng": -157.8230637,
+    "name": "Ala Wai Boulevard x K\u0101nekap\u014dlei Street"
+   },
+   {
+    "px": 275,
+    "py": 790,
+    "lat": 21.2797792,
+    "lng": -157.8236636,
+    "name": "Ala Wai Boulevard x Walina Street"
+   },
+   {
+    "px": 275,
+    "py": 853,
+    "lat": 21.280404,
+    "lng": -157.8243803,
+    "name": "Ala Wai Boulevard x N\u0101hua Street"
+   },
+   {
+    "px": 657,
+    "py": 402,
+    "lat": 21.2723112,
+    "lng": -157.8231542,
+    "name": "Kal\u0101kaua Avenue x Paoakalani Avenue"
+   },
+   {
+    "px": 640,
+    "py": 466,
+    "lat": 21.2731046,
+    "lng": -157.8235842,
+    "name": "Kal\u0101kaua Avenue x \u02bb\u014chua Avenue"
+   },
+   {
+    "px": 555,
+    "py": 738,
+    "lat": 21.2765392,
+    "lng": -157.8260791,
+    "name": "Kal\u0101kaua Avenue x Ka\u02bbiulani Avenue"
+   },
+   {
+    "px": 452,
+    "py": 558,
+    "lat": 21.2760078,
+    "lng": -157.8229158,
+    "name": "K\u016bhi\u014d Avenue x Kapuni Street"
+   },
+   {
+    "px": 470,
+    "py": 395,
+    "lat": 21.2744314,
+    "lng": -157.8208588,
+    "name": "K\u0101neloa Road x Paoakalani Avenue"
+   }
+  ]
+ },
+ "VI": {
+  "affine": [
+   [
+    -0.5181428281414754,
+    -0.08202925701319712
+   ],
+   [
+    -0.12400626615401322,
+    0.5735241018670831
+   ],
+   [
+    869.2842891290168,
+    1423.0752060529906
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 18.7,
+  "controls": [
+   {
+    "px": 600,
+    "py": 836,
+    "lat": 21.2715047,
+    "lng": -157.8227572,
+    "name": "Kal\u0101kaua Avenue x Kapahulu Avenue"
+   },
+   {
+    "px": 258,
+    "py": 618,
+    "lat": 21.2691268,
+    "lng": -157.815853,
+    "name": "P\u0101k\u012b Avenue x Monsarrat Avenue"
+   },
+   {
+    "px": 590,
+    "py": 792,
+    "lat": 21.2712307,
+    "lng": -157.8226339,
+    "name": "Kal\u0101kaua Avenue x Monsarrat Avenue"
+   },
+   {
+    "px": 252,
+    "py": 880,
+    "lat": 21.273273,
+    "lng": -157.8167986,
+    "name": "P\u0101k\u012b Avenue x Kapahulu Avenue"
+   },
+   {
+    "px": 505,
+    "py": 75,
+    "lat": 21.2605098,
+    "lng": -157.818232,
+    "name": "P\u0101k\u012b Avenue x Kal\u0101kaua Avenue"
+   },
+   {
+    "px": 505,
+    "py": 75,
+    "lat": 21.2601678,
+    "lng": -157.8181783,
+    "name": "P\u0101k\u012b Avenue x Diamond Head Road"
+   }
+  ]
+ },
+ "VII": {
+  "affine": [
+   [
+    -0.2544397487824506,
+    -0.29520908245171346
+   ],
+   [
+    -0.28928659723378025,
+    0.2662608503876364
+   ],
+   [
+    318.0690447610897,
+    1520.461580736615
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 34.9,
+  "controls": [
+   {
+    "px": 290,
+    "py": 765,
+    "lat": 21.2691268,
+    "lng": -157.815853,
+    "name": "P\u0101k\u012b Avenue x Monsarrat Avenue"
+   },
+   {
+    "px": 398,
+    "py": 1048,
+    "lat": 21.2715047,
+    "lng": -157.8227572,
+    "name": "Kal\u0101kaua Avenue x Kapahulu Avenue"
+   },
+   {
+    "px": 647,
+    "py": 600,
+    "lat": 21.2605098,
+    "lng": -157.818232,
+    "name": "P\u0101k\u012b Avenue x Kal\u0101kaua Avenue"
+   },
+   {
+    "px": 695,
+    "py": 517,
+    "lat": 21.2582921,
+    "lng": -157.8184621,
+    "name": "Kal\u0101kaua Avenue x Coconut Avenue"
+   }
+  ]
+ },
+ "VIII": {
+  "affine": [
+   [
+    0.4362503969789317,
+    0.005631529699204165
+   ],
+   [
+    -0.013407944610560614,
+    -0.4465078287525952
+   ],
+   [
+    -160.58943174914242,
+    479.6559604460923
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 16.9,
+  "controls": [
+   {
+    "px": 180,
+    "py": 905,
+    "lat": 21.2715047,
+    "lng": -157.8227572,
+    "name": "Kal\u0101kaua Avenue x Kapahulu Avenue"
+   },
+   {
+    "px": 448,
+    "py": 825,
+    "lat": 21.273273,
+    "lng": -157.8167986,
+    "name": "P\u0101k\u012b Avenue x Kapahulu Avenue"
+   },
+   {
+    "px": 495,
+    "py": 1020,
+    "lat": 21.2691268,
+    "lng": -157.815853,
+    "name": "P\u0101k\u012b Avenue x Monsarrat Avenue"
+   },
+   {
+    "px": 562,
+    "py": 518,
+    "lat": 21.27913,
+    "lng": -157.8139911,
+    "name": "Date Street x Kapahulu Avenue"
+   },
+   {
+    "px": 603,
+    "py": 108,
+    "lat": 21.2878492,
+    "lng": -157.8128986,
+    "name": "Harding Avenue x Kapahulu Avenue"
+   },
+   {
+    "px": 700,
+    "py": 1010,
+    "lat": 21.2695932,
+    "lng": -157.8113463,
+    "name": "Campbell Avenue x Monsarrat Avenue"
+   }
+  ]
+ },
+ "IX": {
+  "affine": [
+   [
+    -0.266422086997815,
+    -0.2874647158174682
+   ],
+   [
+    -0.2906141249771059,
+    0.25008196606827826
+   ],
+   [
+    765.6912021814878,
+    636.6981905721633
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 10.8,
+  "controls": [
+   {
+    "px": 598,
+    "py": 134,
+    "lat": 21.2748881,
+    "lng": -157.818001,
+    "name": "Ala Wai Boulevard x \u02bb\u0100inakea Way"
+   },
+   {
+    "px": 598,
+    "py": 170,
+    "lat": 21.2754438,
+    "lng": -157.8186603,
+    "name": "Ala Wai Boulevard x Wai Nani Way"
+   },
+   {
+    "px": 598,
+    "py": 207,
+    "lat": 21.2759935,
+    "lng": -157.8192834,
+    "name": "Ala Wai Boulevard x Paoakalani Avenue"
+   },
+   {
+    "px": 598,
+    "py": 240,
+    "lat": 21.276555,
+    "lng": -157.8199291,
+    "name": "Ala Wai Boulevard x \u02bb\u014chua Avenue"
+   },
+   {
+    "px": 598,
+    "py": 388,
+    "lat": 21.2787584,
+    "lng": -157.822501,
+    "name": "Ala Wai Boulevard x Ka\u02bbiulani Avenue"
+   },
+   {
+    "px": 598,
+    "py": 418,
+    "lat": 21.2792671,
+    "lng": -157.8230637,
+    "name": "Ala Wai Boulevard x K\u0101nekap\u014dlei Street"
+   },
+   {
+    "px": 598,
+    "py": 441,
+    "lat": 21.2797792,
+    "lng": -157.8236636,
+    "name": "Ala Wai Boulevard x Walina Street"
+   },
+   {
+    "px": 598,
+    "py": 470,
+    "lat": 21.280404,
+    "lng": -157.8243803,
+    "name": "Ala Wai Boulevard x N\u0101hua Street"
+   },
+   {
+    "px": 598,
+    "py": 513,
+    "lat": 21.2809921,
+    "lng": -157.8250496,
+    "name": "Ala Wai Boulevard x Nohonani Street"
+   },
+   {
+    "px": 598,
+    "py": 553,
+    "lat": 21.2815995,
+    "lng": -157.8257416,
+    "name": "Ala Wai Boulevard x Seaside Avenue"
+   },
+   {
+    "px": 596,
+    "py": 628,
+    "lat": 21.2827901,
+    "lng": -157.8271123,
+    "name": "Ala Wai Boulevard x Lewers Street"
+   },
+   {
+    "px": 596,
+    "py": 668,
+    "lat": 21.2834068,
+    "lng": -157.8278212,
+    "name": "Ala Wai Boulevard x Ka\u02bbiolu Street"
+   },
+   {
+    "px": 596,
+    "py": 700,
+    "lat": 21.2838958,
+    "lng": -157.8283888,
+    "name": "Ala Wai Boulevard x Launiu Street"
+   },
+   {
+    "px": 596,
+    "py": 730,
+    "lat": 21.2843604,
+    "lng": -157.8289326,
+    "name": "Ala Wai Boulevard x K\u0101laimoku Street"
+   },
+   {
+    "px": 596,
+    "py": 756,
+    "lat": 21.2848198,
+    "lng": -157.8294782,
+    "name": "Ala Wai Boulevard x \u02bb\u014clohana Street"
+   },
+   {
+    "px": 596,
+    "py": 785,
+    "lat": 21.2852954,
+    "lng": -157.8300166,
+    "name": "Ala Wai Boulevard x N\u0101m\u0101hana Street"
+   },
+   {
+    "px": 596,
+    "py": 840,
+    "lat": 21.2862263,
+    "lng": -157.8310919,
+    "name": "Ala Wai Boulevard x Keoniana Street"
+   },
+   {
+    "px": 594,
+    "py": 937,
+    "lat": 21.2878866,
+    "lng": -157.8330134,
+    "name": "Ala Wai Boulevard x McCully Street"
+   },
+   {
+    "px": 350,
+    "py": 180,
+    "lat": 21.2798786,
+    "lng": -157.8148579,
+    "name": "Date Street x Kamuela Avenue"
+   },
+   {
+    "px": 350,
+    "py": 216,
+    "lat": 21.2804634,
+    "lng": -157.815517,
+    "name": "Date Street x Palani Avenue"
+   },
+   {
+    "px": 350,
+    "py": 252,
+    "lat": 21.2810272,
+    "lng": -157.8161449,
+    "name": "Date Street x Makaleka Avenue"
+   },
+   {
+    "px": 350,
+    "py": 290,
+    "lat": 21.281631,
+    "lng": -157.8168498,
+    "name": "Date Street x Ekela Avenue"
+   },
+   {
+    "px": 350,
+    "py": 327,
+    "lat": 21.282222,
+    "lng": -157.8175145,
+    "name": "Date Street x Lukepane Avenue"
+   },
+   {
+    "px": 350,
+    "py": 364,
+    "lat": 21.2827994,
+    "lng": -157.8181935,
+    "name": "Date Street x Olokele Avenue"
+   }
+  ]
+ },
+ "X": {
+  "affine": [
+   [
+    -0.19403483456284865,
+    -0.4977552438573735
+   ],
+   [
+    -0.5145068599897763,
+    0.1849199109687437
+   ],
+   [
+    1017.5062007945239,
+    325.2253028334796
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 10.5,
+  "controls": [
+   {
+    "px": 178,
+    "py": 640,
+    "lat": 21.294883,
+    "lng": -157.8301693,
+    "name": "McCully Street x South King Street"
+   },
+   {
+    "px": 224,
+    "py": 640,
+    "lat": 21.2941194,
+    "lng": -157.8304779,
+    "name": "McCully Street x Algaroba Street"
+   },
+   {
+    "px": 268,
+    "py": 640,
+    "lat": 21.2933521,
+    "lng": -157.8307881,
+    "name": "McCully Street x Waiola Street"
+   },
+   {
+    "px": 367,
+    "py": 640,
+    "lat": 21.2918318,
+    "lng": -157.8314026,
+    "name": "McCully Street x Date Street"
+   },
+   {
+    "px": 523,
+    "py": 640,
+    "lat": 21.2894907,
+    "lng": -157.8323488,
+    "name": "McCully Street x Kapi\u02bbolani Boulevard"
+   },
+   {
+    "px": 70,
+    "py": 642,
+    "lat": 21.296617,
+    "lng": -157.8296243,
+    "name": "McCully Street x South Beretania Street"
+   },
+   {
+    "px": 640,
+    "py": 640,
+    "lat": 21.2878866,
+    "lng": -157.8330134,
+    "name": "McCully Street x Ala Wai Boulevard"
+   },
+   {
+    "px": 178,
+    "py": 365,
+    "lat": 21.2932364,
+    "lng": -157.8255468,
+    "name": "South King Street x Isenberg Street"
+   },
+   {
+    "px": 178,
+    "py": 316,
+    "lat": 21.2929352,
+    "lng": -157.8247115,
+    "name": "South King Street x Coolidge Street"
+   },
+   {
+    "px": 268,
+    "py": 505,
+    "lat": 21.2925258,
+    "lng": -157.8284906,
+    "name": "Waiola Street x Pa\u02bbani Street"
+   },
+   {
+    "px": 367,
+    "py": 505,
+    "lat": 21.2910051,
+    "lng": -157.8290918,
+    "name": "Date Street x Pa\u02bbani Street"
+   }
+  ]
+ },
+ "XII": {
+  "affine": [
+   [
+    0.2905280615670041,
+    -0.42062270590021317
+   ],
+   [
+    -0.4267332033878602,
+    -0.214371999649701
+   ],
+   [
+    -107.79062348722026,
+    1379.1676164667747
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 20.3,
+  "controls": [
+   {
+    "px": 612,
+    "py": 950,
+    "lat": 21.273273,
+    "lng": -157.8167986,
+    "name": "Kapahulu Avenue x Ala Wai Boulevard"
+   },
+   {
+    "px": 412,
+    "py": 708,
+    "lat": 21.27913,
+    "lng": -157.8139911,
+    "name": "Date Street x Kapahulu Avenue"
+   },
+   {
+    "px": 110,
+    "py": 798,
+    "lat": 21.2827994,
+    "lng": -157.8181935,
+    "name": "Date Street x Olokele Avenue"
+   },
+   {
+    "px": 170,
+    "py": 781,
+    "lat": 21.282222,
+    "lng": -157.8175145,
+    "name": "Date Street x Lukepane Avenue"
+   },
+   {
+    "px": 222,
+    "py": 766,
+    "lat": 21.281631,
+    "lng": -157.8168498,
+    "name": "Date Street x Ekela Avenue"
+   },
+   {
+    "px": 250,
+    "py": 757,
+    "lat": 21.2810272,
+    "lng": -157.8161449,
+    "name": "Date Street x Makaleka Avenue"
+   },
+   {
+    "px": 300,
+    "py": 743,
+    "lat": 21.2804634,
+    "lng": -157.815517,
+    "name": "Date Street x Palani Avenue"
+   },
+   {
+    "px": 352,
+    "py": 728,
+    "lat": 21.2798786,
+    "lng": -157.8148579,
+    "name": "Date Street x Kamuela Avenue"
+   },
+   {
+    "px": 468,
+    "py": 725,
+    "lat": 21.2781137,
+    "lng": -157.813945,
+    "name": "Kapahulu Avenue x Campbell Avenue"
+   },
+   {
+    "px": 128,
+    "py": 505,
+    "lat": 21.2857216,
+    "lng": -157.8134068,
+    "name": "Kapahulu Avenue x Kaimuk\u012b Avenue"
+   }
+  ]
+ }
+}

@@ -43,6 +43,7 @@ FACTS = {
     'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
+BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
 HAWAII = re.compile(r'[āēīōūĀĒĪŌŪ‘ʻ]')
 
@@ -89,6 +90,29 @@ for k, w in enumerate(SRC['walks']):
             continue
         seen.add(s['n'])
         stops_src.append(s)
+
+    # Some stop headings ("21 ‘Āpuakēhau Stream") were read as a line inside the previous stop.
+    # Split them back out into their own stops, carrying the text that follows.
+    split = []
+    for s in stops_src:
+        have = {x['n'] for x in stops_src}
+        cur = dict(s); cur['blocks'] = []
+        for b in s.get('blocks') or []:
+            m = re.match(r'^(\d{1,2})\s+(\S.{0,60})$', b.get('text', '').strip())
+            if m and int(m.group(1)) not in have and int(m.group(1)) > s['n'] and len(b['text']) < 70:
+                split.append(cur)
+                cur = {'n': int(m.group(1)), 'title': m.group(2), 'page': s['page'], 'geo': None, 'images': [], 'blocks': []}
+                have.add(cur['n'])
+                continue
+            cur['blocks'].append(b)
+        split.append(cur)
+    stops_src = sorted(split, key=lambda x: x['n'])
+
+    # Pins placed from Veneeta's own book maps (scripts/georef) take priority over place-name lookups.
+    for s in stops_src:
+        bp = BOOK_PINS.get(wid, {}).get(str(s['n']))
+        if bp:
+            s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': 'book', 'query': 'placed from the book map'}
 
     # Geo sanity check: discard hits far from the walk's centre, then interpolate gaps.
     pts = [(s['geo']['lat'], s['geo']['lng']) for s in stops_src if s.get('geo')]

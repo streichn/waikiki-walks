@@ -131,7 +131,7 @@ export default function WalkOverview() {
       ) : (
         <View style={{ flex: 1 }}>
           {bookMap && walk.bookMap ? (
-            <BookMapPane file={walk.bookMap} topInset={insets.top + 110} bottomInset={230} />
+            <BookMapPane walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} topInset={insets.top + 110} bottomInset={230} />
           ) : (
             <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
           )}

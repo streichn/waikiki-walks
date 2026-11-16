@@ -48,3 +48,9 @@
 - Veneeta's map from the book is now a main map view: a Street map / Book map switch on the walk map and on the walk screen, with zoom.
 - Ending a walk asks: end and save my place, end and start over next time, or keep walking.
 - The walk screen has a Map / Both / Text switch alongside the draggable sheet.
+
+## 2026-11-15 · Veneeta's maps matched to real streets; Walk 1 and 4 pins from her maps; 21 missing stops restored
+- Each book map is fitted to real street intersections from OpenStreetMap (scripts/georef). Typical fit error 10 to 20 m.
+- The book map view now shows numbered stop pins and the walker's blue dot on her map.
+- Walk 1 and Walk 4 pins are now placed where her map prints each stop number, snapped to her route line. This fixes Walk 1 stops 1 to 7, which belong along the Ala Wai Canal (Veneeta's comment).
+- 21 stops whose headings had been read as text inside the previous stop are restored as their own stops (for example Walk 1 stop 21, ʻĀpuakēhau Stream). 329 stops in all.

@@ -208,7 +208,7 @@ export default function ActiveWalk() {
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <View style={StyleSheet.absoluteFill}>
         {bookMap && walk.bookMap ? (
-          <BookMapPane file={walk.bookMap} topInset={insets.top + 110} bottomInset={snaps[detent]} />
+          <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
         ) : (
         <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
         )}
@@ -314,7 +314,7 @@ export default function ActiveWalk() {
           <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
             <PhotoStrip photos={stop.photos} height={170} />
             <StopText blocks={stop.blocks} stopId={stop.id} />
-            {stop.geo !== 'verified' ? (
+            {stop.geo !== 'verified' && stop.geo !== 'book' ? (
               <T variant="small" style={{ fontStyle: 'italic' }}>
                 Pin location is a draft ({stop.geo}). Use "I'm here" if the alert doesn't fire.
               </T>

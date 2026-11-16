@@ -4,7 +4,7 @@ export type Block = { kind: BlockKind; text: string };
 
 export type Photo = { file: string; w: number; h: number; caption?: string };
 
-export type GeoConfidence = 'verified' | 'medium' | 'low' | 'estimated';
+export type GeoConfidence = 'book' | 'verified' | 'medium' | 'low' | 'estimated';
 
 export type Stop = {
   id: string; // e.g. "IV-07"

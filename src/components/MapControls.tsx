@@ -3,7 +3,9 @@ import { Image } from 'expo-image';
 import { useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { photo } from '../data';
+import { photo, walkNo } from '../data';
+import type { Walk } from '../data/types';
+import { bookXY } from '../lib/bookmap';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
 
@@ -103,12 +105,36 @@ export function MapStyleSwitch({ book, onChange }: { book: boolean; onChange: (b
   );
 }
 
-/** Veneeta's walk map filling the map area. Pinch to zoom on iPhone; drag to pan. */
-export function BookMapPane({ file, topInset = 0, bottomInset = 0 }: { file: string; topInset?: number; bottomInset?: number }) {
+/**
+ * Veneeta's walk map filling the map area, with the stops and the walker's position drawn on it.
+ * Pinch to zoom on iPhone; drag to pan.
+ */
+export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, topInset = 0, bottomInset = 0 }: {
+  walk: Walk; current?: number; visited?: number[]; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
+  onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
+}) {
   const { width } = useWindowDimensions();
+  const height = width / 0.7;
+  const dot = me ? bookXY(walk.id, me.lat, me.lng) : null;
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
-      <Image source={photo(file)} style={{ width, aspectRatio: 0.7 }} contentFit="contain" accessibilityLabel="Walk map from the book" />
+      <View style={{ width, height }}>
+        <Image source={photo(walk.bookMap)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map from the book`} />
+        {walk.stops.map((s, i) => {
+          const p = bookXY(walk.id, s.lat, s.lng);
+          if (!p) return null;
+          const on = i === current;
+          const size = on ? 32 : 24;
+          const bg = isLocked?.(i) ? '#8A9A9B' : visited?.includes(i) ? '#3E8E5A' : walk.color;
+          return (
+            <Pressable key={s.id} accessibilityLabel={`Stop ${s.n}, ${s.title}`} onPress={() => onSelect?.(i)} hitSlop={6}
+              style={[styles.bpin, { left: p.x * width - size / 2, top: p.y * height - size / 2, width: size, height: size, borderRadius: size / 2, backgroundColor: bg, zIndex: on ? 2 : 1 }]}>
+              <T style={{ color: '#fff', fontSize: on ? 14 : 11, fontWeight: '800' }}>{s.n}</T>
+            </Pressable>
+          );
+        })}
+        {dot ? <View pointerEvents="none" style={[styles.me, { left: dot.x * width - 9, top: dot.y * height - 9 }]} /> : null}
+      </View>
     </ScrollView>
   );
 }
@@ -139,6 +165,8 @@ const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.35)', justifyContent: 'flex-end' },
   sheet: { margin: 12, borderRadius: 22, padding: 16, gap: 10 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, borderWidth: 1.5 },
+  bpin: { position: 'absolute', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#fff', shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 3 },
+  me: { position: 'absolute', width: 18, height: 18, borderRadius: 9, backgroundColor: '#1A73E8', borderWidth: 3, borderColor: '#fff', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
   styleSwitch: { flexDirection: 'row', padding: 3, gap: 3, borderRadius: 14, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 8, shadowOffset: { width: 0, height: 2 }, elevation: 4 },
   styleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 11 },
   close: { position: 'absolute', right: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center' },

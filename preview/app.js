@@ -265,8 +265,24 @@
   }
 
   // Veneeta's own map from the book, as a full map view (zoom with + and -, drag or scroll to pan).
+  // Where a lat/lng falls on Veneeta's map, as percentages of the image (scripts/georef fits each map to real streets).
+  function bookXY(w, lat, lng) {
+    const g = (D.bookmaps || {})[w.id]; if (!g) return null;
+    const x = (lng - g.origin[1]) * g.k[0] / g.scale, y = (lat - g.origin[0]) * g.k[1] / g.scale, f = g.fwd;
+    let px = f.a[0][0] + x * f.a[1][0] + y * f.a[2][0], py = f.a[0][1] + x * f.a[1][1] + y * f.a[2][1];
+    f.ctrl.forEach((c, i) => { const d = Math.hypot(x - c[0], y - c[1]); if (d > 0) { const u = d * d * Math.log(d); px += u * f.w[i][0]; py += u * f.w[i][1]; } });
+    return [px / g.w * 100, py / g.h * 100];
+  }
+  function bookPins(w) {
+    if (!(D.bookmaps || {})[w.id]) return '';
+    const prog = S.progress[w.id] || { visited: [], current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
+    const pins = w.stops.map((s, i) => { const p = bookXY(w, s.lat, s.lng); if (!p) return ''; const locked = !canOpen(w.id, i);
+      return `<button class="bpin ${i === cur ? 'on' : ''}" data-bpin="${i}" style="left:${p[0]}%;top:${p[1]}%;background:${locked ? '#8A9A9B' : prog.visited.includes(i) ? 'var(--leaf)' : w.color}" aria-label="Stop ${s.n}">${s.n}</button>`; }).join('');
+    const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
+    return pins + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+  }
   function bookPane(w) {
-    return `<div class="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}</div></div>
+    return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}${bookPins(w)}</div></div></div>
       <div class="zoombtns"><button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
   }
   function styleSwitch(w) {
@@ -457,6 +473,7 @@
     const step = 18; // meters per tick (a brisk, sped-up walk)
     if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
+    const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
     if (dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
@@ -679,6 +696,7 @@
     if ((el = q('[data-read]'))) { const i = Number(el.dataset.read); S.stopIdx = i; S.focus = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-step]'))) return stepStop(Number(el.dataset.step));
     if ((el = q('[data-detent]'))) { S.detent = el.dataset.detent; setSheet(detents()[S.detent], true); markDetent(); if (gmap) setTimeout(() => gmap.map.invalidateSize(), 300); return; }
+    if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return goTo(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-mapstyle]'))) { S.mapStyle = el.dataset.mapstyle; wmap = null; gmap = null; render(); return; }
     if ((el = q('[data-zoom]'))) { S.bookZoom = Math.max(1, Math.min(4, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
     if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
