@@ -156,7 +156,6 @@ export default function ActiveWalk() {
     markVisited(walk.id, i);
     goTo(walk.id, i);
     setJustArrived(i);
-    if (detent === 'peek') snapTo('half');
     LiveActivity.update(walk, i);
     if (settings.haptics) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => undefined);
     Animated.sequence([Animated.spring(banner, { toValue: 1, useNativeDriver: true }), Animated.delay(4200), Animated.timing(banner, { toValue: 0, duration: 300, useNativeDriver: true })]).start(() => setJustArrived(null));
@@ -228,6 +227,11 @@ export default function ActiveWalk() {
               setFollow(m);
               if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
             }}
+          />
+          <IconButton
+            icon={settings.autoNarrate ? 'volume-high' : 'volume-mute'}
+            label={settings.autoNarrate ? 'Stop reading stops aloud on arrival' : 'Read each stop aloud on arrival'}
+            onPress={() => { if (settings.autoNarrate) stopSpeech(); settings.set({ autoNarrate: !settings.autoNarrate }); }}
           />
           <LayersButton layer={layer} onChange={(l) => { setBookMap(false); setLayer(l); }} bookMap={walk.bookMap} bookActive={bookMap} onBook={() => setBookMap(true)} />
           <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />

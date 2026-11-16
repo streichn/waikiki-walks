@@ -15,6 +15,7 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
   const t = useTheme();
   const isPro = useIsPro();
   const prog = useProgress((s) => s.progress[walk.id]);
+  const active = useProgress((s) => s.activeWalkId);
   const locked = !isPro && walk.id !== TRIAL.walkId;
   const done = prog?.finishedAt;
   const pct = prog ? Math.round((prog.visited.length / Math.max(1, walk.stops.length)) * 100) : 0;
@@ -60,9 +61,13 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
         <T style={{ color: '#CFE3E0', fontFamily: t.font.bodySemi, fontSize: 12, marginTop: 6 }}>
           {[walk.facts.distance, walk.facts.duration, `${walk.stops.length} stops`].filter(Boolean).join('  ·  ')}
         </T>
-        {pct > 0 && !done ? (
-          <View style={styles.bar}>
-            <View style={{ width: `${pct}%`, height: 3, backgroundColor: t.gold, borderRadius: 2 }} />
+        {/* Not started, stopped at stop N of M with a bar, or finished. */}
+        <T style={{ color: '#fff', fontFamily: t.font.bodyBold, fontSize: 12, marginTop: 8 }}>
+          {done ? 'Finished' : prog && prog.visited.length ? `${active === walk.id ? 'In progress' : 'Stopped'} · stop ${walk.stops[prog.current]?.n ?? 1} of ${walk.stops.length}` : 'Not started'}
+        </T>
+        {prog && prog.visited.length ? (
+          <View style={[styles.bar, { height: 5, borderRadius: 3, backgroundColor: 'rgba(255,255,255,0.3)' }]}>
+            <View style={{ width: `${done ? 100 : pct}%`, height: 5, backgroundColor: '#fff', borderRadius: 3 }} />
           </View>
         ) : null}
       </View>
