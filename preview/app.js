@@ -178,14 +178,17 @@
     const locked = !S.isPro && w.id !== TRIAL.walkId;
     const pill = w.id === TRIAL.walkId && !S.isPro ? `<span class="pill" style="background:var(--gold);color:#3a2200">FREE PREVIEW</span>` : locked ? `<span class="pill" style="background:rgba(0,0,0,.45);color:#fff">${ic('lock', 'width="11" height="11"')}</span>` : '';
     const stats = [w.facts.distance, w.facts.duration, `${w.stops.length} stops`].filter(Boolean).join('  ·  ');
-    return `<button class="wcard ${wide ? 'wide' : ''}" data-walk="${w.id}" aria-label="Walk ${wn(w.id)}, ${esc(w.title)}">${img(w.cover)}<span class="shade"></span><span class="badge" style="background:${w.color}">${wn(w.id)}</span>${pill}<span class="meta"><h3>${esc(w.title)}</h3><div class="theme">${esc(w.theme || '')}</div><div class="stats">${esc(stats)}</div>${progressLine(w)}</span></button>`;
+    return `<button class="wcard ${wide ? 'wide' : ''}" data-walk="${w.id}" aria-label="Walk ${wn(w.id)}, ${esc(w.title)}">${img(w.cover)}<span class="shade"></span><span class="badge" style="background:${w.color}">${wn(w.id)}</span>${pill}<span class="meta"><h3>${esc(w.title)}</h3><div class="theme">${esc(w.theme || '')}</div><div class="stats">${esc(stats)}</div>${progressLine(w).tag}</span>${progressLine(w).bar}</button>`;
   }
   // Under each walk: not started, stop N of M with a bar, or finished.
   function progressLine(w) {
+    // Quiet when not started; a colored tag plus a full-width bar along the card's bottom edge once started.
     const p = S.progress[w.id], n = w.stops.length;
-    if (!p || (!p.visited.length && S.active !== w.id)) return `<div class="wprog"><span>Not started</span></div>`;
+    if (!p || !p.visited.length) return { tag: '', bar: '' };
     const done = p.finishedAt || p.visited.length >= n, pct = done ? 100 : Math.round(100 * p.visited.length / n);
-    return `<div class="wprog"><span>${done ? 'Finished' : S.active === w.id ? `In progress · stop ${w.stops[p.current].n} of ${n}` : `Stopped at stop ${w.stops[p.current].n} of ${n}`}</span><span class="bar"><i style="width:${pct}%"></i></span></div>`;
+    const cls = done ? 'done' : S.active === w.id ? 'live' : 'paused';
+    const txt = done ? 'Finished' : `${S.active === w.id ? 'Walking now' : 'Paused'} · ${p.visited.length} of ${n} stops`;
+    return { tag: `<span class="wtag ${cls}">${txt}</span>`, bar: `<span class="wbar ${cls}"><i style="width:${pct}%"></i></span>` };
   }
 
   // Home screen top card, same order as the app: in progress, near you, unfinished, free walk, next walk.
