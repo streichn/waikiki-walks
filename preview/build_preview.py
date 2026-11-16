@@ -10,7 +10,7 @@ os.makedirs(SITE, exist_ok=True)
 D = f'{ROOT}/src/data'
 walks = json.load(open(f'{D}/walks.json'))
 data = {'walks': walks, 'facts': json.load(open(f'{D}/facts.json')), 'glossary': json.load(open(f'{D}/glossary.json')),
-        'about': json.load(open(f'{D}/about.json')), 'trial': {'walkId': 'IV', 'freeStops': 5}}
+        'about': json.load(open(f'{D}/about.json')), 'routes': json.load(open(f'{D}/routes.json')) if os.path.exists(f'{D}/routes.json') else {}, 'trial': {'walkId': 'IV', 'freeStops': 5}}
 open(f'{SITE}/data.js', 'w').write('window.WW=' + json.dumps(data, ensure_ascii=False) + ';')
 
 

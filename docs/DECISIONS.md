@@ -106,3 +106,16 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Walking routes between stops (2026-11-16)
+- **Common practice:** tour apps show the actual walking route on the map, not straight lines between stops. VoiceMap has tour authors draw walking routes by hand, node by node on the pavement ("Snap to roads" is on by default only for driving tours). GPSmyCity reviewers value a map that keeps you from getting lost and works offline. Shortest-path routing from OpenStreetMap is the usual way to draft a route when no one has drawn it by hand.
+- **Our choice:**
+  - Precompute each leg once with OSRM's foot profile on the FOSSGIS server (routing.openstreetmap.de), at 1 request per second with an honest User-Agent, as its usage policy asks. Only the two stop coordinates are sent. Results are cached (scripts/extract/routes_cache.json) so a re-run only asks for legs whose pins moved.
+  - Ship the paths in src/data/routes.json (about 95 KB), so they work with no signal.
+  - Draw a solid path only when both pins are "verified" or "medium". With "low" or "estimated" pins, a street-level path would look exact while leading to the wrong spot, so those legs stay a dashed straight line.
+  - Reject paths where the router had to move a pin more than 60 m to reach a footway, or where the path is more than 3 times the straight line plus 250 m (usually a missing footpath in OpenStreetMap).
+  - Keep the book's own directions as the authority. The drawn path is the shortest walk between pins; where the book sends walkers a particular way (along the beach, through a park), the text wins.
+  - The "Walking directions" button still opens Apple or Google Maps for live turn-by-turn directions.
+- **Current coverage:** 250 of 296 legs routed; 89 are drawn as street paths today because both pins are confident. More will light up as pins are verified (see PR #1). Re-run `python3 -I scripts/build_routes.py` after any pin change.
+- **Not doing yet:** hand-drawn routes that follow the book exactly (the VoiceMap approach). That needs someone to trace each walk, ideally Veneeta or a walker on the ground.
+- Sources: docs.voicemap.me/tour-publishers/plotting-a-route; thetravelhack.com/travel-tips/gpsmycity-app-review-self-guided-walking-tours; routing.openstreetmap.de/about.html (usage policy: 1 request/second, valid User-Agent, no heavy use, attribution); github.com/Project-OSRM/osrm-backend/wiki/API%20Usage%20Policy

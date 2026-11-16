@@ -38,6 +38,7 @@ export const CREDITS: { title: string; lines: string[] }[] = [
     lines: [
       'Map data © OpenStreetMap contributors, available under the Open Database License (openstreetmap.org/copyright).',
       'Base maps are provided by Apple Maps on iPhone and Google Maps on Android.',
+      'Walking paths between stops were computed with OSRM on the FOSSGIS routing service (routing.openstreetmap.de) from OpenStreetMap data. Spot a missing footpath? Fix it at openstreetmap.org/fixthemap.',
     ],
   },
   {

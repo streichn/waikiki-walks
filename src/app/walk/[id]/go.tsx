@@ -13,6 +13,7 @@ import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { getWalk } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
 import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
+import { legBetween } from '../../../lib/routes';
 import * as LiveActivity from '../../../lib/liveActivity';
 import { play, stop as stopSpeech, useNarration } from '../../../lib/narration';
 import { advanceBackground, requestPermissions, startBackground, stopBackground, watchForeground } from '../../../lib/tracking';
@@ -206,12 +207,15 @@ export default function ActiveWalk() {
   const dist = pos && stop ? distanceM(pos, stop) : null;
   const brg = pos && stop ? bearingDeg(pos, stop) : null;
   const rel = brg !== null && heading !== null ? headingDelta(heading, brg) : null;
+  // Walking distance from the previous stop, shown when GPS is off and the path is trustworthy.
+  const legIn = current > 0 ? legBetween(walk, current - 1) : null;
+  const legInText = legIn?.meters ? `About ${formatDistance(legIn.meters, settings.units)} on foot from stop ${walk.stops[current - 1].n}, ${walkMinutes(legIn.meters)} min. ` : '';
   const nextLocked = !canOpenStop(walk.id, current + 1, isPro) && current + 1 < walk.stops.length;
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <View style={StyleSheet.absoluteFill}>
-        <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
+        <WalkMap ref={mapRef} walk={walk} current={current} activeLeg={arrivedHere ? current : current - 1} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
       </View>
       {detent !== 'full' ? (
         <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
@@ -282,7 +286,7 @@ export default function ActiveWalk() {
                 </T>
                 <T variant="small">
                   {gps === 'off'
-                    ? 'Location is off. Use Next when you reach each stop.'
+                    ? `${legInText}Location is off. Use Next when you reach each stop.`
                     : arrivedHere
                       ? 'Read or listen below, then tap Next.'
                       : dist !== null
