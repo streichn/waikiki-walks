@@ -19,31 +19,34 @@
    "route_offset_m": 11
   },
   "3": {
-   "lat": 21.286802,
-   "lng": -157.82954,
+   "lat": 21.286423,
+   "lng": -157.829891,
    "px": [
     507,
     852
    ],
-   "route_offset_m": 11
+   "route_offset_m": 0,
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""
   },
   "4": {
-   "lat": 21.285497,
-   "lng": -157.828314,
+   "lat": 21.285263,
+   "lng": -157.828538,
    "px": [
     519,
     778
    ],
-   "route_offset_m": 21
+   "route_offset_m": 0,
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""
   },
   "5": {
-   "lat": 21.285377,
-   "lng": -157.827652,
+   "lat": 21.284919,
+   "lng": -157.828148,
    "px": [
     505,
     755
    ],
-   "route_offset_m": 16
+   "route_offset_m": 0,
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""
   },
   "6": {
    "lat": 21.284356,
@@ -55,13 +58,15 @@
    "route_offset_m": 23
   },
   "7": {
-   "lat": 21.285317,
-   "lng": -157.824345,
+   "lat": 21.283388,
+   "lng": -157.826251,
    "px": [
     417,
     652
    ],
-   "route_offset_m": 213
+   "route_offset_m": 0,
+   "confidence": "estimated",
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""
   },
   "8": {
    "lat": 21.282906,
@@ -73,13 +78,15 @@
    "route_offset_m": 52
   },
   "9": {
-   "lat": 21.286829,
-   "lng": -157.813829,
+   "lat": 21.283564,
+   "lng": -157.822505,
    "px": [
     97,
     372
    ],
-   "route_offset_m": 627
+   "route_offset_m": 0,
+   "confidence": "estimated",
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""
   },
   "10": {
    "lat": 21.284443,
@@ -91,13 +98,15 @@
    "route_offset_m": 31
   },
   "11": {
-   "lat": 21.280234,
-   "lng": -157.818553,
+   "lat": 21.283392,
+   "lng": -157.818898,
    "px": [
     425,
     325
    ],
-   "route_offset_m": 201
+   "route_offset_m": 0,
+   "confidence": "estimated",
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""
   },
   "12": {
    "lat": 21.282653,
@@ -1880,6 +1889,196 @@
     670
    ],
    "route_offset_m": 37
+  },
+  "30": {
+   "lat": 21.305054,
+   "lng": -157.819336,
+   "px": [
+    545,
+    604
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 31
+  },
+  "31": {
+   "lat": 21.30573,
+   "lng": -157.81886,
+   "px": [
+    511,
+    610
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 32
+  },
+  "32": {
+   "lat": 21.307867,
+   "lng": -157.816812,
+   "px": [
+    386,
+    612
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 31
+  },
+  "33": {
+   "lat": 21.30914,
+   "lng": -157.815697,
+   "px": [
+    314,
+    615
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 26
+  },
+  "34": {
+   "lat": 21.310566,
+   "lng": -157.813037,
+   "px": [
+    205,
+    577
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 96
+  },
+  "35": {
+   "lat": 21.311012,
+   "lng": -157.814197,
+   "px": [
+    219,
+    624
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 26
+  },
+  "36": {
+   "lat": 21.311654,
+   "lng": -157.814019,
+   "px": [
+    194,
+    637
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 47
+  },
+  "37": {
+   "lat": 21.311404,
+   "lng": -157.812369,
+   "px": [
+    162,
+    581
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 116
+  },
+  "38": {
+   "lat": 21.314238,
+   "lng": -157.812732,
+   "px": [
+    80,
+    672
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 29
+  },
+  "39": {
+   "lat": 21.315588,
+   "lng": -157.812261,
+   "px": [
+    28,
+    700
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 55
+  },
+  "44": {
+   "lat": 21.309406,
+   "lng": -157.809563,
+   "px": [
+    157,
+    442
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 46
+  },
+  "45": {
+   "lat": 21.307704,
+   "lng": -157.810507,
+   "px": [
+    231,
+    422
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 49
+  },
+  "46": {
+   "lat": 21.307236,
+   "lng": -157.811295,
+   "px": [
+    265,
+    432
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 48
+  },
+  "47": {
+   "lat": 21.306051,
+   "lng": -157.811711,
+   "px": [
+    312,
+    411
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 61
+  },
+  "48": {
+   "lat": 21.307178,
+   "lng": -157.812341,
+   "px": [
+    293,
+    461
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 38
+  },
+  "49": {
+   "lat": 21.307755,
+   "lng": -157.813871,
+   "px": [
+    313,
+    522
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 29
+  },
+  "50": {
+   "lat": 21.307059,
+   "lng": -157.816407,
+   "px": [
+    403,
+    577
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 45
+  },
+  "51": {
+   "lat": 21.303509,
+   "lng": -157.818754,
+   "px": [
+    580,
+    542
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 46
+  },
+  "52": {
+   "lat": 21.301794,
+   "lng": -157.820111,
+   "px": [
+    665,
+    535
+   ],
+   "map_page": "X-p6",
+   "route_offset_m": 0
   }
  },
  "XII": {

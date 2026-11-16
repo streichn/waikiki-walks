@@ -217,11 +217,10 @@
       "h": 376
      }
     ],
-    "lat": 21.286802,
-    "lng": -157.82954,
+    "lat": 21.286423,
+    "lng": -157.829891,
     "geo": "book",
-    "page": "p1-26",
-    "radius": 41
+    "page": "p1-26"
    },
    {
     "id": "I-04",
@@ -235,11 +234,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.285497,
-    "lng": -157.828314,
+    "lat": 21.285263,
+    "lng": -157.828538,
     "geo": "book",
-    "page": "p1-27",
-    "radius": 51
+    "page": "p1-27"
    },
    {
     "id": "I-05",
@@ -256,11 +254,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.285377,
-    "lng": -157.827652,
+    "lat": 21.284919,
+    "lng": -157.828148,
     "geo": "book",
-    "page": "p1-27",
-    "radius": 46
+    "page": "p1-27"
    },
    {
     "id": "I-06",
@@ -325,11 +322,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.285317,
-    "lng": -157.824345,
-    "geo": "book",
+    "lat": 21.283388,
+    "lng": -157.826251,
+    "geo": "estimated",
     "page": "p1-28",
-    "radius": 90
+    "radius": 50
    },
    {
     "id": "I-08",
@@ -397,11 +394,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.286829,
-    "lng": -157.813829,
-    "geo": "book",
+    "lat": 21.283564,
+    "lng": -157.822505,
+    "geo": "estimated",
     "page": "p1-29",
-    "radius": 90
+    "radius": 50
    },
    {
     "id": "I-10",
@@ -472,11 +469,11 @@
       "h": 562
      }
     ],
-    "lat": 21.280234,
-    "lng": -157.818553,
-    "geo": "book",
+    "lat": 21.283392,
+    "lng": -157.818898,
+    "geo": "estimated",
     "page": "p1-30",
-    "radius": 90
+    "radius": 50
    },
    {
     "id": "I-12",
@@ -8734,9 +8731,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.274121,
-    "lng": -157.816748,
-    "geo": "estimated",
+    "lat": 21.273594,
+    "lng": -157.816357,
+    "geo": "book",
     "page": "p2-68",
     "radius": 67
    },
@@ -9755,7 +9752,7 @@
  },
  {
   "id": "X",
-  "num": 10,
+  "num": 4,
   "title": "Mānoa Valley",
   "theme": "Chasing rainbows!",
   "facts": {},
@@ -9910,7 +9907,7 @@
   ],
   "cover": "p3-7-267.jpg",
   "bookMap": "map-X.jpg",
-  "color": "#1B998B",
+  "color": "#D1495B",
   "stops": [
    {
     "id": "X-01",
@@ -9923,9 +9920,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.292681,
-    "lng": -157.828495,
-    "geo": "estimated",
+    "lat": 21.28765,
+    "lng": -157.833068,
+    "geo": "book",
     "page": "p3-7",
     "radius": 55
    },
@@ -9940,9 +9937,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.292681,
-    "lng": -157.828495,
-    "geo": "estimated",
+    "lat": 21.288973,
+    "lng": -157.832214,
+    "geo": "book",
     "page": "p3-7",
     "radius": 63
    },
@@ -10009,9 +10006,9 @@
       "h": 497
      }
     ],
-    "lat": 21.292681,
-    "lng": -157.828495,
-    "geo": "estimated",
+    "lat": 21.289471,
+    "lng": -157.832067,
+    "geo": "book",
     "page": "p3-7",
     "radius": 58
    },
@@ -10702,10 +10699,38 @@
      {
       "kind": "p",
       "text": "Seaview Tract, the streets makai of the Inn to Metcalf Street, which was the first development in Mānoa Valley, opened in 1886. No traces of those early homes exist."
+     }
+    ],
+    "photos": [
+     {
+      "file": "p3-16-285.jpg",
+      "w": 812,
+      "h": 526
      },
      {
+      "file": "p3-17-286.jpg",
+      "w": 882,
+      "h": 496
+     },
+     {
+      "file": "p3-18-287.jpg",
+      "w": 884,
+      "h": 497
+     }
+    ],
+    "lat": 21.303972,
+    "lng": -157.820644,
+    "geo": "estimated",
+    "page": "p3-16"
+   },
+   {
+    "id": "X-28",
+    "n": 28,
+    "title": "At the glorious Monkey Pod tree",
+    "blocks": [
+     {
       "kind": "direction",
-      "text": "28 At the glorious Monkey Pod tree, follow Kamehameha Avenue in the direction of Diamond Head around on the sidewalk (one of the few places where you will find a sidewalk in this section of Mānoa), then mauka to O‘ahu Avenue, into the beautiful valley."
+      "text": "At the glorious Monkey Pod tree, follow Kamehameha Avenue in the direction of Diamond Head around on the sidewalk (one of the few places where you will find a sidewalk in this section of Mānoa), then mauka to O‘ahu Avenue, into the beautiful valley."
      },
      {
       "kind": "p",
@@ -10728,27 +10753,11 @@
       "text": "A stroll along O‘ahu Avenue, after a mile, will take you to Mānoa Heritage Center (Stop 36 ). If you would like to visit, you should make reservations for a 1-hour tour of the property and the only restored heiau in the ahupua‘a of Waikīkī. Call or email before you go: manoaheritagecenter.org or 808-988-1287"
      }
     ],
-    "photos": [
-     {
-      "file": "p3-16-285.jpg",
-      "w": 812,
-      "h": 526
-     },
-     {
-      "file": "p3-17-286.jpg",
-      "w": 882,
-      "h": 496
-     },
-     {
-      "file": "p3-18-287.jpg",
-      "w": 884,
-      "h": 497
-     }
-    ],
-    "lat": 21.304825,
-    "lng": -157.819885,
+    "photos": [],
+    "lat": 21.304333,
+    "lng": -157.820208,
     "geo": "estimated",
-    "page": "p3-16"
+    "page": "p3-17"
    },
    {
     "id": "X-29",
@@ -10766,17 +10775,30 @@
      {
       "kind": "p",
       "text": "On O‘ahu Avenue just after Ka‘ala Way/ Street, are several interesting homes with Historic Residence plaques, some by well-known architects, such as Thomas Gill, Vladimir Ossipoff, and Hart Wood. Please do stop to admire the exteriors of these lovingly cared-for homes. Some homeowners with equally beautiful homes have chosen not to list their homes on the registry."
-     },
-     {
-      "kind": "p",
-      "text": "30 On the Diamond Head side of O‘ahu Avenue is the “Chalet,” a blue-roofed 1902 house on the hill that was an early home of the Cooke family, whose second (and present) home you will visit at the Mānoa Heritage Center. Notice the lava wall up high. The Cookes moved to their home, Kūali‘i in 1911, but this house remained in the family for several years."
      }
     ],
     "photos": [],
-    "lat": 21.306038,
-    "lng": -157.81869,
+    "lat": 21.304693,
+    "lng": -157.819772,
     "geo": "estimated",
     "page": "p3-18"
+   },
+   {
+    "id": "X-30",
+    "n": 30,
+    "title": "On the Diamond Head side of O‘ahu Avenue",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "On the Diamond Head side of O‘ahu Avenue is the “Chalet,” a blue-roofed 1902 house on the hill that was an early home of the Cooke family, whose second (and present) home you will visit at the Mānoa Heritage Center. Notice the lava wall up high. The Cookes moved to their home, Kūali‘i in 1911, but this house remained in the family for several years."
+     }
+    ],
+    "photos": [],
+    "lat": 21.305054,
+    "lng": -157.819336,
+    "geo": "book",
+    "page": "p3-18",
+    "radius": 61
    },
    {
     "id": "X-31",
@@ -10809,10 +10831,11 @@
       "h": 496
      }
     ],
-    "lat": 21.307251,
-    "lng": -157.817494,
-    "geo": "estimated",
-    "page": "p3-18"
+    "lat": 21.30573,
+    "lng": -157.81886,
+    "geo": "book",
+    "page": "p3-18",
+    "radius": 62
    },
    {
     "id": "X-32",
@@ -10829,10 +10852,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.308465,
-    "lng": -157.816299,
-    "geo": "estimated",
-    "page": "p3-19"
+    "lat": 21.307867,
+    "lng": -157.816812,
+    "geo": "book",
+    "page": "p3-19",
+    "radius": 61
    },
    {
     "id": "X-33",
@@ -10874,10 +10898,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.309678,
-    "lng": -157.815104,
-    "geo": "estimated",
-    "page": "p3-19"
+    "lat": 21.30914,
+    "lng": -157.815697,
+    "geo": "book",
+    "page": "p3-19",
+    "radius": 56
    },
    {
     "id": "X-34",
@@ -10913,10 +10938,11 @@
       "h": 496
      }
     ],
-    "lat": 21.310892,
-    "lng": -157.813908,
-    "geo": "medium",
-    "page": "p3-19"
+    "lat": 21.310566,
+    "lng": -157.813037,
+    "geo": "book",
+    "page": "p3-19",
+    "radius": 90
    },
    {
     "id": "X-35",
@@ -10933,10 +10959,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307774,
-    "lng": -157.810379,
-    "geo": "medium",
-    "page": "p3-20"
+    "lat": 21.311012,
+    "lng": -157.814197,
+    "geo": "book",
+    "page": "p3-20",
+    "radius": 56
    },
    {
     "id": "X-36",
@@ -11131,10 +11158,11 @@
       "h": 497
      }
     ],
-    "lat": 21.3095,
-    "lng": -157.811732,
-    "geo": "estimated",
-    "page": "p3-20"
+    "lat": 21.311654,
+    "lng": -157.814019,
+    "geo": "book",
+    "page": "p3-20",
+    "radius": 77
    },
    {
     "id": "X-37",
@@ -11190,10 +11218,11 @@
       "h": 497
      }
     ],
-    "lat": 21.311227,
-    "lng": -157.813085,
-    "geo": "medium",
-    "page": "p3-23"
+    "lat": 21.311404,
+    "lng": -157.812369,
+    "geo": "book",
+    "page": "p3-23",
+    "radius": 90
    },
    {
     "id": "X-38",
@@ -11214,10 +11243,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.31368,
-    "lng": -157.812681,
-    "geo": "estimated",
-    "page": "p3-24"
+    "lat": 21.314238,
+    "lng": -157.812732,
+    "geo": "book",
+    "page": "p3-24",
+    "radius": 59
    },
    {
     "id": "X-39",
@@ -11385,10 +11415,11 @@
       "h": 497
      }
     ],
-    "lat": 21.316132,
-    "lng": -157.812277,
-    "geo": "medium",
-    "page": "p3-24"
+    "lat": 21.315588,
+    "lng": -157.812261,
+    "geo": "book",
+    "page": "p3-24",
+    "radius": 85
    },
    {
     "id": "X-40",
@@ -11452,8 +11483,8 @@
       "h": 497
      }
     ],
-    "lat": 21.314634,
-    "lng": -157.811922,
+    "lat": 21.317161,
+    "lng": -157.807223,
     "geo": "estimated",
     "page": "p3-27"
    },
@@ -11510,9 +11541,9 @@
       "h": 497
      }
     ],
-    "lat": 21.313136,
-    "lng": -157.811567,
-    "geo": "estimated",
+    "lat": 21.318734,
+    "lng": -157.802185,
+    "geo": "medium",
     "page": "p3-28"
    },
    {
@@ -11590,8 +11621,8 @@
       "h": 497
      }
     ],
-    "lat": 21.311638,
-    "lng": -157.811212,
+    "lat": 21.326058,
+    "lng": -157.802786,
     "geo": "estimated",
     "page": "p3-29"
    },
@@ -11735,9 +11766,9 @@
       "h": 496
      }
     ],
-    "lat": 21.31014,
-    "lng": -157.810857,
-    "geo": "estimated",
+    "lat": 21.333382,
+    "lng": -157.803387,
+    "geo": "medium",
     "page": "p3-30"
    },
    {
@@ -11786,10 +11817,11 @@
       "h": 496
      }
     ],
-    "lat": 21.308643,
-    "lng": -157.810502,
-    "geo": "medium",
-    "page": "p3-32"
+    "lat": 21.309406,
+    "lng": -157.809563,
+    "geo": "book",
+    "page": "p3-32",
+    "radius": 76
    },
    {
     "id": "X-45",
@@ -11802,10 +11834,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307232,
-    "lng": -157.810743,
-    "geo": "medium",
-    "page": "p3-33"
+    "lat": 21.307704,
+    "lng": -157.810507,
+    "geo": "book",
+    "page": "p3-33",
+    "radius": 79
    },
    {
     "id": "X-46",
@@ -11822,10 +11855,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307268,
-    "lng": -157.811382,
-    "geo": "medium",
-    "page": "p3-33"
+    "lat": 21.307236,
+    "lng": -157.811295,
+    "geo": "book",
+    "page": "p3-33",
+    "radius": 78
    },
    {
     "id": "X-47",
@@ -11874,10 +11908,11 @@
       "h": 496
      }
     ],
-    "lat": 21.306019,
-    "lng": -157.811654,
-    "geo": "medium",
-    "page": "p3-33"
+    "lat": 21.306051,
+    "lng": -157.811711,
+    "geo": "book",
+    "page": "p3-33",
+    "radius": 90
    },
    {
     "id": "X-48",
@@ -11890,10 +11925,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298279,
-    "lng": -157.818693,
-    "geo": "medium",
-    "page": "p3-34"
+    "lat": 21.307178,
+    "lng": -157.812341,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 68
    },
    {
     "id": "X-49",
@@ -11922,10 +11958,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.306672,
-    "lng": -157.82382,
-    "geo": "medium",
-    "page": "p3-34"
+    "lat": 21.307755,
+    "lng": -157.813871,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 59
    },
    {
     "id": "X-50",
@@ -11954,10 +11991,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.290543,
-    "lng": -157.823198,
-    "geo": "low",
-    "page": "p3-34"
+    "lat": 21.307059,
+    "lng": -157.816407,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 75
    },
    {
     "id": "X-51",
@@ -11984,10 +12022,11 @@
       "h": 496
      }
     ],
-    "lat": 21.30305,
-    "lng": -157.818705,
-    "geo": "medium",
-    "page": "p3-34"
+    "lat": 21.303509,
+    "lng": -157.818754,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 76
    },
    {
     "id": "X-52",
@@ -12203,9 +12242,9 @@
       "h": 497
      }
     ],
-    "lat": 21.303439,
-    "lng": -157.817226,
-    "geo": "medium",
+    "lat": 21.301794,
+    "lng": -157.820111,
+    "geo": "book",
     "page": "p3-35"
    }
   ]

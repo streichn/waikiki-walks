@@ -106,3 +106,25 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Author corrections to pins (16 Nov 2026)
+- **Common practice:** tour publishers place each trigger point on the walking route, positioned to suit the point of interest rather than on top of it. VoiceMap's publisher guide: "Make sure that you place it on the line" and "You don't need listeners to be on top of a location" (a distant mountain is their example).
+- **Our choice:**
+  - Pins still come from where Veneeta's map prints each number.
+  - When she corrects a pin, the correction goes in scripts/georef/author_fixes.json with her words, and build.py applies it. Nothing is hand-edited in src/data.
+  - "on: canal" moves the pin to the bank walkway, 10 m from the Ala Wai's edge (water from the bundled OpenStreetMap tiles, streams under about 20 m wide ignored).
+  - "on: route" is for stops whose numbers she prints as labels away from the path (a school's grounds, the mountains, the golf course). The pin goes on her red route halfway between the stops before and after. These pins are marked "estimated" with a 50 m arrival circle until checked on the ground.
+- **Why:** a pin off the route never triggers, so the walker misses the stop. Her email confirms the stops are read from the canal path and on the way to Date Street.
+- Sources: docs.voicemap.me/tour-publishers/choosing-locations/ (markers on the route line; listeners need not stand on the location).
+
+## Walks that run onto a second map page (16 Nov 2026)
+- **How it is normally done:** a scanned map is tied to real coordinates with ground control points, and the fit is checked by its residual error. QGIS asks for at least four points and says more is better; it recommends thin plate spline only for poor originals, because it bends the map locally. Tour publishers then put each trigger on the walking line (VoiceMap's publisher guide).
+- **What we chose:**
+  - Each extra map page is listed in scripts/georef/pages.json and fitted exactly like the first map: labeled street crossings in controls.json, refined against named streets in roads.py, numbers in map_stops.json. A stop already placed from the first map keeps that pin.
+  - Walk X's continuation map (book page 155) is used: 9 crossings, 9 m RMS, 89 percent of road points on her streets. Two crossings on Lowrey Avenue fixed a skew that three central crossings alone left in place (RMS dropped from 19 m to 9 m).
+  - Walk X's upper-valley page is not used. Its three usable crossings imply scales that disagree by almost two to one, so street-level positions from it would be wrong. Stops 41 and 43 use their named places from OpenStreetMap instead; 40 and 42 stay "estimated" between them.
+  - Pins read off her maps are exempt from the "more than 1800 m from the walk's centre" check, which was meant for stray place-name matches. Named places the book really sends the walk to are listed, with the book's words, in scripts/extract/far_stops.json.
+  - Stops the book numbers without a bold heading (Walk X 28 and 30) are restored with the book's own opening words as the title, rather than a title we write.
+- **Why:** Walk X is the longest walk (52 stops, McCully Street to Lyon Arboretum). Before this, 22 of its stops were straight-line guesses, so arrival alerts could not fire there.
+- **Still open:** Walk X stops 7 to 29 are not on any map (Punahou and College Hills); they remain estimates between known pins. The book's Walk XI map (part 3, page 37) exists and covers stops 1 to 6, but is not yet fitted.
+- Sources: docs.qgis.org/3.4/en/docs/user_manual/working_with_raster/georeferencer.html (GCP count, transformation choice, residuals); docs.voicemap.me/tour-publishers/choosing-locations/ (triggers on the route line).
