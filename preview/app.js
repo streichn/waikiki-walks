@@ -502,13 +502,23 @@
     if (!canOpen(w.id, i)) { stopSim(); openPaywall(); return; }
     stopSpeak(); prog.current = i; persist(); render();
   }
+  // The demo follows Veneeta's red route line between stops (scripts/georef/routes.py), straight where it isn't traced.
+  let simPath = null, simFor = null;
   function tickSim() {
     const w = walk(S.walkId), prog = S.progress[w.id], target = w.stops[prog.current];
     if (!S.me) { const prev = w.stops[Math.max(0, prog.current - 1)]; S.me = { lat: prev.lat - 0.0012, lng: prev.lng - 0.0009 }; }
-    const d = dist(S.me, target);
-    S.heading = bearing(S.me, target);
-    const step = 18; // meters per tick (a brisk, sped-up walk)
-    if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
+    if (simFor !== w.id + ':' + prog.current) {
+      simFor = w.id + ':' + prog.current;
+      const leg = prog.current > 0 && ((D.routes || {})[w.id] || {})[String(w.stops[prog.current - 1].n)];
+      simPath = (leg && dist(S.me, { lat: leg[0][0], lng: leg[0][1] }) < 80 ? leg.map(([lat, lng]) => ({ lat, lng })) : []).concat([{ lat: target.lat, lng: target.lng }]);
+    }
+    if (!simPath || !simPath.length) simPath = [{ lat: target.lat, lng: target.lng }];
+    let budget = 18; // meters per tick (a brisk, sped-up walk)
+    while (budget > 0 && simPath.length) {
+      const nxt = simPath[0], d = dist(S.me, nxt);
+      if (d <= budget) { S.me = { ...nxt }; budget -= d; if (simPath.length > 1) simPath.shift(); else break; }
+      else { S.heading = bearing(S.me, nxt); const f = budget / d; S.me = { lat: S.me.lat + (nxt.lat - S.me.lat) * f, lng: S.me.lng + (nxt.lng - S.me.lng) * f }; budget = 0; }
+    }
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
     const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
@@ -810,7 +820,7 @@
       if (a === 'layers') return openLayers(w);
       if (a === 'pinchk') { S.showPins = !S.showPins; const sc = document.getElementById('bookpane').scrollTop; render(); const bp = document.getElementById('bookpane'); if (bp) { S.bookAuto = Date.now(); bp.scrollTop = sc; } return; }
       if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
-      if (a === 'here') { stopSim(); const p = S.progress[w.id]; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
+      if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return goTo(S.progress[w.id].current + 1);
       if (a === 'prev') return goTo(S.progress[w.id].current - 1);
       if (a === 'play') { const s = w.stops[S.progress[w.id].current]; return speaking.stopId ? stopSpeak() : speakStop(s); }
