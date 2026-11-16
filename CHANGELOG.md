@@ -54,3 +54,8 @@
 - The book map view now shows numbered stop pins and the walker's blue dot on her map.
 - Walk 1 and Walk 4 pins are now placed where her map prints each stop number, snapped to her route line. This fixes Walk 1 stops 1 to 7, which belong along the Ala Wai Canal (Veneeta's comment).
 - 21 stops whose headings had been read as text inside the previous stop are restored as their own stops (for example Walk 1 stop 21, ʻĀpuakēhau Stream). 329 stops in all.
+
+## 2026-11-16 · Every book map fitted to roads and shoreline; 215 pins from Veneeta's maps
+- Map fit now uses three kinds of landmark: labeled street intersections (firm), major roads from OpenStreetMap matched to her drawn streets, and the shoreline and Ala Wai Canal banks matched to real water (scripts/georef/roads.py, water.py). Share of major-road points landing on her streets rose to 64 to 90 percent per map.
+- Stop numbers read off all 11 maps (scripts/georef/map_stops.json); 215 of 334 stops now sit exactly on her printed number, with the arrival circle widened by her number's distance from the route.
+- Five more stops the parser had missed are restored from the book's bold headings (scripts/extract/stop_fixes.json): Walk 3 stop 1, Walk 6 stop 1, Walk 9 stop 10, Walk 12 stops 1 and 8.

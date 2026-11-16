@@ -43,6 +43,7 @@ FACTS = {
     'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
+STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
 HAWAII = re.compile(r'[āēīōūĀĒĪŌŪ‘ʻ]')
@@ -107,6 +108,24 @@ for k, w in enumerate(SRC['walks']):
             cur['blocks'].append(b)
         split.append(cur)
     stops_src = sorted(split, key=lambda x: x['n'])
+
+    # Stops whose headings the parser missed entirely (scripts/extract/stop_fixes.json, titles from the book's bold headings).
+    for fx in STOP_FIXES.get(wid, []):
+        if any(x['n'] == fx['n'] for x in stops_src):
+            continue
+        src_blocks = intro if fx['from'] == 'intro' else next((x.get('blocks') or [] for x in stops_src if x['n'] == fx['from']), [])
+        k = next((i for i, b in enumerate(src_blocks) if b.get('text', '').startswith(fx['start'])), None)
+        if k is None:
+            continue
+        end = next((i for i in range(k, len(src_blocks)) if src_blocks[i].get('kind') == 'info'), len(src_blocks))
+        moved = src_blocks[k:end]
+        del src_blocks[k:end]
+        if fx.get('drop'):
+            src_blocks[:] = [b for b in src_blocks if b.get('text') != fx['drop']]
+        if moved and moved[0]['text'].startswith(f"{fx['n']} "):
+            moved[0] = {**moved[0], 'text': moved[0]['text'][len(str(fx['n'])) + 1:]}
+        stops_src.append({'n': fx['n'], 'title': fx['title'], 'page': fx['page'], 'geo': None, 'images': [], 'blocks': moved})
+    stops_src.sort(key=lambda x: x['n'])
 
     # Pins placed from Veneeta's own book maps (scripts/georef) take priority over place-name lookups.
     for s in stops_src:

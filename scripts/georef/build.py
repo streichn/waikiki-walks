@@ -24,7 +24,7 @@ def tps_fit(src, dst, lam):
     """Affine + thin-plate spline from src (n,2) to dst (n,2). Returns params for tps_eval."""
     n = len(src)
     d = np.linalg.norm(src[:, None] - src[None], axis=2)
-    K = np.where(d > 0, d * d * np.log(d + 1e-12), 0.0) + lam * np.eye(n)
+    K = np.where(d > 0, d * d * np.log(d + 1e-12), 0.0) + np.diag(np.broadcast_to(lam, (n,)).astype(float))
     P = np.hstack([np.ones((n, 1)), src])
     L = np.zeros((n + 3, n + 3)); L[:n, :n] = K; L[:n, n:] = P; L[n:, :n] = P.T
     rhs = np.zeros((n + 3, 2)); rhs[:n] = dst
@@ -54,8 +54,9 @@ for w in walks:
     px = np.array([[c['px'], c['py']] for c in ctl], float)
     m = np.array([to_m(c['lat'], c['lng']) for c in ctl])
     # meters are ~2 px each, so smooth a little in both spaces to absorb hand-read positions
-    fwd = tps_fit(m / 100.0, px, lam=0.05)
-    inv = tps_fit(px / 100.0, m, lam=0.05)
+    lam = np.array([2.0 if c.get('kind') else 0.05 for c in ctl])  # streets firm, shoreline soft
+    fwd = tps_fit(m / 100.0, px, lam=lam)
+    inv = tps_fit(px / 100.0, m, lam=lam)
     W, H = Image.open(os.path.join(ROOT, 'assets/book', f)).size
     out_maps[wid] = {'file': f, 'w': W, 'h': H, 'origin': [LAT0, LNG0], 'k': [KX, KY], 'scale': 100.0, 'fwd': fwd, 'rms_m': G[wid]['rms_m'],
                      # where her map prints each stop number, so the app can make her own numbers tappable

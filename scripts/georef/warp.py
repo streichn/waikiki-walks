@@ -13,7 +13,7 @@ KX, KY = 111320 * math.cos(math.radians(LAT0)), 110574
 
 def tps_fit(src, dst, lam):
     n = len(src); d = np.linalg.norm(src[:, None] - src[None], axis=2)
-    K = np.where(d > 0, d * d * np.log(d + 1e-12), 0.0) + lam * np.eye(n)
+    K = np.where(d > 0, d * d * np.log(d + 1e-12), 0.0) + np.diag(np.broadcast_to(lam, (n,)).astype(float))
     P = np.hstack([np.ones((n, 1)), src]); L = np.zeros((n + 3, n + 3)); L[:n, :n] = K; L[:n, n:] = P; L[n:, :n] = P.T
     rhs = np.zeros((n + 3, 2)); rhs[:n] = dst; sol = np.linalg.solve(L, rhs)
     return src, sol[:n], sol[n:]
@@ -33,7 +33,8 @@ for w in walks:
     ctl = G[wid]['controls']
     px = np.array([[c['px'], c['py']] for c in ctl], float)
     m = np.array([[(c['lng'] - LNG0) * KX, (c['lat'] - LAT0) * KY] for c in ctl])
-    fwd = tps_fit(m / 100.0, px, 0.05); inv = tps_fit(px / 100.0, m, 0.05)
+    lam = np.array([2.0 if c.get('kind') else 0.05 for c in ctl])
+    fwd = tps_fit(m / 100.0, px, lam); inv = tps_fit(px / 100.0, m, lam)
     src = Image.open(os.path.join(ROOT, 'assets/book', f)).convert('RGB'); W, H = src.size
     edge = np.array([[x, y] for x in np.linspace(0, W, 30) for y in (0, H)] + [[x, y] for y in np.linspace(0, H, 30) for x in (0, W)], float)
     em = tps_many(inv, edge / 100.0)
