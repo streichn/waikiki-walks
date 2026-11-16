@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { TRIAL } from '../config';
-import { photo } from '../data';
+import { photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
 import { useIsPro } from '../lib/access';
 import { useProgress } from '../store';
@@ -32,7 +32,7 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
       <LinearGradient colors={['transparent', 'rgba(5,25,28,0.25)', 'rgba(5,25,28,0.88)']} style={StyleSheet.absoluteFill} />
       <View style={styles.badgeRow}>
         <View style={[styles.roman, { backgroundColor: walk.color }]}>
-          <T style={{ color: '#fff', fontFamily: t.font.display, fontSize: 15 }}>{walk.id}</T>
+          <T style={{ color: '#fff', fontFamily: t.font.display, fontSize: 15 }}>{walkNo(walk.id)}</T>
         </View>
         {walk.id === TRIAL.walkId && !isPro ? (
           <View style={[styles.pill, { backgroundColor: t.gold }]}>

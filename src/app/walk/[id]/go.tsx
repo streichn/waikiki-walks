@@ -5,12 +5,12 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { type FollowMode, LayersButton, type Layer, LocateButton, nextFollow } from '../../../components/MapControls';
+import { BookMapPane, type FollowMode, LayersButton, type Layer, LocateButton, MapStyleSwitch, nextFollow } from '../../../components/MapControls';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { Button, IconButton, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
-import { getWalk } from '../../../data';
+import { getWalk, walkNo } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
 import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
 import * as LiveActivity from '../../../lib/liveActivity';
@@ -39,6 +39,7 @@ export default function ActiveWalk() {
 
   const [follow, setFollow] = useState<FollowMode>('follow');
   const [layer, setLayer] = useState<Layer>('standard');
+  const [bookMap, setBookMap] = useState(false);
   const [pos, setPos] = useState<{ lat: number; lng: number; acc: number } | null>(null);
   const [heading, setHeading] = useState<number | null>(null);
   const [gps, setGps] = useState<'pending' | 'on' | 'off'>('pending');
@@ -182,18 +183,20 @@ export default function ActiveWalk() {
     Alert.alert('Walk complete', `Mahalo for walking ${walk.title}!`, [{ text: 'Done', onPress: () => end(true) }]);
   };
 
-  const end = async (finished = false) => {
+  const end = async (finished = false, discard = false) => {
     stopSpeech();
     LiveActivity.end(walk);
     await stopBackground().catch(() => undefined);
-    endWalk(finished);
+    endWalk(finished, discard);
     router.back();
   };
 
+  // Ending asks whether to keep the walker's place or start fresh next time.
   const confirmEnd = () =>
-    Alert.alert('End this walk?', 'Your place is saved, so you can pick up where you left off.', [
+    Alert.alert('End this walk?', 'Keep your place to pick up where you left off, or clear it to start this walk from stop 1 next time.', [
+      { text: 'End and save my place', onPress: () => end(false) },
+      { text: 'End and start over next time', style: 'destructive', onPress: () => end(false, true) },
       { text: 'Keep walking', style: 'cancel' },
-      { text: 'End walk', style: 'destructive', onPress: () => end(false) },
     ]);
 
   const openDirections = () => {
@@ -211,8 +214,17 @@ export default function ActiveWalk() {
   return (
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <View style={StyleSheet.absoluteFill}>
+        {bookMap && walk.bookMap ? (
+          <BookMapPane file={walk.bookMap} topInset={insets.top + 110} bottomInset={snaps[detent]} />
+        ) : (
         <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
+        )}
       </View>
+      {detent !== 'full' && walk.bookMap ? (
+        <View style={{ position: 'absolute', left: 14, top: insets.top + 64 }}>
+          <MapStyleSwitch book={bookMap} onChange={setBookMap} />
+        </View>
+      ) : null}
       {detent !== 'full' ? (
         <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
           <LocateButton
@@ -224,7 +236,7 @@ export default function ActiveWalk() {
               if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
             }}
           />
-          <LayersButton layer={layer} onChange={setLayer} bookMap={walk.bookMap} />
+          <LayersButton layer={layer} onChange={(l) => { setBookMap(false); setLayer(l); }} bookMap={walk.bookMap} bookActive={bookMap} onBook={() => setBookMap(true)} />
           <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
         </View>
       ) : null}
@@ -234,7 +246,7 @@ export default function ActiveWalk() {
         <IconButton icon="chevron-down" label="Minimize walk" onPress={() => router.back()} />
         <View style={[styles.headerPill, { backgroundColor: t.card }]}>
           <T variant="label" numberOfLines={1}>
-            Walk {walk.id} · {visited.length}/{walk.stops.length}
+            Walk {walkNo(walk.id)} · {visited.length}/{walk.stops.length}
           </T>
           <T style={{ fontFamily: t.font.display, fontSize: 15 }} numberOfLines={1}>
             {walk.title}
@@ -258,6 +270,14 @@ export default function ActiveWalk() {
             <Pressable onPress={cycleSheet} accessibilityRole="adjustable" accessibilityLabel="Resize the stop panel" style={styles.grab}>
               <View style={[styles.handle, { backgroundColor: t.textMuted, opacity: 0.4 }]} />
             </Pressable>
+            <View style={[styles.viewSwitch, { backgroundColor: t.cardAlt }]} accessibilityRole="tablist">
+              {([['peek', 'map', 'Map'], ['half', 'albums', 'Both'], ['full', 'reader', 'Text']] as const).map(([d, icon, label]) => (
+                <Pressable key={d} accessibilityRole="tab" accessibilityState={{ selected: detent === d }} onPress={() => { tap(); snapTo(d); }} style={[styles.viewBtn, detent === d && { backgroundColor: t.card }]}>
+                  <Ionicons name={icon} size={15} color={detent === d ? t.primary : t.textMuted} />
+                  <T style={{ fontFamily: t.font.bodyBold, fontSize: 14, color: detent === d ? t.primary : t.textMuted }}>{label}</T>
+                </Pressable>
+              ))}
+            </View>
             <View style={styles.pagerRow}>
               <PagerButton label="Previous" icon="chevron-back" disabled={current === 0} onPress={() => go(current - 1)} />
               <T style={{ fontFamily: t.font.bodyBold, color: t.textMuted, fontSize: 14 }}>
@@ -358,6 +378,8 @@ const styles = StyleSheet.create({
   sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, borderTopLeftRadius: 24, borderTopRightRadius: 24, shadowColor: '#000', shadowOpacity: 0.16, shadowRadius: 14, shadowOffset: { width: 0, height: -4 }, elevation: 10, overflow: 'hidden', zIndex: 4 },
   grab: { alignItems: 'center', paddingTop: 9, paddingBottom: 7 },
   handle: { width: 40, height: 5, borderRadius: 3 },
+  viewSwitch: { flexDirection: 'row', gap: 4, marginHorizontal: 14, marginBottom: 10, padding: 3, borderRadius: 14 },
+  viewBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, paddingVertical: 7, borderRadius: 11 },
   pagerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14, paddingBottom: 8 },
   pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14 },
   nav: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, padding: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },

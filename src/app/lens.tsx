@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, IconButton, T } from '../components/ui';
-import { photo } from '../data';
+import { photo, walkNo } from '../data';
 import { canOpenStop, useIsPro } from '../lib/access';
 import { formatDistance } from '../lib/geo';
 import { candidatesInView, identifyPhoto, type LensCandidate, visionAvailable } from '../lib/lens';
@@ -115,7 +115,7 @@ export default function Lens() {
                 {top.stop.title}
               </T>
               <T variant="small">
-                Walk {top.walk.id}, stop {top.stop.n}
+                Walk {walkNo(top.walk.id)}, stop {top.stop.n}
                 {result ? ` · ${result.reason}` : ''}
               </T>
             </View>

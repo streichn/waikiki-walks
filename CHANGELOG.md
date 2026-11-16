@@ -42,3 +42,9 @@
 - Reading a walk: the overview now lists the stops; tapping one opens it as its own page. Swipe sideways or use Previous and Next to move one stop at a time.
 - Walking: the map fills the screen and the stop slides up over it in a sheet you can drag or tap to three heights (peek, half, full). The whole stop scrolls inside the sheet. Previous and Next sit at the top of the sheet; larger text.
 - Recorded narration (Gemini TTS) plays in the preview when a stop has been recorded; otherwise the device voice is used.
+
+## 2026-11-15 · Veneeta's first feedback: numbered walks, her maps, ending a walk
+- Walks are shown as Walk 1 to Walk 12 (the book's Roman numerals stay in the data) and listed in order on the home screen, one per row, instead of grouped side-scrolling rows.
+- Veneeta's map from the book is now a main map view: a Street map / Book map switch on the walk map and on the walk screen, with zoom.
+- Ending a walk asks: end and save my place, end and start over next time, or keep walking.
+- The walk screen has a Map / Both / Text switch alongside the draggable sheet.

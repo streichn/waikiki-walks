@@ -51,7 +51,8 @@ type ProgressState = {
   startWalk: (walkId: string, at?: number) => void;
   goTo: (walkId: string, index: number) => void;
   markVisited: (walkId: string, index: number) => void;
-  endWalk: (finished: boolean) => void;
+  /** End the active walk. `discard` clears its progress so it starts at stop 1 next time. */
+  endWalk: (finished: boolean, discard?: boolean) => void;
   toggleFavorite: (stopId: string) => void;
   reset: () => void;
 };
@@ -84,10 +85,15 @@ export const useProgress = create<ProgressState>()(
         if (!p || p.visited.includes(index)) return;
         set({ progress: { ...get().progress, [walkId]: { ...p, visited: [...p.visited, index] } } });
       },
-      endWalk: (finished) => {
+      endWalk: (finished, discard) => {
         const id = get().activeWalkId;
         if (!id) return;
         const p = get().progress[id];
+        if (discard) {
+          const { [id]: _drop, ...rest } = get().progress;
+          set({ activeWalkId: undefined, progress: rest });
+          return;
+        }
         set({
           activeWalkId: undefined,
           progress: finished && p ? { ...get().progress, [id]: { ...p, finishedAt: Date.now() } } : get().progress,

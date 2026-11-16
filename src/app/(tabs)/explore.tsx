@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Card, T, tap } from '../../components/ui';
-import { walks } from '../../data';
+import { walks, walkNo } from '../../data';
 import type { Walk } from '../../data/types';
 import { useTheme } from '../../theme';
 
@@ -54,7 +54,7 @@ export default function Explore() {
 
       {sel ? (
         <Card style={[styles.sheet, { bottom: insets.bottom + 150 }]}>
-          <T variant="label">Walk {sel.id}</T>
+          <T variant="label">Walk {walkNo(sel.id)}</T>
           <T variant="title" style={{ fontSize: 22 }}>
             {sel.title}
           </T>

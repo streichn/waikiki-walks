@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { getWalk } from '../data';
+import { getWalk, walkNo } from '../data';
 import { stop as stopReading, useNarration } from '../lib/narration';
 import { useProgress } from '../store';
 import { useTheme } from '../theme';
@@ -37,7 +37,7 @@ export function ActiveWalkBar({ bottom }: { bottom: number }) {
           {stop ? `Stop ${stop.n}: ${stop.title}` : walk.title}
         </T>
         <T style={{ color: t.dark ? '#073036' : '#CDEBE8', fontSize: 12, fontFamily: t.font.body }} numberOfLines={1}>
-          Walk {walk.id} · {walk.title} · {prog.visited.length}/{walk.stops.length} visited
+          Walk {walkNo(walk.id)} · {walk.title} · {prog.visited.length}/{walk.stops.length} visited
         </T>
       </View>
       {speaking ? (

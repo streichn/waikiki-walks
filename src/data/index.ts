@@ -8,6 +8,13 @@ export const walks = walksJson as Walk[];
 export const facts = factsJson as FunFact[];
 export const glossary = glossaryJson as GlossaryEntry[];
 
+const ROMAN: Record<string, number> = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, XI: 11, XII: 12 };
+
+/** The book numbers walks with Roman numerals; the app shows plain numbers (Walk IV is shown as Walk 4). */
+export function walkNo(id: string): number | string {
+  return ROMAN[id] ?? id;
+}
+
 export function getWalk(id: string): Walk | undefined {
   return walks.find((w) => w.id === id);
 }

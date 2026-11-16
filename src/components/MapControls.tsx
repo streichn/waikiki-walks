@@ -37,7 +37,7 @@ export function LocateButton({ mode, onPress, disabled }: { mode: FollowMode; on
   );
 }
 
-export function LayersButton({ layer, onChange, bookMap }: { layer: Layer; onChange: (l: Layer) => void; bookMap?: string }) {
+export function LayersButton({ layer, onChange, bookMap, bookActive, onBook }: { layer: Layer; onChange: (l: Layer) => void; bookMap?: string; bookActive?: boolean; onBook?: () => void }) {
   const t = useTheme();
   const [open, setOpen] = useState(false);
   const [showBook, setShowBook] = useState(false);
@@ -57,14 +57,14 @@ export function LayersButton({ layer, onChange, bookMap }: { layer: Layer; onCha
           <View style={[styles.sheet, { backgroundColor: t.card }]}>
             <T variant="label">Map style</T>
             {opts.map((o) => {
-              const on = o.key === layer;
+              const on = o.key === 'book' ? !!bookActive : !bookActive && o.key === layer;
               return (
                 <Pressable
                   key={o.key}
                   onPress={() => {
                     tap();
                     setOpen(false);
-                    if (o.key === 'book') setShowBook(true);
+                    if (o.key === 'book') (onBook ? onBook() : setShowBook(true));
                     else onChange(o.key);
                   }}
                   style={[styles.row, { borderColor: on ? t.accent : t.border }]}
@@ -80,6 +80,36 @@ export function LayersButton({ layer, onChange, bookMap }: { layer: Layer; onCha
       </Modal>
       {bookMap ? <BookMapViewer file={bookMap} visible={showBook} onClose={() => setShowBook(false)} /> : null}
     </>
+  );
+}
+
+/** Street map or Veneeta's own map from the book, as the main map view. */
+export function MapStyleSwitch({ book, onChange }: { book: boolean; onChange: (book: boolean) => void }) {
+  const t = useTheme();
+  const opt = (label: string, value: boolean, icon?: keyof typeof Ionicons.glyphMap) => {
+    const on = book === value;
+    return (
+      <Pressable accessibilityRole="tab" accessibilityState={{ selected: on }} onPress={() => { tap(); onChange(value); }} style={[styles.styleBtn, on && { backgroundColor: t.primary }]}>
+        {icon ? <Ionicons name={icon} size={14} color={on ? t.primaryText : t.textMuted} /> : null}
+        <T style={{ fontFamily: t.font.bodyBold, fontSize: 13, color: on ? t.primaryText : t.textMuted }}>{label}</T>
+      </Pressable>
+    );
+  };
+  return (
+    <View style={[styles.styleSwitch, { backgroundColor: t.card }]} accessibilityRole="tablist">
+      {opt('Street map', false)}
+      {opt('Book map', true, 'book')}
+    </View>
+  );
+}
+
+/** Veneeta's walk map filling the map area. Pinch to zoom on iPhone; drag to pan. */
+export function BookMapPane({ file, topInset = 0, bottomInset = 0 }: { file: string; topInset?: number; bottomInset?: number }) {
+  const { width } = useWindowDimensions();
+  return (
+    <ScrollView style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
+      <Image source={photo(file)} style={{ width, aspectRatio: 0.7 }} contentFit="contain" accessibilityLabel="Walk map from the book" />
+    </ScrollView>
   );
 }
 
@@ -109,5 +139,7 @@ const styles = StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.35)', justifyContent: 'flex-end' },
   sheet: { margin: 12, borderRadius: 22, padding: 16, gap: 10 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, borderWidth: 1.5 },
+  styleSwitch: { flexDirection: 'row', padding: 3, gap: 3, borderRadius: 14, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 8, shadowOffset: { width: 0, height: 2 }, elevation: 4 },
+  styleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 11 },
   close: { position: 'absolute', right: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center' },
 });

@@ -5,7 +5,7 @@ import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Plumeria } from '../../components/Flora';
 import { T } from '../../components/ui';
-import { photo, walks } from '../../data';
+import { photo, walks, walkNo } from '../../data';
 import { useProgress } from '../../store';
 import { useTheme } from '../../theme';
 
@@ -32,7 +32,7 @@ export default function Saved() {
           {item.s.photos[0] ? <Image source={photo(item.s.photos[0].file)} style={styles.thumb} contentFit="cover" /> : <View style={[styles.thumb, { backgroundColor: item.w.color }]} />}
           <View style={{ flex: 1 }}>
             <T variant="label">
-              Walk {item.w.id} · Stop {item.s.n}
+              Walk {walkNo(item.w.id)} · Stop {item.s.n}
             </T>
             <T variant="h2" numberOfLines={2}>
               {item.s.title}

@@ -9,6 +9,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>/*LEAFLET_CSS*/.minibar .hush{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:18px;background:rgba(255,255,255,.22);flex:none}
 .minibar .hush svg{fill:currentColor}
+.viewsw { display: flex; gap: 4px; margin: 0 14px 10px; padding: 3px; border-radius: 14px; background: var(--card2); flex: none; }
+.viewsw button { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 7px 0; border-radius: 11px; font-weight: 800; font-size: 14px; color: var(--muted); }
+.viewsw button[aria-selected="true"] { background: var(--card); color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.mapstyle { position: absolute; left: 12px; top: calc(env(safe-area-inset-top) + 66px); z-index: 900; display: flex; padding: 3px; gap: 3px; border-radius: 14px; background: var(--card); box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.mapstyle button { display: inline-flex; align-items: center; gap: 4px; padding: 7px 11px; border-radius: 11px; font-weight: 800; font-size: 13px; color: var(--muted); }
+.mapstyle button[aria-selected="true"] { background: var(--primary); color: #fff; }
+#go .mapstyle { top: calc(env(safe-area-inset-top) + 64px); }
+#go.sheet-full .mapstyle { opacity: 0; pointer-events: none; }
+.bookpane { position: absolute; inset: 0; overflow: auto; background: #FBF6EC; -webkit-overflow-scrolling: touch; }
+.bookimg { margin: 0 auto; padding: 110px 0 240px; }
+.bookimg img { width: 100%; height: auto; display: block; }
+.zoombtns { position: absolute; right: 12px; top: calc(env(safe-area-inset-top) + 120px); z-index: 900; display: flex; flex-direction: column; gap: 8px; }
+.zoombtns .mapbtn { font-size: 22px; font-weight: 800; }
+#go .zoombtns { top: auto; left: 12px; right: auto; bottom: calc(var(--sh, 56%) + 60px); flex-direction: row; }
+#go.sheet-full .zoombtns { opacity: 0; pointer-events: none; }
 </style>
 <style>
 :root {

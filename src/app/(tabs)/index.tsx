@@ -15,13 +15,6 @@ import { useAccount } from '../../store';
 import { APP_COPYRIGHT, DEDICATION } from '../../legal';
 import { useTheme } from '../../theme';
 
-const GROUPS = [
-  { title: 'Along the beach', ids: ['II', 'III', 'IV', 'VII'] },
-  { title: 'Royal Waikīkī and the park', ids: ['V', 'VI'] },
-  { title: 'Around the canal', ids: ['I'] },
-  { title: 'Into the ahupuaʻa', ids: ['VIII', 'IX', 'X'] },
-  { title: 'University of Hawaiʻi', ids: ['XI', 'XII'] },
-];
 
 export default function Home() {
   const t = useTheme();
@@ -68,26 +61,17 @@ export default function Home() {
 
         <FunFacts />
 
-        {GROUPS.map((g) => (
-          <View key={g.title} style={{ gap: 10 }}>
-            <View>
-              <T variant="title" style={{ fontSize: 22 }}>
-                {g.title}
-              </T>
-              <WaveRule width={90} color={t.primary} />
-            </View>
-            {g.ids.length === 1 ? (
-              <WalkCard walk={getWalk(g.ids[0])!} wide />
-            ) : (
-              <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -20 }} contentContainerStyle={{ paddingHorizontal: 20 }}>
-                {g.ids.map((id) => {
-                  const w = getWalk(id);
-                  return w ? <WalkCard key={id} walk={w} /> : null;
-                })}
-              </ScrollView>
-            )}
+        <View style={{ gap: 12 }}>
+          <View>
+            <T variant="title" style={{ fontSize: 22 }}>
+              The twelve walks
+            </T>
+            <WaveRule width={90} color={t.primary} />
           </View>
-        ))}
+          {walks.map((w) => (
+            <WalkCard key={w.id} walk={w} wide />
+          ))}
+        </View>
 
         <Pressable onPress={() => router.push('/about')} style={[styles.about, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
           <View style={styles.leaf}>

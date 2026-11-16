@@ -8,11 +8,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Hibiscus } from '../../../components/Flora';
 import { FunFacts } from '../../../components/FunFacts';
 import { StopText } from '../../../components/StopText';
-import { LayersButton, type Layer } from '../../../components/MapControls';
+import { BookMapPane, LayersButton, type Layer, MapStyleSwitch } from '../../../components/MapControls';
 import { Button, Chip, IconButton, Segmented, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { TRIAL } from '../../../config';
-import { getWalk, photo } from '../../../data';
+import { getWalk, photo, walkNo } from '../../../data';
 import type { Stop } from '../../../data/types';
 import { canOpenStop, canStartWalk, useIsPro } from '../../../lib/access';
 import { stop as stopSpeech } from '../../../lib/narration';
@@ -33,6 +33,7 @@ export default function WalkOverview() {
   const [mode, setMode] = useState<Mode>(modeParam === 'map' ? 'map' : 'read');
   const [focus, setFocus] = useState(stopParam ? Number(stopParam) : 0);
   const [layer, setLayer] = useState<Layer>('standard');
+  const [bookMap, setBookMap] = useState(false);
   const scroll = useRef<ScrollViewInstance>(null);
   const mapRef = useRef<WalkMapHandle>(null);
   const cards = useRef<FlatList<Stop>>(null);
@@ -81,7 +82,7 @@ export default function WalkOverview() {
           </View>
           <View style={{ paddingHorizontal: 20, marginTop: -70, gap: 12 }}>
             <View style={[styles.roman, { backgroundColor: walk.color }]}>
-              <T style={{ color: '#fff', fontFamily: t.font.display, fontSize: 16 }}>Walk {walk.id}</T>
+              <T style={{ color: '#fff', fontFamily: t.font.display, fontSize: 16 }}>Walk {walkNo(walk.id)}</T>
             </View>
             <T variant="display">{walk.title}</T>
             {walk.theme ? (
@@ -129,9 +130,18 @@ export default function WalkOverview() {
         </ScrollView>
       ) : (
         <View style={{ flex: 1 }}>
-          <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
+          {bookMap && walk.bookMap ? (
+            <BookMapPane file={walk.bookMap} topInset={insets.top + 110} bottomInset={230} />
+          ) : (
+            <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
+          )}
+          {walk.bookMap ? (
+            <View style={{ position: 'absolute', left: 14, top: insets.top + 64 }}>
+              <MapStyleSwitch book={bookMap} onChange={setBookMap} />
+            </View>
+          ) : null}
           <View style={{ position: 'absolute', right: 14, top: insets.top + 64, gap: 10 }}>
-            <LayersButton layer={layer} onChange={setLayer} bookMap={walk.bookMap} />
+            <LayersButton layer={layer} onChange={(l) => { setBookMap(false); setLayer(l); }} bookMap={walk.bookMap} bookActive={bookMap} onBook={() => setBookMap(true)} />
           </View>
           <FlatList
             ref={cards}

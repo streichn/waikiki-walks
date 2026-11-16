@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
-import { facts } from '../data';
+import { facts, walkNo } from '../data';
 import { useTheme } from '../theme';
 import { Hibiscus } from './Flora';
 import { T, tap } from './ui';
@@ -56,7 +56,7 @@ export function FunFacts({ walkId, interval = 9000 }: { walkId?: string; interva
         </T>
         {f.walkId ? (
           <T variant="small" style={{ marginTop: 6 }}>
-            From Walk {f.walkId}
+            From Walk {walkNo(f.walkId)}
           </T>
         ) : null}
       </Animated.View>

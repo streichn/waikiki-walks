@@ -5,7 +5,7 @@ import { FlatList, Pressable, ScrollView, StyleSheet, useWindowDimensions, View 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StopSection } from '../../../../components/StopPage';
 import { IconButton, T, tap } from '../../../../components/ui';
-import { getWalk } from '../../../../data';
+import { getWalk, walkNo } from '../../../../data';
 import type { Stop } from '../../../../data/types';
 import { canOpenStop, useIsPro } from '../../../../lib/access';
 import { stop as stopSpeech } from '../../../../lib/narration';
@@ -75,7 +75,7 @@ export default function StopReader() {
       <View style={[styles.top, { top: insets.top + 6 }]}>
         <IconButton icon="chevron-back" label="All stops" onPress={() => { stopSpeech(); router.back(); }} />
         <View style={[styles.pill, { backgroundColor: t.card }]}>
-          <T variant="label" numberOfLines={1}>Walk {walk.id}</T>
+          <T variant="label" numberOfLines={1}>Walk {walkNo(walk.id)}</T>
           <T style={{ fontFamily: t.font.display, fontSize: 15 }} numberOfLines={1}>{walk.title}</T>
         </View>
         <View style={{ width: 44 }} />
