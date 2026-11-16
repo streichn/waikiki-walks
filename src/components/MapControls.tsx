@@ -142,7 +142,10 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
               style={[styles.bhit, { left: L.x * width - 18, top: L.y * height - 18 }]} />
           );
         })}
-        {dot ? <View pointerEvents="none" style={[styles.me, { left: dot.x * width - 11, top: dot.y * height - 11 }]} /> : null}
+        {dot ? (
+          // Sized like her own map markers (it zooms with the map), translucent with a soft glow so her streets show through.
+          <View pointerEvents="none" style={[styles.me, { left: dot.x * width - (width * 0.028) / 2, top: dot.y * height - (width * 0.028) / 2, width: width * 0.028, height: width * 0.028, borderRadius: width * 0.014 }]} />
+        ) : null}
       </View>
     </ScrollView>
     {dot ? (
@@ -183,7 +186,7 @@ const styles = StyleSheet.create({
   bhit: { position: 'absolute', width: 36, height: 36, borderRadius: 18 },
   bpin: { position: 'absolute', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#fff', shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 3 },
   meBtn: { position: 'absolute', left: 14, backgroundColor: '#fff', borderColor: '#ddd' },
-  me: { position: 'absolute', width: 22, height: 22, borderRadius: 11, backgroundColor: 'rgba(26,115,232,0.55)', borderWidth: 2, borderColor: 'rgba(255,255,255,0.85)', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
+  me: { position: 'absolute', backgroundColor: 'rgba(26,115,232,0.5)', borderWidth: 1.5, borderColor: 'rgba(255,255,255,0.9)', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
   styleSwitch: { flexDirection: 'row', padding: 3, gap: 3, borderRadius: 14, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 8, shadowOffset: { width: 0, height: 2 }, elevation: 4 },
   styleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 11 },
   close: { position: 'absolute', right: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center' },
