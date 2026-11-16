@@ -145,51 +145,51 @@
  },
  {
   "id": "f25",
-  "text": "Kalākaua Avenue was first known as Waikīkī Road. (Hawai‘i State Archives)",
-  "walkId": "IV",
-  "stopId": "IV-01"
- },
- {
-  "id": "f26",
   "text": "Kālaimoku, also known as Kālanimoku, died in 1827. (Saratoga Road is a makai extension of Kālaimoku Street.)",
   "walkId": "IV",
   "stopId": "IV-07"
  },
  {
-  "id": "f27",
+  "id": "f26",
   "text": "Helumoa Road, ‘chicken scratch,’ is our only reminder of this important place in ancient Hawaiian times.",
   "walkId": "IV",
   "stopId": "IV-11"
  },
  {
-  "id": "f28",
-  "text": "In 1937, Waikīkī This crosswalk design is based on the Mo‘olelo Kaha (‘story about the scratches’).",
-  "walkId": "IV",
-  "stopId": "IV-15"
- },
- {
-  "id": "f29",
+  "id": "f27",
   "text": "Duke’s Restaurant, named for Duke Kahanamoku, Hawai‘i’s famed sportsman, is where Don Ho first made a name for himself.",
   "walkId": "IV",
   "stopId": "IV-21"
  },
  {
-  "id": "f30",
+  "id": "f28",
   "text": "Queen Kapi‘olani retreated to Pualeilani after her husband, King Kalākaua, died in 1891; she died at her home in Pualeilani in 1899, less than 3 months after Princess Ka‘iulani’s death in nearby ‘Āinahau!",
   "walkId": "IV",
   "stopId": "IV-23"
  },
  {
-  "id": "f31",
+  "id": "f29",
   "text": "Kūhiō Beach Park is named for Prince Kūhiō Kalaniana‘ole Pi‘ikoi (1871-1922) whose home, Pualeilani, was nearby.",
   "walkId": "IV",
   "stopId": "IV-28"
  },
  {
-  "id": "f32",
+  "id": "f30",
   "text": "The 50 years mentioned on the plaque, back to 1949, refer to their first store in Kaimukī (mauka of Waikīkī).",
   "walkId": "IV",
   "stopId": "IV-08"
+ },
+ {
+  "id": "f31",
+  "text": "The first public school and first church in Waikīkī were established on the mauka- ‘Ewa corner of Kalākaua Avenue and Ka‘iulani Street, as located on 1874 and 1897 maps.",
+  "walkId": "IV",
+  "stopId": "IV-20"
+ },
+ {
+  "id": "f32",
+  "text": "The original Surfrider Hotel opened in 1952 as Waikīkī’s first post-Moana high-rise hotel.",
+  "walkId": "IV",
+  "stopId": "IV-22"
  },
  {
   "id": "f33",
@@ -447,7 +447,7 @@
   "id": "f75",
   "text": "The oldest building on campus, not visible from the street, is aptly named Old School Hall and was constructed out of stone blasted from the nearby hill in 1851.",
   "walkId": "X",
-  "stopId": "X-20"
+  "stopId": "X-21"
  },
  {
   "id": "f76",
@@ -469,9 +469,9 @@
  },
  {
   "id": "f79",
-  "text": "9 Wilder Avenue is named for Samuel Wilder (1831-1888), entrepreneur and Minister of the Interior under King Kalākaua.",
+  "text": "Wilder Avenue is named for Samuel Wilder (1831-1888), entrepreneur and Minister of the Interior under King Kalākaua.",
   "walkId": "X",
-  "stopId": "X-08"
+  "stopId": "X-09"
  },
  {
   "id": "f80",

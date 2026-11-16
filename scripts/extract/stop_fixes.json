@@ -42,6 +42,14 @@
    "page": "p2-71",
    "from": 9,
    "start": "10 A footbridge"
+  },
+  {
+   "n": 2,
+   "title": "Waikīkī-Kapahulu Public Library",
+   "page": "p2-68",
+   "from": 1,
+   "start": "The library is one of Waikīkī",
+   "_why": "Bold heading '2 Waikīkī-Kapahulu Public Library' on p2-68; its number and name were split apart in the PDF."
   }
  ],
  "IV": [
@@ -62,6 +70,64 @@
    "from": 26,
    "start": "27 On the Diamond Head side",
    "_why": "The book prints stop 27 inline with no bold heading; title uses the book's own words."
+  }
+ ],
+ "X": [
+  {
+   "n": 23,
+   "title": "Nehoa Street",
+   "page": "p3-13",
+   "from": 20,
+   "start": "23 Cross Nehoa",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
+  },
+  {
+   "n": 22,
+   "title": "Bingham Hall",
+   "page": "p3-13",
+   "from": 20,
+   "start": "22 Bingham Hall",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
+  },
+  {
+   "n": 21,
+   "title": "Pauahi Hall",
+   "page": "p3-13",
+   "from": 20,
+   "start": "21 Pauahi Hall",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
+  },
+  {
+   "n": 9,
+   "title": "Wilder Avenue",
+   "page": "p3-11",
+   "from": 8,
+   "start": "9 Wilder Avenue",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
+  },
+  {
+   "n": 13,
+   "title": "Artesian Way",
+   "page": "p3-12",
+   "from": 12,
+   "start": "13 Artesian Way",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
+  },
+  {
+   "n": 28,
+   "title": "Monkey Pod tree",
+   "page": "p3-16",
+   "from": 27,
+   "start": "28 At the glorious Monkey Pod",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
+  },
+  {
+   "n": 30,
+   "title": "The “Chalet”",
+   "page": "p3-17",
+   "from": 29,
+   "start": "30 On the Diamond Head side of O‘ahu",
+   "_why": "The book prints this stop inline with no bold heading; title uses the book's own words."
   }
  ]
 }

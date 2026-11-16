@@ -62,7 +62,7 @@
       "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator. 1.5 hour, 3 miles round trip, 6,000 steps PARKING: On-street parking can be found along Date Street on the mauka side of the canal. It’s free, except no parking 3:30 to 6:30 pm Mondays through Fridays. Parking garage across from the Hale Koa Hotel on Kālia Road. Parking lot on the corner of Kālia and Saratoga roads."
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "The Hau flower, which is related to the Hibiscus, lives for only one day, changing from yellow to reddish brown when it drops."
      },
      {
@@ -131,7 +131,7 @@
       "text": "Original topography of the area included three streams running down from the mountains into the valleys and through Waikīkī, each emptying directly into the Pacific Ocean. Waikolu Way, a small street between Royal Hawaiian and Seaside avenues, is reminiscent of those three streams: Waikolu means ‘three waters.’"
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "You will see these lovely green signs along the way. The intent is for people to walk from park to park around the island, like a lei. We will follow a Waikīkī lei of parks."
      },
      {
@@ -181,11 +181,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "Just past the second ballfield, at the opening in the chain-link fence, walk diagonally across toward the S-shaped blue and white building, the Marco-Polo, for a close-up view of the stream, a remnant of Fishermen on “horses” in the Ala Wai Canal (1930s) sitting on the makai side of the canal. Notice the Ko‘olau mountains in the background. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "‘Āpuakēhau Stream (Hawai‘i State Archives) an earlier stream that still flows from the Mānoa mountains and courses though the neighborhood of Mō‘ili‘ili. This is most likely one of the branches of the historic ‘Āpuakēhau Stream (Stop 21 for more information). Notice the red JapaneseMonet-style bridge."
+      "text": "Just past the second ballfield, at the opening in the chain-link fence, walk diagonally across toward the S-shaped blue and white building, the Marco-Polo, for a close-up view of the stream, a remnant of an earlier stream that still flows from the Mānoa mountains and courses though the neighborhood of Mō‘ili‘ili. This is most likely one of the branches of the historic ‘Āpuakēhau Stream (Stop 21 for more information). Notice the red JapaneseMonet-style bridge."
      },
      {
       "kind": "p",
@@ -204,12 +200,14 @@
      {
       "file": "p1-26-65.jpg",
       "w": 411,
-      "h": 280
+      "h": 280,
+      "caption": "Fishermen on “horses” in the Ala Wai Canal (1930s) sitting on the makai side of the canal. Notice the Ko‘olau mountains in the background. (Hawai‘i State Archives)"
      },
      {
       "file": "p1-26-66.jpg",
       "w": 394,
-      "h": 391
+      "h": 391,
+      "caption": "‘Āpuakēhau Stream (Hawai‘i State Archives)"
      },
      {
       "file": "p1-26-67.jpg",
@@ -286,10 +284,6 @@
      },
      {
       "kind": "p",
-      "text": "Wouldn’t it be lovely to learn how to paddle an outrigger canoe?"
-     },
-     {
-      "kind": "p",
       "text": "Enjoy walking in the shade of the Milo trees."
      }
     ],
@@ -297,7 +291,8 @@
      {
       "file": "p1-27-68.jpg",
       "w": 1050,
-      "h": 558
+      "h": 558,
+      "caption": "Wouldn’t it be lovely to learn how to paddle an outrigger canoe?"
      }
     ],
     "lat": 21.284356,
@@ -342,10 +337,6 @@
      },
      {
       "kind": "p",
-      "text": "Feel free to walk around the Ala Wai Garden, but please do not help yourself to any of the vegetation. Each garden is privately tended."
-     },
-     {
-      "kind": "p",
       "text": "As you turn away from the Ala Wai Canal to walk mauka along the Mānoa-Pālolo Drainage Canal, you’ll be walking around the Ala Wai Golf Course to Date Street (then to Kapahulu Avenue, and back to the makai side of the canal and Waikīkī)."
      }
     ],
@@ -353,7 +344,8 @@
      {
       "file": "p1-28-69.jpg",
       "w": 1050,
-      "h": 813
+      "h": 813,
+      "caption": "Feel free to walk around the Ala Wai Garden, but please do not help yourself to any of the vegetation. Each garden is privately tended."
      }
     ],
     "lat": 21.282906,
@@ -414,7 +406,7 @@
      },
      {
       "kind": "p",
-      "text": "Across Date Street are the sports fields of Kaimukī High School. This area was The tallest mountain in the Ko‘olau range is Konahuanui at just over 3,000 feet in Mānoa Valley. the original confluence of the Mānoa and Pālolo streams! When the Mānoa-Pālolo Drainage Canal was built, the convergence was moved about a ½ mile mauka of here (check your map to find it). The ditch at the edge of the golf course on the makai side of Date Street is a possible vestige of the original streams. A low lava stone wall on the mauka side of Date Street is across a ditch for the original stream."
+      "text": "Across Date Street are the sports fields of Kaimukī High School. This area was the original confluence of the Mānoa and Pālolo streams! When the Mānoa-Pālolo Drainage Canal was built, the convergence was moved about a ½ mile mauka of here (check your map to find it). The ditch at the edge of the golf course on the makai side of Date Street is a possible vestige of the original streams. A low lava stone wall on the mauka side of Date Street is across a ditch for the original stream."
      },
      {
       "kind": "heading",
@@ -425,7 +417,8 @@
      {
       "file": "p1-29-70.jpg",
       "w": 514,
-      "h": 447
+      "h": 447,
+      "caption": "The tallest mountain in the Ko‘olau range is Konahuanui at just over 3,000 feet in Mānoa Valley."
      },
      {
       "file": "p1-30-71.jpg",
@@ -459,17 +452,14 @@
      {
       "kind": "p",
       "text": "Local lore relates that the origin of the golf course dates to the early 1920s when two local men sank a can where hole number 6 is now located for their on-thespot golf course! However, another story recounts that local caretakers of the Territorial Fairgrounds set up their own course, charging 25 cents a hole! At one time, this golf course was reputed to have been the busiest golf course in the United States!"
-     },
-     {
-      "kind": "p",
-      "text": "Notice the incised WPA and 1937 on the bridge, a time when the federally-funded Works Progress Administration provided work and services."
      }
     ],
     "photos": [
      {
       "file": "p1-30-72.jpg",
       "w": 822,
-      "h": 562
+      "h": 562,
+      "caption": "Notice the incised WPA and 1937 on the bridge, a time when the federally-funded Works Progress Administration provided work and services."
      }
     ],
     "lat": 21.280234,
@@ -571,10 +561,6 @@
      },
      {
       "kind": "p",
-      "text": "Walking on the makai side of the canal."
-     },
-     {
-      "kind": "p",
       "text": "The first Waikīkī library was in a wooden cottage on the grounds of Thomas Jefferson School, across Ala Wai Boulevard. In 1952 this library, designed by Lemmon and Freeth, opened its doors to the public. In the entryway, view the wall sculpture of an outrigger canoe."
      },
      {
@@ -610,7 +596,8 @@
      {
       "file": "p1-32-73.jpg",
       "w": 1050,
-      "h": 382
+      "h": 382,
+      "caption": "Walking on the makai side of the canal."
      }
     ],
     "lat": 21.274485,
@@ -728,7 +715,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "This street obviously commemorates Queen Lili‘uokalani, whose birth name, Lydia Lili‘u Loloku Walania Kamaka‘eha, literally means ‘smarting of the high born one.’ This Queen was so named, legend tells us, because on the day of her birth, her “Beautiful Water” meets Ala Wai Boulevard, the “way to the water” hanai (Hawaiian foster) mother’s aunt was suffering from eye pain."
+      "text": "This street obviously commemorates Queen Lili‘uokalani, whose birth name, Lydia Lili‘u Loloku Walania Kamaka‘eha, literally means ‘smarting of the high born one.’ This Queen was so named, legend tells us, because on the day of her birth, her hanai (Hawaiian foster) mother’s aunt was suffering from eye pain."
      },
      {
       "kind": "p",
@@ -747,7 +734,8 @@
      {
       "file": "p1-34-75.jpg",
       "w": 1048,
-      "h": 702
+      "h": 702,
+      "caption": "“Beautiful Water” meets Ala Wai Boulevard, the “way to the water”"
      }
     ],
     "lat": 21.277158,
@@ -797,17 +785,14 @@
      {
       "kind": "p",
       "text": "Ka‘iulani means ‘the sacred height’ and is named in honor of Princess Ka‘iulani who lived near here with her parents who called this area ‘Āinahau, ‘land of the Hau tree.’ It is said that Princess Ka‘iulani traveled downstream on ‘Āpuakēhau Stream in a small boat to the ocean, possibly following the course of present-day meandering Ka‘iulani Avenue! For more information about Princess Ka‘iulani and her home in ‘Āinahau, stroll the streets on the ‘Āinahau-Hamohamo Walk III."
-     },
-     {
-      "kind": "p",
-      "text": "Across the plains to the Ko‘olau Mountains. (Hawai‘i State Archives)"
      }
     ],
     "photos": [
      {
       "file": "p1-35-76.jpg",
       "w": 420,
-      "h": 330
+      "h": 330,
+      "caption": "Across the plains to the Ko‘olau Mountains. (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.279278,
@@ -905,8 +890,8 @@
       "text": "• Centennial Park: One block makai on the corner of Aloha Drive is the newly created Centennial Park lovingly established by the Rotary Club. It is “an oasis of tropic beauty” that includes green and red Ti plants, Queen Emma spider lilies, and Pōhinahina, an indigenous ground cover."
      },
      {
-      "kind": "p",
-      "text": "• 413 Seaside Avenue: If you are interested in pre-war architecture, continue makai, past Centennial Park to 413 Seaside Avenue, with the One of many streets along the Ala Wai named for associates and family of Kamehameha the Great."
+      "kind": "direction",
+      "text": "• 413 Seaside Avenue: If you are interested in pre-war architecture, continue makai, past Centennial Park to 413 Seaside Avenue, with the"
      },
      {
       "kind": "p",
@@ -929,7 +914,8 @@
      {
       "file": "p1-36-77.jpg",
       "w": 1050,
-      "h": 598
+      "h": 598,
+      "caption": "One of many streets along the Ala Wai named for associates and family of Kamehameha the Great."
      },
      {
       "file": "p1-36-78.jpg",
@@ -1022,17 +1008,14 @@
      {
       "kind": "p",
       "text": "Looking directly across the canal from Kālaimoku Street is University Avenue, which leads into Mānoa Valley and the University of Hawai‘i."
-     },
-     {
-      "kind": "p",
-      "text": "John Young, advisor to Kamehameha the Great, is remembered in this street sign ‘Olohana."
      }
     ],
     "photos": [
      {
       "file": "p1-37-79.jpg",
       "w": 402,
-      "h": 319
+      "h": 319,
+      "caption": "John Young, advisor to Kamehameha the Great, is remembered in this street sign ‘Olohana."
      }
     ],
     "lat": 21.284547,
@@ -1088,7 +1071,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "Kuamo‘o means ‘backbone of the lizard.’ This street is named for John Young I’s wife, Mary Kuamo‘o Ka‘o‘ana‘eha. John Young I, as in ‘Olohana Street, was advisor to Kamehameha I. Kuamo‘o was a niece of Kamehameha I. Kuamo‘o, in turn, had been named in honor of the place on Ala Wai Boulevard leaves Lē‘ahi behind but continues ‘Ewa around the canal to Ala Moana Boulevard."
+      "text": "Kuamo‘o means ‘backbone of the lizard.’ This street is named for John Young I’s wife, Mary Kuamo‘o Ka‘o‘ana‘eha. John Young I, as in ‘Olohana Street, was advisor to Kamehameha I. Kuamo‘o was a niece of Kamehameha I. Kuamo‘o, in turn, had been named in honor of the place on"
      },
      {
       "kind": "p",
@@ -1103,7 +1086,8 @@
      {
       "file": "p1-38-80.jpg",
       "w": 1050,
-      "h": 771
+      "h": 771,
+      "caption": "Ala Wai Boulevard leaves Lē‘ahi behind but continues ‘Ewa around the canal to Ala Moana Boulevard."
      }
     ],
     "lat": 21.285904,
@@ -1406,7 +1390,7 @@
    },
    {
     "kind": "p",
-    "text": "A mo‘olelo (legend) relates that the fish ponds were inhabited by mo‘o, 12 to 30foot black-bodied deities or water serpents. Waikīkī’s mo‘o was Kamō‘ili‘ili, ‘pebble lizard,’ whose name lives on in the neighborhood of Mō‘ili‘ili. (Don’t worry -Kalo and Rice fields in 1890s Waikīkī (Hawai‘i State Archives) they all disappeared along with the ponds.) Stroll in Mō‘ili‘ili, Walk IX."
+    "text": "A mo‘olelo (legend) relates that the fish ponds were inhabited by mo‘o, 12 to 30foot black-bodied deities or water serpents. Waikīkī’s mo‘o was Kamō‘ili‘ili, ‘pebble lizard,’ whose name lives on in the neighborhood of Mō‘ili‘ili. (Don’t worry - they all disappeared along with the ponds.) Stroll in Mō‘ili‘ili, Walk IX."
    },
    {
     "kind": "p",
@@ -1479,11 +1463,11 @@
       "text": "Promenades from Ala Moana Boulevard to Kalākaua Avenue line both sides of the Ala Wai Canal."
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "Duck ponds behind Waikīkī 1908 photo (Hawai‘i State Archives)"
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "Sculpture of male hula dancer - Kaha ka ‘Io me nā makani"
      }
     ],
@@ -1491,7 +1475,8 @@
      {
       "file": "p1-43-87.jpg",
       "w": 595,
-      "h": 503
+      "h": 503,
+      "caption": "Duck ponds behind Waikīkī 1908 photo (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.287503,
@@ -1547,7 +1532,7 @@
      },
      {
       "kind": "p",
-      "text": "Until the construction of the Ala Wai Canal in the 1920s, Pi‘inaio Stream ran through this area, met the western branch of Mānoa-Pālolo Stream, and emptied as a delta into the ocean between the Duke Kahanamoku Lagoon and the ‘Ilikai Hotel (which we will visit on this walk). Pi‘inaio Sculpture of female hula dancer - Kaha ka ‘Io me nā makani Stream was one of the three major streams that fed Waikīkī’s intricate irrigation system, which gave rise to the ubiquitous fishponds in the area."
+      "text": "Until the construction of the Ala Wai Canal in the 1920s, Pi‘inaio Stream ran through this area, met the western branch of Mānoa-Pālolo Stream, and emptied as a delta into the ocean between the Duke Kahanamoku Lagoon and the ‘Ilikai Hotel (which we will visit on this walk). Pi‘inaio Stream was one of the three major streams that fed Waikīkī’s intricate irrigation system, which gave rise to the ubiquitous fishponds in the area."
      },
      {
       "kind": "p",
@@ -1570,7 +1555,8 @@
      {
       "file": "p1-44-89.jpg",
       "w": 1050,
-      "h": 630
+      "h": 630,
+      "caption": "Sculpture of female hula dancer - Kaha ka ‘Io me nā makani"
      }
     ],
     "lat": 21.289345,
@@ -1644,17 +1630,14 @@
      {
       "kind": "direction",
       "text": "Stay on Hobron lane, makai to the corner at Ala Moana Boulevard."
-     },
-     {
-      "kind": "p",
-      "text": "The hidden meaning of this street name is special to hula."
      }
     ],
     "photos": [
      {
       "file": "p1-45-90.jpg",
       "w": 351,
-      "h": 353
+      "h": 353,
+      "caption": "The hidden meaning of this street name is special to hula."
      }
     ],
     "lat": 21.28709,
@@ -1791,7 +1774,7 @@
      },
      {
       "kind": "p",
-      "text": "Ala Wai Harbor at sunrise  ‘Ena Rd."
+      "text": " ‘Ena Rd."
      },
      {
       "kind": "p",
@@ -1800,22 +1783,20 @@
      {
       "kind": "p",
       "text": "“It will be a green ray of such a fabulous beauty that no painter could produce it upon his palate, a green that nature with all her varied vegetation and all her colored waters, no matter how limpid, has ever equaled. If there is a color called green in paradise, it is perhaps this green, which is without doubt, the true green of hope. Legend declares that happiness will be the portion of those who behold this spectacle. Those who do not know what happiness is should search after the green ray.”"
-     },
-     {
-      "kind": "p",
-      "text": "From the Duke Kahanamoku Lagoon there is a view of Lē‘ahi and the buildings at the ocean’s edge."
      }
     ],
     "photos": [
      {
       "file": "p1-47-93.jpg",
       "w": 1050,
-      "h": 621
+      "h": 621,
+      "caption": "Ala Wai Harbor at sunrise"
      },
      {
       "file": "p1-47-94.jpg",
       "w": 367,
-      "h": 573
+      "h": 573,
+      "caption": "From the Duke Kahanamoku Lagoon there is a view of Lē‘ahi and the buildings at the ocean’s edge."
      },
      {
       "file": "p1-47-95.jpg",
@@ -1938,10 +1919,6 @@
      },
      {
       "kind": "p",
-      "text": "Sunbathing on the beach in front of the Hilton in the shade of Palm trees and the beauty of the distant Wai‘anae Range."
-     },
-     {
-      "kind": "p",
       "text": "In 1956 the Hawai‘i Kai Hotel was purchased by Conrad Hilton, and expansion to the present-day Hilton Hawaiian Village was begun."
      },
      {
@@ -2025,7 +2002,8 @@
      {
       "file": "p1-50-96.jpg",
       "w": 1050,
-      "h": 572
+      "h": 572,
+      "caption": "Sunbathing on the beach in front of the Hilton in the shade of Palm trees and the beauty of the distant Wai‘anae Range."
      },
      {
       "file": "p1-52-97.jpg",
@@ -2067,17 +2045,14 @@
      {
       "kind": "p",
       "text": "Can you imagine this area like that? No buildings. Just wide open fish ponds, taro fields, and coconut trees. Notice the stately Palm trees on the beach. If you can find some shade, be aware that it “moves around,” following the sun! Unfortunately, many of the trees have recently succumbed to the chopping block. Most likely, these trees are descendants of the 10,000 trees from the time of the Hawaiian monarchy."
-     },
-     {
-      "kind": "p",
-      "text": "The view from the Hale Koa beach presents the grandeur of Lē‘ahi and condominium row."
      }
     ],
     "photos": [
      {
       "file": "p1-52-98.jpg",
       "w": 394,
-      "h": 432
+      "h": 432,
+      "caption": "The view from the Hale Koa beach presents the grandeur of Lē‘ahi and condominium row."
      }
     ],
     "lat": 21.281131,
@@ -2142,7 +2117,7 @@
      },
      {
       "kind": "p",
-      "text": "Another mo‘olelo involves a related mountain plant that bears an identical flower but has significantly different leaves. In this legend, a Hawaiian Romeo and Juliet, 1901 Photo of the Chung Afong Villa. The villa and property were sold in 1904. Battery Randolph was built in its place in 1911. forbidden to marry because of their different backgrounds and social class, decide to die together. The Hawaiian deities turned the woman into the Naupaka Kahakai (‘by the sea’) and the man into the Naupaka Kuahiwi (‘mountain’), joining their love in spirit."
+      "text": "Another mo‘olelo involves a related mountain plant that bears an identical flower but has significantly different leaves. In this legend, a Hawaiian Romeo and Juliet, forbidden to marry because of their different backgrounds and social class, decide to die together. The Hawaiian deities turned the woman into the Naupaka Kahakai (‘by the sea’) and the man into the Naupaka Kuahiwi (‘mountain’), joining their love in spirit."
      },
      {
       "kind": "p",
@@ -2155,10 +2130,6 @@
      {
       "kind": "p",
       "text": "An early building in this area was the large home of Alexander Joy Cartwright Jr., a merchant who settled in Honolulu in 1849 and died in 1893. Alexander Cartwright, who was born in New York, is best known as the “Father of Modern Baseball” and was inducted into Cooperstown’s Baseball Hall of Fame in 1934. Cartwright established baseball’s first organized association, the New York Knickerbocker Base Ball Club and created the rules and regulations of nine players and nine innings. Cartwright Field, in Makiki, ‘Ewa-mauka of Waikīkī, is a baseball field named in his memory. Cartwright Road, in the Diamond Head end of Waikīkī, is also named after him. His son, Bruce Cartwright Sr., was one of the subdividers of Waikīkī."
-     },
-     {
-      "kind": "p",
-      "text": "Fort DeRussy in 1949 (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -2177,12 +2148,14 @@
      {
       "file": "p1-53-99.jpg",
       "w": 360,
-      "h": 361
+      "h": 361,
+      "caption": "1901 Photo of the Chung Afong Villa. The villa and property were sold in 1904. Battery Randolph was built in its place in 1911."
      },
      {
       "file": "p1-54-100.jpg",
       "w": 1050,
-      "h": 567
+      "h": 567,
+      "caption": "Fort DeRussy in 1949 (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.278863,
@@ -2273,10 +2246,6 @@
      },
      {
       "kind": "p",
-      "text": "Nā Lehua Helele‘i – The Kū images honor fallen Hawaiian warriors."
-     },
-     {
-      "kind": "p",
       "text": "Some interesting facts about the 100th and 442nd regiments include:"
      },
      {
@@ -2300,7 +2269,8 @@
      {
       "file": "p1-56-102.jpg",
       "w": 497,
-      "h": 673
+      "h": 673,
+      "caption": "Nā Lehua Helele‘i – The Kū images honor fallen Hawaiian warriors."
      }
     ],
     "lat": 21.282274,
@@ -2357,10 +2327,6 @@
      {
       "kind": "p",
       "text": "times www.thebus.org or call 808-848-5555 - option 2 for live operator."
-     },
-     {
-      "kind": "p",
-      "text": "Kalo loko in Waikīkī. (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -2447,7 +2413,8 @@
      {
       "file": "p1-57-103.jpg",
       "w": 416,
-      "h": 520
+      "h": 520,
+      "caption": "Kalo loko in Waikīkī. (Hawai‘i State Archives)"
      },
      {
       "file": "p1-58-104.jpg",
@@ -2600,14 +2567,6 @@
       "text": "Kamakawiwo‘ole’s niece."
      },
      {
-      "kind": "p",
-      "text": "Oh, the music Gabby would make! - Kanikapila!"
-     },
-     {
-      "kind": "p",
-      "text": "Helumoa – “chicken scratch” –where the monarchy lived."
-     },
-     {
       "kind": "direction",
       "text": "Walk toward the ocean between the Halekūlani Hotel (on the ‘Ewa side) and the Sheraton Hotel (on the Diamond Head side)."
      },
@@ -2628,12 +2587,14 @@
      {
       "file": "p1-60-109.jpg",
       "w": 340,
-      "h": 566
+      "h": 566,
+      "caption": "Oh, the music Gabby would make! - Kanikapila!"
      },
      {
       "file": "p1-60-110.jpg",
       "w": 367,
-      "h": 368
+      "h": 368,
+      "caption": "Helumoa – “chicken scratch” –where the monarchy lived."
      },
      {
       "file": "p1-61-111.jpg",
@@ -2654,7 +2615,11 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "The beach and waters on the ‘Ewa side of this beach right-of way were called Kawehewehe, ‘the removal,’ by Hawaiians. According to mo‘olelo, sick and injured people were brought here for curative bathing treatments. Often, a seaweed lei was worn, to be removed and left behind as a This Hau tree provides the only shade on the beach. Walking Diamond Head, the beach ends here but resumes at the Royal Hawaiian Hotel. symbolic request that a person’s sins, believed to be the cause of illness, be forgiven. Traditional Native Hawaiians today continue to use the ocean waters therapeutically for healing and purification rites."
+      "text": "The beach and waters on the ‘Ewa side of this beach right-of way were called Kawehewehe, ‘the removal,’ by Hawaiians. According to mo‘olelo, sick and injured people were brought here for curative bathing treatments. Often, a seaweed lei was worn, to be removed and left behind as a symbolic request that a person’s sins, believed to be the cause of illness, be forgiven. Traditional Native Hawaiians today continue to use the ocean waters therapeutically for healing and purification rites."
+     },
+     {
+      "kind": "caption",
+      "text": "This Hau tree provides the only shade on the beach. Walking Diamond Head, the beach ends here but resumes at the Royal Hawaiian Hotel."
      },
      {
       "kind": "p",
@@ -2706,7 +2671,7 @@
      },
      {
       "kind": "p",
-      "text": "During World War II with the beach lined with barbed wire, The Pink Palace housed A glimpse of the stunning architecture of the Royal Hawaiian Hotel Navy personnel. After the war, extensive renovations and remodeling were completed."
+      "text": "During World War II with the beach lined with barbed wire, The Pink Palace housed Navy personnel. After the war, extensive renovations and remodeling were completed."
      },
      {
       "kind": "p",
@@ -2745,7 +2710,8 @@
      {
       "file": "p1-62-112.jpg",
       "w": 513,
-      "h": 570
+      "h": 570,
+      "caption": "A glimpse of the stunning architecture of the Royal Hawaiian Hotel"
      },
      {
       "file": "p1-63-113.jpg",
@@ -2794,7 +2760,11 @@
      },
      {
       "kind": "p",
-      "text": "The royalty rinsed their bodies in this cool The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives) freshwater stream after swimming and surfing in the salt water ocean."
+      "text": "The royalty rinsed their bodies in this cool freshwater stream after swimming and surfing in the salt water ocean."
+     },
+     {
+      "kind": "caption",
+      "text": "The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -2852,7 +2822,11 @@
      },
      {
       "kind": "p",
-      "text": "Depending on where the glottal stop (the sound between the two vowel sounds in 1880s photo - ‘Āpuakēhau Stream and Kamehameha V’s grass house. (Hawai‘i State Archives)"
+      "text": "Depending on where the glottal stop (the sound between the two vowel sounds in"
+     },
+     {
+      "kind": "caption",
+      "text": "1880s photo - ‘Āpuakēhau Stream and Kamehameha V’s grass house. (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -2884,7 +2858,11 @@
      },
      {
       "kind": "p",
-      "text": "‘Āpuakēhau Stream flowed from the Ko‘olau Mountains through Helumoa providing fresh water for both the lo‘i in the plains and for the bathers in the ocean. The triple row of Palm trees shield the Athletic Field from the strong rays of the sun. ‘Āpuakēhau Heiau, next to the stream, stands ready for ceremonial purposes."
+      "text": "‘Āpuakēhau Stream flowed from the Ko‘olau Mountains through Helumoa providing fresh water for"
+     },
+     {
+      "kind": "caption",
+      "text": "both the lo‘i in the plains and for the bathers in the ocean. The triple row of Palm trees shield the Athletic Field from the strong rays of the sun. ‘Āpuakēhau Heiau, next to the stream, stands ready for ceremonial purposes."
      },
      {
       "kind": "p",
@@ -2919,7 +2897,7 @@
       "text": "Subsequent rulers set up their Waikīkī residences Diamond Head and mauka of Pua‘ali‘ili‘i. (‘Āinahau-Hamohamo Walk V for more information.)"
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "View of Waikīkī with Hale Lama, Kamehameha V’s home – where the Royal Hawai‘i Hotel now stands. 1880 photo (Hawai‘i State Archives)"
      },
      {
@@ -2931,7 +2909,7 @@
       "text": "at Helumoa on ‘Āpuakēhau Stream."
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "(Hawai‘i State Archives)"
      }
     ],
@@ -2985,10 +2963,6 @@
      },
      {
       "kind": "p",
-      "text": "The Moana Hotel on the bank of ‘Āpuakēhau Stream (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
       "text": "The colonial-style Moana ‘ocean’ Hotel, loving referred to as “The First Lady of Waikīkī” as Waikīkī ’s oldest surviving hotel, opened on March 11, 1901 to serve the classy “steamboat set” from the United States Mainland. Contrary to its publicity, the Moana is not Waikīkī’s first hotel: there were many hotels before the Moana."
      },
      {
@@ -3020,7 +2994,8 @@
      {
       "file": "p1-67-118.jpg",
       "w": 786,
-      "h": 418
+      "h": 418,
+      "caption": "The Moana Hotel on the bank of ‘Āpuakēhau Stream (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.2764,
@@ -3098,19 +3073,11 @@
      },
      {
       "kind": "p",
-      "text": "Information plaque of Nā Pōhaku Ola Kapaemāhū ā Kapuni in Hawaiian (‘Ōlelo Hawai‘i)."
-     },
-     {
-      "kind": "p",
       "text": "Upon the departure of the four kāhuna from Hawai‘i, four large commemorative boulders were brought in from Kaimukī. The stones were originally set in different locations: Kapuni’s stone was placed where the surf meets the beach, the name of a surfing area; the stones of Kapaemāhū and Kīnohi were set above the shoreline at Ulukou where the four kāhuna lived; and the stone of Kahaloa was placed near ‘Āpuakehau Stream. After a ceremony transferring their power to those rocks, the four kāhuna departed."
      },
      {
       "kind": "p",
       "text": "Over time, these sacred stones were scattered around Waikīkī, only to have been rediscovered at various places, including ‘Āinahau and under the former Waikīkī Bowling Alley!"
-     },
-     {
-      "kind": "p",
-      "text": "The small upright stone is Ta‘ahu Ea, which was brought from Ra‘iātea in 1997."
      },
      {
       "kind": "p",
@@ -3129,12 +3096,14 @@
      {
       "file": "p1-69-119.jpg",
       "w": 994,
-      "h": 494
+      "h": 494,
+      "caption": "Information plaque of Nā Pōhaku Ola Kapaemāhū ā Kapuni in Hawaiian (‘Ōlelo Hawai‘i)."
      },
      {
       "file": "p1-70-120.jpg",
       "w": 393,
-      "h": 387
+      "h": 387,
+      "caption": "The small upright stone is Ta‘ahu Ea, which was brought from Ra‘iātea in 1997."
      },
      {
       "file": "p1-70-121.jpg",
@@ -3242,10 +3211,6 @@
      {
       "kind": "p",
       "text": "Another Walk VII, Kapua, overlaps with this walk, which starts on Kalākaua Avenue."
-     },
-     {
-      "kind": "p",
-      "text": "Waikīkī Coconut Grove (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -3396,7 +3361,8 @@
      {
       "file": "p1-71-122.jpg",
       "w": 802,
-      "h": 402
+      "h": 402,
+      "caption": "Waikīkī Coconut Grove (Hawai‘i State Archives)"
      },
      {
       "file": "p1-72-123.jpg",
@@ -3519,10 +3485,6 @@
      },
      {
       "kind": "p",
-      "text": "Kalākaua Avenue was first known as Waikīkī Road. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
       "text": "King Kalākaua and Robert Louis Stevenson, the famous author who was enamored with Hawai‘i, were often seen together. Stevenson considered King Kalākaua a “cultured intellectual of unusual mental powers.” King Kalākaua was related to King Kamehameha I through a common ancestor. The ruling line shifted over to the Kalākaua lineage when the Kamehameha line failed to produce an heir to the throne, and Kalākaua was elected monarch."
      }
     ],
@@ -3530,7 +3492,8 @@
      {
       "file": "p1-74-128.jpg",
       "w": 406,
-      "h": 442
+      "h": 442,
+      "caption": "Kalākaua Avenue was first known as Waikīkī Road. (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.284363,
@@ -3579,26 +3542,20 @@
      {
       "kind": "direction",
       "text": "Continue walking Diamond Head. Cross Kalākaua Avenue makai at ‘Olohana Street to visit the Brothers in Valor Memorial Park."
-     },
-     {
-      "kind": "p",
-      "text": "‘Olohana was part of Kamehameha the Great’s entourage."
-     },
-     {
-      "kind": "p",
-      "text": "Streetcar on Waikīkī Road, today’s Kalākaua Avenue. (Hawai‘i State Archives)"
      }
     ],
     "photos": [
      {
       "file": "p1-75-129.jpg",
       "w": 377,
-      "h": 372
+      "h": 372,
+      "caption": "‘Olohana was part of Kamehameha the Great’s entourage."
      },
      {
       "file": "p1-75-130.jpg",
       "w": 405,
-      "h": 475
+      "h": 475,
+      "caption": "Streetcar on Waikīkī Road, today’s Kalākaua Avenue. (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.284185,
@@ -3689,14 +3646,15 @@
      },
      {
       "kind": "p",
-      "text": "The stone pavers on the sidewalk corners have Hawaiian words carved into the tile. The words begin at Beachwalk (street) on the mauka side and Saratoga Road on the Memorial to Hawaiian Brothers in Valor makai side. See how many you can find; most are on the mauka side of Kalākaua Avenue. (A list and their meanings can be found at the end of this walk.)"
+      "text": "The stone pavers on the sidewalk corners have Hawaiian words carved into the tile. The words begin at Beachwalk (street) on the mauka side and Saratoga Road on the makai side. See how many you can find; most are on the mauka side of Kalākaua Avenue. (A list and their meanings can be found at the end of this walk.)"
      }
     ],
     "photos": [
      {
       "file": "p1-76-131.jpg",
       "w": 426,
-      "h": 615
+      "h": 615,
+      "caption": "Memorial to Hawaiian Brothers in Valor"
      }
     ],
     "lat": 21.28273,
@@ -3713,26 +3671,20 @@
      {
       "kind": "p",
       "text": "A block further - at 2138 Kalākaua Avenue at the ABC store - is a plaque honoring the founding parents of the ABC stores, Sidney and Minnie Kosasa. The 50 years mentioned on the plaque, back to 1949, refer to their first store in Kaimukī (mauka of Waikīkī)."
-     },
-     {
-      "kind": "p",
-      "text": "1908 photo - looking mauka along (what will become) Kālaimoku Street (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "‘Ōpala means ‘trash’ in Hawaiian."
      }
     ],
     "photos": [
      {
       "file": "p1-77-132.jpg",
       "w": 795,
-      "h": 857
+      "h": 857,
+      "caption": "1908 photo - looking mauka along (what will become) Kālaimoku Street (Hawai‘i State Archives)"
      },
      {
       "file": "p1-77-133.jpg",
       "w": 380,
-      "h": 297
+      "h": 297,
+      "caption": "‘Ōpala means ‘trash’ in Hawaiian."
      }
     ],
     "lat": 21.281291,
@@ -3776,22 +3728,20 @@
      {
       "kind": "p",
       "text": "The main attraction on “Waikīkī Beach Walk” is the statue at the end of the “walk,” that of Gabby “Pops” Pahinui, labeled Kanikapila, ‘let’s play music’ by Kim Duffett. Pahinui (1921-1980) was one of Hawai‘i’s greatest musicians. Duffett also created the beautiful hula sculptures at the Hilton Hawaiian Village."
-     },
-     {
-      "kind": "p",
-      "text": "Elegant roofline on the Gump Building The fine details on this almost 100-year-old building should not be overlooked! Intricate metal work on the side staircase at the Gump Building"
      }
     ],
     "photos": [
      {
       "file": "p1-78-134.jpg",
       "w": 387,
-      "h": 547
+      "h": 547,
+      "caption": "The fine details on this almost 100-year-old building should not be overlooked! Intricate metal work on the side staircase at the Gump Building"
      },
      {
       "file": "p1-78-135.jpg",
       "w": 388,
-      "h": 539
+      "h": 539,
+      "caption": "Elegant roofline on the Gump Building"
      }
     ],
     "lat": 21.279992,
@@ -3840,7 +3790,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "The Royal Hawaiian Center is a threeblock long mall with over 100 shops. However, there is a right-of-way to the beach at the ‘Ewa end of the center. The land is owned by the Kamehameha Schools for Hawaiian and part-Hawaiian children. The building material is an aggregate of cement, local volcanic cinder, local coral, and vulcanite. The Royal Hawaiian Center offers much more than conventional shopping and eating. Activities include lei ‘Āpuakēhau Stream, from the Ko‘olau mountains, emptied into the ocean next to the Moana Hotel. It was diverted into the Ala Wai Canal in the 1920s (Hawai‘i State Archives) making, hula lessons, and torch lighting. As you meander around, do notice all the Hawaiian elements in this shopping center: the ferns, flowers, lava walls, torches."
+      "text": "The Royal Hawaiian Center is a threeblock long mall with over 100 shops. However, there is a right-of-way to the beach at the ‘Ewa end of the center. The land is owned by the Kamehameha Schools for Hawaiian and part-Hawaiian children. The building material is an aggregate of cement, local volcanic cinder, local coral, and vulcanite. The Royal Hawaiian Center offers much more than conventional shopping and eating. Activities include lei making, hula lessons, and torch lighting. As you meander around, do notice all the Hawaiian elements in this shopping center: the ferns, flowers, lava walls, torches."
      },
      {
       "kind": "p",
@@ -3859,7 +3809,8 @@
      {
       "file": "p1-79-136.jpg",
       "w": 1050,
-      "h": 615
+      "h": 615,
+      "caption": "‘Āpuakēhau Stream, from the Ko‘olau mountains, emptied into the ocean next to the Moana Hotel. It was diverted into the Ala Wai Canal in the 1920s (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.278014,
@@ -3899,11 +3850,15 @@
      },
      {
       "kind": "p",
-      "text": "Hau belongs to the Malvaeceae Mallow family, which includes the Hibiscus. In the course of its life (one day!), the Hau The opening lines of a dance chant –mele hula –is written on the ‘Ewa pillar."
+      "text": "Hau belongs to the Malvaeceae Mallow family, which includes the Hibiscus. In the course of its life (one day!), the Hau blossom displays three different colors: yellow upon opening, then bright orange, finally red-brown when it drops. The Hau tree had many traditional uses: its rough but lightweight wood was used for making canoe outriggers, its fibers were made into rope, and its sap and flowers were used medicinally. There are still many areas of Hau along the beach today. Just look for a Hibiscus-like flower."
      },
      {
-      "kind": "p",
-      "text": "1880 Waikīkī residence of Charles Reed Bishop and Princess Bernice Pauahi Bishop on ‘Āpuakēhau Stream. Kamehameha V’s former residence is visible on the left. (Hawai‘i State Archives) blossom displays three different colors: yellow upon opening, then bright orange, finally red-brown when it drops. The Hau tree had many traditional uses: its rough but lightweight wood was used for making canoe outriggers, its fibers were made into rope, and its sap and flowers were used medicinally. There are still many areas of Hau along the beach today. Just look for a Hibiscus-like flower."
+      "kind": "caption",
+      "text": "The opening lines of a dance chant –mele hula –is written on the ‘Ewa pillar."
+     },
+     {
+      "kind": "caption",
+      "text": "1880 Waikīkī residence of Charles Reed Bishop and Princess Bernice Pauahi Bishop on ‘Āpuakēhau Stream. Kamehameha V’s former residence is visible on the left. (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -3922,7 +3877,8 @@
      {
       "file": "p1-80-137.jpg",
       "w": 407,
-      "h": 394
+      "h": 394,
+      "caption": "The opening lines of a dance chant –mele hula –is written on the ‘Ewa pillar."
      }
     ],
     "lat": 21.277435,
@@ -3985,7 +3941,11 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "The Art Deco movie theater was designed by Charles W. Dickey of Halekūlani fame in 1936, closed in 2002, and was demolished in 2005. In 1937, Waikīkī This crosswalk design is based on the Mo‘olelo Kaha (‘story about the scratches’)."
+      "text": "The Art Deco movie theater was designed by Charles W. Dickey of Halekūlani fame in 1936, closed in 2002, and was demolished in 2005. In 1937, Waikīkī"
+     },
+     {
+      "kind": "caption",
+      "text": "This crosswalk design is based on the Mo‘olelo Kaha (‘story about the scratches’)."
      },
      {
       "kind": "p",
@@ -4043,14 +4003,15 @@
      },
      {
       "kind": "p",
-      "text": "Federated Department Stores, which own Macy’s and Bloomingdale’s, took over the Liberty House chain of Department Stores in 2001. This department store has The garden courtyard of the Waikīkī Theater was decorated with The Fountain of Stars and 150 actors’ autographs engraved on plaques. (Lowell Angell Collection) another interesting bit of history to its name change. It was founded in downtown Honolulu as Hackfeld’s Dry Goods in 1849; however, in 1918, during World War I, its Germanic name underwent a change to the patriotic sounding Liberty House. Heinrich Hackfeld was a German sea captain who settled in Hawai‘i. Hackfeld was one of the founding partners of American Factors, today known as Amfac, Inc., the Biggest of Hawai‘i’s “Big Five” companies."
+      "text": "Federated Department Stores, which own Macy’s and Bloomingdale’s, took over the Liberty House chain of Department Stores in 2001. This department store has another interesting bit of history to its name change. It was founded in downtown Honolulu as Hackfeld’s Dry Goods in 1849; however, in 1918, during World War I, its Germanic name underwent a change to the patriotic sounding Liberty House. Heinrich Hackfeld was a German sea captain who settled in Hawai‘i. Hackfeld was one of the founding partners of American Factors, today known as Amfac, Inc., the Biggest of Hawai‘i’s “Big Five” companies."
      }
     ],
     "photos": [
      {
       "file": "p1-82-139.jpg",
       "w": 689,
-      "h": 446
+      "h": 446,
+      "caption": "The garden courtyard of the Waikīkī Theater was decorated with The Fountain of Stars and 150 actors’ autographs engraved on plaques. (Lowell Angell Collection)"
      },
      {
       "file": "p1-82-140.jpg",
@@ -4204,7 +4165,7 @@
       "text": "Today, the former Surfrider Hotel comprises the Diamond Wing of the Moana Hotel on the Diamond Head side of the Historic Banyan Wing."
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "The architectural details of the 1901 Moana Hotel are often overlooked, especially when you’re carrying a surfboard!"
      },
      {
@@ -4333,7 +4294,7 @@
      },
      {
       "kind": "p",
-      "text": "Upon the departure of the four Kāhuna from Hawai‘i, four large commemorative boulders were brought in from the Bell Stone in Kaimukī. The stones were originally set in different locations: Kapuni’s stone was placed where the surf meets the beach, the name of a surfing area; the stones of Kapaemāhū and Kīnohi were set above the shoreline at Ulukou where the four kāhuna lived; and the stone of Kahaloa was placed on the ‘Ewa bank of ‘Āpuakehau Stream, lending that name to the beach. After a ceremony transferring The small upright stone is Ta‘ahu Ea, which was brought from Ra‘iātea in 1997. their power to those rocks, the four kāhuna departed."
+      "text": "Upon the departure of the four Kāhuna from Hawai‘i, four large commemorative boulders were brought in from the Bell Stone in Kaimukī. The stones were originally set in different locations: Kapuni’s stone was placed where the surf meets the beach, the name of a surfing area; the stones of Kapaemāhū and Kīnohi were set above the shoreline at Ulukou where the four kāhuna lived; and the stone of Kahaloa was placed on the ‘Ewa bank of ‘Āpuakehau Stream, lending that name to the beach. After a ceremony transferring their power to those rocks, the four kāhuna departed."
      },
      {
       "kind": "p",
@@ -4360,7 +4321,8 @@
      {
       "file": "p1-87-141.jpg",
       "w": 472,
-      "h": 356
+      "h": 356,
+      "caption": "The small upright stone is Ta‘ahu Ea, which was brought from Ra‘iātea in 1997."
      }
     ],
     "lat": 21.275473,
@@ -4485,11 +4447,7 @@
      },
      {
       "kind": "p",
-      "text": "Queen Lili‘uokalani’s land, mauka and Diamond Head, was known as Hamohamo, ‘rub gently,’ referring to the Prince Kūhiō in Waikīkī (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Always elegant. This statue is a true representation of the greatness of Prince Kūhiō Kalaniana‘ole Pi‘ikoi ocean lapping at the shore. She gave a portion of her estate to Prince Kūhiō. Hamohamo, bordered by ‘Āpuakēhau Stream on the ‘Ewa side and Kuekaunahi on the Diamond Head Side, extended back past present-day Ala Wai Canal (Walk V)."
+      "text": "Queen Lili‘uokalani’s land, mauka and Diamond Head, was known as Hamohamo, ‘rub gently,’ referring to the ocean lapping at the shore. She gave a portion of her estate to Prince Kūhiō. Hamohamo, bordered by ‘Āpuakēhau Stream on the ‘Ewa side and Kuekaunahi on the Diamond Head Side, extended back past present-day Ala Wai Canal (Walk V)."
      },
      {
       "kind": "p",
@@ -4504,12 +4462,14 @@
      {
       "file": "p1-89-144.jpg",
       "w": 329,
-      "h": 410
+      "h": 410,
+      "caption": "Prince Kūhiō in Waikīkī (Hawai‘i State Archives)"
      },
      {
       "file": "p1-89-145.jpg",
       "w": 303,
-      "h": 563
+      "h": 563,
+      "caption": "Always elegant. This statue is a true representation of the greatness of Prince Kūhiō Kalaniana‘ole Pi‘ikoi"
      }
     ],
     "lat": 21.2733,
@@ -4530,11 +4490,7 @@
      },
      {
       "kind": "p",
-      "text": "Pualeilani’s luxurious grounds rivaled that of ‘Āinahau (Walk V)"
-     },
-     {
-      "kind": "p",
-      "text": "King Kalākaua and Queen Kapi‘olani, as well as Prince Kūhiō, lived at Pualeilani. (Hawai‘i State Archives)"
+      "text": "King Kalākaua and Queen Kapi‘olani, as well as Prince Kūhiō,"
      },
      {
       "kind": "p",
@@ -4717,12 +4673,14 @@
      {
       "file": "p1-90-146.jpg",
       "w": 375,
-      "h": 320
+      "h": 320,
+      "caption": "Pualeilani’s luxurious grounds rivaled that of ‘Āinahau (Walk V)"
      },
      {
       "file": "p1-90-147.jpg",
       "w": 594,
-      "h": 433
+      "h": 433,
+      "caption": "lived at Pualeilani. (Hawai‘i State Archives)"
      },
      {
       "file": "p2-1-148.jpg",
@@ -4833,11 +4791,7 @@
    },
    {
     "kind": "p",
-    "text": "Around the end of the nineteenth century, when the Cleghorns (Princess Ka‘iulani’s family) lived here, they called their land ‘Āinahau, meaning ‘land of the Hau tree.’ The Hau tree is related to the HiQueen Lili‘uokalani (Hawai‘i State Archives)"
-   },
-   {
-    "kind": "p",
-    "text": "Princess Ka‘iulani (Hawai‘i State Archives) biscus plant and was common here until ‘Āpuakehau Stream was diverted from Waikīkī during the building of the Ala Wai Canal in the 1920s. Today, few Hau trees are found here, but they still abound along the Ala Wai Canal and on the beaches. ‘Āinahau was abundant with flora and fauna, especially peacocks, Ka‘iulani’s favorite bird."
+    "text": "Around the end of the nineteenth century, when the Cleghorns (Princess Ka‘iulani’s family) lived here, they called their land ‘Āinahau, meaning ‘land of the Hau tree.’ The Hau tree is related to the Hi biscus plant and was common here until ‘Āpuakehau Stream was diverted from Waikīkī during the building of the Ala Wai Canal in the 1920s. Today, few Hau trees are found here, but they still abound along the Ala Wai Canal and on the beaches. ‘Āinahau was abundant with flora and fauna, especially peacocks, Ka‘iulani’s favorite bird."
    },
    {
     "kind": "p",
@@ -4971,15 +4925,7 @@
      },
      {
       "kind": "p",
-      "text": "The princess has a delicate pīkake lei necklace draped around her neck. Pīkake, which is Hawaiian for Jasmine, was her favorite flower. Notice the peacock (her favorite bird), also pīkake in Hawaiian, at her feet. The inscription reveals her full Hawaiian name, her royal lineage, and various aspects of her life. The statue was commisPrince Koa (David Kawānanakoa) and Princess Ka‘iulani were cousins. It was rumored that they would marry."
-     },
-     {
-      "kind": "p",
-      "text": "The beauty of Princess Ka‘iulani is evident even in this statue. Princess Ka‘iulani welcomes you to her home at ‘Āinahau."
-     },
-     {
-      "kind": "p",
-      "text": "A bench that now encircles an ‘Ōhi‘a tree at Kawaiaha‘o Church downtown was once on the sioned by the Outrigger Hotel chain and was created by Jan Gordon Fisher, who also fashioned the statue of Duke Kahanamoku at Kūhiō Beach. When Princess Ka‘iulani’s statue was dedicated on the 124th anniversary of her birth, October 16, 1999, it was surrounded by 23 Coconut trees, one for each year of her life."
+      "text": "The princess has a delicate pīkake lei necklace draped around her neck. Pīkake, which is Hawaiian for Jasmine, was her favorite flower. Notice the peacock (her favorite bird), also pīkake in Hawaiian, at her feet. The inscription reveals her full Hawaiian name, her royal lineage, and various aspects of her life. The statue was commis sioned by the Outrigger Hotel chain and was created by Jan Gordon Fisher, who also fashioned the statue of Duke Kahanamoku at Kūhiō Beach. When Princess Ka‘iulani’s statue was dedicated on the 124th anniversary of her birth, October 16, 1999, it was surrounded by 23 Coconut trees, one for each year of her life."
      },
      {
       "kind": "p",
@@ -5007,7 +4953,7 @@
      },
      {
       "kind": "p",
-      "text": "The stream’s name may refer to the vast quantities of Hau trees, Palm trees, and Ti plants that lined its banks all the way to the ocean. ‘Āpuakehau stream, which originated as Mānoa-Pālolo Stream in the Ko‘olau from the mountains above Mānoa and Pālolo valleys, passed through the ‘Āinahau property where Princess Ka‘iulani lived. It emptied into the ocean ‘Ewa of the Moana Hotel. ‘Āpuakehau was the best The elegant Princess Ka‘iulani with her favorite peacocks. (Hawai‘i State Archives) known of Waikīkī’s 3 waterways because it flowed beside the royal residences and gave its name to the heiau, a Hawaiian open-air religious structure, near the ocean."
+      "text": "The stream’s name may refer to the vast quantities of Hau trees, Palm trees, and Ti plants that lined its banks all the way to the ocean. ‘Āpuakehau stream, which originated as Mānoa-Pālolo Stream in the Ko‘olau from the mountains above Mānoa and Pālolo valleys, passed through the ‘Āinahau property where Princess Ka‘iulani lived. It emptied into the ocean ‘Ewa of the Moana Hotel. ‘Āpuakehau was the best known of Waikīkī’s 3 waterways because it flowed beside the royal residences and gave its name to the heiau, a Hawaiian open-air religious structure, near the ocean."
      },
      {
       "kind": "p",
@@ -5018,22 +4964,26 @@
      {
       "file": "p2-5-154.jpg",
       "w": 334,
-      "h": 256
+      "h": 256,
+      "caption": "Prince Koa (David Kawānanakoa) and Princess Ka‘iulani were cousins. It was rumored that they would marry."
      },
      {
       "file": "p2-5-155.jpg",
       "w": 349,
-      "h": 435
+      "h": 435,
+      "caption": "The beauty of Princess Ka‘iulani is evident even in this statue. Princess Ka‘iulani welcomes you to her home at ‘Āinahau."
      },
      {
       "file": "p2-5-156.jpg",
       "w": 370,
-      "h": 270
+      "h": 270,
+      "caption": "A bench that now encircles an ‘Ōhi‘a tree at Kawaiaha‘o Church downtown was once on the"
      },
      {
       "file": "p2-6-157.jpg",
       "w": 785,
-      "h": 511
+      "h": 511,
+      "caption": "The elegant Princess Ka‘iulani with her favorite peacocks. (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.277509,
@@ -5065,10 +5015,6 @@
       "text": "Continue mauka on Kānekapōlei Street, then Diamond Head on Ala Wai Boulevard back makai on Ka‘iulani Avenue, as you enjoy the fantastic mountain views."
      },
      {
-      "kind": "p",
-      "text": "‘Āpuakēhau Stream ran through the Cleghorn property. (Hawai‘i State Archives)"
-     },
-     {
       "kind": "direction",
       "text": "At the first street, Tusitala Street, turn Diamond Head."
      }
@@ -5077,7 +5023,8 @@
      {
       "file": "p2-7-158.jpg",
       "w": 819,
-      "h": 672
+      "h": 672,
+      "caption": "‘Āpuakēhau Stream ran through the Cleghorn property. (Hawai‘i State Archives)"
      },
      {
       "file": "p2-7-159.jpg",
@@ -5111,7 +5058,7 @@
      },
      {
       "kind": "p",
-      "text": "This area was once affectionately called “The Jungle” because of the lush, overgrown gardens interspersed with small Governor Cleghorn built this house at ‘Āinahau especially for Ka‘iulani when she returned from Europe in 1897. The peacocks at the zoo are probably the great-great-great grandchicks of these peacocks. (Hawai‘i State Archives) wooden houses. Although high-rise condominiums and hotels have encroached on “The Jungle,” it still contains many interesting small frame houses. Walk leisurely along this street, appreciating the intimacy of the neighborhood and visualizing ‘Āinahau as it once was. The entire area, all around was ‘Āinahau."
+      "text": "This area was once affectionately called “The Jungle” because of the lush, overgrown gardens interspersed with small wooden houses. Although high-rise condominiums and hotels have encroached on “The Jungle,” it still contains many interesting small frame houses. Walk leisurely along this street, appreciating the intimacy of the neighborhood and visualizing ‘Āinahau as it once was. The entire area, all around was ‘Āinahau."
      },
      {
       "kind": "p",
@@ -5128,10 +5075,6 @@
      {
       "kind": "p",
       "text": "John Cummins Mebane in his novel, The April of Her Age (1994), sets forth a different interpretation of the relationship between Princess Ka‘iulani and Stevenson, referred to as Victoria and Louis."
-     },
-     {
-      "kind": "p",
-      "text": "A feast in 1889 with Robert Lewis Stevenson, the future Queen Lili‘uokalani, and King Kalākaua (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -5158,12 +5101,14 @@
      {
       "file": "p2-8-160.jpg",
       "w": 782,
-      "h": 624
+      "h": 624,
+      "caption": "Governor Cleghorn built this house at ‘Āinahau especially for Ka‘iulani when she returned from Europe in 1897. The peacocks at the zoo are probably the great-great-great grandchicks of these peacocks. (Hawai‘i State Archives)"
      },
      {
       "file": "p2-8-161.jpg",
       "w": 761,
-      "h": 603
+      "h": 603,
+      "caption": "A feast in 1889 with Robert Lewis Stevenson, the future Queen Lili‘uokalani, and King Kalākaua (Hawai‘i State Archives)"
      },
      {
       "file": "p2-9-162.jpg",
@@ -5259,17 +5204,14 @@
      {
       "kind": "direction",
       "text": "Walk Diamond Head on Cleghorn Street, passing Kapuni ‘the surrounding’ Street, then mauka on Lili‘uokalani Avenue."
-     },
-     {
-      "kind": "p",
-      "text": "Queen Lili‘uokalani’s Waikīkī residence, Paoakalani (‘the royal perfume’)"
      }
     ],
     "photos": [
      {
       "file": "p2-10-163.jpg",
       "w": 374,
-      "h": 508
+      "h": 508,
+      "caption": "Queen Lili‘uokalani’s Waikīkī residence, Paoakalani (‘the royal perfume’)"
      },
      {
       "file": "p2-10-164.jpg",
@@ -5433,14 +5375,6 @@
      },
      {
       "kind": "p",
-      "text": "The Towers of Lili‘uokalani Gardens are modeled after the royal kāhili. These kāhili are on display at Ho‘okela at the Hyatt Regency (stop 13). The photo is of Princess Bernice Bishop Pauahi."
-     },
-     {
-      "kind": "p",
-      "text": "The name and crown in Lili‘uokalani Gardens are reminders of the days when Queen Lili‘uokalani lived in Waikīkī."
-     },
-     {
-      "kind": "p",
       "text": "(The Kapi‘olani Park - Zoo Walk, Kāneloa Walk VI, takes you through that area.)"
      },
      {
@@ -5464,12 +5398,14 @@
      {
       "file": "p2-13-167.jpg",
       "w": 375,
-      "h": 561
+      "h": 561,
+      "caption": "The Towers of Lili‘uokalani Gardens are modeled after the royal kāhili. These kāhili are on display at Ho‘okela at the Hyatt Regency (stop 13). The photo is of Princess Bernice Bishop Pauahi."
      },
      {
       "file": "p2-13-168.jpg",
       "w": 346,
-      "h": 263
+      "h": 263,
+      "caption": "The name and crown in Lili‘uokalani Gardens are reminders of the days when Queen Lili‘uokalani lived in Waikīkī."
      }
     ],
     "lat": 21.274385,
@@ -5536,10 +5472,6 @@
       "text": "The hotel on the corner of Kūhiō and Lili‘uokalani avenues houses interesting Hawaiian artifacts and photos of Prince Kūhiō in the display cases."
      },
      {
-      "kind": "p",
-      "text": "Kealohilani – the royal brightness – Avenue refers to one of the houses owned by Queen Lili‘uokanlani."
-     },
-     {
       "kind": "direction",
       "text": "Walk back to Kealohilani Avenue , turning makai to where Kūhiō Beach Park begins. Continuing along the beach side to the statue of Prince Kūhiō."
      }
@@ -5548,7 +5480,8 @@
      {
       "file": "p2-14-169.jpg",
       "w": 337,
-      "h": 358
+      "h": 358,
+      "caption": "Kealohilani – the royal brightness – Avenue refers to one of the houses owned by Queen Lili‘uokanlani."
      }
     ],
     "lat": 21.275402,
@@ -5614,7 +5547,7 @@
      },
      {
       "kind": "p",
-      "text": "Uluniu, later known as Pualeilani was the summer residence of King Kalākaua and Prince Kūhiō Day is celebrated on March 26, a state holiday."
+      "text": "Uluniu, later known as Pualeilani was the summer residence of King Kalākaua and"
      },
      {
       "kind": "p",
@@ -5631,10 +5564,6 @@
      {
       "kind": "p",
       "text": "You can continue walking on the Kāneloa Walk VI, which encompasses Queen Kapi‘olani Regional Park and the Honolulu Zoo."
-     },
-     {
-      "kind": "p",
-      "text": "Pualeilani, King Kalākaua and Queen Kapi‘olani’s residence, is in the background. Notice all the coconut trees in Uluniu. (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -5697,12 +5626,14 @@
      {
       "file": "p2-15-170.jpg",
       "w": 372,
-      "h": 580
+      "h": 580,
+      "caption": "Prince Kūhiō Day is celebrated on March 26, a state holiday."
      },
      {
       "file": "p2-16-171.jpg",
       "w": 833,
-      "h": 662
+      "h": 662,
+      "caption": "Pualeilani, King Kalākaua and Queen Kapi‘olani’s residence, is in the background. Notice all the coconut trees in Uluniu. (Hawai‘i State Archives)"
      },
      {
       "file": "p2-17-172.jpg",
@@ -5801,23 +5732,21 @@
      },
      {
       "kind": "p",
-      "text": "There are 3 plaques that describe Gandhi’s life, his struggles for India’s freedom for which he is known as “The Father of India,” and the relationship of this teaching to Hawaiian values as “The Gentle Messenger.” The This memorial is a final and respectful place for the iwi (bones) of the Hawaiians who once lived in this area."
-     },
-     {
-      "kind": "p",
-      "text": "“A Fistful of Salt” is a poignant tale. plaque titled “A Fistful of Salt” is particularly moving."
+      "text": "There are 3 plaques that describe Gandhi’s life, his struggles for India’s freedom for which he is known as “The Father of India,” and the relationship of this teaching to Hawaiian values as “The Gentle Messenger.” The plaque titled “A Fistful of Salt” is particularly moving."
      }
     ],
     "photos": [
      {
       "file": "p2-19-177.jpg",
       "w": 394,
-      "h": 306
+      "h": 306,
+      "caption": "This memorial is a final and respectful place for the iwi (bones) of the Hawaiians who once lived in this area."
      },
      {
       "file": "p2-19-178.jpg",
       "w": 785,
-      "h": 435
+      "h": 435,
+      "caption": "“A Fistful of Salt” is a poignant tale."
      }
     ],
     "lat": 21.271438,
@@ -5872,14 +5801,6 @@
      },
      {
       "kind": "p",
-      "text": "In 1898, soldiers at Camp McKinley called Kapi‘olani Park home.(Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Queen Kapi‘olani welcomes you to her park!"
-     },
-     {
-      "kind": "p",
       "text": "Archibald Cleghorn, Princess Ka‘iulani’s father, helped design Kapi‘olani Park, including the trees. Greater Kapi‘olani Park includes Kapi‘olani Park Beach and Queen’s Surf Beach."
      },
      {
@@ -5904,10 +5825,6 @@
      },
      {
       "kind": "p",
-      "text": "Makee Island in 1900 – lagoons, bridges, Ironwood and Kiawe trees – a lover’s paradise. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
       "text": "Kapi‘olani Park is very popular today for picnicking and sports: baseball, football, soccer, rugby, and other more exotic games. More impressively, the park is Honolulu’s favorite jogging route, measuring 1.8 miles, adding the zoo for 2.2 miles. There are also exercise stations and a jogger’s course along the way."
      },
      {
@@ -5927,17 +5844,20 @@
      {
       "file": "p2-20-179.jpg",
       "w": 399,
-      "h": 342
+      "h": 342,
+      "caption": "In 1898, soldiers at Camp McKinley called Kapi‘olani Park home.(Hawai‘i State Archives)"
      },
      {
       "file": "p2-20-180.jpg",
       "w": 378,
-      "h": 587
+      "h": 587,
+      "caption": "Queen Kapi‘olani welcomes you to her park!"
      },
      {
       "file": "p2-21-181.jpg",
       "w": 748,
-      "h": 599
+      "h": 599,
+      "caption": "Makee Island in 1900 – lagoons, bridges, Ironwood and Kiawe trees – a lover’s paradise. (Hawai‘i State Archives)"
      },
      {
       "file": "p2-21-182.jpg",
@@ -5991,10 +5911,6 @@
      },
      {
       "kind": "p",
-      "text": "Can you find the various poses of the hula dancers etched on the columns of Kapi‘olani Bandstand?"
-     },
-     {
-      "kind": "p",
       "text": "A curved row of Date Palm trees lined the far end of the Kapi‘olani Park Racetrack. A few stately Date Palms continue to outline the Diamond Head end of the racetrack. Designed by Captain Makee, the racetrack was complete with a truly grand Grandstand."
      },
      {
@@ -6010,7 +5926,8 @@
      {
       "file": "p2-22-183.jpg",
       "w": 404,
-      "h": 488
+      "h": 488,
+      "caption": "Can you find the various poses of the hula dancers etched on the columns of Kapi‘olani Bandstand?"
      }
     ],
     "lat": 21.269939,
@@ -6063,17 +5980,14 @@
      {
       "kind": "direction",
       "text": "Continue along the sidewalk on Kalākaua Avenue."
-     },
-     {
-      "kind": "p",
-      "text": "Lē‘ahi is a Registered National Natural Landmark"
      }
     ],
     "photos": [
      {
       "file": "p2-23-184.jpg",
       "w": 398,
-      "h": 487
+      "h": 487,
+      "caption": "Lē‘ahi is a Registered National Natural Landmark"
      }
     ],
     "lat": 21.268474,
@@ -6161,14 +6075,6 @@
      },
      {
       "kind": "p",
-      "text": "Gabby “pops” Pahinui, one of Hawai‘i’s great musicians."
-     },
-     {
-      "kind": "p",
-      "text": "In fact, this IS the largest and best zoo, with over 1200 mammals, birds, and reptiles, for 2300 miles around!"
-     },
-     {
-      "kind": "p",
       "text": "If a concert is scheduled, do attend. You’ll never forget the event under the stars. The best and least expensive seats are on the lawn! Come early, bring a blanket and friends, and picnic on the grass before the event begins."
      },
      {
@@ -6188,12 +6094,14 @@
      {
       "file": "p2-24-185.jpg",
       "w": 393,
-      "h": 300
+      "h": 300,
+      "caption": "Gabby “pops” Pahinui, one of Hawai‘i’s great musicians."
      },
      {
       "file": "p2-24-186.jpg",
       "w": 388,
-      "h": 294
+      "h": 294,
+      "caption": "In fact, this IS the largest and best zoo, with over 1200 mammals, birds, and reptiles, for 2300 miles around!"
      },
      {
       "file": "p2-24-187.jpg",
@@ -6292,10 +6200,6 @@
      },
      {
       "kind": "p",
-      "text": "No need to go to the Galapagos Islands: we have Galapagos Tortoises here!"
-     },
-     {
-      "kind": "p",
       "text": "During the years of the Depression and World War II, the zoo fell into disrepair. Only the bird collection prospered during that period, due to the efforts of E.H. Lewis, an ornithologist from California. For a while, the zoo was understandably known as Kapi‘olani Bird Park."
      },
      {
@@ -6324,10 +6228,6 @@
      },
      {
       "kind": "p",
-      "text": "No matter where you go, our native Pueo turns his head to find you!"
-     },
-     {
-      "kind": "p",
       "text": "4 5 7 8 9 10 11 12 13 14 15 Mauka Makai ʻEwa Diamond Head Honolulu Zoo Kapi‘olani Park Diamond Head State Monument Walk VII Map Key"
      }
     ],
@@ -6335,12 +6235,14 @@
      {
       "file": "p2-27-188.jpg",
       "w": 775,
-      "h": 494
+      "h": 494,
+      "caption": "No need to go to the Galapagos Islands: we have Galapagos Tortoises here!"
      },
      {
       "file": "p2-28-189.jpg",
       "w": 797,
-      "h": 485
+      "h": 485,
+      "caption": "No matter where you go, our native Pueo turns his head to find you!"
      },
      {
       "file": "p2-29-190.jpg",
@@ -6475,7 +6377,7 @@
       "text": "Kuekaunahi Stream originally flowed down from the mountains through Pālolo Valley and emptied into the ocean ‘Ewa of Kapahulu Pier. However, in the 1920s, Kuekaunahi Stream was diverted away from Waikīkī, into the Mānoa-Pālolo Drainage Canal (Not a very picturesque name, is it?!) and via the Ala Wai Canal out to the Pacific Ocean."
      },
      {
-      "kind": "p",
+      "kind": "caption",
       "text": "Lē‘ahi from Pūowaina (Diamond Head to Punchbowl) (Hawai‘i State Archives)"
      },
      {
@@ -6529,14 +6431,15 @@
      },
      {
       "kind": "p",
-      "text": "Soon after the death of Kamehameha I in 1819, two of his wives and his son, Kamehameha II, set about to abolish The beauty and breezes of the ocean from Kapahulu Pier are unsurpassed. the ways of their traditional religion. This did not come about overnight: Ka‘ahumanu, Kamehameha I’s favorite wife, and Keōpūolani, Kamehameha I’s sacred wife, had already challenged and, thereby, had broken the kapu not only of eating with men, but also eating specific foods including a certain type of banana, lele, which was forbidden to women since it was used for “love magic” – its essence was thought to soar (lele) to the deities. This change opened the way for the Christian religion that was brought to Hawai‘i by the missionaries the following year, 1820."
+      "text": "Soon after the death of Kamehameha I in 1819, two of his wives and his son, Kamehameha II, set about to abolish the ways of their traditional religion. This did not come about overnight: Ka‘ahumanu, Kamehameha I’s favorite wife, and Keōpūolani, Kamehameha I’s sacred wife, had already challenged and, thereby, had broken the kapu not only of eating with men, but also eating specific foods including a certain type of banana, lele, which was forbidden to women since it was used for “love magic” – its essence was thought to soar (lele) to the deities. This change opened the way for the Christian religion that was brought to Hawai‘i by the missionaries the following year, 1820."
      }
     ],
     "photos": [
      {
       "file": "p2-32-196.jpg",
       "w": 374,
-      "h": 455
+      "h": 455,
+      "caption": "The beauty and breezes of the ocean from Kapahulu Pier are unsurpassed."
      }
     ],
     "lat": 21.269183,
@@ -6570,17 +6473,14 @@
      {
       "kind": "direction",
       "text": "At this point along the shore, walk mauka across the grassy area to Kalākaua Avenue for the entrance to the Waikīkī Aquarium."
-     },
-     {
-      "kind": "p",
-      "text": "The aquarium’s original location was across from today’s “Trolley Stop/ Jogger’s Rest.” (Hawai‘i State Archives)"
      }
     ],
     "photos": [
      {
       "file": "p2-33-197.jpg",
       "w": 745,
-      "h": 471
+      "h": 471,
+      "caption": "The aquarium’s original location was across from today’s “Trolley Stop/ Jogger’s Rest.” (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.26683,
@@ -6645,7 +6545,7 @@
      },
      {
       "kind": "p",
-      "text": "The War Memorial, as is carved overhead on the Beaux-Arts arch, is known locally as the Natatorium, which is simply Latin for The almost 100-year-old Natatorium looks good from here, but up close its deteriorating condition is clearly noticeable."
+      "text": "The War Memorial, as is carved overhead on the Beaux-Arts arch, is known locally as the Natatorium, which is simply Latin for"
      },
      {
       "kind": "p",
@@ -6669,7 +6569,7 @@
      },
      {
       "kind": "p",
-      "text": "Notice the Hau trees growing on a trellis: In one day, the flowers open yellow, turn This is a view of the seating area for the swim meets that once took place at the natatorium. orange, and drop to the ground a brownish red color."
+      "text": "Notice the Hau trees growing on a trellis: In one day, the flowers open yellow, turn orange, and drop to the ground a brownish red color."
      },
      {
       "kind": "p",
@@ -6712,12 +6612,14 @@
      {
       "file": "p2-34-198.jpg",
       "w": 377,
-      "h": 502
+      "h": 502,
+      "caption": "The almost 100-year-old Natatorium looks good from here, but up close its deteriorating condition is clearly noticeable."
      },
      {
       "file": "p2-35-199.jpg",
       "w": 820,
-      "h": 490
+      "h": 490,
+      "caption": "This is a view of the seating area for the swim meets that once took place at the natatorium."
      }
     ],
     "lat": 21.264509,
@@ -6752,7 +6654,7 @@
      },
      {
       "kind": "p",
-      "text": "“If anyone desires such old fashioned things as lovely scenery, quiet, pure air, Sans Souci Beach is not just for humans: the shiny black Hawaiian Monk Seal is the newborn; mom is on the right, a duller grey. clear sea water, good food, and heavenly sunsets hung out before his eyes over the Pacific and the distant hills of Wai‘anae, I recommend him cordially to the Sans Souci.”"
+      "text": "“If anyone desires such old fashioned things as lovely scenery, quiet, pure air, clear sea water, good food, and heavenly sunsets hung out before his eyes over the Pacific and the distant hills of Wai‘anae, I recommend him cordially to the Sans Souci.”"
      },
      {
       "kind": "p",
@@ -6779,7 +6681,8 @@
      {
       "file": "p2-37-200.jpg",
       "w": 788,
-      "h": 557
+      "h": 557,
+      "caption": "Sans Souci Beach is not just for humans: the shiny black Hawaiian Monk Seal is the newborn; mom is on the right, a duller grey."
      }
     ],
     "lat": 21.263431,
@@ -6870,10 +6773,6 @@
      },
      {
       "kind": "p",
-      "text": "The Castle mansion was so large that it presented an astonishing sight offshore. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
       "text": "There are two Hawaiian mo‘olelo (legend) associated with the name Kalehuawehe:"
      },
      {
@@ -6913,7 +6812,8 @@
      {
       "file": "p2-39-201.jpg",
       "w": 671,
-      "h": 513
+      "h": 513,
+      "caption": "The Castle mansion was so large that it presented an astonishing sight offshore. (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.26212,
@@ -6937,7 +6837,7 @@
      },
      {
       "kind": "p",
-      "text": "The 14-story Diamond Head Ambassador apartments at 2957 Kalākaua Avenue was The foundation and pilings of the Castle Estate can be seen. The Elks Lodge is at this location today. designed by Vladimir Ossipoff (1907-98) who, although born in Russia, was known as “the master of Hawai‘i modern architecture.” The 1956-Japanese style buildings were not only the first cooperative apartment structures built, but were also the earliest multi-story buildings to use pre-stressed concrete I-beams in the country, an innovation by the engineer Alfred Alphonse Yee (1925-2017). Yee’s work was so wide-spread and influential that the University of Hawai‘i Mānoa College of Engineering has established the endowed Dr. Alfred A. Yee Chair of Sustainability and Resilience."
+      "text": "The 14-story Diamond Head Ambassador apartments at 2957 Kalākaua Avenue was designed by Vladimir Ossipoff (1907-98) who, although born in Russia, was known as “the master of Hawai‘i modern architecture.” The 1956-Japanese style buildings were not only the first cooperative apartment structures built, but were also the earliest multi-story buildings to use pre-stressed concrete I-beams in the country, an innovation by the engineer Alfred Alphonse Yee (1925-2017). Yee’s work was so wide-spread and influential that the University of Hawai‘i Mānoa College of Engineering has established the endowed Dr. Alfred A. Yee Chair of Sustainability and Resilience."
      },
      {
       "kind": "p",
@@ -6948,7 +6848,8 @@
      {
       "file": "p2-40-202.jpg",
       "w": 391,
-      "h": 480
+      "h": 480,
+      "caption": "The foundation and pilings of the Castle Estate can be seen. The Elks Lodge is at this location today."
      }
     ],
     "lat": 21.260731,
@@ -7010,10 +6911,6 @@
      },
      {
       "kind": "p",
-      "text": "This photo of the right-of-way to Diamond Head Road captures not only Lē‘ahi in the background, but also the home of the architect C.W. Dickey."
-     },
-     {
-      "kind": "p",
       "text": "This walk will not take you inside Lē‘ahi Crater; however, it will afford a good, closeup view."
      },
      {
@@ -7049,7 +6946,8 @@
      {
       "file": "p2-41-203.jpg",
       "w": 426,
-      "h": 278
+      "h": 278,
+      "caption": "This photo of the right-of-way to Diamond Head Road captures not only Lē‘ahi in the background, but also the home of the architect C.W. Dickey."
      }
     ],
     "lat": 21.258109,
@@ -7189,7 +7087,7 @@
      },
      {
       "kind": "p",
-      "text": "You might question, why walk back the same way? Because although the views up Diamond Head Road were spectacular, The plaque with a model of her airplane and a huge wave below reads: AMELIA EARHART First person to fly alone from Hawai‘i to North America. January 11, 1935. they are even more so in the reverse direction. Enjoy! Think off all the exercise you are getting from walking!"
+      "text": "You might question, why walk back the same way? Because although the views up Diamond Head Road were spectacular, they are even more so in the reverse direction. Enjoy! Think off all the exercise you are getting from walking!"
      },
      {
       "kind": "direction",
@@ -7200,7 +7098,8 @@
      {
       "file": "p2-43-204.jpg",
       "w": 792,
-      "h": 437
+      "h": 437,
+      "caption": "The plaque with a model of her airplane and a huge wave below reads: AMELIA EARHART First person to fly alone from Hawai‘i to North America. January 11, 1935."
      }
     ],
     "lat": 21.255767,
@@ -7269,10 +7168,6 @@
      },
      {
       "kind": "p",
-      "text": "You never know who you might meet as you walk up Diamond Head Road."
-     },
-     {
-      "kind": "p",
       "text": "Understandably, ghost stories abound regarding this area. The most frequently related story is the procession of lights on moonless nights: the famed Night Marchers, ghostly fallen Hawaiian warriors making their way to the heiau for a nightly ritual."
      },
      {
@@ -7292,7 +7187,8 @@
      {
       "file": "p2-46-206.jpg",
       "w": 882,
-      "h": 497
+      "h": 497,
+      "caption": "You never know who you might meet as you walk up Diamond Head Road."
      }
     ],
     "lat": 21.26087,
@@ -7336,14 +7232,6 @@
       "text": "You are not far from where you started at Kapahulu Avenue and the beachfront. Walk makai-‘Ewa from either Paki or Monsarrat avenues to get back to your starting point."
      },
      {
-      "kind": "p",
-      "text": "Or who might inspire you to start running along Diamond Head Road!"
-     },
-     {
-      "kind": "p",
-      "text": "See complete Walk viii map on page 114 At this sign, walk up the hill to one of the most magnificent views on this side of the island."
-     },
-     {
       "kind": "tagline",
       "text": "Walk up Kapahulu Avenue through the neighborhood of Kaimukī and its Art Deco buildings into a crater and to the hill (pu‘u) of the crater."
      },
@@ -7376,17 +7264,20 @@
      {
       "file": "p2-46-207.jpg",
       "w": 319,
-      "h": 439
+      "h": 439,
+      "caption": "Or who might inspire you to start running along Diamond Head Road!"
      },
      {
       "file": "p2-48-208.jpg",
       "w": 593,
-      "h": 948
+      "h": 948,
+      "caption": "At this sign, walk up the hill to one of the most magnificent views on this side of the island."
      },
      {
       "file": "p2-48-209.jpg",
       "w": 1050,
-      "h": 382
+      "h": 382,
+      "caption": "See complete Walk viii map on page 114"
      },
      {
       "file": "p2-48-210.jpg",
@@ -7443,10 +7334,6 @@
    {
     "kind": "p",
     "text": "Campbell Avenue displays the only house on the Historic Register in this area: the 1898 Martin House at 3528 Campbell Avenue. This was the house of Charles Martin, a builder in the area, who also named the next street after his family: Mākini Street, a Hawaiianized word for Martin."
-   },
-   {
-    "kind": "p",
-    "text": "Caption: Across the plains to Kaimukī. (Hawai‘i State Archives)"
    },
    {
     "kind": "p",
@@ -7522,7 +7409,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "The library is one of Waikīkī’s architectural gems. Its exterior walls are made of locally hewn sandstone blocks. The ceiling is of imported cedar wood; the interior doors, the reading bench, and children’s tables are of native koa wood. The cathedral windows provide natural reading light. The first Waikīkī library was in a wooden cottage on the grounds of Thomas Jefferson School. In 1952 the new library, designed by Lemmon and Freeth, opened its doors to the public. In the entryway, view the cement Waikīkī’s Fire Station No. 7 is always ready This outrigger canoe is on the high seas, not on the Ala Wai Canal. sculpture of an outrigger canoe. Lemmon and Freeth were also the architects for the Occidental Building on Pi‘ikoi Street as well as one of the firms for the state capitol."
+      "text": "The library is one of Waikīkī’s architectural gems. Its exterior walls are made of locally hewn sandstone blocks. The ceiling is of imported cedar wood; the interior doors, the reading bench, and children’s tables are of native koa wood. The cathedral windows provide natural reading light. The first Waikīkī library was in a wooden cottage on the grounds of Thomas Jefferson School. In 1952 the new library, designed by Lemmon and Freeth, opened its doors to the public. In the entryway, view the cement sculpture of an outrigger canoe. Lemmon and Freeth were also the architects for the Occidental Building on Pi‘ikoi Street as well as one of the firms for the state capitol."
      },
      {
       "kind": "p",
@@ -7541,12 +7428,14 @@
      {
       "file": "p2-52-214.jpg",
       "w": 367,
-      "h": 275
+      "h": 275,
+      "caption": "This outrigger canoe is on the high seas, not on the Ala Wai Canal."
      },
      {
       "file": "p2-52-215.jpg",
       "w": 389,
-      "h": 270
+      "h": 270,
+      "caption": "Waikīkī’s Fire Station No. 7 is always ready"
      }
     ],
     "lat": 21.274354,
@@ -7757,7 +7646,7 @@
      },
      {
       "kind": "p",
-      "text": "At 12th Avenue, jog mauka a little (Koko Head direction) on Koko Head Avenue unStop in for a treat at Waiola Shave Ice til you come to Pu‘u o Kaimukī Mini Park (Stop 24 ), the Fire Station and the vent for the crater (Stop 23 ) and climb the hill for a breathtaking view!"
+      "text": "At 12th Avenue, jog mauka a little (Koko Head direction) on Koko Head Avenue un til you come to Pu‘u o Kaimukī Mini Park (Stop 24 ), the Fire Station and the vent for the crater (Stop 23 ) and climb the hill for a breathtaking view!"
      },
      {
       "kind": "p",
@@ -7772,7 +7661,8 @@
      {
       "file": "p2-54-216.jpg",
       "w": 512,
-      "h": 366
+      "h": 366,
+      "caption": "Stop in for a treat at Waiola Shave Ice"
      }
     ],
     "lat": 21.284828,
@@ -8003,14 +7893,15 @@
      },
      {
       "kind": "p",
-      "text": "The Y. F. Zane Art Deco building on In this 1930 photo of the Castle mansion in Waikīkī, the buildings of Chaminade / St. Louis School are clearly visible in the hills behind Waikīkī. (Hawai‘i State Archives) the makai-Koko Head corner of 9th and Wai‘alae avenues has been especially wellmaintained."
+      "text": "The Y. F. Zane Art Deco building on the makai-Koko Head corner of 9th and Wai‘alae avenues has been especially wellmaintained."
      }
     ],
     "photos": [
      {
       "file": "p2-57-219.jpg",
       "w": 447,
-      "h": 388
+      "h": 388,
+      "caption": "In this 1930 photo of the Castle mansion in Waikīkī, the buildings of Chaminade / St. Louis School are clearly visible in the hills behind Waikīkī. (Hawai‘i State Archives)"
      }
     ],
     "lat": 21.280784,
@@ -8082,17 +7973,14 @@
      {
       "kind": "p",
       "text": "At 3613-3617 Wai‘alae Avenue look down to see a 1938 thank you note from Tuck Yee Yap who was able to rebuild his burntout supermarket thanks to Mayor C.S. Crane."
-     },
-     {
-      "kind": "p",
-      "text": "A 1943 photo of Queen Theater and patrons waiting patiently in the shade. (Lowell Angell Collection)"
      }
     ],
     "photos": [
      {
       "file": "p2-58-220.jpg",
       "w": 713,
-      "h": 467
+      "h": 467,
+      "caption": "A 1943 photo of Queen Theater and patrons waiting patiently in the shade. (Lowell Angell Collection)"
      }
     ],
     "lat": 21.2742,
@@ -8140,26 +8028,20 @@
      {
       "kind": "p",
       "text": "To get to the top of the pu‘u, cross Pāhoa (‘a short dagger’) Avenue, then cross Koko Head Avenue to Kaimukī Fire Station 5."
-     },
-     {
-      "kind": "p",
-      "text": "Queen Lili‘uokalani presided at the opening of her namesake school 5 years before she died - in 1917. The ceramic tile mosaic portraying the queen was hand painted by the children and staff."
-     },
-     {
-      "kind": "p",
-      "text": "“A Dream Come True,” a thanks to Mayor Crane, was carved into this sidewalk entrance when the shop opened"
      }
     ],
     "photos": [
      {
       "file": "p2-59-221.jpg",
       "w": 404,
-      "h": 516
+      "h": 516,
+      "caption": "Queen Lili‘uokalani presided at the opening of her namesake school 5 years before she died - in 1917. The ceramic tile mosaic portraying the queen was hand painted by the children and staff."
      },
      {
       "file": "p2-59-222.jpg",
       "w": 413,
-      "h": 287
+      "h": 287,
+      "caption": "“A Dream Come True,” a thanks to Mayor Crane, was carved into this sidewalk entrance when the shop opened"
      }
     ],
     "lat": 21.273381,
@@ -8215,11 +8097,15 @@
      },
      {
       "kind": "p",
-      "text": "King Kamehameha I positioned sentries at Pu‘u o Kaimukī to locate his enemy, Kalanikūpule and Kalanikūpule’s troops, Kaimukī: Up Koko Head Avenue to the Fire Station and to Pu‘u o Kaimukī, then into the crater! (Hawai‘i State Archives)"
+      "text": "King Kamehameha I positioned sentries at Pu‘u o Kaimukī to locate his enemy, Kalanikūpule and Kalanikūpule’s troops, as they arrived by sea at Waikīkī in his battle for O‘ahu."
      },
      {
-      "kind": "p",
-      "text": "At this sign, walk up the hill to one of the most magnificent views on this side of the island. as they arrived by sea at Waikīkī in his battle for O‘ahu."
+      "kind": "caption",
+      "text": "Kaimukī: Up Koko Head Avenue to the Fire Station and to Pu‘u o Kaimukī, then into the crater! (Hawai‘i State Archives)"
+     },
+     {
+      "kind": "caption",
+      "text": "At this sign, walk up the hill to one of the most magnificent views on this side of the island."
      },
      {
       "kind": "p",
@@ -8356,17 +8242,14 @@
      {
       "kind": "p",
       "text": "There most likely was a heiau on this property, which is not surprising, considering the commanding view."
-     },
-     {
-      "kind": "p",
-      "text": "A secure parking space: lava garages along Ocean View Avenue."
      }
     ],
     "photos": [
      {
       "file": "p2-62-225.jpg",
       "w": 771,
-      "h": 511
+      "h": 511,
+      "caption": "A secure parking space: lava garages along Ocean View Avenue."
      }
     ],
     "lat": 21.271351,
@@ -8417,11 +8300,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "Fort Ruger, which was established in 1906, was the first permanent military reservation in the Territory of Hawai‘i and was part of O‘ahu’s coastal defense system. From 1906 The “gates” at the entryway to Ft. Ruger."
-     },
-     {
-      "kind": "p",
-      "text": "This 1934 photo of Diamond Head Theater displays the building’s clean, modern lines. (Lowell Angell Collection) to 1911, Fort Ruger was initially established within the crater and on the outer slopes. It was named in honor and memory of Thomas Howard Ruger, who was the superintendent of the U.S. Military Academy at West Point from 1871 to 1876."
+      "text": "Fort Ruger, which was established in 1906, was the first permanent military reservation in the Territory of Hawai‘i and was part of O‘ahu’s coastal defense system. From 1906 to 1911, Fort Ruger was initially established within the crater and on the outer slopes. It was named in honor and memory of Thomas Howard Ruger, who was the superintendent of the U.S. Military Academy at West Point from 1871 to 1876."
      },
      {
       "kind": "p",
@@ -8460,12 +8339,14 @@
      {
       "file": "p2-63-226.jpg",
       "w": 391,
-      "h": 330
+      "h": 330,
+      "caption": "The “gates” at the entryway to Ft. Ruger."
      },
      {
       "file": "p2-63-227.jpg",
       "w": 836,
-      "h": 542
+      "h": 542,
+      "caption": "This 1934 photo of Diamond Head Theater displays the building’s clean, modern lines. (Lowell Angell Collection)"
      },
      {
       "file": "p2-63-228.jpg",
@@ -8543,7 +8424,7 @@
  },
  {
   "id": "IX",
-  "num": 12,
+  "num": 10,
   "title": "Mō‘ili‘ili",
   "theme": "Watch out for the mo‘o, the giant lizard!",
   "facts": {
@@ -8598,13 +8479,12 @@
   ],
   "cover": "p2-67-235.jpg",
   "bookMap": "map-IX.jpg",
-  "color": "#5C6F68",
+  "color": "#1B998B",
   "stops": [
    {
     "id": "IX-01",
     "n": 1,
     "title": "Kapahulu Avenue",
-    "subtitle": "Waikīkī-Kapahulu Public Library",
     "blocks": [
      {
       "kind": "p",
@@ -8632,16 +8512,32 @@
      },
      {
       "kind": "p",
-      "text": "The flatlands of Mō‘ili‘ili. Low white building is Kamō‘ili‘ili Church (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
       "text": "The Ala Wai Canal is carved out of natural solid coral. Original topography of the area included three streams running down from the mountains into the valleys and through Waikīkī, each emptying directly into the Pacific Ocean. Waikolu Way, a small street between Royal Hawaiian and Seaside avenues, is reminiscent of those three streams: Waikolu means ‘three waters.’"
      },
      {
       "kind": "p",
       "text": "As you cross Ala Wai Boulevard, notice the leafy Monkey pod trees shading Pākī Avenue. The street is named after Abner Pākī, a descendent of Maui chiefs."
-     },
+     }
+    ],
+    "photos": [
+     {
+      "file": "p2-67-235.jpg",
+      "w": 829,
+      "h": 500,
+      "caption": "The flatlands of Mō‘ili‘ili. Low white building is Kamō‘ili‘ili Church (Hawai‘i State Archives)"
+     }
+    ],
+    "lat": 21.273834,
+    "lng": -157.817798,
+    "geo": "book",
+    "page": "p2-67",
+    "radius": 56
+   },
+   {
+    "id": "IX-02",
+    "n": 2,
+    "title": "Waikīkī-Kapahulu Public Library",
+    "blocks": [
      {
       "kind": "p",
       "text": "The library is one of Waikīkī’s architectural gems. Its exterior walls are made of locally hewn sandstone blocks. The ceiling is of imported cedar wood; the interior doors, the reading bench, and children’s tables are of native Koa wood. The cathedral windows provide natural reading light. The first Waikīkī library was in a wooden cottage on the grounds of Thomas Jefferson School. In 1952, the new library designed by Lemmon and Freeth, opened its doors to the public. In the entryway, view the cement sculpture of an outrigger canoe. Lemmon and Freeth were also the architects for the Occidental Building on Pi‘ikoi Street as well as one of the firms for the state capitol."
@@ -8659,18 +8555,12 @@
       "text": "The street mauka-‘Ewa of the libraries leads to the Clubhouse of the Ala Wai Golf Course."
      }
     ],
-    "photos": [
-     {
-      "file": "p2-67-235.jpg",
-      "w": 829,
-      "h": 500
-     }
-    ],
-    "lat": 21.273834,
-    "lng": -157.817798,
+    "photos": [],
+    "lat": 21.274319,
+    "lng": -157.816819,
     "geo": "book",
-    "page": "p2-67",
-    "radius": 56
+    "page": "p2-68",
+    "radius": 76
    },
    {
     "id": "IX-03",
@@ -8683,8 +8573,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.274121,
-    "lng": -157.816748,
+    "lat": 21.274363,
+    "lng": -157.816259,
     "geo": "estimated",
     "page": "p2-68",
     "radius": 67
@@ -8692,11 +8582,11 @@
    {
     "id": "IX-04",
     "n": 4,
-    "title": "First Hawaiian Bank also on the",
+    "title": "First Hawaiian Bank",
     "blocks": [
      {
       "kind": "p",
-      "text": "Diamond Head side of Kapahulu Avenue, is architecturally unusual with its sandstone blocks."
+      "text": "First Hawaiian Bank also on the Diamond Head side of Kapahulu Avenue, is architecturally unusual with its sandstone blocks."
      }
     ],
     "photos": [],
@@ -8713,7 +8603,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "You can continue mauka on Kapahulu Avenue or, alternatively, take the shadier “Lei of Parks,” which begins after the Ala Wai Golf Course sign on the ‘Ewa side of Kapahulu Avenue and follows the golf Look at the detail in these tiles: surfers, birds, tree, fish, even an elephant! course around to Date Street."
+      "text": "You can continue mauka on Kapahulu Avenue or, alternatively, take the shadier “Lei of Parks,” which begins after the Ala Wai Golf Course sign on the ‘Ewa side of Kapahulu Avenue and follows the golf course around to Date Street."
      },
      {
       "kind": "p",
@@ -8728,7 +8618,8 @@
      {
       "file": "p2-68-236.jpg",
       "w": 363,
-      "h": 580
+      "h": 580,
+      "caption": "Look at the detail in these tiles: surfers, birds, tree, fish, even an elephant!"
      },
      {
       "file": "p2-69-237.jpg",
@@ -8786,10 +8677,6 @@
      },
      {
       "kind": "p",
-      "text": "Many First Hawaiian Banks are built with architectural aesthetics."
-     },
-     {
-      "kind": "p",
       "text": "Along Date Street, on the mauka side, you will pass some unusual street names because even though they look Hawaiian, they are not. Frank L. James developed this area in 1926 and named these streets after members of his family. All except the last one are Hawaiianized English names… • \u0007Kamuela Avenue - ‘Samuel,’ family member • \u0007Palani Avenue - ‘Frank,’ his son • \u0007Makaleka Avenue - ‘Margaret,’ his daughter • \u0007Ekela Avenue – ‘Ethel,’ family member • \u0007Lukepane Avenue - ‘Lucy Frances,’ his wife • Olokele Avenue - ‘honeycreeper bird’"
      },
      {
@@ -8801,7 +8688,8 @@
      {
       "file": "p2-69-239.jpg",
       "w": 378,
-      "h": 416
+      "h": 416,
+      "caption": "Many First Hawaiian Banks are built with architectural aesthetics."
      }
     ],
     "lat": 21.279213,
@@ -8865,7 +8753,7 @@
      },
      {
       "kind": "p",
-      "text": "And if there is construction in the area, continue along Date Street, cross Kapi‘olani Boulevard at the light to Kalo fields across McCully to Mō‘ili‘ili (Hawai‘i State Archives)"
+      "text": "And if there is construction in the area, continue along Date Street, cross Kapi‘olani Boulevard at the light to"
      },
      {
       "kind": "p",
@@ -8896,7 +8784,8 @@
      {
       "file": "p2-70-240.jpg",
       "w": 436,
-      "h": 343
+      "h": 343,
+      "caption": "Kalo fields across McCully to Mō‘ili‘ili (Hawai‘i State Archives)"
      },
      {
       "file": "p2-70-241.jpg",
@@ -8940,11 +8829,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "The footbridge will take you ‘Ewa to the well-tended and cared for 1908 Mō‘ili‘ili Japanese Cemetery on Kuilei ‘stringing lei’ Street. The memorial at the entrance, dediAs you walk along farmer (Mahi‘ai) Street, imagine taro fields and farmers that were once here."
-     },
-     {
-      "kind": "p",
-      "text": "This Japanese cemetery honors the first 1868 Japanese migrant workers. Please visit with reverence. cated in 1968, commemorates the 100th year arrival anniversary of the first official group of Japanese immigrants who were called the Gannenmono, meaning the ‘people of the first year’ (of the Meiji period)."
+      "text": "The footbridge will take you ‘Ewa to the well-tended and cared for 1908 Mō‘ili‘ili Japanese Cemetery on Kuilei ‘stringing lei’ Street. The memorial at the entrance, dedi cated in 1968, commemorates the 100th year arrival anniversary of the first official group of Japanese immigrants who were called the Gannenmono, meaning the ‘people of the first year’ (of the Meiji period)."
      },
      {
       "kind": "p",
@@ -8959,12 +8844,14 @@
      {
       "file": "p2-71-242.jpg",
       "w": 368,
-      "h": 413
+      "h": 413,
+      "caption": "As you walk along farmer (Mahi‘ai) Street, imagine taro fields and farmers that were once here."
      },
      {
       "file": "p2-71-243.jpg",
       "w": 799,
-      "h": 459
+      "h": 459,
+      "caption": "This Japanese cemetery honors the first 1868 Japanese migrant workers. Please visit with reverence."
      },
      {
       "file": "p2-72-244.jpg",
@@ -9021,11 +8908,15 @@
      },
      {
       "kind": "p",
-      "text": "Kamō‘ili‘ili Church was built in 1846 as an ‘āpana (“branch”) of the downtown main church, Kawaiaha‘o. The graves and the bell As you walk along Kahoaloha ‘the friend’ Lane, do not pick the mangoes!"
+      "text": "Kamō‘ili‘ili Church was built in 1846 as an ‘āpana (“branch”) of the downtown main church, Kawaiaha‘o. The graves and the bell tower of Kamō‘ili‘ili Church and Cemetery were lovingly moved to the burial ground at Kawaiaha‘o Church in downtown Honolulu. A reminder that a church once flourished here is Church Lane on the Diamond Head side of the Contessa."
      },
      {
-      "kind": "p",
-      "text": "Kamō‘ili‘ili Church, 1898 (Hawai‘i State Archives) tower of Kamō‘ili‘ili Church and Cemetery were lovingly moved to the burial ground at Kawaiaha‘o Church in downtown Honolulu. A reminder that a church once flourished here is Church Lane on the Diamond Head side of the Contessa."
+      "kind": "caption",
+      "text": "As you walk along Kahoaloha ‘the friend’ Lane, do not pick the mangoes!"
+     },
+     {
+      "kind": "caption",
+      "text": "Kamō‘ili‘ili Church, 1898 (Hawai‘i State Archives)"
      }
     ],
     "photos": [],
@@ -9081,7 +8972,11 @@
      },
      {
       "kind": "p",
-      "text": "A heiau is an open-air religious structure to which access for commoners was strictly limited. There were different types of heiau: the two main ones were agricultural heiau, for economic needs or husbandry, to ensure the livelihood of the people, and sacrificial heiau, often as war shrines. Most heiau were damaged or destroyed in 1819 or soon after when the Hawaiian religion and kapu ‘taboo,’ systems were challenged by Kamehameha II. After the death of Kamehameha I in 1819, his wives and son, Kamehameha II, set about to abolish the ways of their traditional religion. This did not come about overnight: Ka‘ahumanu, Kamehameha I’s favorite wife, and Keōpūolani, Kamehameha I’s sacred wife, had already challenged and, thereby, had broken the kapu (taboo) not only of eating with men, but also of eating certain food, including a type of banana, lele, which was forbidden to women since it was used for “love magic” – its essence was thought to soar (lele) to the deities. This change opened the way for the Christian religion that The bell that was once atop Kamō‘ili‘ili church is now lovingly cared for at the cemetery at Kawaiaha‘o Church downtown. was brought to Hawai‘i by the missionaries the following year, 1820."
+      "text": "A heiau is an open-air religious structure to which access for commoners was strictly limited. There were different types of heiau: the two main ones were agricultural heiau, for economic needs or husbandry, to ensure the livelihood of the people, and sacrificial heiau, often as war shrines. Most heiau were damaged or destroyed in 1819 or soon after when the Hawaiian religion and kapu ‘taboo,’ systems were challenged by Kamehameha II. After the death of Kamehameha I in 1819, his wives and son, Kamehameha II, set about to abolish the ways of their traditional religion. This did not come about overnight: Ka‘ahumanu, Kamehameha I’s favorite wife, and Keōpūolani, Kamehameha I’s sacred wife, had already challenged and, thereby, had broken the kapu (taboo) not only of eating with men, but also of eating certain food, including a type of banana, lele, which was forbidden to women since it was used for “love magic” – its essence was thought to soar (lele) to the deities. This change opened the way for the Christian religion that was brought to Hawai‘i by the missionaries the following year, 1820."
+     },
+     {
+      "kind": "caption",
+      "text": "The bell that was once atop Kamō‘ili‘ili church is now lovingly cared for at the cemetery at Kawaiaha‘o Church downtown."
      },
      {
       "kind": "p",
@@ -9169,10 +9064,6 @@
      },
      {
       "kind": "p",
-      "text": "A once flourishing floral market area, this is one of the remaining florists on N. King Street."
-     },
-     {
-      "kind": "p",
       "text": "The encounters then took place on the ridge near Pālolo, later onto the valley and mountains of Mānoa."
      },
      {
@@ -9196,7 +9087,8 @@
      {
       "file": "p2-74-248.jpg",
       "w": 343,
-      "h": 330
+      "h": 330,
+      "caption": "A once flourishing floral market area, this is one of the remaining florists on N. King Street."
      }
     ],
     "lat": 21.288223,
@@ -9229,7 +9121,7 @@
      },
      {
       "kind": "p",
-      "text": "The land was inherited by Caesar Kapa‘akea, father to King Kalākaua and Queen Lili‘uokalani. Kapa‘akea is the Robert Wilcox was a multi-faceted man; no matter what he did, he did it with gusto. This statue stands proud on Fort Street Mall, downtown."
+      "text": "The land was inherited by Caesar Kapa‘akea, father to King Kalākaua and Queen Lili‘uokalani. Kapa‘akea is the"
      },
      {
       "kind": "p",
@@ -9256,7 +9148,8 @@
      {
       "file": "p2-75-249.jpg",
       "w": 371,
-      "h": 466
+      "h": 466,
+      "caption": "Robert Wilcox was a multi-faceted man; no matter what he did, he did it with gusto. This statue stands proud on Fort Street Mall, downtown."
      },
      {
       "file": "p2-75-250.jpg",
@@ -9314,17 +9207,14 @@
      {
       "kind": "direction",
       "text": "Walk makai-‘Ewa on S. King Street, passing Coolidge Street, the president (1923-29) at the time when this street was cut through."
-     },
-     {
-      "kind": "p",
-      "text": "The Torii stands proud in a neighborhood founded by Japanese families."
      }
     ],
     "photos": [
      {
       "file": "p2-76-252.jpg",
       "w": 780,
-      "h": 483
+      "h": 483,
+      "caption": "The Torii stands proud in a neighborhood founded by Japanese families."
      }
     ],
     "lat": 21.292733,
@@ -9377,7 +9267,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "The area of the former Honolulu Stadium (1926-1976) extended from Isenberg Street to Makahiki Way. The stadium site is now the 9-acre “Old Stadium Park,” which For an image of the stadium and a little of its history, read the plaque on the corner of Isenberg and S. King streets. houses a playground, chess/checker tables, a comfort station, and a People’s Open Market (POM), a local farmers’ market on Wednesday mornings from 8:15 to 9:15."
+      "text": "The area of the former Honolulu Stadium (1926-1976) extended from Isenberg Street to Makahiki Way. The stadium site is now the 9-acre “Old Stadium Park,” which houses a playground, chess/checker tables, a comfort station, and a People’s Open Market (POM), a local farmers’ market on Wednesday mornings from 8:15 to 9:15."
      },
      {
       "kind": "p",
@@ -9416,7 +9306,8 @@
      {
       "file": "p2-77-253.jpg",
       "w": 369,
-      "h": 454
+      "h": 454,
+      "caption": "For an image of the stadium and a little of its history, read the plaque on the corner of Isenberg and S. King streets."
      }
     ],
     "lat": 21.292925,
@@ -9498,10 +9389,6 @@
       "text": "Continue makai along McCully Street, noticing and admiring the houses and"
      },
      {
-      "kind": "p",
-      "text": "This fence tells it all: Mō‘ili‘ili is great!"
-     },
-     {
       "kind": "direction",
       "text": "local atmosphere."
      }
@@ -9510,7 +9397,8 @@
      {
       "file": "p2-79-254.jpg",
       "w": 1050,
-      "h": 972
+      "h": 972,
+      "caption": "This fence tells it all: Mō‘ili‘ili is great!"
      }
     ],
     "lat": 21.295419,
@@ -9628,10 +9516,6 @@
       "text": "Thank you FOR YOUR KŌKUA IN KEEPING MŌ‘ILI‘ILI Beautiful."
      },
      {
-      "kind": "p",
-      "text": "Wa‘ahila Ridge – the Kanaka (commoners) side of Mānoa Valley"
-     },
-     {
       "kind": "tagline",
       "text": "Home to the first coffee, sugar cane, and pineapple in Hawai‘i!"
      },
@@ -9668,7 +9552,8 @@
      {
       "file": "p2-80-255.jpg",
       "w": 860,
-      "h": 355
+      "h": 355,
+      "caption": "Wa‘ahila Ridge – the Kanaka (commoners) side of Mānoa Valley"
      },
      {
       "file": "p2-80-256.jpg",
@@ -9705,7 +9590,7 @@
  },
  {
   "id": "X",
-  "num": 10,
+  "num": 4,
   "title": "Mānoa Valley",
   "theme": "Chasing rainbows!",
   "facts": {},
@@ -9860,7 +9745,7 @@
   ],
   "cover": "p3-29-311.jpg",
   "bookMap": "map-X.jpg",
-  "color": "#1B998B",
+  "color": "#D1495B",
   "stops": [
    {
     "id": "X-01",
@@ -9907,10 +9792,6 @@
      },
      {
       "kind": "p",
-      "text": "Mānoa Valley in 1924, including Kūali‘i, the Cooke house. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
       "text": "Notice the lovely Monkey Pod trees as you cross Kapi‘olani Boulevard to Judd Park, which is supported by Frank Case Judd’s (1915-1976) friends and family, going back to an early missionary in Hawai‘i ."
      },
      {
@@ -9950,7 +9831,8 @@
      {
       "file": "p3-7-267.jpg",
       "w": 626,
-      "h": 468
+      "h": 468,
+      "caption": "Mānoa Valley in 1924, including Kūali‘i, the Cooke house. (Hawai‘i State Archives)"
      },
      {
       "file": "p3-8-268.jpg",
@@ -10000,10 +9882,6 @@
      },
      {
       "kind": "p",
-      "text": "Treat yourself to the ‘water of life!’"
-     },
-     {
-      "kind": "p",
       "text": "Even if the mural is no longer up, what was posted is still of great interest:"
      },
      {
@@ -10015,7 +9893,8 @@
      {
       "file": "p3-8-269.jpg",
       "w": 433,
-      "h": 347
+      "h": 347,
+      "caption": "Treat yourself to the ‘water of life!’"
      },
      {
       "file": "p3-9-270.jpg",
@@ -10037,14 +9916,6 @@
      {
       "kind": "p",
       "text": "Across S. Beretania Street at McCulley Street, notice the (often politically incorrect) sign above Hawaiian Rent-All. Cross over to the other side of the freeway on the 1956 McCully Overpass. The downtown portion of the H1 freeway was known as Mauka Arterial in 1953, when it was built. After Hawai‘i became a state in 1959, it became part of the Interstate system. Several extensions were added over the years."
-     },
-     {
-      "kind": "p",
-      "text": "Hawaiian Rent-All never has a dull sign!"
-     },
-     {
-      "kind": "p",
-      "text": "This sign is a landmark."
      },
      {
       "kind": "p",
@@ -10079,12 +9950,14 @@
      {
       "file": "p3-9-271.jpg",
       "w": 383,
-      "h": 274
+      "h": 274,
+      "caption": "Hawaiian Rent-All never has a dull sign!"
      },
      {
       "file": "p3-9-272.jpg",
       "w": 1050,
-      "h": 631
+      "h": 631,
+      "caption": "This sign is a landmark."
      },
      {
       "file": "p3-9-273.jpg",
@@ -10149,17 +10022,14 @@
      {
       "kind": "p",
       "text": "Punahou land extended as far as to today’s University Avenue. Originally crown land, it passed through the hands of governors Boki and Liliha, whose uncensored and licentious behavior Queen Ka‘ahumanu could not curtail, to the waiting arms of Hiram Bingham, the missionary."
-     },
-     {
-      "kind": "p",
-      "text": "As you walk across McCully Bridge, notice the green roofed building on the ‘Ewa side of the hills before you. This is Punahou’s middle school."
      }
     ],
     "photos": [
      {
       "file": "p3-10-276.jpg",
       "w": 438,
-      "h": 314
+      "h": 314,
+      "caption": "As you walk across McCully Bridge, notice the green roofed building on the ‘Ewa side of the hills before you. This is Punahou’s middle school."
      },
      {
       "file": "p3-11-277.jpg",
@@ -10184,10 +10054,22 @@
      {
       "kind": "p",
       "text": "7-11s are everywhere, but this one on the corner is particularly aesthetic with a Hawaiian style roof and pretty glass windows of local plants and flowers."
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.297425,
+    "lng": -157.822463,
+    "geo": "estimated",
+    "page": "p3-11"
+   },
+   {
+    "id": "X-09",
+    "n": 9,
+    "title": "Wilder Avenue",
+    "blocks": [
      {
       "kind": "p",
-      "text": "9 Wilder Avenue is named for Samuel Wilder (1831-1888), entrepreneur and Minister of the Interior under King Kalākaua."
+      "text": "Wilder Avenue is named for Samuel Wilder (1831-1888), entrepreneur and Minister of the Interior under King Kalākaua."
      },
      {
       "kind": "p",
@@ -10195,8 +10077,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.297625,
-    "lng": -157.82287,
+    "lat": 21.298023,
+    "lng": -157.823683,
     "geo": "estimated",
     "page": "p3-11"
    },
@@ -10211,8 +10093,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.298421,
-    "lng": -157.824497,
+    "lat": 21.298621,
+    "lng": -157.824904,
     "geo": "estimated",
     "page": "p3-11"
    },
@@ -10248,17 +10130,29 @@
      {
       "kind": "p",
       "text": "Portions of the lower wall were built by Queen Ka‘ahumanu to keep her cattle on her property. After Queen Ka‘ahumanu gave a portion of her land to Hiram Bingham, he became the founder of Punahou School. Bingham’s home is indicated on campus with a plaque."
-     },
-     {
-      "kind": "p",
-      "text": "13 Artesian Way is named for the well dug in this area. The first artesian well on the island, down to 240 feet, at Fort Weaver Road near ‘Ewa Beach was opened in September 1879 and sealed in 1939."
      }
     ],
     "photos": [],
-    "lat": 21.300015,
-    "lng": -157.827751,
+    "lat": 21.299816,
+    "lng": -157.827344,
     "geo": "estimated",
     "page": "p3-11"
+   },
+   {
+    "id": "X-13",
+    "n": 13,
+    "title": "Artesian Way",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "Artesian Way is named for the well dug in this area. The first artesian well on the island, down to 240 feet, at Fort Weaver Road near ‘Ewa Beach was opened in September 1879 and sealed in 1939."
+     }
+    ],
+    "photos": [],
+    "lat": 21.300413,
+    "lng": -157.828564,
+    "geo": "estimated",
+    "page": "p3-12"
    },
    {
     "id": "X-14",
@@ -10285,8 +10179,8 @@
       "h": 496
      }
     ],
-    "lat": 21.300812,
-    "lng": -157.829378,
+    "lat": 21.301011,
+    "lng": -157.829784,
     "geo": "estimated",
     "page": "p3-11"
    },
@@ -10366,17 +10260,14 @@
      {
       "kind": "direction",
       "text": "Return to Punahou Street / Mānoa Road to learn about Punahou School and continue your journey to Mānoa Valley."
-     },
-     {
-      "kind": "p",
-      "text": "This covered shelter serviced the 1.7 mile open-air trolley ride to the terminus in Mānoa Valley."
      }
     ],
     "photos": [
      {
       "file": "p3-12-279.jpg",
       "w": 450,
-      "h": 376
+      "h": 376,
+      "caption": "This covered shelter serviced the 1.7 mile open-air trolley ride to the terminus in Mānoa Valley."
      },
      {
       "file": "p3-13-280.jpg",
@@ -10420,7 +10311,7 @@
      },
      {
       "kind": "p",
-      "text": "A few years after the founding of the school, the ubiquitous Night Blooming Cereus that continues to bloom in the summer months, was brought to Hawai‘i from Mexico and planted by Mrs. Bingham. The Night Blooming Cereus (panini o kapunahou), piled jungle-like on the lava walls, Punahou “new spring” School’s seal incorporates the ubiquitous Hala tree in the center and Taro leaves in the outer circle. blooms in the heat of the summer nights, then closes in the cool of the morning. So come early morning (as the sun rises over Pu‘u o Mānoa - Rocky Hill) to take photos but be wary of the swarming bees!"
+      "text": "A few years after the founding of the school, the ubiquitous Night Blooming Cereus that continues to bloom in the summer months, was brought to Hawai‘i from Mexico and planted by Mrs. Bingham. The Night Blooming Cereus (panini o kapunahou), piled jungle-like on the lava walls, blooms in the heat of the summer nights, then closes in the cool of the morning. So come early morning (as the sun rises over Pu‘u o Mānoa - Rocky Hill) to take photos but be wary of the swarming bees!"
      },
      {
       "kind": "direction",
@@ -10435,7 +10326,8 @@
      {
       "file": "p3-13-281.jpg",
       "w": 1050,
-      "h": 589
+      "h": 589,
+      "caption": "Punahou “new spring” School’s seal incorporates the ubiquitous Hala tree in the center and Taro leaves in the outer circle."
      },
      {
       "file": "p3-14-282.jpg",
@@ -10456,10 +10348,22 @@
      {
       "kind": "p",
       "text": "The first building on Punahou Street /Mānoa Road, a white stucco structure, is Montague Hall, built in 1937 and donated by the Atherton family (More about the Athertons at Stop 27 ) in honor of the Montague women who were involved with Punahou School in the mid-19th century. Notice the Hawaiian motif on the overhang and the unusually styled Spanish-tiled roof."
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.303522,
+    "lng": -157.831565,
+    "geo": "medium",
+    "page": "p3-14"
+   },
+   {
+    "id": "X-21",
+    "n": 21,
+    "title": "Pauahi Hall",
+    "blocks": [
      {
       "kind": "p",
-      "text": "21 Pauahi Hall, the next building, completed in 1896, is most noticeable along Punahou Street/Mānoa Road with its lava rock walls, topped with a dome, painted buff (the color of sand) and blue (the ocean). If you stand on the corner of Dominis and Pauahi streets, you will be able to see the red and gold topped dome of the once rival, Roosevelt High School. They are now in different leagues."
+      "text": "Pauahi Hall, the next building, completed in 1896, is most noticeable along Punahou Street/Mānoa Road with its lava rock walls, topped with a dome, painted buff (the color of sand) and blue (the ocean). If you stand on the corner of Dominis and Pauahi streets, you will be able to see the red and gold topped dome of the once rival, Roosevelt High School. They are now in different leagues."
      },
      {
       "kind": "p",
@@ -10468,14 +10372,38 @@
      {
       "kind": "p",
       "text": "The oldest building on campus, not visible from the street, is aptly named Old School Hall and was constructed out of stone blasted from the nearby hill in 1851. The names of the first students in this building are recorded on a plaque."
-     },
+     }
+    ],
+    "photos": [],
+    "lat": 21.303992,
+    "lng": -157.830301,
+    "geo": "estimated",
+    "page": "p3-13"
+   },
+   {
+    "id": "X-22",
+    "n": 22,
+    "title": "Bingham Hall",
+    "blocks": [
      {
       "kind": "p",
-      "text": "22 Bingham Hall, the original one built in 1883, was replaced by this one in 1959. It was named for Hiram Bingham (1789-1869) the leader of the first group of the 1820 missionaries. His son, Hiram Bingham II, was also a missionary to the Kingdom of Hawai‘i. His grandson Hiram Bingham III explored Machu Picchu. His great-grandson Hiram Bingham IV rescued people of Jewish ancestry during the Holocaust. Quite an illustrious family line!"
-     },
+      "text": "Bingham Hall, the original one built in 1883, was replaced by this one in 1959. It was named for Hiram Bingham (1789-1869) the leader of the first group of the 1820 missionaries. His son, Hiram Bingham II, was also a missionary to the Kingdom of Hawai‘i. His grandson Hiram Bingham III explored Machu Picchu. His great-grandson Hiram Bingham IV rescued people of Jewish ancestry during the Holocaust. Quite an illustrious family line!"
+     }
+    ],
+    "photos": [],
+    "lat": 21.304463,
+    "lng": -157.829036,
+    "geo": "estimated",
+    "page": "p3-13"
+   },
+   {
+    "id": "X-23",
+    "n": 23,
+    "title": "Nehoa Street",
+    "blocks": [
      {
       "kind": "p",
-      "text": "23 Cross Nehoa (‘strong’) Street where Punahou Street becomes Mānoa Road."
+      "text": "Cross Nehoa (‘strong’) Street where Punahou Street becomes Mānoa Road."
      },
      {
       "kind": "p",
@@ -10491,10 +10419,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.303522,
-    "lng": -157.831565,
-    "geo": "medium",
-    "page": "p3-14"
+    "lat": 21.304933,
+    "lng": -157.827772,
+    "geo": "estimated",
+    "page": "p3-13"
    },
    {
     "id": "X-24",
@@ -10537,8 +10465,8 @@
       "h": 496
      }
     ],
-    "lat": 21.304698,
-    "lng": -157.828404,
+    "lat": 21.305404,
+    "lng": -157.826508,
     "geo": "estimated",
     "page": "p3-14"
    },
@@ -10616,7 +10544,7 @@
      },
      {
       "kind": "p",
-      "text": "College Hills, the first suburban development in the valley, is named after O‘ahu College (now Punahou School), not the University of Hawai‘i. Frank and Eleanor Atherton lived in this stately house from 1902 and donated it to the University of Hawai‘i in 1964. Mr. Atherton was an astute businessman whose vocations included corporate secretary for the Bank of Hawai‘i, president of Castle and Cooke, and president of Honolulu Star-Bulletin newspaper (now the Star-Advertiser). He was involved in many philanthropic associations, especially the (former) YMCA, a few blocks makai of here on University Avenue, which he financed Formerly the home of the Atherton family, now the “president’s house” of the University of Hawai‘i, it is used mainly for academic gatherings. for low-income University of Hawai‘i students. Mr. Atherton was also an avid gardener – one of his orchid houses is still on the property."
+      "text": "College Hills, the first suburban development in the valley, is named after O‘ahu College (now Punahou School), not the University of Hawai‘i. Frank and Eleanor Atherton lived in this stately house from 1902 and donated it to the University of Hawai‘i in 1964. Mr. Atherton was an astute businessman whose vocations included corporate secretary for the Bank of Hawai‘i, president of Castle and Cooke, and president of Honolulu Star-Bulletin newspaper (now the Star-Advertiser). He was involved in many philanthropic associations, especially the (former) YMCA, a few blocks makai of here on University Avenue, which he financed for low-income University of Hawai‘i students. Mr. Atherton was also an avid gardener – one of his orchid houses is still on the property."
      },
      {
       "kind": "p",
@@ -10649,10 +10577,39 @@
      {
       "kind": "p",
       "text": "Seaview Tract, the streets makai of the Inn to Metcalf Street, which was the first development in Mānoa Valley, opened in 1886. No traces of those early homes exist."
+     }
+    ],
+    "photos": [
+     {
+      "file": "p3-16-285.jpg",
+      "w": 812,
+      "h": 526,
+      "caption": "Formerly the home of the Atherton family, now the “president’s house” of the University of Hawai‘i, it is used mainly for academic gatherings."
      },
      {
+      "file": "p3-17-286.jpg",
+      "w": 882,
+      "h": 496
+     },
+     {
+      "file": "p3-18-287.jpg",
+      "w": 884,
+      "h": 497
+     }
+    ],
+    "lat": 21.304521,
+    "lng": -157.820184,
+    "geo": "estimated",
+    "page": "p3-16"
+   },
+   {
+    "id": "X-28",
+    "n": 28,
+    "title": "Monkey Pod tree",
+    "blocks": [
+     {
       "kind": "direction",
-      "text": "28 At the glorious Monkey Pod tree, follow Kamehameha Avenue in the direction of Diamond Head around on the sidewalk (one of the few places where you will find a sidewalk in this section of Mānoa), then mauka to O‘ahu Avenue, into the beautiful valley."
+      "text": "At the glorious Monkey Pod tree, follow Kamehameha Avenue in the direction of Diamond Head around on the sidewalk (one of the few places where you will find a sidewalk in this section of Mānoa), then mauka to O‘ahu Avenue, into the beautiful valley."
      },
      {
       "kind": "p",
@@ -10675,25 +10632,9 @@
       "text": "A stroll along O‘ahu Avenue, after a mile, will take you to Mānoa Heritage Center (Stop 36 ). If you would like to visit, you should make reservations for a 1-hour tour of the property and the only restored heiau in the ahupua‘a of Waikīkī. Call or email before you go: manoaheritagecenter.org or 808-988-1287"
      }
     ],
-    "photos": [
-     {
-      "file": "p3-16-285.jpg",
-      "w": 812,
-      "h": 526
-     },
-     {
-      "file": "p3-17-286.jpg",
-      "w": 882,
-      "h": 496
-     },
-     {
-      "file": "p3-18-287.jpg",
-      "w": 884,
-      "h": 497
-     }
-    ],
-    "lat": 21.304825,
-    "lng": -157.819885,
+    "photos": [],
+    "lat": 21.305431,
+    "lng": -157.819287,
     "geo": "estimated",
     "page": "p3-16"
    },
@@ -10713,17 +10654,29 @@
      {
       "kind": "p",
       "text": "On O‘ahu Avenue just after Ka‘ala Way/ Street, are several interesting homes with Historic Residence plaques, some by well-known architects, such as Thomas Gill, Vladimir Ossipoff, and Hart Wood. Please do stop to admire the exteriors of these lovingly cared-for homes. Some homeowners with equally beautiful homes have chosen not to list their homes on the registry."
-     },
-     {
-      "kind": "p",
-      "text": "30 On the Diamond Head side of O‘ahu Avenue is the “Chalet,” a blue-roofed 1902 house on the hill that was an early home of the Cooke family, whose second (and present) home you will visit at the Mānoa Heritage Center. Notice the lava wall up high. The Cookes moved to their home, Kūali‘i in 1911, but this house remained in the family for several years."
      }
     ],
     "photos": [],
-    "lat": 21.306038,
-    "lng": -157.81869,
+    "lat": 21.306341,
+    "lng": -157.818391,
     "geo": "estimated",
     "page": "p3-18"
+   },
+   {
+    "id": "X-30",
+    "n": 30,
+    "title": "The “Chalet”",
+    "blocks": [
+     {
+      "kind": "p",
+      "text": "On the Diamond Head side of O‘ahu Avenue is the “Chalet,” a blue-roofed 1902 house on the hill that was an early home of the Cooke family, whose second (and present) home you will visit at the Mānoa Heritage Center. Notice the lava wall up high. The Cookes moved to their home, Kūali‘i in 1911, but this house remained in the family for several years."
+     }
+    ],
+    "photos": [],
+    "lat": 21.307251,
+    "lng": -157.817494,
+    "geo": "estimated",
+    "page": "p3-17"
    },
    {
     "id": "X-31",
@@ -10738,17 +10691,14 @@
      {
       "kind": "p",
       "text": "There are two magnificent houses on Armstrong Street, which you will walk past on your way out of the valley. Armstrong Street is named after the reverend who replaced Hiram Bingham, of the first missionary group."
-     },
-     {
-      "kind": "p",
-      "text": "As you walk along O‘ahu avenue, look up to take in the glory of the Ko‘olau mountains. Kōnāhuanui – straight ahead – at 3,100 is the highest point."
      }
     ],
     "photos": [
      {
       "file": "p3-18-288.jpg",
       "w": 1050,
-      "h": 523
+      "h": 523,
+      "caption": "As you walk along O‘ahu avenue, look up to take in the glory of the Ko‘olau mountains. Kōnāhuanui – straight ahead – at 3,100 is the highest point."
      },
      {
       "file": "p3-19-289.jpg",
@@ -10756,8 +10706,8 @@
       "h": 496
      }
     ],
-    "lat": 21.307251,
-    "lng": -157.817494,
+    "lat": 21.308162,
+    "lng": -157.816598,
     "geo": "estimated",
     "page": "p3-18"
    },
@@ -10776,8 +10726,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.308465,
-    "lng": -157.816299,
+    "lat": 21.309072,
+    "lng": -157.815701,
     "geo": "estimated",
     "page": "p3-19"
    },
@@ -10821,8 +10771,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.309678,
-    "lng": -157.815104,
+    "lat": 21.309982,
+    "lng": -157.814805,
     "geo": "estimated",
     "page": "p3-19"
    },
@@ -10842,17 +10792,14 @@
      {
       "kind": "p",
       "text": "After your tour at the Mānoa Heritage Center, you might want to come back to this street to walk a few blocks Diamond Head to the local Mānoa Marketplace (directions below at Stop 36A )."
-     },
-     {
-      "kind": "p",
-      "text": "O‘ahu avenue with all its Historic Residences rivals Kāhala Avenue for its beauty."
      }
     ],
     "photos": [
      {
       "file": "p3-19-290.jpg",
       "w": 405,
-      "h": 273
+      "h": 273,
+      "caption": "O‘ahu avenue with all its Historic Residences rivals Kāhala Avenue for its beauty."
      },
      {
       "file": "p3-20-291.jpg",
@@ -10909,10 +10856,6 @@
      {
       "kind": "p",
       "text": "Two buses take you out of the valley: the 5 and 6. The 5 runs along O‘ahu Avenue, then out makai on Mānoa Road. The 6 runs along E. Mānoa Road, a few blocks Diamond Head, which you can catch after a side trip to Mānoa Marketplace (Stop 36A )."
-     },
-     {
-      "kind": "p",
-      "text": "Kūka‘ō‘ō Heiau is the only intact reconstructed heiau in the ahupua‘a of Waikīkī."
      },
      {
       "kind": "p",
@@ -11008,7 +10951,7 @@
      },
      {
       "kind": "p",
-      "text": "Mānoa Valley Theater is a half block makai of Mānoa Marketplace on E. Mānoa Road. Mānoa Church was established here – as evidenced by the tombstones, many engraved in Hawaiian –only to be replaced by a theater in 1987. Dating back to 1823, there are only 37 headstones in the cemetery; however, there are over 100 burial plots, some marked with natural features known only to the family. Descendants of the Woolsey family (of Woolsey Poi Factory fame), a local This often-photographed corner is our local gathering place."
+      "text": "Mānoa Valley Theater is a half block makai of Mānoa Marketplace on E. Mānoa Road. Mānoa Church was established here – as evidenced by the tombstones, many engraved in Hawaiian –only to be replaced by a theater in 1987. Dating back to 1823, there are only 37 headstones in the cemetery; however, there are over 100 burial plots, some marked with natural features known only to the family. Descendants of the Woolsey family (of Woolsey Poi Factory fame), a local"
      },
      {
       "kind": "p",
@@ -11055,12 +10998,14 @@
      {
       "file": "p3-20-292.jpg",
       "w": 1050,
-      "h": 661
+      "h": 661,
+      "caption": "Kūka‘ō‘ō Heiau is the only intact reconstructed heiau in the ahupua‘a of Waikīkī."
      },
      {
       "file": "p3-21-293.jpg",
       "w": 882,
-      "h": 497
+      "h": 497,
+      "caption": "This often-photographed corner is our local gathering place."
      },
      {
       "file": "p3-22-294.jpg",
@@ -11101,10 +11046,6 @@
       "text": "Kawapopo Heiau reigned supreme on this hillock. Remnants of those sacred stones are lovingly, but inaccessibly, protected under a shed behind the temple."
      },
      {
-      "kind": "p",
-      "text": "This gate was the entryway to the Woolsey Poi Factory."
-     },
-     {
       "kind": "direction",
       "text": "Pass Ka‘aipū Avenue (see Stop 39 for an interesting rendition of the street name.)"
      },
@@ -11129,7 +11070,8 @@
      {
       "file": "p3-23-297.jpg",
       "w": 1050,
-      "h": 618
+      "h": 618,
+      "caption": "This gate was the entryway to the Woolsey Poi Factory."
      },
      {
       "file": "p3-24-298.jpg",
@@ -11183,11 +11125,7 @@
      },
      {
       "kind": "p",
-      "text": "Wai‘oli Tea Room was opened in 1922 as part of the Salvation Army as vocational Wai‘oli Kitchen and Bake Shop is lovingly known as Wai‘oli Tea Room to locals."
-     },
-     {
-      "kind": "p",
-      "text": "1898 photo - Mānoa residence of the Montano family, owners of Ka‘aipū Dairy. (Hawai‘i State Archives) training for orphaned girls. Today they “hire individuals who have successfully completed post-incarceration treatment programs.” Wai‘oli is a haven for them."
+      "text": "Wai‘oli Tea Room was opened in 1922 as part of the Salvation Army as vocational training for orphaned girls. Today they “hire individuals who have successfully completed post-incarceration treatment programs.” Wai‘oli is a haven for them."
      },
      {
       "kind": "p",
@@ -11208,18 +11146,6 @@
      {
       "kind": "p",
       "text": "Puka‘ōma‘oma‘o is the name of the ‘ili (district) here. Queen Ka‘ahumanu’s house, Puka‘ōma‘o / Puka‘ōma‘oma‘o ‘green opening’ (puka also means ‘hole’) had green shutters. The house was located on Pu‘uluahine ‘hill of the old woman’ who moved here with her two sons who were turned into stones; she was turned into the hill. Queen Ka‘ahumanu’s bathing place, Kuwaiho‘olana (‘the water causes one to float’) was where she floated in a spring of fresh water. Huelani, a street mauka of the Wai‘oli Kitchen and Bake Shop, translates as ‘royal gourd’ that referred to the well used by Queen Ka‘ahumanu. This is the place Ka‘ahumanu came to die on June 5, 1832."
-     },
-     {
-      "kind": "p",
-      "text": "Queen Ka‘ahumanu came back to her home in the hills of Mānoa to die. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Mānoa Valley, across the plains to the Ko‘olau mountains, veiled in the fine rain of Ua Tuahine. (Hawai‘i State Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "The name Ka‘aipū has a strong historic significance in the lives of the Hawaiians."
      },
      {
       "kind": "p",
@@ -11266,8 +11192,8 @@
       "text": "Continue walking along Mānoa Road until you come to the park, when you need to decide where you want to go to next: Chinese Cemetery (Stops 40-41 ) Mānoa Falls (Stop 42 ) Lyon Arboretum (Stop 43 )"
      },
      {
-      "kind": "p",
-      "text": "If you would like to visit Mānoa Falls or Lyon Arboretum (you need a reservation for the Arboretum 808-988-0456 or go to Eventbrite), continue past Mānoa Val- According to a modern mo‘olelo, the mountains in the eastern side of the Ko‘olau Mountains form a profile of a face. Notice the Palm tree grove under the dip between the hills."
+      "kind": "direction",
+      "text": "If you would like to visit Mānoa Falls or Lyon Arboretum (you need a reservation for the Arboretum 808-988-0456 or go to Eventbrite), continue past Mānoa Val-"
      },
      {
       "kind": "direction",
@@ -11282,32 +11208,38 @@
      {
       "file": "p3-24-299.jpg",
       "w": 401,
-      "h": 277
+      "h": 277,
+      "caption": "Wai‘oli Kitchen and Bake Shop is lovingly known as Wai‘oli Tea Room to locals."
      },
      {
       "file": "p3-24-300.jpg",
       "w": 364,
-      "h": 321
+      "h": 321,
+      "caption": "1898 photo - Mānoa residence of the Montano family, owners of Ka‘aipū Dairy. (Hawai‘i State Archives)"
      },
      {
       "file": "p3-25-301.jpg",
       "w": 884,
-      "h": 497
+      "h": 497,
+      "caption": "Queen Ka‘ahumanu came back to her home in the hills of Mānoa to die. (Hawai‘i State Archives)"
      },
      {
       "file": "p3-25-302.jpg",
       "w": 348,
-      "h": 267
+      "h": 267,
+      "caption": "Mānoa Valley, across the plains to the Ko‘olau mountains, veiled in the fine rain of Ua Tuahine. (Hawai‘i State Archives)"
      },
      {
       "file": "p3-25-303.jpg",
       "w": 435,
-      "h": 271
+      "h": 271,
+      "caption": "The name Ka‘aipū has a strong historic significance in the lives of the Hawaiians."
      },
      {
       "file": "p3-25-304.jpg",
       "w": 361,
-      "h": 298
+      "h": 298,
+      "caption": "According to a modern mo‘olelo, the mountains in the eastern side of the Ko‘olau Mountains form a profile of a face. Notice the Palm tree grove under the dip between the hills."
      },
      {
       "file": "p3-26-305.jpg",
@@ -11365,10 +11297,6 @@
      },
      {
       "kind": "p",
-      "text": "There are so many place to visit at the Chinese Cemetary."
-     },
-     {
-      "kind": "p",
       "text": "Cross Mānoa Stream at the 1954 bridge at Kahaloa Drive. Kahaloa, which means ‘long or eternal breath,’ is the name of the ‘ili (district within the ahupua‘a). However, there are two other important possibilities: one, is the name of a chief ’s wife who lived here; the other, named for Hāloa, the first Hawaiian man who, because of his birth, was responsible for the kalo plant. This last explanation is most likely since this is the place where kalo grew abundantly. Kahaloa is also the name of one of the 4 Kāhuna in Waikīkī –be sure to take the Waikīkī Walk III in Helumoa for more information."
      },
      {
@@ -11380,7 +11308,8 @@
      {
       "file": "p3-27-308.jpg",
       "w": 1050,
-      "h": 629
+      "h": 629,
+      "caption": "There are so many place to visit at the Chinese Cemetary."
      },
      {
       "file": "p3-28-309.jpg",
@@ -11482,7 +11411,7 @@
      },
      {
       "kind": "p",
-      "text": "• Nipo– desire; drowsy – Street A group of men planning their next hike in Mānoa Valley. (Hawai‘i State Archives)"
+      "text": "• Nipo– desire; drowsy – Street"
      },
      {
       "kind": "p",
@@ -11517,7 +11446,8 @@
      {
       "file": "p3-29-311.jpg",
       "w": 674,
-      "h": 533
+      "h": 533,
+      "caption": "A group of men planning their next hike in Mānoa Valley. (Hawai‘i State Archives)"
      },
      {
       "file": "p3-30-312.jpg",
@@ -11545,7 +11475,7 @@
      },
      {
       "kind": "p",
-      "text": "It was first established by the Hawaiian Sugar Planters Association as Mānoa Arboretum in 1918. The area was transferred to the University of Hawai‘i in 1953 when it was named for its first director Dr. Harold One of many waterfalls in Mānoa Valley – only 5 miles from Waikīkī Beach! (Hawai‘i State Archives)"
+      "text": "It was first established by the Hawaiian Sugar Planters Association as Mānoa Arboretum in 1918. The area was transferred to the University of Hawai‘i in 1953 when it was named for its first director Dr. Harold"
      },
      {
       "kind": "p",
@@ -11582,10 +11512,6 @@
      {
       "kind": "direction",
       "text": "43A \u0007Alternate walk to Mānoa Chinese Cemetery and to Mānoa Marketplace from Mānoa Falls or Lyon Arboretum Follow the purple line on the map for an alternate walk to Manoa Chinese Cemetery"
-     },
-     {
-      "kind": "p",
-      "text": "Revolution of 1895 in the hills of Mānoa. (Hawai‘i State Archives)"
      },
      {
       "kind": "p",
@@ -11648,12 +11574,14 @@
      {
       "file": "p3-30-313.jpg",
       "w": 352,
-      "h": 509
+      "h": 509,
+      "caption": "One of many waterfalls in Mānoa Valley – only 5 miles from Waikīkī Beach! (Hawai‘i State Archives)"
      },
      {
       "file": "p3-31-314.jpg",
       "w": 882,
-      "h": 496
+      "h": 496,
+      "caption": "Revolution of 1895 in the hills of Mānoa. (Hawai‘i State Archives)"
      },
      {
       "file": "p3-31-315.jpg",
@@ -11773,11 +11701,7 @@
      },
      {
       "kind": "p",
-      "text": "Kolowalu, the name of the ‘ili (district) in this area, signifies an ancient Hawaiian law Noelani Elementary School greets its students each day with a welcome: E Komo Mai! The children enjoy the ‘mist of heaven.’"
-     },
-     {
-      "kind": "p",
-      "text": "Over 150 prisms can create over 150 rainbows on this wall! that obliged farmers and fishermen to feed the hungry in their district."
+      "text": "Kolowalu, the name of the ‘ili (district) in this area, signifies an ancient Hawaiian law that obliged farmers and fishermen to feed the hungry in their district."
      },
      {
       "kind": "p",
@@ -11788,12 +11712,14 @@
      {
       "file": "p3-33-318.jpg",
       "w": 387,
-      "h": 242
+      "h": 242,
+      "caption": "Noelani Elementary School greets its students each day with a welcome: E Komo Mai! The children enjoy the ‘mist of heaven.’"
      },
      {
       "file": "p3-33-319.jpg",
       "w": 370,
-      "h": 232
+      "h": 232,
+      "caption": "Over 150 prisms can create over 150 rainbows on this wall!"
      },
      {
       "file": "p3-34-320.jpg",
@@ -11939,7 +11865,7 @@
      },
      {
       "kind": "p",
-      "text": "Bus stops: • \u0007Number 13 bus stop: makai-Diamond Head on Maile Way • \u0007Number 6 bus stop: makai-‘Ewa on University Avenue Mānoa Valley 1890 (Hawai‘i State Archives)"
+      "text": "Bus stops: • \u0007Number 13 bus stop: makai-Diamond Head on Maile Way • \u0007Number 6 bus stop: makai-‘Ewa on University Avenue"
      },
      {
       "kind": "p",
@@ -12102,7 +12028,8 @@
      {
       "file": "p3-35-323.jpg",
       "w": 505,
-      "h": 304
+      "h": 304,
+      "caption": "Mānoa Valley 1890 (Hawai‘i State Archives)"
      },
      {
       "file": "p3-38-324.jpg",
@@ -12146,7 +12073,7 @@
   "intro": [
    {
     "kind": "p",
-    "text": "Mall at the University of Hawai‘i Street is named for Lawrence McCully, a Justice of the Kingdom of Hawai‘i Supreme Court under King Kalākaua. He was also involved in the development of the Punahou area, which you will walk past in a mile after you cross over the freeway."
+    "text": "Street is named for Lawrence McCully, a Justice of the Kingdom of Hawai‘i Supreme Court under King Kalākaua. He was also involved in the development of the Punahou area, which you will walk past in a mile after you cross over the freeway."
    }
   ],
   "info": [
@@ -12227,14 +12154,6 @@
      },
      {
       "kind": "p",
-      "text": "Caption: The College of Hawai‘i, as it was known in 1917, 5 years after moving to Mānoa. Notice all the surrounding agricultural fields and the University Farm, fittingly since the school was founded as an agricultural college. Facing ‘Ewa, Hawai‘i Hall, built in 1912, is without steps! (University Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Judge Lawrence McCully (1831 - 1892) meets Queen Kapi‘olani (1834 – 1899)!"
-     },
-     {
-      "kind": "p",
       "text": "Algaroba, also known as Kiawe and Mesquite, is a tree that is native to South America; the first Algaroba tree was brought to Hawai‘i from Paris by Father Alexis Bachelot (1796-1837), who was not only the first Catholic priest in Hawai‘i as part of the Catholic missionary group, but is also responsible for bringing the Kiawe tree to Hawai‘i. The original tree was planted in downtown Honolulu on Fort Street. However, there are no Kiawe trees on this street."
      },
      {
@@ -12266,12 +12185,14 @@
      {
       "file": "p3-40-329.jpg",
       "w": 824,
-      "h": 464
+      "h": 464,
+      "caption": "The College of Hawai‘i, as it was known in 1917, 5 years after moving to Mānoa. Notice all the surrounding agricultural fields and the University Farm, fittingly since the school was founded as an agricultural college. Facing ‘Ewa, Hawai‘i Hall, built in 1912, is without steps! (University Archives)"
      },
      {
       "file": "p3-41-331.jpg",
       "w": 882,
-      "h": 496
+      "h": 496,
+      "caption": "Judge Lawrence McCully (1831 - 1892) meets Queen Kapi‘olani (1834 – 1899)!"
      }
     ],
     "lat": 21.294226,
@@ -12319,18 +12240,6 @@
      },
      {
       "kind": "p",
-      "text": "Welcome to Mō‘ili‘ili !"
-     },
-     {
-      "kind": "p",
-      "text": "Sometimes inappropriate, but always funny!"
-     },
-     {
-      "kind": "p",
-      "text": "On old maps, Kapa‘akea is the original name for Dole Street."
-     },
-     {
-      "kind": "p",
       "text": "Dole Street is not named for the territorial governor, Sanford Dole; rather for Reverend Daniel Dole, the first teacher and administrator at Punahou School. However, on earlier maps, this street is labeled Kapa‘akea, who was father to King Kalākaua and Queen Lili‘uokalani. There is a small street by that name in Mō‘ili‘ili. Kapa‘akea can refer to a coral or limestone surface."
      },
      {
@@ -12354,17 +12263,20 @@
      {
       "file": "p3-41-332.jpg",
       "w": 363,
-      "h": 265
+      "h": 265,
+      "caption": "Welcome to Mō‘ili‘ili !"
      },
      {
       "file": "p3-41-333.jpg",
       "w": 343,
-      "h": 238
+      "h": 238,
+      "caption": "Sometimes inappropriate, but always funny!"
      },
      {
       "file": "p3-41-334.jpg",
       "w": 356,
-      "h": 234
+      "h": 234,
+      "caption": "On old maps, Kapa‘akea is the original name for Dole Street."
      },
      {
       "file": "p3-42-335.jpg",
@@ -12385,10 +12297,6 @@
      {
       "kind": "p",
       "text": "At the corners of University Avenue and Dole Street, you will come to Founders’ Gate - two arches and benches on either side of University Avenue. These two entry arches signify the melding of the two campuses: The University of Hawai‘i and the Normal (Teachers’ College) School in 1931, hence the intertwined UH at the top of the archways."
-     },
-     {
-      "kind": "p",
-      "text": "1923 photo with the mountains of Mānoa in the background. Hawai‘i Hall is dead center. (University Archives)"
      },
      {
       "kind": "p",
@@ -12423,7 +12331,8 @@
      {
       "file": "p3-42-336.jpg",
       "w": 821,
-      "h": 258
+      "h": 258,
+      "caption": "1923 photo with the mountains of Mānoa in the background. Hawai‘i Hall is dead center. (University Archives)"
      },
      {
       "file": "p3-42-337.jpg",
@@ -12457,10 +12366,6 @@
      },
      {
       "kind": "p",
-      "text": "“Above all nations is humanity” - the translation - is inscribed on the bench across University Avenue."
-     },
-     {
-      "kind": "p",
       "text": "• \u0007Castle Memorial Hall, near Dole Street, was designed by Mark Potter in 1941, who also planned Bilger Hall, the chemistry building on campus, as well as many homes in the area. Castle Memorial is part of the secured pre-school and is not visitable."
      },
      {
@@ -12488,7 +12393,8 @@
      {
       "file": "p3-43-340.jpg",
       "w": 780,
-      "h": 431
+      "h": 431,
+      "caption": "“Above all nations is humanity” - the translation - is inscribed on the bench across University Avenue."
      },
      {
       "file": "p3-44-341.jpg",
@@ -12513,26 +12419,20 @@
      {
       "kind": "direction",
       "text": "As you walk Diamond Head from University Avenue, you are entering the ‘ili of Pilipili, perhaps named after a kind of grass that grew here."
-     },
-     {
-      "kind": "p",
-      "text": "1932 photo. Originally Teachers’ College Building (left center, the dark building). It was renamed Wist Hall after Wist’s death. (University Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Atherton House in 1932 – former YMCA, the precursor to RISE. (University Archives)"
      }
     ],
     "photos": [
      {
       "file": "p3-44-342.jpg",
       "w": 387,
-      "h": 314
+      "h": 314,
+      "caption": "1932 photo. Originally Teachers’ College Building (left center, the dark building). It was renamed Wist Hall after Wist’s death. (University Archives)"
      },
      {
       "file": "p3-44-343.jpg",
       "w": 446,
-      "h": 317
+      "h": 317,
+      "caption": "Atherton House in 1932 – former YMCA, the precursor to RISE. (University Archives)"
      },
      {
       "file": "p3-45-344.jpg",
@@ -12617,14 +12517,15 @@
      },
      {
       "kind": "p",
-      "text": "Kamani wood is used in wood carving, such as for food vessels and boat building. The oil The “quad” in 1926 with the original Cooke Field. Today this is location of Sinclair Library, Hemenway Hall, and the Campus Center. (University Archives) that can be extracted from Kamani tree is useful: it burns well and can stimulate the treatment of skin wounds."
+      "text": "Kamani wood is used in wood carving, such as for food vessels and boat building. The oil that can be extracted from Kamani tree is useful: it burns well and can stimulate the treatment of skin wounds."
      }
     ],
     "photos": [
      {
       "file": "p3-45-345.jpg",
       "w": 380,
-      "h": 327
+      "h": 327,
+      "caption": "The “quad” in 1926 with the original Cooke Field. Today this is location of Sinclair Library, Hemenway Hall, and the Campus Center. (University Archives)"
      },
      {
       "file": "p3-46-346.jpg",
@@ -12664,14 +12565,6 @@
      },
      {
       "kind": "p",
-      "text": "1843 photo of undergrads posing at the bomb shelter near Hawai‘i Hall (University Archives)(University Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "In the Shidler courtyard, can you find the State of Hawai‘i on the wall map?"
-     },
-     {
-      "kind": "p",
       "text": "Walk into the lower level courtyard of Shidler. If you know your alphabet – at least A through G – you might notice that there is no F Tower. F Tower was deemed so poorly built that it was more cost effective to tear it down rather than repair it! While you are there, try to find the Hawaiian Islands on the reverse (blue = land; beige = water!) colored map on the Diamond Head wall of the courtyard."
      }
     ],
@@ -12679,12 +12572,14 @@
      {
       "file": "p3-46-347.jpg",
       "w": 774,
-      "h": 489
+      "h": 489,
+      "caption": "1843 photo of undergrads posing at the bomb shelter near Hawai‘i Hall (University Archives)(University Archives)"
      },
      {
       "file": "p3-46-348.jpg",
       "w": 355,
-      "h": 224
+      "h": 224,
+      "caption": "In the Shidler courtyard, can you find the State of Hawai‘i on the wall map?"
      },
      {
       "file": "p3-47-349.jpg",
@@ -12752,7 +12647,7 @@
      },
      {
       "kind": "p",
-      "text": "The ahu at Queen Lili‘uokalani Center for Student Services –Ke Ahu ‘o Kamaka‘eha –on the Diamond Head portion of the garden is sacred and is named for HRM Queen Lydia Lili‘uokalani Kamaka‘eha. It was built on September 5, 2000, to celebrate the 162nd birthday of Hawai‘i’s last monarch. Onipa‘a! Stand firm! An ahu This sacred ahu commemorates Kamaka‘eha - Queen Lili‘uokalani. is a shrine established to mark a ceremonial or spiritual event or purpose. There are two ahu at Bachman Hall."
+      "text": "The ahu at Queen Lili‘uokalani Center for Student Services –Ke Ahu ‘o Kamaka‘eha –on the Diamond Head portion of the garden is sacred and is named for HRM Queen Lydia Lili‘uokalani Kamaka‘eha. It was built on September 5, 2000, to celebrate the 162nd birthday of Hawai‘i’s last monarch. Onipa‘a! Stand firm! An ahu is a shrine established to mark a ceremonial or spiritual event or purpose. There are two ahu at Bachman Hall."
      },
      {
       "kind": "p",
@@ -12767,7 +12662,8 @@
      {
       "file": "p3-47-350.jpg",
       "w": 363,
-      "h": 474
+      "h": 474,
+      "caption": "This sacred ahu commemorates Kamaka‘eha - Queen Lili‘uokalani."
      },
      {
       "file": "p3-48-351.jpg",
@@ -12835,14 +12731,6 @@
      },
      {
       "kind": "p",
-      "text": "This marker in front of the Queen Lili‘uokalani Center is the second sign of 30 for the mile fitness walk on campus. The first marker is on the mall – try find it!"
-     },
-     {
-      "kind": "p",
-      "text": "Are you able to find this sculpture in the atrium of the art building. You might also find sculpted ears and mouths!"
-     },
-     {
-      "kind": "p",
       "text": "A sculpture, “Fourth Sign” by Tony Smith, graces the mauka side of the Art Building. The fourth sign of the zodiac is Cancer the Crab – this is a stylized form of the crab. Smith, a visiting scholar, created the work and sent the illustrations to be constructed locally."
      },
      {
@@ -12858,12 +12746,14 @@
      {
       "file": "p3-48-352.jpg",
       "w": 385,
-      "h": 289
+      "h": 289,
+      "caption": "This marker in front of the Queen Lili‘uokalani Center is the second sign of 30 for the mile fitness walk on campus. The first marker is on the mall – try find it!"
      },
      {
       "file": "p3-48-353.jpg",
       "w": 360,
-      "h": 335
+      "h": 335,
+      "caption": "Are you able to find this sculpture in the atrium of the art building. You might also find sculpted ears and mouths!"
      },
      {
       "file": "p3-49-354.jpg",
@@ -12927,7 +12817,7 @@
      },
      {
       "kind": "p",
-      "text": "Immediately inside the library lobby is a noteworthy display about local Hawai‘iborn William Kwai Fong Yap who Do these two crossed beams look like chopsticks?!? petitioned the college –and succeeded –to expand the college to a university. Why? He had 11 children and was, obviously, concerned about how he would be able to afford to pay for their high education expenses."
+      "text": "Immediately inside the library lobby is a noteworthy display about local Hawai‘iborn William Kwai Fong Yap who petitioned the college –and succeeded –to expand the college to a university. Why? He had 11 children and was, obviously, concerned about how he would be able to afford to pay for their high education expenses."
      },
      {
       "kind": "p",
@@ -12938,7 +12828,8 @@
      {
       "file": "p3-49-355.jpg",
       "w": 336,
-      "h": 459
+      "h": 459,
+      "caption": "Do these two crossed beams look like chopsticks?!?"
      },
      {
       "file": "p3-50-356.jpg",
@@ -13080,10 +12971,6 @@
      },
      {
       "kind": "p",
-      "text": "Can you find the legendary Energy House behind all that greenery?"
-     },
-     {
-      "kind": "p",
       "text": "This building housed the medical school until 2005, when it moved to Kaka‘ako to a new, larger space. The architect, Edward Durell Stone (1902-1978), is best known for his work on the mainland: Radio City Music Hall and Museum of Modern Art in New York City; John F. Kennedy Center and National Geographic in Washington, DC; and Scrips Research Institute and Stanford Medical Center in California, among many other structures."
      },
      {
@@ -13103,7 +12990,8 @@
      {
       "file": "p3-51-358.jpg",
       "w": 380,
-      "h": 275
+      "h": 275,
+      "caption": "Can you find the legendary Energy House behind all that greenery?"
      },
      {
       "file": "p3-52-359.jpg",
@@ -13156,14 +13044,6 @@
      },
      {
       "kind": "p",
-      "text": "This fluffy baby White Tern is waiting patiently for a parent to bring back food from the ocean. They do not eat worms!"
-     },
-     {
-      "kind": "p",
-      "text": "This building is a tribute to the architectural talent of Edward Durell Stone."
-     },
-     {
-      "kind": "p",
       "text": "The great variety of Shower trees in the medians at Maile Way and East-West Road are particularly magnificent in the spring and summer months."
      },
      {
@@ -13179,12 +13059,14 @@
      {
       "file": "p3-52-360.jpg",
       "w": 360,
-      "h": 236
+      "h": 236,
+      "caption": "This fluffy baby White Tern is waiting patiently for a parent to bring back food from the ocean. They do not eat worms!"
      },
      {
       "file": "p3-52-361.jpg",
       "w": 291,
-      "h": 332
+      "h": 332,
+      "caption": "This building is a tribute to the architectural talent of Edward Durell Stone."
      },
      {
       "file": "p3-53-362.jpg",
@@ -13316,26 +13198,20 @@
      {
       "kind": "p",
       "text": "Another memorial to the Japanese workers is located at the Japanese Cemetery in Mō‘ili‘ili. (Mō‘ili‘ili Walk IX)."
-     },
-     {
-      "kind": "p",
-      "text": "Have a snack while you sit in the glorious Thai Pavilion presiding over the campus."
-     },
-     {
-      "kind": "p",
-      "text": "The Japanese Garden behind the Imin Center is tranquility personified."
      }
     ],
     "photos": [
      {
       "file": "p3-54-364.jpg",
       "w": 1050,
-      "h": 591
+      "h": 591,
+      "caption": "Have a snack while you sit in the glorious Thai Pavilion presiding over the campus."
      },
      {
       "file": "p3-56-365.jpg",
       "w": 885,
-      "h": 497
+      "h": 497,
+      "caption": "The Japanese Garden behind the Imin Center is tranquility personified."
      }
     ],
     "lat": 21.299831,
@@ -13574,17 +13450,14 @@
      {
       "kind": "p",
       "text": "Notice the logo on the buildings: triple Cs (for Campus Center Complex) as a rainbow and back-to-back Cs as a stylized Hala tree."
-     },
-     {
-      "kind": "p",
-      "text": "A “Chance Meeting” is often festooned with lei."
      }
     ],
     "photos": [
      {
       "file": "p3-57-367.jpg",
       "w": 372,
-      "h": 375
+      "h": 375,
+      "caption": "A “Chance Meeting” is often festooned with lei."
      },
      {
       "file": "p3-58-368.jpg",
@@ -13754,11 +13627,7 @@
      },
      {
       "kind": "p",
-      "text": "1929 photo. The original engineering buildings – Young Engineering Quadrangle – is the H-shaped complex in the center. That facility was replaced by the Campus Center and the Rec Center, with one of the 5 engineering buildings attached to the gym. The University Farms have been replaced by Webster Hall, Art Building, and Kuykendall Hall. (University Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Courtyard at the Campus Center - unusually tranquil BEGIN WALK XII \u001b\u001a \u0019 \u0018 \u0017 \u0016 \u0015 Mauka Makai ʻEwa Diamond Head Ala Wai Blvd."
+      "text": "BEGIN WALK XII \u001b\u001a \u0019 \u0018 \u0017 \u0016 \u0015 Mauka Makai ʻEwa Diamond Head Ala Wai Blvd."
      },
      {
       "kind": "p",
@@ -13834,7 +13703,7 @@
      },
      {
       "kind": "p",
-      "text": "Ala Wai Canal W Ala Wai W Golf Course PHOTO CREDIT Walk XII Map Key"
+      "text": "Ala Wai Canal W Ala Wai W Golf Course Walk XII Map Key"
      },
      {
       "kind": "direction",
@@ -13873,17 +13742,20 @@
      {
       "file": "p3-59-370.jpg",
       "w": 364,
-      "h": 348
+      "h": 348,
+      "caption": "1929 photo. The original engineering buildings – Young Engineering Quadrangle – is the H-shaped complex in the center. That facility was replaced by the Campus Center and the Rec Center, with one of the 5 engineering buildings attached to the gym. The University Farms have been replaced by Webster Hall, Art Building, and Kuykendall Hall. (University Archives)"
      },
      {
       "file": "p3-61-371.jpg",
       "w": 274,
-      "h": 509
+      "h": 509,
+      "caption": "Courtyard at the Campus Center - unusually tranquil"
      },
      {
       "file": "p3-62-372.jpg",
       "w": 593,
-      "h": 948
+      "h": 948,
+      "caption": "PHOTO CREDIT"
      },
      {
       "file": "p3-62-373.jpg",
@@ -13921,7 +13793,7 @@
   "intro": [
    {
     "kind": "p",
-    "text": "Hale at the Center for Hawaiian Studies Kapahulu means ‘the worn-out soil,’ perhaps from the overuse of the land for growing kalo (taro)."
+    "text": "Kapahulu means ‘the worn-out soil,’ perhaps from the overuse of the land for growing kalo (taro)."
    }
   ],
   "info": [],
@@ -13980,26 +13852,20 @@
      {
       "kind": "p",
       "text": "Davis and Fishbourne were the original architects for McKinley High School."
-     },
-     {
-      "kind": "p",
-      "text": "1939 photo. Quarry excavation (1889 to 1949) is evident in the background (upper left); this will be developed as the University’s lower campus. (University Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "E Pluribus Unum - ‘one from many’"
      }
     ],
     "photos": [
      {
       "file": "p3-64-378.jpg",
       "w": 657,
-      "h": 459
+      "h": 459,
+      "caption": "1939 photo. Quarry excavation (1889 to 1949) is evident in the background (upper left); this will be developed as the University’s lower campus. (University Archives)"
      },
      {
       "file": "p3-64-379.jpg",
       "w": 326,
-      "h": 485
+      "h": 485,
+      "caption": "E Pluribus Unum - ‘one from many’"
      },
      {
       "file": "p3-65-380.jpg",
@@ -14090,10 +13956,6 @@
      },
      {
       "kind": "p",
-      "text": "An architecturally stunning fire station with Lē‘ahi in the background!"
-     },
-     {
-      "kind": "p",
       "text": "Good Guys Music and Sound is on the Diamond Head side of Kapahulu Avenue, half-way between Ho‘olulu Street and Mo‘oheau Avenue. Be sure to try out the ‘ukulele ‘jumping fleas.’"
      }
     ],
@@ -14101,7 +13963,8 @@
      {
       "file": "p3-65-381.jpg",
       "w": 393,
-      "h": 396
+      "h": 396,
+      "caption": "An architecturally stunning fire station with Lē‘ahi in the background!"
      },
      {
       "file": "p3-66-382.jpg",
@@ -14245,10 +14108,6 @@
      },
      {
       "kind": "p",
-      "text": "Leonard’s Malasadas – try one, try them all. You won’t be sorry!"
-     },
-     {
-      "kind": "p",
       "text": "Malassadas (correctly, with 2 S’s) were introduced by Portuguese plantation workers in 1878. Try them…there’s a great variety…if you don’t mind waiting in a very long line!"
      },
      {
@@ -14272,7 +14131,8 @@
      {
       "file": "p3-66-383.jpg",
       "w": 433,
-      "h": 488
+      "h": 488,
+      "caption": "Leonard’s Malasadas – try one, try them all. You won’t be sorry!"
      },
      {
       "file": "p3-67-384.jpg",
@@ -14447,7 +14307,7 @@
      },
      {
       "kind": "p",
-      "text": "You will know that you have reached the Hawaiian Center when you see 4 Hawaiian style roofs that look like Hawaiian thatched hale (houses). This is the gem of the University of Hawai‘i campus: Kamakakūokalani (Upright Eye of Heaven) Center for Hawaiian Knowledge and lo‘i, The rooftops of Kamakakūokalani Center for Hawaiian Studies resemble Hawaiian Hale the university’s kalo (taro) fields. The round buildings behind the center are university dormitories on the other side of Mānoa Stream."
+      "text": "You will know that you have reached the Hawaiian Center when you see 4 Hawaiian style roofs that look like Hawaiian thatched hale (houses). This is the gem of the University of Hawai‘i campus: Kamakakūokalani (Upright Eye of Heaven) Center for Hawaiian Knowledge and lo‘i, the university’s kalo (taro) fields. The round buildings behind the center are university dormitories on the other side of Mānoa Stream."
      },
      {
       "kind": "p",
@@ -14511,10 +14371,6 @@
      },
      {
       "kind": "p",
-      "text": "Ka Papa Lo‘i ‘O Kānewai Kalo (taro) once grew abundantly in Hawai‘i. Today, this lo‘i is a model for the resurgence of kalo lo‘i (taro fields)."
-     },
-     {
-      "kind": "p",
       "text": "Mānoa Stream runs ‘Ewa and makai of the lo’i, with the ‘auwai (drainage canal) parallel and above it on the Diamond Head side of the stream. This is the water that feeds the lo’i."
      },
      {
@@ -14526,12 +14382,14 @@
      {
       "file": "p3-68-388.jpg",
       "w": 373,
-      "h": 596
+      "h": 596,
+      "caption": "The rooftops of Kamakakūokalani Center for Hawaiian Studies resemble Hawaiian Hale"
      },
      {
       "file": "p3-69-389.jpg",
       "w": 885,
-      "h": 496
+      "h": 496,
+      "caption": "Ka Papa Lo‘i ‘O Kānewai Kalo (taro) once grew abundantly in Hawai‘i. Today, this lo‘i is a model for the resurgence of kalo lo‘i (taro fields)."
      },
      {
       "file": "p3-70-390.jpg",
@@ -14606,11 +14464,7 @@
      },
      {
       "kind": "p",
-      "text": "This walk will take you to the lower campus, formerly Mō‘ili‘ili Quarry, which was worked from 1889 to 1949, with its The lower campus is carved out of the basalt quarry that furnished the building blocks for many Honolulu houses and buildings, and even curbstones. Central Union Church, on S. Beretania and As you walk down the steps, look around; you are walking down the face of the excavated quarry, as in the lower right corner of this photo. (University Archives)"
-     },
-     {
-      "kind": "p",
-      "text": "Just past the dormitory, Gateway House, are the mathematical steps to the lower campus/ former quarry: 12 steps times 7 sets = ?. And what a view from the top!"
+      "text": "This walk will take you to the lower campus, formerly Mō‘ili‘ili Quarry, which was worked from 1889 to 1949, with its The lower campus is carved out of the basalt quarry that furnished the building blocks for many Honolulu houses and buildings, and even curbstones. Central Union Church, on S. Beretania and"
      },
      {
       "kind": "p",
@@ -14645,10 +14499,6 @@
       "text": "This quarry pond is ground water that seeps up from the underground waters in the area, reminiscent of the springs and streams in this area."
      },
      {
-      "kind": "p",
-      "text": "The White Terns, since they are seabirds, feed on fish, not worms. Mama bird flies out to the ocean, scoops up small fish and feeds her chick."
-     },
-     {
       "kind": "direction",
       "text": "With the practice fields, known as Cooke Field, on the Diamond Head side of the walkway and the tennis courts on the ‘Ewa side, continue makai around the Rainbow Wahine Softball Stadium. Turn ‘Ewa after the Softball Stadium, walking on the mauka side of the football field toward the dome of Stan Sheriff Center."
      },
@@ -14681,17 +14531,20 @@
      {
       "file": "p3-71-393.jpg",
       "w": 386,
-      "h": 385
+      "h": 385,
+      "caption": "As you walk down the steps, look around; you are walking down the face of the excavated quarry, as in the lower right corner of this photo. (University Archives)"
      },
      {
       "file": "p3-71-394.jpg",
       "w": 369,
-      "h": 245
+      "h": 245,
+      "caption": "Just past the dormitory, Gateway House, are the mathematical steps to the lower campus/ former quarry: 12 steps times 7 sets = ?. And what a view from the top!"
      },
      {
       "file": "p3-72-395.jpg",
       "w": 885,
-      "h": 496
+      "h": 496,
+      "caption": "The White Terns, since they are seabirds, feed on fish, not worms. Mama bird flies out to the ocean, scoops up small fish and feeds her chick."
      },
      {
       "file": "p3-72-396.jpg",
@@ -14717,17 +14570,14 @@
      {
       "kind": "p",
       "text": "Les Murakami Stadium is named after the legendary baseball Hawai‘i Rainbow Warriors’ coach who won 1,079 games."
-     },
-     {
-      "kind": "p",
-      "text": "Enjoy a leisurely walk around the Asian-styled garden on the lower level of the Athletic Center."
      }
     ],
     "photos": [
      {
       "file": "p3-73-398.jpg",
       "w": 1050,
-      "h": 668
+      "h": 668,
+      "caption": "Enjoy a leisurely walk around the Asian-styled garden on the lower level of the Athletic Center."
      },
      {
       "file": "p3-74-399.jpg",
@@ -14819,7 +14669,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "On the Diamond Head side of the Stan Sheriff Center is the pool: Duke Kahanamoku Aquatic Complex, named after Hawai‘i’s local golden boy. Duke Paoa Kahanamoku (1890-1968) was a fullblooded Hawaiian, who was raised in Waikīkī. He was well-loved in Hawai‘i, not only for winning Olympic silver and gold Are you able to figure out why this set of sculptures is called “Rainbows”? The artist, Shige Yamada, created “Storyteller” in Waikīkī as well as “Maui” at the Kahului, Maui airport. medals in swimming, but also as a surfer, hero, movie actor, and Honolulu sheriff. Local lore relates that in 1917 the Duke rode the longest wave ever: a mile and a quarter on a 35-foot wave!"
+      "text": "On the Diamond Head side of the Stan Sheriff Center is the pool: Duke Kahanamoku Aquatic Complex, named after Hawai‘i’s local golden boy. Duke Paoa Kahanamoku (1890-1968) was a fullblooded Hawaiian, who was raised in Waikīkī. He was well-loved in Hawai‘i, not only for winning Olympic silver and gold medals in swimming, but also as a surfer, hero, movie actor, and Honolulu sheriff. Local lore relates that in 1917 the Duke rode the longest wave ever: a mile and a quarter on a 35-foot wave!"
      },
      {
       "kind": "heading",
@@ -14850,7 +14700,8 @@
      {
       "file": "p3-74-400.jpg",
       "w": 410,
-      "h": 461
+      "h": 461,
+      "caption": "Are you able to figure out why this set of sculptures is called “Rainbows”? The artist, Shige Yamada, created “Storyteller” in Waikīkī as well as “Maui” at the Kahului, Maui airport."
      },
      {
       "file": "p3-75-401.jpg",
@@ -14890,10 +14741,6 @@
      },
      {
       "kind": "p",
-      "text": "The wood of the elegant bench is from a 100-year-old Mango tree."
-     },
-     {
-      "kind": "p",
       "text": "Look for the wooden bench outside the nearby building, just past the parking lot. After your trek through lower campus, relax on this 100-year-old Mango wood from the ahupua‘a of Kamananui, O‘ahu (near Waialua). Enjoy the array of local plants: Ti, ground-cover Pohinahina, Plumeria, and Kou trees."
      },
      {
@@ -14905,7 +14752,8 @@
      {
       "file": "p3-75-402.jpg",
       "w": 525,
-      "h": 708
+      "h": 708,
+      "caption": "The wood of the elegant bench is from a 100-year-old Mango tree."
      },
      {
       "file": "p3-76-403.jpg",
@@ -14954,10 +14802,6 @@
      },
      {
       "kind": "p",
-      "text": "The Kahananui building is the first academic building on campus to be named after a Hawaiian."
-     },
-     {
-      "kind": "p",
       "text": "WALK: 1"
      },
      {
@@ -14974,7 +14818,7 @@
      },
      {
       "kind": "p",
-      "text": "WALK: 1 kai sea, seawater kalo Taro; a plant that is the main staple of the Hawaiian diet; all parts are edible; the leaves ae used in food preparation and the starchy root as poi kama‘āina literally ‘child of the land’: a person born and reared in islands; often extended to include people who have lived in Hawai‘i for a very long time but were born elsewhere kanaka person, human Kanaka ‘Ōiwi native Hawaiian kāne man, male; Kāne one of the important deities kaona hidden meaning kapa tapa, bark cloth kapu taboo; sacredness; special privilege or exemption from ordinary kapu kau to put kāu your kaua battle kaukahi singleness of purpose ke (and ka) the kea white kēhau dew kī Ti plant kiawe Algaroba/Mesquite tree ki‘i akua (deity) image kīkī spouting, shooting ( as in Waikīkī) kino lau body or form of a deity; the physical manifestation kō sugar cane koa warrior; brave; Acacia Koa tree (native to Hawai‘i only) ko‘a shrine kou you; a native tree (Kou) ko‘u my kuahiwi mountain kue fishhook kūlia to strive lā day Our last reigning monarch: Queen Lili‘uokalani (Hawai‘i State Archives) la‘a sacred lama type of wood like Ebony lānai veranda (the island is Lāna‘i) lani heaven, royal heights; very high chief, high-born person lau leaf laua‘e type of Fern Lē‘ahi correct name for Diamond Head Crater lehua flower of the ‘Ōhi‘a tree lei garland lei pāpale hat lei lei po‘o head lei limu seaweed līpoa a type of seaweed loa long, tall lo‘i Taro field (can also be for rice) loko pond, lake lua pit luakini a type of heiau lū‘au feast – a word coined in the mid1800s; pā‘ina is the appropriate term Mahele 1848 land division under Kamehameha III. This was a time when all the land of the islands was divided up and given to chiefs, commoners, or kept for the crown. mākāhā lock, sluice used in fish loko makai toward the sea makani wind mālama care of or care for malihini newcomer maluhia peace, safety mana spiritual / divine power, essence Mānoa valley in the ahupua‘a of Waikīkī; can mean vast or free from kapu (taboo)"
+      "text": "WALK: 1 kai sea, seawater kalo Taro; a plant that is the main staple of the Hawaiian diet; all parts are edible; the leaves ae used in food preparation and the starchy root as poi kama‘āina literally ‘child of the land’: a person born and reared in islands; often extended to include people who have lived in Hawai‘i for a very long time but were born elsewhere kanaka person, human Kanaka ‘Ōiwi native Hawaiian kāne man, male; Kāne one of the important deities kaona hidden meaning kapa tapa, bark cloth kapu taboo; sacredness; special privilege or exemption from ordinary kapu kau to put kāu your kaua battle kaukahi singleness of purpose ke (and ka) the kea white kēhau dew kī Ti plant kiawe Algaroba/Mesquite tree ki‘i akua (deity) image kīkī spouting, shooting ( as in Waikīkī) kino lau body or form of a deity; the physical manifestation kō sugar cane koa warrior; brave; Acacia Koa tree (native to Hawai‘i only) ko‘a shrine kou you; a native tree (Kou) ko‘u my kuahiwi mountain kue fishhook kūlia to strive lā day la‘a sacred lama type of wood like Ebony lānai veranda (the island is Lāna‘i) lani heaven, royal heights; very high chief, high-born person lau leaf laua‘e type of Fern Lē‘ahi correct name for Diamond Head Crater lehua flower of the ‘Ōhi‘a tree lei garland lei pāpale hat lei lei po‘o head lei limu seaweed līpoa a type of seaweed loa long, tall lo‘i Taro field (can also be for rice) loko pond, lake lua pit luakini a type of heiau lū‘au feast – a word coined in the mid1800s; pā‘ina is the appropriate term Mahele 1848 land division under Kamehameha III. This was a time when all the land of the islands was divided up and given to chiefs, commoners, or kept for the crown. mākāhā lock, sluice used in fish loko makai toward the sea makani wind mālama care of or care for malihini newcomer maluhia peace, safety mana spiritual / divine power, essence Mānoa valley in the ahupua‘a of Waikīkī; can mean vast or free from kapu (taboo)"
      },
      {
       "kind": "p",
@@ -15222,143 +15066,145 @@
       "file": "p3-76-404.jpg",
       "w": 383,
       "h": 330,
-      "caption": "Allen, Helena G. Kalākaua: Renaissance"
+      "caption": "The Kahananui building is the first academic building on campus to be named after a Hawaiian."
      },
      {
       "file": "p3-77-405.jpg",
       "w": 594,
       "h": 948,
-      "caption": "History of Forgetting and Remembering."
+      "caption": "Our last reigning monarch: Queen Lili‘uokalani (Hawai‘i State Archives)"
      },
      {
       "file": "p3-77-406.jpg",
       "w": 1050,
       "h": 348,
-      "caption": "Cohen, Stan. The Pink Palace of the Pacific: The Royal Hawaiian Hotel. Missoula,"
+      "caption": "Allen, Helena G. Kalākaua: Renaissance"
      },
      {
       "file": "p3-77-407.jpg",
       "w": 1050,
       "h": 509,
-      "caption": "the Hawaiian People to the Times of"
+      "caption": "History of Forgetting and Remembering."
      },
      {
       "file": "p3-77-408.jpg",
       "w": 885,
       "h": 496,
-      "caption": "I‘i, John Papa. Fragments of Hawaiian"
+      "caption": "Cohen, Stan. The Pink Palace of the Pacific: The Royal Hawaiian Hotel. Missoula,"
      },
      {
       "file": "p3-78-409.jpg",
       "w": 1050,
       "h": 348,
-      "caption": "Kamakau, Samuel M. Ka Po‘e Kāhiko: The"
+      "caption": "the Hawaiian People to the Times of"
      },
      {
       "file": "p3-78-410.jpg",
       "w": 887,
       "h": 497,
-      "caption": "Mālamalama: A History of the University of"
+      "caption": "I‘i, John Papa. Fragments of Hawaiian"
      },
      {
       "file": "p3-78-411.jpg",
       "w": 1050,
       "h": 509,
-      "caption": "Kanahele, George S. Waikīkī: 100 B.C. to"
+      "caption": "Kamakau, Samuel M. Ka Po‘e Kāhiko: The"
      },
      {
       "file": "p3-78-412.jpg",
       "w": 373,
       "h": 450,
-      "caption": "1900 A.D.: An Untold Story. Honolulu: The"
+      "caption": "Mālamalama: A History of the University of"
      },
      {
       "file": "p3-79-413.jpg",
       "w": 1050,
       "h": 509,
-      "caption": "Kanahele, George S. Update: 5 Years Later Restoring Hawaiianness to Waikīkī. Waiaha"
+      "caption": "Kanahele, George S. Waikīkī: 100 B.C. to"
      },
      {
       "file": "p3-79-414.jpg",
       "w": 1050,
       "h": 509,
-      "caption": "Kuamo‘o: Nae‘ole’s Race to Save a King."
+      "caption": "1900 A.D.: An Untold Story. Honolulu: The"
      },
      {
       "file": "p3-79-415.jpg",
       "w": 1050,
       "h": 348,
-      "caption": "Kirch, Partick V. A Shark going Inland is My Child: The island Civilization of Ancient"
+      "caption": "Kanahele, George S. Update: 5 Years Later Restoring Hawaiianness to Waikīkī. Waiaha"
      },
      {
       "file": "p3-79-416.jpg",
       "w": 885,
       "h": 496,
-      "caption": "Anahulu: The Anthropology of History in the Kingdom of Hawai‘i. Chicago: The"
+      "caption": "Kuamo‘o: Nae‘ole’s Race to Save a King."
      },
      {
       "file": "p3-80-418.jpg",
       "w": 1050,
       "h": 348,
-      "caption": "Lili‘uokalani. Hawai‘i’s Story by Hawai‘i’s"
+      "caption": "Kirch, Partick V. A Shark going Inland is My Child: The island Civilization of Ancient"
      },
      {
       "file": "p3-80-419.jpg",
       "w": 885,
       "h": 496,
-      "caption": "McBride, Likeke R. The Kāhuna: Versatile Masters of Old Hawai‘i. Hilo: Petroglyph"
+      "caption": "Anahulu: The Anthropology of History in the Kingdom of Hawai‘i. Chicago: The"
      },
      {
       "file": "p3-80-420.jpg",
       "w": 1050,
       "h": 509,
-      "caption": "Elbert. Hawaiian Dictionary. Honolulu:"
+      "caption": "Lili‘uokalani. Hawai‘i’s Story by Hawai‘i’s"
      },
      {
       "file": "p3-81-421.jpg",
       "w": 1050,
       "h": 348,
-      "caption": "Center. Mō‘ili‘ili-The Life of a Community."
+      "caption": "McBride, Likeke R. The Kāhuna: Versatile Masters of Old Hawai‘i. Hilo: Petroglyph"
      },
      {
       "file": "p3-81-422.jpg",
       "w": 885,
       "h": 496,
-      "caption": "mar: An Introduction to the Creole Language"
+      "caption": "Elbert. Hawaiian Dictionary. Honolulu:"
      },
      {
       "file": "p3-81-423.jpg",
       "w": 594,
       "h": 948,
-      "caption": "Seiden, Allan. Waikīkī: Magic Beside the Sea."
+      "caption": "Center. Mō‘ili‘ili-The Life of a Community."
      },
      {
       "file": "p3-81-424.jpg",
       "w": 1050,
       "h": 509,
-      "caption": "Silverman, Jane L. Ka‘ahumanu: Molder of"
+      "caption": "mar: An Introduction to the Creole Language"
      },
      {
       "file": "p3-82-425.jpg",
       "w": 1050,
       "h": 348,
-      "caption": "Streetcar Days in Honolulu: Breezing Through"
+      "caption": "Seiden, Allan. Waikīkī: Magic Beside the Sea."
      },
      {
       "file": "p3-82-426.jpg",
       "w": 885,
       "h": 496,
-      "caption": "Sinclair, Marjorie. Nāhi‘ena‘ena: Sacred Daughter of Hawai‘i. Honolulu: Mutual"
+      "caption": "Silverman, Jane L. Ka‘ahumanu: Molder of"
      },
      {
       "file": "p3-82-427.jpg",
       "w": 1050,
-      "h": 509
+      "h": 509,
+      "caption": "Streetcar Days in Honolulu: Breezing Through"
      },
      {
       "file": "p3-82-428.jpg",
       "w": 1050,
-      "h": 509
+      "h": 509,
+      "caption": "Sinclair, Marjorie. Nāhi‘ena‘ena: Sacred Daughter of Hawai‘i. Honolulu: Mutual"
      },
      {
       "file": "p3-83-429.jpg",

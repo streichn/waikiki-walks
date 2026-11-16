@@ -75,3 +75,8 @@
 - Home screen and walk covers no longer use book photos with their printed captions cut off at the edge.
 - Hawaiian glossary words are underlined only the first time they appear on a stop.
 - Guest first: no sign-in prompt at launch. Sign-in stays in Profile.
+
+## 2026-11-16 · Photo captions out of the text; missing stops restored
+- About 36 photo captions had been read as body text, some in the middle of a sentence (for example "this cool The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives) freshwater stream"). They are now captions under the photos, and they are no longer read aloud. Source list: scripts/extract/captions.py → captions.json.
+- Restored Walk 9 stop 2 (Waikīkī-Kapahulu Public Library) and Walk 10 stops 9, 13, 21, 22, 23, 28 and 30, which the book prints inline. Every walk now has every number.
+- Walk 9 stop 4 title is "First Hawaiian Bank".

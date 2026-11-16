@@ -117,6 +117,41 @@ def repair_blocks(blocks):
     return out
 
 
+def _cap(t):
+    t = re.sub(r'\s+', ' ', t).strip()
+    t = re.sub(r'(\w)- ([a-z])', r'\1\2', t)  # undo line-end hyphenation
+    return t
+
+
+CAPTIONS = sorted({_cap(c['text']) for c in json.load(open(f'{ROOT}/scripts/extract/captions.json'))}, key=len, reverse=True) if os.path.exists(f'{ROOT}/scripts/extract/captions.json') else []
+
+
+def pull_captions(blocks):
+    """Photo captions in the book sit beside the photos in small Arial type. The PDF parser sometimes
+    reads them as body text, even in the middle of a sentence. Move each one out into a caption block."""
+    out = []
+    for b in blocks:
+        if b['kind'] not in ('p', 'direction'):
+            out.append(b)
+            continue
+        t, found = re.sub(r'\s+', ' ', b['text']).strip(), []
+        for c in CAPTIONS:
+            if len(c) >= 12 and c in t:
+                t = re.sub(r'\s+', ' ', t.replace(c, ' ')).strip()
+                found.append(c)
+        if re.fullmatch(r'\((Hawai‘i State|University) Archives\)', t):
+            found.append(t)
+            t = ''
+        if t and not re.fullmatch(r'[\W\d]*', t):
+            prev = next((o for o in reversed(out) if o['kind'] in ('p', 'direction')), None)
+            if found and prev and t[:1].islower() and not SENT_END.search(prev['text']):
+                prev['text'] = join_text(prev['text'], t)  # a caption had split this sentence
+            else:
+                out.append({**b, 'text': t})
+        out.extend({'kind': 'caption', 'text': re.sub(r'^Caption:\s*', '', c)} for c in found)
+    return out
+
+
 HEADING_FIXES = json.load(open(f'{ROOT}/scripts/extract/heading_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/heading_fixes.json') else {}
 
 
@@ -126,6 +161,8 @@ def apply_heading_fix(sid, title, sub, blocks):
         return title, sub, blocks
     title = fx.get('title', title)
     sub = fx['subtitle'] if 'subtitle' in fx else sub
+    if fx.get('first_prefix') and blocks:
+        blocks = [{**blocks[0], 'text': fx['first_prefix'] + blocks[0]['text']}] + blocks[1:]
     if fx.get('drop_first'):
         blocks = blocks[1:]
     for pre in fx.get('prepend', []):
@@ -145,7 +182,7 @@ for k, w in enumerate(SRC['walks']):
     title, theme = TITLES[wid]
     intro_blocks = clean_blocks(w.get('blocks'))
     info = [b['text'] for b in intro_blocks if b['kind'] == 'info' and len(b['text']) > 20]
-    intro = [b for b in intro_blocks if b['kind'] != 'info']
+    intro = [b for b in pull_captions(intro_blocks) if b['kind'] not in ('info', 'caption')]
     stops_in = w['stops']
     # Drop duplicate numbers that are cross-references (keep first occurrence in order).
     seen, stops_src = set(), []
@@ -239,6 +276,7 @@ for k, w in enumerate(SRC['walks']):
             images_used.add(im['file'])
         blocks = clean_blocks(s.get('blocks'))
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
+        blocks = pull_captions(blocks)
         caps = [b for b in blocks if b['kind'] == 'caption']
         for p, c in zip(photos, caps):
             p['caption'] = c['text']
