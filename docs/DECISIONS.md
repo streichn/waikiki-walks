@@ -128,3 +128,16 @@ We store no addresses, phone numbers, birthdates, or payment details.
 - **Why:** Walk X is the longest walk (52 stops, McCully Street to Lyon Arboretum). Before this, 22 of its stops were straight-line guesses, so arrival alerts could not fire there.
 - **Still open:** Walk X stops 7 to 29 are not on any map (Punahou and College Hills); they remain estimates between known pins. The book's Walk XI map (part 3, page 37) exists and covers stops 1 to 6, but is not yet fitted.
 - Sources: docs.qgis.org/3.4/en/docs/user_manual/working_with_raster/georeferencer.html (GCP count, transformation choice, residuals); docs.voicemap.me/tour-publishers/choosing-locations/ (triggers on the route line).
+
+## Waterways layer on the street map (16 Nov 2026)
+- **Asked for by:** Veneeta, 16 Nov: "The maps needs the water ways overlays." Walk I is about the three streams that once crossed Waikīkī, but the phone's street map shows only the Ala Wai Canal and none of the streams.
+- **How it is normally done:** apps add their own data to a system map as overlays. Apple's guidelines say to "use overlays to define map areas with a specific relationship to your content", placed above roads by default so people still see what is underneath. Tour apps keep the map simple and let people switch views (VoiceMap's offline maps show the route and pins only). react-native-maps provides an `Overlay` component that lays a bundled image over given corners, on both Apple and Google maps.
+- **What we chose:**
+  - The waterways come from her own maps, not from OpenStreetMap. Her maps show the streams the book talks about, including pale ones that no longer run on the surface; OpenStreetMap has only part of them, and the book is the source of truth.
+  - scripts/georef/waterways.py matches each pixel of her map to her palette, keeps the waterway ink (full strength) and the pale stream tint (printed at about 40 percent), drops text, roads, grass and the route, and warps the result onto real coordinates with the same fit used for her pins. Output: one transparent PNG per walk (6 to 104 KB, about 430 KB in all) in assets/waterways/, bundled in the app so it works offline.
+  - Drawn under the route and pins, never fully opaque, in one teal that reads on street, satellite, light and dark maps.
+  - On by default, with a "Waterways from the book" switch in the map style menu. The choice is saved with the other settings and syncs for signed-in walkers.
+  - The same layer is in the web preview.
+- **Why:** it answers her request with her own drawing, keeps the street map usable, and costs nothing at run time.
+- **Limits:** the canal is drawn a little wider than it really is, because her map exaggerates it; the overlay follows the map fit (9 to 30 m typical error). Labels printed inside the canal ("Ala Wai Canal") show as small gaps.
+- Sources: developer.apple.com/design/human-interface-guidelines/maps (overlays, above-roads level); react-native-maps 1.29 Overlay type definitions in node_modules/react-native-maps/dist/src/MapOverlay.d.ts (image and corner bounds; opacity works only with Google Maps on iOS, so transparency is baked into the PNG); blog.voicemap.me/?p=1629 (VoiceMap maps: route line and pins, offline).

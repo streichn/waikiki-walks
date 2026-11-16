@@ -62,7 +62,7 @@ export async function pushToCloud() {
   if (favorites.length) await supabase.from('favorites').upsert(favorites.map((stop_id) => ({ user_id: uid, stop_id })));
 }
 
-const SYNCED = ['themeMode', 'autoNarrate', 'arrivalAlerts', 'arrivalRadius', 'speechRate', 'haptics', 'textScale', 'units'] as const;
+const SYNCED = ['themeMode', 'autoNarrate', 'arrivalAlerts', 'arrivalRadius', 'speechRate', 'haptics', 'textScale', 'units', 'waterways'] as const;
 
 /** Only these preferences travel between phones; the voice choice stays per device. */
 function pickSettings(src: Record<string, unknown>) {
