@@ -60,6 +60,13 @@
 - Stop numbers read off all 11 maps (scripts/georef/map_stops.json); 215 of 334 stops now sit exactly on her printed number, with the arrival circle widened by her number's distance from the route.
 - Five more stops the parser had missed are restored from the book's bold headings (scripts/extract/stop_fixes.json): Walk 3 stop 1, Walk 6 stop 1, Walk 9 stop 10, Walk 12 stops 1 and 8.
 
+## 2026-11-16 · Walk progress, start over, read-aloud switch, steadier map
+- Each walk card shows Not started, In progress or Stopped at stop N of M with a bar, or Finished.
+- "Start this walk over" on the walk page clears that walk's progress.
+- A speaker button on the walk screen turns reading each stop aloud on arrival on or off (off by default).
+- Arriving at a stop no longer resizes the panel or moves the map; the book map stops scrolling at its bottom edge.
+- Demo walk continues onto each stop's exact spot (her printed number) before moving on.
+
 ## 2026-11-16 · Walk I pins follow the canal (Veneeta's corrections)
 - Stops 3, 4 and 5 now sit on the canal-side walkway, as Veneeta wrote ("Stop 3 through 5 are on the canal"). They had landed inside Ala Wai Community Park.
 - Stops 7, 9 and 11, whose numbers her map prints away from the path, now sit on her route between their neighbours, so arrival alerts fire on the way to Date Street. Marked "estimated" with a 50 m arrival circle.

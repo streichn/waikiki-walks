@@ -19,6 +19,7 @@
     book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/><path d="M4 19a2 2 0 0 1 2-2h13"/>',
     headset: '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>',
     pause: '<path d="M8 5v14M16 5v14"/>',
+    mute: '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/>',
     volume: '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
     stop: '<rect x="6" y="6" width="12" height="12" rx="2"/>',
     walk: '<circle cx="13" cy="4" r="2"/><path d="M10 21l2-6-3-3 2-5 4 3 3 1M9 12l-3 2M12 15l3 6"/>',
@@ -70,7 +71,7 @@
   const save = (k, v) => { try { store && store.setItem('ww.' + k, JSON.stringify(v)); } catch (e) {} };
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
-    settings: load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }),
+    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }); if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
     isPro: load('pro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
@@ -177,7 +178,17 @@
     const locked = !S.isPro && w.id !== TRIAL.walkId;
     const pill = w.id === TRIAL.walkId && !S.isPro ? `<span class="pill" style="background:var(--gold);color:#3a2200">FREE PREVIEW</span>` : locked ? `<span class="pill" style="background:rgba(0,0,0,.45);color:#fff">${ic('lock', 'width="11" height="11"')}</span>` : '';
     const stats = [w.facts.distance, w.facts.duration, `${w.stops.length} stops`].filter(Boolean).join('  ·  ');
-    return `<button class="wcard ${wide ? 'wide' : ''}" data-walk="${w.id}" aria-label="Walk ${wn(w.id)}, ${esc(w.title)}">${img(w.cover)}<span class="shade"></span><span class="badge" style="background:${w.color}">${wn(w.id)}</span>${pill}<span class="meta"><h3>${esc(w.title)}</h3><div class="theme">${esc(w.theme || '')}</div><div class="stats">${esc(stats)}</div></span></button>`;
+    return `<button class="wcard ${wide ? 'wide' : ''}" data-walk="${w.id}" aria-label="Walk ${wn(w.id)}, ${esc(w.title)}">${img(w.cover)}<span class="shade"></span><span class="badge" style="background:${w.color}">${wn(w.id)}</span>${pill}<span class="meta"><h3>${esc(w.title)}</h3><div class="theme">${esc(w.theme || '')}</div><div class="stats">${esc(stats)}</div>${progressLine(w).tag}</span>${progressLine(w).bar}</button>`;
+  }
+  // Under each walk: not started, stop N of M with a bar, or finished.
+  function progressLine(w) {
+    // Quiet when not started; a colored tag plus a full-width bar along the card's bottom edge once started.
+    const p = S.progress[w.id], n = w.stops.length;
+    if (!p || !p.visited.length) return { tag: '', bar: '' };
+    const done = p.finishedAt || p.visited.length >= n, pct = done ? 100 : Math.round(100 * p.visited.length / n);
+    const cls = done ? 'done' : S.active === w.id ? 'live' : 'paused';
+    const txt = done ? 'Finished' : `${S.active === w.id ? 'Walking now' : 'Paused'} · ${p.visited.length} of ${n} stops`;
+    return { tag: `<span class="wtag ${cls}">${txt}</span>`, bar: `<span class="wbar ${cls}"><i style="width:${pct}%"></i></span>` };
   }
 
   // Home screen top card, same order as the app: in progress, near you, unfinished, free walk, next walk.
@@ -261,7 +272,7 @@
     </div>
     <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>'}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
-    <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button></div>`;
+    <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button>${S.progress[w.id] && S.progress[w.id].visited.length ? `<button class="resetw" data-act="resetwalk">Start this walk over</button>` : ''}</div>`;
   }
 
   // Veneeta's own map from the book, as a full map view (zoom with + and -, drag or scroll to pan).
@@ -405,7 +416,7 @@
     return `<div id="go" style="position:absolute;inset:0">
       <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>'}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn ${S.settings.autoNarrate ? 'on' : ''}" data-act="autoread" aria-pressed="${!!S.settings.autoNarrate}" aria-label="Read each stop aloud on arrival">${ic(S.settings.autoNarrate ? 'volume' : 'mute')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet" id="sheet">
         <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
@@ -479,7 +490,6 @@
     const w = walk(S.walkId), prog = S.progress[w.id];
     if (!prog.visited.includes(i)) prog.visited.push(i);
     prog.current = i; persist();
-    if (S.detent === 'peek') S.detent = 'half';
     S.arrivedBanner = i; setTimeout(() => { S.arrivedBanner = null; const b = document.querySelector('.arrived'); b && b.remove(); }, 4200);
     if (navigator.vibrate) try { navigator.vibrate(120); } catch (e) {}
     render();
@@ -492,13 +502,23 @@
     if (!canOpen(w.id, i)) { stopSim(); openPaywall(); return; }
     stopSpeak(); prog.current = i; persist(); render();
   }
+  // The demo follows Veneeta's red route line between stops (scripts/georef/routes.py), straight where it isn't traced.
+  let simPath = null, simFor = null;
   function tickSim() {
     const w = walk(S.walkId), prog = S.progress[w.id], target = w.stops[prog.current];
     if (!S.me) { const prev = w.stops[Math.max(0, prog.current - 1)]; S.me = { lat: prev.lat - 0.0012, lng: prev.lng - 0.0009 }; }
-    const d = dist(S.me, target);
-    S.heading = bearing(S.me, target);
-    const step = 18; // meters per tick (a brisk, sped-up walk)
-    if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
+    if (simFor !== w.id + ':' + prog.current) {
+      simFor = w.id + ':' + prog.current;
+      const leg = prog.current > 0 && ((D.routes || {})[w.id] || {})[String(w.stops[prog.current - 1].n)];
+      simPath = (leg && dist(S.me, { lat: leg[0][0], lng: leg[0][1] }) < 80 ? leg.map(([lat, lng]) => ({ lat, lng })) : []).concat([{ lat: target.lat, lng: target.lng }]);
+    }
+    if (!simPath || !simPath.length) simPath = [{ lat: target.lat, lng: target.lng }];
+    let budget = 18; // meters per tick (a brisk, sped-up walk)
+    while (budget > 0 && simPath.length) {
+      const nxt = simPath[0], d = dist(S.me, nxt);
+      if (d <= budget) { S.me = { ...nxt }; budget -= d; if (simPath.length > 1) simPath.shift(); else break; }
+      else { S.heading = bearing(S.me, nxt); const f = budget / d; S.me = { lat: S.me.lat + (nxt.lat - S.me.lat) * f, lng: S.me.lng + (nxt.lng - S.me.lng) * f }; budget = 0; }
+    }
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
     const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
@@ -513,6 +533,8 @@
     simTimer = setInterval(() => {
       const w = walk(S.walkId), prog = S.progress[S.walkId]; if (!prog) return;
       if (prog.visited.includes(prog.current)) {
+        const t = w.stops[prog.current];
+        if (S.me && dist(S.me, t) > 3) { tickSim(); return; }
         if (++simPause < 6) return;
         simPause = 0;
         const next = prog.current + 1;
@@ -710,6 +732,8 @@
   }
 
   function render() {
+    const oldPane = document.getElementById('bookpane');
+    const keep = oldPane ? { top: oldPane.scrollTop, left: oldPane.scrollLeft, view: S.view, walk: S.walkId } : null;
     stopSpeakIfLeaving();
     applyTheme();
     let html = '';
@@ -721,9 +745,10 @@
     if (S.view === 'walk' && S.mode === 'map') mountWalkMap();
     if (S.view === 'go') { mountSheet(); mountGoMap(); }
     const bp = document.getElementById('bookpane');
+    if (bp && keep && keep.view === S.view && keep.walk === S.walkId) { S.bookAuto = Date.now(); bp.scrollTop = keep.top; bp.scrollLeft = keep.left; }
     if (bp) {
       bp.addEventListener('scroll', () => { if (Date.now() - (S.bookAuto || 0) > 900) S.bookFollow = false; }, { passive: true });
-      if (S.view === 'go' && S.bookFollow !== false) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
+      if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
     }
     if (S.view === 'stop') bindSwipe(document.getElementById('stopread'));
     if (!S.view && S.tab === 'explore') mountExplore();
@@ -763,6 +788,13 @@
       if (a === 'stopback') { stopSpeak(); S.view = 'walk'; S.mode = 'read'; render(); const r = document.querySelector(`[data-read="${S.stopIdx}"]`); r && r.scrollIntoView({ block: 'center' }); return; }
       if (a === 'skip') return goTo(S.progress[w.id].current + 1);
       if (a === 'fit') { if (S.mode === 'map' && wmap) wmap.fit(); else document.querySelector('[data-mode="map"]').click(); return; }
+      if (a === 'resetwalk') {
+        const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">Start this walk over?</h2><p class="small" style="margin:0">This clears the stops you've visited on this walk. Your saved stops stay saved.</p>
+          <button class="btn" data-reset="yes" style="background:var(--accent)">Start over</button><button class="btn" data-close style="background:transparent;color:var(--primary)">Cancel</button></div>`, true);
+        m.addEventListener('click', (e) => { if (!e.target.closest('[data-reset]')) return; m.remove(); if (S.active === w.id) { stopSim(); stopSpeak(); S.active = null; } delete S.progress[w.id]; persist(); toast('Walk reset. It will start from stop 1.'); render(); });
+        return;
+      }
+      if (a === 'autoread') { S.settings.autoNarrate = !S.settings.autoNarrate; if (!S.settings.autoNarrate) stopSpeak(); persist(); toast(S.settings.autoNarrate ? 'Each stop will be read aloud when you arrive.' : 'Stops won\u2019t be read aloud automatically. Tap the headphones to listen.'); return render(); }
       if (a === 'start') { if (S.active === S.walkId) { S.view = 'go'; return render(); } return startWalk(); }
       if (a === 'paywall') return openPaywall();
       if (a === 'auth') return openAuth();
@@ -788,7 +820,7 @@
       if (a === 'layers') return openLayers(w);
       if (a === 'pinchk') { S.showPins = !S.showPins; const sc = document.getElementById('bookpane').scrollTop; render(); const bp = document.getElementById('bookpane'); if (bp) { S.bookAuto = Date.now(); bp.scrollTop = sc; } return; }
       if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
-      if (a === 'here') { stopSim(); const p = S.progress[w.id]; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
+      if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return goTo(S.progress[w.id].current + 1);
       if (a === 'prev') return goTo(S.progress[w.id].current - 1);
       if (a === 'play') { const s = w.stops[S.progress[w.id].current]; return speaking.stopId ? stopSpeak() : speakStop(s); }

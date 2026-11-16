@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { FlatList, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Alert, FlatList, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Hibiscus } from '../../../components/Flora';
 import { FunFacts } from '../../../components/FunFacts';
@@ -200,8 +200,21 @@ export default function WalkOverview() {
           icon={canStartWalk(walk.id, isPro) ? 'navigate' : 'lock-open'}
           label={!canStartWalk(walk.id, isPro) ? 'Unlock this walk' : isActive ? 'Return to walk' : resuming ? 'Continue walk' : 'Start walk'}
           onPress={begin}
-          style={{ flex: 1 }}
         />
+        {prog?.visited.length ? (
+          <Pressable
+            accessibilityRole="button"
+            onPress={() =>
+              Alert.alert('Start this walk over?', "This clears the stops you've visited on this walk. Your saved stops stay saved.", [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Start over', style: 'destructive', onPress: () => { if (isActive) stopSpeech(); useProgress.getState().resetWalk(walk.id); } },
+              ])
+            }
+            style={{ alignSelf: 'center', paddingVertical: 8 }}
+          >
+            <T style={{ fontFamily: t.font.bodyBold, color: t.textMuted, textDecorationLine: 'underline' }}>Start this walk over</T>
+          </Pressable>
+        ) : null}
       </View>
     </View>
   );
@@ -213,7 +226,7 @@ const styles = StyleSheet.create({
   roman: { alignSelf: 'flex-start', paddingHorizontal: 12, paddingVertical: 5, borderRadius: 14 },
   info: { flexDirection: 'row', gap: 8, padding: 12, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth },
   topBar: { position: 'absolute', left: 14, right: 14, flexDirection: 'row', alignItems: 'center' },
-  cta: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 10, flexDirection: 'row' },
+  cta: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 10, },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth },
   num: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   lock: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },

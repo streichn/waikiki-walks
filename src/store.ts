@@ -55,6 +55,8 @@ type ProgressState = {
   endWalk: (finished: boolean, discard?: boolean) => void;
   toggleFavorite: (stopId: string) => void;
   reset: () => void;
+  /** Clear one walk's progress so it starts again at stop 1. */
+  resetWalk: (walkId: string) => void;
 };
 
 export const useProgress = create<ProgressState>()(
@@ -104,6 +106,10 @@ export const useProgress = create<ProgressState>()(
         set({ favorites: f.includes(stopId) ? f.filter((x) => x !== stopId) : [...f, stopId] });
       },
       reset: () => set({ activeWalkId: undefined, progress: {}, favorites: [] }),
+      resetWalk: (walkId) => {
+        const { [walkId]: _drop, ...rest } = get().progress;
+        set({ progress: rest, activeWalkId: get().activeWalkId === walkId ? undefined : get().activeWalkId });
+      },
     }),
     { name: 'progress', storage: createJSONStorage(() => AsyncStorage) },
   ),
