@@ -59,3 +59,10 @@
 - Map fit now uses three kinds of landmark: labeled street intersections (firm), major roads from OpenStreetMap matched to her drawn streets, and the shoreline and Ala Wai Canal banks matched to real water (scripts/georef/roads.py, water.py). Share of major-road points landing on her streets rose to 64 to 90 percent per map.
 - Stop numbers read off all 11 maps (scripts/georef/map_stops.json); 215 of 334 stops now sit exactly on her printed number, with the arrival circle widened by her number's distance from the route.
 - Five more stops the parser had missed are restored from the book's bold headings (scripts/extract/stop_fixes.json): Walk 3 stop 1, Walk 6 stop 1, Walk 9 stop 10, Walk 12 stops 1 and 8.
+
+## 2026-11-16 · Walk I pins follow the canal (Veneeta's corrections)
+- Stops 3, 4 and 5 now sit on the canal-side walkway, as Veneeta wrote ("Stop 3 through 5 are on the canal"). They had landed inside Ala Wai Community Park.
+- Stops 7, 9 and 11, whose numbers her map prints away from the path, now sit on her route between their neighbours, so arrival alerts fire on the way to Date Street. Marked "estimated" with a 50 m arrival circle.
+- New scripts/georef/author_fixes.json records each author correction and its source; scripts/georef/build.py applies it.
+- Preview: the "pin is a draft" note no longer shows on pins placed from her maps (matches the app).
+- New docs/FEEDBACK.md entries for her 16 Nov email.

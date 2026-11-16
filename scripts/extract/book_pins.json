@@ -19,31 +19,34 @@
    "route_offset_m": 11
   },
   "3": {
-   "lat": 21.286802,
-   "lng": -157.82954,
+   "lat": 21.286423,
+   "lng": -157.829891,
    "px": [
     507,
     852
    ],
-   "route_offset_m": 11
+   "route_offset_m": 0,
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""
   },
   "4": {
-   "lat": 21.285497,
-   "lng": -157.828314,
+   "lat": 21.285263,
+   "lng": -157.828538,
    "px": [
     519,
     778
    ],
-   "route_offset_m": 21
+   "route_offset_m": 0,
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""
   },
   "5": {
-   "lat": 21.285377,
-   "lng": -157.827652,
+   "lat": 21.284919,
+   "lng": -157.828148,
    "px": [
     505,
     755
    ],
-   "route_offset_m": 16
+   "route_offset_m": 0,
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""
   },
   "6": {
    "lat": 21.284356,
@@ -55,13 +58,15 @@
    "route_offset_m": 23
   },
   "7": {
-   "lat": 21.285317,
-   "lng": -157.824345,
+   "lat": 21.283388,
+   "lng": -157.826251,
    "px": [
     417,
     652
    ],
-   "route_offset_m": 213
+   "route_offset_m": 0,
+   "confidence": "estimated",
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""
   },
   "8": {
    "lat": 21.282906,
@@ -73,13 +78,15 @@
    "route_offset_m": 52
   },
   "9": {
-   "lat": 21.286829,
-   "lng": -157.813829,
+   "lat": 21.283564,
+   "lng": -157.822505,
    "px": [
     97,
     372
    ],
-   "route_offset_m": 627
+   "route_offset_m": 0,
+   "confidence": "estimated",
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""
   },
   "10": {
    "lat": 21.284443,
@@ -91,13 +98,15 @@
    "route_offset_m": 31
   },
   "11": {
-   "lat": 21.280234,
-   "lng": -157.818553,
+   "lat": 21.283392,
+   "lng": -157.818898,
    "px": [
     425,
     325
    ],
-   "route_offset_m": 201
+   "route_offset_m": 0,
+   "confidence": "estimated",
+   "fix": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""
   },
   "12": {
    "lat": 21.282653,

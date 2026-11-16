@@ -1,15 +1,15 @@
 walk,stop,title,lat,lng,confidence,matched,map_link,book_page
 I,1,McCully Street,21.288529,-157.832924,book,placed from the book map,"https://www.google.com/maps?q=21.288529,-157.832924",p1-23
 I,2,Ala Wai Canal,21.288272,-157.832139,book,placed from the book map,"https://www.google.com/maps?q=21.288272,-157.832139",p1-25
-I,3,Ala Naio Stream,21.286802,-157.82954,book,placed from the book map,"https://www.google.com/maps?q=21.286802,-157.82954",p1-26
-I,4,Canoe hale,21.285497,-157.828314,book,placed from the book map,"https://www.google.com/maps?q=21.285497,-157.828314",p1-27
-I,5,University Avenue,21.285377,-157.827652,book,placed from the book map,"https://www.google.com/maps?q=21.285377,-157.827652",p1-27
+I,3,Ala Naio Stream,21.286423,-157.829891,book,"placed from the book map and corrected (Veneeta, email 'corrections', 2026-11-16: ""Stop 3 through 5 are on the canal"")","https://www.google.com/maps?q=21.286423,-157.829891",p1-26
+I,4,Canoe hale,21.285263,-157.828538,book,"placed from the book map and corrected (Veneeta, email 'corrections', 2026-11-16: ""Stop 3 through 5 are on the canal"")","https://www.google.com/maps?q=21.285263,-157.828538",p1-27
+I,5,University Avenue,21.284919,-157.828148,book,"placed from the book map and corrected (Veneeta, email 'corrections', 2026-11-16: ""Stop 3 through 5 are on the canal"")","https://www.google.com/maps?q=21.284919,-157.828148",p1-27
 I,6,Ala Wai Community Garden,21.284356,-157.827089,book,placed from the book map,"https://www.google.com/maps?q=21.284356,-157.827089",p1-27
-I,7,‘Iolani School,21.285317,-157.824345,book,placed from the book map,"https://www.google.com/maps?q=21.285317,-157.824345",p1-28
+I,7,‘Iolani School,21.283388,-157.826251,estimated,"placed from the book map and corrected (Veneeta, email 'corrections', 2026-11-16: ""Stops 7 to 11 leave the canal and go toward Date street"")","https://www.google.com/maps?q=21.283388,-157.826251",p1-28
 I,8,Mānoa-Pālolo Drainage Canal,21.282906,-157.82522,book,placed from the book map,"https://www.google.com/maps?q=21.282906,-157.82522",p1-28
-I,9,The Ridges and Valleys beyond,21.286829,-157.813829,book,placed from the book map,"https://www.google.com/maps?q=21.286829,-157.813829",p1-29
+I,9,The Ridges and Valleys beyond,21.283564,-157.822505,estimated,"placed from the book map and corrected (Veneeta, email 'corrections', 2026-11-16: ""Stops 7 to 11 leave the canal and go toward Date street"")","https://www.google.com/maps?q=21.283564,-157.822505",p1-29
 I,10,Original Confluence of the Streams,21.284443,-157.81966,book,placed from the book map,"https://www.google.com/maps?q=21.284443,-157.81966",p1-29
-I,11,Ala Wai Golf Course and Club,21.280234,-157.818553,book,placed from the book map,"https://www.google.com/maps?q=21.280234,-157.818553",p1-30
+I,11,Ala Wai Golf Course and Club,21.283392,-157.818898,estimated,"placed from the book map and corrected (Veneeta, email 'corrections', 2026-11-16: ""Stops 7 to 11 leave the canal and go toward Date street"")","https://www.google.com/maps?q=21.283392,-157.818898",p1-30
 I,12,Date Street,21.282653,-157.817786,book,placed from the book map,"https://www.google.com/maps?q=21.282653,-157.817786",p1-31
 I,13,Waikīkī Fire Station,21.272998,-157.816337,book,placed from the book map,"https://www.google.com/maps?q=21.272998,-157.816337",p1-31
 I,14,Waikīkī-Kapahulu Public Library,21.274485,-157.816933,book,placed from the book map,"https://www.google.com/maps?q=21.274485,-157.816933",p1-31

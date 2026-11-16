@@ -106,3 +106,13 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Author corrections to pins (16 Nov 2026)
+- **Common practice:** tour publishers place each trigger point on the walking route, positioned to suit the point of interest rather than on top of it. VoiceMap's publisher guide: "Make sure that you place it on the line" and "You don't need listeners to be on top of a location" (a distant mountain is their example).
+- **Our choice:**
+  - Pins still come from where Veneeta's map prints each number.
+  - When she corrects a pin, the correction goes in scripts/georef/author_fixes.json with her words, and build.py applies it. Nothing is hand-edited in src/data.
+  - "on: canal" moves the pin to the bank walkway, 10 m from the Ala Wai's edge (water from the bundled OpenStreetMap tiles, streams under about 20 m wide ignored).
+  - "on: route" is for stops whose numbers she prints as labels away from the path (a school's grounds, the mountains, the golf course). The pin goes on her red route halfway between the stops before and after. These pins are marked "estimated" with a 50 m arrival circle until checked on the ground.
+- **Why:** a pin off the route never triggers, so the walker misses the stop. Her email confirms the stops are read from the canal path and on the way to Date Street.
+- Sources: docs.voicemap.me/tour-publishers/choosing-locations/ (markers on the route line; listeners need not stand on the location).

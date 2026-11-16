@@ -131,9 +131,12 @@ for k, w in enumerate(SRC['walks']):
     for s in stops_src:
         bp = BOOK_PINS.get(wid, {}).get(str(s['n']))
         if bp:
-            s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': 'book', 'query': 'placed from the book map'}
+            s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': bp.get('confidence', 'book'),
+                        'query': 'placed from the book map' + (f" and corrected ({bp['fix']})" if bp.get('fix') else '')}
             if bp.get('route_offset_m', 0) > 10:
                 s['radius'] = min(90, bp['route_offset_m'] + 30)
+            elif bp.get('confidence') == 'estimated':
+                s['radius'] = 50  # placed on her route between neighbours; a wider circle so the alert still fires
 
     # Geo sanity check: discard hits far from the walk's centre, then interpolate gaps.
     pts = [(s['geo']['lat'], s['geo']['lng']) for s in stops_src if s.get('geo')]
