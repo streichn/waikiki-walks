@@ -282,9 +282,17 @@
     const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
     return hits + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
   }
+  // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
+  function centerBookOnMe(smooth) {
+    const pane = document.getElementById('bookpane'), dot = document.getElementById('bme'); if (!pane || !dot || dot.style.display === 'none') return;
+    const wrap = dot.parentElement, visibleH = pane.clientHeight - (S.view === 'go' ? sheetPx() : 0);
+    const x = wrap.offsetLeft + dot.offsetLeft, y = wrap.offsetTop + dot.offsetTop; // bookwrap is positioned inside the scrolling pane
+    S.bookAuto = Date.now();
+    pane.scrollTo({ left: x - pane.clientWidth / 2, top: y - visibleH / 2, behavior: smooth ? 'smooth' : 'auto' });
+  }
   function bookPane(w) {
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}${bookPins(w)}</div></div></div>
-      <div class="zoombtns"><button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
+      <div class="zoombtns">${S.view === 'go' ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
   function overlayCtl(w) {
@@ -486,7 +494,7 @@
     const step = 18; // meters per tick (a brisk, sped-up walk)
     if (d > 2) { const f = Math.min(1, step / d); S.me = { lat: S.me.lat + (target.lat - S.me.lat) * f, lng: S.me.lng + (target.lng - S.me.lng) * f }; }
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
-    const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; } }
+    const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
     if (dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
@@ -690,6 +698,11 @@
     $app.innerHTML = html;
     if (S.view === 'walk' && S.mode === 'map') mountWalkMap();
     if (S.view === 'go') { mountSheet(); mountGoMap(); }
+    const bp = document.getElementById('bookpane');
+    if (bp) {
+      bp.addEventListener('scroll', () => { if (Date.now() - (S.bookAuto || 0) > 900) S.bookFollow = false; }, { passive: true });
+      if (S.view === 'go' && S.bookFollow !== false) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
+    }
     if (S.view === 'stop') bindSwipe(document.getElementById('stopread'));
     if (!S.view && S.tab === 'explore') mountExplore();
     if (!S.view && S.tab === 'home') { showFact(); clearInterval(factTimer); factTimer = setInterval(() => { factIdx++; showFact(); }, 9000); }
@@ -751,6 +764,7 @@
         return toast(S.follow === 'off' ? 'Free map' : S.follow === 'follow' ? 'Following you' : 'Map turns with you');
       }
       if (a === 'layers') return openLayers(w);
+      if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
       if (a === 'here') { stopSim(); const p = S.progress[w.id]; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return goTo(S.progress[w.id].current + 1);
       if (a === 'prev') return goTo(S.progress[w.id].current - 1);

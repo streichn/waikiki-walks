@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
@@ -113,26 +113,44 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
   walk: Walk; current?: number; visited?: number[]; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
-  const { width } = useWindowDimensions();
+  const { width, height: screenH } = useWindowDimensions();
   const height = width / 0.7;
   const dot = me ? bookXY(walk.id, me.lat, me.lng) : null;
+  const scroll = useRef<ScrollViewInstance>(null);
+  const [follow, setFollow] = useState(true);
+  // Keep the walker's dot in the middle of the visible map, like follow mode on a street map.
+  const centerOnMe = () => {
+    if (!dot) return;
+    const visible = screenH - topInset - bottomInset;
+    scroll.current?.scrollTo({ y: Math.max(0, dot.y * height - visible / 2), animated: true });
+  };
+  useEffect(() => {
+    if (follow) centerOnMe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dot?.x, dot?.y, follow]);
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
+    <View style={{ flex: 1 }}>
+    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
         <Image source={photo(walk.bookMap)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map from the book`} />
         {walk.stops.map((s, i) => {
           // Her printed number is the pin; this is just an invisible tap target over it (ringed when current).
           const L = bookLabel(walk.id, s.n);
           if (!L) return null;
-          const on = i === current;
           return (
             <Pressable key={s.id} accessibilityLabel={`Stop ${s.n}, ${s.title}`} onPress={() => onSelect?.(i)}
-              style={[styles.bhit, { left: L.x * width - 18, top: L.y * height - 18 }, on && styles.bhitOn]} />
+              style={[styles.bhit, { left: L.x * width - 18, top: L.y * height - 18 }]} />
           );
         })}
-        {dot ? <View pointerEvents="none" style={[styles.me, { left: dot.x * width - 9, top: dot.y * height - 9 }]} /> : null}
+        {dot ? <View pointerEvents="none" style={[styles.me, { left: dot.x * width - 11, top: dot.y * height - 11 }]} /> : null}
       </View>
     </ScrollView>
+    {dot ? (
+      <Pressable accessibilityLabel="Go to my position" onPress={() => { tap(); setFollow(true); centerOnMe(); }} style={[styles.btn, styles.meBtn, { top: topInset + 46 }]}>
+        <Ionicons name={follow ? 'navigate' : 'navigate-outline'} size={22} color="#1A73E8" />
+      </Pressable>
+    ) : null}
+    </View>
   );
 }
 
@@ -163,9 +181,9 @@ const styles = StyleSheet.create({
   sheet: { margin: 12, borderRadius: 22, padding: 16, gap: 10 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, borderWidth: 1.5 },
   bhit: { position: 'absolute', width: 36, height: 36, borderRadius: 18 },
-  bhitOn: { borderWidth: 3, borderColor: '#D6336C' },
   bpin: { position: 'absolute', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#fff', shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 3 },
-  me: { position: 'absolute', width: 18, height: 18, borderRadius: 9, backgroundColor: '#1A73E8', borderWidth: 3, borderColor: '#fff', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
+  meBtn: { position: 'absolute', left: 14, backgroundColor: '#fff', borderColor: '#ddd' },
+  me: { position: 'absolute', width: 22, height: 22, borderRadius: 11, backgroundColor: 'rgba(26,115,232,0.55)', borderWidth: 2, borderColor: 'rgba(255,255,255,0.85)', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
   styleSwitch: { flexDirection: 'row', padding: 3, gap: 3, borderRadius: 14, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 8, shadowOffset: { width: 0, height: 2 }, elevation: 4 },
   styleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 11 },
   close: { position: 'absolute', right: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center' },
