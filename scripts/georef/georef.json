@@ -16482,5 +16482,574 @@
     "name": "Harding Avenue x 9th Avenue"
    }
   ]
+ },
+ "X-p3": {
+  "affine": [
+   [
+    -0.190455354562751,
+    -0.5150066830165956
+   ],
+   [
+    -0.519931759164982,
+    0.18930152936087521
+   ],
+   [
+    1795.1622757127793,
+    326.79394620640915
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 12.7,
+  "controls": [
+   {
+    "px": 632,
+    "py": 545,
+    "lat": 21.2990638,
+    "lng": -157.8266143,
+    "name": "Wilder Avenue x Metcalf Street"
+   },
+   {
+    "px": 686,
+    "py": 632,
+    "lat": 21.2986694,
+    "lng": -157.8283848,
+    "name": "Metcalf Street x Dole Street"
+   },
+   {
+    "px": 592,
+    "py": 672,
+    "lat": 21.300432,
+    "lng": -157.8287032,
+    "name": "Wilder Avenue x Artesian Way"
+   },
+   {
+    "px": 575,
+    "py": 770,
+    "lat": 21.3012438,
+    "lng": -157.8299584,
+    "name": "Wilder Avenue x Alexander Street"
+   },
+   {
+    "px": 552,
+    "py": 862,
+    "lat": 21.3020946,
+    "lng": -157.8312627,
+    "name": "Wilder Avenue x Halekula Way"
+   },
+   {
+    "px": 542,
+    "py": 900,
+    "lat": 21.3024715,
+    "lng": -157.8318341,
+    "name": "Wilder Avenue x Spreckels Street"
+   },
+   {
+    "px": 530,
+    "py": 945,
+    "lat": 21.3029089,
+    "lng": -157.8324585,
+    "name": "Wilder Avenue x Punahou Street"
+   },
+   {
+    "px": 360,
+    "py": 855,
+    "lat": 21.3050057,
+    "lng": -157.8302437,
+    "name": "M\u0101noa Road x Nehoa Street"
+   },
+   {
+    "px": 150,
+    "py": 565,
+    "lat": 21.3065057,
+    "lng": -157.824119,
+    "name": "M\u0101noa Road x Kamehameha Avenue"
+   },
+   {
+    "px": 197,
+    "py": 305,
+    "lat": 21.3044324,
+    "lng": -157.8198844,
+    "name": "O\u02bbahu Avenue x Ka\u02bbala Street"
+   },
+   {
+    "px": 212,
+    "py": 612,
+    "lat": 21.3058743,
+    "lng": -157.8252436,
+    "name": "M\u0101noa Road x Lanihuli Drive"
+   },
+   {
+    "px": 744.0,
+    "py": 658.0,
+    "lat": 21.2979488,
+    "lng": -157.8292757,
+    "name": "McCully Street",
+    "kind": "road"
+   },
+   {
+    "px": 70.0,
+    "py": 223.0,
+    "lat": 21.305764142857143,
+    "lng": -157.81778454285714,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 428.0,
+    "py": 294.0,
+    "lat": 21.3007531,
+    "lng": -157.8210618,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 696.0,
+    "py": 215.0,
+    "lat": 21.296320128571427,
+    "lng": -157.8212533857143,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 705.0,
+    "py": 219.0,
+    "lat": 21.29588766,
+    "lng": -157.82127208,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 611.0,
+    "py": 233.0,
+    "lat": 21.297660233333335,
+    "lng": -157.82121033333334,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 636.0,
+    "py": 224.0,
+    "lat": 21.297213513333332,
+    "lng": -157.82122789333334,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 660.0,
+    "py": 215.0,
+    "lat": 21.2968201,
+    "lng": -157.8211277,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 387.0,
+    "py": 293.0,
+    "lat": 21.3013867,
+    "lng": -157.8208813,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 673.0,
+    "py": 210.0,
+    "lat": 21.296569366666667,
+    "lng": -157.8211314,
+    "name": "University Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 592.0,
+    "py": 772.0,
+    "lat": 21.3009538,
+    "lng": -157.830143,
+    "name": "Alexander Street",
+    "kind": "road"
+   },
+   {
+    "px": 674.0,
+    "py": 790.0,
+    "lat": 21.299747,
+    "lng": -157.8309701,
+    "name": "Alexander Street",
+    "kind": "road"
+   },
+   {
+    "px": 743.0,
+    "py": 806.0,
+    "lat": 21.29860174285714,
+    "lng": -157.83162722857142,
+    "name": "Alexander Street",
+    "kind": "road"
+   },
+   {
+    "px": 697.0,
+    "py": 794.0,
+    "lat": 21.2994326,
+    "lng": -157.8312193,
+    "name": "Alexander Street",
+    "kind": "road"
+   },
+   {
+    "px": 616.0,
+    "py": 910.0,
+    "lat": 21.301368166666666,
+    "lng": -157.83250046666666,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 666.0,
+    "py": 702.0,
+    "lat": 21.29940688,
+    "lng": -157.82949202,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 672.0,
+    "py": 677.0,
+    "lat": 21.2991394,
+    "lng": -157.829089,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 650.0,
+    "py": 176.0,
+    "lat": 21.2967857,
+    "lng": -157.8203226,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 636.0,
+    "py": 151.0,
+    "lat": 21.29677045,
+    "lng": -157.819808575,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 625.0,
+    "py": 128.0,
+    "lat": 21.296752626666667,
+    "lng": -157.81923466666666,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 689.0,
+    "py": 327.0,
+    "lat": 21.296883433333335,
+    "lng": -157.82306686666666,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 664.0,
+    "py": 245.0,
+    "lat": 21.296835275,
+    "lng": -157.821604175,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 710.0,
+    "py": 440.0,
+    "lat": 21.2971801,
+    "lng": -157.8251874,
+    "name": "Dole Street",
+    "kind": "road"
+   },
+   {
+    "px": 150.0,
+    "py": 563.0,
+    "lat": 21.3065057,
+    "lng": -157.824119,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 167.0,
+    "py": 459.0,
+    "lat": 21.305623447058824,
+    "lng": -157.82243848235294,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 176.0,
+    "py": 435.0,
+    "lat": 21.30540194117647,
+    "lng": -157.82202264705882,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 200.0,
+    "py": 389.0,
+    "lat": 21.3048824,
+    "lng": -157.821351,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 227.0,
+    "py": 386.0,
+    "lat": 21.304415833333334,
+    "lng": -157.82148976666667,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 275.0,
+    "py": 382.0,
+    "lat": 21.3035845,
+    "lng": -157.8217477,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 289.0,
+    "py": 319.0,
+    "lat": 21.303047,
+    "lng": -157.8208031,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 291.0,
+    "py": 336.0,
+    "lat": 21.3030568,
+    "lng": -157.8211155,
+    "name": "Kamehameha Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 204.0,
+    "py": 279.0,
+    "lat": 21.30412445,
+    "lng": -157.8196104,
+    "name": "Ka\u02bbala Street",
+    "kind": "road"
+   },
+   {
+    "px": 202.0,
+    "py": 291.0,
+    "lat": 21.3042859,
+    "lng": -157.8198314,
+    "name": "Ka\u02bbala Street",
+    "kind": "road"
+   },
+   {
+    "px": 212.0,
+    "py": 610.0,
+    "lat": 21.3058743,
+    "lng": -157.8252436,
+    "name": "Lanihuli Drive",
+    "kind": "road"
+   },
+   {
+    "px": 230.0,
+    "py": 477.0,
+    "lat": 21.30479124,
+    "lng": -157.823112756,
+    "name": "Lanihuli Drive",
+    "kind": "road"
+   },
+   {
+    "px": 713.0,
+    "py": 683.0,
+    "lat": 21.2983996,
+    "lng": -157.8294636,
+    "name": "Metcalf Street",
+    "kind": "road"
+   },
+   {
+    "px": 712.0,
+    "py": 715.0,
+    "lat": 21.2986083,
+    "lng": -157.8299495,
+    "name": "Metcalf Street",
+    "kind": "road"
+   },
+   {
+    "px": 535.0,
+    "py": 295.0,
+    "lat": 21.2991143,
+    "lng": -157.8217787,
+    "name": "Metcalf Street",
+    "kind": "road"
+   },
+   {
+    "px": 45.0,
+    "py": 486.0,
+    "lat": 21.307641457142857,
+    "lng": -157.82213704285715,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 317.0,
+    "py": 787.0,
+    "lat": 21.3053059,
+    "lng": -157.8288921,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 282.0,
+    "py": 709.0,
+    "lat": 21.3053383,
+    "lng": -157.8273966,
+    "name": "M\u0101noa Road",
+    "kind": "road"
+   },
+   {
+    "px": 342.0,
+    "py": 896.0,
+    "lat": 21.30549823333333,
+    "lng": -157.83073793333332,
+    "name": "Nehoa Street",
+    "kind": "road"
+   },
+   {
+    "px": 218.0,
+    "py": 307.0,
+    "lat": 21.304162433333335,
+    "lng": -157.82004783333332,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 184.0,
+    "py": 303.0,
+    "lat": 21.304561064705883,
+    "lng": -157.81980749411764,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 261.0,
+    "py": 314.0,
+    "lat": 21.303454600000002,
+    "lng": -157.8204735,
+    "name": "O\u02bbahu Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 569.0,
+    "py": 956.0,
+    "lat": 21.30235679090909,
+    "lng": -157.83289221818183,
+    "name": "Punahou Street",
+    "kind": "road"
+   },
+   {
+    "px": 741.0,
+    "py": 982.0,
+    "lat": 21.2998505,
+    "lng": -157.8346097,
+    "name": "Punahou Street",
+    "kind": "road"
+   },
+   {
+    "px": 525.0,
+    "py": 944.0,
+    "lat": 21.302968619999998,
+    "lng": -157.83239436,
+    "name": "Punahou Street",
+    "kind": "road"
+   },
+   {
+    "px": 769.0,
+    "py": 298.0,
+    "lat": 21.295617505,
+    "lng": -157.82265712,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 766.0,
+    "py": 320.0,
+    "lat": 21.295838574999998,
+    "lng": -157.8230758,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 720.0,
+    "py": 392.0,
+    "lat": 21.2965606,
+    "lng": -157.82437285,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 536.0,
+    "py": 915.0,
+    "lat": 21.30261478,
+    "lng": -157.83205634,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 543.0,
+    "py": 886.0,
+    "lat": 21.3023383,
+    "lng": -157.831632275,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 551.0,
+    "py": 857.0,
+    "lat": 21.3020534,
+    "lng": -157.8311990625,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 557.0,
+    "py": 831.0,
+    "lat": 21.3018062,
+    "lng": -157.8308172375,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 711.0,
+    "py": 428.0,
+    "lat": 21.297068575,
+    "lng": -157.824980925,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 529.0,
+    "py": 942.0,
+    "lat": 21.3029089,
+    "lng": -157.8324585,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   },
+   {
+    "px": 699.0,
+    "py": 434.0,
+    "lat": 21.2972036,
+    "lng": -157.82509846666667,
+    "name": "Wilder Avenue",
+    "kind": "road"
+   }
+  ],
+  "road_fit_pct": 94
  }
 }

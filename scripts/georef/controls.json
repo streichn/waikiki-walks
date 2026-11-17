@@ -1140,5 +1140,85 @@
    "Harding Avenue",
    "9th Avenue"
   ]
+ ],
+ "X-p3": [
+  [
+   632,
+   545,
+   "Wilder Avenue",
+   "Metcalf Street"
+  ],
+  [
+   686,
+   632,
+   "Metcalf Street",
+   "Dole Street"
+  ],
+  [
+   592,
+   672,
+   "Wilder Avenue",
+   "Artesian Way"
+  ],
+  [
+   575,
+   770,
+   "Wilder Avenue",
+   "Alexander Street"
+  ],
+  [
+   552,
+   862,
+   "Wilder Avenue",
+   "Halekula Way"
+  ],
+  [
+   542,
+   900,
+   "Wilder Avenue",
+   "Spreckels Street"
+  ],
+  [
+   530,
+   945,
+   "Wilder Avenue",
+   "Punahou Street"
+  ],
+  [
+   360,
+   855,
+   "Mānoa Road",
+   "Nehoa Street"
+  ],
+  [
+   150,
+   565,
+   "Mānoa Road",
+   "Kamehameha Avenue"
+  ],
+  [
+   185,
+   395,
+   "Kamehameha Avenue",
+   "Hunnewell Street"
+  ],
+  [
+   197,
+   305,
+   "Oʻahu Avenue",
+   "Kaʻala Street"
+  ],
+  [
+   405,
+   410,
+   "Hunnewell Street",
+   "Vancouver Drive"
+  ],
+  [
+   212,
+   612,
+   "Mānoa Road",
+   "Lanihuli Drive"
+  ]
  ]
 }

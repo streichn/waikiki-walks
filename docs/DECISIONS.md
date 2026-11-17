@@ -165,3 +165,15 @@ We store no addresses, phone numbers, birthdates, or payment details.
 - **Why:** these are the last pages a walker reads on every walk, and the first lines of every introduction. The fix uses only the book's own text and order.
 - **Still open:** Walk I stop 38 (Niu Street) ends "the most common" in the book itself; the rest of the sentence is not in the PDF. A few photos still sit one stop late (for example the Hawaiian Burial Memorial photo shows under Walk VI stop 2).
 - Sources: docs.voicemap.me/tour-publishers/the-first-location/ (what the first location does); appshunter.io/ios/app/417207307/reviews/3 (GPSmyCity App Store reviews on content errors).
+
+## Walk X map spread: the left-hand page (17 Nov 2026)
+- **How it is normally done:** a map printed across two facing pages is georeferenced page by page, or the pages are stitched first. Either way each page needs its own ground control points spread over the area it shows, and the fit is judged by residuals. Tour publishers then place each trigger on the walking line, with a radius of at least about 20 m, and test on the ground whether audio starts "too early, too late, or not at all" (VoiceMap publisher guide).
+- **What we chose:**
+  - Treat the left-hand page (part 3, PDF page 3, book page 152) as another extra map page in scripts/georef/pages.json, keyed X-p3. Stitching was not needed: fitting each page to real streets puts both in the same coordinates.
+  - 13 labeled crossings read off the page; the fit dropped two that disagreed with the rest (Kamehameha Ave x Hunnewell St, Hunnewell St x Vancouver Dr). 11 kept, 13 m RMS. Refined against 11 local streets in roads.py (76 to 94 percent of road points on her streets).
+  - Stop numbers from the PDF's own text positions (pages.py), not read by eye. Side strolls 25A and 27A are left out, as 22A was on Walk VIII.
+  - The 16 Nov entry above said stops 7 to 29 were "not on any map". That was wrong: they are on this page, which earlier runs had not recognised as part of the spread.
+- **Check:** four of the 23 stops also had a named place in OpenStreetMap. Her map puts them 11 to 41 m from it, about the fit error. That supports trusting her map for the other 19, which had been guesses.
+- **Why:** stops 7 to 29 are the Punahou and College Hills part of the longest walk. With pins up to 800 m off, arrival alerts would have fired in the wrong place or not at all.
+- **Still open:** Walk X stops 40 to 43 (upper valley page, too schematic to fit). Walk XII stops 15 to 28 (lower campus) are on no map in the book; checked every page of part 3. The Walk XI map (part 3, page 37) is not yet fitted.
+- Sources: docs.voicemap.me/tour-publishers/choosing-locations/ (markers on the route line, 21 m minimum radius, GPS bounce near buildings); docs.voicemap.me/tour-publishers/testing/ (on-the-ground testing of triggers); docs.qgis.org/3.4/en/docs/user_manual/working_with_raster/georeferencer.html (control points and residuals).

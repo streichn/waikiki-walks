@@ -16,9 +16,11 @@ MAJOR = ['Kalākaua Avenue', 'Kūhiō Avenue', 'Ala Wai Boulevard', 'Kapahulu Av
          'Lewers Street', 'Seaside Avenue', 'Liliʻuokalani Avenue', 'Kaʻiulani Avenue', 'Royal Hawaiian Avenue',
          'South King Street', 'South Beretania Street', 'Waiʻalae Avenue', 'Harding Avenue', 'University Avenue', 'Diamond Head Road']
 
-# Streets used only for one map (upper Mānoa), so refits of the other maps are unchanged.
+# Streets used only for one map (upper Mānoa; Punahou and College Hills), so refits of the other maps are unchanged.
 LOCAL = {'X-p6': ['Oʻahu Avenue', 'East Mānoa Road', 'Mānoa Road', 'Woodlawn Drive', 'Lowrey Avenue', 'Kamehameha Avenue',
-                  'Kaʻala Street', 'Hunnewell Street', 'Maile Way', 'Kaʻaipu Avenue', 'Ānuenue Street', 'Alaula Way']}
+                  'Kaʻala Street', 'Hunnewell Street', 'Maile Way', 'Kaʻaipu Avenue', 'Ānuenue Street', 'Alaula Way'],
+         'X-p3': ['Wilder Avenue', 'Punahou Street', 'Mānoa Road', 'Metcalf Street', 'Dole Street', 'Kamehameha Avenue',
+                  'Oʻahu Avenue', 'Nehoa Street', 'Kaʻala Street', 'Alexander Street', 'Lanihuli Drive']}
 
 def tps_fit(src, dst, lam):
     n = len(src); d = np.linalg.norm(src[:, None] - src[None], axis=2)

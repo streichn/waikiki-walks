@@ -13,5 +13,12 @@
   "page": 50,
   "book_page": 119,
   "what": "Second Walk VIII map: Waiʻalae Avenue, Kaimukī, the puʻu, Ocean View Drive, Makapuʻu Avenue to Diamond Head Road (stops 15 to 32; 22A is a detour, not an app stop)"
+ },
+ "X-p3": {
+  "walk": "X",
+  "pdf": "book/part3_walks_X-XII.pdf",
+  "page": 3,
+  "book_page": 152,
+  "what": "Left page of the Walk X map spread: McCully Street to Wilder Avenue, Punahou, Mānoa Road, O‘ahu Avenue (stops 7 to 29; 25A and 27A are side strolls, not app stops)"
  }
 }

@@ -112,3 +112,10 @@
 - Walk XI stop 1 now shows the book's McCully Street stop. It had been showing Walk XII's Kapahulu Avenue stop. Walk VI stop 1 (Hawaiian Burial Memorial) and Walk XII stop 1 (Kapahulu Avenue) get back their opening paragraphs, and Walk XII stop 1 gets its two photos.
 - Walk XI stop 1's pin sits at McCully Street and the Ala Wai Canal, the same spot as Walk I stop 1 on Veneeta's map (Walk XI has no map of its own).
 - New scripts/extract/walk_ends.json records where each walk ends in the PDF, checked page by page; build_data.py applies it.
+
+## 2026-11-17 · Walk X stops 7 to 29 from the left half of the book's Walk X map
+- The Walk X map in the book is a two-page spread. The app used only the right-hand page (stops 1 to 6) and the "CONTINUE WALK X" page (30 to 52). The left-hand page (part 3, book page 152) prints stops 7 to 29: Dole and Metcalf streets, Wilder Avenue past Punahou School, Mānoa Road and College Hills to Ka‘ala Way. It is now fitted to real streets (11 street crossings, 13 m average error; 94 percent of road points land on her streets) and those 23 stops sit where she prints their numbers.
+- They had been estimates and place-name lookups. 13 of them moved more than 100 m, and stop 7 (Dole Street) moved almost 800 m.
+- Check on the fit: four of these stops had an independent OpenStreetMap place (Sacred Heart Church, Montague Hall, Halekula Way, Lanihuli Drive). Her map puts each within 11 to 41 m of it.
+- Stops 13, 18 and 26, whose numbers sit 70 to 150 m beside her path, get a trigger point on the path so arrival alerts still fire. Side strolls 25A and 27A are not pinned.
+- Walk X now has 48 of 52 stops from her maps. Stops 40 to 43 (upper valley) are the only ones left.
