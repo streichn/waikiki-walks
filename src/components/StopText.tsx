@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { lookupWord } from '../data';
 import type { Block, GlossaryEntry } from '../data/types';
@@ -18,6 +18,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
   const scale = useSettings((s) => s.textScale);
   const speaking = useNarration((s) => (s.speakingStopId === stopId ? s.paragraph : -2));
   const [word, setWord] = useState<GlossaryEntry | null>(null);
+  const firsts = useMemo(() => firstGlossaryHits(blocks), [blocks]);
   let readable = -1;
 
   return (
@@ -29,7 +30,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
           return (
             <View key={i} style={[styles.direction, { backgroundColor: t.dark ? '#103A3E' : '#E3F3F1', borderColor: active ? t.gold : 'transparent' }]}>
               <Ionicons name="walk" size={20} color={t.primary} style={{ marginTop: 2 }} />
-              <Rich text={b.text} onWord={setWord} style={{ flex: 1, fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale, color: t.text }} />
+              <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ flex: 1, fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale, color: t.text }} />
             </View>
           );
         }
@@ -59,7 +60,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
         }
         return (
           <View key={i} style={[active && { backgroundColor: t.dark ? '#3A2A10' : '#FFF0D6', borderRadius: 10, marginHorizontal: -8, paddingHorizontal: 8 }]}>
-            <Rich text={b.text} onWord={setWord} style={{ fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 27 * scale, color: t.text }} />
+            <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 27 * scale, color: t.text }} />
           </View>
         );
       })}
@@ -84,13 +85,32 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
 
 const WORD = /([A-Za-zĀāĒēĪīŌōŪū‘ʻ’']+)/;
 
-function Rich({ text, style, onWord }: { text: string; style: object; onWord: (g: GlossaryEntry) => void }) {
+/** Underline a glossary word only the first time it appears on a stop, so the text stays easy to read. */
+function firstGlossaryHits(blocks: Block[]): Set<number>[] {
+  const seen = new Set<string>();
+  return blocks.map((b) => {
+    const hits = new Set<number>();
+    if (b.kind !== 'p' && b.kind !== 'direction') return hits;
+    b.text.split(WORD).forEach((p, i) => {
+      if (i % 2 === 1 && p.length > 2) {
+        const g = lookupWord(p);
+        if (g && !seen.has(g.word)) {
+          seen.add(g.word);
+          hits.add(i);
+        }
+      }
+    });
+    return hits;
+  });
+}
+
+function Rich({ text, style, hits, onWord }: { text: string; style: object; hits: Set<number>; onWord: (g: GlossaryEntry) => void }) {
   const t = useTheme();
   const parts = text.split(WORD);
   return (
     <Text style={style}>
       {parts.map((p, i) => {
-        if (i % 2 === 1 && p.length > 2) {
+        if (hits.has(i)) {
           const g = lookupWord(p);
           if (g)
             return (

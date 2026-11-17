@@ -67,6 +67,20 @@
 - Arriving at a stop no longer resizes the panel or moves the map; the book map stops scrolling at its bottom edge.
 - Demo walk continues onto each stop's exact spot (her printed number) before moving on.
 
+## 2026-11-16 · Headings and captions match the book
+- Walk 4 stop 1: the location lines (Waikīkī Gateway Park, Kalākaua Avenue, Kūhiō Avenue) and "King Kalākaua welcomes you to Waikīkī!" were run together into one walking direction. They now show as the stop's location and a heading, as on page 51 of the book.
+- Fixed about 35 other stop headings that were split, merged, or picked up stray text (scripts/extract/heading_fixes.json, each checked against the book page).
+- Bold lead-in lines that the parser cut mid-sentence are rejoined; short bold sub-headings no longer show as walking directions.
+- Restored Walk 4 stop 19 and Walk 11 stop 27, which the book prints inline without a bold heading.
+- Home screen and walk covers no longer use book photos with their printed captions cut off at the edge.
+- Hawaiian glossary words are underlined only the first time they appear on a stop.
+- Guest first: no sign-in prompt at launch. Sign-in stays in Profile.
+
+## 2026-11-16 · Photo captions out of the text; missing stops restored
+- About 36 photo captions had been read as body text, some in the middle of a sentence (for example "this cool The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives) freshwater stream"). They are now captions under the photos, and they are no longer read aloud. Source list: scripts/extract/captions.py → captions.json.
+- Restored Walk 9 stop 2 (Waikīkī-Kapahulu Public Library) and Walk 10 stops 9, 13, 21, 22, 23, 28 and 30, which the book prints inline. Every walk now has every number.
+- Walk 9 stop 4 title is "First Hawaiian Bank".
+
 ## 2026-11-16 · Walk I pins follow the canal (Veneeta's corrections)
 - Stops 3, 4 and 5 now sit on the canal-side walkway, as Veneeta wrote ("Stop 3 through 5 are on the canal"). They had landed inside Ala Wai Community Park.
 - Stops 7, 9 and 11, whose numbers her map prints away from the path, now sit on her route between their neighbours, so arrival alerts fire on the way to Date Street. Marked "estimated" with a 50 m arrival circle.
@@ -86,7 +100,6 @@
 - New scripts/georef/waterways.py lifts the waterways off each map and writes assets/waterways/*.png, src/data/waterways.json and src/data/waterways.ts.
 - "Waterways from the book" switch in the map style menu, on by default; saved and synced with the other settings.
 - Web preview: same layer and switch; map style menu icons are sized correctly.
-
 
 ## 2026-11-17 · Walk VIII pins from the book's second map; arrival on the path for stops printed beside it
 - Walk VIII (Kaimukī) runs onto a second map page in the book (part 2, book page 119) that the app had not used. It is now fitted to real streets (11 street crossings, 14 m average error) and places stops 15 to 32 where Veneeta prints their numbers: Waiʻalae Avenue, the puʻu, Ocean View Drive, Makapuʻu Avenue and Diamond Head Road. These had been guesses; stops 18 to 22 were 0.5 to 2.3 km off, and stop 32 (Monsarrat Avenue) sat 1.5 km away near Kapahulu. Stop 22A is a detour, not a separate stop, and is not pinned.

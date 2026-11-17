@@ -75,6 +75,106 @@ def clean_blocks(blocks):
     return out
 
 
+SENT_END = re.compile(r'[.!?:”"’)\]]\s*$')
+PREP_END = re.compile(r'\b(along|to|the|of|and|at|on|in|for|a|or|by|from|is|are|named|means|obviously)\s*$', re.I)
+
+
+def join_text(a, b):
+    a = a.rstrip()
+    if a.endswith('-') and b[:1].islower():
+        return a[:-1] + b
+    return a + ' ' + b
+
+
+def repair_blocks(blocks):
+    """The parser cuts a paragraph where the book's bold lead-in line ends, so a bold first line
+    ("Cross Date Street at Lā‘au Street. On the") becomes its own block and the sentence continues
+    in the next one. Keep the complete bold sentences as the direction and rejoin the rest.
+    Short bold lines with no sentence ending are sub-headings in the book, not directions."""
+    out = []
+    i = 0
+    while i < len(blocks):
+        b = dict(blocks[i])
+        nxt = blocks[i + 1] if i + 1 < len(blocks) else None
+        if (b['kind'] == 'direction' and nxt and nxt['kind'] == 'p' and not SENT_END.search(b['text'])
+                and (nxt['text'][:1].islower() or b['text'].rstrip().endswith(('-', ',')))):
+            t = b['text']
+            cut = max((m.end() for m in re.finditer(r'[.!?]["”’)]?\s+(?=[A-Z‘“])', t)), default=0)
+            if cut:
+                out.append({'kind': 'direction', 'text': t[:cut].strip()})
+                rest = t[cut:].strip()
+            else:
+                rest = t
+            out.append({'kind': 'p', 'text': join_text(rest, nxt['text'])})
+            i += 2
+            continue
+        t = b['text']
+        if (b['kind'] == 'direction' and len(t) < 45 and not SENT_END.search(t) and not PREP_END.search(t)
+                and not t.endswith(',') and (t[:1].isupper() or t[:1].isdigit() or t[:1] in '‘“')
+                and 'www' not in t and '.com' not in t and not t.startswith('•')):
+            b['kind'] = 'heading'
+        out.append(b)
+        i += 1
+    return out
+
+
+def _cap(t):
+    t = re.sub(r'\s+', ' ', t).strip()
+    t = re.sub(r'(\w)- ([a-z])', r'\1\2', t)  # undo line-end hyphenation
+    return t
+
+
+CAPTIONS = sorted({_cap(c['text']) for c in json.load(open(f'{ROOT}/scripts/extract/captions.json'))}, key=len, reverse=True) if os.path.exists(f'{ROOT}/scripts/extract/captions.json') else []
+
+
+def pull_captions(blocks):
+    """Photo captions in the book sit beside the photos in small Arial type. The PDF parser sometimes
+    reads them as body text, even in the middle of a sentence. Move each one out into a caption block."""
+    out = []
+    for b in blocks:
+        if b['kind'] not in ('p', 'direction'):
+            out.append(b)
+            continue
+        t, found = re.sub(r'\s+', ' ', b['text']).strip(), []
+        for c in CAPTIONS:
+            if len(c) >= 12 and c in t:
+                t = re.sub(r'\s+', ' ', t.replace(c, ' ')).strip()
+                found.append(c)
+        if re.fullmatch(r'\((Hawai‘i State|University) Archives\)', t):
+            found.append(t)
+            t = ''
+        if t and not re.fullmatch(r'[\W\d]*', t):
+            prev = next((o for o in reversed(out) if o['kind'] in ('p', 'direction')), None)
+            if found and prev and t[:1].islower() and not SENT_END.search(prev['text']):
+                prev['text'] = join_text(prev['text'], t)  # a caption had split this sentence
+            else:
+                out.append({**b, 'text': t})
+        out.extend({'kind': 'caption', 'text': re.sub(r'^Caption:\s*', '', c)} for c in found)
+    return out
+
+
+HEADING_FIXES = json.load(open(f'{ROOT}/scripts/extract/heading_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/heading_fixes.json') else {}
+
+
+def apply_heading_fix(sid, title, sub, blocks):
+    fx = HEADING_FIXES.get(sid)
+    if not fx:
+        return title, sub, blocks
+    title = fx.get('title', title)
+    sub = fx['subtitle'] if 'subtitle' in fx else sub
+    if fx.get('first_prefix') and blocks:
+        blocks = [{**blocks[0], 'text': fx['first_prefix'] + blocks[0]['text']}] + blocks[1:]
+    if fx.get('drop_first'):
+        blocks = blocks[1:]
+    for pre in fx.get('prepend', []):
+        blocks = [pre] + blocks
+    for ins in fx.get('insert', []):
+        k = next((j for j, bb in enumerate(blocks) if bb['text'].startswith(ins['before'])), None)
+        if k is not None:
+            blocks = blocks[:k] + [{'kind': ins['kind'], 'text': ins['text']}] + blocks[k:]
+    return title, sub, blocks
+
+
 images_used = set()
 walks = []
 review = []
@@ -83,7 +183,7 @@ for k, w in enumerate(SRC['walks']):
     title, theme = TITLES[wid]
     intro_blocks = clean_blocks(w.get('blocks'))
     info = [b['text'] for b in intro_blocks if b['kind'] == 'info' and len(b['text']) > 20]
-    intro = [b for b in intro_blocks if b['kind'] != 'info']
+    intro = [b for b in pull_captions(intro_blocks) if b['kind'] not in ('info', 'caption')]
     stops_in = w['stops']
     # Drop duplicate numbers that are cross-references (keep first occurrence in order).
     seen, stops_src = set(), []
@@ -185,6 +285,7 @@ for k, w in enumerate(SRC['walks']):
             images_used.add(im['file'])
         blocks = clean_blocks(s.get('blocks'))
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
+        blocks = pull_captions(blocks)
         caps = [b for b in blocks if b['kind'] == 'caption']
         for p, c in zip(photos, caps):
             p['caption'] = c['text']
@@ -193,6 +294,10 @@ for k, w in enumerate(SRC['walks']):
         stitle, sub = re.sub(r'[\x00-\x1f]', '', s['title']).strip(' |-–.'), s.get('subtitle')
         if sub and (stitle.endswith((' of', ' the', ' and', ' at', ' a')) or s['title'].rstrip().endswith(('-', '–', '|')) or sub[:1].islower()):
             stitle, sub = f"{stitle} {sub}".replace('  ', ' '), None
+        blocks = repair_blocks(blocks)
+        if sub:
+            sub = re.sub(r'\s+', ' ', re.sub(r'[\x00-\x1f]', '', sub)).strip() or None
+        stitle, sub, blocks = apply_heading_fix(f"{wid}-{s['n']:02d}", stitle, sub, blocks)
         s['title'], s['subtitle'] = stitle, sub
         stops.append({
             'id': f"{wid}-{s['n']:02d}", 'n': s['n'], 'title': s['title'].rstrip(' .:'),
@@ -204,7 +309,7 @@ for k, w in enumerate(SRC['walks']):
         })
         if not cover:
             for p in photos:
-                if p['w'] >= p['h'] * 1.15 and p['w'] >= 500 and OVERLAY.get(p['file'], 0) < 0.02:
+                if p['w'] >= p['h'] * 1.15 and p['w'] >= 500 and OVERLAY.get(p["file"], 0) < 0.003:
                     cover = p['file']
                     break
         review.append({'walk': wid, 'stop': s['n'], 'title': s['title'], 'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6),
@@ -213,13 +318,15 @@ for k, w in enumerate(SRC['walks']):
     for im in w.get('images', []):
         if im['w'] >= 260:
             images_used.add(im['file'])
-            if not cover and im['w'] >= im['h'] * 1.15 and im['w'] >= 500 and OVERLAY.get(im['file'], 0) < 0.02:
+            if not cover and im['w'] >= im['h'] * 1.15 and im['w'] >= 500 and OVERLAY.get(im["file"], 0) < 0.003:
                 cover = im['file']
     if not cover:
         land = [p for st in stops for p in st['photos'] if p['w'] >= p['h'] * 1.1 and p['w'] >= 400]
         land.sort(key=lambda p: OVERLAY.get(p['file'], 0))
         if land:
             cover = land[0]['file']
+    # Hand-picked covers where the automatic pick was a sliver or a photo with its book caption printed on it.
+    cover = {'I': 'p1-26-65.jpg', 'III': 'p1-71-122.jpg'}.get(wid, cover)
     # Book map page rendered as an image for the "book map" view.
     book_map = None
     if wid in MAP_PAGES:
