@@ -19,8 +19,8 @@ def fit(points):
 
 def run(walk_id, controls):
     pts = []
-    for px, py, a, b in controls:
-        c = crossing(a, b)
+    for px, py, a, b, *near in controls:
+        c = crossing(a, b, near[0] if near else None)  # optional [lat, lng] picks between two crossings of the same streets
         if not c or c[2] > 25: print(f'  skip {a} x {b}: {"not found" if not c else f"streets {c[2]} m apart"}'); continue
         x, y = to_m(c[0], c[1]); pts.append([px, py, x, y, f'{a} x {b}', c[0], c[1]])
     for rnd in range(3):

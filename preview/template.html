@@ -228,6 +228,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .modal.center { align-items: center; padding: 24px; }
 .modal.center .panel { border-radius: 22px; }
 .plan { display: flex; gap: 12px; align-items: center; width: 100%; padding: 16px; border-radius: 18px; border: 2px solid var(--line); background: var(--card); text-align: left; position: relative; }
+.plan > svg { width: 24px; height: 24px; flex: none; }
 .plan[aria-checked="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--card)); }
 .plan .best { position: absolute; top: -9px; right: 14px; background: var(--gold); color: #3a2200; font: 800 10px var(--body); padding: 2px 8px; border-radius: 8px; }
 .perk { display: flex; gap: 10px; align-items: center; }
@@ -258,6 +259,7 @@ input[type=range] { width: 100%; accent-color: var(--primary); }
 <script src="bookmaps.js"></script>
 <script src="audio.js"></script>
 <script src="warped.js"></script>
+<script src="waterways.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="app.js"></script>
 </body>

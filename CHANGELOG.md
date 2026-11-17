@@ -80,3 +80,49 @@
 - About 36 photo captions had been read as body text, some in the middle of a sentence (for example "this cool The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives) freshwater stream"). They are now captions under the photos, and they are no longer read aloud. Source list: scripts/extract/captions.py → captions.json.
 - Restored Walk 9 stop 2 (Waikīkī-Kapahulu Public Library) and Walk 10 stops 9, 13, 21, 22, 23, 28 and 30, which the book prints inline. Every walk now has every number.
 - Walk 9 stop 4 title is "First Hawaiian Bank".
+
+## 2026-11-16 · Walk I pins follow the canal (Veneeta's corrections)
+- Stops 3, 4 and 5 now sit on the canal-side walkway, as Veneeta wrote ("Stop 3 through 5 are on the canal"). They had landed inside Ala Wai Community Park.
+- Stops 7, 9 and 11, whose numbers her map prints away from the path, now sit on her route between their neighbours, so arrival alerts fire on the way to Date Street. Marked "estimated" with a 50 m arrival circle.
+- New scripts/georef/author_fixes.json records each author correction and its source; scripts/georef/build.py applies it.
+- Preview: the "pin is a draft" note no longer shows on pins placed from her maps (matches the app).
+- New docs/FEEDBACK.md entries for her 16 Nov email.
+
+## 2026-11-16 · Walk X pins from the book's second map; two missed stops restored
+- Walk X has two more map pages in the book that the app had not used. The "CONTINUE WALK X" map (part 3, book page 155) is now fitted to real streets (9 street crossings, 9 m average error, 89 percent of road points on her streets) and places 19 stops: 30 to 39 and 44 to 52, from Ka‘ala Street up O‘ahu Avenue to Five Corners and back by Woodlawn Drive and University Avenue. These had been straight-line guesses.
+- Walk X stops 28 ("At the glorious Monkey Pod tree") and 30 (the "Chalet") are restored. The book prints their numbers without a bold heading, so the parser had folded them into stops 27 and 29. Their titles are the book's own opening words.
+- Mānoa Chinese Cemetery (41) and Lyon Arboretum (43) now use their OpenStreetMap places. They had been thrown out as "too far from the walk's centre" (scripts/extract/far_stops.json lists each exception with the book's words).
+- Pins read off her maps are no longer thrown out by the same distance check. This also restores Walk IX stop 3 (Waikīkī Fire Station No. 7) to the spot on her map.
+- New scripts/georef/pages.json and pages.py: extra map pages per walk, rendered for fitting only (not shown in the app). The upper-valley page (book part 3, page 5) is too schematic to fit and is not used.
+
+## 2026-11-16 · Waterways from Veneeta's maps on the street map
+- The street and satellite maps now show the canal, streams and ponds as her book maps draw them, laid on real streets (her request: "The maps needs the water ways overlays").
+- New scripts/georef/waterways.py lifts the waterways off each map and writes assets/waterways/*.png, src/data/waterways.json and src/data/waterways.ts.
+- "Waterways from the book" switch in the map style menu, on by default; saved and synced with the other settings.
+- Web preview: same layer and switch; map style menu icons are sized correctly.
+
+## 2026-11-17 · Walk VIII pins from the book's second map; arrival on the path for stops printed beside it
+- Walk VIII (Kaimukī) runs onto a second map page in the book (part 2, book page 119) that the app had not used. It is now fitted to real streets (11 street crossings, 14 m average error) and places stops 15 to 32 where Veneeta prints their numbers: Waiʻalae Avenue, the puʻu, Ocean View Drive, Makapuʻu Avenue and Diamond Head Road. These had been guesses; stops 18 to 22 were 0.5 to 2.3 km off, and stop 32 (Monsarrat Avenue) sat 1.5 km away near Kapahulu. Stop 22A is a detour, not a separate stop, and is not pinned.
+- Stops whose number the book prints well beside the red path (a campus, a park, a hospital) keep the pin where she printed it, and now also get a trigger point: the nearest spot on her path. Arrival alerts fire there, in the foreground and in the background. 37 stops across the walks get one. Before, a widened circle around the pin (at most 90 m) could miss walkers on the path when the number sat more than about 60 m away.
+- Proposed web preview: https://claude.ai/artifact/CX5icTb6nXdw6v8StZz1Y6
+
+## 2026-11-17 · Each walk ends where the book ends it
+- The last stop of every walk was showing the next walk's map labels ("BEGIN WALK II", "Kālia Rd.", "Walk II Map Key"), the next walk's opening pages and their photos. Walk XII's last stop (Music Building) also carried the book's glossary, reading list, acknowledgements and back cover, with 28 extra photos. These now go where the book puts them.
+- Each walk's opening text moves back to its own introduction, so introductions no longer start mid-sentence (Walk II began "Kalamakuaakaipuholua (a.k.a. Kalamakua) in the 1400s."). Map labels at the top of the Walk VIII and Walk X introductions are gone.
+- Walk XI stop 1 now shows the book's McCully Street stop. It had been showing Walk XII's Kapahulu Avenue stop. Walk VI stop 1 (Hawaiian Burial Memorial) and Walk XII stop 1 (Kapahulu Avenue) get back their opening paragraphs, and Walk XII stop 1 gets its two photos.
+- Walk XI stop 1's pin sits at McCully Street and the Ala Wai Canal, the same spot as Walk I stop 1 on Veneeta's map (Walk XI has no map of its own).
+- New scripts/extract/walk_ends.json records where each walk ends in the PDF, checked page by page; build_data.py applies it.
+
+## 2026-11-17 · Walk X stops 7 to 29 from the left half of the book's Walk X map
+- The Walk X map in the book is a two-page spread. The app used only the right-hand page (stops 1 to 6) and the "CONTINUE WALK X" page (30 to 52). The left-hand page (part 3, book page 152) prints stops 7 to 29: Dole and Metcalf streets, Wilder Avenue past Punahou School, Mānoa Road and College Hills to Ka‘ala Way. It is now fitted to real streets (11 street crossings, 13 m average error; 94 percent of road points land on her streets) and those 23 stops sit where she prints their numbers.
+- They had been estimates and place-name lookups. 13 of them moved more than 100 m, and stop 7 (Dole Street) moved almost 800 m.
+- Check on the fit: four of these stops had an independent OpenStreetMap place (Sacred Heart Church, Montague Hall, Halekula Way, Lanihuli Drive). Her map puts each within 11 to 41 m of it.
+- Stops 13, 18 and 26, whose numbers sit 70 to 150 m beside her path, get a trigger point on the path so arrival alerts still fire. Side strolls 25A and 27A are not pinned.
+- Walk X now has 48 of 52 stops from her maps. Stops 40 to 43 (upper valley) are the only ones left.
+
+## 2026-11-17 · Photos with the right stop and the right caption
+- Each photo now carries the caption the book prints next to it. Captions had been handed out in reading order inside a stop, so neighbours swapped or shifted (for example the two Gump Building photos on Walk IV, the fire station and library photos on Walk VIII, and the Mayor Crane sidewalk and Queen Lili‘uokalani mural photos on Walk VIII). 41 captions changed. Captions are also what VoiceOver reads for each photo.
+- 45 photos move to the stop their caption names, because the PDF draws photos before the text on many pages. For example the Hawaiian Burial Memorial photo is back on Walk VI stop 1 (it was on the Gandhi statue), the Brothers in Valor memorial on Walk IV stop 5, Leonard's Bakery on Walk XII stop 13 and the E Pluribus Unum sculpture on Walk XII stop 2. List with the caption for each: scripts/extract/photo_stops.json.
+- 11 duplicate photos are gone. The book draws some photos twice in the same spot (once with a white frame and shadow), and the app showed both.
+- 85 "photos" that were really slices of the page are gone: a faint background graphic at the foot of many pages, cut out with the body text printed over it, and boxed quotes ("The plaque reads: ...") whose words are already in the stop's text. Most were on Walks X to XII.
+- New scripts/extract/photos.py finds each photo's place on the page and the caption beside it (scripts/extract/photos.json); build_data.py uses it. The glossary now also reads photo captions, which brings back "Kahoaloha: the friend" and adds "kalo lo‘i: taro fields", both from the book.

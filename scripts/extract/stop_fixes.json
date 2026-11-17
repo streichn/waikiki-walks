@@ -1,22 +1,6 @@
 {
  "_note": "Stops whose headings the PDF parser missed. Titles are copied from the bold stop headings in book/*.pdf (page given). 'start' is text that begins the stop's first block; that block and the ones after it move into the stop.",
- "VI": [
-  {
-   "n": 1,
-   "title": "Hawaiian Burial Memorial",
-   "page": "p2-18",
-   "from": "intro",
-   "start": "Hawaiians of old"
-  }
- ],
  "XII": [
-  {
-   "n": 1,
-   "title": "Kapahulu Avenue",
-   "page": "p3-62",
-   "from": "intro",
-   "start": "If you are walking along Kapahulu"
-  },
   {
    "n": 8,
    "title": "Da ‘Ono Hawaiian food",
