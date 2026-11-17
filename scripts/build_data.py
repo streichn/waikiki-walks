@@ -43,6 +43,7 @@ FACTS = {
     'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
+FAR_STOPS = json.load(open(f'{ROOT}/scripts/extract/far_stops.json')) if os.path.exists(f'{ROOT}/scripts/extract/far_stops.json') else {}
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
@@ -231,9 +232,15 @@ for k, w in enumerate(SRC['walks']):
     for s in stops_src:
         bp = BOOK_PINS.get(wid, {}).get(str(s['n']))
         if bp:
-            s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': 'book', 'query': 'placed from the book map'}
-            if bp.get('route_offset_m', 0) > 10:
+            s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': bp.get('confidence', 'book'),
+                        'query': 'placed from the book map' + (f" and corrected ({bp['fix']})" if bp.get('fix') else '')}
+            if bp.get('trigger'):
+                s['trigger'] = {'lat': bp['trigger']['lat'], 'lng': bp['trigger']['lng']}
+                s['radius'] = 50  # the trigger sits on her route, so a normal circle with room for GPS bounce
+            elif bp.get('route_offset_m', 0) > 10:
                 s['radius'] = min(90, bp['route_offset_m'] + 30)
+            elif bp.get('confidence') == 'estimated':
+                s['radius'] = 50  # placed on her route between neighbours; a wider circle so the alert still fires
 
     # Geo sanity check: discard hits far from the walk's centre, then interpolate gaps.
     pts = [(s['geo']['lat'], s['geo']['lng']) for s in stops_src if s.get('geo')]
@@ -242,7 +249,9 @@ for k, w in enumerate(SRC['walks']):
         clng = statistics.median(p[1] for p in pts)
     for s in stops_src:
         g = s.get('geo')
-        if g:
+        # Pins read off her maps, and named places the book sends the walk to (scripts/extract/far_stops.json),
+        # are trusted even far from the walk's centre.
+        if g and g.get('confidence') != 'book' and str(s['n']) not in FAR_STOPS.get(wid, {}):
             dlat = (g['lat'] - clat) * 111000
             dlng = (g['lng'] - clng) * 103000
             if (dlat ** 2 + dlng ** 2) ** 0.5 > 1800:
@@ -296,6 +305,7 @@ for k, w in enumerate(SRC['walks']):
             'blocks': blocks, 'photos': photos,
             'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6), 'geo': g.get('confidence', 'medium'), 'page': s['page'],
             **({'radius': s['radius']} if s.get('radius') else {}),
+            **({'trigger': s['trigger']} if s.get('trigger') else {}),
         })
         if not cover:
             for p in photos:

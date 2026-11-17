@@ -1,0 +1,7 @@
+{
+ "_note": "Stops the walk really goes to that lie more than 1800 m from the walk's centre, so their place-name lookup is kept instead of being discarded as a stray match. Each entry gives the book's own words.",
+ "X": {
+  "41": "Book p3-28, stop 41 'Mānoa Chinese Cemetery'; matched OpenStreetMap 'Manoa Chinese Cemetery'.",
+  "43": "Book p3-30, stop 43 'Lyon Arboretum', reached by stop 42 'To Mānoa Falls and Lyon'; matched OpenStreetMap 'Lyon Arboretum and Botanical Garden'."
+ }
+}

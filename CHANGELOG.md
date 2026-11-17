@@ -80,3 +80,28 @@
 - About 36 photo captions had been read as body text, some in the middle of a sentence (for example "this cool The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives) freshwater stream"). They are now captions under the photos, and they are no longer read aloud. Source list: scripts/extract/captions.py → captions.json.
 - Restored Walk 9 stop 2 (Waikīkī-Kapahulu Public Library) and Walk 10 stops 9, 13, 21, 22, 23, 28 and 30, which the book prints inline. Every walk now has every number.
 - Walk 9 stop 4 title is "First Hawaiian Bank".
+
+## 2026-11-16 · Walk I pins follow the canal (Veneeta's corrections)
+- Stops 3, 4 and 5 now sit on the canal-side walkway, as Veneeta wrote ("Stop 3 through 5 are on the canal"). They had landed inside Ala Wai Community Park.
+- Stops 7, 9 and 11, whose numbers her map prints away from the path, now sit on her route between their neighbours, so arrival alerts fire on the way to Date Street. Marked "estimated" with a 50 m arrival circle.
+- New scripts/georef/author_fixes.json records each author correction and its source; scripts/georef/build.py applies it.
+- Preview: the "pin is a draft" note no longer shows on pins placed from her maps (matches the app).
+- New docs/FEEDBACK.md entries for her 16 Nov email.
+
+## 2026-11-16 · Walk X pins from the book's second map; two missed stops restored
+- Walk X has two more map pages in the book that the app had not used. The "CONTINUE WALK X" map (part 3, book page 155) is now fitted to real streets (9 street crossings, 9 m average error, 89 percent of road points on her streets) and places 19 stops: 30 to 39 and 44 to 52, from Ka‘ala Street up O‘ahu Avenue to Five Corners and back by Woodlawn Drive and University Avenue. These had been straight-line guesses.
+- Walk X stops 28 ("At the glorious Monkey Pod tree") and 30 (the "Chalet") are restored. The book prints their numbers without a bold heading, so the parser had folded them into stops 27 and 29. Their titles are the book's own opening words.
+- Mānoa Chinese Cemetery (41) and Lyon Arboretum (43) now use their OpenStreetMap places. They had been thrown out as "too far from the walk's centre" (scripts/extract/far_stops.json lists each exception with the book's words).
+- Pins read off her maps are no longer thrown out by the same distance check. This also restores Walk IX stop 3 (Waikīkī Fire Station No. 7) to the spot on her map.
+- New scripts/georef/pages.json and pages.py: extra map pages per walk, rendered for fitting only (not shown in the app). The upper-valley page (book part 3, page 5) is too schematic to fit and is not used.
+
+## 2026-11-16 · Waterways from Veneeta's maps on the street map
+- The street and satellite maps now show the canal, streams and ponds as her book maps draw them, laid on real streets (her request: "The maps needs the water ways overlays").
+- New scripts/georef/waterways.py lifts the waterways off each map and writes assets/waterways/*.png, src/data/waterways.json and src/data/waterways.ts.
+- "Waterways from the book" switch in the map style menu, on by default; saved and synced with the other settings.
+- Web preview: same layer and switch; map style menu icons are sized correctly.
+
+## 2026-11-17 · Walk VIII pins from the book's second map; arrival on the path for stops printed beside it
+- Walk VIII (Kaimukī) runs onto a second map page in the book (part 2, book page 119) that the app had not used. It is now fitted to real streets (11 street crossings, 14 m average error) and places stops 15 to 32 where Veneeta prints their numbers: Waiʻalae Avenue, the puʻu, Ocean View Drive, Makapuʻu Avenue and Diamond Head Road. These had been guesses; stops 18 to 22 were 0.5 to 2.3 km off, and stop 32 (Monsarrat Avenue) sat 1.5 km away near Kapahulu. Stop 22A is a detour, not a separate stop, and is not pinned.
+- Stops whose number the book prints well beside the red path (a campus, a park, a hospital) keep the pin where she printed it, and now also get a trigger point: the nearest spot on her path. Arrival alerts fire there, in the foreground and in the background. 37 stops across the walks get one. Before, a widened circle around the pin (at most 90 m) could miss walkers on the path when the number sat more than about 60 m away.
+- Proposed web preview: https://claude.ai/artifact/CX5icTb6nXdw6v8StZz1Y6

@@ -1010,5 +1010,135 @@
    "Kapahulu Avenue",
    "Kaimukī Avenue"
   ]
+ ],
+ "X-p6": [
+  [
+   216,
+   612,
+   "Oʻahu Avenue",
+   "Ānuenue Street"
+  ],
+  [
+   30,
+   686,
+   "Mānoa Road",
+   "Lowrey Avenue"
+  ],
+  [
+   405,
+   598,
+   "Oʻahu Avenue",
+   "University Avenue"
+  ],
+  [
+   360,
+   598,
+   "Oʻahu Avenue",
+   "East Mānoa Road"
+  ],
+  [
+   578,
+   602,
+   "Oʻahu Avenue",
+   "Kaʻala Street"
+  ],
+  [
+   578,
+   556,
+   "University Avenue",
+   "Kaʻala Street"
+  ],
+  [
+   592,
+   665,
+   "Hunnewell Street",
+   "Kamehameha Avenue"
+  ],
+  [
+   132,
+   640,
+   "Kaʻaipu Avenue",
+   "Oʻahu Avenue"
+  ],
+  [
+   92,
+   452,
+   "Lowrey Avenue",
+   "East Mānoa Road"
+  ],
+  [
+   103,
+   368,
+   "Lowrey Avenue",
+   "Woodlawn Drive"
+  ]
+ ],
+ "VIII-p50": [
+  [
+   522,
+   344,
+   "Waiʻalae Avenue",
+   "Koko Head Avenue"
+  ],
+  [
+   507,
+   414,
+   "Harding Avenue",
+   "Koko Head Avenue"
+  ],
+  [
+   481,
+   520,
+   "Koko Head Avenue",
+   "Pāhoa Avenue"
+  ],
+  [
+   450,
+   810,
+   "Kīlauea Avenue",
+   "Ocean View Drive"
+  ],
+  [
+   417,
+   795,
+   "Kīlauea Avenue",
+   "Makapu‘u Avenue"
+  ],
+  [
+   306,
+   947,
+   "Alohea Avenue",
+   "Makapu‘u Avenue"
+  ],
+  [
+   295,
+   990,
+   "Makapu‘u Avenue",
+   "Diamond Head Road"
+  ],
+  [
+   165,
+   163,
+   "Waiʻalae Avenue",
+   "6th Avenue"
+  ],
+  [
+   124,
+   242,
+   "Harding Avenue",
+   "6th Avenue"
+  ],
+  [
+   333,
+   247,
+   "Waiʻalae Avenue",
+   "9th Avenue"
+  ],
+  [
+   294,
+   325,
+   "Harding Avenue",
+   "9th Avenue"
+  ]
  ]
 }

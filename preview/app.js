@@ -356,6 +356,9 @@
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else { t.style.background = '#e9e5dc'; } t.alt = ''; return t; } });
     const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 });
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14, tileSize: 256 }).addTo(map);
+    // Veneeta's canal and streams lifted from her book map (scripts/georef/waterways.py), under the route and pins.
+    const wwImg = (window.WWWATER || {})[w.id], wwB = (D.waterways || {})[w.id];
+    if (wwImg && wwB && S.settings.waterways !== false) L.imageOverlay(wwImg, wwB, { interactive: false }).addTo(map);
     map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     L.polyline(pts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
@@ -429,7 +432,7 @@
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
-        <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
+        <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' && stop.geo !== 'book' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
         <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
@@ -676,9 +679,11 @@
     const m = modal(`<div class="stack"><div class="label">Map style</div>
       <button class="plan" aria-checked="${S.mapStyle !== 'book'}" data-layer="street">${ic('map')}<span style="flex:1"><b>Street map</b></span></button>
       <button class="plan" data-layer="sat">${ic('earth')}<span style="flex:1"><b>Satellite</b><div class="small">In the iPhone and Android app (Apple and Google satellite imagery)</div></span></button>
-      ${w.bookMap ? `<button class="plan" aria-checked="${S.mapStyle === 'book'}" data-layer="book">${ic('book')}<span style="flex:1"><b>Veneeta’s map from the book</b><div class="small">The original walk map with every stop numbered</div></span></button>` : ''}</div>`);
+      ${w.bookMap ? `<button class="plan" aria-checked="${S.mapStyle === 'book'}" data-layer="book">${ic('book')}<span style="flex:1"><b>Veneeta’s map from the book</b><div class="small">The original walk map with every stop numbered</div></span></button>` : ''}
+      ${(window.WWWATER || {})[w.id] ? `<button class="plan" role="switch" aria-checked="${S.settings.waterways !== false}" data-layer="water">${ic('map')}<span style="flex:1"><b>Waterways from the book</b><div class="small">Her canal and streams drawn over the street map</div></span><span class="small"><b>${S.settings.waterways !== false ? 'On' : 'Off'}</b></span></button>` : ''}</div>`);
     m.addEventListener('click', (e) => {
       const b = e.target.closest('[data-layer]'); if (!b) return;
+      if (b.dataset.layer === 'water') { m.remove(); S.settings.waterways = S.settings.waterways === false; save('settings', S.settings); wmap = null; gmap = null; return render(); }
       if (b.dataset.layer === 'sat') return toast('Satellite view is built into the phone app.');
       if (b.dataset.layer === 'book' || b.dataset.layer === 'street') { m.remove(); S.mapStyle = b.dataset.layer; wmap = null; gmap = null; return render(); }
       if (false) { modal(`<div class="stack"><div class="label">Walk ${wn(w.id)} map from the book</div><div style="overflow:auto;max-height:75vh;border-radius:14px;background:#FBF6EC">${img(w.bookMap).replace('<img ', '<img style="width:180%;max-width:none" ')}</div><p class="small">Scroll to pan. In the app you can pinch to zoom.</p></div>`); return; }
