@@ -175,6 +175,92 @@ def apply_heading_fix(sid, title, sub, blocks):
     return title, sub, blocks
 
 
+WALK_ENDS = json.load(open(f'{ROOT}/scripts/extract/walk_ends.json')) if os.path.exists(f'{ROOT}/scripts/extract/walk_ends.json') else {}
+LETTER_SPACED = re.compile(r'^(?:\S ){6,}(?=\S{2,})')
+
+
+def _page_key(p):
+    m = re.match(r'p(\d+)-(\d+)', p or '')
+    return (int(m.group(1)), int(m.group(2))) if m else (0, 0)
+
+
+def _find(blocks, prefix, start=0):
+    return next((i for i in range(start, len(blocks)) if blocks[i].get('text', '').startswith(prefix)), None)
+
+
+def apply_walk_ends(src):
+    """Give each walk back the text, photos and first stop that the parser filed under the previous walk
+    (scripts/extract/walk_ends.json), drop the map labels in between, and drop the back matter after Walk XII."""
+    ws = src['walks']
+    # A walk's stop 1 printed on its title page, before the title, arrives as a stray stop 1 at the end of the previous walk.
+    for w in ws:
+        drop = WALK_ENDS.get(w['roman'], {}).get('intro_drop')
+        intro = w.get('blocks') or []
+        if drop:
+            a = _find(intro, drop[0])
+            b = _find(intro, drop[1], a or 0)
+            if a is not None and b is not None:
+                del intro[a:b + 1]
+            else:
+                print('walk_ends: intro_drop not found', w['roman'], file=sys.stderr)
+    strays = {}
+    for k, w in enumerate(ws[:-1]):
+        if w['roman'] in WALK_ENDS and len(w['stops']) > 1 and w['stops'][-1]['n'] < w['stops'][-2]['n']:
+            strays[k] = w['stops'].pop()
+    for k, w in enumerate(ws):
+        cfg = WALK_ENDS.get(w['roman'])
+        if not cfg:
+            continue
+        nxt = ws[k + 1] if k + 1 < len(ws) else None
+        stray = strays.get(k)
+        last = w['stops'][-1]
+        blocks = last.get('blocks') or []
+        for fx in cfg.get('tail_strip', []):
+            i = _find(blocks, fx['start'])
+            if i is not None and blocks[i]['text'].endswith(fx['suffix']):
+                blocks[i] = {**blocks[i], 'text': blocks[i]['text'][:-len(fx['suffix'])]}
+        cut = _find(blocks, cfg['drop_from'])
+        if cut is None:
+            # The map labels can be glued onto the end of a photo caption; split the block there.
+            j = next((i for i, b in enumerate(blocks) if ' ' + cfg['drop_from'] in b.get('text', '')), None)
+            if j is not None:
+                head, tail = blocks[j]['text'].split(' ' + cfg['drop_from'], 1)
+                blocks[j:j + 1] = [{**blocks[j], 'text': head}, {**blocks[j], 'text': cfg['drop_from'] + tail}]
+                cut = j + 1
+        if cut is None:
+            print('walk_ends: drop_from not found', w['roman'], file=sys.stderr)
+            continue
+        mv = _find(blocks, cfg['move_from'], cut) if cfg.get('move_from') else None
+        if cfg.get('move_from') and mv is None:
+            print('walk_ends: move_from not found', w['roman'], file=sys.stderr)
+        moved = blocks[mv:] if mv is not None else []
+        last['blocks'] = blocks[:cut]
+        lim = _page_key(cfg['page_from'])
+        keep = [im for im in last.get('images', []) if _page_key(im['page']) < lim]
+        later = [im for im in last.get('images', []) if _page_key(im['page']) >= lim]
+        last['images'] = keep
+        if nxt is None:
+            continue  # Walk XII: the rest is the book's back matter
+        nxt_intro = nxt.get('blocks') or []
+        if stray is not None:
+            # Everything after the title until the next stop heading continues that first stop, photos included;
+            # sidebar boxes (walk length, parking, buses) stay with the walk.
+            body = (stray.get('blocks') or []) + nxt_intro
+            stray['blocks'] = [b for b in body if b['kind'] != 'info']
+            nxt_intro = [b for b in body if b['kind'] == 'info']
+            stray['images'] = (stray.get('images') or []) + nxt.get('images', [])
+            nxt['images'] = []
+            nxt['stops'].insert(0, stray)
+        nxt['images'] = later + nxt.get('images', [])
+        nxt['blocks'] = moved + nxt_intro
+    for w in ws:
+        for b in w.get('blocks') or []:
+            if b['kind'] == 'info':
+                b['text'] = LETTER_SPACED.sub('', b['text'])
+
+
+apply_walk_ends(SRC)
+
 images_used = set()
 walks = []
 review = []
@@ -231,6 +317,12 @@ for k, w in enumerate(SRC['walks']):
     # Pins placed from Veneeta's own book maps (scripts/georef) take priority over place-name lookups.
     for s in stops_src:
         bp = BOOK_PINS.get(wid, {}).get(str(s['n']))
+        alias = WALK_ENDS.get('_same_place', {}).get(f"{wid}-{s['n']}")
+        if not bp and alias:
+            aw, an = alias['as'].split('-')
+            ap = BOOK_PINS[aw][an]
+            s['geo'] = {'lat': ap['lat'], 'lng': ap['lng'], 'confidence': 'medium',
+                        'query': f"same place as {alias['as']} on her map ({alias['why']})"}
         if bp:
             s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': bp.get('confidence', 'book'),
                         'query': 'placed from the book map' + (f" and corrected ({bp['fix']})" if bp.get('fix') else '')}

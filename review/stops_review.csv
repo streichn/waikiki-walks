@@ -270,7 +270,7 @@ X,49,To E. Mānoa Road,21.307755,-157.813871,book,placed from the book map,"http
 X,50,University Avenue,21.307059,-157.816407,book,placed from the book map,"https://www.google.com/maps?q=21.307059,-157.816407",p3-34
 X,51,Kamānele Park,21.303509,-157.818754,book,placed from the book map,"https://www.google.com/maps?q=21.303509,-157.818754",p3-34
 X,52,Mid-Pacific Institute,21.301794,-157.820111,book,placed from the book map,"https://www.google.com/maps?q=21.301794,-157.820111",p3-35
-XI,1,Kapahulu Avenue,21.288057,-157.812853,low,"Kapahulu Avenue, Kapahulu, East Honolulu, Honolulu, Honolulu County, Hawaii, 96186, United States","https://www.google.com/maps?q=21.288057,-157.812853",p3-62
+XI,1,McCully Street,21.288529,-157.832924,medium,"same place as I-1 on her map (Walk XI has no map; the book starts it 'From McCully Street and the Ala Wai Canal', where her Walk I map prints stop 1)","https://www.google.com/maps?q=21.288529,-157.832924",p3-38
 XI,2,Ala Wai Community Park,21.287035,-157.829705,medium,"Ala Wai Community Park, McCully, East Honolulu, Honolulu, Honolulu County, Hawaii, United States","https://www.google.com/maps?q=21.287035,-157.829705",p3-40
 XI,3,Kapi‘olani Boulevard,21.29063,-157.830238,estimated,interpolated between neighbours,"https://www.google.com/maps?q=21.29063,-157.830238",p3-40
 XI,4,Algaroba Street,21.294226,-157.830771,low,"Algaroba Street, Moiliili, McCully, East Honolulu, Honolulu, Honolulu County, Hawaii, 96926, United States","https://www.google.com/maps?q=21.294226,-157.830771",p3-40

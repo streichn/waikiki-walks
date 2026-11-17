@@ -3,5 +3,8 @@
  "X": {
   "41": "Book p3-28, stop 41 'Mānoa Chinese Cemetery'; matched OpenStreetMap 'Manoa Chinese Cemetery'.",
   "43": "Book p3-30, stop 43 'Lyon Arboretum', reached by stop 42 'To Mānoa Falls and Lyon'; matched OpenStreetMap 'Lyon Arboretum and Botanical Garden'."
+ },
+ "XI": {
+  "1": "Book p3-38, stop 1 'McCully Street': 'From McCully Street and the Ala Wai Canal ... walk mauka'. Same spot as Walk I stop 1 on her Walk I map (scripts/extract/walk_ends.json, _same_place)."
  }
 }

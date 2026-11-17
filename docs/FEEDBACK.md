@@ -14,3 +14,5 @@ Status is one of: fixed (with PR), needs Nick's decision, needs checking on the 
 Note on the 16 Nov "corrections" email: it was sent at 22:18 Hawaiʻi time on 15 Nov, one minute after the first pins from her own maps were committed, so she was almost certainly looking at the older place-name pins. In that version, stop 1 sat about 1 km mauka of the canal, stops 3 and 4 were on the Waikīkī side of the canal, and stops 7 to 12 were a straight-line guess. All three of her pin comments describe problems the book-map pins already fixed.
 
 2026-11-17 run: no new mail from Veneeta since the 16 Nov runs. Her two threads ("corrections" and "I can help with your computer later") hold no new messages from her; every comment in them is logged above.
+
+2026-11-17 07:00 UTC run: no new mail from Veneeta. Both of her threads ("corrections" and "I can help with your computer later") were read in full; the newest messages are Nick's of 16 Nov (missing stops, captions, pricing question), with no reply from her yet.
