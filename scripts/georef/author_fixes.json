@@ -1,0 +1,11 @@
+{
+ "_note": "Corrections from Veneeta (the author) that refine where a pin sits after it is read off her map. 'on': 'canal' moves the pin to the walkway on the near bank of the Ala Wai Canal (10 m from the water). 'on': 'route' puts a stop whose number her map prints away from the walk path (a label or view direction) onto her red route, halfway between the stops before and after it; those pins are marked estimated. Log each source comment in docs/FEEDBACK.md.",
+ "I": {
+  "3": {"on": "canal", "source": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""},
+  "4": {"on": "canal", "source": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""},
+  "5": {"on": "canal", "source": "Veneeta, email 'corrections', 2026-11-16: \"Stop 3 through 5 are on the canal\""},
+  "7": {"on": "route", "source": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""},
+  "9": {"on": "route", "source": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""},
+  "11": {"on": "route", "source": "Veneeta, email 'corrections', 2026-11-16: \"Stops 7 to 11 leave the canal and go toward Date street\""}
+ }
+}

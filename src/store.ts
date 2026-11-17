@@ -15,6 +15,7 @@ type SettingsState = {
   textScale: number; // 0.9 to 1.4
   units: 'imperial' | 'metric';
   onboarded: boolean;
+  waterways: boolean; // Veneeta's canal and streams drawn over the street and satellite maps
   set: (patch: Partial<Omit<SettingsState, 'set'>>) => void;
 };
 
@@ -31,6 +32,7 @@ export const useSettings = create<SettingsState>()(
       textScale: 1,
       units: 'imperial',
       onboarded: false,
+      waterways: true,
       set: (patch) => set(patch),
     }),
     { name: 'settings', storage: createJSONStorage(() => AsyncStorage) },
