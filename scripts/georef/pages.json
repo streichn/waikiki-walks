@@ -1,0 +1,24 @@
+{
+ "_note": "Extra book map pages for walks whose route continues past the walk's first map. Pins are read off these pages the same way (map_stops.json, controls.json, keyed by the page id). A stop already placed from the walk's first map keeps that pin. 'confidence' overrides 'book' when a page is too schematic to trust street-level positions. Rendered at 110 dpi into scripts/georef/pages/ by pages.py; not shown in the app.",
+ "X-p6": {
+  "walk": "X",
+  "pdf": "book/part3_walks_X-XII.pdf",
+  "page": 6,
+  "book_page": 155,
+  "what": "CONTINUE WALK X: O‘ahu Avenue, Mānoa Marketplace, Woodlawn Drive, University Avenue (stops 30 to 52)"
+ },
+ "VIII-p50": {
+  "walk": "VIII",
+  "pdf": "book/part2_walks_V-IX.pdf",
+  "page": 50,
+  "book_page": 119,
+  "what": "Second Walk VIII map: Waiʻalae Avenue, Kaimukī, the puʻu, Ocean View Drive, Makapuʻu Avenue to Diamond Head Road (stops 15 to 32; 22A is a detour, not an app stop)"
+ },
+ "X-p3": {
+  "walk": "X",
+  "pdf": "book/part3_walks_X-XII.pdf",
+  "page": 3,
+  "book_page": 152,
+  "what": "Left page of the Walk X map spread: McCully Street to Wilder Avenue, Punahou, Mānoa Road, O‘ahu Avenue (stops 7 to 29; 25A and 27A are side strolls, not app stops)"
+ }
+}

@@ -16,6 +16,12 @@ MAJOR = ['Kalākaua Avenue', 'Kūhiō Avenue', 'Ala Wai Boulevard', 'Kapahulu Av
          'Lewers Street', 'Seaside Avenue', 'Liliʻuokalani Avenue', 'Kaʻiulani Avenue', 'Royal Hawaiian Avenue',
          'South King Street', 'South Beretania Street', 'Waiʻalae Avenue', 'Harding Avenue', 'University Avenue', 'Diamond Head Road']
 
+# Streets used only for one map (upper Mānoa; Punahou and College Hills), so refits of the other maps are unchanged.
+LOCAL = {'X-p6': ['Oʻahu Avenue', 'East Mānoa Road', 'Mānoa Road', 'Woodlawn Drive', 'Lowrey Avenue', 'Kamehameha Avenue',
+                  'Kaʻala Street', 'Hunnewell Street', 'Maile Way', 'Kaʻaipu Avenue', 'Ānuenue Street', 'Alaula Way'],
+         'X-p3': ['Wilder Avenue', 'Punahou Street', 'Mānoa Road', 'Metcalf Street', 'Dole Street', 'Kamehameha Avenue',
+                  'Oʻahu Avenue', 'Nehoa Street', 'Kaʻala Street', 'Alexander Street', 'Lanihuli Drive']}
+
 def tps_fit(src, dst, lam):
     n = len(src); d = np.linalg.norm(src[:, None] - src[None], axis=2)
     K = np.where(d > 0, d * d * np.log(d + 1e-12), 0.0) + np.diag(lam)
@@ -26,9 +32,9 @@ def tps_many(fit, pts):
     c, w, a = fit; d = np.linalg.norm(pts[:, None, :] - c[None], axis=2)
     return a[0] + pts @ a[1:] + np.where(d > 0, d * d * np.log(d + 1e-12), 0.0) @ w
 
-def road_points():
+def road_points(names):
     out = {}
-    for name in MAJOR:
+    for name in names:
         pts = []
         for line in street(name):
             for (x0, y0), (x1, y1) in zip(line[:-1], line[1:]):
@@ -51,11 +57,14 @@ def score(fwd, roads, dist, W, H):
 if __name__ == '__main__':
     G = json.load(open(os.path.join(HERE, 'georef.json')))
     walks = {w['id']: w for w in json.load(open(os.path.join(ROOT, 'src/data/walks.json')))}
-    roads = road_points()
+    roads_all = road_points(MAJOR); local = road_points(sorted({n for v in LOCAL.values() for n in v}))
+    PAGES = {k: v for k, v in json.load(open(os.path.join(HERE, 'pages.json'))).items() if not k.startswith('_')}
     for wid in (sys.argv[1:] or list(G)):
         f = walks.get(wid, {}).get('bookMap')
-        if not f: continue
-        a = np.asarray(Image.open(os.path.join(ROOT, 'assets/book', f)).convert('RGB')).astype(int)
+        path = os.path.join(ROOT, 'assets/book', f) if f else os.path.join(HERE, 'pages', f'map-{wid}.jpg') if wid in PAGES else None
+        if not path: continue
+        roads = {**roads_all, **{n: p for n, p in local.items() if n in LOCAL.get(wid, [])}}
+        a = np.asarray(Image.open(path).convert('RGB')).astype(int)
         white = (a.min(axis=2) > 232)
         dist, (iy_n, ix_n) = ndimage.distance_transform_edt(~white, return_indices=True)
         H, W = white.shape

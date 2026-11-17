@@ -12,7 +12,7 @@ import { Button, IconButton, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { getWalk, walkNo } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
-import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
+import { arrivalPoint, bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
 import { confirmEndWalk, endWalkNow } from '../../../lib/endWalk';
 import * as LiveActivity from '../../../lib/liveActivity';
 import { play, stop as stopSpeech, useNarration } from '../../../lib/narration';
@@ -144,7 +144,7 @@ export default function ActiveWalk() {
     for (let i = current; i < Math.min(walk.stops.length, current + 4); i++) {
       if (visited.includes(i)) continue;
       if (!canOpenStop(walk.id, i, isPro)) break;
-      if (distanceM(pos, walk.stops[i]) <= radius) {
+      if (distanceM(pos, arrivalPoint(walk.stops[i])) <= radius) {
         arrive(i);
         break;
       }

@@ -1,8 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
+import MapView, { Marker, Overlay, Polyline, type Region } from 'react-native-maps';
+import { waterwaysFor } from '../data/waterways';
 import type { Walk } from '../data/types';
+import { useSettings } from '../store';
 import { useTheme } from '../theme';
 
 export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void };
@@ -24,6 +26,8 @@ type Props = {
 export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
+  const showWater = useSettings((s) => s.waterways);
+  const water = showWater ? waterwaysFor(walk.id) : undefined;
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
   const initial: Region = useMemo(() => {
     const lats = coords.map((c) => c.latitude);
@@ -61,6 +65,8 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       mapPadding={{ top: 0, left: 0, right: 0, bottom: bottomInset }}
       onMapReady={() => map.current?.fitToCoordinates(coords, { edgePadding: padding, animated: false })}
     >
+      {/* Veneeta's canal and streams, lifted from her book map (scripts/georef/waterways.py). Drawn first, under the route and pins. */}
+      {water ? <Overlay image={water.image} bounds={water.bounds} /> : null}
       <Polyline coordinates={coords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
       {current >= 0 && current < coords.length - 1 ? <Polyline coordinates={[coords[current], coords[current + 1]]} strokeColor={t.accent} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
