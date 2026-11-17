@@ -13,39 +13,39 @@
  },
  {
   "id": "f3",
-  "text": "Hawai‘i Island where her brother, Keauou Kekuaokalani, was killed in the failed December 1819 battle fought over maintaining the eating kapu (taboo), known as ‘ai kapu (eating taboo).",
-  "walkId": "I",
-  "stopId": "I-34"
- },
- {
-  "id": "f4",
   "text": "After Kamehameha I died in November 1819, his wives and son, Liholiho, who became Kamehameha II, overturned that kapu by eating together, thereafter known as ‘ai noa (eating free from taboo).",
   "walkId": "I",
   "stopId": "I-34"
  },
  {
-  "id": "f5",
+  "id": "f4",
   "text": "The gates on the Diamond Head side of ‘Iolani School are the original 1941 gates from its earlier location in Nu‘uanu.",
   "walkId": "I",
   "stopId": "I-07"
  },
  {
-  "id": "f6",
+  "id": "f5",
   "text": "The original nine-hole golf course opened on September 13, 1931, as the first municipal course in Hawai‘i.",
   "walkId": "I",
   "stopId": "I-11"
  },
  {
-  "id": "f7",
+  "id": "f6",
   "text": "James developed this area in 1926 and named these streets after people in his family.",
   "walkId": "I",
   "stopId": "I-12"
  },
  {
-  "id": "f8",
+  "id": "f7",
   "text": "The next five streets are named for persons associated with the first two Kamehameha kings, and their spouses.",
   "walkId": "I",
   "stopId": "I-30"
+ },
+ {
+  "id": "f8",
+  "text": "Note that neighboring ahupua’a, Honolulu, was originally known as Kou, also a tree; however, it is indigenous, not native.",
+  "walkId": "I",
+  "stopId": "I-38"
  },
  {
   "id": "f9",
@@ -169,25 +169,25 @@
  },
  {
   "id": "f29",
-  "text": "Kūhiō Beach Park is named for Prince Kūhiō Kalaniana‘ole Pi‘ikoi (1871-1922) whose home, Pualeilani, was nearby.",
-  "walkId": "IV",
-  "stopId": "IV-28"
- },
- {
-  "id": "f30",
   "text": "The 50 years mentioned on the plaque, back to 1949, refer to their first store in Kaimukī (mauka of Waikīkī).",
   "walkId": "IV",
   "stopId": "IV-08"
  },
  {
-  "id": "f31",
+  "id": "f30",
   "text": "The first public school and first church in Waikīkī were established on the mauka- ‘Ewa corner of Kalākaua Avenue and Ka‘iulani Street, as located on 1874 and 1897 maps.",
   "walkId": "IV",
   "stopId": "IV-20"
  },
  {
-  "id": "f32",
+  "id": "f31",
   "text": "The original Surfrider Hotel opened in 1952 as Waikīkī’s first post-Moana high-rise hotel.",
+  "walkId": "IV",
+  "stopId": "IV-22"
+ },
+ {
+  "id": "f32",
+  "text": "On July 3, 1935, the popular Hawai‘i Calls radio program was first broadcast from the Banyan Court of the Moana Hotel.",
   "walkId": "IV",
   "stopId": "IV-22"
  },
@@ -229,15 +229,15 @@
  },
  {
   "id": "f39",
-  "text": "In Honolulu, Cleghorn met and married Princess Miriam Likelike Kekāuluohi Keahelapalapa Kapili in 1870, who bore their only child, Princess Ka‘iulani, five years later.",
+  "text": "Uluniu, later known as Pualeilani was the summer residence of King Kalākaua and Queen Kapi‘olani; in fact, the Queen died here at Pualeilani, her Waikīkī home, in the summer of 1899.",
   "walkId": "V",
-  "stopId": "V-10"
+  "stopId": "V-20"
  },
  {
   "id": "f40",
-  "text": "Lalani Village, which was located at the makai -‘Ewa corner of Kalākaua and Paoakalani avenues from 1932 to 1955, was the first Hawaiian-Polynesian cultural center.",
+  "text": "In Honolulu, Cleghorn met and married Princess Miriam Likelike Kekāuluohi Keahelapalapa Kapili in 1870, who bore their only child, Princess Ka‘iulani, five years later.",
   "walkId": "V",
-  "stopId": "V-16"
+  "stopId": "V-10"
  },
  {
   "id": "f41",
@@ -373,15 +373,15 @@
  },
  {
   "id": "f63",
-  "text": "Trousseau Street/Avenue is named for Georges/George Phillipe Trousseau (1833-1894), court physician to both King Lunalilo and King Kalākaua.",
-  "walkId": "VIII",
-  "stopId": "VIII-32"
- },
- {
-  "id": "f64",
   "text": "That small blue building on the makai side of the street is a 1999 off-shoot of the original store on Waiola Street in Mō‘ili‘ili.",
   "walkId": "VIII",
   "stopId": "VIII-09"
+ },
+ {
+  "id": "f64",
+  "text": "On November 13, 1900, the first Marconi telegraph system between O‘ahu and Moloka‘i was mounted here.",
+  "walkId": "VIII",
+  "stopId": "VIII-24"
  },
  {
   "id": "f65",

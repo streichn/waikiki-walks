@@ -22,6 +22,7 @@
     mute: '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/>',
     volume: '<path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
     stop: '<rect x="6" y="6" width="12" height="12" rx="2"/>',
+    route: '<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 17V9a4 4 0 0 1 4-4h6M6 13c0 3 5 3 9 6"/>',
     walk: '<circle cx="13" cy="4" r="2"/><path d="M10 21l2-6-3-3 2-5 4 3 3 1M9 12l-3 2M12 15l3 6"/>',
     lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
     unlock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/>',
@@ -160,7 +161,7 @@
   function blocksHtml(blocks, stopId) {
     let r = -1;
     richSeen = new Set();
-    const html = blocks.map((b) => {
+    const one = (b) => {
       const readable = ['p', 'direction', 'tagline'].includes(b.kind); if (readable) r++;
       const attrs = readable ? `data-stop="${stopId}" data-para="${r}"` : '';
       if (b.kind === 'direction') return `<div class="dir" ${attrs}>${ic('walk')}<div>${rich(b.text)}</div></div>`;
@@ -168,7 +169,16 @@
       if (b.kind === 'tagline' || b.kind === 'heading') return `<p class="p italic" style="color:var(--leaf);font-size:18px" ${attrs}>${esc(b.text)}</p>`;
       if (b.kind === 'caption') return `<p class="small italic">${esc(b.text)}</p>`;
       return `<p class="p" ${attrs}>${rich(b.text)}</p>`;
-    }).join('');
+    };
+    // Side trips from the book (its purple-line detours) sit in one highlighted box beside the main walk.
+    let html = '';
+    for (let i = 0; i < blocks.length; i++) {
+      if (!blocks[i].aside) { html += one(blocks[i]); continue; }
+      let inner = '';
+      while (i < blocks.length && blocks[i].aside) inner += one(blocks[i++]);
+      i--;
+      html += `<div class="aside"><div class="aside-h">${ic('route', 'width="15" height="15"')}SIDE TRIP</div>${inner}</div>`;
+    }
     richSeen = null;
     return html;
   }

@@ -48,6 +48,12 @@
 .wbar { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: rgba(0,0,0,.35); }
 .wbar i { display: block; height: 100%; }
 .wbar.live i { background: #F4B740; } .wbar.paused i { background: #fff; } .wbar.done i { background: #3E8E5A; }
+.aside{background:#F4EEFA;border-left:4px solid #B9A3D6;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.aside .p{margin:0}
+.aside-h{display:flex;align-items:center;gap:6px;color:#6A4C93;font-weight:700;font-size:12px;letter-spacing:.06em}
+:root[data-theme="dark"] .aside{background:#2B2238;border-color:#6E5A8C}
+:root[data-theme="dark"] .aside-h{color:#C9B6E6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .aside{background:#2B2238;border-color:#6E5A8C}:root:not([data-theme="light"]) .aside-h{color:#C9B6E6}}
 </style>
 <style>
 :root {

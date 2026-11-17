@@ -10,7 +10,7 @@ for tag, path in FILES.items():
         for b in page.get_text('dict')['blocks']:
             for l in b.get('lines', []):
                 s = l['spans'][0]
-                if s['font'].startswith('Arial') and 6.5 <= s['size'] <= 8.5:
+                if s['font'].startswith('Arial') and 6.0 <= s['size'] <= 8.5:
                     t = ''.join(x['text'] for x in l['spans']).replace('\x07', '').strip()
                     if t:
                         lines.append((round(l['bbox'][0]), round(l['bbox'][1]), t))

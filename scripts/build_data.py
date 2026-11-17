@@ -152,6 +152,101 @@ def pull_captions(blocks):
     return out
 
 
+MAP_MARK = re.compile(r'\b(Mauka Makai|Map Key|BEGIN WALK)\b|ʻEwa Diamond Head|‘Ewa Diamond Head')
+STREET_LABEL = re.compile(r'^[\w‘’ʻ\'.\- ]{0,60}\b(Ave|St|Rd|Blvd|Dr|Pl)\.$')
+
+
+def is_map_junk(t):
+    """Text lifted off the book's map pages: street labels, stop numbers, compass words."""
+    toks = t.split()
+    if not toks:
+        return True
+    if re.search(r'(?:(?<!\S)\.?\w\.?\s+){5,}', t + ' '):
+        return True  # rotated street labels come out as runs of scattered letters
+    if re.search(r'\b(St|Ave|Rd|Blvd|Dr|Pl|Ln)\.', t) and sum(1 for x in toks if len(x) <= 2) / len(toks) > 0.45:
+        return True
+    return bool(STREET_LABEL.match(t)) and not re.search(r'\b(the|is|was|of|to|and)\b', t)
+
+
+def drop_map_text(blocks):
+    out = []
+    for b in blocks:
+        t = b['text']
+        if b['kind'] in ('p', 'direction', 'heading', 'tagline'):
+            if MAP_MARK.search(t):
+                # Keep a real sentence printed on the map page (a map note), drop the labels.
+                m = re.search(r'([A-Z‘][^.!?]{30,}[.!?]?)\s*$', t)
+                tail = m.group(1).strip() if m else ''
+                if tail and not MAP_MARK.search(tail) and not is_map_junk(tail):
+                    out.append({**b, 'text': tail})
+                continue
+            if is_map_junk(t):
+                continue
+        out.append(b)
+    return out
+
+
+def join_page_breaks(blocks):
+    """A sentence cut at the bottom of a column ("...413 Seaside Avenue, with the") continues in the
+    next text block, sometimes with a photo caption in between. Rejoin it and keep the caption after."""
+    out = []
+    i = 0
+    while i < len(blocks):
+        b = dict(blocks[i])
+        if b['kind'] in ('p', 'direction') and PREP_END.search(b['text']) and not SENT_END.search(b['text']):
+            j = i + 1
+            caps = []
+            while j < len(blocks) and blocks[j]['kind'] == 'caption':
+                caps.append(blocks[j]); j += 1
+            if j < len(blocks) and blocks[j]['kind'] in ('p', 'direction') and not re.match(r'^(\d+[A-D]?\s|•)', blocks[j]['text']):
+                b['text'] = join_text(b['text'], blocks[j]['text'])
+                out.append(b)
+                out.extend(caps)
+                i = j + 1
+                continue
+        out.append(b)
+        i += 1
+    return out
+
+
+ASIDE_START = re.compile(r'purple line|side trip|side stroll|detour', re.I)
+ASIDE_END = re.compile(r'^(Return|Come back|Back |Continue|Walk back|From here)')
+
+
+def mark_asides(blocks):
+    """The book sends walkers off the main route on purple-line side trips. Mark the side-trip text
+    so the app can show it as a highlighted box beside the main walk."""
+    out = [dict(b) for b in blocks]
+    i = 0
+    while i < len(out):
+        b = out[i]
+        if b['kind'] in ('p', 'direction') and ASIDE_START.search(b['text'][:140]):
+            b['aside'] = True
+            n = 0
+            j = i + 1
+            while j < len(out) and n < 6:
+                nb = out[j]
+                if nb['kind'] == 'caption':
+                    j += 1; continue
+                if nb['kind'] == 'direction' and ASIDE_END.match(nb['text']):
+                    break
+                if nb['kind'] in ('heading', 'tagline') and not re.match(r'^\d+[A-D]\b', nb['text']):
+                    break
+                if nb['kind'] not in ('p', 'direction', 'heading'):
+                    break
+                # Only bullets, "Name:" items, sub-stops and short follow-ons stay in the box.
+                if not (nb['text'].startswith('•') or re.match(r'^[A-Z0-9‘][\w‘’ʻ .\-]{1,40}:', nb['text'])
+                        or re.match(r'^\d+[A-D]\b', nb['text']) or n == 0):
+                    break
+                nb['aside'] = True
+                n += 1
+                j += 1
+            i = j
+            continue
+        i += 1
+    return out
+
+
 HEADING_FIXES = json.load(open(f'{ROOT}/scripts/extract/heading_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/heading_fixes.json') else {}
 
 
@@ -182,7 +277,7 @@ for k, w in enumerate(SRC['walks']):
     title, theme = TITLES[wid]
     intro_blocks = clean_blocks(w.get('blocks'))
     info = [b['text'] for b in intro_blocks if b['kind'] == 'info' and len(b['text']) > 20]
-    intro = [b for b in pull_captions(intro_blocks) if b['kind'] not in ('info', 'caption')]
+    intro = [b for b in drop_map_text(pull_captions(intro_blocks)) if b['kind'] not in ('info', 'caption')]
     stops_in = w['stops']
     # Drop duplicate numbers that are cross-references (keep first occurrence in order).
     seen, stops_src = set(), []
@@ -277,6 +372,7 @@ for k, w in enumerate(SRC['walks']):
         blocks = clean_blocks(s.get('blocks'))
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
         blocks = pull_captions(blocks)
+        blocks = join_page_breaks(drop_map_text(blocks))
         caps = [b for b in blocks if b['kind'] == 'caption']
         for p, c in zip(photos, caps):
             p['caption'] = c['text']
@@ -289,6 +385,10 @@ for k, w in enumerate(SRC['walks']):
         if sub:
             sub = re.sub(r'\s+', ' ', re.sub(r'[\x00-\x1f]', '', sub)).strip() or None
         stitle, sub, blocks = apply_heading_fix(f"{wid}-{s['n']:02d}", stitle, sub, blocks)
+        blocks = mark_asides(blocks)
+        # Inside a side-trip box, a bulleted place is a description, not a walking instruction.
+        blocks = [{**b, 'kind': 'p'} if b.get('aside') and b['kind'] == 'direction' and b['text'].startswith('•') else b for b in blocks]
+        blocks = [{**b, 'text': re.sub(r'\s{2,}', ' ', re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', b['text'])).strip()} for b in blocks]
         s['title'], s['subtitle'] = stitle, sub
         stops.append({
             'id': f"{wid}-{s['n']:02d}", 'n': s['n'], 'title': s['title'].rstrip(' .:'),

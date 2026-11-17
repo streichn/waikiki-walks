@@ -1,3 +1,4 @@
+import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useMemo, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -21,9 +22,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
   const firsts = useMemo(() => firstGlossaryHits(blocks), [blocks]);
   let readable = -1;
 
-  return (
-    <View style={{ gap: 14 }}>
-      {blocks.map((b, i) => {
+  const one = (b: Block, i: number) => {
         if (b.kind === 'p' || b.kind === 'direction' || b.kind === 'tagline') readable += 1;
         const active = (b.kind === 'p' || b.kind === 'direction' || b.kind === 'tagline') && readable === speaking;
         if (b.kind === 'direction') {
@@ -63,7 +62,38 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
             <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 27 * scale, color: t.text }} />
           </View>
         );
-      })}
+  };
+
+  // Side trips from the book (its purple-line detours) sit in one highlighted box beside the main walk.
+  const items: React.ReactNode[] = [];
+  for (let i = 0; i < blocks.length; i++) {
+    if (!blocks[i].aside) {
+      items.push(one(blocks[i], i));
+      continue;
+    }
+    const start = i;
+    const inner: React.ReactNode[] = [];
+    while (i < blocks.length && blocks[i].aside) {
+      inner.push(one(blocks[i], i));
+      i++;
+    }
+    i--;
+    items.push(
+      <View key={`aside-${start}`} style={[styles.aside, { backgroundColor: t.dark ? '#2B2238' : '#F4EEFA', borderColor: t.dark ? '#6E5A8C' : '#B9A3D6' }]}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+          <Ionicons name="git-branch-outline" size={16} color={t.dark ? '#C9B6E6' : '#6A4C93'} />
+          <T variant="small" style={{ color: t.dark ? '#C9B6E6' : '#6A4C93', fontFamily: t.font.bodySemi, letterSpacing: 0.5 }}>
+            SIDE TRIP
+          </T>
+        </View>
+        {inner}
+      </View>,
+    );
+  }
+
+  return (
+    <View style={{ gap: 14 }}>
+      {items}
       <Modal visible={!!word} transparent animationType="fade" onRequestClose={() => setWord(null)}>
         <Pressable style={styles.backdrop} onPress={() => setWord(null)}>
           <View style={[styles.wordCard, { backgroundColor: t.card }]}>
@@ -126,6 +156,7 @@ function Rich({ text, style, hits, onWord }: { text: string; style: object; hits
 }
 
 const styles = StyleSheet.create({
+  aside: { borderLeftWidth: 4, borderRadius: 12, padding: 14, gap: 12 },
   direction: { flexDirection: 'row', gap: 10, padding: 14, borderRadius: 16, borderWidth: 2 },
   info: { flexDirection: 'row', gap: 8, padding: 12, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth },
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'center', padding: 28 },

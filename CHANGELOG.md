@@ -80,3 +80,10 @@
 - About 36 photo captions had been read as body text, some in the middle of a sentence (for example "this cool The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives) freshwater stream"). They are now captions under the photos, and they are no longer read aloud. Source list: scripts/extract/captions.py → captions.json.
 - Restored Walk 9 stop 2 (Waikīkī-Kapahulu Public Library) and Walk 10 stops 9, 13, 21, 22, 23, 28 and 30, which the book prints inline. Every walk now has every number.
 - Walk 9 stop 4 title is "First Hawaiian Bank".
+
+## 2026-11-17 · Side trips in a highlighted box; map labels out of the text (Veneeta's Walk I notes)
+- The book's purple-line side trips (for example 413 Seaside Avenue and Centennial Park at Walk 1 stop 27) now show in a lavender "Side trip" box beside the main walk text, in the app and the preview.
+- "413 Seaside Avenue ... with the" now continues straight into "Moongate entryway..." instead of breaking across a photo caption.
+- Street names, stop numbers and compass words copied off the map pages ("BEGIN WALK II 1 2 10 11 13A ...") are removed from the stop text on every walk.
+- More photo captions caught (small 6.3 pt captions such as "Be sure to follow the Helumoa Walk (III) to visit with Gabby.").
+- Stray control characters removed from text.

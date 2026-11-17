@@ -1,6 +1,7 @@
 export type BlockKind = 'p' | 'direction' | 'info' | 'caption' | 'tagline' | 'heading';
 
-export type Block = { kind: BlockKind; text: string };
+/** aside: part of a purple-line side trip in the book, shown as a highlighted box. */
+export type Block = { kind: BlockKind; text: string; aside?: boolean };
 
 export type Photo = { file: string; w: number; h: number; caption?: string };
 
