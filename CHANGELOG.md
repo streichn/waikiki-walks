@@ -87,3 +87,8 @@
 - "Waterways from the book" switch in the map style menu, on by default; saved and synced with the other settings.
 - Web preview: same layer and switch; map style menu icons are sized correctly.
 
+
+## 2026-11-17 · Walk VIII pins from the book's second map; arrival on the path for stops printed beside it
+- Walk VIII (Kaimukī) runs onto a second map page in the book (part 2, book page 119) that the app had not used. It is now fitted to real streets (11 street crossings, 14 m average error) and places stops 15 to 32 where Veneeta prints their numbers: Waiʻalae Avenue, the puʻu, Ocean View Drive, Makapuʻu Avenue and Diamond Head Road. These had been guesses; stops 18 to 22 were 0.5 to 2.3 km off, and stop 32 (Monsarrat Avenue) sat 1.5 km away near Kapahulu. Stop 22A is a detour, not a separate stop, and is not pinned.
+- Stops whose number the book prints well beside the red path (a campus, a park, a hospital) keep the pin where she printed it, and now also get a trigger point: the nearest spot on her path. Arrival alerts fire there, in the foreground and in the background. 37 stops across the walks get one. Before, a widened circle around the pin (at most 90 m) could miss walkers on the path when the number sat more than about 60 m away.
+- Proposed web preview: https://claude.ai/artifact/CX5icTb6nXdw6v8StZz1Y6

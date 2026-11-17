@@ -17,6 +17,7 @@ export type Stop = {
   lng: number;
   geo: GeoConfidence;
   radius?: number; // arrival radius override in meters
+  trigger?: { lat: number; lng: number }; // where arrival fires, on the route, when the book prints the stop away from the path
   page: string; // source page in the PDF, for review
 };
 

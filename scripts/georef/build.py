@@ -91,6 +91,17 @@ def route_between(route, prev_px, next_px):
     da, db = np.linalg.norm(cand - a, axis=1), np.linalg.norm(cand - b, axis=1)
     return cand[np.argmin(abs(da - db) + 0.2 * seg[seg < max(20.0, 0.35 * L)])].astype(float)
 
+# Stops whose number her map prints well off the red path (a campus, a park, a building set back) keep the pin
+# where she printed it, and also get a trigger point: the nearest spot on her path. Arrival alerts fire there,
+# as VoiceMap places trigger zones on the route line (docs.voicemap.me/tour-publishers/choosing-locations/).
+TRIGGER_OVER_M = 60  # beyond this, a widened circle (capped at 90 m) would no longer reach the path
+
+def trigger_for(route, pt, inv, off_m):
+    if off_m <= TRIGGER_OVER_M or not route.size: return {}
+    q = route[int(np.argmin(np.linalg.norm(route - pt, axis=1)))].astype(float)
+    tl, tg = to_ll(*tps_eval(inv, q / 100.0))
+    return {'trigger': {'lat': round(tl, 6), 'lng': round(tg, 6), 'px': [int(q[0]), int(q[1])]}}
+
 out_maps, pins = {}, {}
 walks = json.load(open(os.path.join(ROOT, 'src/data/walks.json')))
 walks = walks if isinstance(walks, list) else walks['walks']
@@ -128,7 +139,8 @@ for w in walks:
             if fix and fix['on'] == 'canal':
                 xm, ym = snap_to_canal(xm, ym); off = 0.0; extra = {'fix': fix['source']}
             lat, lng = to_ll(xm, ym)
-            pins[wid][n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'route_offset_m': round(off * mpp), **extra}
+            pins[wid][n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'route_offset_m': round(off * mpp), **extra,
+                            **(trigger_for(route, pt, inv, off * mpp) if not extra else {})}
 
 # Extra map pages (pages.json): walks whose route runs on past the first map. Same method, pins only.
 # A stop already placed from the walk's first map keeps that pin.
@@ -149,7 +161,8 @@ for pid, pg in PAGES.items():
         off = float(np.min(np.linalg.norm(route - pt, axis=1))) if route.size else 0.0
         lat, lng = to_ll(*tps_eval(inv, pt / 100.0))
         pins.setdefault(wid, {})[n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'map_page': pid,
-                                       'route_offset_m': round(off * mpp), **({'confidence': pg['confidence']} if pg.get('confidence') else {})}
+                                       'route_offset_m': round(off * mpp), **({'confidence': pg['confidence']} if pg.get('confidence') else {}),
+                                       **trigger_for(route, pt, inv, off * mpp)}
 
 json.dump(out_maps, open(os.path.join(ROOT, 'src/data/bookmaps.json'), 'w'))
 json.dump(pins, open(os.path.join(ROOT, 'scripts/extract/book_pins.json'), 'w'), indent=1)

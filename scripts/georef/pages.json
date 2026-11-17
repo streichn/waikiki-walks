@@ -6,5 +6,12 @@
   "page": 6,
   "book_page": 155,
   "what": "CONTINUE WALK X: O‘ahu Avenue, Mānoa Marketplace, Woodlawn Drive, University Avenue (stops 30 to 52)"
+ },
+ "VIII-p50": {
+  "walk": "VIII",
+  "pdf": "book/part2_walks_V-IX.pdf",
+  "page": 50,
+  "book_page": 119,
+  "what": "Second Walk VIII map: Waiʻalae Avenue, Kaimukī, the puʻu, Ocean View Drive, Makapuʻu Avenue to Diamond Head Road (stops 15 to 32; 22A is a detour, not an app stop)"
  }
 }

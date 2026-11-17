@@ -134,7 +134,10 @@ for k, w in enumerate(SRC['walks']):
         if bp:
             s['geo'] = {'lat': bp['lat'], 'lng': bp['lng'], 'confidence': bp.get('confidence', 'book'),
                         'query': 'placed from the book map' + (f" and corrected ({bp['fix']})" if bp.get('fix') else '')}
-            if bp.get('route_offset_m', 0) > 10:
+            if bp.get('trigger'):
+                s['trigger'] = {'lat': bp['trigger']['lat'], 'lng': bp['trigger']['lng']}
+                s['radius'] = 50  # the trigger sits on her route, so a normal circle with room for GPS bounce
+            elif bp.get('route_offset_m', 0) > 10:
                 s['radius'] = min(90, bp['route_offset_m'] + 30)
             elif bp.get('confidence') == 'estimated':
                 s['radius'] = 50  # placed on her route between neighbours; a wider circle so the alert still fires
@@ -197,6 +200,7 @@ for k, w in enumerate(SRC['walks']):
             'blocks': blocks, 'photos': photos,
             'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6), 'geo': g.get('confidence', 'medium'), 'page': s['page'],
             **({'radius': s['radius']} if s.get('radius') else {}),
+            **({'trigger': s['trigger']} if s.get('trigger') else {}),
         })
         if not cover:
             for p in photos:

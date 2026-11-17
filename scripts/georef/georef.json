@@ -16378,5 +16378,109 @@
    }
   ],
   "road_fit_pct": 89
+ },
+ "VIII-p50": {
+  "affine": [
+   [
+    0.45011602392877725,
+    -0.022998748224126647
+   ],
+   [
+    -0.010085567835190021,
+    -0.4519636069390892
+   ],
+   [
+    -955.6584545941607,
+    531.6914450792647
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "k": [
+   103729.97635592039,
+   110574
+  ],
+  "rms_m": 14.1,
+  "controls": [
+   {
+    "px": 522,
+    "py": 344,
+    "lat": 21.2824069,
+    "lng": -157.7982738,
+    "name": "Wai\u02bbalae Avenue x Koko Head Avenue"
+   },
+   {
+    "px": 507,
+    "py": 414,
+    "lat": 21.2805626,
+    "lng": -157.7987676,
+    "name": "Harding Avenue x Koko Head Avenue"
+   },
+   {
+    "px": 481,
+    "py": 520,
+    "lat": 21.2787804,
+    "lng": -157.7992213,
+    "name": "Koko Head Avenue x P\u0101hoa Avenue"
+   },
+   {
+    "px": 450,
+    "py": 810,
+    "lat": 21.2730185,
+    "lng": -157.7999541,
+    "name": "K\u012blauea Avenue x Ocean View Drive"
+   },
+   {
+    "px": 417,
+    "py": 795,
+    "lat": 21.2734139,
+    "lng": -157.8007249,
+    "name": "K\u012blauea Avenue x Makapu\u2018u Avenue"
+   },
+   {
+    "px": 306,
+    "py": 947,
+    "lat": 21.2703252,
+    "lng": -157.8032536,
+    "name": "Alohea Avenue x Makapu\u2018u Avenue"
+   },
+   {
+    "px": 295,
+    "py": 990,
+    "lat": 21.2696231,
+    "lng": -157.8035033,
+    "name": "Makapu\u2018u Avenue x Diamond Head Road"
+   },
+   {
+    "px": 165,
+    "py": 163,
+    "lat": 21.2862323,
+    "lng": -157.8057985,
+    "name": "Wai\u02bbalae Avenue x 6th Avenue"
+   },
+   {
+    "px": 124,
+    "py": 242,
+    "lat": 21.2846436,
+    "lng": -157.8067448,
+    "name": "Harding Avenue x 6th Avenue"
+   },
+   {
+    "px": 333,
+    "py": 247,
+    "lat": 21.2844599,
+    "lng": -157.8023125,
+    "name": "Wai\u02bbalae Avenue x 9th Avenue"
+   },
+   {
+    "px": 294,
+    "py": 325,
+    "lat": 21.2828528,
+    "lng": -157.8032249,
+    "name": "Harding Avenue x 9th Avenue"
+   }
+  ]
  }
 }

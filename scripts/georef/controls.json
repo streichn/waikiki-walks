@@ -1072,5 +1072,73 @@
    "Lowrey Avenue",
    "Woodlawn Drive"
   ]
+ ],
+ "VIII-p50": [
+  [
+   522,
+   344,
+   "Waiʻalae Avenue",
+   "Koko Head Avenue"
+  ],
+  [
+   507,
+   414,
+   "Harding Avenue",
+   "Koko Head Avenue"
+  ],
+  [
+   481,
+   520,
+   "Koko Head Avenue",
+   "Pāhoa Avenue"
+  ],
+  [
+   450,
+   810,
+   "Kīlauea Avenue",
+   "Ocean View Drive"
+  ],
+  [
+   417,
+   795,
+   "Kīlauea Avenue",
+   "Makapu‘u Avenue"
+  ],
+  [
+   306,
+   947,
+   "Alohea Avenue",
+   "Makapu‘u Avenue"
+  ],
+  [
+   295,
+   990,
+   "Makapu‘u Avenue",
+   "Diamond Head Road"
+  ],
+  [
+   165,
+   163,
+   "Waiʻalae Avenue",
+   "6th Avenue"
+  ],
+  [
+   124,
+   242,
+   "Harding Avenue",
+   "6th Avenue"
+  ],
+  [
+   333,
+   247,
+   "Waiʻalae Avenue",
+   "9th Avenue"
+  ],
+  [
+   294,
+   325,
+   "Harding Avenue",
+   "9th Avenue"
+  ]
  ]
 }

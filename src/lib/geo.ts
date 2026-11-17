@@ -11,6 +11,14 @@ export function distanceM(a: LatLng, b: LatLng): number {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
+/**
+ * Where arrival is detected for a stop: its trigger point on the route when it has one (the book prints some stop
+ * numbers beside the path, on a campus or a park), otherwise the pin itself.
+ */
+export function arrivalPoint(stop: LatLng & { trigger?: LatLng }): LatLng {
+  return stop.trigger ?? stop;
+}
+
 /** Initial bearing from a to b in degrees, 0 = north. */
 export function bearingDeg(a: LatLng, b: LatLng): number {
   const y = Math.sin(rad(b.lng - a.lng)) * Math.cos(rad(b.lat));
