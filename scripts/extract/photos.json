@@ -1,0 +1,6511 @@
+{
+ "photos": {
+  "p1-1-1.jpg": {
+   "page": "p1-1",
+   "bbox": [
+    18.5,
+    23.6,
+    463.4,
+    115.8
+   ]
+  },
+  "p1-1-2.jpg": {
+   "page": "p1-1",
+   "bbox": [
+    167.0,
+    639.0,
+    339.8,
+    702.7
+   ]
+  },
+  "p1-6-3.jpg": {
+   "page": "p1-6",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-6-4.jpg": {
+   "page": "p1-6",
+   "bbox": [
+    0.0,
+    559.2,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-6-5.jpg": {
+   "page": "p1-6",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    251.5
+   ],
+   "page_slice": true
+  },
+  "p1-7-6.jpg": {
+   "page": "p1-7",
+   "bbox": [
+    0.0,
+    559.2,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-7-7.jpg": {
+   "page": "p1-7",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-7-8.jpg": {
+   "page": "p1-7",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    251.5
+   ],
+   "page_slice": true
+  },
+  "p1-7-9.jpg": {
+   "page": "p1-7",
+   "bbox": [
+    0.0,
+    609.6,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-9-10.jpg": {
+   "page": "p1-9",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-9-11.jpg": {
+   "page": "p1-9",
+   "bbox": [
+    44.6,
+    483.1,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-9-12.jpg": {
+   "page": "p1-9",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-9-13.jpg": {
+   "page": "p1-9",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-10-14.jpg": {
+   "page": "p1-10",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-10-15.jpg": {
+   "page": "p1-10",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-10-16.jpg": {
+   "page": "p1-10",
+   "bbox": [
+    0.0,
+    622.2,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-10-17.jpg": {
+   "page": "p1-10",
+   "bbox": [
+    43.0,
+    483.1,
+    464.2,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-11-22.jpg": {
+   "page": "p1-11",
+   "bbox": [
+    275.0,
+    347.4,
+    470.5,
+    489.4
+   ],
+   "caption": "Waikīkī and Lē`ahi 1859 (Hawai‘i State Archives)"
+  },
+  "p1-11-18.jpg": {
+   "page": "p1-11",
+   "bbox": [
+    0.0,
+    617.1,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-11-19.jpg": {
+   "page": "p1-11",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-11-20.jpg": {
+   "page": "p1-11",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-11-21.jpg": {
+   "page": "p1-11",
+   "bbox": [
+    47.8,
+    483.1,
+    460.9,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-12-27.jpg": {
+   "page": "p1-12",
+   "bbox": [
+    359.4,
+    207.2,
+    475.4,
+    393.1
+   ],
+   "caption": "The signs along Ke‘eaumoku Street delineate the ‘Ewa-most boundary of the Waikīkī ahupua‘a."
+  },
+  "p1-12-23.jpg": {
+   "page": "p1-12",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-12-24.jpg": {
+   "page": "p1-12",
+   "bbox": [
+    0.0,
+    0.0,
+    284.9,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-12-25.jpg": {
+   "page": "p1-12",
+   "bbox": [
+    0.0,
+    620.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-12-26.jpg": {
+   "page": "p1-12",
+   "bbox": [
+    49.4,
+    485.5,
+    459.3,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-13-31.jpg": {
+   "page": "p1-13",
+   "bbox": [
+    289.4,
+    438.1,
+    460.7,
+    571.2
+   ],
+   "caption": "‘Āpuakēhau Stream in the times before the Ala Wai Canal (Hawai‘i State Archives)"
+  },
+  "p1-13-32.jpg": {
+   "page": "p1-13",
+   "bbox": [
+    303.1,
+    245.7,
+    458.7,
+    310.5
+   ],
+   "caption": "The ahupua‘a of Waikīkī is outlined in red."
+  },
+  "p1-13-28.jpg": {
+   "page": "p1-13",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-13-29.jpg": {
+   "page": "p1-13",
+   "bbox": [
+    0.0,
+    618.6,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-13-30.jpg": {
+   "page": "p1-13",
+   "bbox": [
+    47.0,
+    483.1,
+    460.9,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-14-33.jpg": {
+   "page": "p1-14",
+   "bbox": [
+    0.0,
+    620.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-14-34.jpg": {
+   "page": "p1-14",
+   "bbox": [
+    45.4,
+    483.1,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-14-35.jpg": {
+   "page": "p1-14",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-15-36.jpg": {
+   "page": "p1-15",
+   "bbox": [
+    0.0,
+    617.9,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-15-37.jpg": {
+   "page": "p1-15",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-16-38.jpg": {
+   "page": "p1-16",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-16-39.jpg": {
+   "page": "p1-16",
+   "bbox": [
+    0.0,
+    0.0,
+    284.9,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-16-40.jpg": {
+   "page": "p1-16",
+   "bbox": [
+    0.0,
+    620.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-16-41.jpg": {
+   "page": "p1-16",
+   "bbox": [
+    44.6,
+    483.1,
+    464.2,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-17-42.jpg": {
+   "page": "p1-17",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-17-43.jpg": {
+   "page": "p1-17",
+   "bbox": [
+    0.0,
+    609.6,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-17-44.jpg": {
+   "page": "p1-17",
+   "bbox": [
+    46.2,
+    484.1,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-18-45.jpg": {
+   "page": "p1-18",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-18-46.jpg": {
+   "page": "p1-18",
+   "bbox": [
+    44.6,
+    483.1,
+    463.4,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-18-47.jpg": {
+   "page": "p1-18",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p1-19-51.jpg": {
+   "page": "p1-19",
+   "bbox": [
+    307.4,
+    281.5,
+    469.1,
+    483.1
+   ],
+   "caption": "Our last reigning monarch: Queen Lili‘uokalani (Hawai‘i State Archives)"
+  },
+  "p1-19-48.jpg": {
+   "page": "p1-19",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-19-49.jpg": {
+   "page": "p1-19",
+   "bbox": [
+    42.2,
+    483.1,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-19-50.jpg": {
+   "page": "p1-19",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p1-20-52.jpg": {
+   "page": "p1-20",
+   "bbox": [
+    0.0,
+    565.7,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-20-53.jpg": {
+   "page": "p1-20",
+   "bbox": [
+    43.4,
+    483.1,
+    470.3,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-20-54.jpg": {
+   "page": "p1-20",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    218.8
+   ],
+   "page_slice": true
+  },
+  "p1-21-57.jpg": {
+   "page": "p1-21",
+   "bbox": [
+    63.0,
+    136.1,
+    424.8,
+    297.7
+   ],
+   "caption": "Kūka‘ō‘ō Heiau at Mānoa Heritage Center. Photograph by Floyd K. Takeuchi."
+  },
+  "p1-21-55.jpg": {
+   "page": "p1-21",
+   "bbox": [
+    0.0,
+    565.7,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-21-56.jpg": {
+   "page": "p1-21",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    218.8
+   ],
+   "page_slice": true
+  },
+  "p1-21-58.jpg": {
+   "page": "p1-21",
+   "bbox": [
+    43.8,
+    483.1,
+    464.2,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-22-59.jpg": {
+   "page": "p1-22",
+   "bbox": [
+    37.5,
+    446.1,
+    168.5,
+    690.2
+   ],
+   "page_slice": true
+  },
+  "p1-23-60.jpg": {
+   "page": "p1-23",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-23-61.jpg": {
+   "page": "p1-23",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-23-62.jpg": {
+   "page": "p1-23",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-23-63.jpg": {
+   "page": "p1-23",
+   "bbox": [
+    50.3,
+    482.3,
+    458.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-25-64.jpg": {
+   "page": "p1-25",
+   "bbox": [
+    366.3,
+    452.6,
+    488.2,
+    611.7
+   ],
+   "caption": "You will see these lovely green signs along the way. The intent is for people to walk from park to park around the island, like a lei. We will follow a Waikīkī lei of parks."
+  },
+  "p1-26-65.jpg": {
+   "page": "p1-26",
+   "bbox": [
+    254.2,
+    487.4,
+    451.0,
+    621.3
+   ],
+   "caption": "Fishermen on “horses” in the Ala Wai Canal (1930s) sitting on the makai side of the canal. Notice the Ko‘olau mountains in the background. (Hawai‘i State Archives)"
+  },
+  "p1-26-67.jpg": {
+   "page": "p1-26",
+   "bbox": [
+    60.8,
+    230.0,
+    239.0,
+    410.0
+   ],
+   "caption": "‘Āpuakēhau Stream (Hawai‘i State Archives)"
+  },
+  "p1-26-66.jpg": {
+   "page": "p1-26",
+   "bbox": [
+    56.8,
+    228.9,
+    245.5,
+    416.1
+   ],
+   "dup_of": "p1-26-67.jpg"
+  },
+  "p1-27-68.jpg": {
+   "page": "p1-27",
+   "bbox": [
+    0.0,
+    452.5,
+    504.0,
+    720.0
+   ],
+   "caption": "Wouldn’t it be lovely to learn how to paddle an outrigger canoe?"
+  },
+  "p1-28-69.jpg": {
+   "page": "p1-28",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    389.9
+   ],
+   "caption": "Feel free to walk around the Ala Wai Garden, but please do not help yourself to any of the vegetation. Each garden is privately tended."
+  },
+  "p1-29-70.jpg": {
+   "page": "p1-29",
+   "bbox": [
+    257.3,
+    276.5,
+    504.0,
+    491.0
+   ],
+   "caption": "The tallest mountain in the Ko‘olau range is Konahuanui at just over 3,000 feet in Mānoa Valley."
+  },
+  "p1-30-72.jpg": {
+   "page": "p1-30",
+   "bbox": [
+    55.1,
+    61.2,
+    448.9,
+    330.5
+   ],
+   "caption": "Notice the incised WPA and 1937 on the bridge, a time when the federally-funded Works Progress Administration provided work and services."
+  },
+  "p1-30-71.jpg": {
+   "page": "p1-30",
+   "bbox": [
+    43.3,
+    482.3,
+    453.2,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-32-73.jpg": {
+   "page": "p1-32",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ]
+  },
+  "p1-33-74.jpg": {
+   "page": "p1-33",
+   "bbox": [
+    0.0,
+    0.0,
+    81.0,
+    720.0
+   ]
+  },
+  "p1-34-75.jpg": {
+   "page": "p1-34",
+   "bbox": [
+    0.0,
+    0.0,
+    502.9,
+    336.5
+   ],
+   "caption": "“Beautiful Water” meets Ala Wai Boulevard, the “way to the water”"
+  },
+  "p1-35-76.jpg": {
+   "page": "p1-35",
+   "bbox": [
+    47.5,
+    65.2,
+    249.1,
+    222.8
+   ],
+   "caption": "Across the plains to the Ko‘olau Mountains. (Hawai‘i State Archives)"
+  },
+  "p1-36-77.jpg": {
+   "page": "p1-36",
+   "bbox": [
+    0.0,
+    0.0,
+    503.6,
+    286.9
+   ],
+   "caption": "One of many streets along the Ala Wai named for associates and family of Kamehameha the Great."
+  },
+  "p1-36-78.jpg": {
+   "page": "p1-36",
+   "bbox": [
+    356.5,
+    403.7,
+    504.0,
+    669.0
+   ]
+  },
+  "p1-37-79.jpg": {
+   "page": "p1-37",
+   "bbox": [
+    255.2,
+    310.2,
+    447.7,
+    463.2
+   ],
+   "caption": "John Young, advisor to Kamehameha the Great, is remembered in this street sign ‘Olohana."
+  },
+  "p1-38-80.jpg": {
+   "page": "p1-38",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    370.1
+   ],
+   "caption": "Ala Wai Boulevard leaves Lē‘ahi behind but continues ‘Ewa around the canal to Ala Moana Boulevard."
+  },
+  "p1-40-81.jpg": {
+   "page": "p1-40",
+   "bbox": [
+    16.9,
+    18.8,
+    148.0,
+    262.9
+   ],
+   "page_slice": true
+  },
+  "p1-41-82.jpg": {
+   "page": "p1-41",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-41-83.jpg": {
+   "page": "p1-41",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-41-84.jpg": {
+   "page": "p1-41",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-41-85.jpg": {
+   "page": "p1-41",
+   "bbox": [
+    46.2,
+    482.3,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-42-86.jpg": {
+   "page": "p1-42",
+   "bbox": [
+    0.0,
+    0.0,
+    293.8,
+    241.6
+   ],
+   "caption": "Kalo and Rice fields in 1890s Waikīkī (Hawai‘i State Archives)"
+  },
+  "p1-43-87.jpg": {
+   "page": "p1-43",
+   "bbox": [
+    218.5,
+    0.0,
+    504.0,
+    241.3
+   ],
+   "caption": "Duck ponds behind Waikīkī 1908 photo (Hawai‘i State Archives)"
+  },
+  "p1-43-88.jpg": {
+   "page": "p1-43",
+   "bbox": [
+    366.3,
+    311.3,
+    489.5,
+    675.9
+   ],
+   "caption": "Sculpture of male hula dancer - Kaha ka ‘Io me nā makani"
+  },
+  "p1-44-89.jpg": {
+   "page": "p1-44",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    302.4
+   ],
+   "caption": "Sculpture of female hula dancer - Kaha ka ‘Io me nā makani"
+  },
+  "p1-45-90.jpg": {
+   "page": "p1-45",
+   "bbox": [
+    335.6,
+    90.0,
+    504.0,
+    259.1
+   ],
+   "caption": "The hidden meaning of this street name is special to hula."
+  },
+  "p1-46-91.jpg": {
+   "page": "p1-46",
+   "bbox": [
+    262.5,
+    423.8,
+    437.4,
+    590.0
+   ],
+   "page_slice": true
+  },
+  "p1-46-92.jpg": {
+   "page": "p1-46",
+   "bbox": [
+    263.8,
+    425.0,
+    436.2,
+    588.7
+   ],
+   "page_slice": true
+  },
+  "p1-47-93.jpg": {
+   "page": "p1-47",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    297.9
+   ],
+   "caption": "Ala Wai Harbor at sunrise"
+  },
+  "p1-47-94.jpg": {
+   "page": "p1-47",
+   "bbox": [
+    59.5,
+    357.6,
+    234.9,
+    631.7
+   ],
+   "page_slice": true
+  },
+  "p1-47-95.jpg": {
+   "page": "p1-47",
+   "bbox": [
+    60.7,
+    358.8,
+    233.7,
+    630.5
+   ],
+   "page_slice": true
+  },
+  "p1-50-96.jpg": {
+   "page": "p1-50",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    274.3
+   ],
+   "caption": "Sunbathing on the beach in front of the Hilton in the shade of Palm trees and the beauty of the distant Wai‘anae Range."
+  },
+  "p1-52-98.jpg": {
+   "page": "p1-52",
+   "bbox": [
+    256.7,
+    419.0,
+    445.3,
+    626.4
+   ],
+   "caption": "The view from the Hale Koa beach presents the grandeur of Lē‘ahi and condominium row."
+  },
+  "p1-52-97.jpg": {
+   "page": "p1-52",
+   "bbox": [
+    39.3,
+    482.3,
+    456.4,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-53-99.jpg": {
+   "page": "p1-53",
+   "bbox": [
+    256.7,
+    64.2,
+    429.1,
+    236.9
+   ],
+   "caption": "1901 Photo of the Chung Afong Villa. The villa and property were sold in 1904. Battery Randolph was built in its place in 1911."
+  },
+  "p1-54-101.jpg": {
+   "page": "p1-54",
+   "bbox": [
+    36.7,
+    450.9,
+    171.0,
+    520.7
+   ],
+   "caption": "Fort DeRussy in 1949 (Hawai‘i State Archives)"
+  },
+  "p1-54-100.jpg": {
+   "page": "p1-54",
+   "bbox": [
+    0.0,
+    447.8,
+    504.0,
+    720.0
+   ],
+   "dup_of": "p1-54-101.jpg"
+  },
+  "p1-56-102.jpg": {
+   "page": "p1-56",
+   "bbox": [
+    0.0,
+    0.0,
+    238.4,
+    323.0
+   ],
+   "caption": "Nā Lehua Helele‘i – The Kū images honor fallen Hawaiian warriors."
+  },
+  "p1-57-103.jpg": {
+   "page": "p1-57",
+   "bbox": [
+    14.4,
+    64.1,
+    213.4,
+    313.3
+   ],
+   "caption": "Kalo loko in Waikīkī. (Hawai‘i State Archives)"
+  },
+  "p1-58-104.jpg": {
+   "page": "p1-58",
+   "bbox": [
+    18.1,
+    434.3,
+    144.1,
+    635.2
+   ],
+   "page_slice": true
+  },
+  "p1-59-105.jpg": {
+   "page": "p1-59",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-59-106.jpg": {
+   "page": "p1-59",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-59-107.jpg": {
+   "page": "p1-59",
+   "bbox": [
+    45.4,
+    481.4,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-59-108.jpg": {
+   "page": "p1-59",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-60-109.jpg": {
+   "page": "p1-60",
+   "bbox": [
+    149.3,
+    406.6,
+    312.4,
+    678.0
+   ],
+   "caption": "Oh, the music Gabby would make! - Kanikapila!"
+  },
+  "p1-60-110.jpg": {
+   "page": "p1-60",
+   "bbox": [
+    62.6,
+    67.1,
+    238.1,
+    243.0
+   ],
+   "caption": "Helumoa – “chicken scratch” –where the mon- archy lived."
+  },
+  "p1-61-111.jpg": {
+   "page": "p1-61",
+   "bbox": [
+    0.0,
+    433.8,
+    504.0,
+    720.0
+   ],
+   "caption": "This Hau tree provides the only shade on the beach. Walking Diamond Head, the beach ends here but resumes at the Royal Hawaiian Hotel."
+  },
+  "p1-62-112.jpg": {
+   "page": "p1-62",
+   "bbox": [
+    258.2,
+    0.0,
+    504.0,
+    273.6
+   ],
+   "caption": "A glimpse of the stunning architecture of the Royal Hawaiian Hotel"
+  },
+  "p1-63-113.jpg": {
+   "page": "p1-63",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    273.2
+   ],
+   "caption": "The Royal Hawaiian Hotel on the ocean. (Hawai‘i State Archives)"
+  },
+  "p1-64-114.jpg": {
+   "page": "p1-64",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    252.9
+   ],
+   "caption": "1880s photo - ‘Āpuakēhau Stream and Kamehameha V’s grass house. (Hawai‘i State Archives)"
+  },
+  "p1-65-115.jpg": {
+   "page": "p1-65",
+   "bbox": [
+    109.0,
+    42.5,
+    386.8,
+    217.1
+   ],
+   "caption": "both the lo‘i in the plains and for the bathers in the ocean. The triple row of Palm trees shield the Athletic Field from the strong rays of the sun. ‘Āpuakēhau Heiau, next to the stream, stands ready for ceremonial purposes."
+  },
+  "p1-66-116.jpg": {
+   "page": "p1-66",
+   "bbox": [
+    258.0,
+    63.7,
+    443.2,
+    221.2
+   ],
+   "caption": "View of Waikīkī with Hale Lama, Kamehameha V’s home – where the Royal Hawai‘i Hotel now stands. 1880 photo (Hawai‘i State Archives)"
+  },
+  "p1-66-117.jpg": {
+   "page": "p1-66",
+   "bbox": [
+    58.0,
+    411.1,
+    242.6,
+    550.5
+   ],
+   "caption": "1878 photo of Hale Lama, Kamehameha V’s house at Helumoa on ‘Āpuakēhau Stream. (Hawai‘i State Archives)"
+  },
+  "p1-67-118.jpg": {
+   "page": "p1-67",
+   "bbox": [
+    60.5,
+    450.0,
+    437.8,
+    650.1
+   ],
+   "caption": "The Moana Hotel on the bank of ‘Āpuakēhau Stream (Hawai‘i State Archives)"
+  },
+  "p1-69-119.jpg": {
+   "page": "p1-69",
+   "bbox": [
+    27.0,
+    483.2,
+    504.0,
+    720.0
+   ],
+   "caption": "Information plaque of Nā Pōhaku Ola Kapaemāhū ā Kapuni in Hawaiian (‘Ōlelo Hawai‘i)."
+  },
+  "p1-70-120.jpg": {
+   "page": "p1-70",
+   "bbox": [
+    58.7,
+    334.2,
+    247.0,
+    519.8
+   ],
+   "page_slice": true
+  },
+  "p1-70-121.jpg": {
+   "page": "p1-70",
+   "bbox": [
+    60.0,
+    335.4,
+    245.8,
+    518.5
+   ],
+   "page_slice": true
+  },
+  "p1-71-122.jpg": {
+   "page": "p1-71",
+   "bbox": [
+    56.6,
+    55.1,
+    441.2,
+    247.6
+   ],
+   "caption": "Waikīkī Coconut Grove (Hawai‘i State Archives)"
+  },
+  "p1-72-123.jpg": {
+   "page": "p1-72",
+   "bbox": [
+    11.6,
+    382.8,
+    138.0,
+    617.2
+   ],
+   "page_slice": true
+  },
+  "p1-73-124.jpg": {
+   "page": "p1-73",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-73-125.jpg": {
+   "page": "p1-73",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p1-73-126.jpg": {
+   "page": "p1-73",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p1-73-127.jpg": {
+   "page": "p1-73",
+   "bbox": [
+    45.4,
+    481.4,
+    461.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p1-74-128.jpg": {
+   "page": "p1-74",
+   "bbox": [
+    47.2,
+    63.4,
+    241.6,
+    275.5
+   ],
+   "caption": "Kalākaua Avenue was first known as Waikīkī Road. (Hawai‘i State Archives)"
+  },
+  "p1-75-129.jpg": {
+   "page": "p1-75",
+   "bbox": [
+    53.5,
+    339.1,
+    233.9,
+    517.3
+   ],
+   "caption": "‘Olohana was part of Kamehameha the Great’s entourage."
+  },
+  "p1-75-130.jpg": {
+   "page": "p1-75",
+   "bbox": [
+    257.8,
+    63.4,
+    452.2,
+    291.2
+   ],
+   "caption": "Streetcar on Waikīkī Road, today’s Kalākaua Avenue. (Hawai‘i State Archives)"
+  },
+  "p1-76-131.jpg": {
+   "page": "p1-76",
+   "bbox": [
+    254.9,
+    54.0,
+    459.4,
+    348.8
+   ],
+   "caption": "Memorial to Hawaiian Brothers in Valor"
+  },
+  "p1-77-132.jpg": {
+   "page": "p1-77",
+   "bbox": [
+    59.5,
+    67.3,
+    440.7,
+    478.1
+   ],
+   "caption": "1908 photo - looking mauka along (what will become) Kālaimoku Street (Hawai‘i State Archives)"
+  },
+  "p1-77-133.jpg": {
+   "page": "p1-77",
+   "bbox": [
+    257.1,
+    487.8,
+    439.1,
+    630.2
+   ],
+   "caption": "‘Ōpala means ‘trash’ in Hawaiian."
+  },
+  "p1-78-134.jpg": {
+   "page": "p1-78",
+   "bbox": [
+    47.6,
+    63.0,
+    232.9,
+    325.4
+   ],
+   "caption": "Elegant roofline on the Gump Building"
+  },
+  "p1-78-135.jpg": {
+   "page": "p1-78",
+   "bbox": [
+    48.2,
+    348.7,
+    234.0,
+    606.8
+   ],
+   "caption": "The fine details on this almost 100-year-old building should not be overlooked! Intricate metal work on the side staircase at the Gump Building"
+  },
+  "p1-79-136.jpg": {
+   "page": "p1-79",
+   "bbox": [
+    0.0,
+    424.8,
+    504.0,
+    720.0
+   ],
+   "caption": "‘Āpuakēhau Stream, from the Ko‘olau mountains, emptied into the ocean next to the Moana Hotel. It was diverted into the Ala Wai Canal in the 1920s (Hawai‘i State Archives)"
+  },
+  "p1-80-137.jpg": {
+   "page": "p1-80",
+   "bbox": [
+    49.7,
+    305.6,
+    244.6,
+    494.3
+   ],
+   "caption": "1880 Waikīkī residence of Charles Reed Bishop and Princess Bernice Pauahi Bishop on ‘Āpuakēhau Stream. Kamehameha V’s former residence is vis- ible on the left. (Hawai‘i State Archives)"
+  },
+  "p1-81-138.jpg": {
+   "page": "p1-81",
+   "bbox": [
+    257.0,
+    132.8,
+    442.6,
+    270.4
+   ],
+   "caption": "This crosswalk design is based on the Mo‘olelo Kaha (‘story about the scratches’)."
+  },
+  "p1-82-140.jpg": {
+   "page": "p1-82",
+   "bbox": [
+    86.7,
+    51.8,
+    411.5,
+    260.2
+   ],
+   "caption": "The garden courtyard of the Waikīkī Theater was decorated with The Fountain of Stars and 150 actors’ autographs engraved on plaques. (Lowell Angell Collection)"
+  },
+  "p1-82-139.jpg": {
+   "page": "p1-82",
+   "bbox": [
+    84.8,
+    50.0,
+    414.9,
+    263.8
+   ],
+   "dup_of": "p1-82-140.jpg"
+  },
+  "p1-87-141.jpg": {
+   "page": "p1-87",
+   "bbox": [
+    250.7,
+    287.3,
+    477.0,
+    457.5
+   ],
+   "caption": "The small upright stone is Ta‘ahu Ea, which was brought from Ra‘iātea in 1997."
+  },
+  "p1-88-142.jpg": {
+   "page": "p1-88",
+   "bbox": [
+    59.5,
+    173.2,
+    247.7,
+    373.6
+   ],
+   "page_slice": true
+  },
+  "p1-88-143.jpg": {
+   "page": "p1-88",
+   "bbox": [
+    60.7,
+    174.5,
+    246.5,
+    372.4
+   ],
+   "page_slice": true
+  },
+  "p1-89-144.jpg": {
+   "page": "p1-89",
+   "bbox": [
+    258.7,
+    63.4,
+    416.2,
+    259.8
+   ],
+   "caption": "Prince Kūhiō in Waikīkī (Hawai‘i State Archives)"
+  },
+  "p1-89-145.jpg": {
+   "page": "p1-89",
+   "bbox": [
+    164.9,
+    380.8,
+    310.0,
+    650.5
+   ],
+   "caption": "Always elegant. This statue is a true repre- sentation of the greatness of Prince Kūhiō Kalaniana‘ole Pi‘ikoi"
+  },
+  "p1-90-146.jpg": {
+   "page": "p1-90",
+   "bbox": [
+    60.8,
+    474.8,
+    240.1,
+    628.0
+   ],
+   "caption": "Pualeilani’s luxurious grounds rivaled that of ‘Āinahau (Walk V)"
+  },
+  "p1-90-147.jpg": {
+   "page": "p1-90",
+   "bbox": [
+    109.0,
+    84.4,
+    393.9,
+    291.6
+   ],
+   "caption": "lived at Pualeilani. (Hawai‘i State Archives)"
+  },
+  "p2-1-148.jpg": {
+   "page": "p2-1",
+   "bbox": [
+    14.2,
+    336.0,
+    140.2,
+    570.7
+   ],
+   "page_slice": true
+  },
+  "p2-2-149.jpg": {
+   "page": "p2-2",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p2-2-150.jpg": {
+   "page": "p2-2",
+   "bbox": [
+    46.2,
+    481.4,
+    461.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-2-151.jpg": {
+   "page": "p2-2",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p2-3-152.jpg": {
+   "page": "p2-3",
+   "bbox": [
+    60.8,
+    63.4,
+    239.0,
+    285.1
+   ],
+   "caption": "Queen Lili‘uokalani (Hawai‘i State Archives)"
+  },
+  "p2-3-153.jpg": {
+   "page": "p2-3",
+   "bbox": [
+    260.9,
+    322.7,
+    430.5,
+    557.8
+   ],
+   "caption": "Princess Ka‘iulani (Hawai‘i State Archives)"
+  },
+  "p2-5-154.jpg": {
+   "page": "p2-5",
+   "bbox": [
+    61.9,
+    159.8,
+    222.1,
+    282.6
+   ],
+   "caption": "Prince Koa (David Kawānanakoa) and Princess Ka‘iulani were cousins. It was rumored that they would marry."
+  },
+  "p2-5-155.jpg": {
+   "page": "p2-5",
+   "bbox": [
+    261.5,
+    140.4,
+    428.3,
+    348.9
+   ],
+   "caption": "The beauty of Princess Ka‘iulani is evident even in this statue. Princess Ka‘iulani welcomes you to her home at ‘Āinahau."
+  },
+  "p2-5-156.jpg": {
+   "page": "p2-5",
+   "bbox": [
+    259.2,
+    501.1,
+    436.4,
+    630.4
+   ],
+   "caption": "A bench that now encircles an ‘Ōhi‘a tree at Kawaiaha‘o Church downtown was once on the"
+  },
+  "p2-6-157.jpg": {
+   "page": "p2-6",
+   "bbox": [
+    59.8,
+    58.7,
+    436.2,
+    303.5
+   ],
+   "caption": "The elegant Princess Ka‘iulani with her favorite peacocks. (Hawai‘i State Archives)"
+  },
+  "p2-7-159.jpg": {
+   "page": "p2-7",
+   "bbox": [
+    60.7,
+    37.4,
+    442.9,
+    349.3
+   ],
+   "caption": "‘Āpuakēhau Stream ran through the Cleghorn property. (Hawai‘i State Archives)"
+  },
+  "p2-7-158.jpg": {
+   "page": "p2-7",
+   "bbox": [
+    56.5,
+    33.1,
+    448.9,
+    355.3
+   ],
+   "dup_of": "p2-7-159.jpg"
+  },
+  "p2-8-161.jpg": {
+   "page": "p2-8",
+   "bbox": [
+    63.2,
+    46.6,
+    428.1,
+    335.6
+   ],
+   "caption": "Governor Cleghorn built this house at ‘Āinahau especially for Ka‘iulani when she returned from Europe in 1897. The peacocks at the zoo are probably the great-great-great grandchicks of these peacocks. (Hawai‘i State Archives)"
+  },
+  "p2-8-160.jpg": {
+   "page": "p2-8",
+   "bbox": [
+    59.2,
+    42.6,
+    434.0,
+    341.4
+   ],
+   "dup_of": "p2-8-161.jpg"
+  },
+  "p2-9-162.jpg": {
+   "page": "p2-9",
+   "bbox": [
+    74.5,
+    61.6,
+    431.4,
+    331.6
+   ],
+   "caption": "A feast in 1889 with Robert Lewis Stevenson, the future Queen Lili‘uokalani, and King Kalākaua (Hawai‘i State Archives)"
+  },
+  "p2-10-163.jpg": {
+   "page": "p2-10",
+   "bbox": [
+    61.8,
+    239.8,
+    240.9,
+    483.0
+   ],
+   "page_slice": true
+  },
+  "p2-10-164.jpg": {
+   "page": "p2-10",
+   "bbox": [
+    63.0,
+    241.1,
+    239.6,
+    481.8
+   ],
+   "page_slice": true
+  },
+  "p2-11-165.jpg": {
+   "page": "p2-11",
+   "bbox": [
+    81.8,
+    70.4,
+    411.7,
+    299.2
+   ],
+   "caption": "Queen Lili‘uokalani’s Waikīkī residence, Paoakalani (‘the royal perfume’)"
+  },
+  "p2-12-166.jpg": {
+   "page": "p2-12",
+   "bbox": [
+    46.2,
+    482.3,
+    461.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-13-167.jpg": {
+   "page": "p2-13",
+   "bbox": [
+    258.0,
+    239.8,
+    437.7,
+    508.7
+   ],
+   "caption": "The Towers of Lili‘uokalani Gardens are modeled after the royal kāhili. These kāhili are on display at Ho‘okela at the Hyatt Regency (stop 13). The photo is of Princess Bernice Bishop Pauahi."
+  },
+  "p2-13-168.jpg": {
+   "page": "p2-13",
+   "bbox": [
+    60.8,
+    284.4,
+    226.3,
+    410.1
+   ],
+   "caption": "The name and crown in Lili‘uokalani Gardens are reminders of the days when Queen Lili‘uokalani lived in Waikīkī."
+  },
+  "p2-14-169.jpg": {
+   "page": "p2-14",
+   "bbox": [
+    258.1,
+    239.8,
+    419.2,
+    411.1
+   ],
+   "caption": "Kealohilani – the royal brightness – Avenue refers to one of the houses owned by Queen Lili‘uokanlani."
+  },
+  "p2-15-170.jpg": {
+   "page": "p2-15",
+   "bbox": [
+    55.4,
+    123.1,
+    233.4,
+    400.9
+   ],
+   "caption": "Prince Kūhiō Day is celebrated on March 26, a state holiday."
+  },
+  "p2-16-171.jpg": {
+   "page": "p2-16",
+   "bbox": [
+    49.0,
+    60.5,
+    448.7,
+    378.2
+   ],
+   "caption": "Pualeilani, King Kalākaua and Queen Kapi‘olani’s residence, is in the background. Notice all the coconut trees in Uluniu. (Hawai‘i State Archives)"
+  },
+  "p2-17-172.jpg": {
+   "page": "p2-17",
+   "bbox": [
+    14.0,
+    430.6,
+    140.4,
+    631.4
+   ],
+   "page_slice": true
+  },
+  "p2-18-173.jpg": {
+   "page": "p2-18",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p2-18-174.jpg": {
+   "page": "p2-18",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p2-18-175.jpg": {
+   "page": "p2-18",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-18-176.jpg": {
+   "page": "p2-18",
+   "bbox": [
+    46.2,
+    481.4,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-19-177.jpg": {
+   "page": "p2-19",
+   "bbox": [
+    56.5,
+    63.4,
+    244.9,
+    209.8
+   ],
+   "caption": "This memorial is a final and respectful place for the iwi (bones) of the Hawaiians who once lived in this area."
+  },
+  "p2-19-178.jpg": {
+   "page": "p2-19",
+   "bbox": [
+    60.8,
+    442.1,
+    437.0,
+    650.5
+   ],
+   "caption": "“A Fistful of Salt” is a poignant tale."
+  },
+  "p2-20-179.jpg": {
+   "page": "p2-20",
+   "bbox": [
+    255.6,
+    455.8,
+    446.8,
+    619.5
+   ],
+   "caption": "In 1898, soldiers at Camp McKinley called Kapi‘olani Park home.(Hawai‘i State Archives)"
+  },
+  "p2-20-180.jpg": {
+   "page": "p2-20",
+   "bbox": [
+    59.2,
+    97.2,
+    240.5,
+    378.6
+   ],
+   "caption": "Queen Kapi‘olani welcomes you to her park!"
+  },
+  "p2-21-182.jpg": {
+   "page": "p2-21",
+   "bbox": [
+    74.1,
+    374.0,
+    424.1,
+    652.3
+   ],
+   "caption": "Makee Island in 1900 – lagoons, bridges, Ironwood and Kiawe trees – a lover’s paradise. (Hawai‘i State Archives)"
+  },
+  "p2-21-181.jpg": {
+   "page": "p2-21",
+   "bbox": [
+    71.6,
+    371.5,
+    430.5,
+    658.4
+   ],
+   "dup_of": "p2-21-182.jpg"
+  },
+  "p2-22-183.jpg": {
+   "page": "p2-22",
+   "bbox": [
+    257.4,
+    189.4,
+    451.1,
+    423.2
+   ],
+   "caption": "Can you find the various poses of the hula dancers etched on the columns of Kapi‘olani Bandstand?"
+  },
+  "p2-23-184.jpg": {
+   "page": "p2-23",
+   "bbox": [
+    258.0,
+    222.2,
+    448.6,
+    455.5
+   ],
+   "caption": "Lē‘ahi is a Registered National Natural Landmark"
+  },
+  "p2-24-187.jpg": {
+   "page": "p2-24",
+   "bbox": [
+    167.0,
+    280.4,
+    301.2,
+    463.2
+   ],
+   "caption": "Gabby “pops” Pahinui, one of Hawai‘i’s great musicians."
+  },
+  "p2-24-185.jpg": {
+   "page": "p2-24",
+   "bbox": [
+    251.6,
+    490.0,
+    439.9,
+    633.2
+   ],
+   "page_slice": true
+  },
+  "p2-24-186.jpg": {
+   "page": "p2-24",
+   "bbox": [
+    252.9,
+    491.3,
+    438.6,
+    631.9
+   ],
+   "page_slice": true
+  },
+  "p2-27-188.jpg": {
+   "page": "p2-27",
+   "bbox": [
+    60.1,
+    64.8,
+    431.6,
+    301.5
+   ],
+   "caption": "No need to go to the Galapagos Islands: we have Galapagos Tortoises here!"
+  },
+  "p2-28-189.jpg": {
+   "page": "p2-28",
+   "bbox": [
+    60.5,
+    66.8,
+    442.8,
+    299.1
+   ],
+   "caption": "No matter where you go, our native Pueo turns his head to find you!"
+  },
+  "p2-29-190.jpg": {
+   "page": "p2-29",
+   "bbox": [
+    14.2,
+    336.0,
+    140.2,
+    570.7
+   ],
+   "page_slice": true
+  },
+  "p2-30-191.jpg": {
+   "page": "p2-30",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p2-30-192.jpg": {
+   "page": "p2-30",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-30-193.jpg": {
+   "page": "p2-30",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p2-30-194.jpg": {
+   "page": "p2-30",
+   "bbox": [
+    45.4,
+    482.3,
+    462.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-31-195.jpg": {
+   "page": "p2-31",
+   "bbox": [
+    82.6,
+    64.5,
+    416.2,
+    297.2
+   ],
+   "caption": "Lē‘ahi from Pūowaina (Diamond Head to Punchbowl) (Hawai‘i State Archives)"
+  },
+  "p2-32-196.jpg": {
+   "page": "p2-32",
+   "bbox": [
+    60.5,
+    347.0,
+    239.8,
+    565.2
+   ],
+   "caption": "The beauty and breezes of the ocean from Kapahulu Pier are unsurpassed."
+  },
+  "p2-33-197.jpg": {
+   "page": "p2-33",
+   "bbox": [
+    69.4,
+    67.1,
+    426.7,
+    292.4
+   ],
+   "caption": "The aquarium’s original location was across from today’s “Trolley Stop/ Jogger’s Rest.” (Hawai‘i State Archives)"
+  },
+  "p2-34-198.jpg": {
+   "page": "p2-34",
+   "bbox": [
+    258.7,
+    322.9,
+    439.3,
+    563.4
+   ],
+   "caption": "The almost 100-year-old Natatorium looks good from here, but up close its deteriorating condition is clearly noticeable."
+  },
+  "p2-35-199.jpg": {
+   "page": "p2-35",
+   "bbox": [
+    62.4,
+    63.7,
+    455.5,
+    298.4
+   ],
+   "caption": "This is a view of the seating area for the swim meets that once took place at the natatorium."
+  },
+  "p2-37-200.jpg": {
+   "page": "p2-37",
+   "bbox": [
+    60.8,
+    50.8,
+    438.5,
+    317.5
+   ],
+   "caption": "Sans Souci Beach is not just for humans: the shiny black Hawaiian Monk Seal is the newborn; mom is on the right, a duller grey."
+  },
+  "p2-39-201.jpg": {
+   "page": "p2-39",
+   "bbox": [
+    101.8,
+    61.3,
+    423.7,
+    306.9
+   ],
+   "caption": "The Castle mansion was so large that it presented an astonishing sight offshore. (Hawai‘i State Archives)"
+  },
+  "p2-40-202.jpg": {
+   "page": "p2-40",
+   "bbox": [
+    51.8,
+    65.1,
+    239.1,
+    294.8
+   ],
+   "caption": "The foundation and pilings of the Castle Estate can be seen. The Elks Lodge is at this location today."
+  },
+  "p2-41-203.jpg": {
+   "page": "p2-41",
+   "bbox": [
+    257.3,
+    396.4,
+    461.7,
+    529.0
+   ],
+   "caption": "This photo of the right-of-way to Diamond Head Road captures not only Lē‘ahi in the background, but also the home of the architect C.W. Dickey."
+  },
+  "p2-43-204.jpg": {
+   "page": "p2-43",
+   "bbox": [
+    66.2,
+    28.2,
+    446.4,
+    237.6
+   ],
+   "caption": "The plaque with a model of her airplane and a huge wave below reads: AMELIA EARHART First person to fly alone from Hawai‘i to North America. January 11, 1935."
+  },
+  "p2-46-205.jpg": {
+   "page": "p2-46",
+   "bbox": [
+    0.0,
+    0.0,
+    113.8,
+    720.0
+   ]
+  },
+  "p2-46-207.jpg": {
+   "page": "p2-46",
+   "bbox": [
+    342.0,
+    318.2,
+    494.8,
+    528.5
+   ],
+   "caption": "Or who might inspire you to start running along Diamond Head Road!"
+  },
+  "p2-46-206.jpg": {
+   "page": "p2-46",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-48-208.jpg": {
+   "page": "p2-48",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p2-48-209.jpg": {
+   "page": "p2-48",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p2-48-210.jpg": {
+   "page": "p2-48",
+   "bbox": [
+    43.0,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-49-211.jpg": {
+   "page": "p2-49",
+   "bbox": [
+    40.1,
+    27.5,
+    166.4,
+    261.8
+   ],
+   "page_slice": true
+  },
+  "p2-51-213.jpg": {
+   "page": "p2-51",
+   "bbox": [
+    82.2,
+    51.7,
+    410.7,
+    312.9
+   ],
+   "caption": "Caption: Across the plains to Kaimukī. (Hawai‘i State Archives)"
+  },
+  "p2-51-212.jpg": {
+   "page": "p2-51",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-52-214.jpg": {
+   "page": "p2-52",
+   "bbox": [
+    257.3,
+    62.0,
+    433.4,
+    193.9
+   ],
+   "caption": "Waikīkī’s Fire Station No. 7 is always ready"
+  },
+  "p2-52-215.jpg": {
+   "page": "p2-52",
+   "bbox": [
+    256.6,
+    319.3,
+    442.7,
+    448.6
+   ],
+   "caption": "This outrigger canoe is on the high seas, not on the Ala Wai Canal."
+  },
+  "p2-54-216.jpg": {
+   "page": "p2-54",
+   "bbox": [
+    0.0,
+    157.0,
+    245.6,
+    332.2
+   ],
+   "caption": "Stop in for a treat at Waiola Shave Ice"
+  },
+  "p2-56-217.jpg": {
+   "page": "p2-56",
+   "bbox": [
+    57.7,
+    284.5,
+    240.4,
+    591.8
+   ],
+   "page_slice": true
+  },
+  "p2-56-218.jpg": {
+   "page": "p2-56",
+   "bbox": [
+    58.9,
+    285.7,
+    239.1,
+    590.5
+   ],
+   "page_slice": true
+  },
+  "p2-57-219.jpg": {
+   "page": "p2-57",
+   "bbox": [
+    35.3,
+    57.6,
+    249.2,
+    243.8
+   ],
+   "caption": "In this 1930 photo of the Castle mansion in Waikīkī, the buildings of Chaminade / St. Louis School are clearly visible in the hills behind Waikīkī. (Hawai‘i State Archives)"
+  },
+  "p2-58-220.jpg": {
+   "page": "p2-58",
+   "bbox": [
+    72.4,
+    49.0,
+    414.1,
+    273.1
+   ],
+   "caption": "A 1943 photo of Queen Theater and patrons waiting patiently in the shade. (Lowell Angell Collection)"
+  },
+  "p2-59-221.jpg": {
+   "page": "p2-59",
+   "bbox": [
+    50.4,
+    237.6,
+    244.2,
+    484.9
+   ],
+   "caption": "Queen Lili‘uokalani presided at the opening of her namesake school 5 years before she died - in 1917. The ceramic tile mosaic portraying the queen was hand painted by the children and staff."
+  },
+  "p2-59-222.jpg": {
+   "page": "p2-59",
+   "bbox": [
+    48.5,
+    62.6,
+    246.3,
+    200.2
+   ],
+   "caption": "“A Dream Come True,” a thanks to Mayor Crane, was carved into this sidewalk entrance when the shop opened"
+  },
+  "p2-60-223.jpg": {
+   "page": "p2-60",
+   "bbox": [
+    49.7,
+    62.0,
+    444.4,
+    299.5
+   ],
+   "caption": "Kaimukī: Up Koko Head Avenue to the Fire Station and to Pu‘u o Kaimukī, then into the crater! (Hawai‘i State Archives)"
+  },
+  "p2-60-224.jpg": {
+   "page": "p2-60",
+   "bbox": [
+    254.2,
+    480.2,
+    449.2,
+    649.6
+   ],
+   "caption": "At this sign, walk up the hill to one of the most mag- nificent views on this side of the island."
+  },
+  "p2-62-225.jpg": {
+   "page": "p2-62",
+   "bbox": [
+    59.9,
+    57.6,
+    429.4,
+    302.5
+   ],
+   "caption": "A secure parking space: lava garages along Ocean View Avenue."
+  },
+  "p2-63-226.jpg": {
+   "page": "p2-63",
+   "bbox": [
+    60.5,
+    63.4,
+    248.1,
+    221.4
+   ],
+   "caption": "The “gates” at the entryway to Ft. Ruger."
+  },
+  "p2-63-228.jpg": {
+   "page": "p2-63",
+   "bbox": [
+    55.9,
+    407.2,
+    440.5,
+    651.0
+   ],
+   "caption": "This 1934 photo of Diamond Head Theater displays the building’s clean, modern lines. (Lowell Angell Collection)"
+  },
+  "p2-63-227.jpg": {
+   "page": "p2-63",
+   "bbox": [
+    48.7,
+    400.0,
+    449.7,
+    659.9
+   ],
+   "dup_of": "p2-63-228.jpg"
+  },
+  "p2-65-229.jpg": {
+   "page": "p2-65",
+   "bbox": [
+    21.0,
+    41.9,
+    147.0,
+    276.7
+   ],
+   "page_slice": true
+  },
+  "p2-66-230.jpg": {
+   "page": "p2-66",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p2-66-231.jpg": {
+   "page": "p2-66",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-66-232.jpg": {
+   "page": "p2-66",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p2-66-233.jpg": {
+   "page": "p2-66",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-67-235.jpg": {
+   "page": "p2-67",
+   "bbox": [
+    57.3,
+    49.6,
+    454.6,
+    289.2
+   ],
+   "caption": "The flatlands of Mō‘ili‘ili. Low white building is Kamō‘ili‘ili Church (Hawai‘i State Archives)"
+  },
+  "p2-67-234.jpg": {
+   "page": "p2-67",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-68-236.jpg": {
+   "page": "p2-68",
+   "bbox": [
+    62.3,
+    254.5,
+    236.0,
+    532.5
+   ],
+   "caption": "Look at the detail in these tiles: surfers, birds, tree, fish, even an elephant!"
+  },
+  "p2-69-238.jpg": {
+   "page": "p2-69",
+   "bbox": [
+    182.7,
+    515.2,
+    295.6,
+    645.8
+   ]
+  },
+  "p2-69-239.jpg": {
+   "page": "p2-69",
+   "bbox": [
+    62.9,
+    66.6,
+    243.9,
+    265.7
+   ],
+   "caption": "Many First Hawaiian Banks are built with archi- tectural aesthetics."
+  },
+  "p2-69-237.jpg": {
+   "page": "p2-69",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-70-241.jpg": {
+   "page": "p2-70",
+   "bbox": [
+    255.0,
+    63.3,
+    457.9,
+    221.3
+   ],
+   "caption": "Kalo fields across McCully to Mō‘ili‘ili (Hawai‘i State Archives)"
+  },
+  "p2-70-240.jpg": {
+   "page": "p2-70",
+   "bbox": [
+    252.8,
+    60.8,
+    461.6,
+    225.0
+   ],
+   "dup_of": "p2-70-241.jpg"
+  },
+  "p2-71-242.jpg": {
+   "page": "p2-71",
+   "bbox": [
+    60.8,
+    411.1,
+    236.9,
+    609.1
+   ],
+   "caption": "As you walk along farmer (Mahi‘ai) Street, imagine taro fields and farmers that were once here."
+  },
+  "p2-71-243.jpg": {
+   "page": "p2-71",
+   "bbox": [
+    59.8,
+    62.0,
+    442.9,
+    281.9
+   ],
+   "caption": "This Japanese cemetery honors the first 1868 Japanese migrant workers. Please visit with rever- ence."
+  },
+  "p2-72-245.jpg": {
+   "page": "p2-72",
+   "bbox": [
+    60.5,
+    279.7,
+    240.8,
+    453.4
+   ],
+   "caption": "As you walk along Kahoaloha ‘the friend’ Lane, do not pick the mangoes!"
+  },
+  "p2-72-246.jpg": {
+   "page": "p2-72",
+   "bbox": [
+    257.6,
+    113.8,
+    439.8,
+    317.9
+   ],
+   "caption": "Kamō‘ili‘ili Church, 1898 (Hawai‘i State Archives)"
+  },
+  "p2-72-244.jpg": {
+   "page": "p2-72",
+   "bbox": [
+    43.0,
+    455.8,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p2-73-247.jpg": {
+   "page": "p2-73",
+   "bbox": [
+    61.2,
+    64.8,
+    236.0,
+    304.6
+   ],
+   "caption": "The bell that was once atop Kamō‘ili‘ili church is now lovingly cared for at the cemetery at Kawaiaha‘o Church downtown."
+  },
+  "p2-74-248.jpg": {
+   "page": "p2-74",
+   "bbox": [
+    63.4,
+    212.0,
+    227.8,
+    369.9
+   ],
+   "caption": "A once flourishing floral market area, this is one of the remaining florists on N. King Street."
+  },
+  "p2-75-249.jpg": {
+   "page": "p2-75",
+   "bbox": [
+    258.7,
+    392.8,
+    436.6,
+    616.0
+   ],
+   "caption": "Robert Wilcox was a multi-faceted man; no matter what he did, he did it with gusto. This statue stands proud on Fort Street Mall, downtown."
+  },
+  "p2-75-250.jpg": {
+   "page": "p2-75",
+   "bbox": [
+    56.6,
+    60.2,
+    244.9,
+    260.7
+   ],
+   "page_slice": true
+  },
+  "p2-75-251.jpg": {
+   "page": "p2-75",
+   "bbox": [
+    57.8,
+    61.5,
+    243.6,
+    259.5
+   ],
+   "page_slice": true
+  },
+  "p2-76-252.jpg": {
+   "page": "p2-76",
+   "bbox": [
+    74.2,
+    65.2,
+    448.0,
+    296.3
+   ],
+   "caption": "The Torii stands proud in a neighborhood founded by Japanese families."
+  },
+  "p2-77-253.jpg": {
+   "page": "p2-77",
+   "bbox": [
+    257.4,
+    321.8,
+    434.2,
+    539.3
+   ],
+   "caption": "For an image of the stadium and a little of its history, read the plaque on the corner of Isenberg and S. King streets."
+  },
+  "p2-79-254.jpg": {
+   "page": "p2-79",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    466.6
+   ],
+   "caption": "This fence tells it all: Mō‘ili‘ili is great!"
+  },
+  "p2-80-255.jpg": {
+   "page": "p2-80",
+   "bbox": [
+    49.0,
+    68.5,
+    461.3,
+    238.1
+   ],
+   "page_slice": true
+  },
+  "p2-80-256.jpg": {
+   "page": "p2-80",
+   "bbox": [
+    50.3,
+    69.7,
+    460.0,
+    236.9
+   ],
+   "page_slice": true
+  },
+  "p3-1-257.jpg": {
+   "page": "p3-1",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "caption": "Wa‘ahila Ridge – the Kanaka (commoners) side of Mānoa Valley"
+  },
+  "p3-2-258.jpg": {
+   "page": "p3-2",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-2-259.jpg": {
+   "page": "p3-2",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p3-2-260.jpg": {
+   "page": "p3-2",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-2-261.jpg": {
+   "page": "p3-2",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p3-4-262.jpg": {
+   "page": "p3-4",
+   "bbox": [
+    248.3,
+    177.5,
+    482.8,
+    351.9
+   ],
+   "page_slice": true
+  },
+  "p3-4-263.jpg": {
+   "page": "p3-4",
+   "bbox": [
+    284.2,
+    59.9,
+    410.2,
+    294.7
+   ],
+   "page_slice": true
+  },
+  "p3-5-264.jpg": {
+   "page": "p3-5",
+   "bbox": [
+    33.5,
+    65.6,
+    159.5,
+    300.4
+   ],
+   "page_slice": true
+  },
+  "p3-6-265.jpg": {
+   "page": "p3-6",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-7-267.jpg": {
+   "page": "p3-7",
+   "bbox": [
+    95.4,
+    61.2,
+    395.2,
+    285.3
+   ],
+   "caption": "Mānoa Valley in 1924, including Kūali‘i, the Cooke house. (Hawai‘i State Archives)"
+  },
+  "p3-7-266.jpg": {
+   "page": "p3-7",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-8-269.jpg": {
+   "page": "p3-8",
+   "bbox": [
+    257.0,
+    137.2,
+    464.2,
+    303.1
+   ],
+   "caption": "Treat yourself to the ‘water of life!’"
+  },
+  "p3-8-268.jpg": {
+   "page": "p3-8",
+   "bbox": [
+    43.0,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-9-271.jpg": {
+   "page": "p3-9",
+   "bbox": [
+    259.4,
+    501.8,
+    442.8,
+    632.7
+   ],
+   "caption": "Hawaiian Rent-All never has a dull sign!"
+  },
+  "p3-9-272.jpg": {
+   "page": "p3-9",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    302.9
+   ],
+   "caption": "This sign is a landmark."
+  },
+  "p3-9-270.jpg": {
+   "page": "p3-9",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-9-273.jpg": {
+   "page": "p3-9",
+   "bbox": [
+    58.4,
+    350.0,
+    246.6,
+    568.4
+   ],
+   "page_slice": true
+  },
+  "p3-9-274.jpg": {
+   "page": "p3-9",
+   "bbox": [
+    59.6,
+    351.2,
+    245.4,
+    567.1
+   ],
+   "page_slice": true
+  },
+  "p3-10-276.jpg": {
+   "page": "p3-10",
+   "bbox": [
+    39.1,
+    182.8,
+    249.0,
+    332.7
+   ],
+   "caption": "As you walk across McCully Bridge, notice the green roofed building on the ‘Ewa side of the hills before you. This is Punahou’s middle school."
+  },
+  "p3-10-275.jpg": {
+   "page": "p3-10",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-11-277.jpg": {
+   "page": "p3-11",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-12-279.jpg": {
+   "page": "p3-12",
+   "bbox": [
+    258.4,
+    182.5,
+    474.1,
+    362.4
+   ],
+   "caption": "This covered shelter serviced the 1.7 mile open-air trolley ride to the terminus in Mānoa Valley."
+  },
+  "p3-12-278.jpg": {
+   "page": "p3-12",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-13-281.jpg": {
+   "page": "p3-13",
+   "bbox": [
+    0.0,
+    1.1,
+    504.0,
+    283.3
+   ],
+   "caption": "Punahou “new spring” School’s seal incorporates the ubiquitous Hala tree in the center and Taro leaves in the outer circle."
+  },
+  "p3-13-280.jpg": {
+   "page": "p3-13",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-14-282.jpg": {
+   "page": "p3-14",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-15-283.jpg": {
+   "page": "p3-15",
+   "bbox": [
+    36.8,
+    482.3,
+    460.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-16-284.jpg": {
+   "page": "p3-16",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "caption": "Formerly the home of the Atherton family, now the “president’s house” of the University of Hawai‘i, it is used mainly for academic gatherings."
+  },
+  "p3-16-285.jpg": {
+   "page": "p3-16",
+   "bbox": [
+    59.7,
+    398.7,
+    449.2,
+    650.7
+   ]
+  },
+  "p3-17-286.jpg": {
+   "page": "p3-17",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-18-288.jpg": {
+   "page": "p3-18",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    250.9
+   ],
+   "caption": "As you walk along O‘ahu avenue, look up to take in the glory of the Ko‘olau mountains. Kōnāhuanui – straight ahead – at 3,100 is the highest point."
+  },
+  "p3-18-287.jpg": {
+   "page": "p3-18",
+   "bbox": [
+    43.0,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-19-290.jpg": {
+   "page": "p3-19",
+   "bbox": [
+    259.1,
+    351.4,
+    452.8,
+    482.1
+   ],
+   "caption": "O‘ahu avenue with all its Historic Residences rivals Kāhala Avenue for its beauty."
+  },
+  "p3-19-289.jpg": {
+   "page": "p3-19",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-20-292.jpg": {
+   "page": "p3-20",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    317.2
+   ],
+   "caption": "Kūka‘ō‘ō Heiau is the only intact reconstructed heiau in the ahupua‘a of Waikīkī."
+  },
+  "p3-20-291.jpg": {
+   "page": "p3-20",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-21-293.jpg": {
+   "page": "p3-21",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-22-295.jpg": {
+   "page": "p3-22",
+   "bbox": [
+    61.0,
+    236.2,
+    246.0,
+    519.6
+   ],
+   "caption": "This often-photographed corner is our local gathering place."
+  },
+  "p3-22-294.jpg": {
+   "page": "p3-22",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-23-296.jpg": {
+   "page": "p3-23",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "caption": "This gate was the entryway to the Woolsey Poi Factory."
+  },
+  "p3-23-297.jpg": {
+   "page": "p3-23",
+   "bbox": [
+    0.0,
+    423.6,
+    504.0,
+    720.0
+   ],
+   "dup_of": "p3-23-296.jpg"
+  },
+  "p3-24-299.jpg": {
+   "page": "p3-24",
+   "bbox": [
+    257.6,
+    282.7,
+    449.4,
+    415.0
+   ],
+   "caption": "Wai‘oli Kitchen and Bake Shop is lovingly known as Wai‘oli Tea Room to locals."
+  },
+  "p3-24-300.jpg": {
+   "page": "p3-24",
+   "bbox": [
+    61.2,
+    352.4,
+    235.4,
+    506.3
+   ],
+   "caption": "1898 photo - Mānoa residence of the Montano fam- ily, owners of Ka‘aipū Dairy. (Hawai‘i State Archives)"
+  },
+  "p3-24-298.jpg": {
+   "page": "p3-24",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-25-302.jpg": {
+   "page": "p3-25",
+   "bbox": [
+    263.1,
+    59.0,
+    429.7,
+    187.2
+   ],
+   "caption": "Queen Ka‘ahumanu came back to her home in the hills of Mānoa to die. (Hawai‘i State Archives)"
+  },
+  "p3-25-303.jpg": {
+   "page": "p3-25",
+   "bbox": [
+    255.1,
+    485.6,
+    463.3,
+    614.9
+   ],
+   "caption": "Mānoa Valley, across the plains to the Ko‘olau moun- tains, veiled in the fine rain of Ua Tuahine. (Hawai‘i State Archives)"
+  },
+  "p3-25-304.jpg": {
+   "page": "p3-25",
+   "bbox": [
+    60.8,
+    382.7,
+    233.8,
+    525.4
+   ],
+   "caption": "The name Ka‘aipū has a strong historic significance in the lives of the Hawaiians."
+  },
+  "p3-25-301.jpg": {
+   "page": "p3-25",
+   "bbox": [
+    36.8,
+    481.4,
+    460.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-26-306.jpg": {
+   "page": "p3-26",
+   "bbox": [
+    257.6,
+    63.4,
+    447.4,
+    198.0
+   ],
+   "caption": "According to a modern mo‘olelo, the mountains in the eastern side of the Ko‘olau Mountains form a profile of a face. Notice the Palm tree grove under the dip between the hills."
+  },
+  "p3-26-305.jpg": {
+   "page": "p3-26",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-27-308.jpg": {
+   "page": "p3-27",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    301.7
+   ],
+   "caption": "There are so many place to visit at the Chinese Cemetary."
+  },
+  "p3-27-307.jpg": {
+   "page": "p3-27",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-28-309.jpg": {
+   "page": "p3-28",
+   "bbox": [
+    43.0,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-29-311.jpg": {
+   "page": "p3-29",
+   "bbox": [
+    84.8,
+    38.8,
+    407.5,
+    294.1
+   ],
+   "caption": "A group of men planning their next hike in Mānoa Valley. (Hawai‘i State Archives)"
+  },
+  "p3-29-310.jpg": {
+   "page": "p3-29",
+   "bbox": [
+    36.8,
+    481.4,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-30-313.jpg": {
+   "page": "p3-30",
+   "bbox": [
+    258.9,
+    63.4,
+    427.6,
+    307.4
+   ],
+   "caption": "One of many waterfalls in Mānoa Valley – only 5 miles from Waikīkī Beach! (Hawai‘i State Archives)"
+  },
+  "p3-30-312.jpg": {
+   "page": "p3-30",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-31-315.jpg": {
+   "page": "p3-31",
+   "bbox": [
+    104.3,
+    60.2,
+    399.7,
+    291.3
+   ],
+   "caption": "Revolution of 1895 in the hills of Mānoa. (Hawai‘i State Archives)"
+  },
+  "p3-31-314.jpg": {
+   "page": "p3-31",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-32-316.jpg": {
+   "page": "p3-32",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-33-318.jpg": {
+   "page": "p3-33",
+   "bbox": [
+    257.4,
+    263.5,
+    442.9,
+    379.5
+   ],
+   "caption": "Noelani Elementary School greets its students each day with a welcome: E Komo Mai! The children enjoy the ‘mist of heaven.’"
+  },
+  "p3-33-319.jpg": {
+   "page": "p3-33",
+   "bbox": [
+    60.4,
+    519.5,
+    237.2,
+    630.4
+   ],
+   "caption": "Over 150 prisms can create over 150 rainbows on this wall!"
+  },
+  "p3-33-317.jpg": {
+   "page": "p3-33",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-34-320.jpg": {
+   "page": "p3-34",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-35-321.jpg": {
+   "page": "p3-35",
+   "bbox": [
+    384.5,
+    0.0,
+    504.0,
+    720.0
+   ]
+  },
+  "p3-35-323.jpg": {
+   "page": "p3-35",
+   "bbox": [
+    68.7,
+    52.2,
+    310.7,
+    197.4
+   ],
+   "caption": "Mānoa Valley 1890 (Hawai‘i State Archives)"
+  },
+  "p3-35-322.jpg": {
+   "page": "p3-35",
+   "bbox": [
+    36.8,
+    482.3,
+    460.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-38-324.jpg": {
+   "page": "p3-38",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p3-38-325.jpg": {
+   "page": "p3-38",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p3-38-326.jpg": {
+   "page": "p3-38",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-38-327.jpg": {
+   "page": "p3-38",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p3-38-328.jpg": {
+   "page": "p3-38",
+   "bbox": [
+    43.0,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-40-329.jpg": {
+   "page": "p3-40",
+   "bbox": [
+    42.5,
+    54.0,
+    437.7,
+    276.0
+   ],
+   "caption": "Caption: The College of Hawai‘i, as it was known in 1917, 5 years after moving to Mānoa. Notice all the sur- rounding agricultural fields and the University Farm, fittingly since the school was founded as an agricul- tural college. Facing ‘Ewa, Hawai‘i Hall, built in 1912, is without steps! (University Archives)"
+  },
+  "p3-40-330.jpg": {
+   "page": "p3-40",
+   "bbox": [
+    151.4,
+    532.4,
+    257.6,
+    657.8
+   ],
+   "caption": "Judge Lawrence McCully (1831 - 1892) meets Queen Kapi‘olani (1834 – 1899)!"
+  },
+  "p3-41-332.jpg": {
+   "page": "p3-41",
+   "bbox": [
+    62.6,
+    222.5,
+    236.6,
+    349.0
+   ],
+   "caption": "Welcome to Mō‘ili‘ili !"
+  },
+  "p3-41-333.jpg": {
+   "page": "p3-41",
+   "bbox": [
+    259.8,
+    175.0,
+    424.3,
+    288.6
+   ],
+   "caption": "Sometimes inappropriate, but always funny!"
+  },
+  "p3-41-334.jpg": {
+   "page": "p3-41",
+   "bbox": [
+    260.5,
+    515.4,
+    430.6,
+    626.9
+   ],
+   "caption": "On old maps, Kapa‘akea is the original name for Dole Street."
+  },
+  "p3-41-331.jpg": {
+   "page": "p3-41",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-42-336.jpg": {
+   "page": "p3-42",
+   "bbox": [
+    53.3,
+    60.3,
+    447.0,
+    183.4
+   ],
+   "caption": "1923 photo with the mountains of Mānoa in the background. Hawai‘i Hall is dead center. (University Archives)"
+  },
+  "p3-42-335.jpg": {
+   "page": "p3-42",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-42-337.jpg": {
+   "page": "p3-42",
+   "bbox": [
+    264.7,
+    217.9,
+    421.8,
+    451.0
+   ],
+   "page_slice": true
+  },
+  "p3-42-338.jpg": {
+   "page": "p3-42",
+   "bbox": [
+    265.9,
+    219.1,
+    420.6,
+    449.8
+   ],
+   "page_slice": true
+  },
+  "p3-43-340.jpg": {
+   "page": "p3-43",
+   "bbox": [
+    59.8,
+    73.1,
+    433.8,
+    279.5
+   ],
+   "caption": "“Above all nations is humanity” - the translation - is inscribed on the bench across University Avenue."
+  },
+  "p3-43-339.jpg": {
+   "page": "p3-43",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-44-342.jpg": {
+   "page": "p3-44",
+   "bbox": [
+    59.0,
+    288.7,
+    244.5,
+    439.2
+   ],
+   "caption": "1932 photo. Originally Teachers’ College Building (left center, the dark building). It was renamed Wist Hall after Wist’s death. (University Archives)"
+  },
+  "p3-44-343.jpg": {
+   "page": "p3-44",
+   "bbox": [
+    248.4,
+    66.2,
+    462.2,
+    218.1
+   ],
+   "caption": "Atherton House in 1932 – former YMCA, the precursor to RISE. (University Archives)"
+  },
+  "p3-44-341.jpg": {
+   "page": "p3-44",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-45-345.jpg": {
+   "page": "p3-45",
+   "bbox": [
+    260.4,
+    377.3,
+    442.5,
+    534.1
+   ],
+   "caption": "The “quad” in 1926 with the original Cooke Field. Today this is location of Sinclair Library, Hemenway Hall, and the Campus Center. (University Archives)"
+  },
+  "p3-45-344.jpg": {
+   "page": "p3-45",
+   "bbox": [
+    36.8,
+    482.3,
+    460.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-46-347.jpg": {
+   "page": "p3-46",
+   "bbox": [
+    63.7,
+    70.6,
+    434.4,
+    304.8
+   ],
+   "caption": "1843 photo of undergrads posing at the bomb shelter near Hawai‘i Hall (University Archives)(University Archives)"
+  },
+  "p3-46-348.jpg": {
+   "page": "p3-46",
+   "bbox": [
+    261.0,
+    521.3,
+    430.7,
+    628.8
+   ],
+   "caption": "In the Shidler courtyard, can you find the State of Hawai‘i on the wall map?"
+  },
+  "p3-46-346.jpg": {
+   "page": "p3-46",
+   "bbox": [
+    43.0,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-47-350.jpg": {
+   "page": "p3-47",
+   "bbox": [
+    260.9,
+    288.0,
+    434.6,
+    514.6
+   ],
+   "caption": "This sacred ahu commemorates Kamaka‘eha - Queen Lili‘uokalani."
+  },
+  "p3-47-349.jpg": {
+   "page": "p3-47",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-48-352.jpg": {
+   "page": "p3-48",
+   "bbox": [
+    60.5,
+    65.9,
+    245.1,
+    204.5
+   ],
+   "caption": "This marker in front of the Queen Lili‘uokalani Center is the second sign of 30 for the mile fitness walk on campus. The first marker is on the mall – try find it!"
+  },
+  "p3-48-353.jpg": {
+   "page": "p3-48",
+   "bbox": [
+    259.8,
+    281.9,
+    432.4,
+    442.1
+   ],
+   "caption": "Are you able to find this sculpture in the atrium of the art building. You might also find sculpted ears and mouths!"
+  },
+  "p3-48-351.jpg": {
+   "page": "p3-48",
+   "bbox": [
+    43.0,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-49-355.jpg": {
+   "page": "p3-49",
+   "bbox": [
+    61.2,
+    158.4,
+    222.2,
+    378.6
+   ],
+   "caption": "Do these two crossed beams look like chopsticks?!?"
+  },
+  "p3-49-354.jpg": {
+   "page": "p3-49",
+   "bbox": [
+    36.8,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-50-356.jpg": {
+   "page": "p3-50",
+   "bbox": [
+    43.0,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-51-358.jpg": {
+   "page": "p3-51",
+   "bbox": [
+    59.8,
+    133.7,
+    241.9,
+    265.1
+   ],
+   "caption": "Can you find the legendary Energy House behind all that greenery?"
+  },
+  "p3-51-357.jpg": {
+   "page": "p3-51",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-52-360.jpg": {
+   "page": "p3-52",
+   "bbox": [
+    61.9,
+    63.4,
+    233.9,
+    176.4
+   ],
+   "caption": "This fluffy baby White Tern is waiting patiently for a parent to bring back food from the ocean. They do not eat worms!"
+  },
+  "p3-52-361.jpg": {
+   "page": "p3-52",
+   "bbox": [
+    63.6,
+    438.0,
+    202.6,
+    597.0
+   ],
+   "caption": "This building is a tribute to the architectural talent of Edward Durell Stone."
+  },
+  "p3-52-359.jpg": {
+   "page": "p3-52",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-53-362.jpg": {
+   "page": "p3-53",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-54-364.jpg": {
+   "page": "p3-54",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    283.7
+   ],
+   "caption": "Have a snack while you sit in the glorious Thai Pavilion presiding over the campus."
+  },
+  "p3-54-363.jpg": {
+   "page": "p3-54",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-56-365.jpg": {
+   "page": "p3-56",
+   "bbox": [
+    41.3,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-57-367.jpg": {
+   "page": "p3-57",
+   "bbox": [
+    259.5,
+    63.4,
+    437.3,
+    243.0
+   ],
+   "caption": "A “Chance Meeting” is often festooned with lei."
+  },
+  "p3-57-366.jpg": {
+   "page": "p3-57",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-58-368.jpg": {
+   "page": "p3-58",
+   "bbox": [
+    41.3,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-59-370.jpg": {
+   "page": "p3-59",
+   "bbox": [
+    60.8,
+    77.8,
+    234.9,
+    244.7
+   ],
+   "caption": "1929 photo. The original engineering build- ings – Young Engineering Quadrangle – is the H-shaped complex in the center. That facility was replaced by the Campus Center and the Rec Center, with one of the 5 engineering buildings attached to the gym. The University Farms have been replaced by Webster Hall, Art Building, and Kuykendall Hall. (University Archives)"
+  },
+  "p3-59-369.jpg": {
+   "page": "p3-59",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-61-371.jpg": {
+   "page": "p3-61",
+   "bbox": [
+    307.8,
+    59.7,
+    438.9,
+    303.8
+   ],
+   "page_slice": true
+  },
+  "p3-62-372.jpg": {
+   "page": "p3-62",
+   "bbox": [
+    219.5,
+    0.0,
+    504.0,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p3-62-373.jpg": {
+   "page": "p3-62",
+   "bbox": [
+    0.0,
+    611.0,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-62-374.jpg": {
+   "page": "p3-62",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    183.0
+   ],
+   "page_slice": true
+  },
+  "p3-62-375.jpg": {
+   "page": "p3-62",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-63-376.jpg": {
+   "page": "p3-63",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ]
+  },
+  "p3-64-378.jpg": {
+   "page": "p3-64",
+   "bbox": [
+    88.2,
+    56.5,
+    403.0,
+    276.1
+   ],
+   "caption": "1939 photo. Quarry excavation (1889 to 1949) is evident in the background (upper left); this will be developed as the University’s lower campus. (University Archives)"
+  },
+  "p3-64-379.jpg": {
+   "page": "p3-64",
+   "bbox": [
+    167.0,
+    407.2,
+    323.2,
+    639.4
+   ],
+   "caption": "E Pluribus Unum - ‘one from many’"
+  },
+  "p3-64-377.jpg": {
+   "page": "p3-64",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-65-381.jpg": {
+   "page": "p3-65",
+   "bbox": [
+    57.4,
+    63.4,
+    245.4,
+    253.1
+   ],
+   "caption": "An architecturally stunning fire station with Lē‘ahi in the background!"
+  },
+  "p3-65-380.jpg": {
+   "page": "p3-65",
+   "bbox": [
+    35.2,
+    482.3,
+    460.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-66-383.jpg": {
+   "page": "p3-66",
+   "bbox": [
+    257.3,
+    300.7,
+    465.0,
+    534.6
+   ],
+   "caption": "Leonard’s Malasadas – try one, try them all. You won’t be sorry!"
+  },
+  "p3-66-382.jpg": {
+   "page": "p3-66",
+   "bbox": [
+    41.3,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-67-384.jpg": {
+   "page": "p3-67",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-67-385.jpg": {
+   "page": "p3-67",
+   "bbox": [
+    258.9,
+    197.7,
+    438.0,
+    569.8
+   ],
+   "page_slice": true
+  },
+  "p3-67-386.jpg": {
+   "page": "p3-67",
+   "bbox": [
+    260.2,
+    199.0,
+    436.8,
+    568.5
+   ],
+   "page_slice": true
+  },
+  "p3-68-388.jpg": {
+   "page": "p3-68",
+   "bbox": [
+    257.6,
+    63.4,
+    436.3,
+    349.0
+   ],
+   "caption": "The rooftops of Kamakakūokalani Center for Hawaiian Studies resemble Hawaiian Hale"
+  },
+  "p3-68-387.jpg": {
+   "page": "p3-68",
+   "bbox": [
+    41.3,
+    481.4,
+    466.6,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-69-389.jpg": {
+   "page": "p3-69",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-70-391.jpg": {
+   "page": "p3-70",
+   "bbox": [
+    0.0,
+    0.0,
+    503.9,
+    328.3
+   ],
+   "caption": "Ka Papa Lo‘i ‘O Kānewai Kalo (taro) once grew abundantly in Hawai‘i. Today, this lo‘i is a model for the resurgence of kalo lo‘i (taro fields)."
+  },
+  "p3-70-390.jpg": {
+   "page": "p3-70",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-71-393.jpg": {
+   "page": "p3-71",
+   "bbox": [
+    258.4,
+    63.7,
+    443.2,
+    247.7
+   ],
+   "caption": "As you walk down the steps, look around; you are walking down the face of the excavated quarry, as in the lower right corner of this photo. (University Archives)"
+  },
+  "p3-71-394.jpg": {
+   "page": "p3-71",
+   "bbox": [
+    60.7,
+    435.5,
+    237.2,
+    552.9
+   ],
+   "caption": "Just past the dormitory, Gateway House, are the mathematical steps to the lower campus/ former quarry: 12 steps times 7 sets = ?. And what a view from the top!"
+  },
+  "p3-71-392.jpg": {
+   "page": "p3-71",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-72-395.jpg": {
+   "page": "p3-72",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "caption": "The White Terns, since they are seabirds, feed on fish, not worms. Mama bird flies out to the ocean, scoops up small fish and feeds her chick."
+  },
+  "p3-72-396.jpg": {
+   "page": "p3-72",
+   "bbox": [
+    0.0,
+    368.3,
+    504.0,
+    720.0
+   ],
+   "dup_of": "p3-72-395.jpg"
+  },
+  "p3-73-397.jpg": {
+   "page": "p3-73",
+   "bbox": [
+    35.2,
+    482.3,
+    459.7,
+    720.0
+   ],
+   "caption": "Enjoy a leisurely walk around the Asian-styled garden on the lower level of the Athletic Center."
+  },
+  "p3-73-398.jpg": {
+   "page": "p3-73",
+   "bbox": [
+    0.0,
+    399.6,
+    504.0,
+    720.0
+   ],
+   "dup_of": "p3-73-397.jpg"
+  },
+  "p3-74-400.jpg": {
+   "page": "p3-74",
+   "bbox": [
+    257.7,
+    263.7,
+    454.1,
+    484.3
+   ],
+   "caption": "Are you able to figure out why this set of sculptures is called “Rainbows”? The artist, Shige Yamada, created “Storyteller” in Waikīkī as well as “Maui” at the Kahului, Maui airport."
+  },
+  "p3-74-399.jpg": {
+   "page": "p3-74",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-75-402.jpg": {
+   "page": "p3-75",
+   "bbox": [
+    251.7,
+    66.2,
+    503.3,
+    406.1
+   ],
+   "caption": "The wood of the elegant bench is from a 100-year-old Mango tree."
+  },
+  "p3-75-401.jpg": {
+   "page": "p3-75",
+   "bbox": [
+    35.2,
+    482.3,
+    460.5,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-76-404.jpg": {
+   "page": "p3-76",
+   "bbox": [
+    58.0,
+    322.6,
+    241.1,
+    480.9
+   ],
+   "caption": "The Kahananui building is the first academic building on campus to be named after a Hawaiian."
+  },
+  "p3-76-403.jpg": {
+   "page": "p3-76",
+   "bbox": [
+    41.3,
+    481.4,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-77-405.jpg": {
+   "page": "p3-77",
+   "bbox": [
+    0.0,
+    0.0,
+    284.9,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p3-77-406.jpg": {
+   "page": "p3-77",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-77-407.jpg": {
+   "page": "p3-77",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-77-408.jpg": {
+   "page": "p3-77",
+   "bbox": [
+    41.0,
+    482.3,
+    465.4,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-78-412.jpg": {
+   "page": "p3-78",
+   "bbox": [
+    260.5,
+    225.7,
+    438.9,
+    441.4
+   ],
+   "caption": "Our last reigning monarch: Queen Lili‘uokalani (Hawai‘i State Archives)"
+  },
+  "p3-78-409.jpg": {
+   "page": "p3-78",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-78-410.jpg": {
+   "page": "p3-78",
+   "bbox": [
+    41.0,
+    481.4,
+    466.2,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-78-411.jpg": {
+   "page": "p3-78",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-79-413.jpg": {
+   "page": "p3-79",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-79-414.jpg": {
+   "page": "p3-79",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-79-415.jpg": {
+   "page": "p3-79",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-79-416.jpg": {
+   "page": "p3-79",
+   "bbox": [
+    30.9,
+    482.3,
+    455.3,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-80-417.jpg": {
+   "page": "p3-80",
+   "bbox": [
+    0.0,
+    0.0,
+    94.1,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-80-418.jpg": {
+   "page": "p3-80",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-80-419.jpg": {
+   "page": "p3-80",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-80-420.jpg": {
+   "page": "p3-80",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-81-421.jpg": {
+   "page": "p3-81",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-81-422.jpg": {
+   "page": "p3-81",
+   "bbox": [
+    30.9,
+    482.3,
+    455.3,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-81-423.jpg": {
+   "page": "p3-81",
+   "bbox": [
+    0.0,
+    0.0,
+    284.9,
+    454.8
+   ],
+   "page_slice": true
+  },
+  "p3-81-424.jpg": {
+   "page": "p3-81",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-82-425.jpg": {
+   "page": "p3-82",
+   "bbox": [
+    0.0,
+    553.4,
+    504.0,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-82-426.jpg": {
+   "page": "p3-82",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-82-427.jpg": {
+   "page": "p3-82",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-82-428.jpg": {
+   "page": "p3-82",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    244.0
+   ],
+   "page_slice": true
+  },
+  "p3-83-429.jpg": {
+   "page": "p3-83",
+   "bbox": [
+    41.3,
+    482.3,
+    465.8,
+    720.0
+   ],
+   "page_slice": true
+  },
+  "p3-83-430.jpg": {
+   "page": "p3-83",
+   "bbox": [
+    0.0,
+    0.0,
+    504.0,
+    640.6
+   ],
+   "page_slice": true
+  },
+  "p3-83-431.jpg": {
+   "page": "p3-83",
+   "bbox": [
+    152.7,
+    293.0,
+    374.8,
+    542.1
+   ],
+   "page_slice": true
+  },
+  "p3-83-432.jpg": {
+   "page": "p3-83",
+   "bbox": [
+    157.3,
+    280.3,
+    382.0,
+    537.8
+   ],
+   "page_slice": true
+  },
+  "p3-84-433.jpg": {
+   "page": "p3-84",
+   "bbox": [
+    48.2,
+    271.5,
+    150.4,
+    331.6
+   ]
+  },
+  "p3-84-434.jpg": {
+   "page": "p3-84",
+   "bbox": [
+    101.8,
+    313.4,
+    403.1,
+    630.5
+   ],
+   "page_slice": true
+  }
+ },
+ "headings": {
+  "p1-23": [
+   [
+    1,
+    "McCully Street",
+    432.5,
+    74.9
+   ]
+  ],
+  "p1-25": [
+   [
+    2,
+    "Ala Wai Canal",
+    449.6,
+    60.5
+   ]
+  ],
+  "p1-26": [
+   [
+    3,
+    "Ala Naio Stream",
+    396.2,
+    257.6
+   ]
+  ],
+  "p1-27": [
+   [
+    4,
+    "\u0007Canoe hale",
+    326.1,
+    60.5
+   ],
+   [
+    5,
+    "University Avenue",
+    60.4,
+    258.5
+   ],
+   [
+    6,
+    "\u0007Ala Wai Community Garden",
+    190.6,
+    258.5
+   ]
+  ],
+  "p1-28": [
+   [
+    7,
+    "‘Iolani School",
+    434.3,
+    60.8
+   ],
+   [
+    8,
+    "Mānoa-Pālolo Drainage Canal",
+    417.7,
+    257.6
+   ]
+  ],
+  "p1-29": [
+   [
+    9,
+    "The Ridges and Valleys beyond",
+    150.1,
+    60.5
+   ],
+   [
+    10,
+    "\u0007Original Confluence of the Streams",
+    536.0,
+    257.3
+   ]
+  ],
+  "p1-30": [
+   [
+    11,
+    "Ala Wai Golf Course and Club",
+    509.9,
+    60.8
+   ]
+  ],
+  "p1-31": [
+   [
+    12,
+    "Date Street",
+    60.4,
+    60.5
+   ],
+   [
+    13,
+    "Waikīkī Fire Station",
+    359.2,
+    257.3
+   ],
+   [
+    14,
+    "Waikīkī-Kapahulu Public Library",
+    499.6,
+    257.3
+   ]
+  ],
+  "p1-33": [
+   [
+    15,
+    "‘Āinakea Way",
+    186.8,
+    289.7
+   ]
+  ],
+  "p1-34": [
+   [
+    17,
+    "Wai Nani Way",
+    529.8,
+    60.8
+   ],
+   [
+    18,
+    "Paoakalani Avenue",
+    346.5,
+    257.6
+   ],
+   [
+    19,
+    "‘Ōhua Avenue",
+    435.1,
+    257.6
+   ],
+   [
+    20,
+    "Lili‘uokalani Avenue",
+    561.5,
+    257.6
+   ]
+  ],
+  "p1-35": [
+   [
+    22,
+    "Ka‘iulani Avenue",
+    449.0,
+    257.3
+   ]
+  ],
+  "p1-36": [
+   [
+    23,
+    "Kānekapōlei Street",
+    294.2,
+    60.8
+   ],
+   [
+    24,
+    "Walina Street",
+    396.8,
+    60.8
+   ],
+   [
+    25,
+    "Nāhua Street",
+    461.6,
+    60.8
+   ],
+   [
+    26,
+    "Nohonani Street",
+    539.0,
+    60.8
+   ],
+   [
+    27,
+    "Seaside Avenue",
+    603.8,
+    60.8
+   ]
+  ],
+  "p1-37": [
+   [
+    28,
+    "Lewers Street “Beach Walk”",
+    289.4,
+    60.5
+   ],
+   [
+    30,
+    "Launiu Street",
+    579.9,
+    60.5
+   ],
+   [
+    31,
+    "Kālaimoku Street",
+    195.4,
+    257.3
+   ]
+  ],
+  "p1-38": [
+   [
+    32,
+    "‘Olohana Street",
+    377.2,
+    60.8
+   ],
+   [
+    33,
+    "Nāmāhana Street",
+    377.2,
+    257.6
+   ],
+   [
+    34,
+    "Kuamo‘o Street",
+    549.3,
+    257.6
+   ]
+  ],
+  "p1-39": [
+   [
+    35,
+    "Ala Naio Stream",
+    395.9,
+    60.5
+   ],
+   [
+    36,
+    "Keoniana Street",
+    471.9,
+    60.5
+   ],
+   [
+    37,
+    "Pa‘ū Street",
+    106.1,
+    257.3
+   ],
+   [
+    38,
+    "Niu Street",
+    530.9,
+    257.3
+   ]
+  ],
+  "p1-43": [
+   [
+    1,
+    "In\u0007tersection of Ala Moana",
+    437.0,
+    60.5
+   ],
+   [
+    2,
+    "Ala Wai Promenade",
+    599.2,
+    257.3
+   ]
+  ],
+  "p1-44": [
+   [
+    3,
+    "Hawai‘i Convention Center",
+    315.1,
+    60.8
+   ],
+   [
+    4,
+    "Makiki Stream",
+    599.9,
+    60.8
+   ]
+  ],
+  "p1-45": [
+   [
+    5,
+    "‘Ena Road",
+    406.0,
+    60.5
+   ],
+   [
+    6,
+    "Lī\u0007pe‘epe‘e",
+    97.1,
+    257.3
+   ],
+   [
+    7,
+    "Hobron Lane and District",
+    262.4,
+    257.3
+   ]
+  ],
+  "p1-46": [
+   [
+    8,
+    "\u0007Koa wood in McDonald’s at",
+    60.4,
+    60.8
+   ],
+   [
+    9,
+    "‘Ilikai Hotel",
+    312.4,
+    60.8
+   ]
+  ],
+  "p1-47": [
+   [
+    10,
+    "Ala Wai Harbor",
+    307.5,
+    257.3
+   ]
+  ],
+  "p1-49": [
+   [
+    11,
+    "Kahanamoku Street",
+    60.4,
+    60.5
+   ],
+   [
+    12,
+    "\u0007Duke Paoa Kahanamoku",
+    500.0,
+    60.5
+   ]
+  ],
+  "p1-50": [
+   [
+    13,
+    "\u0007Walk along the beach toward Lē‘ahi,",
+    411.3,
+    60.8
+   ]
+  ],
+  "p1-52": [
+   [
+    14,
+    "Paoa Place",
+    436.6,
+    60.8
+   ]
+  ],
+  "p1-53": [
+   [
+    15,
+    "Hale Koa Hotel",
+    60.4,
+    60.5
+   ],
+   [
+    16,
+    "Fort DeRussy Beach",
+    586.7,
+    60.5
+   ]
+  ],
+  "p1-55": [
+   [
+    17,
+    "Fo\u0007rt DeRussy and Battery",
+    360.7,
+    60.5
+   ]
+  ],
+  "p1-56": [
+   [
+    18,
+    "\u0007Kuroda Field,",
+    359.4,
+    250.8
+   ]
+  ],
+  "p1-57": [
+   [
+    19,
+    "Fort DeRussy Army Chapel",
+    83.5,
+    257.3
+   ],
+   [
+    20,
+    "\u0007D\u0007aniel K. Inouye Asia-Pacific",
+    201.7,
+    257.3
+   ]
+  ],
+  "p1-60": [
+   [
+    2,
+    "Helumoa Road",
+    272.5,
+    60.8
+   ]
+  ],
+  "p1-62": [
+   [
+    4,
+    "The Royal Hawaiian Hotel",
+    535.6,
+    60.8
+   ]
+  ],
+  "p1-67": [
+   [
+    8,
+    "‘Āpuakēhau Heiau",
+    60.4,
+    60.5
+   ],
+   [
+    9,
+    "Moana Hotel",
+    285.1,
+    257.6
+   ]
+  ],
+  "p1-69": [
+   [
+    11,
+    "\u0007Kāhuna Stones",
+    380.1,
+    60.5
+   ]
+  ],
+  "p1-71": [
+   [
+    14,
+    "Uluniu Street",
+    318.5,
+    60.5
+   ]
+  ],
+  "p1-73": [
+   [
+    1,
+    "King Kalākaua Park",
+    282.5,
+    74.9
+   ]
+  ],
+  "p1-75": [
+   [
+    2,
+    "\u0007Kalakaua Avenue – one of",
+    209.8,
+    60.5
+   ],
+   [
+    3,
+    "Nāmāhana Street",
+    424.7,
+    257.6
+   ]
+  ],
+  "p1-76": [
+   [
+    4,
+    "‘Olohana Street.",
+    60.4,
+    60.8
+   ],
+   [
+    5,
+    "“Brothers in Valor” Memorial Park",
+    312.4,
+    60.8
+   ],
+   [
+    6,
+    "Storyteller",
+    372.4,
+    258.0
+   ],
+   [
+    7,
+    "Kālaimoku Street",
+    448.3,
+    258.0
+   ]
+  ],
+  "p1-77": [
+   [
+    8,
+    "ABC stores",
+    548.5,
+    60.5
+   ]
+  ],
+  "p1-78": [
+   [
+    9,
+    "\u0007Gump Building",
+    60.4,
+    258.0
+   ],
+   [
+    10,
+    "\u0007Lewers Street",
+    375.8,
+    258.0
+   ]
+  ],
+  "p1-79": [
+   [
+    12,
+    "Royal Hawaiian Center",
+    249.8,
+    257.6
+   ]
+  ],
+  "p1-80": [
+   [
+    13,
+    "\u0007Princess Bernice Pauahi Bishop",
+    547.0,
+    60.8
+   ]
+  ],
+  "p1-81": [
+   [
+    14,
+    "Seaside Avenue",
+    484.1,
+    60.5
+   ]
+  ],
+  "p1-82": [
+   [
+    16,
+    "Duke’s Lane/ Duke’s Marketplace",
+    510.8,
+    60.8
+   ],
+   [
+    17,
+    "\u0007Macy’s Department Store",
+    473.8,
+    258.0
+   ]
+  ],
+  "p1-83": [
+   [
+    18,
+    "\u0007International Market Place",
+    222.8,
+    60.5
+   ]
+  ],
+  "p1-84": [
+   [
+    21,
+    "\u0007Outrigger  Hotel",
+    60.4,
+    60.8
+   ],
+   [
+    22,
+    "Moana Hotel",
+    160.1,
+    258.0
+   ]
+  ],
+  "p1-86": [
+   [
+    23,
+    "\u0007Hyatt Regency Waikīkī Hotel|",
+    348.4,
+    254.0
+   ]
+  ],
+  "p1-87": [
+   [
+    24,
+    "H\u0007onolulu Police Department-",
+    247.3,
+    60.5
+   ],
+   [
+    25,
+    "\u0007Nā \u0007Pōhaku Ola Kapaemāhū ā",
+    374.7,
+    60.5
+   ]
+  ],
+  "p1-88": [
+   [
+    26,
+    "Duke Kahanamoku Statue",
+    60.4,
+    258.0
+   ],
+   [
+    27,
+    "Queen Lili‘uokalani",
+    335.1,
+    258.0
+   ]
+  ],
+  "p1-89": [
+   [
+    28,
+    "\u0007Prince Kūhiō Statue",
+    384.7,
+    60.5
+   ]
+  ],
+  "p1-90": [
+   [
+    29,
+    "\u0007St. Augustine Catholic Church.",
+    376.0,
+    258.0
+   ]
+  ],
+  "p2-4": [
+   [
+    1,
+    "Princess Ka‘iulani Shops",
+    423.7,
+    60.5
+   ],
+   [
+    2,
+    "Princess Ka‘iulani Hotel",
+    587.1,
+    60.5
+   ]
+  ],
+  "p2-5": [
+   [
+    3,
+    "Koa Avenue",
+    60.4,
+    60.8
+   ],
+   [
+    4,
+    "Prince Edward Street",
+    385.9,
+    60.8
+   ],
+   [
+    5,
+    "\u0007Princess Ka‘iulani Triangle  ‘Āinahau",
+    486.3,
+    60.8
+   ]
+  ],
+  "p2-7": [
+   [
+    6,
+    "Kānekapōlei Street",
+    498.7,
+    60.8
+   ]
+  ],
+  "p2-8": [
+   [
+    7,
+    "Tusitala Street",
+    423.0,
+    60.5
+   ]
+  ],
+  "p2-10": [
+   [
+    8,
+    "Kapili Street",
+    599.6,
+    60.5
+   ],
+   [
+    9,
+    "Stone pathway",
+    210.5,
+    257.3
+   ],
+   [
+    10,
+    "Cleghorn Street",
+    337.3,
+    257.3
+   ]
+  ],
+  "p2-12": [
+   [
+    11,
+    "Lili‘uokalani Avenue",
+    94.6,
+    60.5
+   ],
+   [
+    12,
+    "‘Ōhua  Avenue",
+    196.1,
+    257.3
+   ],
+   [
+    13,
+    "Paoakalani Avenue",
+    436.3,
+    257.3
+   ]
+  ],
+  "p2-13": [
+   [
+    14,
+    "Wai Nani Way",
+    209.1,
+    60.8
+   ],
+   [
+    15,
+    "Kāneloa Road",
+    573.1,
+    257.6
+   ]
+  ],
+  "p2-14": [
+   [
+    17,
+    "Kealohilani Avenue",
+    60.4,
+    257.3
+   ],
+   [
+    18,
+    "The former Prince Kūhiō Hotel",
+    586.4,
+    257.3
+   ]
+  ],
+  "p2-15": [
+   [
+    19,
+    "Kūhiō Beach Park",
+    434.5,
+    60.8
+   ],
+   [
+    20,
+    "Uluniu Avenue",
+    485.9,
+    257.6
+   ]
+  ],
+  "p2-18": [
+   [
+    1,
+    "Hawaiian Burial Memorial",
+    531.7,
+    77.4
+   ]
+  ],
+  "p2-19": [
+   [
+    2,
+    "Mohandas K. Gandhi Statue",
+    181.2,
+    257.6
+   ]
+  ],
+  "p2-20": [
+   [
+    3,
+    "Queen Kapi‘olani statue",
+    399.0,
+    60.5
+   ],
+   [
+    4,
+    "Queen Kapi‘olani Regional Park",
+    555.4,
+    60.5
+   ]
+  ],
+  "p2-22": [
+   [
+    6,
+    "\u0007Ironwood Trees",
+    560.5,
+    257.3
+   ]
+  ],
+  "p2-23": [
+   [
+    7,
+    "Kapi‘olani Bandstand",
+    358.7,
+    60.8
+   ],
+   [
+    8,
+    "Time Capsule",
+    493.9,
+    257.6
+   ]
+  ],
+  "p2-24": [
+   [
+    9,
+    "\u0007Jogger’s Rest",
+    59.6,
+    60.5
+   ],
+   [
+    10,
+    "Historic plaque about Lē‘ahi",
+    505.7,
+    60.5
+   ],
+   [
+    11,
+    "Waikīkī Shell Amphitheater",
+    118.2,
+    257.3
+   ]
+  ],
+  "p2-26": [
+   [
+    12,
+    "\u0007Queen Kapi‘olani Garden",
+    400.3,
+    60.5
+   ],
+   [
+    13,
+    "Art on the Zoo Fence",
+    160.5,
+    257.3
+   ],
+   [
+    14,
+    "Honolulu Zoo",
+    250.9,
+    257.3
+   ]
+  ],
+  "p2-31": [
+   [
+    1,
+    "\u0007Kapahulu Avenue, Kapahulu Pier and",
+    537.8,
+    60.8
+   ]
+  ],
+  "p2-32": [
+   [
+    3,
+    "\u0007Queen’s Beach",
+    574.0,
+    60.5
+   ]
+  ],
+  "p2-33": [
+   [
+    4,
+    "Kapi‘olani Park Beach Center",
+    511.5,
+    60.8
+   ]
+  ],
+  "p2-34": [
+   [
+    5,
+    "Waikīkī  Aquarium",
+    60.4,
+    60.5
+   ],
+   [
+    6,
+    "\u0007Waikīkī War Memorial Natatorium",
+    572.2,
+    257.3
+   ]
+  ],
+  "p2-36": [
+   [
+    7,
+    "Sans Souci Beach",
+    397.6,
+    257.3
+   ]
+  ],
+  "p2-38": [
+   [
+    8,
+    "Kaimana Hotel/Beach",
+    120.4,
+    257.3
+   ],
+   [
+    9,
+    "Outrigger Canoe Club",
+    460.9,
+    257.3
+   ]
+  ],
+  "p2-39": [
+   [
+    10,
+    "\u0007Elks Lodge",
+    397.0,
+    60.8
+   ]
+  ],
+  "p2-40": [
+   [
+    11,
+    "Condominium row",
+    460.4,
+    257.3
+   ]
+  ],
+  "p2-41": [
+   [
+    12,
+    "Enclave of Waikīkī homes",
+    309.2,
+    60.8
+   ],
+   [
+    13,
+    "\u0007Diamond Head Road",
+    306.3,
+    257.6
+   ]
+  ],
+  "p2-42": [
+   [
+    14,
+    "\u0007Mākālei Beach Park",
+    108.7,
+    257.3
+   ],
+   [
+    15,
+    "Lē‘ahi Beach Park",
+    554.0,
+    257.3
+   ]
+  ],
+  "p2-43": [
+   [
+    16,
+    "Beach Road",
+    370.0,
+    60.8
+   ],
+   [
+    17,
+    "Diamond Head Lighthouse",
+    472.3,
+    60.8
+   ],
+   [
+    18,
+    "Kuilei Cliffs Beach Park",
+    587.1,
+    60.8
+   ],
+   [
+    19,
+    "Amelia Earhart marker",
+    448.9,
+    257.6
+   ]
+  ],
+  "p2-44": [
+   [
+    20,
+    "Poni Mō‘i Street",
+    182.8,
+    60.5
+   ],
+   [
+    21,
+    "\u0007La Pietra Hawai‘i School for Girls",
+    334.4,
+    60.5
+   ]
+  ],
+  "p2-46": [
+   [
+    22,
+    "Paki Avenue",
+    340.1,
+    149.0
+   ],
+   [
+    23,
+    "Monsarrat Avenue",
+    542.1,
+    149.0
+   ]
+  ],
+  "p2-52": [
+   [
+    1,
+    "Kapahulu Avenue",
+    201.3,
+    61.2
+   ],
+   [
+    2,
+    "Waikīkī Fire Station: Station No. 7",
+    611.7,
+    61.2
+   ],
+   [
+    3,
+    "Waikīkī-Kapahulu Public Library",
+    483.9,
+    258.4
+   ]
+  ],
+  "p2-53": [
+   [
+    4,
+    "Lei of Parks",
+    297.9,
+    60.5
+   ],
+   [
+    5,
+    "Date Street/ Mo‘oheau Avenue",
+    300.8,
+    257.6
+   ],
+   [
+    6,
+    "Da ‘Ono Hawaiian food on the ‘Ewa",
+    467.3,
+    257.6
+   ],
+   [
+    7,
+    "Haili’s Hawaiian food is located at",
+    544.1,
+    257.6
+   ]
+  ],
+  "p2-54": [
+   [
+    8,
+    "Split mural of Lē‘ahi",
+    60.3,
+    60.5
+   ],
+   [
+    9,
+    "\u0007Waiola (‘Water of Life’) Shave Ice",
+    363.6,
+    60.5
+   ],
+   [
+    10,
+    "Kapahulu Shopping Center, on",
+    505.0,
+    60.5
+   ],
+   [
+    11,
+    "Leonard’s Bakery",
+    60.4,
+    257.6
+   ]
+  ],
+  "p2-55": [
+   [
+    12,
+    "H-1 Freeway",
+    299.5,
+    60.8
+   ],
+   [
+    13,
+    "Wai‘alae Avenue",
+    96.1,
+    258.0
+   ],
+   [
+    14,
+    "City Mill",
+    562.6,
+    258.0
+   ]
+  ],
+  "p2-56": [
+   [
+    15,
+    "\u0007Chaminade University",
+    60.4,
+    257.6
+   ],
+   [
+    16,
+    "\u0007Pālolo Stream",
+    561.9,
+    257.6
+   ]
+  ],
+  "p2-57": [
+   [
+    17,
+    "Sacred Hearts Academy and",
+    60.4,
+    257.6
+   ],
+   [
+    18,
+    "Art Deco Architecture",
+    477.9,
+    257.6
+   ]
+  ],
+  "p2-58": [
+   [
+    19,
+    "Kaimukī Community Park",
+    347.5,
+    60.5
+   ],
+   [
+    20,
+    "Queen Theater",
+    587.3,
+    60.5
+   ],
+   [
+    21,
+    "Non-descript 12th Avenue is bakery",
+    411.9,
+    257.3
+   ]
+  ],
+  "p2-59": [
+   [
+    22,
+    "\u0007Queen Lydia Lili‘uokalani",
+    536.7,
+    60.8
+   ]
+  ],
+  "p2-60": [
+   [
+    23,
+    "Kaimukī Fire Station 5",
+    309.0,
+    60.5
+   ]
+  ],
+  "p2-61": [
+   [
+    25,
+    "Ocean View Drive",
+    351.3,
+    264.0
+   ]
+  ],
+  "p2-62": [
+   [
+    26,
+    "Kīlauea Avenue",
+    404.0,
+    60.5
+   ],
+   [
+    27,
+    "Makapu‘u Avenue",
+    316.2,
+    257.6
+   ],
+   [
+    28,
+    "Lē‘ahi Hospital",
+    469.6,
+    257.6
+   ]
+  ],
+  "p2-63": [
+   [
+    29,
+    "\u0007Kapi‘olani Community College",
+    246.7,
+    60.8
+   ],
+   [
+    30,
+    "Diamond Head Theater",
+    146.5,
+    258.0
+   ],
+   [
+    31,
+    "Fort Ruger",
+    285.5,
+    258.0
+   ]
+  ],
+  "p2-64": [
+   [
+    32,
+    "Monsarrat Avenue",
+    121.3,
+    257.6
+   ]
+  ],
+  "p2-67": [
+   [
+    1,
+    "Kapahulu Avenue",
+    438.4,
+    60.8
+   ]
+  ],
+  "p2-68": [
+   [
+    3,
+    "\u0007Waikīkī Fire Station: Station No. 7",
+    368.9,
+    257.6
+   ],
+   [
+    4,
+    "First Hawaiian Bank also on the",
+    509.3,
+    257.6
+   ],
+   [
+    5,
+    "Lei of Parks",
+    570.5,
+    257.6
+   ]
+  ],
+  "p2-69": [
+   [
+    6,
+    "Date Street/ Mo‘oheau Avenue",
+    499.0,
+    60.8
+   ],
+   [
+    7,
+    "The Ala Wai Golf Course, a 146-acre",
+    274.7,
+    258.0
+   ]
+  ],
+  "p2-70": [
+   [
+    8,
+    "1937 WPA bridge",
+    336.2,
+    60.5
+   ],
+   [
+    9,
+    "\u0007Walk from Date Street into Mō‘ili‘ili",
+    335.5,
+    257.6
+   ]
+  ],
+  "p2-71": [
+   [
+    11,
+    "Japanese Cemetery",
+    579.2,
+    258.0
+   ]
+  ],
+  "p2-72": [
+   [
+    12,
+    "Kahoaloha Lane",
+    483.8,
+    60.5
+   ]
+  ],
+  "p2-73": [
+   [
+    14,
+    "\u0007Prince Jonah Kūhiō Elementary",
+    432.9,
+    60.8
+   ]
+  ],
+  "p2-74": [
+   [
+    16,
+    "Mō‘ili‘ili Business District",
+    459.7,
+    60.5
+   ],
+   [
+    17,
+    "\u0007Kapa‘akea Lane",
+    586.4,
+    60.5
+   ],
+   [
+    18,
+    "McCully-Mo‘ili‘ili Fire Station 29",
+    562.3,
+    257.6
+   ]
+  ],
+  "p2-75": [
+   [
+    19,
+    "Hausten Street",
+    537.9,
+    60.8
+   ]
+  ],
+  "p2-76": [
+   [
+    20,
+    "Torii at Triangle Park",
+    354.1,
+    74.2
+   ]
+  ],
+  "p2-77": [
+   [
+    21,
+    "Isenberg Street is the home of the",
+    60.3,
+    60.8
+   ],
+   [
+    22,
+    "Old Stadium Park",
+    584.7,
+    258.0
+   ]
+  ],
+  "p2-78": [
+   [
+    23,
+    "\u0007Wiliwili Street",
+    174.9,
+    258.0
+   ],
+   [
+    24,
+    "St. Mary’s Church",
+    485.2,
+    258.0
+   ]
+  ],
+  "p2-79": [
+   [
+    25,
+    "McCully Street",
+    596.8,
+    60.8
+   ]
+  ],
+  "p2-80": [
+   [
+    26,
+    "Mō‘ili‘ili Fence",
+    275.9,
+    61.9
+   ],
+   [
+    27,
+    "Algaroba Street",
+    389.6,
+    61.9
+   ],
+   [
+    28,
+    "Waiola Street",
+    566.4,
+    61.9
+   ],
+   [
+    29,
+    "Kapi‘olani Boulevard",
+    274.8,
+    259.1
+   ]
+  ],
+  "p3-7": [
+   [
+    1,
+    "McCully Street",
+    299.1,
+    257.6
+   ],
+   [
+    2,
+    "Ala Wai Community Park",
+    414.3,
+    257.6
+   ],
+   [
+    3,
+    "\u0007Kapi‘olani Boulevard/ along",
+    517.1,
+    257.6
+   ]
+  ],
+  "p3-8": [
+   [
+    4,
+    "Waiola Street",
+    123.8,
+    258.0
+   ],
+   [
+    5,
+    "Algaroba Street",
+    466.5,
+    258.0
+   ]
+  ],
+  "p3-9": [
+   [
+    6,
+    "S. Beretania and McCulley streets",
+    349.4,
+    257.6
+   ]
+  ],
+  "p3-10": [
+   [
+    7,
+    "\u0007Dole Street",
+    341.1,
+    60.8
+   ]
+  ],
+  "p3-11": [
+   [
+    8,
+    "A Walk Bordering Punahou School",
+    60.4,
+    60.5
+   ],
+   [
+    10,
+    "Clement Street (mauka on Wilder",
+    424.1,
+    60.5
+   ],
+   [
+    11,
+    "Oliver Street and Evelyn Lane",
+    525.0,
+    60.5
+   ],
+   [
+    12,
+    "First Artesian Well",
+    60.4,
+    257.6
+   ],
+   [
+    14,
+    "Alexander Street is named for the",
+    525.6,
+    257.6
+   ]
+  ],
+  "p3-12": [
+   [
+    15,
+    "Sacred Heart Catholic Church,",
+    197.6,
+    60.5
+   ],
+   [
+    16,
+    "Halekula (schoolhouse) Way refers",
+    495.8,
+    60.5
+   ],
+   [
+    17,
+    "Spreckels Street was named for Claus",
+    545.6,
+    60.5
+   ],
+   [
+    18,
+    "Mānoa Trolley Transfer Point",
+    608.2,
+    60.5
+   ]
+  ],
+  "p3-13": [
+   [
+    19,
+    "PUNAHOU SCHOOL",
+    300.5,
+    60.5
+   ]
+  ],
+  "p3-14": [
+   [
+    20,
+    "Montague Hall",
+    250.1,
+    60.8
+   ],
+   [
+    24,
+    "Chapel",
+    546.3,
+    258.0
+   ]
+  ],
+  "p3-15": [
+   [
+    25,
+    "Lanihuli Drive",
+    60.4,
+    257.6
+   ]
+  ],
+  "p3-16": [
+   [
+    26,
+    "College Hill Tract",
+    323.9,
+    60.8
+   ],
+   [
+    27,
+    "UH President’s House",
+    110.7,
+    258.0
+   ]
+  ],
+  "p3-18": [
+   [
+    29,
+    "Ka‘ala Way/Street",
+    258.6,
+    60.8
+   ],
+   [
+    31,
+    "Exceptional Tree",
+    357.2,
+    258.0
+   ]
+  ],
+  "p3-19": [
+   [
+    32,
+    "The Wan Tsick Buddhist Temple",
+    60.0,
+    60.5
+   ],
+   [
+    33,
+    "\u0007Steps",
+    249.0,
+    60.5
+   ],
+   [
+    34,
+    "Ānuenue Street",
+    250.5,
+    257.6
+   ]
+  ],
+  "p3-20": [
+   [
+    35,
+    "O‘ahu Avenue",
+    324.7,
+    60.8
+   ],
+   [
+    36,
+    "\u0007Mānoa Heritage Center at",
+    324.7,
+    258.0
+   ]
+  ],
+  "p3-23": [
+   [
+    37,
+    "Koganji Temple",
+    221.7,
+    257.6
+   ]
+  ],
+  "p3-24": [
+   [
+    38,
+    "Five Corners –",
+    548.3,
+    60.8
+   ],
+   [
+    39,
+    "Wai‘oli Kitchen and Bake Shop",
+    424.4,
+    258.0
+   ]
+  ],
+  "p3-27": [
+   [
+    40,
+    "To the Chinese Cemetery",
+    422.3,
+    60.5
+   ]
+  ],
+  "p3-28": [
+   [
+    41,
+    "Mānoa Chinese Cemetery",
+    304.4,
+    60.8
+   ]
+  ],
+  "p3-29": [
+   [
+    42,
+    "\u0007To Mānoa Falls and Lyon",
+    375.8,
+    60.5
+   ]
+  ],
+  "p3-30": [
+   [
+    43,
+    "Lyon Arboretum",
+    422.9,
+    258.0
+   ]
+  ],
+  "p3-32": [
+   [
+    44,
+    "\u0007Mānoa Marketplace",
+    395.2,
+    258.0
+   ]
+  ],
+  "p3-33": [
+   [
+    45,
+    "Mānoa Public Library",
+    295.5,
+    59.8
+   ],
+   [
+    46,
+    "Institute for Astronomy",
+    446.7,
+    59.8
+   ],
+   [
+    47,
+    "Noelani Elementary School",
+    424.9,
+    257.0
+   ]
+  ],
+  "p3-34": [
+   [
+    48,
+    "University of Hawai‘i Press",
+    159.1,
+    60.8
+   ],
+   [
+    49,
+    "To E. Mānoa Road",
+    260.9,
+    60.8
+   ],
+   [
+    50,
+    "University Avenue",
+    121.3,
+    258.0
+   ],
+   [
+    51,
+    "Kamānele Park",
+    536.6,
+    258.0
+   ]
+  ],
+  "p3-35": [
+   [
+    52,
+    "Mid-Pacific Institute",
+    383.0,
+    67.7
+   ]
+  ],
+  "p3-38": [
+   [
+    1,
+    "McCully Street",
+    564.5,
+    67.7
+   ]
+  ],
+  "p3-40": [
+   [
+    2,
+    "Ala Wai Community Park",
+    410.5,
+    60.5
+   ],
+   [
+    3,
+    "Kapi‘olani Boulevard",
+    536.9,
+    60.5
+   ],
+   [
+    4,
+    "Algaroba Street",
+    561.7,
+    257.6
+   ]
+  ],
+  "p3-41": [
+   [
+    5,
+    "S. King and S. Beretania streets",
+    60.4,
+    258.0
+   ],
+   [
+    6,
+    "Dole Street",
+    400.3,
+    258.0
+   ]
+  ],
+  "p3-42": [
+   [
+    7,
+    "Founders’ Gate",
+    523.4,
+    257.6
+   ]
+  ],
+  "p3-43": [
+   [
+    8,
+    "College of Education",
+    523.9,
+    258.0
+   ]
+  ],
+  "p3-44": [
+   [
+    9,
+    "RISE",
+    298.5,
+    257.6
+   ]
+  ],
+  "p3-45": [
+   [
+    10,
+    "Metcalf Street",
+    60.4,
+    60.8
+   ],
+   [
+    11,
+    "Architecture Building",
+    183.4,
+    258.0
+   ]
+  ],
+  "p3-46": [
+   [
+    12,
+    "Hawai‘i Hall",
+    384.8,
+    60.5
+   ]
+  ],
+  "p3-47": [
+   [
+    13,
+    "Saunders Hall",
+    197.2,
+    60.8
+   ],
+   [
+    14,
+    "Varney Circle",
+    587.1,
+    60.8
+   ],
+   [
+    15,
+    "\u0007Queen Lili‘uokalani Center for",
+    110.5,
+    258.0
+   ]
+  ],
+  "p3-48": [
+   [
+    16,
+    "The Mall",
+    432.8,
+    60.5
+   ],
+   [
+    17,
+    "Webster Hall",
+    574.7,
+    60.5
+   ],
+   [
+    18,
+    "Art Building",
+    486.5,
+    257.6
+   ]
+  ],
+  "p3-49": [
+   [
+    19,
+    "Bilger Hall",
+    582.4,
+    60.8
+   ],
+   [
+    20,
+    "Hamilton Library",
+    475.4,
+    258.0
+   ]
+  ],
+  "p3-50": [
+   [
+    21,
+    "Paradise Palms",
+    240.1,
+    60.1
+   ]
+  ],
+  "p3-51": [
+   [
+    23,
+    "Biomedical Science Building",
+    485.1,
+    258.0
+   ]
+  ],
+  "p3-52": [
+   [
+    24,
+    "Plant courtyard of G. Donald",
+    209.1,
+    257.6
+   ],
+   [
+    25,
+    "\u0007Moore Hall",
+    487.6,
+    257.6
+   ]
+  ],
+  "p3-53": [
+   [
+    26,
+    "East-West Road",
+    277.1,
+    60.8
+   ]
+  ],
+  "p3-54": [
+   [
+    28,
+    "John F. Kennedy Theater",
+    295.7,
+    257.6
+   ],
+   [
+    29,
+    "Hawai‘i Peace Memorial",
+    460.9,
+    257.6
+   ]
+  ],
+  "p3-56": [
+   [
+    30,
+    "Krypton",
+    60.4,
+    60.5
+   ],
+   [
+    31,
+    "SOEST courtyard",
+    152.2,
+    60.5
+   ],
+   [
+    32,
+    "Divers",
+    344.1,
+    60.5
+   ],
+   [
+    33,
+    "\u0007Holmes Hall",
+    60.4,
+    257.6
+   ],
+   [
+    34,
+    "Krauss Hall",
+    438.4,
+    257.6
+   ]
+  ],
+  "p3-57": [
+   [
+    35,
+    "“Chance Meeting”",
+    60.4,
+    60.8
+   ],
+   [
+    36,
+    "Legacy Walk",
+    264.9,
+    60.8
+   ],
+   [
+    37,
+    "\u0007Andrews Outdoor Theater/",
+    367.9,
+    60.8
+   ],
+   [
+    38,
+    "John Young Museum of Art",
+    523.4,
+    60.8
+   ],
+   [
+    39,
+    "Campus Center",
+    362.8,
+    258.0
+   ]
+  ],
+  "p3-58": [
+   [
+    40,
+    "\u0007Warrior Recreation Center",
+    60.4,
+    60.5
+   ],
+   [
+    41,
+    "HINA O NA LANI sculpture",
+    290.5,
+    60.5
+   ],
+   [
+    42,
+    "Hemenway Hall",
+    417.2,
+    60.5
+   ],
+   [
+    43,
+    "Sinclair",
+    609.8,
+    60.5
+   ],
+   [
+    44,
+    "Bachman Hall",
+    172.7,
+    257.6
+   ]
+  ],
+  "p3-59": [
+   [
+    45,
+    "Music Building and Law School",
+    383.7,
+    249.5
+   ]
+  ],
+  "p3-62": [
+   [
+    1,
+    "Kapahulu Avenue",
+    575.8,
+    74.9
+   ]
+  ],
+  "p3-64": [
+   [
+    2,
+    "\u0007Thomas Jefferson",
+    516.0,
+    60.8
+   ],
+   [
+    3,
+    "\u0007Waikīkī Fire Station:",
+    453.0,
+    301.8
+   ]
+  ],
+  "p3-65": [
+   [
+    4,
+    "Waikīkī-Kapahulu Public Library",
+    288.1,
+    60.5
+   ],
+   [
+    5,
+    "First Hawaiian Bank is architectur-",
+    60.0,
+    257.3
+   ],
+   [
+    6,
+    "Lei of Parks footpath",
+    124.5,
+    257.3
+   ]
+  ],
+  "p3-66": [
+   [
+    7,
+    "Date Street/ Mo‘oheau Avenue",
+    136.4,
+    60.5
+   ],
+   [
+    9,
+    "Winam Avenue",
+    392.5,
+    60.5
+   ],
+   [
+    10,
+    "Haili’s Hawaiian food is at the ‘Ewa",
+    471.3,
+    60.5
+   ],
+   [
+    11,
+    "Kapahulu Shopping Center",
+    574.7,
+    60.5
+   ],
+   [
+    12,
+    "Mokihana Street",
+    96.1,
+    257.3
+   ],
+   [
+    13,
+    "Leonard’s Bakery",
+    573.0,
+    257.3
+   ]
+  ],
+  "p3-67": [
+   [
+    14,
+    "\u0007Wai‘alae Avenue",
+    350.2,
+    60.8
+   ]
+  ],
+  "p3-68": [
+   [
+    15,
+    "Pālolo Stream",
+    96.8,
+    60.5
+   ],
+   [
+    16,
+    "Dole Street",
+    399.5,
+    60.5
+   ],
+   [
+    18,
+    "Ka\u0007makakūokalani Center for",
+    521.8,
+    257.3
+   ]
+  ],
+  "p3-71": [
+   [
+    19,
+    "Wa‘ahila Ridge",
+    221.0,
+    60.8
+   ],
+   [
+    20,
+    "\u0007Stairwell to lower campus/",
+    397.0,
+    60.8
+   ],
+   [
+    21,
+    "Lower Campus",
+    447.3,
+    258.0
+   ]
+  ],
+  "p3-73": [
+   [
+    22,
+    "Les Murakami Baseball Stadium",
+    322.1,
+    258.0
+   ]
+  ],
+  "p3-74": [
+   [
+    23,
+    "\u0007Clarence T. C. Ching Athletics",
+    60.4,
+    60.5
+   ],
+   [
+    24,
+    "\u0007Stan Sheriff Center/ SimpliFi Arena",
+    468.5,
+    60.5
+   ],
+   [
+    25,
+    "\u0007Duke Kahanamoku Aquatic",
+    230.0,
+    257.6
+   ]
+  ],
+  "p3-75": [
+   [
+    26,
+    "Klum Gym",
+    525.4,
+    60.8
+   ],
+   [
+    27,
+    "\u0007William S. Richardson School of",
+    540.8,
+    258.0
+   ]
+  ],
+  "p3-76": [
+   [
+    28,
+    "Music Building",
+    512.6,
+    60.5
+   ]
+  ]
+ }
+}

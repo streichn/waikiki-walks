@@ -119,3 +119,10 @@
 - Check on the fit: four of these stops had an independent OpenStreetMap place (Sacred Heart Church, Montague Hall, Halekula Way, Lanihuli Drive). Her map puts each within 11 to 41 m of it.
 - Stops 13, 18 and 26, whose numbers sit 70 to 150 m beside her path, get a trigger point on the path so arrival alerts still fire. Side strolls 25A and 27A are not pinned.
 - Walk X now has 48 of 52 stops from her maps. Stops 40 to 43 (upper valley) are the only ones left.
+
+## 2026-11-17 · Photos with the right stop and the right caption
+- Each photo now carries the caption the book prints next to it. Captions had been handed out in reading order inside a stop, so neighbours swapped or shifted (for example the two Gump Building photos on Walk IV, the fire station and library photos on Walk VIII, and the Mayor Crane sidewalk and Queen Lili‘uokalani mural photos on Walk VIII). 41 captions changed. Captions are also what VoiceOver reads for each photo.
+- 45 photos move to the stop their caption names, because the PDF draws photos before the text on many pages. For example the Hawaiian Burial Memorial photo is back on Walk VI stop 1 (it was on the Gandhi statue), the Brothers in Valor memorial on Walk IV stop 5, Leonard's Bakery on Walk XII stop 13 and the E Pluribus Unum sculpture on Walk XII stop 2. List with the caption for each: scripts/extract/photo_stops.json.
+- 11 duplicate photos are gone. The book draws some photos twice in the same spot (once with a white frame and shadow), and the app showed both.
+- 85 "photos" that were really slices of the page are gone: a faint background graphic at the foot of many pages, cut out with the body text printed over it, and boxed quotes ("The plaque reads: ...") whose words are already in the stop's text. Most were on Walks X to XII.
+- New scripts/extract/photos.py finds each photo's place on the page and the caption beside it (scripts/extract/photos.json); build_data.py uses it. The glossary now also reads photo captions, which brings back "Kahoaloha: the friend" and adds "kalo lo‘i: taro fields", both from the book.

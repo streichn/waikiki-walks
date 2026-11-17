@@ -47,6 +47,12 @@ FAR_STOPS = json.load(open(f'{ROOT}/scripts/extract/far_stops.json')) if os.path
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
+# Each photo's place on the book page, the caption printed next to it, and drawn-twice duplicates
+# (scripts/extract/photos.py), plus photos moved to the stop their caption names (photo_stops.json).
+_PH = json.load(open(f'{ROOT}/scripts/extract/photos.json')) if os.path.exists(f'{ROOT}/scripts/extract/photos.json') else {'photos': {}}
+PHOTOS = _PH['photos']
+PHOTO_STOPS = {k: v for k, v in json.load(open(f'{ROOT}/scripts/extract/photo_stops.json')).items() if not k.startswith('_')} \
+    if os.path.exists(f'{ROOT}/scripts/extract/photo_stops.json') else {}
 HAWAII = re.compile(r'[āēīōūĀĒĪŌŪ‘ʻ]')
 
 
@@ -124,6 +130,7 @@ def _cap(t):
     return t
 
 
+PHOTO_CAPTIONS = {_cap(re.sub(r'^Caption:\s*', '', v['caption'])) for v in PHOTOS.values() if v.get('caption')}
 CAPTIONS = sorted({_cap(c['text']) for c in json.load(open(f'{ROOT}/scripts/extract/captions.json'))}, key=len, reverse=True) if os.path.exists(f'{ROOT}/scripts/extract/captions.json') else []
 
 
@@ -365,6 +372,21 @@ for k, w in enumerate(SRC['walks']):
         else:
             s['geo'] = {'lat': 21.2793, 'lng': -157.8292, 'confidence': 'estimated', 'query': 'no location found'}
 
+    # Photos: drop the framed duplicate the book draws under some photos and the page-background slices that
+    # show only body text, then move photos the PDF filed under
+    # the wrong stop to the stop their caption names.
+    by_id = {f"{wid}-{x['n']:02d}": x for x in stops_src}
+    for x in stops_src:
+        x['images'] = [im for im in x.get('images', []) if not (PHOTOS.get(im['file'], {}).get('dup_of') or PHOTOS.get(im['file'], {}).get('page_slice'))]
+    for x in list(stops_src):
+        for im in list(x['images']):
+            to = PHOTO_STOPS.get(im['file'], {}).get('stop')
+            if to and to in by_id and by_id[to] is not x:
+                x['images'].remove(im)
+                by_id[to]['images'].append(im)
+    for x in stops_src:
+        x['images'].sort(key=lambda im: (_page_key(im['page']), PHOTOS.get(im['file'], {}).get('bbox', [0, 0])[1]))
+
     stops = []
     cover = None
     for s in stops_src:
@@ -378,10 +400,13 @@ for k, w in enumerate(SRC['walks']):
         blocks = clean_blocks(s.get('blocks'))
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
         blocks = pull_captions(blocks)
-        caps = [b for b in blocks if b['kind'] == 'caption']
-        for p, c in zip(photos, caps):
-            p['caption'] = c['text']
-        blocks = [b for b in blocks if b['kind'] != 'caption' or len(photos) < len(caps)]
+        # Each photo takes the caption printed next to it in the book (matched by position on the page).
+        # Caption lines the parser read as body text are dropped when that caption belongs to a photo.
+        for p in photos:
+            c = PHOTOS.get(p['file'], {}).get('caption')
+            if c:
+                p['caption'] = _cap(re.sub(r'^Caption:\s*', '', c))
+        blocks = [b for b in blocks if b['kind'] != 'caption' or not any(_cap(b['text']) in c for c in PHOTO_CAPTIONS)]
         g = s['geo']
         stitle, sub = re.sub(r'[\x00-\x1f]', '', s['title']).strip(' |-–.'), s.get('subtitle')
         if sub and (stitle.endswith((' of', ' the', ' and', ' at', ' a')) or s['title'].rstrip().endswith(('-', '–', '|')) or sub[:1].islower()):
@@ -476,7 +501,8 @@ ENGLISH = {'hill', 'hope', 'home', 'lane', 'mile', 'pine', 'wine', 'line', 'mall
 pat1 = re.compile(r"\b([A-Za-zāēīōūĀĒĪŌŪ‘ʻ]{3,}(?:\s[a-zāēīōū‘ʻ]{2,})?)\s*\(([a-z][a-z ,;'-]{2,40})\)")
 pat2 = re.compile(r"\b([A-Za-zāēīōūĀĒĪŌŪ‘ʻ]{3,})\s*[‘']([a-z][a-z ,'-]{2,40})[,.]?[’']")
 pat3 = re.compile(r"([A-Z][A-Za-zāēīōūĀĒĪŌŪ‘ʻ]+(?:\s[A-Z][A-Za-zāēīōū‘ʻ]+)?) means\s*[‘“']([^’”']{3,50})[’”']")
-texts = [b['text'] for w in walks for s in w['stops'] for b in s['blocks']] + [b['text'] for w in walks for b in w['intro']]
+texts = [b['text'] for w in walks for s in w['stops'] for b in s['blocks']] + [b['text'] for w in walks for b in w['intro']] \
+    + [p['caption'] for w in walks for s in w['stops'] for p in s['photos'] if p.get('caption')]
 for txt in texts:
     for pat in (pat1, pat2, pat3):
         for m in pat.finditer(txt):
