@@ -45,7 +45,8 @@ def route_mask(file):
     return np.stack([xs, ys], 1)
 
 _ov = os.path.join(ROOT, 'scripts/georef/pin_overrides.json')
-OVERRIDES = {k: v for k, v in json.load(open(_ov)).items() if not k.startswith('_')} if os.path.exists(_ov) else {}
+OVERRIDES = {k: {n: x for n, x in v.items() if isinstance(x, list)} for k, v in json.load(open(_ov)).items() if not k.startswith('_')} if os.path.exists(_ov) else {}
+LL_OVERRIDES = {k: {n: x for n, x in v.items() if isinstance(x, dict)} for k, v in json.load(open(_ov)).items() if not k.startswith('_')} if os.path.exists(_ov) else {}
 out_maps, pins = {}, {}
 walks = json.load(open(os.path.join(ROOT, 'src/data/walks.json')))
 walks = walks if isinstance(walks, list) else walks['walks']
@@ -78,6 +79,41 @@ for w in walks:
             xm, ym = tps_eval(inv, pt / 100.0)
             lat, lng = to_ll(xm, ym)
             pins[wid][n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'route_offset_m': round(off * mpp)}
+
+# Extra map pages (Walk VIII page 2, Walk X pages 2 to 4, Walk XI), fitted by extra_maps.py.
+GX = json.load(open(os.path.join(HERE, 'georef_extra.json'))) if os.path.exists(os.path.join(HERE, 'georef_extra.json')) else {}
+SX = json.load(open(os.path.join(HERE, 'map_stops_extra.json'))) if os.path.exists(os.path.join(HERE, 'map_stops_extra.json')) else {}
+for key, g in GX.items():
+    wid, f = g['walk'], g['file']
+    A = np.array(g['affine'])  # [x_m, y_m, 1] @ A = px
+    W, H = Image.open(os.path.join(ROOT, 'assets/book', f)).size
+    # same structure as the first maps' spline, with no bending: the app evaluates it the same way
+    fwd = {'ctrl': [[0.0, 0.0]], 'w': [[0.0, 0.0]], 'a': [A[2].tolist(), (A[0] * 100).tolist(), (A[1] * 100).tolist()]}
+    page = {'file': f, 'w': W, 'h': H, 'fwd': fwd, 'rms_m': g['rms_m'], 'labels': {n: v for n, v in SX.get(key, {}).items()}}
+    if g.get('skip_pins'):
+        page['approximate'] = True
+    if wid in out_maps:
+        out_maps[wid].setdefault('pages', []).append(page)
+    else:
+        out_maps[wid] = {'origin': [LAT0, LNG0], 'k': [KX, KY], 'scale': 100.0, **page}
+    if g.get('skip_pins'):
+        continue
+    route = route_mask(f)
+    mpp = g['m_per_px']
+    M, t = A[:2].T, A[2]
+    for n, (lx, ly) in SX.get(key, {}).items():
+        ov = OVERRIDES.get(wid, {}).get(n)
+        if ov:
+            lx, ly = ov[0], ov[1]
+        pt = np.array([lx, ly], float)
+        off = float(np.min(np.linalg.norm(route - pt, axis=1))) if route.size else 0.0
+        xm, ym = np.linalg.solve(M, pt - t)
+        lat, lng = to_ll(xm, ym)
+        pins.setdefault(wid, {})[n] = {'lat': round(lat, 6), 'lng': round(lng, 6), 'px': [lx, ly], 'page': f, 'route_offset_m': round(off * mpp)}
+
+for wid, d in LL_OVERRIDES.items():
+    for n, x in d.items():
+        pins.setdefault(wid, {})[n] = {'lat': x['lat'], 'lng': x['lng'], 'route_offset_m': 30, 'place': x.get('why', '')}
 
 json.dump(out_maps, open(os.path.join(ROOT, 'src/data/bookmaps.json'), 'w'))
 json.dump(pins, open(os.path.join(ROOT, 'scripts/extract/book_pins.json'), 'w'), indent=1)

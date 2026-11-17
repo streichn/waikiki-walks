@@ -16,5 +16,28 @@
    494,
    "same"
   ]
+ },
+ "_note_latlng": "Entries with lat/lng are for stops printed on a map page too sketchy to align with real streets (Walk X page 4, upper Mānoa). Places from OpenStreetMap.",
+ "X": {
+  "40": {
+   "lat": 21.3142262,
+   "lng": -157.8083965,
+   "why": "Mānoa Valley District Park, where her map prints 40 beside the park on Mānoa Road"
+  },
+  "41": {
+   "lat": 21.3187338,
+   "lng": -157.802185,
+   "why": "Mānoa Chinese Cemetery"
+  },
+  "42": {
+   "lat": 21.3187517,
+   "lng": -157.8071211,
+   "why": "Mānoa Road at Pāwaina Street, where the route to the falls and arboretum continues"
+  },
+  "43": {
+   "lat": 21.3333815,
+   "lng": -157.8033873,
+   "why": "Lyon Arboretum"
+  }
  }
 }

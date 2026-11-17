@@ -64,6 +64,16 @@
  ],
  "XI": [
   {
+   "n": 1,
+   "title": "McCully Street",
+   "page": "p3-38",
+   "from": "intro",
+   "start": "Street is named for Lawrence McCully",
+   "replace_page": "p3-62",
+   "carry_to": "XII",
+   "_why": "Bold heading '1 McCully Street' on p3-38; the parser had given number 1 to the opening of Walk XII instead."
+  },
+  {
    "n": 27,
    "title": "Korean Center, Thai Pavilion, Japanese Garden and Tea House",
    "page": "p3-53",

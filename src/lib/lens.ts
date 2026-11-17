@@ -1,5 +1,5 @@
 import { LENS_ENDPOINT } from '../config';
-import { walks } from '../data';
+import { walks, onMap } from '../data';
 import type { Stop, Walk } from '../data/types';
 import { bearingDeg, distanceM, headingDelta, type LatLng } from './geo';
 
@@ -17,6 +17,7 @@ export function candidatesInView(pos: LatLng, heading: number, maxDistance = 350
   const out: LensCandidate[] = [];
   for (const walk of walks) {
     for (const stop of walk.stops) {
+      if (!onMap(stop)) continue; // only stops her map places
       const d = distanceM(pos, stop);
       if (d > maxDistance) continue;
       const off = Math.abs(headingDelta(heading, bearingDeg(pos, stop)));

@@ -1,0 +1,225 @@
+{
+ "VIII:map-VIII-2.jpg": {
+  "walk": "VIII",
+  "file": "map-VIII-2.jpg",
+  "part": 2,
+  "page": 50,
+  "affine": [
+   [
+    0.4600565893235092,
+    -0.0068890540363795655
+   ],
+   [
+    -0.001723333297941403,
+    -0.44479510913048176
+   ],
+   [
+    -983.7579107216765,
+    483.2545807041728
+   ]
+  ],
+  "rms_m": 7.5,
+  "m_per_px": 2.21,
+  "labels_used": [
+   "Pāhoa  Ave.",
+   "Koko Head  Ave.",
+   "Koko Head  Ave.",
+   "6th  Ave.",
+   "9th  Ave.",
+   "12th  Ave.",
+   "Diamond Head Rd.",
+   "Kīlauea Ave.",
+   "Alohea Ave.",
+   "Ocean View Dr."
+  ],
+  "labels_unmatched": [
+   "Wai alae  Ave.",
+   "Makapu‘u Ave.",
+   "lae  Ave."
+  ]
+ },
+ "X:map-X-2.jpg": {
+  "walk": "X",
+  "file": "map-X-2.jpg",
+  "part": 3,
+  "page": 3,
+  "affine": [
+   [
+    -0.20460550279044173,
+    -0.5083762415987176
+   ],
+   [
+    -0.5214115751057605,
+    0.19051807441165003
+   ],
+   [
+    1801.9184698523218,
+    320.3201786845077
+   ]
+  ],
+  "rms_m": 12.0,
+  "m_per_px": 1.81,
+  "labels_used": [
+   "Metcalf St.",
+   "Wilder Ave.",
+   "Oliver St.",
+   "Evelyn Ln.",
+   "Artesian Way",
+   "Alexander St.",
+   "Halekula Way",
+   "Spreckels St.",
+   "Dole St.",
+   "Alihilani Pl.",
+   "Ahualani Pl.",
+   "Lanihuli Dr.",
+   "Kamehameha Ave.",
+   "Ka‘ala Way",
+   "Mānoa Rd.",
+   "Punahou St.",
+   "Metcalf St.",
+   "Maile Way",
+   "University Ave.",
+   "Dole St.",
+   "O‘ahu Ave.",
+   "Nehoa St.",
+   "University Ave.",
+   "Hunnewell St.",
+   "Vancouver Dr.",
+   "Wilder Ave.",
+   "Mānoa Rd."
+  ],
+  "labels_unmatched": [
+   "McKinley St."
+  ]
+ },
+ "X:map-X-3.jpg": {
+  "walk": "X",
+  "file": "map-X-3.jpg",
+  "part": 3,
+  "page": 6,
+  "affine": [
+   [
+    -0.25722863149169445,
+    -0.28137300869561005
+   ],
+   [
+    -0.26503153315066336,
+    0.25059534593318294
+   ],
+   [
+    1550.1992319896203,
+    223.39426719404503
+   ]
+  ],
+  "rms_m": 15.0,
+  "m_per_px": 2.68,
+  "labels_used": [
+   "Lanihuli Dr.",
+   "Hunnewell St.",
+   "Kamehameha Ave.",
+   "Ka‘ala Way",
+   "Maile Way",
+   "O‘ahu Ave.",
+   "O‘ahu Ave.",
+   "E Mānoa Rd.",
+   "Mānoa Rd.",
+   "Lowrey Ave.",
+   "E Mānoa Rd.",
+   "Woodlawn Dr.",
+   "Alaula Way",
+   "Ānuenue St.",
+   "University Ave."
+  ],
+  "labels_unmatched": [
+   "McKinley St.",
+   "Ave."
+  ]
+ },
+ "X:map-X-4.jpg": {
+  "walk": "X",
+  "file": "map-X-4.jpg",
+  "part": 3,
+  "page": 5,
+  "affine": [
+   [
+    0.2940855456869418,
+    -0.3402065532590489
+   ],
+   [
+    -0.5345667853544306,
+    0.26488700392529224
+   ],
+   [
+    1917.5568680426425,
+    323.5068183329344
+   ]
+  ],
+  "rms_m": 112.7,
+  "skip_pins": true,
+  "m_per_px": 3.1,
+  "labels_used": [
+   "Mānoa Chinese Cemetery (gray lot)",
+   "Kahaloa Drive at East Mānoa Road",
+   "Pakanu Street at Pāwaina Street",
+   "Pāwaina Street at Mānoa Road"
+  ],
+  "labels_unmatched": []
+ },
+ "XI:map-XI.jpg": {
+  "walk": "XI",
+  "file": "map-XI.jpg",
+  "part": 3,
+  "page": 37,
+  "affine": [
+   [
+    -0.31404766933026695,
+    -0.3863193831659886
+   ],
+   [
+    -0.3870670858380062,
+    0.3182742849695368
+   ],
+   [
+    917.0757346597944,
+    288.3037085762531
+   ]
+  ],
+  "rms_m": 8.4,
+  "m_per_px": 2.0,
+  "labels_used": [
+   "Pa‘ū St.",
+   "Niu St.",
+   "Date St.",
+   "Mahi‘ai St.",
+   "Nāhaku Pl.",
+   "Kahoaloha Ln.",
+   "Kuilei St.",
+   "S. King St.",
+   "Church Ln.",
+   "Kapi‘olani Blvd.",
+   "Kahuna Ln.",
+   "University Ave.",
+   "Wiliwili St.",
+   "McCully St.",
+   "S. King St.",
+   "Waiola St.",
+   "Kapi‘olani Blvd.",
+   "Menehune Ln.",
+   "Waiaka Rd.",
+   "Date St.",
+   "S. Beretania St.",
+   "Metcalf St.",
+   "Wilder Ave.",
+   "Oliver St.",
+   "Evelyn Ln.",
+   "Alexander St.",
+   "Dole St.",
+   "Pa‘ani St.",
+   "Kapa‘akea Ln."
+  ],
+  "labels_unmatched": [
+   "Algoroba St.",
+   "an Way"
+  ]
+ }
+}

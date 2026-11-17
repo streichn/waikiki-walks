@@ -3,7 +3,7 @@ import * as Notifications from 'expo-notifications';
 import * as TaskManager from 'expo-task-manager';
 import { AppState, Platform } from 'react-native';
 import { DEFAULT_ARRIVAL_RADIUS_M } from '../config';
-import { getWalk } from '../data';
+import { getWalk, onMap } from '../data';
 import type { Walk } from '../data/types';
 import { useProgress, useSettings } from '../store';
 import * as LiveActivity from './liveActivity';
@@ -70,8 +70,13 @@ export async function requestPermissions(): Promise<{ foreground: boolean; backg
 
 function regionsFrom(walk: Walk, fromIndex: number): Location.LocationRegion[] {
   const radius = useSettings.getState().arrivalRadius || DEFAULT_ARRIVAL_RADIUS_M;
-  return walk.stops.slice(fromIndex, fromIndex + MAX_REGIONS).map((s, k) => ({
-    identifier: `${walk.id}|${fromIndex + k}`,
+  return walk.stops
+    .map((s, k) => ({ s, k }))
+    .slice(fromIndex)
+    .filter(({ s }) => onMap(s)) // no arrival alert for a stop her map doesn't print
+    .slice(0, MAX_REGIONS)
+    .map(({ s, k }) => ({
+    identifier: `${walk.id}|${k}`,
     latitude: s.lat,
     longitude: s.lng,
     // OS geofences are unreliable under about 100 m, so the background radius is larger;

@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Card, T, tap } from '../../components/ui';
-import { walks, walkNo } from '../../data';
+import { walks, walkNo, onMap } from '../../data';
 import type { Walk } from '../../data/types';
 import { useTheme } from '../../theme';
 
@@ -21,7 +21,7 @@ export default function Explore() {
     <View style={{ flex: 1 }}>
       <MapView style={StyleSheet.absoluteFill} initialRegion={region} showsUserLocation userInterfaceStyle={t.dark ? 'dark' : 'light'} showsPointsOfInterests={false}>
         {shown.flatMap((w) =>
-          (sel ? w.stops : w.stops.slice(0, 1)).map((s) => (
+          (sel ? w.stops.filter(onMap) : w.stops.filter(onMap).slice(0, 1)).map((s) => (
             <Marker
               key={s.id}
               coordinate={{ latitude: s.lat, longitude: s.lng }}

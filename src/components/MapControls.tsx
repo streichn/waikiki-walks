@@ -1,11 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useEffect, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
-import { bookLabel, bookXY } from '../lib/bookmap';
+import { bookLabel, bookPages, bookXY, pageFor } from '../lib/bookmap';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
 
@@ -115,7 +115,13 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
 }) {
   const { width, height: screenH } = useWindowDimensions();
   const height = width / 0.7;
-  const dot = me ? bookXY(walk.id, me.lat, me.lng) : null;
+  // Open the page that prints the current stop; the page buttons switch until the stop changes.
+  const pages = bookPages(walk.id);
+  const curN = current !== undefined && current >= 0 ? walk.stops[current]?.n : undefined;
+  const [page, setPage] = useState(() => pageFor(walk.id, curN));
+  useEffect(() => setPage(pageFor(walk.id, curN)), [walk.id, curN]);
+  const file = page === 0 ? walk.bookMap : pages[page]?.file;
+  const dot = me ? bookXY(walk.id, me.lat, me.lng, page) : null;
   const scroll = useRef<ScrollViewInstance>(null);
   const [follow, setFollow] = useState(true);
   // Keep the walker's dot in the middle of the visible map, like follow mode on a street map.
@@ -132,10 +138,10 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
     <View style={{ flex: 1 }}>
     <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
-        <Image source={photo(walk.bookMap)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map from the book`} />
+        <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
         {walk.stops.map((s, i) => {
           // Her printed number is the pin; this is just an invisible tap target over it (ringed when current).
-          const L = bookLabel(walk.id, s.n);
+          const L = bookLabel(walk.id, s.n, page);
           if (!L) return null;
           return (
             <Pressable key={s.id} accessibilityLabel={`Stop ${s.n}, ${s.title}`} onPress={() => onSelect?.(i)}
@@ -148,6 +154,16 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
         ) : null}
       </View>
     </ScrollView>
+    {pages.length > 1 ? (
+      <View style={[styles.pageTabs, { top: topInset + 8 }]} accessibilityRole="tablist">
+        {pages.map((_, j) => (
+          <Pressable key={j} accessibilityRole="tab" accessibilityState={{ selected: j === page }} onPress={() => { tap(); setPage(j); }}
+            style={[styles.pageTab, j === page && styles.pageTabOn]}>
+            <Text style={[styles.pageTabText, j === page && { color: '#fff' }]}>Map {j + 1}</Text>
+          </Pressable>
+        ))}
+      </View>
+    ) : null}
     {dot ? (
       <Pressable accessibilityLabel="Go to my position" onPress={() => { tap(); setFollow(true); centerOnMe(); }} style={[styles.btn, styles.meBtn, { top: topInset + 46 }]}>
         <Ionicons name={follow ? 'navigate' : 'navigate-outline'} size={22} color="#1A73E8" />
@@ -179,6 +195,10 @@ export function BookMapViewer({ file, visible, onClose }: { file: string; visibl
 }
 
 const styles = StyleSheet.create({
+  pageTabs: { position: 'absolute', alignSelf: 'center', flexDirection: 'row', gap: 4, padding: 4, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.95)', shadowColor: '#000', shadowOpacity: 0.15, shadowRadius: 8, elevation: 3 },
+  pageTab: { paddingHorizontal: 12, paddingVertical: 6, borderRadius: 999 },
+  pageTabOn: { backgroundColor: '#0E6E74' },
+  pageTabText: { fontWeight: '700', color: '#1F2A2B' },
   btn: { width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center', borderWidth: StyleSheet.hairlineWidth, shadowColor: '#000', shadowOpacity: 0.15, shadowRadius: 5, shadowOffset: { width: 0, height: 2 }, elevation: 3 },
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.35)', justifyContent: 'flex-end' },
   sheet: { margin: 12, borderRadius: 22, padding: 16, gap: 10 },

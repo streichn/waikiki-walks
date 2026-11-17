@@ -89,3 +89,11 @@
 - Stray control characters removed from text.
 
 - Walk 1 stops 7, 8 and 9 ('Iolani School, the Mānoa-Pālolo Drainage Canal, the ridges and valleys) now line up along Date Street on the golf-course side, as Veneeta asked: they are things to talk about from the walk, not places to walk to. New scripts/georef/pin_overrides.json holds author-chosen pin spots; her printed numbers stay where the book prints them.
+
+## 2026-11-17 · The street map mirrors her book maps (Nick)
+- Rule: a stop gets a pin, an arrival alert, and a distance only if one of Veneeta's book maps prints its number. Other stops are still in the text and reached with Next. (src/data onMap; WalkMap, tracking, go screen, lens, explore; preview.)
+- Brought in the map pages beyond each walk's first: Walk VIII page 2 (stops 15 to 32), Walk X pages 2 to 4 (stops 7 to 52), and Walk XI's map (stops 1 to 6). scripts/georef/extra_maps.py reads her printed numbers and street names straight from the PDF and fits each page to real streets from labeled street crossings (RMS 8 to 15 m). Pins sit exactly on her numbers.
+- Walk X page 4 (upper Mānoa) is a sketch that would not line up with the streets, so stops 40 to 43 use the places themselves (Mānoa Valley District Park, Mānoa Chinese Cemetery, Mānoa Road at Pāwaina Street, Lyon Arboretum), recorded in pin_overrides.json.
+- The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
+- Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
+- Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.

@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
+import { onMap } from '../data';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
@@ -25,21 +26,26 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
+  // Only stops her book map prints get a pin, so this map shows what her map shows.
+  const mapCoords = useMemo(() => {
+    const c = walk.stops.filter(onMap).map((s) => ({ latitude: s.lat, longitude: s.lng }));
+    return c.length ? c : [{ latitude: 21.29, longitude: -157.82 }];
+  }, [walk]);
   const initial: Region = useMemo(() => {
-    const lats = coords.map((c) => c.latitude);
-    const lngs = coords.map((c) => c.longitude);
+    const lats = mapCoords.map((c) => c.latitude);
+    const lngs = mapCoords.map((c) => c.longitude);
     const lat = (Math.min(...lats) + Math.max(...lats)) / 2;
     const lng = (Math.min(...lngs) + Math.max(...lngs)) / 2;
     return { latitude: lat, longitude: lng, latitudeDelta: Math.max(0.006, (Math.max(...lats) - Math.min(...lats)) * 1.5), longitudeDelta: Math.max(0.006, (Math.max(...lngs) - Math.min(...lngs)) * 1.5) };
-  }, [coords]);
+  }, [mapCoords]);
 
   const padding = { top: 80, right: 50, bottom: 60 + bottomInset, left: 50 };
   useImperativeHandle(ref, () => ({
     focusStop: (i) => {
-      const c = coords[i];
+      const c = walk.stops[i] && onMap(walk.stops[i]) ? coords[i] : undefined;
       if (c) map.current?.animateCamera({ center: c, zoom: 17 }, { duration: 600 });
     },
-    fitAll: () => map.current?.fitToCoordinates(coords, { edgePadding: padding, animated: true }),
+    fitAll: () => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: true }),
     recenter: (lat, lng) => map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 17, heading: 0 }, { duration: 500 }),
     // Follow mode keeps the blue dot centered; with a heading the map rotates to face where you face.
     follow: (lat, lng, heading) =>
@@ -59,11 +65,12 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       showsPointsOfInterests={false}
       userInterfaceStyle={t.dark ? 'dark' : 'light'}
       mapPadding={{ top: 0, left: 0, right: 0, bottom: bottomInset }}
-      onMapReady={() => map.current?.fitToCoordinates(coords, { edgePadding: padding, animated: false })}
+      onMapReady={() => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: false })}
     >
-      <Polyline coordinates={coords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
-      {current >= 0 && current < coords.length - 1 ? <Polyline coordinates={[coords[current], coords[current + 1]]} strokeColor={t.accent} strokeWidth={6} /> : null}
+      <Polyline coordinates={mapCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
+      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={[coords[current], coords[current + 1]]} strokeColor={t.accent} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
+        if (!onMap(s)) return null;
         const isCur = i === current;
         const done = visited.includes(i);
         const locked = isLocked?.(i);

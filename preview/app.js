@@ -82,6 +82,7 @@
   const ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, XI: 11, XII: 12 };
   const wn = (id) => ROMAN[id] || id;
   const canOpen = (wid, i) => S.isPro || (wid === TRIAL.walkId ? i < TRIAL.freeStops : i < 1);
+  const onMap = (s) => s.geo === 'book'; // a stop gets a pin only if her book map prints it
   const canStart = (wid) => S.isPro || wid === TRIAL.walkId;
   const applyTheme = () => {
     const t = S.settings.theme;
@@ -291,8 +292,25 @@
 
   // Veneeta's own map from the book, as a full map view (zoom with + and -, drag or scroll to pan).
   // Where a lat/lng falls on Veneeta's map, as percentages of the image (scripts/georef fits each map to real streets).
+  // Some walks span several map pages in the book (Walk 8 has 2, Walk 10 has 4). Show one page at a time,
+  // the one that prints the stop you're on, with buttons to switch.
+  function bmPages(w) {
+    const g = (D.bookmaps || {})[w.id]; if (!g) return [];
+    return [{ ...g, file: w.bookMap || g.file }, ...(g.pages || []).map((p) => ({ ...p, origin: g.origin, k: g.k, scale: g.scale }))];
+  }
+  function pageFor(w, i) {
+    const ps = bmPages(w), n = w.stops[i] && String(w.stops[i].n);
+    const k = ps.findIndex((p) => n && (p.labels || {})[n]);
+    return k >= 0 ? k : 0;
+  }
+  function bm(w) {
+    const ps = bmPages(w); if (!ps.length) return null;
+    S.bookPage = S.bookPage || {};
+    const k = Math.min(S.bookPage[w.id] || 0, ps.length - 1);
+    return ps[k];
+  }
   function bookXY(w, lat, lng) {
-    const g = (D.bookmaps || {})[w.id]; if (!g) return null;
+    const g = bm(w); if (!g) return null;
     const x = (lng - g.origin[1]) * g.k[0] / g.scale, y = (lat - g.origin[0]) * g.k[1] / g.scale, f = g.fwd;
     let px = f.a[0][0] + x * f.a[1][0] + y * f.a[2][0], py = f.a[0][1] + x * f.a[1][1] + y * f.a[2][1];
     f.ctrl.forEach((c, i) => { const d = Math.hypot(x - c[0], y - c[1]); if (d > 0) { const u = d * d * Math.log(d); px += u * f.w[i][0]; py += u * f.w[i][1]; } });
@@ -300,7 +318,7 @@
   }
   // Her own printed stop numbers are the pins: invisible tap areas over them, a ring on the current stop, and the walker's dot.
   function bookPins(w) {
-    const g = (D.bookmaps || {})[w.id]; if (!g) return '';
+    const g = bm(w); if (!g) return '';
     const prog = S.progress[w.id] || { visited: [], current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
     const hits = w.stops.map((s, i) => { const L = (g.labels || {})[String(s.n)]; if (!L) return '';
       return `<button class="bhit ${i === cur ? 'on' : ''}" data-bpin="${i}" style="left:${L[0] / g.w * 100}%;top:${L[1] / g.h * 100}%" aria-label="Stop ${s.n}, ${esc(s.title)}"></button>`; }).join('');
@@ -318,7 +336,13 @@
     pane.scrollTo({ left: x - pane.clientWidth / 2, top: y - visibleH / 2, behavior: smooth ? 'smooth' : 'auto' });
   }
   function bookPane(w) {
-    return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(w.bookMap, '', 'Walk ' + wn(w.id) + ' map from the book')}${bookPins(w)}</div></div></div>
+    // Open the page that prints the current stop; a tap on "Map 2" etc. sticks until the stop changes.
+    const prog = S.progress[w.id] || { current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
+    S.bookPage = S.bookPage || {}; S.bookPageStop = S.bookPageStop || {};
+    if (S.bookPageStop[w.id] !== cur) { S.bookPage[w.id] = pageFor(w, Math.max(0, cur)); S.bookPageStop[w.id] = cur; }
+    const ps = bmPages(w), g = bm(w), k = ps.indexOf(g);
+    const tabs = ps.length > 1 ? `<div class="bookpages" role="tablist">${ps.map((p, j) => `<button role="tab" aria-selected="${j === k}" data-bookpage="${j}">Map ${j + 1}</button>`).join('')}</div>` : '';
+    return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(g ? g.file : w.bookMap, '', 'Walk ' + wn(w.id) + ' map ' + (k + 1) + ' from the book')}${bookPins(w)}</div></div></div>${tabs}
       <button class="pinchk" data-act="pinchk" aria-pressed="${!!S.showPins}">${S.showPins ? 'Hide' : 'Check:'} app pins</button>
       <div class="zoombtns">${S.view === 'go' ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
   }
@@ -368,8 +392,11 @@
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14, tileSize: 256 }).addTo(map);
     map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
-    L.polyline(pts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    // Only stops her book map prints get a pin, so this map shows what her map shows.
+    const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
+    L.polyline(mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
     const markers = w.stops.map((s, i) => {
+      if (!onMap(s)) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
       m.on('click', () => opts.onSelect && opts.onSelect(i));
       return m;
@@ -380,15 +407,16 @@
       map,
       paint(cur, visited) {
         markers.forEach((m, i) => {
+          if (!m) return;
           const s = w.stops[i], locked = !canOpen(w.id, i), done = visited.includes(i), isCur = i === cur;
           const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : w.color;
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });
-        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg ? [pts[cur], pts[cur + 1]] : []);
+        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? [pts[cur], pts[cur + 1]] : []);
       },
-      fit() { map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
-      focus(i) { map.setView(pts[i], 17, { animate: true }); },
+      fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
+      focus(i) { if (onMap(w.stops[i])) map.setView(pts[i], 17, { animate: true }); },
       me(p, heading) {
         if (!p) return;
         if (!map.hasLayer(me)) me.addTo(map);
@@ -520,6 +548,8 @@
   let simPath = null, simFor = null;
   function tickSim() {
     const w = walk(S.walkId), prog = S.progress[w.id], target = w.stops[prog.current];
+    // A stop her map doesn't print has no spot to walk to: the demo reads it and moves on.
+    if (!onMap(target)) { if (!prog.visited.includes(prog.current)) { prog.visited.push(prog.current); persist(); } return; }
     if (!S.me) { const prev = w.stops[Math.max(0, prog.current - 1)]; S.me = { lat: prev.lat - 0.0012, lng: prev.lng - 0.0009 }; }
     if (simFor !== w.id + ':' + prog.current) {
       simFor = w.id + ':' + prog.current;
@@ -536,7 +566,7 @@
     if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
     const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
-    if (dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
+    if (onMap(target) && dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
     const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = 'rotate(0deg)';
   }
@@ -626,9 +656,9 @@
     };
     const showWalk = (w) => {
       group.clearLayers();
-      const pts = w.stops.map((s) => [s.lat, s.lng]);
+      const pts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
       L.polyline(pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
-      w.stops.forEach((s, i) => L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
+      w.stops.forEach((s, i) => onMap(s) && L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
       map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [30, 70], paddingBottomRight: [30, 200] });
       const h = document.getElementById('ehint'); h.innerHTML = `${ic('back', 'width="14" height="14"')} All walks`; h.setAttribute('role', 'button'); h.onclick = showAll;
       const c = document.getElementById('ecard'); c.classList.remove('hidden');
@@ -710,7 +740,7 @@
     // The real app uses the camera, GPS and compass. Here we stand the walker on Kalākaua Avenue.
     const here = { lat: 21.2762, lng: -157.8262 }, heading = 120;
     const c = [];
-    D.walks.forEach((w) => w.stops.forEach((s, i) => { const d = dist(here, s); if (d > 350) return; const off = Math.abs(((bearing(here, s) - heading + 540) % 360) - 180); if (d > 25 && off > 35) return; c.push({ w, s, i, d, score: (1 - d / 350) * 0.6 + (1 - Math.min(off, 90) / 90) * 0.4 }); }));
+    D.walks.forEach((w) => w.stops.forEach((s, i) => { if (!onMap(s)) return; const d = dist(here, s); if (d > 350) return; const off = Math.abs(((bearing(here, s) - heading + 540) % 360) - 180); if (d > 25 && off > 35) return; c.push({ w, s, i, d, score: (1 - d / 350) * 0.6 + (1 - Math.min(off, 90) / 90) * 0.4 }); }));
     c.sort((a, b) => b.score - a.score);
     const top = c[0];
     const m = modal(`<div class="stack"><div class="label">What am I looking at?</div><div style="position:relative;height:200px;border-radius:18px;overflow:hidden;background:#123">${top && top.s.photos[0] ? img(top.s.photos[0].file, '', '').replace('<img ', '<img style="width:100%;height:100%;object-fit:cover;opacity:.75" ') : ''}<div class="reticle" style="top:20px;width:160px;height:160px;margin-left:-80px"></div></div>
@@ -790,6 +820,7 @@
     if ((el = q('[data-detent]'))) { S.detent = el.dataset.detent; setSheet(detents()[S.detent], true); markDetent(); if (gmap) setTimeout(() => gmap.map.invalidateSize(), 300); return; }
     if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return goTo(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-mapstyle]'))) { S.mapStyle = el.dataset.mapstyle; wmap = null; gmap = null; render(); return; }
+    if ((el = q('[data-bookpage]'))) { const w = walk(S.walkId); S.bookPage = S.bookPage || {}; S.bookPage[w.id] = Number(el.dataset.bookpage); return render(); }
     if ((el = q('[data-zoom]'))) { S.bookZoom = Math.max(1, Math.min(4, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
     if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-listen]'))) { const w = walk(S.walkId); const s = w.stops[Number(el.dataset.i)]; return speaking.stopId === s.id ? stopSpeak() : speakStop(s); }

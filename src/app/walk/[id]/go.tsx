@@ -10,7 +10,7 @@ import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { Button, IconButton, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
-import { getWalk, walkNo } from '../../../data';
+import { getWalk, walkNo, onMap } from '../../../data';
 import { canOpenStop, useIsPro } from '../../../lib/access';
 import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
 import { confirmEndWalk, endWalkNow } from '../../../lib/endWalk';
@@ -144,6 +144,7 @@ export default function ActiveWalk() {
     for (let i = current; i < Math.min(walk.stops.length, current + 4); i++) {
       if (visited.includes(i)) continue;
       if (!canOpenStop(walk.id, i, isPro)) break;
+      if (!onMap(walk.stops[i])) continue; // her map doesn't print it: reached with Next
       if (distanceM(pos, walk.stops[i]) <= radius) {
         arrive(i);
         break;
@@ -198,7 +199,7 @@ export default function ActiveWalk() {
     Linking.openURL(url);
   };
 
-  const dist = pos && stop ? distanceM(pos, stop) : null;
+  const dist = pos && stop && onMap(stop) ? distanceM(pos, stop) : null; // no distance to a stop her map does not place
   const brg = pos && stop ? bearingDeg(pos, stop) : null;
   const rel = brg !== null && heading !== null ? headingDelta(heading, brg) : null;
   const nextLocked = !canOpenStop(walk.id, current + 1, isPro) && current + 1 < walk.stops.length;

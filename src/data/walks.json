@@ -7360,10 +7360,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.290267,
-    "lng": -157.807348,
-    "geo": "medium",
-    "page": "p2-56"
+    "lat": 21.289168,
+    "lng": -157.80849,
+    "geo": "book",
+    "page": "p2-56",
+    "radius": 90
    },
    {
     "id": "VIII-16",
@@ -7416,10 +7417,11 @@
       "h": 636
      }
     ],
-    "lat": 21.287999,
-    "lng": -157.807097,
-    "geo": "estimated",
-    "page": "p2-56"
+    "lat": 21.287665,
+    "lng": -157.807238,
+    "geo": "book",
+    "page": "p2-56",
+    "radius": 90
    },
    {
     "id": "VIII-17",
@@ -7440,10 +7442,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.285731,
-    "lng": -157.806846,
-    "geo": "medium",
-    "page": "p2-57"
+    "lat": 21.285454,
+    "lng": -157.80622,
+    "geo": "book",
+    "page": "p2-57",
+    "radius": 90
    },
    {
     "id": "VIII-18",
@@ -7467,10 +7470,11 @@
       "caption": "In this 1930 photo of the Castle mansion in Waikīkī, the buildings of Chaminade / St. Louis School are clearly visible in the hills behind Waikīkī. (Hawai‘i State Archives)"
      }
     ],
-    "lat": 21.280784,
-    "lng": -157.805187,
-    "geo": "estimated",
-    "page": "p2-57"
+    "lat": 21.283747,
+    "lng": -157.802057,
+    "geo": "book",
+    "page": "p2-57",
+    "radius": 74
    },
    {
     "id": "VIII-19",
@@ -7495,10 +7499,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.275838,
-    "lng": -157.803528,
-    "geo": "medium",
-    "page": "p2-58"
+    "lat": 21.283101,
+    "lng": -157.800991,
+    "geo": "book",
+    "page": "p2-58",
+    "radius": 85
    },
    {
     "id": "VIII-20",
@@ -7515,10 +7520,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.275019,
-    "lng": -157.808648,
-    "geo": "estimated",
-    "page": "p2-58"
+    "lat": 21.28353,
+    "lng": -157.79969,
+    "geo": "book",
+    "page": "p2-58",
+    "radius": 78
    },
    {
     "id": "VIII-21",
@@ -7546,10 +7552,11 @@
       "caption": "A 1943 photo of Queen Theater and patrons waiting patiently in the shade. (Lowell Angell Collection)"
      }
     ],
-    "lat": 21.2742,
-    "lng": -157.813768,
-    "geo": "estimated",
-    "page": "p2-58"
+    "lat": 21.282344,
+    "lng": -157.799276,
+    "geo": "book",
+    "page": "p2-58",
+    "radius": 73
    },
    {
     "id": "VIII-22",
@@ -7608,10 +7615,11 @@
       "caption": "“A Dream Come True,” a thanks to Mayor Crane, was carved into this sidewalk entrance when the shop opened"
      }
     ],
-    "lat": 21.273381,
-    "lng": -157.818888,
-    "geo": "medium",
-    "page": "p2-59"
+    "lat": 21.281614,
+    "lng": -157.798022,
+    "geo": "book",
+    "page": "p2-59",
+    "radius": 87
    },
    {
     "id": "VIII-23",
@@ -7640,10 +7648,11 @@
       "h": 354
      }
     ],
-    "lat": 21.278465,
-    "lng": -157.799361,
-    "geo": "medium",
-    "page": "p2-60"
+    "lat": 21.278422,
+    "lng": -157.799396,
+    "geo": "book",
+    "page": "p2-60",
+    "radius": 67
    },
    {
     "id": "VIII-24",
@@ -7709,10 +7718,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.277086,
-    "lng": -157.79918,
-    "geo": "estimated",
-    "page": "p2-60"
+    "lat": 21.277713,
+    "lng": -157.799609,
+    "geo": "book",
+    "page": "p2-60",
+    "radius": 90
    },
    {
     "id": "VIII-25",
@@ -7741,9 +7751,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.275707,
-    "lng": -157.798998,
-    "geo": "low",
+    "lat": 21.27703,
+    "lng": -157.798773,
+    "geo": "book",
     "page": "p2-61"
    },
    {
@@ -7765,9 +7775,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.273792,
-    "lng": -157.800498,
-    "geo": "estimated",
+    "lat": 21.273143,
+    "lng": -157.799878,
+    "geo": "book",
     "page": "p2-62"
    },
    {
@@ -7789,9 +7799,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.271877,
-    "lng": -157.801998,
-    "geo": "low",
+    "lat": 21.272973,
+    "lng": -157.800822,
+    "geo": "book",
     "page": "p2-62"
    },
    {
@@ -7816,10 +7826,11 @@
       "caption": "A secure parking space: lava garages along Ocean View Avenue."
      }
     ],
-    "lat": 21.271351,
-    "lng": -157.80104,
-    "geo": "estimated",
-    "page": "p2-62"
+    "lat": 21.272907,
+    "lng": -157.801849,
+    "geo": "book",
+    "page": "p2-62",
+    "radius": 90
    },
    {
     "id": "VIII-29",
@@ -7832,10 +7843,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.270825,
-    "lng": -157.800082,
-    "geo": "medium",
-    "page": "p2-63"
+    "lat": 21.271822,
+    "lng": -157.799947,
+    "geo": "book",
+    "page": "p2-63",
+    "radius": 90
    },
    {
     "id": "VIII-30",
@@ -7848,10 +7860,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.27089,
-    "lng": -157.803271,
-    "geo": "medium",
-    "page": "p2-63"
+    "lat": 21.271134,
+    "lng": -157.802946,
+    "geo": "book",
+    "page": "p2-63",
+    "radius": 88
    },
    {
     "id": "VIII-31",
@@ -7914,10 +7927,11 @@
       "h": 509
      }
     ],
-    "lat": 21.271129,
-    "lng": -157.812983,
-    "geo": "estimated",
-    "page": "p2-63"
+    "lat": 21.268872,
+    "lng": -157.802662,
+    "geo": "book",
+    "page": "p2-63",
+    "radius": 90
    },
    {
     "id": "VIII-32",
@@ -7971,9 +7985,9 @@
       "h": 382
      }
     ],
-    "lat": 21.271368,
-    "lng": -157.822696,
-    "geo": "medium",
+    "lat": 21.269491,
+    "lng": -157.807437,
+    "geo": "book",
     "page": "p2-64"
    }
   ]
@@ -8129,9 +8143,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.274363,
-    "lng": -157.816259,
-    "geo": "estimated",
+    "lat": 21.273594,
+    "lng": -157.816357,
+    "geo": "book",
     "page": "p2-68",
     "radius": 67
    },
@@ -9170,9 +9184,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.292681,
-    "lng": -157.828495,
-    "geo": "estimated",
+    "lat": 21.28765,
+    "lng": -157.833068,
+    "geo": "book",
     "page": "p3-7",
     "radius": 55
    },
@@ -9187,9 +9201,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.292681,
-    "lng": -157.828495,
-    "geo": "estimated",
+    "lat": 21.288973,
+    "lng": -157.832214,
+    "geo": "book",
     "page": "p3-7",
     "radius": 63
    },
@@ -9252,9 +9266,9 @@
       "h": 497
      }
     ],
-    "lat": 21.292681,
-    "lng": -157.828495,
-    "geo": "estimated",
+    "lat": 21.289471,
+    "lng": -157.832067,
+    "geo": "book",
     "page": "p3-7",
     "radius": 58
    },
@@ -9450,9 +9464,9 @@
       "h": 496
      }
     ],
-    "lat": 21.296828,
-    "lng": -157.821243,
-    "geo": "medium",
+    "lat": 21.298765,
+    "lng": -157.828585,
+    "geo": "book",
     "page": "p3-10"
    },
    {
@@ -9470,10 +9484,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297425,
-    "lng": -157.822463,
-    "geo": "estimated",
-    "page": "p3-11"
+    "lat": 21.299627,
+    "lng": -157.826875,
+    "geo": "book",
+    "page": "p3-11",
+    "radius": 63
    },
    {
     "id": "X-09",
@@ -9490,10 +9505,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298023,
-    "lng": -157.823683,
-    "geo": "estimated",
-    "page": "p3-11"
+    "lat": 21.298827,
+    "lng": -157.826398,
+    "geo": "book",
+    "page": "p3-11",
+    "radius": 62
    },
    {
     "id": "X-10",
@@ -9506,10 +9522,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298621,
-    "lng": -157.824904,
-    "geo": "estimated",
-    "page": "p3-11"
+    "lat": 21.29994,
+    "lng": -157.827395,
+    "geo": "book",
+    "page": "p3-11",
+    "radius": 62
    },
    {
     "id": "X-11",
@@ -9522,10 +9539,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299218,
-    "lng": -157.826124,
-    "geo": "estimated",
-    "page": "p3-11"
+    "lat": 21.299648,
+    "lng": -157.828156,
+    "geo": "book",
+    "page": "p3-11",
+    "radius": 64
    },
    {
     "id": "X-12",
@@ -9546,10 +9564,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299816,
-    "lng": -157.827344,
-    "geo": "estimated",
-    "page": "p3-11"
+    "lat": 21.300274,
+    "lng": -157.82783,
+    "geo": "book",
+    "page": "p3-11",
+    "radius": 66
    },
    {
     "id": "X-13",
@@ -9562,10 +9581,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.300413,
-    "lng": -157.828564,
-    "geo": "estimated",
-    "page": "p3-12"
+    "lat": 21.299947,
+    "lng": -157.829345,
+    "geo": "book",
+    "page": "p3-12",
+    "radius": 90
    },
    {
     "id": "X-14",
@@ -9592,10 +9612,11 @@
       "h": 496
      }
     ],
-    "lat": 21.301011,
-    "lng": -157.829784,
-    "geo": "estimated",
-    "page": "p3-11"
+    "lat": 21.300917,
+    "lng": -157.83019,
+    "geo": "book",
+    "page": "p3-11",
+    "radius": 70
    },
    {
     "id": "X-15",
@@ -9616,10 +9637,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301609,
-    "lng": -157.831005,
-    "geo": "medium",
-    "page": "p3-12"
+    "lat": 21.301381,
+    "lng": -157.830934,
+    "geo": "book",
+    "page": "p3-12",
+    "radius": 72
    },
    {
     "id": "X-16",
@@ -9632,10 +9654,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301561,
-    "lng": -157.831625,
-    "geo": "low",
-    "page": "p3-12"
+    "lat": 21.301803,
+    "lng": -157.831562,
+    "geo": "book",
+    "page": "p3-12",
+    "radius": 70
    },
    {
     "id": "X-17",
@@ -9648,10 +9671,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301976,
-    "lng": -157.83073,
-    "geo": "estimated",
-    "page": "p3-12"
+    "lat": 21.302141,
+    "lng": -157.832148,
+    "geo": "book",
+    "page": "p3-12",
+    "radius": 75
    },
    {
     "id": "X-18",
@@ -9689,10 +9713,11 @@
       "h": 496
      }
     ],
-    "lat": 21.302391,
-    "lng": -157.829835,
-    "geo": "estimated",
-    "page": "p3-12"
+    "lat": 21.302733,
+    "lng": -157.833333,
+    "geo": "book",
+    "page": "p3-12",
+    "radius": 90
    },
    {
     "id": "X-19",
@@ -9749,10 +9774,11 @@
       "h": 496
      }
     ],
-    "lat": 21.302805,
-    "lng": -157.82894,
-    "geo": "medium",
-    "page": "p3-13"
+    "lat": 21.303034,
+    "lng": -157.83236,
+    "geo": "book",
+    "page": "p3-13",
+    "radius": 44
    },
    {
     "id": "X-20",
@@ -9765,10 +9791,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.303522,
-    "lng": -157.831565,
-    "geo": "medium",
-    "page": "p3-14"
+    "lat": 21.303474,
+    "lng": -157.831767,
+    "geo": "book",
+    "page": "p3-14",
+    "radius": 50
    },
    {
     "id": "X-21",
@@ -9789,10 +9816,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.303992,
-    "lng": -157.830301,
-    "geo": "estimated",
-    "page": "p3-13"
+    "lat": 21.303834,
+    "lng": -157.831282,
+    "geo": "book",
+    "page": "p3-13",
+    "radius": 56
    },
    {
     "id": "X-22",
@@ -9805,10 +9833,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.304463,
-    "lng": -157.829036,
-    "geo": "estimated",
-    "page": "p3-13"
+    "lat": 21.304314,
+    "lng": -157.830938,
+    "geo": "book",
+    "page": "p3-13",
+    "radius": 42
    },
    {
     "id": "X-23",
@@ -9833,10 +9862,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.304933,
-    "lng": -157.827772,
-    "geo": "estimated",
-    "page": "p3-13"
+    "lat": 21.305394,
+    "lng": -157.83062,
+    "geo": "book",
+    "page": "p3-13",
+    "radius": 79
    },
    {
     "id": "X-24",
@@ -9879,10 +9909,11 @@
       "h": 496
      }
     ],
-    "lat": 21.305404,
-    "lng": -157.826508,
-    "geo": "estimated",
-    "page": "p3-14"
+    "lat": 21.304689,
+    "lng": -157.829366,
+    "geo": "book",
+    "page": "p3-14",
+    "radius": 71
    },
    {
     "id": "X-25",
@@ -9928,9 +9959,9 @@
       "h": 497
      }
     ],
-    "lat": 21.305874,
-    "lng": -157.825244,
-    "geo": "medium",
+    "lat": 21.305801,
+    "lng": -157.825319,
+    "geo": "book",
     "page": "p3-15"
    },
    {
@@ -9944,10 +9975,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.303611,
-    "lng": -157.82108,
-    "geo": "medium",
-    "page": "p3-16"
+    "lat": 21.30466,
+    "lng": -157.823821,
+    "geo": "book",
+    "page": "p3-16",
+    "radius": 90
    },
    {
     "id": "X-27",
@@ -10012,10 +10044,11 @@
       "h": 497
      }
     ],
-    "lat": 21.304521,
-    "lng": -157.820184,
-    "geo": "estimated",
-    "page": "p3-16"
+    "lat": 21.303717,
+    "lng": -157.821259,
+    "geo": "book",
+    "page": "p3-16",
+    "radius": 77
    },
    {
     "id": "X-28",
@@ -10048,9 +10081,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.305431,
-    "lng": -157.819287,
-    "geo": "estimated",
+    "lat": 21.303288,
+    "lng": -157.821696,
+    "geo": "book",
     "page": "p3-16"
    },
    {
@@ -10072,9 +10105,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.306341,
-    "lng": -157.818391,
-    "geo": "estimated",
+    "lat": 21.304145,
+    "lng": -157.820064,
+    "geo": "book",
     "page": "p3-18"
    },
    {
@@ -10088,10 +10121,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307251,
-    "lng": -157.817494,
-    "geo": "estimated",
-    "page": "p3-17"
+    "lat": 21.304766,
+    "lng": -157.819528,
+    "geo": "book",
+    "page": "p3-17",
+    "radius": 62
    },
    {
     "id": "X-31",
@@ -10121,10 +10155,11 @@
       "h": 496
      }
     ],
-    "lat": 21.308162,
-    "lng": -157.816598,
-    "geo": "estimated",
-    "page": "p3-18"
+    "lat": 21.305489,
+    "lng": -157.819047,
+    "geo": "book",
+    "page": "p3-18",
+    "radius": 62
    },
    {
     "id": "X-32",
@@ -10141,10 +10176,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.309072,
-    "lng": -157.815701,
-    "geo": "estimated",
-    "page": "p3-19"
+    "lat": 21.30781,
+    "lng": -157.816912,
+    "geo": "book",
+    "page": "p3-19",
+    "radius": 62
    },
    {
     "id": "X-33",
@@ -10188,10 +10224,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.309982,
-    "lng": -157.814805,
-    "geo": "estimated",
-    "page": "p3-19"
+    "lat": 21.309178,
+    "lng": -157.815716,
+    "geo": "book",
+    "page": "p3-19",
+    "radius": 57
    },
    {
     "id": "X-34",
@@ -10224,10 +10261,11 @@
       "h": 496
      }
     ],
-    "lat": 21.310892,
-    "lng": -157.813908,
-    "geo": "medium",
-    "page": "p3-19"
+    "lat": 21.310537,
+    "lng": -157.813124,
+    "geo": "book",
+    "page": "p3-19",
+    "radius": 90
    },
    {
     "id": "X-35",
@@ -10244,10 +10282,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307774,
-    "lng": -157.810379,
-    "geo": "medium",
-    "page": "p3-20"
+    "lat": 21.311067,
+    "lng": -157.814231,
+    "geo": "book",
+    "page": "p3-20",
+    "radius": 57
    },
    {
     "id": "X-36",
@@ -10446,10 +10485,11 @@
       "h": 497
      }
     ],
-    "lat": 21.3095,
-    "lng": -157.811732,
-    "geo": "estimated",
-    "page": "p3-20"
+    "lat": 21.311742,
+    "lng": -157.814035,
+    "geo": "book",
+    "page": "p3-20",
+    "radius": 78
    },
    {
     "id": "X-37",
@@ -10502,10 +10542,11 @@
       "h": 497
      }
     ],
-    "lat": 21.311227,
-    "lng": -157.813085,
-    "geo": "medium",
-    "page": "p3-23"
+    "lat": 21.311391,
+    "lng": -157.81245,
+    "geo": "book",
+    "page": "p3-23",
+    "radius": 90
    },
    {
     "id": "X-38",
@@ -10523,10 +10564,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.31368,
-    "lng": -157.812681,
-    "geo": "estimated",
-    "page": "p3-24"
+    "lat": 21.314414,
+    "lng": -157.812698,
+    "geo": "book",
+    "page": "p3-24",
+    "radius": 60
    },
    {
     "id": "X-39",
@@ -10680,10 +10722,11 @@
       "h": 497
      }
     ],
-    "lat": 21.316132,
-    "lng": -157.812277,
-    "geo": "medium",
-    "page": "p3-24"
+    "lat": 21.315835,
+    "lng": -157.812309,
+    "geo": "book",
+    "page": "p3-24",
+    "radius": 86
    },
    {
     "id": "X-40",
@@ -10740,10 +10783,11 @@
       "h": 497
      }
     ],
-    "lat": 21.314634,
-    "lng": -157.811922,
-    "geo": "estimated",
-    "page": "p3-27"
+    "lat": 21.314226,
+    "lng": -157.808396,
+    "geo": "book",
+    "page": "p3-27",
+    "radius": 60
    },
    {
     "id": "X-41",
@@ -10798,10 +10842,11 @@
       "h": 497
      }
     ],
-    "lat": 21.313136,
-    "lng": -157.811567,
-    "geo": "estimated",
-    "page": "p3-28"
+    "lat": 21.318734,
+    "lng": -157.802185,
+    "geo": "book",
+    "page": "p3-28",
+    "radius": 60
    },
    {
     "id": "X-42",
@@ -10878,10 +10923,11 @@
       "h": 497
      }
     ],
-    "lat": 21.311638,
-    "lng": -157.811212,
-    "geo": "estimated",
-    "page": "p3-29"
+    "lat": 21.318752,
+    "lng": -157.807121,
+    "geo": "book",
+    "page": "p3-29",
+    "radius": 60
    },
    {
     "id": "X-43",
@@ -11019,10 +11065,11 @@
       "h": 496
      }
     ],
-    "lat": 21.31014,
-    "lng": -157.810857,
-    "geo": "estimated",
-    "page": "p3-30"
+    "lat": 21.333382,
+    "lng": -157.803387,
+    "geo": "book",
+    "page": "p3-30",
+    "radius": 60
    },
    {
     "id": "X-44",
@@ -11066,10 +11113,11 @@
       "h": 496
      }
     ],
-    "lat": 21.308643,
-    "lng": -157.810502,
-    "geo": "medium",
-    "page": "p3-32"
+    "lat": 21.308923,
+    "lng": -157.809552,
+    "geo": "book",
+    "page": "p3-32",
+    "radius": 90
    },
    {
     "id": "X-45",
@@ -11082,10 +11130,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307232,
-    "lng": -157.810743,
-    "geo": "medium",
-    "page": "p3-33"
+    "lat": 21.307468,
+    "lng": -157.810727,
+    "geo": "book",
+    "page": "p3-33",
+    "radius": 80
    },
    {
     "id": "X-46",
@@ -11102,10 +11151,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307268,
-    "lng": -157.811382,
-    "geo": "medium",
-    "page": "p3-33"
+    "lat": 21.307013,
+    "lng": -157.811502,
+    "geo": "book",
+    "page": "p3-33",
+    "radius": 79
    },
    {
     "id": "X-47",
@@ -11152,10 +11202,11 @@
       "h": 496
      }
     ],
-    "lat": 21.306019,
-    "lng": -157.811654,
-    "geo": "medium",
-    "page": "p3-33"
+    "lat": 21.305801,
+    "lng": -157.811933,
+    "geo": "book",
+    "page": "p3-33",
+    "radius": 90
    },
    {
     "id": "X-48",
@@ -11168,10 +11219,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298279,
-    "lng": -157.818693,
-    "geo": "medium",
-    "page": "p3-34"
+    "lat": 21.306986,
+    "lng": -157.812521,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 68
    },
    {
     "id": "X-49",
@@ -11200,10 +11252,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.306672,
-    "lng": -157.82382,
-    "geo": "medium",
-    "page": "p3-34"
+    "lat": 21.30764,
+    "lng": -157.81399,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 60
    },
    {
     "id": "X-50",
@@ -11232,10 +11285,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.290543,
-    "lng": -157.823198,
-    "geo": "low",
-    "page": "p3-34"
+    "lat": 21.306913,
+    "lng": -157.816564,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 76
    },
    {
     "id": "X-51",
@@ -11262,10 +11316,11 @@
       "h": 496
      }
     ],
-    "lat": 21.30305,
-    "lng": -157.818705,
-    "geo": "medium",
-    "page": "p3-34"
+    "lat": 21.303088,
+    "lng": -157.818997,
+    "geo": "book",
+    "page": "p3-34",
+    "radius": 77
    },
    {
     "id": "X-52",
@@ -11386,9 +11441,9 @@
       "h": 497
      }
     ],
-    "lat": 21.303439,
-    "lng": -157.817226,
-    "geo": "medium",
+    "lat": 21.301415,
+    "lng": -157.820345,
+    "geo": "book",
     "page": "p3-35"
    }
   ]
@@ -11399,37 +11454,30 @@
   "title": "University of Hawai‘i",
   "theme": "The main campus in Mānoa",
   "facts": {},
-  "intro": [
-   {
-    "kind": "p",
-    "text": "Street is named for Lawrence McCully, a Justice of the Kingdom of Hawai‘i Supreme Court under King Kalākaua. He was also involved in the development of the Punahou area, which you will walk past in a mile after you cross over the freeway."
-   }
-  ],
+  "intro": [],
   "info": [
    "B a c k t o c o l l e g e ! Parking: Street parking on Date Street – free except for afternoons Monday through Friday Parking lot across from the Hale Koa Hotel on Kālia Road. Street parking on Dole Street on the weekends Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 – for a live operator. There are several buses that will take you directly to the UH campus A, 4, 13, 6, 18. Get off at Sinclair Circle, a sheltered bus stop."
   ],
   "cover": "p3-40-329.jpg",
+  "bookMap": "map-XI.jpg",
   "color": "#2E86AB",
   "stops": [
    {
     "id": "XI-01",
     "n": 1,
-    "title": "Kapahulu Avenue",
+    "title": "McCully Street",
     "blocks": [
      {
       "kind": "p",
-      "text": "For an interesting stroll on the lower/makai campus of the University of Hawai‘i, walk to the Diamond Head end of the Ala Wai Canal, and proceed mauka along Kapahulu Avenue."
-     },
-     {
-      "kind": "info",
-      "text": "2 hours; 3 miles; 5,000 steps Street parking along Date Street – free, but no parking 3:30-6:30 Monday through Friday. Parking lot at the Zoo or at Monsarrat and Paki avenues. Street parking along Dole Street Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+      "text": "Street is named for Lawrence McCully, a Justice of the Kingdom of Hawai‘i Supreme Court under King Kalākaua. He was also involved in the development of the Punahou area, which you will walk past in a mile after you cross over the freeway."
      }
     ],
     "photos": [],
-    "lat": 21.288057,
-    "lng": -157.812853,
-    "geo": "low",
-    "page": "p3-62"
+    "lat": 21.287537,
+    "lng": -157.83333,
+    "geo": "book",
+    "page": "p3-38",
+    "radius": 56
    },
    {
     "id": "XI-02",
@@ -11442,10 +11490,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.287035,
-    "lng": -157.829705,
-    "geo": "medium",
-    "page": "p3-40"
+    "lat": 21.288556,
+    "lng": -157.83246,
+    "geo": "book",
+    "page": "p3-40",
+    "radius": 64
    },
    {
     "id": "XI-03",
@@ -11466,9 +11515,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.29063,
-    "lng": -157.830238,
-    "geo": "estimated",
+    "lat": 21.289388,
+    "lng": -157.832478,
+    "geo": "book",
     "page": "p3-40"
    },
    {
@@ -11524,10 +11573,11 @@
       "caption": "Judge Lawrence McCully (1831 - 1892) meets Queen Kapi‘olani (1834 – 1899)!"
      }
     ],
-    "lat": 21.294226,
-    "lng": -157.830771,
-    "geo": "low",
-    "page": "p3-40"
+    "lat": 21.29398,
+    "lng": -157.830192,
+    "geo": "book",
+    "page": "p3-40",
+    "radius": 80
    },
    {
     "id": "XI-05",
@@ -11544,9 +11594,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.297295,
-    "lng": -157.830862,
-    "geo": "estimated",
+    "lat": 21.295732,
+    "lng": -157.829976,
+    "geo": "book",
     "page": "p3-41"
    },
    {
@@ -11609,10 +11659,11 @@
       "h": 496
      }
     ],
-    "lat": 21.300363,
-    "lng": -157.830952,
-    "geo": "low",
-    "page": "p3-41"
+    "lat": 21.298365,
+    "lng": -157.828463,
+    "geo": "book",
+    "page": "p3-41",
+    "radius": 52
    },
    {
     "id": "XI-07",
@@ -13032,6 +13083,10 @@
    "steps": "5,000"
   },
   "intro": [
+   {
+    "kind": "p",
+    "text": "For an interesting stroll on the lower/makai campus of the University of Hawai‘i, walk to the Diamond Head end of the Ala Wai Canal, and proceed mauka along Kapahulu Avenue."
+   },
    {
     "kind": "p",
     "text": "Kapahulu means ‘the worn-out soil,’ perhaps from the overuse of the land for growing kalo (taro)."
