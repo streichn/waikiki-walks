@@ -44,6 +44,8 @@ def route_mask(file):
     ys, xs = np.nonzero(m)
     return np.stack([xs, ys], 1)
 
+_ov = os.path.join(ROOT, 'scripts/georef/pin_overrides.json')
+OVERRIDES = {k: v for k, v in json.load(open(_ov)).items() if not k.startswith('_')} if os.path.exists(_ov) else {}
 out_maps, pins = {}, {}
 walks = json.load(open(os.path.join(ROOT, 'src/data/walks.json')))
 walks = walks if isinstance(walks, list) else walks['walks']
@@ -66,6 +68,9 @@ for w in walks:
         pins[wid] = {}
         mpp = 1 / math.sqrt(abs(np.linalg.det(np.array(G[wid]['affine'])[:2])))  # meters per map pixel
         for n, (lx, ly, *flag) in STOPS[wid].items():
+            ov = OVERRIDES.get(wid, {}).get(n)
+            if ov:
+                lx, ly = ov[0], ov[1]  # the author's chosen spot, not where the number is printed
             pt = np.array([lx, ly], float)
             # The pin goes exactly where her map prints the number, so the two always agree.
             # How far the number sits from her route line widens the arrival circle, so walkers on the route still arrive.

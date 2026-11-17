@@ -320,11 +320,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.285317,
-    "lng": -157.824345,
+    "lat": 21.284907,
+    "lng": -157.82071,
     "geo": "book",
-    "page": "p1-28",
-    "radius": 90
+    "page": "p1-28"
    },
    {
     "id": "I-08",
@@ -348,11 +347,10 @@
       "caption": "Feel free to walk around the Ala Wai Garden, but please do not help yourself to any of the vegetation. Each garden is privately tended."
      }
     ],
-    "lat": 21.282906,
-    "lng": -157.82522,
+    "lat": 21.284684,
+    "lng": -157.820413,
     "geo": "book",
-    "page": "p1-28",
-    "radius": 82
+    "page": "p1-28"
    },
    {
     "id": "I-09",
@@ -389,11 +387,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.286829,
-    "lng": -157.813829,
+    "lat": 21.284453,
+    "lng": -157.820117,
     "geo": "book",
-    "page": "p1-29",
-    "radius": 90
+    "page": "p1-29"
    },
    {
     "id": "I-10",

@@ -19,7 +19,11 @@ def fit(points):
 
 def run(walk_id, controls):
     pts = []
-    for px, py, a, b in controls:
+    for row in controls:
+        if isinstance(row[2], (int, float)):  # [px, py, lat, lng, name]: a point read off a real map
+            px, py, la, ln, nm = row
+            x, y = to_m(la, ln); pts.append([px, py, x, y, nm, la, ln]); continue
+        px, py, a, b = row
         c = crossing(a, b)
         if not c or c[2] > 25: print(f'  skip {a} x {b}: {"not found" if not c else f"streets {c[2]} m apart"}'); continue
         x, y = to_m(c[0], c[1]); pts.append([px, py, x, y, f'{a} x {b}', c[0], c[1]])

@@ -87,3 +87,5 @@
 - Street names, stop numbers and compass words copied off the map pages ("BEGIN WALK II 1 2 10 11 13A ...") are removed from the stop text on every walk.
 - More photo captions caught (small 6.3 pt captions such as "Be sure to follow the Helumoa Walk (III) to visit with Gabby.").
 - Stray control characters removed from text.
+
+- Walk 1 stops 7, 8 and 9 ('Iolani School, the Mānoa-Pālolo Drainage Canal, the ridges and valleys) now line up along Date Street on the golf-course side, as Veneeta asked: they are things to talk about from the walk, not places to walk to. New scripts/georef/pin_overrides.json holds author-chosen pin spots; her printed numbers stay where the book prints them.
