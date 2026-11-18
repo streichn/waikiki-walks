@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import { onMap } from '../data';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
-import { useTheme } from '../theme';
+import { readableOn, useTheme } from '../theme';
 
 export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void };
 
@@ -74,11 +74,11 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
         const isCur = i === current;
         const done = visited.includes(i);
         const locked = isLocked?.(i);
-        const bg = isCur ? t.accent : done ? t.leaf : locked ? '#8A9A9B' : walk.color;
+        const bg = isCur ? t.accent : done ? t.leaf : locked ? t.lockedFill : walk.color;
         return (
           <Marker key={s.id} coordinate={coords[i]} onPress={() => onSelect?.(i)} tracksViewChanges={false} zIndex={isCur ? 10 : 1} accessibilityLabel={`Stop ${s.n}, ${s.title}`}>
             <View style={[styles.pin, { backgroundColor: bg, transform: [{ scale: isCur ? 1.25 : 1 }] }]}>
-              {locked ? <Ionicons name="lock-closed" size={11} color="#fff" /> : <Text style={styles.pinText}>{s.n}</Text>}
+              {locked ? <Ionicons name="lock-closed" size={11} color="#fff" /> : <Text style={[styles.pinText, { color: isCur ? t.accentText : done ? t.leafText : readableOn(bg) }]}>{s.n}</Text>}
             </View>
             <View style={[styles.tail, { borderTopColor: bg }]} />
           </Marker>

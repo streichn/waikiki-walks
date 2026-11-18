@@ -35,7 +35,7 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
       }}
       style={({ pressed }) => [styles.card, wide ? styles.wide : styles.narrow, { opacity: pressed ? 0.9 : 1, backgroundColor: t.card }]}
     >
-      {walk.cover ? <Image source={photo(walk.cover)} style={StyleSheet.absoluteFill} contentFit="cover" transition={250} /> : <View style={[StyleSheet.absoluteFill, { backgroundColor: walk.color }]} />}
+      {walk.cover ? <Image accessibilityIgnoresInvertColors source={photo(walk.cover)} style={StyleSheet.absoluteFill} contentFit="cover" transition={250} /> : <View style={[StyleSheet.absoluteFill, { backgroundColor: walk.color }]} />}
       <LinearGradient colors={['transparent', 'rgba(5,25,28,0.25)', 'rgba(5,25,28,0.88)']} style={StyleSheet.absoluteFill} />
       <View style={styles.badgeRow}>
         <View style={[styles.roman, { backgroundColor: walk.color }]}>
@@ -51,7 +51,7 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
           </View>
         ) : done ? (
           <View style={[styles.pill, { backgroundColor: t.leaf }]}>
-            <Ionicons name="checkmark" size={12} color="#fff" />
+            <Ionicons name="checkmark" size={12} color={t.leafText} />
           </View>
         ) : null}
       </View>

@@ -113,6 +113,7 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
   walk: Walk; current?: number; visited?: number[]; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
+  const t = useTheme();
   const { width, height: screenH } = useWindowDimensions();
   const height = width / 0.7;
   // Open the page that prints the current stop; the page buttons switch until the stop changes.
@@ -136,9 +137,9 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
   }, [dot?.x, dot?.y, follow]);
   return (
     <View style={{ flex: 1 }}>
-    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
+    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: t.dark ? t.bg : '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
-        <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
+        <Image accessibilityIgnoresInvertColors source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
         {walk.stops.map((s, i) => {
           // Her printed number is the pin; this is just an invisible tap target over it (ringed when current).
           const L = bookLabel(walk.id, s.n, page);
@@ -175,18 +176,20 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
 
 /** The walk's map page from the book, pinch to zoom. */
 export function BookMapViewer({ file, visible, onClose }: { file: string; visible: boolean; onClose: () => void }) {
+  const t = useTheme();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onClose}>
-      <View style={{ flex: 1, backgroundColor: '#FBF6EC' }}>
+      {/* In dark mode the page sits on the dark background so the screen does not flash bright (Apple, Dark Interface criteria). */}
+      <View style={{ flex: 1, backgroundColor: t.dark ? t.bg : '#FBF6EC' }}>
         <ScrollView maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} centerContent showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-          <Image source={photo(file)} style={{ width, height: height * 0.9 }} contentFit="contain" />
+          <Image accessibilityIgnoresInvertColors source={photo(file)} style={{ width, height: height * 0.9 }} contentFit="contain" />
         </ScrollView>
         <Pressable accessibilityLabel="Close" onPress={onClose} style={[styles.close, { top: insets.top + 10 }]}>
           <Ionicons name="close" size={24} color="#fff" />
         </Pressable>
-        <T variant="small" style={{ position: 'absolute', bottom: insets.bottom + 12, alignSelf: 'center', color: '#5E6B6B' }}>
+        <T variant="small" style={{ position: 'absolute', bottom: insets.bottom + 12, alignSelf: 'center', color: t.textMuted }}>
           Map from the book. Pinch to zoom.
         </T>
       </View>

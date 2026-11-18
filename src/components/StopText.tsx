@@ -36,7 +36,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
         if (b.kind === 'info') {
           return (
             <View key={i} style={[styles.info, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
-              <Ionicons name="information-circle" size={18} color={t.gold} />
+              <Ionicons name="information-circle" size={18} color={t.goldInk} />
               <T variant="small" style={{ flex: 1, color: t.text }}>
                 {b.text}
               </T>

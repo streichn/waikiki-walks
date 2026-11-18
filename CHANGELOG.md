@@ -97,3 +97,14 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-18 · Readable in light and dark mode
+- Unlock buttons, the "Keep reading with Veneeta" banner, the read-aloud button and the "Continue" home card now use dark text on pink in dark mode. White on that pink measured 2.4:1; it is now 7.5:1.
+- Home card text and icon follow the card's color (pink, green or teal) in both modes, instead of white and gold everywhere.
+- Light mode pink deepened slightly (#D6336C to #C2255C) so white text on it and pink icons pass 4.5:1. The hibiscus drawings keep the original color.
+- Gold info, bus, gift and ribbon icons use a darker gold on light backgrounds (was 2:1, now 4.6:1 or better). Gold badges keep their color.
+- Stop number badges and map pins pick white or dark numbers by contrast with the walk's color; locked stops use a darker grey.
+- "Delete account" uses a theme red that passes in both modes.
+- Dark mode: the book map viewer sits on the dark background instead of a bright cream page edge.
+- Photos and book maps are left alone by Smart Invert, so they never show as negatives.
+- New scripts/check_contrast.py checks every theme color pair against WCAG in both modes.

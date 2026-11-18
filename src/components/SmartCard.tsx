@@ -76,6 +76,8 @@ export function SmartCard() {
   }
 
   const bg = card.kind === 'continue' ? t.accent : card.kind === 'nearby' ? t.leaf : t.primary;
+  // Text and icon use the "on" color for that fill, so they pass 4.5:1 in light and dark mode.
+  const fg = card.kind === 'continue' ? t.accentText : card.kind === 'nearby' ? t.leafText : t.primaryText;
   return (
     <Pressable
       accessibilityRole="button"
@@ -87,13 +89,13 @@ export function SmartCard() {
       style={[styles.card, { backgroundColor: bg }]}
     >
       <View style={{ flex: 1 }}>
-        <T variant="label" style={{ color: 'rgba(255,255,255,0.85)' }}>
+        <T variant="label" style={{ color: fg, opacity: 0.9 }}>
           {card.label}
         </T>
-        <T style={{ color: '#fff', fontFamily: t.font.display, fontSize: 22, marginTop: 2 }}>{card.title}</T>
-        <T style={{ color: 'rgba(255,255,255,0.92)', fontSize: 14, marginTop: 2 }}>{card.body}</T>
+        <T style={{ color: fg, fontFamily: t.font.display, fontSize: 22, marginTop: 2 }}>{card.title}</T>
+        <T style={{ color: fg, fontSize: 14, marginTop: 2 }}>{card.body}</T>
       </View>
-      <Ionicons name={card.icon} size={42} color={t.gold} />
+      <Ionicons name={card.icon} size={42} color={fg} />
     </Pressable>
   );
 }

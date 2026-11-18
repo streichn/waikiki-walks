@@ -30,7 +30,17 @@ export type Theme = {
   primaryText: string;
   accent: string;
   accentSoft: string;
+  /** Text and icons placed on an accent background (Material's "on" color role). */
+  accentText: string;
+  accentTextMuted: string;
   gold: string;
+  /** Gold for icons and text on the page background; t.gold stays for filled badges. */
+  goldInk: string;
+  /** Text and icons placed on a leaf background. */
+  leafText: string;
+  danger: string;
+  /** Locked stop badges: grey that still holds white numbers. */
+  lockedFill: string;
   leaf: string;
   border: string;
   mapStyle: 'light' | 'dark';
@@ -55,10 +65,16 @@ export const lightTheme: Theme = {
   textMuted: '#5E6B6B',
   primary: palette.lagoon,
   primaryText: '#FFFFFF',
-  accent: palette.hibiscus,
+  accent: '#C2255C',
   accentSoft: palette.hibiscusSoft,
+  accentText: '#FFFFFF',
+  accentTextMuted: '#FFE3EC',
   gold: palette.sunset,
+  goldInk: '#9A5408',
   leaf: palette.leaf,
+  leafText: '#FFFFFF',
+  danger: '#B42318',
+  lockedFill: '#5F6E70',
   border: '#E8D9C3',
   mapStyle: 'light',
   palette,
@@ -76,8 +92,14 @@ export const darkTheme: Theme = {
   primaryText: '#04181C',
   accent: '#FF7AA2',
   accentSoft: '#5A2236',
+  accentText: '#2B0614',
+  accentTextMuted: '#4A0E24',
   gold: '#FFB870',
+  goldInk: '#FFB870',
   leaf: '#7CC08A',
+  leafText: '#0B2412',
+  danger: '#FF8A80',
+  lockedFill: '#5F6E70',
   border: '#24505C',
   mapStyle: 'dark',
   palette,
@@ -89,4 +111,25 @@ export function useTheme(): Theme {
   const mode = useSettings((s) => s.themeMode);
   const dark = mode === 'system' ? system === 'dark' : mode === 'dark';
   return dark ? darkTheme : lightTheme;
+}
+
+function luminance(hex: string): number {
+  const h = hex.replace('#', '');
+  const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h.slice(0, 6);
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const c = parseInt(full.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/** WCAG 2 contrast ratio between two #rrggbb colors. */
+export function contrast(a: string, b: string): number {
+  const [x, y] = [luminance(a), luminance(b)].sort((m, n) => n - m);
+  return (x + 0.05) / (y + 0.05);
+}
+
+/** White or ink, whichever reads better on a filled color such as a walk's badge color. */
+export function readableOn(bg: string): string {
+  return contrast('#FFFFFF', bg) >= contrast(palette.ink, bg) ? '#FFFFFF' : palette.ink;
 }

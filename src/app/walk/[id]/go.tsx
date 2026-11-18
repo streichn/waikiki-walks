@@ -340,7 +340,7 @@ export default function ActiveWalk() {
               }}
               style={[styles.playBtn, { backgroundColor: t.accent }]}
             >
-              <Ionicons name={speakingId === stop.id ? 'stop' : 'headset'} size={24} color="#fff" />
+              <Ionicons name={speakingId === stop.id ? 'stop' : 'headset'} size={24} color={t.accentText} />
             </Pressable>
             {arrivedHere ? (
               <Button

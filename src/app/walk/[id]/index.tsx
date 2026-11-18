@@ -17,7 +17,7 @@ import type { Stop } from '../../../data/types';
 import { canOpenStop, canStartWalk, useIsPro } from '../../../lib/access';
 import { stop as stopSpeech } from '../../../lib/narration';
 import { useProgress } from '../../../store';
-import { useTheme } from '../../../theme';
+import { readableOn, useTheme } from '../../../theme';
 
 type Mode = 'read' | 'map';
 
@@ -74,7 +74,7 @@ export default function WalkOverview() {
       {mode === 'read' ? (
         <ScrollView ref={scroll} contentContainerStyle={{ paddingBottom: 130 }}>
           <View style={styles.hero}>
-            {walk.cover ? <Image source={photo(walk.cover)} style={StyleSheet.absoluteFill} contentFit="cover" /> : <View style={[StyleSheet.absoluteFill, { backgroundColor: walk.color }]} />}
+            {walk.cover ? <Image accessibilityIgnoresInvertColors source={photo(walk.cover)} style={StyleSheet.absoluteFill} contentFit="cover" /> : <View style={[StyleSheet.absoluteFill, { backgroundColor: walk.color }]} />}
             <LinearGradient colors={['rgba(0,0,0,0.35)', 'transparent', t.bg]} locations={[0, 0.4, 1]} style={StyleSheet.absoluteFill} />
             <View style={styles.heroFlower}>
               <Hibiscus size={110} rotate={25} opacity={0.9} color={t.palette.hibiscus} />
@@ -94,12 +94,12 @@ export default function WalkOverview() {
               {walk.facts.distance ? <Chip icon="footsteps" label={walk.facts.distance} /> : null}
               {walk.facts.duration ? <Chip icon="time" label={walk.facts.duration} /> : null}
               <Chip icon="location" label={`${walk.stops.length} stops`} />
-              {walk.id === TRIAL.walkId && !isPro ? <Chip icon="gift" color={t.gold} label={`First ${TRIAL.freeStops} free`} /> : null}
+              {walk.id === TRIAL.walkId && !isPro ? <Chip icon="gift" color={t.goldInk} label={`First ${TRIAL.freeStops} free`} /> : null}
             </View>
             <StopText blocks={walk.intro} stopId={`${walk.id}-intro`} />
             {walk.info.map((x, i) => (
               <View key={i} style={[styles.info, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
-                <Ionicons name="bus" size={18} color={t.gold} />
+                <Ionicons name="bus" size={18} color={t.goldInk} />
                 <T variant="small" style={{ flex: 1, color: t.text }}>
                   {x}
                 </T>
@@ -115,8 +115,8 @@ export default function WalkOverview() {
               const seen = prog?.visited.includes(i);
               return (
                 <Pressable key={s.id} onPress={() => readStop(i)} accessibilityRole="button" accessibilityLabel={`Stop ${s.n}, ${s.title}${locked(i) ? ', locked' : ''}`} style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}>
-                  <View style={[styles.num, { backgroundColor: locked(i) ? '#8A9A9B' : walk.color }]}>
-                    <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>{s.n}</T>
+                  <View style={[styles.num, { backgroundColor: locked(i) ? t.lockedFill : walk.color }]}>
+                    <T style={{ color: locked(i) ? '#FFFFFF' : readableOn(walk.color), fontFamily: t.font.bodyBold }}>{s.n}</T>
                   </View>
                   <View style={{ flex: 1 }}>
                     <T style={{ fontFamily: t.font.bodyBold, fontSize: 16 }} numberOfLines={2}>{s.title}</T>
@@ -163,7 +163,7 @@ export default function WalkOverview() {
             keyExtractor={(s) => s.id}
             renderItem={({ item, index }) => (
               <Pressable onPress={() => (locked(index) ? router.push('/paywall') : readStop(index))} style={[styles.mapCard, { width: width * 0.78, backgroundColor: t.card, borderColor: index === focus ? t.accent : t.border }]}>
-                {item.photos[0] && !locked(index) ? <Image source={photo(item.photos[0].file)} style={styles.mapCardImg} contentFit="cover" /> : <View style={[styles.mapCardImg, { backgroundColor: walk.color, alignItems: 'center', justifyContent: 'center' }]}>{locked(index) ? <Ionicons name="lock-closed" size={22} color="#fff" /> : <Hibiscus size={40} color="#fff" opacity={0.7} />}</View>}
+                {item.photos[0] && !locked(index) ? <Image accessibilityIgnoresInvertColors source={photo(item.photos[0].file)} style={styles.mapCardImg} contentFit="cover" /> : <View style={[styles.mapCardImg, { backgroundColor: walk.color, alignItems: 'center', justifyContent: 'center' }]}>{locked(index) ? <Ionicons name="lock-closed" size={22} color="#fff" /> : <Hibiscus size={40} color="#fff" opacity={0.7} />}</View>}
                 <View style={{ flex: 1 }}>
                   <T variant="label">Stop {item.n}</T>
                   <T variant="h2" numberOfLines={2}>

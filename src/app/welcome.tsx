@@ -47,7 +47,7 @@ export default function Welcome() {
           return (
             <View style={{ width }}>
               <View style={{ height: '58%' }}>
-                {cover ? <Image source={photo(cover)} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
+                {cover ? <Image accessibilityIgnoresInvertColors source={photo(cover)} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
                 <LinearGradient colors={['transparent', t.bg]} style={StyleSheet.absoluteFill} />
                 <View style={{ position: 'absolute', left: -20, bottom: -10 }}>
                   <Hibiscus size={120} rotate={-10} color={t.palette.hibiscus} />

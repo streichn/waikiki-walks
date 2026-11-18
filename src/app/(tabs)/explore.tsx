@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Card, T, tap } from '../../components/ui';
 import { walks, walkNo, onMap } from '../../data';
 import type { Walk } from '../../data/types';
-import { useTheme } from '../../theme';
+import { readableOn, useTheme } from '../../theme';
 
 /** Every walk's starting point on one map. Tap a walk to see its stops. */
 export default function Explore() {
@@ -32,7 +32,7 @@ export default function Explore() {
               tracksViewChanges={false}
             >
               <View style={[styles.pin, { backgroundColor: w.color }]}>
-                <Text style={styles.pinText}>{sel ? s.n : w.id}</Text>
+                <Text style={[styles.pinText, { color: readableOn(w.color) }]}>{sel ? s.n : w.id}</Text>
               </View>
             </Marker>
           )),

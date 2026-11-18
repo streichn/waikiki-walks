@@ -7,7 +7,7 @@ import { photo } from '../data';
 import type { Stop } from '../data/types';
 import { play, stop as stopSpeech, useNarration } from '../lib/narration';
 import { useProgress } from '../store';
-import { useTheme } from '../theme';
+import { readableOn, useTheme } from '../theme';
 import { WaveRule } from './Flora';
 import { PhotoStrip } from './Photos';
 import { StopText } from './StopText';
@@ -22,8 +22,8 @@ export function StopSection({ stop, index, locked, walkColor, onMap, width }: { 
   return (
     <View style={{ gap: 12 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-        <View style={[styles.num, { backgroundColor: locked ? '#8A9A9B' : walkColor }]}>
-          <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>{stop.n}</T>
+        <View style={[styles.num, { backgroundColor: locked ? t.lockedFill : walkColor }]}>
+          <T style={{ color: locked ? '#FFFFFF' : readableOn(walkColor), fontFamily: t.font.bodyBold }}>{stop.n}</T>
         </View>
         <View style={{ flex: 1 }}>
           <T variant="title" style={{ fontSize: 22, lineHeight: 27 }}>
@@ -74,10 +74,10 @@ export function LockedTeaser({ stop }: { stop: Stop }) {
     <Pressable onPress={() => router.push('/paywall')} accessibilityRole="button" accessibilityLabel={`Unlock ${stop.title}`} style={{ gap: 10 }}>
       {first ? (
         <View style={{ flexDirection: 'row', gap: 8 }}>
-          <Image source={photo(first.file)} style={{ height: 170, flex: 2, borderRadius: 16 }} contentFit="cover" />
+          <Image accessibilityIgnoresInvertColors source={photo(first.file)} style={{ height: 170, flex: 2, borderRadius: 16 }} contentFit="cover" />
           {stop.photos.length > 1 ? (
             <View style={{ flex: 1, borderRadius: 16, overflow: 'hidden', backgroundColor: t.cardAlt }}>
-              <Image source={photo(stop.photos[1].file)} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={22} />
+              <Image accessibilityIgnoresInvertColors source={photo(stop.photos[1].file)} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={22} />
               <View style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.25)' }]}>
                 <Ionicons name="lock-closed" size={22} color="#fff" />
                 <T style={{ color: '#fff', fontFamily: t.font.bodyBold, fontSize: 13 }}>+{stop.photos.length - 1} photos</T>
@@ -93,12 +93,12 @@ export function LockedTeaser({ stop }: { stop: Stop }) {
         </View>
       ) : null}
       <View style={[styles.lock, { backgroundColor: t.accent, borderColor: t.accent }]}>
-        <Ionicons name="lock-open" size={20} color="#fff" />
+        <Ionicons name="lock-open" size={20} color={t.accentText} />
         <View style={{ flex: 1 }}>
-          <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>Keep reading with Veneeta</T>
-          <T style={{ color: '#FFE3EC', fontSize: 13 }}>Unlock every walk, stop, and photo</T>
+          <T style={{ color: t.accentText, fontFamily: t.font.bodyBold }}>Keep reading with Veneeta</T>
+          <T style={{ color: t.accentTextMuted, fontSize: 13 }}>Unlock every walk, stop, and photo</T>
         </View>
-        <Ionicons name="chevron-forward" size={20} color="#fff" />
+        <Ionicons name="chevron-forward" size={20} color={t.accentText} />
       </View>
     </Pressable>
   );
