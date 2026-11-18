@@ -106,3 +106,19 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Paywall clarity (2026-11-18)
+- **Common practice:**
+  - Apple: "Before asking a customer to subscribe, you should clearly describe what the user will get for the price" (guideline 3.1.2).
+  - RevenueCat: show live store prices, state how long access lasts next to each price, describe concrete outcomes, keep a visible Restore button and in-app Terms and Privacy links, and make any "best value" claim accurate.
+  - Tour apps answer "how long do I keep it?" up front. Shaka Guide: "a one-time purchase and not a subscription service", "it never expires". VoiceMap: "VoiceMap is not a subscription service."
+  - Reviewer complaints in this category are about not knowing what you get ("leaves you wondering what exactly you're getting for $18", GPSmyCity) and purchases not being recognized.
+- **What we chose:**
+  - Say what is free before asking for money, generated from the product rules in config.ts so it cannot drift.
+  - Each plan states its duration in the note; the fine print under the button names the one charge, the exact pass end, and "never renews".
+  - Badge "NEVER EXPIRES" instead of "BEST VALUE", because it is a fact, not a judgment.
+  - Week passes stack (a new one starts when the current one ends), so buying early never costs a walker days. The pass end is computed in the app because Apple sends no expiry for non-renewing purchases.
+  - No "Manage subscription" button, since neither product renews. Pass holders are offered more days or the forever unlock.
+  - Plans are a radio group for screen readers, with the badge hidden from them (the label already says it).
+- **Why:** visitors decide in seconds on a sidewalk. Clear duration and "never renews" remove the main worry people have about tour apps, and it is what App Review checks.
+- Sources: conductatlas.com/platform/apple/apple-app-store-review-guidelines/provision/CA-P-018923 (guideline 3.1.2 text); revenuecat.com/guides/revenuecat-replit/your-paywall-show-users-what-they-re-buying; shakaguide.com/article/app-faqs; support.voicemap.me/what-am-i-paying-for; appshunter.io/ios/app/417207307/reviews/7 (GPSmyCity reviews).

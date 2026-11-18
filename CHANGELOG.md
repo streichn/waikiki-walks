@@ -97,3 +97,14 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-18 · Clearer paywall: what is free, what you get, when a pass ends
+- Paywall says what stays free (Walk IV stops 1 to 5, plus every walk's overview, map and first stop), worded from src/config.ts.
+- Plan notes say how long each lasts: "for 7 days from purchase" and "on this trip and every visit after".
+- Fine print under the button changes with the plan: one charge, the exact date and time a pass would end, and that it never renews.
+- "BEST VALUE" badge replaced with "NEVER EXPIRES", which is literally true.
+- Week passes stack: a pass bought while one is active adds 7 days instead of restarting the clock. A pass holder sees "Add 7 days" and when the pass runs.
+- A forever owner who opens the paywall is told everything is already theirs.
+- Plans read as a radio group with checked state for VoiceOver and TalkBack.
+- Profile: removed the "Manage subscription" button (nothing renews, so there was nothing to manage); pass holders get "Add days or keep forever".
+- Web preview paywall and profile card match.
