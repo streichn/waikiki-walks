@@ -26,7 +26,7 @@ export function PhotoStrip({ photos, height = 190 }: { photos: Photo[]; height?:
               setOpen(i);
             }}
           >
-            <Image source={photo(p.file)} style={{ height, width: Math.min(300, (height * p.w) / Math.max(1, p.h)), borderRadius: 16, backgroundColor: t.cardAlt }} contentFit="cover" transition={200} />
+            <Image accessibilityIgnoresInvertColors source={photo(p.file)} style={{ height, width: Math.min(300, (height * p.w) / Math.max(1, p.h)), borderRadius: 16, backgroundColor: t.cardAlt }} contentFit="cover" transition={200} />
           </Pressable>
         ))}
       </ScrollView>
@@ -50,7 +50,7 @@ export function Lightbox({ photos, index, onClose }: { photos: Photo[]; index: n
           keyExtractor={(p) => p.file}
           renderItem={({ item }) => (
             <View style={{ width, height, justifyContent: 'center' }}>
-              <Image source={photo(item.file)} style={{ width, height: height * 0.72 }} contentFit="contain" />
+              <Image accessibilityIgnoresInvertColors source={photo(item.file)} style={{ width, height: height * 0.72 }} contentFit="contain" />
               {item.caption ? (
                 <T style={{ color: '#eee', textAlign: 'center', paddingHorizontal: 24, marginTop: 12 }} variant="italic">
                   {item.caption}
