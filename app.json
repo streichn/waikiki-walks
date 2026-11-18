@@ -58,7 +58,10 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Point your camera at a landmark and Waikīkī Walks will tell you what you are looking at."
+          "cameraPermission": "Point your camera at a landmark and Waikīkī Walks will tell you what you are looking at.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": false
         }
       ],
       [

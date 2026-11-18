@@ -97,3 +97,11 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-18 · "What am I looking at?" done right
+- Asks for the camera and location only when the walker opens the feature. If the camera is refused, it still works from location and compass; if location is refused, it says what is missing and how to turn it on, instead of "Finding your location..." forever.
+- Steadier answers: compass readings are smoothed, and a figure 8 tip appears when the compass is unsure.
+- Honest labels: "You are looking at" only after a photo match; otherwise "Probably in view". The shutter appears only when the photo service is set up.
+- Smaller, private photos: about a tenth of the size, upright, no location tags, deleted after the check. Server caps photo size and only answers with the book's stops.
+- No microphone permission and no barcode scanner in the app any more.
+- Spoken labels and announcements for screen reader users.

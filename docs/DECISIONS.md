@@ -106,3 +106,21 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## 2026-11-18 · Camera: "What am I looking at?"
+- **How it is normally done:**
+  - Apple: "Request permission only when your app clearly needs access", "ideally, wait to request permission until people actually use an app feature that requires access", and "Request access only to data that you actually need." A custom screen before the system alert may have only one button, titled like "Continue", never "Allow", and no way to leave without seeing the alert.
+  - Android: "Ask for a permission in context." If someone says no, "Minimize functionality loss", "Be specific. Don't display a generic message", "Don't block the user interface", and accept their choice without pressure. After a second "Deny" the system stops showing the prompt.
+  - Phone compasses report their own calibration. Expo's `watchHeadingAsync` gives 0 to 3 (on iOS 1 means up to 50 degrees of uncertainty). Google Maps shows a wider beam when the compass is off and tells people to move the phone in a figure 8. Phone compasses wobble by several degrees and get worse near strong magnetic fields (PeakVisor).
+  - Expo Camera: `skipProcessing: true` skips the whole pipeline, so `quality` is ignored and the photo can arrive sideways. The camera config plugin adds the microphone permission unless told not to.
+- **What we chose:**
+  - Ask for the camera, then location, right after the walker taps "What am I looking at?". No pre-alert screen: the tap is the context, and the purpose strings say why. The old "Allow camera / Not now" screen used the word Apple says to avoid.
+  - Camera refused: the screen still works from location and compass, says so in one line, and offers a quiet link to turn the camera on (Settings once the system stops asking).
+  - Location refused: say exactly what does not work and offer "Try again" or "Open Settings". Before, the screen said "Finding your location..." forever.
+  - Smooth the compass on the circle and re-rank only after a 3 degree change, so the answer holds still. When the compass reports low calibration, show the figure 8 tip.
+  - Be honest about matches. Without the photo service, or when the photo check fails or is unsure, the card says "Probably in view", never "You are looking at". The server and the app both accept only a stop id from the candidates sent.
+  - Photo minimization: one small upright JPEG (quality 0.4, no EXIF, so no GPS tags), deleted from the phone right after the check, 12 second timeout. The server refuses anything over about 1.5 MB or more than 5 candidates before calling the paid vision API.
+  - Removed the microphone permission (iOS and Android) and the unused barcode scanner from the camera plugin, since we never record video or scan codes.
+  - Screen reader: the result card, read-aloud button, and photo button have spoken labels, and changes to the best guess are announced.
+- **Still open:** the lens Edge Function is deployed with `--no-verify-jwt`, so anyone with the URL can call it. Supabase's default is `verify_jwt = true`; with the new publishable keys the function should check the caller itself (`withSupabase({ auth: 'publishable' })`). Do this before the photo service is switched on.
+- Sources: developer.apple.com/design/human-interface-guidelines/privacy; developer.android.com/training/permissions/requesting; expo-location 58 types (LocationHeadingObject.accuracy); expo-camera 58 types (CameraPictureOptions.skipProcessing); notebookcheck.net/Google-Maps-will-show-if-your-compass-is-uncalibrated-on-Android.177474.0.html; peakvisor.com/en/news/most-precise-compass.html; supabase.com/docs/guides/functions/auth

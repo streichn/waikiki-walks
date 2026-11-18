@@ -29,18 +29,52 @@ export function candidatesInView(pos: LatLng, heading: number, maxDistance = 350
   return out.sort((a, b) => b.score - a.score).slice(0, 5);
 }
 
+/**
+ * Phone compasses wobble by several degrees. Blend each new reading into the last one
+ * (on the circle, so 359 and 1 average to 0, not 180) so the answer does not flicker
+ * between two stops while the walker holds still.
+ */
+export function smoothHeading(prev: number | null, next: number, alpha = 0.25): number {
+  if (prev === null) return next;
+  return (prev + headingDelta(prev, next) * alpha + 360) % 360;
+}
+
+/**
+ * Expo reports compass calibration as 0 to 3. On iOS, 1 means up to 50 degrees of
+ * uncertainty and 0 means more than 50, which is wider than our 70 degree view cone.
+ */
+export function compassUnsure(accuracy: number | null | undefined): boolean {
+  return accuracy !== null && accuracy !== undefined && accuracy <= 1;
+}
+
 export const visionAvailable = Boolean(LENS_ENDPOINT);
 
-export async function identifyPhoto(base64Jpeg: string, candidates: LensCandidate[]): Promise<{ stopId: string | null; reason: string }> {
-  if (!LENS_ENDPOINT) return { stopId: candidates[0]?.stop.id ?? null, reason: 'Matched by location and direction.' };
-  const res = await fetch(LENS_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      image: base64Jpeg,
-      candidates: candidates.map((c) => ({ id: c.stop.id, title: c.stop.title, distance: Math.round(c.distance), summary: c.stop.blocks.find((b) => b.kind === 'p')?.text.slice(0, 400) })),
-    }),
-  });
-  if (!res.ok) throw new Error('Could not identify the photo');
-  return res.json();
+export type LensAnswer = { stopId: string | null; reason: string };
+
+/**
+ * Ask the vision service which candidate is in the photo. Only ids from `candidates`
+ * are accepted back, so the answer can never point outside the book.
+ * Gives up after 12 seconds, since walkers are often on weak signal.
+ */
+export async function identifyPhoto(base64Jpeg: string, candidates: LensCandidate[]): Promise<LensAnswer> {
+  if (!LENS_ENDPOINT || !base64Jpeg || !candidates.length) return { stopId: null, reason: '' };
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 12000);
+  try {
+    const res = await fetch(LENS_ENDPOINT, {
+      method: 'POST',
+      signal: ctrl.signal,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        image: base64Jpeg,
+        candidates: candidates.map((c) => ({ id: c.stop.id, title: c.stop.title, distance: Math.round(c.distance), summary: c.stop.blocks.find((b) => b.kind === 'p')?.text.slice(0, 400) })),
+      }),
+    });
+    if (!res.ok) throw new Error('Could not identify the photo');
+    const out = (await res.json()) as Partial<LensAnswer>;
+    const ok = candidates.some((c) => c.stop.id === out.stopId);
+    return { stopId: ok ? (out.stopId as string) : null, reason: typeof out.reason === 'string' ? out.reason.slice(0, 200) : '' };
+  } finally {
+    clearTimeout(timer);
+  }
 }
