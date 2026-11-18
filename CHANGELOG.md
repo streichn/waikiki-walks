@@ -97,3 +97,14 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-18 · Arrival alerts and the Lock Screen walk, done the standard way
+- One Live Activity per walk. Leaving and reopening the walk screen used to start a second one; now it updates the one already showing.
+- The Live Activity says "You are at: ..." once you reach a stop, and "Next: ..." before. It changes only when something changes, as Apple asks.
+- Background arrival alerts (phone in pocket) now follow the same rules as the walk screen: no alert for a locked stop, a stop already reached, a stop behind you, a walk that has ended, or when Arrival alerts is off in Settings.
+- When the phone wakes the app in the background, it first reads back the saved walk, settings and purchase. Before, it could decide with empty defaults.
+- After an arrival in the background, the alerts move on to the stops ahead.
+- Each new arrival alert replaces the last one, and alerts from one walk group together. Ending a walk clears the last alert.
+- Android: arrival alerts have their own "Arrival alerts" channel (high importance, shows on the Lock Screen), created before the Android 13 permission prompt.
+- Tapping an arrival alert opens that stop even when the tap is what launched the app from closed.
+- Settings: if notifications or background location are off, a short note under Arrival alerts says what that means, with an "Open phone Settings" link.

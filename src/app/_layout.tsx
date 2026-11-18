@@ -32,16 +32,26 @@ export default function RootLayout() {
     const sub = supabase?.auth.onAuthStateChange((_e, session) => {
       if (!session && useAccount.getState().profile?.provider !== 'guest') useAccount.getState().setProfile(undefined);
     });
-    // Tapping an arrival notification opens that stop.
-    const tapSub = Notifications.addNotificationResponseReceivedListener((r) => {
-      const url = r.notification.request.content.data?.url;
-      if (typeof url === 'string') router.push(url as never);
-    });
     return () => {
       sub?.data.subscription.unsubscribe();
-      tapSub.remove();
     };
   }, []);
+
+  // Tapping an arrival alert opens that stop, including a tap that launched the app
+  // from closed (Expo Router pattern). Wait until the screens exist, and forget a
+  // handled tap so it doesn't reopen the stop next time.
+  useEffect(() => {
+    if (!loaded) return;
+    const open = (r: Notifications.NotificationResponse | null) => {
+      const url = r?.notification.request.content.data?.url;
+      if (typeof url !== 'string') return;
+      Notifications.clearLastNotificationResponse();
+      router.push(url as never);
+    };
+    open(Notifications.getLastNotificationResponse());
+    const tapSub = Notifications.addNotificationResponseReceivedListener(open);
+    return () => tapSub.remove();
+  }, [loaded]);
 
   if (!loaded) return <View style={{ flex: 1, backgroundColor: t.bg }} />;
 
