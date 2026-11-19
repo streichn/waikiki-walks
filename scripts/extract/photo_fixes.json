@@ -1,0 +1,483 @@
+{
+ "_note": "Book pictures re-rendered without page text (scripts/extract/rerender_images.py). 'drop': not a photo once the text is gone (map keys, page tints, slivers, blank page backgrounds). 'crop': [x, y, w, h] of the photo inside the rendered box. Reviewed by eye, 19 Nov 2026.",
+ "drop": {
+  "p1-30-71.jpg": "blank after text removed",
+  "p1-40-81.jpg": "map key",
+  "p1-41-82.jpg": "blank after text removed",
+  "p1-41-83.jpg": "blank after text removed",
+  "p1-41-84.jpg": "blank after text removed",
+  "p1-41-85.jpg": "blank after text removed",
+  "p1-46-91.jpg": "blank after text removed",
+  "p1-46-92.jpg": "blank after text removed",
+  "p1-47-94.jpg": "blank after text removed",
+  "p1-47-95.jpg": "blank after text removed",
+  "p1-58-104.jpg": "map key",
+  "p1-59-105.jpg": "blank after text removed",
+  "p1-59-106.jpg": "blank after text removed",
+  "p1-59-107.jpg": "blank after text removed",
+  "p1-59-108.jpg": "blank after text removed",
+  "p1-70-120.jpg": "blank after text removed",
+  "p1-70-121.jpg": "blank after text removed",
+  "p1-72-123.jpg": "map key",
+  "p1-73-124.jpg": "blank after text removed",
+  "p1-73-125.jpg": "blank after text removed",
+  "p1-73-126.jpg": "blank after text removed",
+  "p1-88-142.jpg": "blank after text removed",
+  "p1-88-143.jpg": "blank after text removed",
+  "p2-1-148.jpg": "map key",
+  "p2-10-163.jpg": "blank after text removed",
+  "p2-10-164.jpg": "blank after text removed",
+  "p2-12-166.jpg": "blank after text removed",
+  "p2-17-172.jpg": "map key",
+  "p2-18-173.jpg": "blank after text removed",
+  "p2-18-174.jpg": "blank after text removed",
+  "p2-18-175.jpg": "blank after text removed",
+  "p2-18-176.jpg": "blank after text removed",
+  "p2-2-149.jpg": "blank after text removed",
+  "p2-2-150.jpg": "blank after text removed",
+  "p2-2-151.jpg": "blank after text removed",
+  "p2-24-185.jpg": "blank after text removed",
+  "p2-24-186.jpg": "blank after text removed",
+  "p2-29-190.jpg": "map key",
+  "p2-30-191.jpg": "flat decoration",
+  "p2-30-192.jpg": "blank after text removed",
+  "p2-30-193.jpg": "blank after text removed",
+  "p2-46-206.jpg": "blank after text removed",
+  "p2-48-208.jpg": "blank after text removed",
+  "p2-48-209.jpg": "blank after text removed",
+  "p2-48-210.jpg": "blank after text removed",
+  "p2-56-217.jpg": "blank after text removed",
+  "p2-56-218.jpg": "blank after text removed",
+  "p2-65-229.jpg": "map key",
+  "p2-66-230.jpg": "flat decoration",
+  "p2-66-231.jpg": "blank after text removed",
+  "p2-66-232.jpg": "blank after text removed",
+  "p2-72-244.jpg": "blank after text removed",
+  "p2-75-250.jpg": "blank after text removed",
+  "p2-75-251.jpg": "blank after text removed",
+  "p2-80-255.jpg": "blank after text removed",
+  "p2-80-256.jpg": "blank after text removed",
+  "p3-10-275.jpg": "blank after text removed",
+  "p3-11-277.jpg": "blank after text removed",
+  "p3-12-278.jpg": "blank after text removed",
+  "p3-13-280.jpg": "blank after text removed",
+  "p3-14-282.jpg": "blank after text removed",
+  "p3-15-283.jpg": "blank after text removed",
+  "p3-17-286.jpg": "blank after text removed",
+  "p3-18-287.jpg": "blank after text removed",
+  "p3-19-289.jpg": "blank after text removed",
+  "p3-2-258.jpg": "blank after text removed",
+  "p3-2-259.jpg": "blank after text removed",
+  "p3-2-260.jpg": "flat decoration",
+  "p3-20-291.jpg": "blank after text removed",
+  "p3-21-293.jpg": "blank after text removed",
+  "p3-22-294.jpg": "fragment too small",
+  "p3-24-298.jpg": "blank after text removed",
+  "p3-26-305.jpg": "blank after text removed",
+  "p3-27-307.jpg": "blank after text removed",
+  "p3-28-309.jpg": "blank after text removed",
+  "p3-29-310.jpg": "blank after text removed",
+  "p3-30-312.jpg": "blank after text removed",
+  "p3-31-314.jpg": "blank after text removed",
+  "p3-32-316.jpg": "blank after text removed",
+  "p3-33-317.jpg": "blank after text removed",
+  "p3-34-320.jpg": "blank after text removed",
+  "p3-35-322.jpg": "sliver of another photo",
+  "p3-38-324.jpg": "flat decoration",
+  "p3-38-325.jpg": "blank after text removed",
+  "p3-38-326.jpg": "blank after text removed",
+  "p3-38-327.jpg": "blank after text removed",
+  "p3-38-328.jpg": "flat decoration",
+  "p3-42-335.jpg": "blank after text removed",
+  "p3-42-336.jpg": "sliver of another photo",
+  "p3-42-337.jpg": "blank after text removed",
+  "p3-42-338.jpg": "blank after text removed",
+  "p3-43-339.jpg": "blank after text removed",
+  "p3-44-341.jpg": "blank after text removed",
+  "p3-45-344.jpg": "fragment too small",
+  "p3-47-349.jpg": "fragment too small",
+  "p3-48-351.jpg": "blank after text removed",
+  "p3-49-354.jpg": "blank after text removed",
+  "p3-50-356.jpg": "blank after text removed",
+  "p3-51-357.jpg": "blank after text removed",
+  "p3-53-362.jpg": "blank after text removed",
+  "p3-54-363.jpg": "blank after text removed",
+  "p3-56-365.jpg": "blank after text removed",
+  "p3-57-366.jpg": "blank after text removed",
+  "p3-58-368.jpg": "blank after text removed",
+  "p3-59-369.jpg": "blank after text removed",
+  "p3-61-371.jpg": "map key",
+  "p3-62-372.jpg": "flat decoration",
+  "p3-62-373.jpg": "blank after text removed",
+  "p3-62-374.jpg": "blank after text removed",
+  "p3-62-375.jpg": "flat decoration",
+  "p3-65-380.jpg": "blank after text removed",
+  "p3-66-382.jpg": "fragment too small",
+  "p3-67-384.jpg": "blank after text removed",
+  "p3-67-385.jpg": "blank after text removed",
+  "p3-67-386.jpg": "blank after text removed",
+  "p3-68-387.jpg": "blank after text removed",
+  "p3-69-389.jpg": "blank after text removed",
+  "p3-70-390.jpg": "blank after text removed",
+  "p3-74-399.jpg": "blank after text removed",
+  "p3-75-401.jpg": "blank after text removed",
+  "p3-76-403.jpg": "blank after text removed",
+  "p3-77-405.jpg": "blank after text removed",
+  "p3-77-406.jpg": "blank after text removed",
+  "p3-77-407.jpg": "blank after text removed",
+  "p3-77-408.jpg": "blank after text removed",
+  "p3-78-409.jpg": "blank after text removed",
+  "p3-78-410.jpg": "blank after text removed",
+  "p3-78-411.jpg": "blank after text removed",
+  "p3-79-413.jpg": "blank after text removed",
+  "p3-79-414.jpg": "blank after text removed",
+  "p3-79-415.jpg": "blank after text removed",
+  "p3-79-416.jpg": "blank after text removed",
+  "p3-8-268.jpg": "blank after text removed",
+  "p3-80-418.jpg": "blank after text removed",
+  "p3-80-419.jpg": "blank after text removed",
+  "p3-80-420.jpg": "blank after text removed",
+  "p3-81-421.jpg": "blank after text removed",
+  "p3-81-422.jpg": "blank after text removed",
+  "p3-81-423.jpg": "blank after text removed",
+  "p3-81-424.jpg": "blank after text removed",
+  "p3-82-425.jpg": "blank after text removed",
+  "p3-82-426.jpg": "blank after text removed",
+  "p3-82-427.jpg": "blank after text removed",
+  "p3-82-428.jpg": "blank after text removed",
+  "p3-9-273.jpg": "blank after text removed",
+  "p3-9-274.jpg": "blank after text removed"
+ },
+ "crop": {
+  "p1-26-65.jpg": [
+   34,
+   72,
+   343,
+   179
+  ],
+  "p1-26-66.jpg": [
+   9,
+   107,
+   371,
+   272
+  ],
+  "p1-26-67.jpg": [
+   0,
+   104,
+   372,
+   272
+  ],
+  "p1-52-97.jpg": [
+   453,
+   0,
+   394,
+   301
+  ],
+  "p1-54-100.jpg": [
+   274,
+   0,
+   776,
+   567
+  ],
+  "p1-65-115.jpg": [
+   0,
+   0,
+   579,
+   223
+  ],
+  "p1-67-118.jpg": [
+   0,
+   72,
+   786,
+   346
+  ],
+  "p1-75-130.jpg": [
+   0,
+   146,
+   405,
+   329
+  ],
+  "p1-77-132.jpg": [
+   26,
+   222,
+   750,
+   622
+  ],
+  "p1-79-136.jpg": [
+   0,
+   100,
+   1050,
+   515
+  ],
+  "p1-82-139.jpg": [
+   27,
+   118,
+   635,
+   303
+  ],
+  "p1-82-140.jpg": [
+   23,
+   114,
+   635,
+   303
+  ],
+  "p1-89-145.jpg": [
+   69,
+   0,
+   171,
+   453
+  ],
+  "p1-90-146.jpg": [
+   64,
+   90,
+   231,
+   154
+  ],
+  "p2-11-165.jpg": [
+   0,
+   0,
+   347,
+   478
+  ],
+  "p2-13-168.jpg": [
+   77,
+   87,
+   178,
+   176
+  ],
+  "p2-15-170.jpg": [
+   0,
+   0,
+   372,
+   472
+  ],
+  "p2-16-171.jpg": [
+   198,
+   188,
+   437,
+   295
+  ],
+  "p2-20-179.jpg": [
+   0,
+   76,
+   399,
+   266
+  ],
+  "p2-21-181.jpg": [
+   41,
+   39,
+   658,
+   491
+  ],
+  "p2-21-182.jpg": [
+   36,
+   33,
+   658,
+   492
+  ],
+  "p2-31-195.jpg": [
+   22,
+   29,
+   634,
+   446
+  ],
+  "p2-33-197.jpg": [
+   38,
+   30,
+   673,
+   413
+  ],
+  "p2-34-198.jpg": [
+   0,
+   108,
+   377,
+   394
+  ],
+  "p2-35-199.jpg": [
+   0,
+   110,
+   820,
+   380
+  ],
+  "p2-59-222.jpg": [
+   0,
+   0,
+   413,
+   205
+  ],
+  "p2-60-223.jpg": [
+   10,
+   65,
+   798,
+   309
+  ],
+  "p2-63-227.jpg": [
+   47,
+   44,
+   746,
+   456
+  ],
+  "p2-63-228.jpg": [
+   32,
+   29,
+   746,
+   456
+  ],
+  "p2-67-235.jpg": [
+   39,
+   64,
+   777,
+   391
+  ],
+  "p2-69-237.jpg": [
+   292,
+   70,
+   234,
+   272
+  ],
+  "p2-7-158.jpg": [
+   37,
+   40,
+   750,
+   600
+  ],
+  "p2-8-160.jpg": [
+   26,
+   23,
+   720,
+   435
+  ],
+  "p2-8-161.jpg": [
+   18,
+   14,
+   720,
+   436
+  ],
+  "p3-16-284.jpg": [
+   34,
+   0,
+   813,
+   354
+  ],
+  "p3-16-285.jpg": [
+   0,
+   94,
+   812,
+   432
+  ],
+  "p3-25-301.jpg": [
+   455,
+   8,
+   429,
+   269
+  ],
+  "p3-25-302.jpg": [
+   12,
+   8,
+   330,
+   239
+  ],
+  "p3-29-311.jpg": [
+   33,
+   78,
+   593,
+   429
+  ],
+  "p3-31-315.jpg": [
+   77,
+   61,
+   455,
+   329
+  ],
+  "p3-35-323.jpg": [
+   0,
+   63,
+   505,
+   241
+  ],
+  "p3-40-329.jpg": [
+   63,
+   35,
+   737,
+   390
+  ],
+  "p3-41-331.jpg": [
+   466,
+   69,
+   355,
+   233
+  ],
+  "p3-44-343.jpg": [
+   23,
+   19,
+   386,
+   261
+  ],
+  "p3-46-346.jpg": [
+   454,
+   83,
+   355,
+   224
+  ],
+  "p3-52-359.jpg": [
+   52,
+   0,
+   279,
+   230
+  ],
+  "p3-54-364.jpg": [
+   0,
+   0,
+   1050,
+   540
+  ],
+  "p3-65-381.jpg": [
+   0,
+   226,
+   393,
+   170
+  ],
+  "p3-7-267.jpg": [
+   33,
+   18,
+   574,
+   432
+  ],
+  "p3-71-392.jpg": [
+   52,
+   0,
+   371,
+   148
+  ],
+  "p3-8-269.jpg": [
+   0,
+   53,
+   433,
+   294
+  ],
+  "p3-83-430.jpg": [
+   0,
+   594,
+   944,
+   606
+  ],
+  "p3-83-431.jpg": [
+   73,
+   71,
+   356,
+   376
+  ],
+  "p3-83-432.jpg": [
+   64,
+   96,
+   356,
+   377
+  ],
+  "p3-9-270.jpg": [
+   464,
+   42,
+   383,
+   274
+  ]
+ }
+}

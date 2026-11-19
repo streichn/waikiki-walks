@@ -109,3 +109,8 @@
 - Walk I stop 38 completed from her photo of book page 17, also missing from the PDF. Stop 36 "kahuna nui" corrected to "kuhina nui" from her hand correction (to confirm with her).
 - The dashed route follows her traced red line between stops where we have it, instead of straight lines. Walk I 12 to 13 now goes along Date Street and down Kapahulu Avenue, around the golf course (her request).
 - Book map page tabs moved out of the middle of the map, where they hid the current stop; the selected tab now shows.
+
+## 2026-11-19 · Book photos without page text
+- Pictures were cut from the page with the book's text, captions and page numbers printed over them (Nick: page 215 "cropped wrong"). All pictures re-rendered from the PDF with the page text removed (scripts/extract/rerender_images.py).
+- Reviewed by eye: 146 boxes were not photos once the text was gone (map keys, page tints, slivers, blank page backgrounds) and are no longer shown; 55 trimmed to the photo inside. 190 stop photos remain; OCR finds no page text left in any of them (only real signs).
+- Walk I stop 36: "kahuna nui" corrected to "kuhina nui" (Veneeta confirmed by email).

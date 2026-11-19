@@ -4,6 +4,7 @@ Inputs: scripts/extract/geo.json (stops with coordinates), assets/book/*.jpg (ph
 Outputs: src/data/walks.json, facts.json, glossary.json, about.json, images.ts, assets/book/*.jpg,
          and review/stops_review.csv for Veneeta to check every pin.
 """
+from PIL import Image
 import csv, glob, json, os, re, shutil, statistics, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +46,8 @@ FACTS = {
 }
 # Word-level corrections from the author's own marked-up copy of the book.
 TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")]}
+# Book pictures that are not photos once the page text is removed (scripts/extract/rerender_images.py).
+PHOTO_DROP = set(json.load(open(f'{ROOT}/scripts/extract/photo_fixes.json'))['drop']) if os.path.exists(f'{ROOT}/scripts/extract/photo_fixes.json') else set()
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to
 # A stop whose tail is really the next walk's opening: cut at 'at' and move the rest to that walk's intro.
 TAIL_CUTS = {'I-38': {'at': 'This walk covers part of a much larger district once known as K', 'carry_to': 'II', 'keep': 1, 'strip': ' Kahanamoku St.',
@@ -382,6 +385,10 @@ for k, w in enumerate(SRC['walks']):
     for s in stops_src:
         photos = []
         for im in s.get('images', []):
+            if im['file'] in PHOTO_DROP:
+                continue
+            if os.path.exists(f'{ASSETS}/{im["file"]}'):  # crops change the size
+                im['w'], im['h'] = Image.open(f'{ASSETS}/{im["file"]}').size
             if im['w'] < 260 or im['h'] < 180:
                 continue
             im['overlay'] = OVERLAY.get(im['file'], 0)
@@ -440,7 +447,7 @@ for k, w in enumerate(SRC['walks']):
                        'confidence': g.get('confidence', 'medium'), 'matched': g.get('osm', g.get('query', '')),
                        'map_link': f"https://www.google.com/maps?q={round(g['lat'], 6)},{round(g['lng'], 6)}", 'book_page': s['page']})
     for im in w.get('images', []):
-        if im['w'] >= 260:
+        if im['w'] >= 260 and im['file'] not in PHOTO_DROP:
             images_used.add(im['file'])
             if not cover and im['w'] >= im['h'] * 1.15 and im['w'] >= 500 and OVERLAY.get(im["file"], 0) < 0.003:
                 cover = im['file']
