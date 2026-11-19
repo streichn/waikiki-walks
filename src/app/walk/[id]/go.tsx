@@ -3,9 +3,10 @@ import * as Haptics from 'expo-haptics';
 import * as Location from 'expo-location';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Alert, Animated, AppState, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BookMapPane, type FollowMode, LayersButton, type Layer, LocateButton, MapStyleSwitch, nextFollow } from '../../../components/MapControls';
+import { LocationPrimer } from '../../../components/LocationPrimer';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { Button, IconButton, T, tap } from '../../../components/ui';
@@ -109,26 +110,63 @@ export default function ActiveWalk() {
   const arrivedHere = visited.includes(current);
 
   // Start or resume the walk, then switch on location, background alerts, and the Live Activity.
+  // The first time, a short explanation comes before the phone's prompt (LocationPrimer).
+  const [primer, setPrimer] = useState(false);
+  const live = useRef<{ started: boolean; unmounted: boolean; watch?: Location.LocationSubscription; head?: Location.LocationSubscription }>({ started: false, unmounted: false });
+  const gpsRef = useRef(gps);
+  gpsRef.current = gps;
+
+  const beginTracking = async () => {
+    if (live.current.started) return;
+    const perm = await requestPermissions();
+    if (!perm.foreground) return setGps('off');
+    if (live.current.started || live.current.unmounted) return;
+    live.current.started = true;
+    setGps('on');
+    const idx = useProgress.getState().progress[walk.id]?.current ?? 0;
+    await startBackground(walk, idx).catch(() => undefined);
+    LiveActivity.start(walk, idx);
+    const watch = await watchForeground((p) => setPos({ lat: p.coords.latitude, lng: p.coords.longitude, acc: p.coords.accuracy ?? 50 }));
+    const head = await Location.watchHeadingAsync((h) => setHeading(h.trueHeading >= 0 ? h.trueHeading : h.magHeading));
+    if (live.current.unmounted) {
+      watch.remove();
+      head.remove();
+      return;
+    }
+    live.current.watch = watch;
+    live.current.head = head;
+  };
+
   useEffect(() => {
     startWalk(walk.id, stopParam ? Number(stopParam) : undefined);
-    let watch: Location.LocationSubscription | undefined;
-    let headSub: Location.LocationSubscription | undefined;
+    live.current.unmounted = false;
     (async () => {
-      const perm = await requestPermissions();
-      if (!perm.foreground) return setGps('off');
-      setGps('on');
-      const idx = useProgress.getState().progress[walk.id]?.current ?? 0;
-      await startBackground(walk, idx).catch(() => undefined);
-      LiveActivity.start(walk, idx);
-      watch = await watchForeground((p) => setPos({ lat: p.coords.latitude, lng: p.coords.longitude, acc: p.coords.accuracy ?? 50 }));
-      headSub = await Location.watchHeadingAsync((h) => setHeading(h.trueHeading >= 0 ? h.trueHeading : h.magHeading));
+      const cur = await Location.getForegroundPermissionsAsync().catch(() => null);
+      if (cur && !cur.granted && cur.status === 'undetermined') setPrimer(true);
+      else await beginTracking();
     })();
+    // Coming back from Settings with location now on: start following without leaving the walk.
+    const appSub = AppState.addEventListener('change', async (state) => {
+      if (state !== 'active' || gpsRef.current !== 'off') return;
+      const now = await Location.getForegroundPermissionsAsync().catch(() => null);
+      if (now?.granted) beginTracking();
+    });
     return () => {
-      watch?.remove();
-      headSub?.remove();
+      live.current.unmounted = true;
+      live.current.started = false;
+      live.current.watch?.remove();
+      live.current.head?.remove();
+      appSub.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walk.id]);
+
+  // "Location is off": ask again if the phone still allows it, otherwise open this app's Settings.
+  const turnOnLocation = async () => {
+    const cur = await Location.getForegroundPermissionsAsync().catch(() => null);
+    if (cur?.canAskAgain) beginTracking();
+    else Linking.openSettings();
+  };
 
   // Follow mode, as in Apple Maps: keep the walker centered (and turn the map with them).
   useEffect(() => {
@@ -298,15 +336,21 @@ export default function ActiveWalk() {
                 <T variant="h2" numberOfLines={2}>
                   {stop.title}
                 </T>
+                {gps === 'off' ? (
+                  <Pressable onPress={turnOnLocation} accessibilityRole="button" accessibilityHint="Turns on location so the walk can follow you" hitSlop={6}>
+                    <T variant="small">
+                      Location is off. Use Next at each stop, or <T variant="small" style={{ color: t.primary, fontFamily: t.font.bodyBold, textDecorationLine: 'underline' }}>turn on location</T>.
+                    </T>
+                  </Pressable>
+                ) : (
                 <T variant="small">
-                  {gps === 'off'
-                    ? 'Location is off. Use Next when you reach each stop.'
-                    : arrivedHere
+                  {arrivedHere
                       ? 'Read or listen below, then tap Next.'
                       : dist !== null
                         ? `${formatDistance(dist, settings.units)} · about ${walkMinutes(dist)} min${brg !== null ? ` · head ${hawaiianDirection(brg)}` : ''}`
                         : 'Finding your location…'}
                 </T>
+                )}
               </View>
               {!arrivedHere ? (
                 <Pressable onPress={openDirections} accessibilityLabel="Walking directions" style={[styles.dirBtn, { backgroundColor: t.primary }]}>
@@ -356,6 +400,13 @@ export default function ActiveWalk() {
           </View>
         </Animated.View>
       ) : null}
+      <LocationPrimer
+        visible={primer}
+        onContinue={() => {
+          setPrimer(false);
+          beginTracking();
+        }}
+      />
     </View>
   );
 }
