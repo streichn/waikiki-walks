@@ -97,3 +97,9 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-19 · Privacy manifest and store privacy answers
+- iOS privacy manifest in app.json: no tracking, the required-reason APIs our libraries use, and the five data types the app collects (email, name, user ID, purchase history, walk progress). Location stays on the phone and is not listed.
+- New scripts/privacy/check_manifest.py checks app.json against every library's own manifest.
+- New docs/STORE_PRIVACY.md with draft answers for App Store "App Privacy" and Google Play "Data safety".
+- Logged Veneeta's 19 Nov emails in docs/FEEDBACK.md.

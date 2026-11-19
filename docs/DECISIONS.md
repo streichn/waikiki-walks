@@ -106,3 +106,14 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## 2026-11-19 · Privacy manifest and store privacy labels
+- **How it is normally done:** since 1 May 2024 Apple refuses uploads whose privacy manifest (PrivacyInfo.xcprivacy) does not give a reason for each "required reason" API the app or its libraries call. The manifest also lists the data types the app collects and says whether it tracks. In Expo apps it is set in app.json under `expo.ios.privacyManifests`. Expo warns that CocoaPods does not always merge the libraries' own manifests, so the usual practice is to copy their reasons into app.json. Both stores also ask the developer to fill in a privacy form (App Store "App Privacy", Google Play "Data safety"). Both define "collect" as sending data off the phone; data used only on the phone does not count.
+- **What we chose:**
+  - app.json now declares `NSPrivacyTracking: false`, the required-reason APIs our libraries use (UserDefaults, file timestamps, system boot time, disk space, with the exact reason codes from their own manifests), and five collected data types: email, name, user ID, purchase history, and product interaction (walk progress and saved stops). All are linked to the account, none used for tracking.
+  - Location is not declared as collected, because the arrival logic and map run on the phone and our code never sends a position to a server.
+  - `scripts/privacy/check_manifest.py` compares app.json with every library manifest in node_modules and fails if a reason is missing. Run it after any library upgrade.
+  - `docs/STORE_PRIVACY.md` holds ready answers for App Store Connect and the Play Console, with the reasoning for each line.
+- **Why:** an incomplete manifest blocks the first upload, and the privacy label is the first thing many travelers see. Tour apps such as VoiceMap list precise location and an advertising identifier on their label; ours can honestly show less, which is a selling point for a book-based guide.
+- **Open:** if the camera identification server is turned on, or a crash reporter or analytics tool is added, both the manifest and the store answers must change.
+- Sources: developer.apple.com/support/app-privacy-on-the-app-store; developer.apple.com/documentation/bundleresources/privacy-manifest-files; developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api; docs.expo.dev/guides/apple-privacy; revenuecat.com/docs/platform-resources/apple-platform-resources/apple-app-privacy; revenuecat.com/docs/platform-resources/google-platform-resources/google-plays-data-safety; support.google.com/googleplay/android-developer/answer/10787469; apps.apple.com/us/app/voicemap-audio-tours-guides/id852027939
