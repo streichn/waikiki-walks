@@ -19,5 +19,26 @@
   "rms_m": 4.7,
   "m_per_px": 1.189,
   "source": "Veneeta photo IMG_4708, 19 Nov 2026 (foldout page 2 of Walk XII)"
+ },
+ "XI:map-XI-2.jpg": {
+  "walk": "XI",
+  "file": "map-XI-2.jpg",
+  "affine": [
+   [
+    -0.5769094034119691,
+    -0.6845640668233156
+   ],
+   [
+    -0.6845640668233156,
+    0.5769094034119691
+   ],
+   [
+    2814.9075230709045,
+    470.16608650471426
+   ]
+  ],
+  "rms_m": 6.8,
+  "m_per_px": 1.117,
+  "source": "Veneeta photo IMG_4706, 19 Nov 2026 (foldout page 2 of Walk XI)"
  }
 }

@@ -11268,10 +11268,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.289791,
-    "lng": -157.820851,
-    "geo": "medium",
-    "page": "p3-42"
+    "lat": 21.297121,
+    "lng": -157.820743,
+    "geo": "book",
+    "page": "p3-42",
+    "radius": 63
    },
    {
     "id": "XI-08",
@@ -11315,10 +11316,11 @@
       "caption": "“Above all nations is humanity” - the translation - is inscribed on the bench across University Avenue."
      }
     ],
-    "lat": 21.292724,
-    "lng": -157.823872,
-    "geo": "estimated",
-    "page": "p3-43"
+    "lat": 21.29762,
+    "lng": -157.821492,
+    "geo": "book",
+    "page": "p3-43",
+    "radius": 56
    },
    {
     "id": "XI-09",
@@ -11348,10 +11350,11 @@
       "caption": "Atherton House in 1932 – former YMCA, the precursor to RISE. (University Archives)"
      }
     ],
-    "lat": 21.295658,
-    "lng": -157.826894,
-    "geo": "estimated",
-    "page": "p3-44"
+    "lat": 21.299589,
+    "lng": -157.821342,
+    "geo": "book",
+    "page": "p3-44",
+    "radius": 90
    },
    {
     "id": "XI-10",
@@ -11401,10 +11404,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298592,
-    "lng": -157.829915,
-    "geo": "low",
-    "page": "p3-45"
+    "lat": 21.298915,
+    "lng": -157.820356,
+    "geo": "book",
+    "page": "p3-45",
+    "radius": 58
    },
    {
     "id": "XI-11",
@@ -11441,10 +11445,11 @@
       "h": 224
      }
     ],
-    "lat": 21.29985,
-    "lng": -157.820736,
-    "geo": "medium",
-    "page": "p3-45"
+    "lat": 21.299677,
+    "lng": -157.820517,
+    "geo": "book",
+    "page": "p3-45",
+    "radius": 58
    },
    {
     "id": "XI-12",
@@ -11492,10 +11497,11 @@
       "caption": "In the Shidler courtyard, can you find the State of Hawai‘i on the wall map?"
      }
     ],
-    "lat": 21.299995,
-    "lng": -157.818994,
-    "geo": "medium",
-    "page": "p3-46"
+    "lat": 21.299831,
+    "lng": -157.818774,
+    "geo": "book",
+    "page": "p3-46",
+    "radius": 50
    },
    {
     "id": "XI-13",
@@ -11516,10 +11522,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.30067,
-    "lng": -157.819149,
-    "geo": "medium",
-    "page": "p3-47"
+    "lat": 21.300509,
+    "lng": -157.818896,
+    "geo": "book",
+    "page": "p3-47",
+    "radius": 61
    },
    {
     "id": "XI-14",
@@ -11532,10 +11539,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.300013,
-    "lng": -157.818197,
-    "geo": "low",
-    "page": "p3-47"
+    "lat": 21.299627,
+    "lng": -157.818182,
+    "geo": "book",
+    "page": "p3-47",
+    "radius": 59
    },
    {
     "id": "XI-15",
@@ -11571,10 +11579,11 @@
       "caption": "This sacred ahu commemorates Kamaka‘eha - Queen Lili‘uokalani."
      }
     ],
-    "lat": 21.300535,
-    "lng": -157.81839,
-    "geo": "medium",
-    "page": "p3-47"
+    "lat": 21.300332,
+    "lng": -157.818238,
+    "geo": "book",
+    "page": "p3-47",
+    "radius": 70
    },
    {
     "id": "XI-16",
@@ -11587,10 +11596,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299776,
-    "lng": -157.817584,
-    "geo": "medium",
-    "page": "p3-48"
+    "lat": 21.299732,
+    "lng": -157.817412,
+    "geo": "book",
+    "page": "p3-48",
+    "radius": 44
    },
    {
     "id": "XI-17",
@@ -11611,10 +11621,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.30062,
-    "lng": -157.817763,
-    "geo": "medium",
-    "page": "p3-48"
+    "lat": 21.30049,
+    "lng": -157.817435,
+    "geo": "book",
+    "page": "p3-48",
+    "radius": 90
    },
    {
     "id": "XI-18",
@@ -11656,10 +11667,11 @@
       "caption": "Are you able to find this sculpture in the atrium of the art building. You might also find sculpted ears and mouths!"
      }
     ],
-    "lat": 21.299336,
-    "lng": -157.817484,
-    "geo": "medium",
-    "page": "p3-48"
+    "lat": 21.29917,
+    "lng": -157.817353,
+    "geo": "book",
+    "page": "p3-48",
+    "radius": 90
    },
    {
     "id": "XI-19",
@@ -11692,10 +11704,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299337,
-    "lng": -157.81665,
-    "geo": "medium",
-    "page": "p3-49"
+    "lat": 21.299165,
+    "lng": -157.816611,
+    "geo": "book",
+    "page": "p3-49",
+    "radius": 90
    },
    {
     "id": "XI-20",
@@ -11727,10 +11740,11 @@
       "caption": "Do these two crossed beams look like chopsticks?!?"
      }
     ],
-    "lat": 21.300572,
-    "lng": -157.816145,
-    "geo": "medium",
-    "page": "p3-49"
+    "lat": 21.300499,
+    "lng": -157.81616,
+    "geo": "book",
+    "page": "p3-49",
+    "radius": 60
    },
    {
     "id": "XI-21",
@@ -11759,10 +11773,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.300899,
-    "lng": -157.815648,
-    "geo": "medium",
-    "page": "p3-50"
+    "lat": 21.300686,
+    "lng": -157.815611,
+    "geo": "book",
+    "page": "p3-50",
+    "radius": 56
    },
    {
     "id": "XI-22",
@@ -11833,10 +11848,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.302125,
-    "lng": -157.815137,
-    "geo": "estimated",
-    "page": "p3-50"
+    "lat": 21.30242,
+    "lng": -157.816969,
+    "geo": "book",
+    "page": "p3-50",
+    "radius": 90
    },
    {
     "id": "XI-23",
@@ -11881,10 +11897,11 @@
       "h": 230
      }
     ],
-    "lat": 21.303351,
-    "lng": -157.814625,
-    "geo": "medium",
-    "page": "p3-51"
+    "lat": 21.303276,
+    "lng": -157.814158,
+    "geo": "book",
+    "page": "p3-51",
+    "radius": 73
    },
    {
     "id": "XI-24",
@@ -11901,10 +11918,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.302141,
-    "lng": -157.814892,
-    "geo": "estimated",
-    "page": "p3-52"
+    "lat": 21.301935,
+    "lng": -157.815052,
+    "geo": "book",
+    "page": "p3-52",
+    "radius": 76
    },
    {
     "id": "XI-25",
@@ -11951,10 +11969,11 @@
       "caption": "This building is a tribute to the architectural talent of Edward Durell Stone."
      }
     ],
-    "lat": 21.300932,
-    "lng": -157.81516,
-    "geo": "medium",
-    "page": "p3-52"
+    "lat": 21.300772,
+    "lng": -157.815168,
+    "geo": "book",
+    "page": "p3-52",
+    "radius": 90
    },
    {
     "id": "XI-26",
@@ -11984,9 +12003,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.303528,
-    "lng": -157.813629,
-    "geo": "low",
+    "lat": 21.30007,
+    "lng": -157.814531,
+    "geo": "book",
     "page": "p3-53"
    },
    {
@@ -12036,10 +12055,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.302296,
-    "lng": -157.814202,
-    "geo": "estimated",
-    "page": "p3-53"
+    "lat": 21.299182,
+    "lng": -157.814244,
+    "geo": "book",
+    "page": "p3-53",
+    "radius": 59
    },
    {
     "id": "XI-28",
@@ -12052,10 +12072,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301064,
-    "lng": -157.814775,
-    "geo": "estimated",
-    "page": "p3-54"
+    "lat": 21.298772,
+    "lng": -157.814894,
+    "geo": "book",
+    "page": "p3-54",
+    "radius": 49
    },
    {
     "id": "XI-29",
@@ -12087,10 +12108,11 @@
       "caption": "Have a snack while you sit in the glorious Thai Pavilion presiding over the campus."
      }
     ],
-    "lat": 21.299831,
-    "lng": -157.815348,
-    "geo": "estimated",
-    "page": "p3-54"
+    "lat": 21.299085,
+    "lng": -157.815458,
+    "geo": "book",
+    "page": "p3-54",
+    "radius": 73
    },
    {
     "id": "XI-30",
@@ -12103,10 +12125,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298599,
-    "lng": -157.815921,
-    "geo": "medium",
-    "page": "p3-56"
+    "lat": 21.29837,
+    "lng": -157.815889,
+    "geo": "book",
+    "page": "p3-56",
+    "radius": 43
    },
    {
     "id": "XI-31",
@@ -12123,10 +12146,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298046,
-    "lng": -157.815973,
-    "geo": "estimated",
-    "page": "p3-56"
+    "lat": 21.29812,
+    "lng": -157.816325,
+    "geo": "book",
+    "page": "p3-56",
+    "radius": 73
    },
    {
     "id": "XI-32",
@@ -12159,10 +12183,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297493,
-    "lng": -157.816024,
-    "geo": "estimated",
-    "page": "p3-56"
+    "lat": 21.29779,
+    "lng": -157.815072,
+    "geo": "book",
+    "page": "p3-56",
+    "radius": 43
    },
    {
     "id": "XI-33",
@@ -12192,10 +12217,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29694,
-    "lng": -157.816075,
-    "geo": "medium",
-    "page": "p3-56"
+    "lat": 21.296576,
+    "lng": -157.815459,
+    "geo": "book",
+    "page": "p3-56",
+    "radius": 56
    },
    {
     "id": "XI-34",
@@ -12212,10 +12238,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297093,
-    "lng": -157.817472,
-    "geo": "medium",
-    "page": "p3-56"
+    "lat": 21.29706,
+    "lng": -157.817658,
+    "geo": "book",
+    "page": "p3-56",
+    "radius": 64
    },
    {
     "id": "XI-35",
@@ -12232,10 +12259,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.296605,
-    "lng": -157.818224,
-    "geo": "medium",
-    "page": "p3-57"
+    "lat": 21.296603,
+    "lng": -157.818082,
+    "geo": "book",
+    "page": "p3-57",
+    "radius": 47
    },
    {
     "id": "XI-36",
@@ -12248,9 +12276,9 @@
      }
     ],
     "photos": [],
-    "lat": 21.29689,
-    "lng": -157.818391,
-    "geo": "estimated",
+    "lat": 21.297085,
+    "lng": -157.818142,
+    "geo": "book",
     "page": "p3-57"
    },
    {
@@ -12264,10 +12292,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297174,
-    "lng": -157.818558,
-    "geo": "medium",
-    "page": "p3-57"
+    "lat": 21.29741,
+    "lng": -157.818653,
+    "geo": "book",
+    "page": "p3-57",
+    "radius": 73
    },
    {
     "id": "XI-38",
@@ -12288,10 +12317,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297725,
-    "lng": -157.81784,
-    "geo": "medium",
-    "page": "p3-57"
+    "lat": 21.297757,
+    "lng": -157.817538,
+    "geo": "book",
+    "page": "p3-57",
+    "radius": 90
    },
    {
     "id": "XI-39",
@@ -12323,10 +12353,11 @@
       "caption": "A “Chance Meeting” is often festooned with lei."
      }
     ],
-    "lat": 21.298389,
-    "lng": -157.818988,
-    "geo": "medium",
-    "page": "p3-57"
+    "lat": 21.298521,
+    "lng": -157.818922,
+    "geo": "book",
+    "page": "p3-57",
+    "radius": 55
    },
    {
     "id": "XI-40",
@@ -12347,10 +12378,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298909,
-    "lng": -157.818661,
-    "geo": "medium",
-    "page": "p3-58"
+    "lat": 21.298924,
+    "lng": -157.818462,
+    "geo": "book",
+    "page": "p3-58",
+    "radius": 61
    },
    {
     "id": "XI-41",
@@ -12367,10 +12399,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299193,
-    "lng": -157.819174,
-    "geo": "medium",
-    "page": "p3-58"
+    "lat": 21.298985,
+    "lng": -157.819392,
+    "geo": "book",
+    "page": "p3-58",
+    "radius": 58
    },
    {
     "id": "XI-42",
@@ -12387,10 +12420,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29882,
-    "lng": -157.819621,
-    "geo": "medium",
-    "page": "p3-58"
+    "lat": 21.298621,
+    "lng": -157.819466,
+    "geo": "book",
+    "page": "p3-58",
+    "radius": 67
    },
    {
     "id": "XI-43",
@@ -12451,10 +12485,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297207,
-    "lng": -157.820009,
-    "geo": "medium",
-    "page": "p3-58"
+    "lat": 21.297327,
+    "lng": -157.819784,
+    "geo": "book",
+    "page": "p3-58",
+    "radius": 65
    },
    {
     "id": "XI-45",
@@ -12530,10 +12565,11 @@
       "caption": "1929 photo. The original engineering buildings – Young Engineering Quadrangle – is the H-shaped complex in the center. That facility was replaced by the Campus Center and the Rec Center, with one of the 5 engineering buildings attached to the gym. The University Farms have been replaced by Webster Hall, Art Building, and Kuykendall Hall. (University Archives)"
      }
     ],
-    "lat": 21.297507,
-    "lng": -157.819709,
-    "geo": "estimated",
-    "page": "p3-59"
+    "lat": 21.296673,
+    "lng": -157.820511,
+    "geo": "book",
+    "page": "p3-59",
+    "radius": 44
    }
   ]
  },

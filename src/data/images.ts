@@ -15,6 +15,7 @@ export const images: Record<string, number> = {
   'map-X-3.jpg': require('../../assets/book/map-X-3.jpg'),
   'map-X-4.jpg': require('../../assets/book/map-X-4.jpg'),
   'map-X.jpg': require('../../assets/book/map-X.jpg'),
+  'map-XI-2.jpg': require('../../assets/book/map-XI-2.jpg'),
   'map-XI.jpg': require('../../assets/book/map-XI.jpg'),
   'map-XII-2.jpg': require('../../assets/book/map-XII-2.jpg'),
   'map-XII.jpg': require('../../assets/book/map-XII.jpg'),

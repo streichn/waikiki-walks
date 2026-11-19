@@ -114,3 +114,9 @@
 - Pictures were cut from the page with the book's text, captions and page numbers printed over them (Nick: page 215 "cropped wrong"). All pictures re-rendered from the PDF with the page text removed (scripts/extract/rerender_images.py).
 - Reviewed by eye: 146 boxes were not photos once the text was gone (map keys, page tints, slivers, blank page backgrounds) and are no longer shown; 55 trimmed to the photo inside. 190 stop photos remain; OCR finds no page text left in any of them (only real signs).
 - Walk I stop 36: "kahuna nui" corrected to "kuhina nui" (Veneeta confirmed by email).
+
+## 2026-11-19 · Walk XI map page 2 from Veneeta's photo
+- Walk XI foldout page 2 (stops 7 to 45), missing from the PDF, from her photo IMG_4706: same cleanup as Walk XII page 2 (scripts/georef/photo_clean.py, now one config per page). Georeferenced from three route corners, 6.8 m RMS. Spot checks: Hamilton Library, Hawaiʻi Hall, Campus Center and Bachman Hall land on their buildings.
+- Walk XI now has map pins for 44 of 45 stops; 43 (Sinclair) is not printed on her map, so it has none.
+- Preview street tiles extended over upper campus at the closest zoom.
+- Her photo of Walk XI page 1 (IMG_4705) has a short red handwritten note in the margin near stop 6; not legible in the photo, asked her.

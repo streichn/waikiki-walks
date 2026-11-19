@@ -17,3 +17,8 @@
 - Photo of Walk XII map page 1. Status: used only to place stop 15, which the PDF page cuts off.
 - Photo of book page 17 (circled). Status: end of Walk I stop 38 added from it. Her hand correction on page 16 ("kuhina nui") applied; asked her to confirm.
 - Walk XI page 2 photo: not received yet (Walk XI stops 7 to 45 still have no map pins).
+
+## 2026-11-19 · Photos IMG_4705, IMG_4706 (via Nick)
+- Walk XI map page 2. Status: used as the map; stops 7 to 45 pinned (43 is not printed on it).
+- Walk XI map page 1 (already in the PDF). Red handwritten margin note near stop 6, not legible in the photo. Status: asked her.
+- "Kahuna nui should be kuhina nui" (her email, Walk I Keoniana Street, stop 36 in the app). Status: fixed.

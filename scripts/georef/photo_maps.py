@@ -27,6 +27,21 @@ PAGES = {
                    '21': [606, 340], '22': [720, 575], '23': [592, 603], '24': [505, 740], '25': [637, 700],
                    '26': [410, 715], '27': [300, 700], '28': [237, 792]},
     },
+    'XI:map-XI-2.jpg': {
+        'walk': 'XI', 'file': 'map-XI-2.jpg', 'source': 'Veneeta photo IMG_4706, 19 Nov 2026 (foldout page 2 of Walk XI)',
+        'controls': [
+            [698, 457, 'Dole Street', 'East-West Road'],           # route turns from East-West Road onto Dole Street (by 33)
+            [842, 1049, 'University Avenue', 'Metcalf Street'],    # route corner by 10 and 9
+            [1005, 918, 'Dole Street', 'University Avenue'],       # route corner by 7
+        ],
+        'labels': {'7': [965, 905], '8': [972, 990], '9': [814, 1105], '10': [806, 992], '11': [758, 1052], '12': [642, 938],
+                   '13': [598, 990], '14': [622, 883], '15': [572, 932], '16': [568, 835], '17': [512, 885], '18': [607, 795],
+                   '19': [563, 742], '20': [435, 795], '21': [388, 768], '22': [338, 975], '23': [105, 830], '24': [260, 808],
+                   '25': [355, 742], '26': [370, 652], '27': [420, 575], '28': [490, 595], '29': [500, 655], '30': [580, 640],
+                   '31': [625, 655], '32': [575, 545], '33': [690, 495], '34': [785, 682], '35': [845, 683], '36': [812, 718],
+                   '37': [818, 775], '38': [725, 718], '39': [750, 865], '40': [692, 858], '41': [743, 928], '42': [775, 910],
+                   '44': [892, 850], '45': [985, 860]},
+    },
 }
 
 def to_m(lat, lng): return np.array([(lng - LNG0) * KX, (lat - LAT0) * KY])
@@ -36,7 +51,7 @@ def main():
     for key, p in PAGES.items():
         P, M = [], []
         for x, y, a, b in p['controls']:
-            c = intersect.crossing(a, b, near=(21.293, -157.815))
+            c = intersect.crossing(a, b, near=(21.296, -157.818))
             P.append([x, y]); M.append(to_m(c[0], c[1]))
         P, M = np.array(P, float), np.array(M, float)
         # similarity px -> meters, with y flipped (image y runs down, north runs up)
