@@ -9,7 +9,7 @@ export function tap() {
   if (useSettings.getState().haptics) Haptics.selectionAsync().catch(() => undefined);
 }
 
-export function T({ children, style, variant = 'body', numberOfLines, selectable }: { children: ReactNode; style?: TextStyle | TextStyle[]; variant?: 'display' | 'title' | 'h2' | 'body' | 'small' | 'label' | 'italic'; numberOfLines?: number; selectable?: boolean }) {
+export function T({ children, style, variant = 'body', numberOfLines, selectable, header }: { children: ReactNode; style?: TextStyle | TextStyle[]; variant?: 'display' | 'title' | 'h2' | 'body' | 'small' | 'label' | 'italic'; numberOfLines?: number; selectable?: boolean; header?: boolean }) {
   const t = useTheme();
   const scale = useSettings((s) => s.textScale);
   const base: Record<string, TextStyle> = {
@@ -22,7 +22,7 @@ export function T({ children, style, variant = 'body', numberOfLines, selectable
     italic: { fontFamily: t.font.displayItalic, fontSize: 17, lineHeight: 24, color: t.text },
   };
   return (
-    <Text style={[base[variant], style as TextStyle]} numberOfLines={numberOfLines} selectable={selectable}>
+    <Text style={[base[variant], style as TextStyle]} numberOfLines={numberOfLines} selectable={selectable} accessibilityRole={header ? 'header' : undefined}>
       {children}
     </Text>
   );
