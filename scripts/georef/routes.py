@@ -1,6 +1,8 @@
 """Trace Veneeta's red dotted walk path between consecutive stops on each book map, and convert it to
 latitude/longitude with the map's fit. Writes src/data/routes.json: {walk: {"<from n>": [[lat, lng], ...]}}.
-Used by the demo walk (and can draw the route on the street map). Gaps fall back to a straight line."""
+Used to draw her path on the street map and by the preview's demo walk. Gaps fall back to a straight line.
+Author pin overrides (pin_overrides.json, pixel entries) are traced from the spot she chose, like build.py.
+The extra map pages (Walk VIII page 2, Walk X pages 2 and 3, Walk XI) are traced by routes_extra.py."""
 import json, math, os
 from collections import deque
 import numpy as np
@@ -9,6 +11,7 @@ from scipy import ndimage
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 G = json.load(open(os.path.join(HERE, 'georef.json')))
 STOPS = json.load(open(os.path.join(HERE, 'map_stops.json')))
+OV = {k: v for k, v in json.load(open(os.path.join(HERE, 'pin_overrides.json'))).items() if not k.startswith('_')}
 LAT0, LNG0 = 21.28, -157.83
 KX, KY = 111320 * math.cos(math.radians(LAT0)), 110574
 
@@ -60,6 +63,8 @@ for wid, labels in STOPS.items():
     inv = tps_fit(px / 100.0, m, lam)
     snap = {}
     for n, v in labels.items():
+        o = OV.get(wid, {}).get(n)
+        v = o if isinstance(o, list) else v  # the author's chosen spot
         d = np.linalg.norm(pool - np.array(v[:2]), axis=1); i = int(np.argmin(d))
         if d[i] < 40: snap[int(n)] = tuple(int(t) for t in pool[i])
     segs = {}; ok = 0
@@ -74,4 +79,9 @@ for wid, labels in STOPS.items():
         ok += 1
     out[wid] = segs
     print(wid, f'{ok} of {len(labels) - 1} legs traced')
+import sys; sys.path.insert(0, HERE)
+import routes_extra  # noqa: E402
+for wid, segs in routes_extra.trace_all(path, simplify).items():
+    for n, leg in segs.items():
+        out.setdefault(wid, {}).setdefault(n, leg)  # a first map's tracing wins where both print the leg
 json.dump(out, open(os.path.join(ROOT, 'src/data/routes.json'), 'w'))

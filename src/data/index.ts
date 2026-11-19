@@ -1,6 +1,7 @@
 import walksJson from './walks.json';
 import factsJson from './facts.json';
 import glossaryJson from './glossary.json';
+import routesJson from './routes.json';
 import { images } from './images';
 import type { FunFact, GlossaryEntry, Walk } from './types';
 
@@ -14,6 +15,32 @@ const ROMAN: Record<string, number> = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6,
 /** A stop gets a pin, and an arrival alert, only if Veneeta's book map prints its number. */
 export function onMap(s: { geo: string }): boolean {
   return s.geo === 'book';
+}
+
+type LatLng = { latitude: number; longitude: number };
+// Veneeta's red walk path traced from her book maps (scripts/georef/routes.py): walk -> "<from n>" -> [[lat, lng], ...].
+const routes = routesJson as Record<string, Record<string, number[][]>>;
+
+/** Her traced path from stop a to stop b, or null where her map doesn't join them (the map then draws a straight line). */
+export function routeLeg(walkId: string, a: { n: number }, b: { n: number }): LatLng[] | null {
+  if (b.n !== a.n + 1) return null;
+  const leg = routes[walkId]?.[String(a.n)];
+  return leg && leg.length > 1 ? leg.map(([latitude, longitude]) => ({ latitude, longitude })) : null;
+}
+
+/** The line drawn on the street map: her red path between the stops her map prints, straight where it isn't traced. */
+export function walkPath(walk: Walk): LatLng[] {
+  const stops = walk.stops.filter(onMap);
+  const out: LatLng[] = [];
+  stops.forEach((s, i) => {
+    const next = stops[i + 1];
+    if (!next) {
+      out.push({ latitude: s.lat, longitude: s.lng });
+      return;
+    }
+    out.push(...(routeLeg(walk.id, s, next) ?? [{ latitude: s.lat, longitude: s.lng }, { latitude: next.lat, longitude: next.lng }]));
+  });
+  return out;
 }
 
 export function walkNo(id: string): number | string {

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { onMap } from '../data';
+import { onMap, routeLeg, walkPath } from '../data';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
@@ -21,7 +21,7 @@ type Props = {
   onUserPan?: () => void;
 };
 
-/** Numbered pins in walking order with the route drawn between them. */
+/** Numbered pins in walking order with her book-map route drawn between them. */
 export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
@@ -31,6 +31,14 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     const c = walk.stops.filter(onMap).map((s) => ({ latitude: s.lat, longitude: s.lng }));
     return c.length ? c : [{ latitude: 21.29, longitude: -157.82 }];
   }, [walk]);
+  // Her red path from the book maps, so the line follows the streets she walks instead of cutting across blocks.
+  const path = useMemo(() => (mapCoords.length > 1 ? walkPath(walk) : mapCoords), [walk, mapCoords]);
+  const nextLeg = useMemo(() => {
+    const a = walk.stops[current];
+    const b = walk.stops[current + 1];
+    if (!a || !b || !onMap(a) || !onMap(b)) return null;
+    return routeLeg(walk.id, a, b) ?? [coords[current], coords[current + 1]];
+  }, [walk, current, coords]);
   const initial: Region = useMemo(() => {
     const lats = mapCoords.map((c) => c.latitude);
     const lngs = mapCoords.map((c) => c.longitude);
@@ -67,8 +75,8 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       mapPadding={{ top: 0, left: 0, right: 0, bottom: bottomInset }}
       onMapReady={() => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: false })}
     >
-      <Polyline coordinates={mapCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
-      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={[coords[current], coords[current + 1]]} strokeColor={t.accent} strokeWidth={6} /> : null}
+      <Polyline coordinates={path} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
+      {nextLeg ? <Polyline coordinates={nextLeg} strokeColor={t.accent} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
         if (!onMap(s)) return null;
         const isCur = i === current;
