@@ -459,11 +459,11 @@
       "caption": "Notice the incised WPA and 1937 on the bridge, a time when the federally-funded Works Progress Administration provided work and services."
      }
     ],
-    "lat": 21.280234,
-    "lng": -157.818553,
+    "lat": 21.283548,
+    "lng": -157.818723,
     "geo": "book",
     "page": "p1-30",
-    "radius": 90
+    "radius": 60
    },
    {
     "id": "I-12",
@@ -646,11 +646,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.275967,
-    "lng": -157.817749,
+    "lat": 21.275183,
+    "lng": -157.818255,
     "geo": "book",
     "page": "p1-33",
-    "radius": 90
+    "radius": 60
    },
    {
     "id": "I-17",
@@ -768,11 +768,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.27865,
-    "lng": -157.821485,
+    "lat": 21.278218,
+    "lng": -157.821607,
     "geo": "book",
     "page": "p1-34",
-    "radius": 76
+    "radius": 60
    },
    {
     "id": "I-22",
@@ -1097,11 +1097,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.286319,
-    "lng": -157.830042,
+    "lat": 21.286137,
+    "lng": -157.830658,
     "geo": "book",
     "page": "p1-39",
-    "radius": 86
+    "radius": 60
    },
    {
     "id": "I-36",
@@ -1175,55 +1175,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "Niu is the Hawaiian word for coconut (recall Launiu Street), the most common Kahanamoku St."
-     },
-     {
-      "kind": "p",
-      "text": "Hobron Ln."
-     },
-     {
-      "kind": "p",
-      "text": "Pi‘inao Stream"
-     },
-     {
-      "kind": "info",
-      "text": "ʻĀp"
-     },
-     {
-      "kind": "p",
-      "text": "uak ēh Kawehewehe"
-     },
-     {
-      "kind": "info",
-      "text": "Ala Wai Canal Ala Wai Canal"
-     },
-     {
-      "kind": "tagline",
-      "text": "This walk covers part of a much larger district once known as Kālia, a vast area of ponds and fields on Kālia Bay where Hawaiians called home. Kālia of old extended as far as (present-day) Ala Moana Center."
-     },
-     {
-      "kind": "p",
-      "text": "Kālia was a subdivision, or ‘ili, of the ahupua‘a, ‘large land division’ of Waikīkī. The name Kālia is translated as ‘waited for.’ This name derives from a Hawaiian mo‘olelo (legend) based on the long wait undertaken by a young man whose beautiful wife had been wooed away by a rival Maui chieftain. We still don’t know whether his vigil was ever rewarded!"
-     },
-     {
-      "kind": "p",
-      "text": "Kalia, without the kahakō, is a native tree. Note that neighboring ahupua’a, Honolulu, was originally known as Kou, also a tree; however, it is indigenous, not native."
-     },
-     {
-      "kind": "p",
-      "text": "In 1911, an enterprising American young man, Percy Martyn Pond (1870-1945), realized the potential of Kālia, buying up land in Kālia as well as land at the higher Diamond Head end of Waikīkī. He used that elevated land to fill in low-lying areas of Kālia where he built vacation cottages. He was also one of the first developers in Mānoa, starting up College Hill Tract (named after Punahou School, not the University of Hawai‘i. (Mānoa Walk X for more information.)"
-     },
-     {
-      "kind": "p",
-      "text": "Kālia Road is mentioned in Earl Derr Biggers’ 1925 mystery novel, The House Without a Key, which took place at the site of the Halekūlani Hotel."
-     },
-     {
-      "kind": "p",
-      "text": "Up until the mid-1920s, Kālia was a very fertile area irrigated by Pi‘inaio Stream, one of three streams that flowed through Waikīkī before the Ala Wai Canal was built. Today, Pi‘inaio Stream is referred to as Makiki Stream."
-     },
-     {
-      "kind": "p",
-      "text": "Two of the largest lo‘i or kalo loko (taro ponds) in Kālia were Loko Pāweo (‘to turn away,’ as in, to avoid seeing someone) and Loko Ka‘ihikapu (interestingly translated as ‘the tabu sacredness’), each measuring more than 12 acres. These ponds were between two bodies of water: Pi‘inaio Stream on the ‘Ewa side and Kawehewehe near the Halekūlani Hotel on the Diamond Head side. It is believed that these complex agricultural and irrigation systems were first established in Waikīkī by the high chief"
+      "text": "Niu is the Hawaiian word for coconut (recall Launiu Street), the most common"
      }
     ],
     "photos": [
@@ -1271,6 +1223,34 @@
    "steps": "7,000 to 10,000"
   },
   "intro": [
+   {
+    "kind": "tagline",
+    "text": "This walk covers part of a much larger district once known as Kālia, a vast area of ponds and fields on Kālia Bay where Hawaiians called home. Kālia of old extended as far as (present-day) Ala Moana Center."
+   },
+   {
+    "kind": "p",
+    "text": "Kālia was a subdivision, or ‘ili, of the ahupua‘a, ‘large land division’ of Waikīkī. The name Kālia is translated as ‘waited for.’ This name derives from a Hawaiian mo‘olelo (legend) based on the long wait undertaken by a young man whose beautiful wife had been wooed away by a rival Maui chieftain. We still don’t know whether his vigil was ever rewarded!"
+   },
+   {
+    "kind": "p",
+    "text": "Kalia, without the kahakō, is a native tree. Note that neighboring ahupua’a, Honolulu, was originally known as Kou, also a tree; however, it is indigenous, not native."
+   },
+   {
+    "kind": "p",
+    "text": "In 1911, an enterprising American young man, Percy Martyn Pond (1870-1945), realized the potential of Kālia, buying up land in Kālia as well as land at the higher Diamond Head end of Waikīkī. He used that elevated land to fill in low-lying areas of Kālia where he built vacation cottages. He was also one of the first developers in Mānoa, starting up College Hill Tract (named after Punahou School, not the University of Hawai‘i. (Mānoa Walk X for more information.)"
+   },
+   {
+    "kind": "p",
+    "text": "Kālia Road is mentioned in Earl Derr Biggers’ 1925 mystery novel, The House Without a Key, which took place at the site of the Halekūlani Hotel."
+   },
+   {
+    "kind": "p",
+    "text": "Up until the mid-1920s, Kālia was a very fertile area irrigated by Pi‘inaio Stream, one of three streams that flowed through Waikīkī before the Ala Wai Canal was built. Today, Pi‘inaio Stream is referred to as Makiki Stream."
+   },
+   {
+    "kind": "p",
+    "text": "Two of the largest lo‘i or kalo loko (taro ponds) in Kālia were Loko Pāweo (‘to turn away,’ as in, to avoid seeing someone) and Loko Ka‘ihikapu (interestingly translated as ‘the tabu sacredness’), each measuring more than 12 acres. These ponds were between two bodies of water: Pi‘inaio Stream on the ‘Ewa side and Kawehewehe near the Halekūlani Hotel on the Diamond Head side. It is believed that these complex agricultural and irrigation systems were first established in Waikīkī by the high chief"
+   },
    {
     "kind": "p",
     "text": "Kalamakuaakaipuholua (a.k.a. Kalamakua) in the 1400s."

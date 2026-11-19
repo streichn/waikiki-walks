@@ -91,13 +91,10 @@
    "route_offset_m": 31
   },
   "11": {
-   "lat": 21.280234,
-   "lng": -157.818553,
-   "px": [
-    425,
-    325
-   ],
-   "route_offset_m": 201
+   "lat": 21.283548,
+   "lng": -157.818723,
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: pin 11 on Date Street between 10 and 12 (midpoint of neighbors)"
   },
   "12": {
    "lat": 21.282653,
@@ -136,13 +133,10 @@
    "route_offset_m": 7
   },
   "16": {
-   "lat": 21.275967,
-   "lng": -157.817749,
-   "px": [
-    545,
-    185
-   ],
-   "route_offset_m": 94
+   "lat": 21.275183,
+   "lng": -157.818255,
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: pin 16 on the same side as the other street pins, between 15 and 17 (midpoint of neighbors)"
   },
   "17": {
    "lat": 21.275382,
@@ -181,13 +175,10 @@
    "route_offset_m": 13
   },
   "21": {
-   "lat": 21.27865,
-   "lng": -157.821485,
-   "px": [
-    558,
-    365
-   ],
-   "route_offset_m": 46
+   "lat": 21.278218,
+   "lng": -157.8216065,
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: pin 21 alongside the canal, between 20 and 22 (midpoint of neighbors)"
   },
   "22": {
    "lat": 21.279278,
@@ -307,13 +298,10 @@
    "route_offset_m": 10
   },
   "35": {
-   "lat": 21.286319,
-   "lng": -157.830042,
-   "px": [
-    539,
-    855
-   ],
-   "route_offset_m": 56
+   "lat": 21.286137,
+   "lng": -157.8306575,
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: pin 35 on the canal side, between 34 and 36 (midpoint of neighbors)"
   },
   "36": {
    "lat": 21.28637,

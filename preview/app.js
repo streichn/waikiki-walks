@@ -328,8 +328,11 @@
     return hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
   }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
-  function centerBookOnMe(smooth) {
-    const pane = document.getElementById('bookpane'), dot = document.getElementById('bme'); if (!pane || !dot || dot.style.display === 'none') return;
+  function centerBookOnMe(smooth) { centerBookOn(document.getElementById('bme'), smooth); }
+  // Same, for the ring on the current stop's printed number (after Next, Previous or a tap on a stop).
+  function centerBookOnStop(smooth) { centerBookOn(document.querySelector('.bhit.on'), smooth); }
+  function centerBookOn(dot, smooth) {
+    const pane = document.getElementById('bookpane'); if (!pane || !dot || dot.style.display === 'none') return;
     const wrap = dot.parentElement, visibleH = pane.clientHeight - (S.view === 'go' ? sheetPx() : 0);
     const x = wrap.offsetLeft + dot.offsetLeft, y = wrap.offsetTop + dot.offsetTop; // bookwrap is positioned inside the scrolling pane
     S.bookAuto = Date.now();
@@ -416,7 +419,7 @@
         seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? [pts[cur], pts[cur + 1]] : []);
       },
       fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
-      focus(i) { if (onMap(w.stops[i])) map.setView(pts[i], 17, { animate: true }); },
+      focus(i) { if (!onMap(w.stops[i])) return; const c = map.project(pts[i], 17).add([0, (opts.bottom || 0) / 2]); map.setView(map.unproject(c, 17), 17, { animate: true }); }, // centered in the part above the sheet
       me(p, heading) {
         if (!p) return;
         if (!map.hasLayer(me)) me.addTo(map);
@@ -475,10 +478,11 @@
   function mountGoMap() {
     const w = walk(S.walkId), prog = S.progress[w.id];
     const el = document.getElementById('gmap'); if (!el) { gmap = null; return; }
-    gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => goTo(i) });
+    gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => showStop(i) });
     gmap.overlay = addOverlay(gmap.map, w);
     gmap.paint(prog.current, prog.visited); gmap.me(S.me, S.heading);
-    setTimeout(() => { gmap.map.invalidateSize(); if (S.me) gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
+    const toStop = S.stopFocus;
+    setTimeout(() => { gmap.map.invalidateSize(); if (S.me && !toStop && S.follow !== 'off') gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
   }
   // Bottom sheet with three resting heights, like Apple Maps: peek, half, full.
   function detents() {
@@ -537,6 +541,8 @@
     render();
     if (S.settings.autoNarrate) speakStop(w.stops[i]);
   }
+  // Next, Previous, or a tap on a pin: stop following the walker and show that stop on the map.
+  function showStop(i) { S.follow = 'off'; S.bookFollow = false; S.stopFocus = true; goTo(i); }
   function goTo(i) {
     const w = walk(S.walkId), prog = S.progress[w.id];
     if (i < 0) return;
@@ -792,8 +798,10 @@
     if (bp && keep && keep.view === S.view && keep.walk === S.walkId) { S.bookAuto = Date.now(); bp.scrollTop = keep.top; bp.scrollLeft = keep.left; }
     if (bp) {
       bp.addEventListener('scroll', () => { if (Date.now() - (S.bookAuto || 0) > 900) S.bookFollow = false; }, { passive: true });
-      if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
+      if (S.view === 'go' && S.stopFocus) setTimeout(() => centerBookOnStop(false), 60);
+      else if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
     }
+    S.stopFocus = false;
     if (S.view === 'stop') bindSwipe(document.getElementById('stopread'));
     if (!S.view && S.tab === 'explore') mountExplore();
     if (!S.view && S.tab === 'home') { showFact(); clearInterval(factTimer); factTimer = setInterval(() => { factIdx++; showFact(); }, 9000); }
@@ -818,7 +826,7 @@
     if ((el = q('[data-read]'))) { const i = Number(el.dataset.read); S.stopIdx = i; S.focus = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-step]'))) return stepStop(Number(el.dataset.step));
     if ((el = q('[data-detent]'))) { S.detent = el.dataset.detent; setSheet(detents()[S.detent], true); markDetent(); if (gmap) setTimeout(() => gmap.map.invalidateSize(), 300); return; }
-    if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return goTo(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
+    if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return showStop(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-mapstyle]'))) { S.mapStyle = el.dataset.mapstyle; wmap = null; gmap = null; render(); return; }
     if ((el = q('[data-bookpage]'))) { const w = walk(S.walkId); S.bookPage = S.bookPage || {}; S.bookPage[w.id] = Number(el.dataset.bookpage); return render(); }
     if ((el = q('[data-zoom]'))) { S.bookZoom = Math.max(1, Math.min(4, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
@@ -831,7 +839,7 @@
       const a = el.dataset.act, w = S.walkId && walk(S.walkId);
       if (a === 'back') { S.view = null; return render(); }
       if (a === 'stopback') { stopSpeak(); S.view = 'walk'; S.mode = 'read'; render(); const r = document.querySelector(`[data-read="${S.stopIdx}"]`); r && r.scrollIntoView({ block: 'center' }); return; }
-      if (a === 'skip') return goTo(S.progress[w.id].current + 1);
+      if (a === 'skip') return showStop(S.progress[w.id].current + 1);
       if (a === 'fit') { if (S.mode === 'map' && wmap) wmap.fit(); else document.querySelector('[data-mode="map"]').click(); return; }
       if (a === 'resetwalk') {
         const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">Start this walk over?</h2><p class="small" style="margin:0">This clears the stops you've visited on this walk. Your saved stops stay saved.</p>
@@ -866,8 +874,8 @@
       if (a === 'pinchk') { S.showPins = !S.showPins; const sc = document.getElementById('bookpane').scrollTop; render(); const bp = document.getElementById('bookpane'); if (bp) { S.bookAuto = Date.now(); bp.scrollTop = sc; } return; }
       if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
       if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
-      if (a === 'next') return goTo(S.progress[w.id].current + 1);
-      if (a === 'prev') return goTo(S.progress[w.id].current - 1);
+      if (a === 'next') return showStop(S.progress[w.id].current + 1);
+      if (a === 'prev') return showStop(S.progress[w.id].current - 1);
       if (a === 'play') { const s = w.stops[S.progress[w.id].current]; return speaking.stopId ? stopSpeak() : speakStop(s); }
       if (a === 'directions') return toast('In the app this opens Apple Maps or Google Maps walking directions to the next stop.');
     }

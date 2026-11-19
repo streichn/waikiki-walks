@@ -44,6 +44,9 @@ FACTS = {
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to
+# A stop whose tail is really the next walk's opening: cut at 'at' and move the rest to that walk's intro.
+TAIL_CUTS = {'I-38': {'at': 'This walk covers part of a much larger district once known as K', 'carry_to': 'II', 'keep': 1, 'strip': ' Kahanamoku St.',
+                      '_why': 'Veneeta 19 Nov 2026: Kalia text at the end of Walk I belongs to Walk II (book p40)'}}
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
@@ -377,6 +380,17 @@ for k, w in enumerate(SRC['walks']):
             photos.append({'file': im['file'], 'w': im['w'], 'h': im['h']})
             images_used.add(im['file'])
         blocks = clean_blocks(s.get('blocks'))
+        tc = TAIL_CUTS.get(f"{wid}-{s['n']:02d}")
+        if tc:
+            cut = next((j for j, b in enumerate(blocks) if b.get('text', '').startswith(tc['at'])), None)
+            if cut is not None:
+                CARRY.setdefault(tc['carry_to'], []).extend(b for b in blocks[cut:] if b.get('kind') != 'info')
+                blocks = blocks[:cut]
+            # Street labels from the Walk II map page (p1-39) that follow the stop's last line.
+            if tc.get('keep'):
+                blocks = blocks[:tc['keep']]
+            if tc.get('strip') and blocks and blocks[-1]['text'].endswith(tc['strip']):
+                blocks[-1] = {**blocks[-1], 'text': blocks[-1]['text'][:-len(tc['strip'])]}
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
         blocks = pull_captions(blocks)
         blocks = join_page_breaks(drop_map_text(blocks))

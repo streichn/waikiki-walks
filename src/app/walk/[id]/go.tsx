@@ -173,6 +173,8 @@ export default function ActiveWalk() {
     goTo(walk.id, i);
     LiveActivity.update(walk, i);
     advanceBackground(walk, i).catch(() => undefined);
+    // Show the chosen stop; following the walker resumes when they tap the locate button.
+    setFollow('off');
     mapRef.current?.focusStop(i);
     textRef.current?.scrollTo({ y: 0, animated: false });
   };

@@ -134,6 +134,19 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
     if (follow) centerOnMe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dot?.x, dot?.y, follow]);
+  // When the stop changes (Next, Previous, a tap), show its printed number instead of the walker's dot.
+  const firstStop = useRef(true);
+  useEffect(() => {
+    if (firstStop.current) { firstStop.current = false; return; }
+    if (curN === undefined) return;
+    const L = bookLabel(walk.id, curN, pageFor(walk.id, curN));
+    if (!L) return;
+    setFollow(false);
+    const visible = screenH - topInset - bottomInset;
+    const t = setTimeout(() => scroll.current?.scrollTo({ y: Math.max(0, L.y * height - visible / 2), animated: true }), 50);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [walk.id, curN]);
   return (
     <View style={{ flex: 1 }}>
     <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>

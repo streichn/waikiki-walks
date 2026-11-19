@@ -15,7 +15,27 @@
    339,
    494,
    "same"
-  ]
+  ],
+  "11": {
+   "lat": 21.283548,
+   "lng": -157.818723,
+   "why": "Veneeta 19 Nov 2026: pin 11 on Date Street between 10 and 12 (midpoint of neighbors)"
+  },
+  "16": {
+   "lat": 21.275183,
+   "lng": -157.818255,
+   "why": "Veneeta 19 Nov 2026: pin 16 on the same side as the other street pins, between 15 and 17 (midpoint of neighbors)"
+  },
+  "21": {
+   "lat": 21.278218,
+   "lng": -157.8216065,
+   "why": "Veneeta 19 Nov 2026: pin 21 alongside the canal, between 20 and 22 (midpoint of neighbors)"
+  },
+  "35": {
+   "lat": 21.286137,
+   "lng": -157.8306575,
+   "why": "Veneeta 19 Nov 2026: pin 35 on the canal side, between 34 and 36 (midpoint of neighbors)"
+  }
  },
  "_note_latlng": "Entries with lat/lng are for stops printed on a map page too sketchy to align with real streets (Walk X page 4, upper Mānoa). Places from OpenStreetMap.",
  "X": {

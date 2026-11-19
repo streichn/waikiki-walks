@@ -97,3 +97,8 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-19 · Veneeta's Walk I notes, Next keeps the map on the stop
+- Walk I pins 11, 16, 21 and 35 moved into line with their neighbors: 11 on Date Street between 10 and 12, and 16, 21 and 35 along the canal with the other street pins (scripts/georef/pin_overrides.json).
+- The Kālia opening that had ended up at the bottom of Walk I stop 38 now opens Walk II, where the book prints it (page 40). Map labels after stop 38 removed.
+- Next, Previous, or a tap on a pin now centers that stop on the street map and her book map, in the app and the preview. Following the walker resumes with the locate button.
