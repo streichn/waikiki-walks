@@ -343,7 +343,7 @@
     const prog = S.progress[w.id] || { current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
     S.bookPage = S.bookPage || {}; S.bookPageStop = S.bookPageStop || {};
     if (S.bookPageStop[w.id] !== cur) { S.bookPage[w.id] = pageFor(w, Math.max(0, cur)); S.bookPageStop[w.id] = cur; }
-    const ps = bmPages(w), g = bm(w), k = ps.indexOf(g);
+    const ps = bmPages(w), g = bm(w), k = Math.min((S.bookPage || {})[w.id] || 0, Math.max(0, ps.length - 1));
     const tabs = ps.length > 1 ? `<div class="bookpages" role="tablist">${ps.map((p, j) => `<button role="tab" aria-selected="${j === k}" data-bookpage="${j}">Map ${j + 1}</button>`).join('')}</div>` : '';
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(g ? g.file : w.bookMap, '', 'Walk ' + wn(w.id) + ' map ' + (k + 1) + ' from the book')}${bookPins(w)}</div></div></div>${tabs}
       <button class="pinchk" data-act="pinchk" aria-pressed="${!!S.showPins}">${S.showPins ? 'Hide' : 'Check:'} app pins</button>
@@ -387,6 +387,21 @@
     el.addEventListener('touchend', (e) => { if (skip || x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null; if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8 && Date.now() - t0 < 700) stepStop(dx < 0 ? 1 : -1); }, { passive: true });
   }
 
+  // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
+  function legPath(w, i) {
+    const a = w.stops[i], b = w.stops[i + 1]; if (!a || !b) return [];
+    const A = [a.lat, a.lng], B = [b.lat, b.lng], leg = ((D.routes || {})[w.id] || {})[String(a.n)];
+    if (!leg || leg.length < 2) return [A, B];
+    const m = (p, q) => dist({ lat: p[0], lng: p[1] }, { lat: q[0], lng: q[1] });
+    let len = 0; for (let k = 1; k < leg.length; k++) len += m(leg[k - 1], leg[k]);
+    if (m(A, leg[0]) > 120 || m(B, leg[leg.length - 1]) > 120 || len > 3 * m(A, B) + 150) return [A, B];
+    return [A, ...leg, B];
+  }
+  function walkPath(w) {
+    const out = [];
+    w.stops.forEach((s, i) => { if (!onMap(s)) return; const n = w.stops[i + 1]; if (n && onMap(n)) out.push(...legPath(w, i).slice(0, -1)); else out.push([s.lat, s.lng]); });
+    return out;
+  }
   // Shared Leaflet map builder with offline tiles.
   function makeMap(el, w, opts) {
     const T = window.WWTILES || {};
@@ -397,7 +412,7 @@
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     // Only stops her book map prints get a pin, so this map shows what her map shows.
     const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-    L.polyline(mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    L.polyline(walkPath(w).length > 1 ? walkPath(w) : mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
     const markers = w.stops.map((s, i) => {
       if (!onMap(s)) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
@@ -416,7 +431,7 @@
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });
-        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? [pts[cur], pts[cur + 1]] : []);
+        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? legPath(w, cur) : []);
       },
       fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
       focus(i) { if (!onMap(w.stops[i])) return; const c = map.project(pts[i], 17).add([0, (opts.bottom || 0) / 2]); map.setView(map.unproject(c, 17), 17, { animate: true }); }, // centered in the part above the sheet
@@ -663,7 +678,7 @@
     const showWalk = (w) => {
       group.clearLayers();
       const pts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-      L.polyline(pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
+      L.polyline(walkPath(w).length > 1 ? walkPath(w) : pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
       w.stops.forEach((s, i) => onMap(s) && L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
       map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [30, 70], paddingBottomRight: [30, 200] });
       const h = document.getElementById('ehint'); h.innerHTML = `${ic('back', 'width="14" height="14"')} All walks`; h.setAttribute('role', 'button'); h.onclick = showAll;

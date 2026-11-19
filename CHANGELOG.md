@@ -102,3 +102,10 @@
 - Walk I pins 11, 16, 21 and 35 moved into line with their neighbors: 11 on Date Street between 10 and 12, and 16, 21 and 35 along the canal with the other street pins (scripts/georef/pin_overrides.json).
 - The Kālia opening that had ended up at the bottom of Walk I stop 38 now opens Walk II, where the book prints it (page 40). Map labels after stop 38 removed.
 - Next, Previous, or a tap on a pin now centers that stop on the street map and her book map, in the app and the preview. Following the walker resumes with the locate button.
+
+## 2026-11-19 · Walk XII map page 2 from Veneeta's photo, Walk I route and stop 38
+- Walk XII foldout page 2 (stops 16 to 28), which is missing from the PDF, now comes from Veneeta's photo: straightened (the map key fitted to a true rectangle and the page edge made vertical), lighting evened, colors matched to page 1, sharpened (scripts/georef/photo_clean.py). Georeferenced from three street crossings, 4.7 m RMS (scripts/georef/photo_maps.py). Stops 23 to 26 land within 6 to 19 m of where their buildings had been geocoded independently.
+- Walk XII stop 15, printed just past the edge of the PDF page, placed from her photo of page 1 registered to the PDF page. All 28 Walk XII stops now have pins from her maps.
+- Walk I stop 38 completed from her photo of book page 17, also missing from the PDF. Stop 36 "kahuna nui" corrected to "kuhina nui" from her hand correction (to confirm with her).
+- The dashed route follows her traced red line between stops where we have it, instead of straight lines. Walk I 12 to 13 now goes along Date Street and down Kapahulu Avenue, around the golf course (her request).
+- Book map page tabs moved out of the middle of the map, where they hid the current stop; the selected tab now shows.

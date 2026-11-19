@@ -2620,6 +2620,142 @@
     280
    ],
    "route_offset_m": 290
+  },
+  "16": {
+   "lat": 21.29069,
+   "lng": -157.810414,
+   "px": [
+    1154,
+    260
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 20
+  },
+  "17": {
+   "lat": 21.291615,
+   "lng": -157.810665,
+   "px": [
+    1068,
+    238
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 36
+  },
+  "18": {
+   "lat": 21.2953,
+   "lng": -157.812155,
+   "px": [
+    705,
+    188
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 43
+  },
+  "19": {
+   "lat": 21.296301,
+   "lng": -157.812711,
+   "px": [
+    600,
+    186
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 36
+  },
+  "20": {
+   "lat": 21.296112,
+   "lng": -157.815187,
+   "px": [
+    512,
+    384
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 15
+  },
+  "21": {
+   "lat": 21.295451,
+   "lng": -157.814228,
+   "px": [
+    606,
+    340
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 83
+  },
+  "22": {
+   "lat": 21.293165,
+   "lng": -157.815967,
+   "px": [
+    720,
+    575
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 110
+  },
+  "23": {
+   "lat": 21.294229,
+   "lng": -157.816952,
+   "px": [
+    592,
+    603
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 81
+  },
+  "24": {
+   "lat": 21.294345,
+   "lng": -157.818808,
+   "px": [
+    505,
+    740
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 65
+  },
+  "25": {
+   "lat": 21.293305,
+   "lng": -157.817681,
+   "px": [
+    637,
+    700
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 20
+  },
+  "26": {
+   "lat": 21.29537,
+   "lng": -157.819078,
+   "px": [
+    410,
+    715
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 96
+  },
+  "27": {
+   "lat": 21.296486,
+   "lng": -157.819531,
+   "px": [
+    300,
+    700
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 47
+  },
+  "28": {
+   "lat": 21.296607,
+   "lng": -157.820802,
+   "px": [
+    237,
+    792
+   ],
+   "page": "map-XII-2.jpg",
+   "route_offset_m": 33
+  },
+  "15": {
+   "lat": 21.2896027,
+   "lng": -157.8101449,
+   "route_offset_m": 30,
+   "place": "Printed just past the left edge of the PDF page; placed from Veneeta's photo of page 1 (IMG_4707), registered to the PDF page (its 14 lands within 1 px of the PDF's 14)"
   }
  },
  "XI": {

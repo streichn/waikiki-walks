@@ -1,6 +1,7 @@
 import walksJson from './walks.json';
 import factsJson from './facts.json';
 import glossaryJson from './glossary.json';
+import routesJson from './routes.json';
 import { images } from './images';
 import type { FunFact, GlossaryEntry, Walk } from './types';
 
@@ -14,6 +15,40 @@ const ROMAN: Record<string, number> = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6,
 /** A stop gets a pin, and an arrival alert, only if Veneeta's book map prints its number. */
 export function onMap(s: { geo: string }): boolean {
   return s.geo === 'book';
+}
+
+type LatLng = { latitude: number; longitude: number };
+const routes = routesJson as unknown as Record<string, Record<string, [number, number][]>>;
+const metres = (a: LatLng, b: LatLng) => {
+  const k = Math.PI / 180, x = (b.longitude - a.longitude) * k * Math.cos(((a.latitude + b.latitude) / 2) * k), y = (b.latitude - a.latitude) * k;
+  return 6371000 * Math.hypot(x, y);
+};
+
+/** The walking line from stop i to the next stop: Veneeta's red route traced from her map where we have it, otherwise a straight line. */
+export function legPath(walk: Walk, i: number): LatLng[] {
+  const a = walk.stops[i], b = walk.stops[i + 1];
+  if (!a || !b) return [];
+  const A = { latitude: a.lat, longitude: a.lng }, B = { latitude: b.lat, longitude: b.lng };
+  const leg = (routes[walk.id] || {})[String(a.n)];
+  if (!leg || leg.length < 2) return [A, B];
+  const pts = leg.map(([latitude, longitude]) => ({ latitude, longitude }));
+  let len = 0;
+  for (let k = 1; k < pts.length; k++) len += metres(pts[k - 1], pts[k]);
+  // Use the traced line only when it starts and ends at these two stops and is not a wild detour.
+  if (metres(A, pts[0]) > 120 || metres(B, pts[pts.length - 1]) > 120 || len > 3 * metres(A, B) + 150) return [A, B];
+  return [A, ...pts, B];
+}
+
+/** The whole walk as one line through the stops her map prints. */
+export function walkPath(walk: Walk): LatLng[] {
+  const out: LatLng[] = [];
+  walk.stops.forEach((s, i) => {
+    if (!onMap(s)) return;
+    const next = walk.stops[i + 1];
+    if (next && onMap(next)) out.push(...legPath(walk, i).slice(0, -1));
+    else out.push({ latitude: s.lat, longitude: s.lng });
+  });
+  return out;
 }
 
 export function walkNo(id: string): number | string {

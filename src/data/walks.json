@@ -1110,7 +1110,7 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "Keoniana is a transliterated Hawaiian borrowing of the English name, John Young. The street is named for John Young II, son of ‘Olohana, who served as kahuna nui, ‘executive officer’ under Kamehameha II and as minister of foreign affairs under Kamehameha IV."
+      "text": "Keoniana is a transliterated Hawaiian borrowing of the English name, John Young. The street is named for John Young II, son of ‘Olohana, who served as kuhina nui, ‘executive officer’ under Kamehameha II and as minister of foreign affairs under Kamehameha IV."
      },
      {
       "kind": "p",
@@ -1175,7 +1175,23 @@
     "blocks": [
      {
       "kind": "p",
-      "text": "Niu is the Hawaiian word for coconut (recall Launiu Street), the most common"
+      "text": "Niu is the Hawaiian word for coconut (recall Launiu Street), the most common plant throughout the Pacific, brought to Hawai‘i by the early Polynesians. There is also a Coconut Avenue at the foot of Lē‘ahi. There are no coconut trees native to Hawai‘i; they were brought by the early Polynesians, and, therefore, referred to as a canoe plant. Be sure to eat some coconut! If you are adventurous, try the local dessert of coconut, haupia – it has the consistency of jello, but is much more delicious!"
+     },
+     {
+      "kind": "p",
+      "text": "The only Palm tree that is native to Hawai‘i-only is the Loulu Palm."
+     },
+     {
+      "kind": "direction",
+      "text": "You are back at McCully Street and have reached the end of your tour around the Ala Wai Canal!"
+     },
+     {
+      "kind": "p",
+      "text": "The canal continues for another ¼ mile to the Ala Wai Harbor, which you can follow in Kālia, Walk II."
+     },
+     {
+      "kind": "info",
+      "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator."
      }
     ],
     "photos": [
@@ -13519,10 +13535,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.291218,
-    "lng": -157.800517,
-    "geo": "medium",
-    "page": "p3-68"
+    "lat": 21.289603,
+    "lng": -157.810145,
+    "geo": "book",
+    "page": "p3-68",
+    "radius": 60
    },
    {
     "id": "XII-16",
@@ -13547,10 +13564,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.294561,
-    "lng": -157.811327,
-    "geo": "low",
-    "page": "p3-68"
+    "lat": 21.29069,
+    "lng": -157.810414,
+    "geo": "book",
+    "page": "p3-68",
+    "radius": 50
    },
    {
     "id": "XII-17",
@@ -13563,10 +13581,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.294849,
-    "lng": -157.811654,
-    "geo": "estimated",
-    "page": "p3-68"
+    "lat": 21.291615,
+    "lng": -157.810665,
+    "geo": "book",
+    "page": "p3-68",
+    "radius": 66
    },
    {
     "id": "XII-18",
@@ -13679,10 +13698,11 @@
       "h": 496
      }
     ],
-    "lat": 21.295136,
-    "lng": -157.811981,
-    "geo": "medium",
-    "page": "p3-68"
+    "lat": 21.2953,
+    "lng": -157.812155,
+    "geo": "book",
+    "page": "p3-68",
+    "radius": 73
    },
    {
     "id": "XII-19",
@@ -13699,10 +13719,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.294691,
-    "lng": -157.813112,
-    "geo": "estimated",
-    "page": "p3-71"
+    "lat": 21.296301,
+    "lng": -157.812711,
+    "geo": "book",
+    "page": "p3-71",
+    "radius": 66
    },
    {
     "id": "XII-20",
@@ -13719,10 +13740,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.294247,
-    "lng": -157.814243,
-    "geo": "estimated",
-    "page": "p3-71"
+    "lat": 21.296112,
+    "lng": -157.815187,
+    "geo": "book",
+    "page": "p3-71",
+    "radius": 45
    },
    {
     "id": "XII-21",
@@ -13827,10 +13849,11 @@
       "h": 496
      }
     ],
-    "lat": 21.293802,
-    "lng": -157.815374,
-    "geo": "estimated",
-    "page": "p3-71"
+    "lat": 21.295451,
+    "lng": -157.814228,
+    "geo": "book",
+    "page": "p3-71",
+    "radius": 90
    },
    {
     "id": "XII-22",
@@ -13855,10 +13878,11 @@
       "h": 496
      }
     ],
-    "lat": 21.293357,
-    "lng": -157.816506,
-    "geo": "medium",
-    "page": "p3-73"
+    "lat": 21.293165,
+    "lng": -157.815967,
+    "geo": "book",
+    "page": "p3-73",
+    "radius": 90
    },
    {
     "id": "XII-23",
@@ -13899,10 +13923,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.294291,
-    "lng": -157.817121,
-    "geo": "medium",
-    "page": "p3-74"
+    "lat": 21.294229,
+    "lng": -157.816952,
+    "geo": "book",
+    "page": "p3-74",
+    "radius": 90
    },
    {
     "id": "XII-24",
@@ -13927,10 +13952,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.294314,
-    "lng": -157.818915,
-    "geo": "medium",
-    "page": "p3-74"
+    "lat": 21.294345,
+    "lng": -157.818808,
+    "geo": "book",
+    "page": "p3-74",
+    "radius": 90
    },
    {
     "id": "XII-25",
@@ -13981,10 +14007,11 @@
       "h": 496
      }
     ],
-    "lat": 21.293403,
-    "lng": -157.817712,
-    "geo": "medium",
-    "page": "p3-74"
+    "lat": 21.293305,
+    "lng": -157.817681,
+    "geo": "book",
+    "page": "p3-74",
+    "radius": 50
    },
    {
     "id": "XII-26",
@@ -13997,10 +14024,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.295408,
-    "lng": -157.819034,
-    "geo": "medium",
-    "page": "p3-75"
+    "lat": 21.29537,
+    "lng": -157.819078,
+    "geo": "book",
+    "page": "p3-75",
+    "radius": 90
    },
    {
     "id": "XII-27",
@@ -14033,10 +14061,11 @@
       "h": 497
      }
     ],
-    "lat": 21.296413,
-    "lng": -157.818795,
-    "geo": "medium",
-    "page": "p3-75"
+    "lat": 21.296486,
+    "lng": -157.819531,
+    "geo": "book",
+    "page": "p3-75",
+    "radius": 77
    },
    {
     "id": "XII-28",
@@ -14488,10 +14517,11 @@
       "h": 662
      }
     ],
-    "lat": 21.296044,
-    "lng": -157.820597,
-    "geo": "medium",
-    "page": "p3-76"
+    "lat": 21.296607,
+    "lng": -157.820802,
+    "geo": "book",
+    "page": "p3-76",
+    "radius": 63
    }
   ]
  }

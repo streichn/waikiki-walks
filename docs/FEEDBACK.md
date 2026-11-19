@@ -10,3 +10,10 @@
 - "The pins and the walk info do not line up when I click next." Cause: follow mode kept the map on the walker's dot while the text changed. Status: fixed in app and preview.
 - Stop 38 Niu Street ends mid-sentence ("the most common") in the PDF itself. Status: asked her for the rest of the sentence.
 - Maps: the PDF she attached is identical to book/part3; Walk XI and XII foldouts are two pages each and only one half of each is in the PDF. She offered iPhone photos and will ask the cartographer for originals. Status: waiting.
+
+## 2026-11-19 · Veneeta, "RE: Walk I" and photos IMG_4707 to 4709 (via Nick)
+- "The dotted line from 12 to 13 should go along Date then go around the corner and down Kapahulu (not through the golf course)." Status: fixed; the route line now follows her traced red line.
+- Photo of Walk XII map page 2. Status: used as the map; stops 16 to 28 pinned from it. To be replaced if the cartographer sends originals.
+- Photo of Walk XII map page 1. Status: used only to place stop 15, which the PDF page cuts off.
+- Photo of book page 17 (circled). Status: end of Walk I stop 38 added from it. Her hand correction on page 16 ("kuhina nui") applied; asked her to confirm.
+- Walk XI page 2 photo: not received yet (Walk XI stops 7 to 45 still have no map pins).

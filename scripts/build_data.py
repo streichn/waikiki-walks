@@ -43,9 +43,17 @@ FACTS = {
     'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
+# Word-level corrections from the author's own marked-up copy of the book.
+TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")]}
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to
 # A stop whose tail is really the next walk's opening: cut at 'at' and move the rest to that walk's intro.
 TAIL_CUTS = {'I-38': {'at': 'This walk covers part of a much larger district once known as K', 'carry_to': 'II', 'keep': 1, 'strip': ' Kahanamoku St.',
+                      # Book page 17 is missing from the PDF; text transcribed from Veneeta's photo of it (19 Nov 2026).
+                      'continue': 'plant throughout the Pacific, brought to Hawai‘i by the early Polynesians. There is also a Coconut Avenue at the foot of Lē‘ahi. There are no coconut trees native to Hawai‘i; they were brought by the early Polynesians, and, therefore, referred to as a canoe plant. Be sure to eat some coconut! If you are adventurous, try the local dessert of coconut, haupia – it has the consistency of jello, but is much more delicious!',
+                      'append': [{'kind': 'p', 'text': 'The only Palm tree that is native to Hawai‘i-only is the Loulu Palm.'},
+                                 {'kind': 'direction', 'text': 'You are back at McCully Street and have reached the end of your tour around the Ala Wai Canal!'},
+                                 {'kind': 'p', 'text': 'The canal continues for another ¼ mile to the Ala Wai Harbor, which you can follow in Kālia, Walk II.'},
+                                 {'kind': 'info', 'text': 'Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator.'}],
                       '_why': 'Veneeta 19 Nov 2026: Kalia text at the end of Walk I belongs to Walk II (book p40)'}}
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
@@ -391,6 +399,9 @@ for k, w in enumerate(SRC['walks']):
                 blocks = blocks[:tc['keep']]
             if tc.get('strip') and blocks and blocks[-1]['text'].endswith(tc['strip']):
                 blocks[-1] = {**blocks[-1], 'text': blocks[-1]['text'][:-len(tc['strip'])]}
+            if tc.get('continue') and blocks:
+                blocks[-1] = {**blocks[-1], 'text': blocks[-1]['text'].rstrip() + ' ' + tc['continue']}
+            blocks = blocks + [dict(b) for b in tc.get('append', [])]
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
         blocks = pull_captions(blocks)
         blocks = join_page_breaks(drop_map_text(blocks))
@@ -410,6 +421,8 @@ for k, w in enumerate(SRC['walks']):
         # Inside a side-trip box, a bulleted place is a description, not a walking instruction.
         blocks = [{**b, 'kind': 'p'} if b.get('aside') and b['kind'] == 'direction' and b['text'].startswith('•') else b for b in blocks]
         blocks = [{**b, 'text': re.sub(r'\s{2,}', ' ', re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', b['text'])).strip()} for b in blocks]
+        for a, b, _why in TEXT_FIXES.get(f"{wid}-{s['n']:02d}", []):
+            blocks = [{**x, 'text': x['text'].replace(a, b)} for x in blocks]
         s['title'], s['subtitle'] = stitle, sub
         stops.append({
             'id': f"{wid}-{s['n']:02d}", 'n': s['n'], 'title': s['title'].rstrip(' .:'),

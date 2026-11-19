@@ -83,6 +83,10 @@ for w in walks:
 # Extra map pages (Walk VIII page 2, Walk X pages 2 to 4, Walk XI), fitted by extra_maps.py.
 GX = json.load(open(os.path.join(HERE, 'georef_extra.json'))) if os.path.exists(os.path.join(HERE, 'georef_extra.json')) else {}
 SX = json.load(open(os.path.join(HERE, 'map_stops_extra.json'))) if os.path.exists(os.path.join(HERE, 'map_stops_extra.json')) else {}
+# Pages that exist only as the author's photos (scripts/georef/photo_maps.py), handled the same way.
+for _f, _d in (('georef_photo.json', GX), ('map_stops_photo.json', SX)):
+    if os.path.exists(os.path.join(HERE, _f)):
+        _d.update(json.load(open(os.path.join(HERE, _f))))
 for key, g in GX.items():
     wid, f = g['walk'], g['file']
     A = np.array(g['affine'])  # [x_m, y_m, 1] @ A = px

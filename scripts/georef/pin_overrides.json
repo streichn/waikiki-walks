@@ -59,5 +59,12 @@
    "lng": -157.8033873,
    "why": "Lyon Arboretum"
   }
+ },
+ "XII": {
+  "15": {
+   "lat": 21.2896027,
+   "lng": -157.8101449,
+   "why": "Printed just past the left edge of the PDF page; placed from Veneeta's photo of page 1 (IMG_4707), registered to the PDF page (its 14 lands within 1 px of the PDF's 14)"
+  }
  }
 }
