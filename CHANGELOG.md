@@ -97,3 +97,9 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-19 · Her red walk path on the street map, on every map page
+- The street map now draws Veneeta's red walk path from her book maps between stops, along the streets she walks, instead of straight lines across blocks. Where her map does not join two stops, it falls back to a straight line. The highlighted "next stop" leg follows her path too. (src/data routeLeg and walkPath, WalkMap; preview street map, Map tab and demo walk.)
+- Traced the path on the extra map pages for the first time: Walk VIII page 2, Walk X pages 2 and 3, and Walk XI. These pages are vector drawings, so scripts/georef/routes_extra.py reads her red strokes straight from the PDF (not the pixels) and follows them from each printed number to the next. 47 more legs traced (VIII 13, X 29, XI 5).
+- Walk X page 4 (upper Mānoa) is left with straight lines, because that page's fit to real streets is too loose (about 113 m) to draw a path on.
+- Walk I stops 7, 8, 9: the path is traced from the spots Veneeta chose on Date Street (pin_overrides.json), so the line meets those pins.

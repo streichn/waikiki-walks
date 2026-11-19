@@ -106,3 +106,9 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Route line on the street map (2026-11-19)
+- **Common practice:** tour apps draw the route the walker will actually follow, along sidewalks and streets, not straight lines between stops. VoiceMap's guide for tour publishers says to imagine listeners "following it more or less exactly," to "stick to the pavement," and to make sure "the line doesn't drift through buildings or into roads." Reviews of GPSmyCity praise the map with a live dot that shows where you are and which way you face, which only helps if the line on the map is the real path.
+- **Our choice:** the line is Veneeta's own red walk path, traced from her book maps and converted to real coordinates with the same fit that places the pins. Nothing is routed or invented: where her map does not join two stops (a leg crossing to another map page, a number printed far from the path, or Walk X page 4 whose fit is too loose), the app draws a plain straight line. The first map pages are traced from the image (scripts/georef/routes.py); the extra pages are vector drawings, so routes_extra.py reads the red strokes straight from the PDF, which is cleaner than reading pixels. Purple side-trip lines are left out, matching how the text treats side trips as optional.
+- **Why:** it keeps the street map a faithful copy of her book map (Nick's rule of 17 Nov 2026), and walkers see which street to take without opening the book map.
+- Sources: docs.voicemap.me/tour-publishers/plotting-a-route/ ; thetravelhack.com/travel-tips/gpsmycity-app-review-self-guided-walking-tours/ ; react-native-maps Polyline API (github.com/react-native-maps/react-native-maps, docs/polyline.md)

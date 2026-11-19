@@ -83,6 +83,9 @@
   const wn = (id) => ROMAN[id] || id;
   const canOpen = (wid, i) => S.isPro || (wid === TRIAL.walkId ? i < TRIAL.freeStops : i < 1);
   const onMap = (s) => s.geo === 'book'; // a stop gets a pin only if her book map prints it
+  // Her red path traced from the book maps (scripts/georef/routes.py), same rule as src/data/index.ts.
+  const routeLeg = (w, a, b) => { if (b.n !== a.n + 1) return null; const l = ((D.routes || {})[w.id] || {})[String(a.n)]; return l && l.length > 1 ? l : null; };
+  const walkPath = (w) => { const st = w.stops.filter(onMap), out = []; st.forEach((s, i) => { const nx = st[i + 1]; if (!nx) { out.push([s.lat, s.lng]); return; } out.push(...(routeLeg(w, s, nx) || [[s.lat, s.lng], [nx.lat, nx.lng]])); }); return out; };
   const canStart = (wid) => S.isPro || wid === TRIAL.walkId;
   const applyTheme = () => {
     const t = S.settings.theme;
@@ -394,7 +397,7 @@
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     // Only stops her book map prints get a pin, so this map shows what her map shows.
     const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-    L.polyline(mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    L.polyline(mapPts.length > 1 ? walkPath(w) : mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
     const markers = w.stops.map((s, i) => {
       if (!onMap(s)) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
@@ -413,7 +416,7 @@
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });
-        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? [pts[cur], pts[cur + 1]] : []);
+        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? (routeLeg(w, w.stops[cur], w.stops[cur + 1]) || [pts[cur], pts[cur + 1]]) : []);
       },
       fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
       focus(i) { if (onMap(w.stops[i])) map.setView(pts[i], 17, { animate: true }); },
@@ -657,7 +660,7 @@
     const showWalk = (w) => {
       group.clearLayers();
       const pts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-      L.polyline(pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
+      L.polyline(pts.length > 1 ? walkPath(w) : pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
       w.stops.forEach((s, i) => onMap(s) && L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
       map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [30, 70], paddingBottomRight: [30, 200] });
       const h = document.getElementById('ehint'); h.innerHTML = `${ic('back', 'width="14" height="14"')} All walks`; h.setAttribute('role', 'button'); h.onclick = showAll;
