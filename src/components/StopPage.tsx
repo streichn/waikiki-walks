@@ -21,7 +21,7 @@ export function StopSection({ stop, index, locked, walkColor, onMap, width }: { 
   const speaking = useNarration((s) => s.speakingStopId === stop.id);
   return (
     <View style={{ gap: 12 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+      <View accessible accessibilityRole="header" accessibilityLabel={`Stop ${stop.n}, ${stop.title}${stop.subtitle ? `. ${stop.subtitle}` : ''}${locked ? '. Locked' : ''}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <View style={[styles.num, { backgroundColor: locked ? '#8A9A9B' : walkColor }]}>
           <T style={{ color: '#fff', fontFamily: t.font.bodyBold }}>{stop.n}</T>
         </View>
@@ -42,15 +42,15 @@ export function StopSection({ stop, index, locked, walkColor, onMap, width }: { 
       ) : (
         <>
           <View style={{ flexDirection: 'row', gap: 8 }}>
-            <Pressable onPress={() => { tap(); speaking ? stopSpeech() : play(stop); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
+            <Pressable hitSlop={{ top: 2, bottom: 2 }} accessibilityRole="button" accessibilityLabel={speaking ? 'Stop reading' : 'Listen to this stop'} onPress={() => { tap(); speaking ? stopSpeech() : play(stop); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
               <Ionicons name={speaking ? 'stop-circle' : 'volume-high'} size={18} color={t.primary} />
               <T style={{ fontFamily: t.font.bodySemi, fontSize: 14 }}>{speaking ? 'Stop' : 'Listen'}</T>
             </Pressable>
-            <Pressable onPress={() => { tap(); onMap(); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
+            <Pressable hitSlop={{ top: 2, bottom: 2 }} accessibilityRole="button" accessibilityLabel="Show this stop on the map" onPress={() => { tap(); onMap(); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
               <Ionicons name="map" size={18} color={t.primary} />
               <T style={{ fontFamily: t.font.bodySemi, fontSize: 14 }}>On map</T>
             </Pressable>
-            <Pressable accessibilityLabel={fav ? 'Remove from saved' : 'Save stop'} onPress={() => { tap(); toggleFav(stop.id); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
+            <Pressable hitSlop={{ top: 2, bottom: 2 }} accessibilityRole="button" accessibilityLabel={fav ? 'Remove from saved' : 'Save stop'} accessibilityState={{ selected: fav }} onPress={() => { tap(); toggleFav(stop.id); }} style={[styles.action, { backgroundColor: t.cardAlt }]}>
               <Ionicons name={fav ? 'heart' : 'heart-outline'} size={18} color={t.accent} />
             </Pressable>
           </View>
@@ -107,5 +107,6 @@ export function LockedTeaser({ stop }: { stop: Stop }) {
 const styles = StyleSheet.create({
   num: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   lock: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
-  action: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 14, paddingVertical: 9, borderRadius: 18 },
+  // 44 pt tall, Apple's default control size; the 2 pt vertical hitSlop gives Android's 48 dp touch target.
+  action: { flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 44, minWidth: 44, justifyContent: 'center', paddingHorizontal: 14, paddingVertical: 9, borderRadius: 22 },
 });

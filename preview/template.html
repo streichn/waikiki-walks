@@ -158,6 +158,10 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .dir svg { flex: none; width: 20px; height: 20px; color: var(--primary); margin-top: 2px; }
 .info { display: flex; gap: 8px; padding: 12px; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); font-size: 14px; }
 .gw { color: var(--primary); text-decoration: underline dotted; cursor: pointer; }
+.gwords { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.gwrow { display: flex; flex-wrap: wrap; gap: 8px; }
+.gwchip.gw { text-decoration: none; min-height: 44px; padding: 0 14px; border-radius: 22px; border: 1px solid var(--line); background: var(--card2); color: var(--primary); font: inherit; font-weight: 600; font-size: 15px; }
+.p.reading { border-left: 4px solid var(--gold); }
 .lock { display: flex; gap: 12px; align-items: center; padding: 16px; border-radius: 18px; background: var(--card2); border: 1px solid var(--line); width: 100%; text-align: left; }
 .cta { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 18px calc(14px + env(safe-area-inset-bottom)); display: flex; z-index: 950; }
 .cta.solid { background: linear-gradient(transparent, var(--bg) 30%); }

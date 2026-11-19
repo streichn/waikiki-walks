@@ -165,9 +165,9 @@
     const one = (b) => {
       const readable = ['p', 'direction', 'tagline'].includes(b.kind); if (readable) r++;
       const attrs = readable ? `data-stop="${stopId}" data-para="${r}"` : '';
-      if (b.kind === 'direction') return `<div class="dir" ${attrs}>${ic('walk')}<div>${rich(b.text)}</div></div>`;
+      if (b.kind === 'direction') return `<div class="dir" aria-label="Walking direction" role="group" ${attrs}>${ic('walk')}<div>${rich(b.text)}</div></div>`;
       if (b.kind === 'info') return `<div class="info"><span style="color:var(--gold)">${ic('bus', 'width="18" height="18"')}</span><div>${esc(b.text)}</div></div>`;
-      if (b.kind === 'tagline' || b.kind === 'heading') return `<p class="p italic" style="color:var(--leaf);font-size:18px" ${attrs}>${esc(b.text)}</p>`;
+      if (b.kind === 'tagline' || b.kind === 'heading') return `<p class="p italic" role="heading" aria-level="3" style="color:var(--leaf);font-size:18px" ${attrs}>${esc(b.text)}</p>`;
       if (b.kind === 'caption') return `<p class="small italic">${esc(b.text)}</p>`;
       return `<p class="p" ${attrs}>${rich(b.text)}</p>`;
     };
@@ -178,8 +178,10 @@
       let inner = '';
       while (i < blocks.length && blocks[i].aside) inner += one(blocks[i++]);
       i--;
-      html += `<div class="aside"><div class="aside-h">${ic('route', 'width="15" height="15"')}SIDE TRIP</div>${inner}</div>`;
+      html += `<div class="aside"><div class="aside-h" role="heading" aria-level="3" aria-label="Side trip">${ic('route', 'width="15" height="15"')}SIDE TRIP</div>${inner}</div>`;
     }
+    // The stop's Hawaiian words as plain buttons: easier to reach with a screen reader than words inside a paragraph.
+    if (richSeen.size) html += `<div class="gwords"><div class="label" role="heading" aria-level="3">Hawaiian words on this stop</div><div class="gwrow">${[...richSeen].map((w) => `<button class="gwchip gw" data-word="${esc(w)}">${esc(w)}</button>`).join('')}</div></div>`;
     richSeen = null;
     return html;
   }

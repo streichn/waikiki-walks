@@ -97,3 +97,16 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-19 · Stop pages work with VoiceOver, TalkBack and larger text
+- Each stop page now has a heading that VoiceOver and TalkBack read as one item: "Stop 7, 'Iolani School". Taglines, book sub-headings and the Side trip box are headings too, so screen reader users can jump between them.
+- Walking directions are read as "Walking direction. ..." so they stand apart from the history.
+- New "Hawaiian words on this stop" row under the text. Each word from the book's glossary is a button that opens its meaning. Words inside a paragraph are hard to reach with a screen reader, and the row also helps anyone who wants a quick list.
+- Listen, On map and Save are labeled buttons at least 44 pt tall (48 dp touch area on Android). The directions button grew from 40 to 44 pt and the Previous and Next buttons to 44 pt.
+- Captions, info notes and taglines now follow the Text size slider, like the rest of the stop text.
+- The paragraph being read aloud has a gold bar on its left, so it does not rely on color alone.
+- The stop panel handle works with VoiceOver: swipe up or down to switch between Map, Map and text, and Text.
+- Arrival is spoken by the screen reader ("You've arrived at stop 12: ..."), since the banner fades after a few seconds.
+- The glossary card and the photo viewer keep screen reader focus inside until closed; photo buttons say "Photo 2 of 3" and the caption.
+- Preview: the same "Hawaiian words on this stop" row, headings and reading bar.
+
