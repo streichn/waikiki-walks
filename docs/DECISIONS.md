@@ -106,3 +106,10 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Maps from the cartographer's original files (20 Nov 2026)
+- **Common practice:** map makers georeference a scan by matching control points spread across the whole sheet and checking each point's residual. Fits are least reliable outside the area the control points cover, so the best source is the cleanest, most complete original. A drawn map is also distorted on purpose to fit the page, so a single transform is good in the middle and worse at the edges. Reviewers of GPS tour apps complain most when a stop triggers in the wrong place.
+- **Our choice:** use the cartographer's vector originals only for the stops the book PDF cannot show (Walk XI 7 to 45, Walk XII 15 to 28). Stops the printed book pages show keep their book pins, because those pages are what readers hold and the first-map fits use a bending spline tied to many corners. The two sources agree within about 20 m for Walk XI 1 to 6. For Walk XII 1 to 6 they disagree by about 100 m: those stops sit at the bottom corner of the original, where its straight fit is weakest, and the book pin for stop 1 lands within 1 m of the real Kapahulu Avenue and Ala Wai Boulevard corner. So the book pages win where both exist.
+- **Why:** her own printed numbers stay the source of every pin (Nick's 17 Nov rule), with no guessing and no re-geocoding. Vector text gives exact number positions, which phone photos cannot.
+- Sources: docs.qgis.org/3.22/en/docs/user_manual/working_with_raster/georeferencer.html (control points, transformation types, residuals); apps.apple.com/us/app/id852027939 (VoiceMap reviews on GPS triggering).
+

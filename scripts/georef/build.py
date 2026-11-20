@@ -41,6 +41,8 @@ def route_mask(file):
     im = np.asarray(Image.open(os.path.join(ROOT, 'assets/book', file)).convert('RGB')).astype(int)
     r, g, b = im[..., 0], im[..., 1], im[..., 2]
     m = (r > 150) & (g < 80) & (b < 110) & (r - g > 110)  # the red dotted walk path
+    if '-full' in file:  # the cartographer's original files draw the path as a pale orange dotted line
+        m = (r > 240) & (g > 180) & (g < 212) & (b > 135) & (b < 170)
     ys, xs = np.nonzero(m)
     return np.stack([xs, ys], 1)
 

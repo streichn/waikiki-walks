@@ -221,5 +221,148 @@
    "Algoroba St.",
    "an Way"
   ]
+ },
+ "XI:map-XI-full.jpg": {
+  "walk": "XI",
+  "file": "map-XI-full.jpg",
+  "part": "maps_original/Walk 11.pdf",
+  "page": 1,
+  "affine": [
+   [
+    0.34128040929931497,
+    0.007528679861881681
+   ],
+   [
+    0.009485968655516912,
+    -0.3381742392710987
+   ],
+   [
+    177.73166700880208,
+    953.4622676354777
+   ]
+  ],
+  "rms_m": 5.5,
+  "m_per_px": 2.94,
+  "labels_used": [
+   "Kalākaua Ave.",
+   "Pa‘ū St.",
+   "Niu St.",
+   "‘Ena Rd.",
+   "Date St.",
+   "Mahi‘ai St.",
+   "Nāhaku Pl.",
+   "Kahoaloha Ln.",
+   "Kuilei St.",
+   "S. King St.",
+   "Church Ln.",
+   "Kapi‘olani Blvd.",
+   "Kahuna Ln.",
+   "Kapa‘akea Ln.",
+   "University Ave.",
+   "Wiliwili St.",
+   "McCully St.",
+   "S. King St.",
+   "Waiola St.",
+   "Pa‘ani St.",
+   "Kapi‘olani Blvd.",
+   "Menehune Ln.",
+   "Waiaka Rd.",
+   "Date St.",
+   "S. Beretania St.",
+   "Metcalf St.",
+   "Wilder Ave.",
+   "Wilder Ave.",
+   "Oliver St.",
+   "Evelyn Ln.",
+   "Artesian Way",
+   "Alexander St.",
+   "Halekula Way",
+   "Spreckels St.",
+   "Dole St.",
+   "Punahou St.",
+   "Metcalf St.",
+   "Maile Way",
+   "University Ave.",
+   "Dole St.",
+   "Dole St.",
+   "Correa Rd.",
+   "Vancouver Dr.",
+   "Lower Campus Rd.",
+   "Kalele Rd."
+  ],
+  "labels_unmatched": [
+   "Algoroba St."
+  ]
+ },
+ "XII:map-XII-full.jpg": {
+  "walk": "XII",
+  "file": "map-XII-full.jpg",
+  "part": "maps_original/Walk 12.pdf",
+  "page": 1,
+  "affine": [
+   [
+    0.25572579937728057,
+    -0.21960205281120204
+   ],
+   [
+    -0.22185955544848115,
+    -0.2568503080911375
+   ],
+   [
+    242.70087121479042,
+    930.2804136778409
+   ]
+  ],
+  "rms_m": 5.5,
+  "m_per_px": 2.96,
+  "labels_used": [
+   "Ala Wai Blvd.",
+   "Date St.",
+   "Date St.",
+   "Mo‘oheau Ave.",
+   "Palani Ave.",
+   "Makaleka Ave.",
+   "Ekela Ave.",
+   "Lukepane Ave.",
+   "Olokele Ave.",
+   "Kapahulu Ave.",
+   "Winam Ave.",
+   "Mokihana St.",
+   "Charles St.",
+   "Olu St.",
+   "Paliuli St.",
+   "Kaimuki  Ave.",
+   "Date St.",
+   "Campbell Ave.",
+   "Lā‘au St.",
+   "Mahi‘ai St.",
+   "Nāhaku Pl.",
+   "Kahoaloha Ln.",
+   "Kuilei St.",
+   "S. King St.",
+   "Church Ln.",
+   "Kapi‘olani Blvd.",
+   "Kahuna Ln.",
+   "Kapa‘akea Ln.",
+   "University Ave.",
+   "Hausten St.",
+   "Isenberg St.",
+   "Ala Wai Blvd.",
+   "Menehune Ln.",
+   "Waiaka Rd.",
+   "Coolidge St.",
+   "Wai‘alae  Ave.",
+   "St. Louis Dr.",
+   "Harding Ave.",
+   "Dole St.",
+   "University Ave.",
+   "Dole St.",
+   "Correa Rd.",
+   "Lower Campus Rd.",
+   "Kalele Rd."
+  ],
+  "labels_unmatched": [
+   "Kamuela St."
+  ]
  }
 }

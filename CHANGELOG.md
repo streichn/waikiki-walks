@@ -97,3 +97,12 @@
 - The book map view has "Map 1 / Map 2 ..." buttons on walks with several pages and opens on the page that prints the current stop.
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
+
+## 2026-11-20 · Walks XI and XII pinned from the cartographer's original maps
+- Veneeta forwarded the cartographer's original map files. Walk 11.pdf and Walk 12.pdf (in book/maps_original/) show the whole foldout maps that our book PDF cuts in half.
+- scripts/georef/extra_maps.py now reads these files like the other extra map pages. Walk XI stops 7 to 45 and Walk XII stops 15 to 28 get pins exactly where her maps print their numbers. Street fit error is about 5 m on both.
+- Stops the printed book pages already show (Walk XI 1 to 6, Walk XII 1 to 14) keep their book pins. A page no longer re-pins a stop an earlier page placed.
+- The Book map view shows the full original maps as an extra page for Walks XI and XII.
+- Arrival circles use the original maps' pale orange route line.
+- docs/FEEDBACK.md logs Veneeta's 19 and 20 Nov emails.
+

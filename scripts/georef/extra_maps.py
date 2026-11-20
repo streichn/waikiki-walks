@@ -36,6 +36,11 @@ PAGES = [
     ('X', 3, 6, 'map-X-3.jpg'),
     ('X', 3, 5, 'map-X-4.jpg'),
     ('XI', 3, 37, 'map-XI.jpg'),
+    # The cartographer's original files (Jason Nakano, Fruits Media), sent to Veneeta on 19 Nov 2026 and forwarded
+    # by her. The book prints Walks XI and XII as foldouts and our PDF has only the first half of each, so these
+    # originals are the source for the stops the book PDF does not show: Walk XI 7 to 45 and Walk XII 15 to 28.
+    ('XI', 'maps_original/Walk 11.pdf', 1, 'map-XI-full.jpg'),
+    ('XII', 'maps_original/Walk 12.pdf', 1, 'map-XII-full.jpg'),
 ]
 # Known places printed on a page, for pages with too few labeled street crossings to start the fit.
 # (pixel on the page, lat, lng, what it is). Coordinates from OpenStreetMap (Nominatim).
@@ -65,7 +70,11 @@ def osm_name(label):
 
 
 def read_page(part, pg):
-    pdf = sorted(f for f in os.listdir(os.path.join(ROOT, 'book')) if f.startswith(f'part{part}'))[0]
+    """part: book part number (1 to 3), or a path under book/ for a cartographer's original map file."""
+    if isinstance(part, str):
+        pdf = part
+    else:
+        pdf = sorted(f for f in os.listdir(os.path.join(ROOT, 'book')) if f.startswith(f'part{part}'))[0]
     page = pymupdf.open(os.path.join(ROOT, 'book', pdf))[pg - 1]
     nums = {}
     for x0, y0, x1, y1, w, *_ in page.get_text('words'):
@@ -189,6 +198,7 @@ def main():
     main_stops = json.load(open(os.path.join(HERE, 'map_stops.json')))
     out_g = {}
     out_s = {}
+    claimed = {w: set(v) for w, v in main_stops.items()}  # stop numbers an earlier map page already places
     for wid, part, pg, fname in PAGES:
         page, nums, labels = read_page(part, pg)
         page.get_pixmap(dpi=DPI).save(os.path.join(ROOT, 'assets/book', fname), jpg_quality=80)
@@ -214,8 +224,9 @@ def main():
         out_g[key] = {'walk': wid, 'file': fname, 'part': part, 'page': pg, 'affine': A.tolist(), 'rms_m': round(rms, 1),
                       **({'skip_pins': True} if rms > 40 else {}),  # too loose to place pins; see pin_overrides.json
                       'm_per_px': round(mpp, 2), 'labels_used': used, 'labels_unmatched': missing}
-        # A stop number belongs to this page unless the walk's first map already prints it.
-        out_s[key] = {n: xy for n, xy in nums.items() if n in stops and n not in main_stops.get(wid, {})}
+        # A stop number belongs to this page unless the walk's first map, or an earlier page in PAGES, already prints it.
+        out_s[key] = {n: xy for n, xy in nums.items() if n in stops and n not in claimed.get(wid, set())}
+        claimed.setdefault(wid, set()).update(out_s[key])
         print(f'{wid} p{pg} {fname}: {len(nums)} numbers, {len(out_s[key])} new pins, {len(used)}/{len(labels)} street labels used, '
               f'RMS {rms:.0f} m, {mpp:.2f} m/px, seed {len(seed)}; unmatched {missing}')
     json.dump(out_g, open(os.path.join(HERE, 'georef_extra.json'), 'w'), ensure_ascii=False, indent=1)
