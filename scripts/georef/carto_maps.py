@@ -9,8 +9,8 @@ For each map:
   4. turn the matched street labels into control points for the thin-plate spline build.py uses,
   5. trace the walk path (the dotted line, drawn as vector strokes) between consecutive stops and convert it
      to lat/lng.
-Writes georef_carto.json (fit and controls per map), map_stops_carto.json (pixel of each printed number) and
-routes_carto.json (traced legs). build.py, routes.py and warp.py use these for the walks listed here.
+Writes georef_carto.json (fit and controls per map), map_stops_carto.json (pixel of each printed number),
+routes_carto.json (traced legs in lat/lng) and routes_carto_px.json (the same legs in map pixels, for the book map trail). build.py, routes.py and warp.py use these for the walks listed here.
 
 Run: python3 -I scripts/georef/carto_maps.py
 """
@@ -76,7 +76,7 @@ def route_mask(page, S):
     dr = ImageDraw.Draw(im)
     for d in page.get_drawings():
         col = d.get('color')
-        if not col or not d.get('dashes') or d['dashes'].startswith('[] '):
+        if not col or (d.get('width') or 0) > 4:  # the path is a thin stroke, dashed or (on some maps) solid
             continue
         if min(sum(abs(a - b) for a, b in zip(col, c)) for c in ROUTE_COLORS) > 0.06:
             continue
@@ -150,7 +150,7 @@ def controls_from_fit(A, labels, used):
 
 def main():
     walks = {w['id']: w for w in json.load(open(os.path.join(ROOT, 'src/data/walks.json')))}
-    out_g, out_s, out_r = {}, {}, {}
+    out_g, out_s, out_r, out_px = {}, {}, {}, {}
     for wid, pdf, fname, first in MAPS:
         page, _, labels = read(pdf)
         SR = max(S, MIN_W / page.rect.width); k = SR / S  # render scale, and its ratio to the fitting scale
@@ -178,7 +178,7 @@ def main():
         stop_ids = {str(s['n']) for s in walks[wid]['stops']}
         out_s[key] = {n: xy for n, xy in nums.items() if n in stop_ids}
         # trace the dotted path between consecutive stops printed on this map
-        mask = ndimage.binary_dilation(route_mask(page, SR), iterations=3)
+        mask = ndimage.binary_dilation(route_mask(page, SR), iterations=6)  # bridges the small gaps where dashes meet at corners
         ys, xs = np.nonzero(mask); pool = np.stack([xs, ys], 1)
         lam = np.full(len(ctl), 2.0)
         inv = tps_fit(T / 100.0, P, lam)
@@ -197,6 +197,8 @@ def main():
                 continue
             pts = np.array(p[::8] + [p[-1]], float)
             mm = tps_many(inv, pts / 100.0)
+            # the same leg in map pixels, so the book map can fill in exactly her dotted line as stops are reached
+            out_px.setdefault(key, {})[str(s0)] = [[int(x), int(y)] for x, y in (p[::4] + [p[-1]])]
             legs[str(s0)] = [[round(21.28 + y / 110574, 6), round(-157.83 + x / (111320 * math.cos(math.radians(21.28))), 6)] for x, y in mm]
         out_r.setdefault(wid, {}).update(legs)
         print(f'{wid} {fname}: {len(out_s[key])} numbers, {len(used)}/{len(labels)} labels, {len(cross)} crossings, '
@@ -205,6 +207,7 @@ def main():
     json.dump(out_g, open(os.path.join(HERE, 'georef_carto.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump(out_s, open(os.path.join(HERE, 'map_stops_carto.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump(out_r, open(os.path.join(HERE, 'routes_carto.json'), 'w'), ensure_ascii=False)
+    json.dump(out_px, open(os.path.join(HERE, 'routes_carto_px.json'), 'w'))
 
 
 if __name__ == '__main__':

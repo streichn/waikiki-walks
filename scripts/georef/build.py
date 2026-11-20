@@ -54,6 +54,8 @@ CARTO = json.load(open(os.path.join(HERE, 'georef_carto.json'))) if os.path.exis
 CARTO_STOPS = json.load(open(os.path.join(HERE, 'map_stops_carto.json'))) if CARTO else {}
 CARTO_WALKS = {g['walk'] for g in CARTO.values()}
 CARTO_FILES = {g['file'] for g in CARTO.values()}
+_px = os.path.join(HERE, 'routes_carto_px.json')
+CARTO_PX = json.load(open(_px)) if os.path.exists(_px) else {}
 out_maps, pins = {}, {}
 walks = json.load(open(os.path.join(ROOT, 'src/data/walks.json')))
 walks = walks if isinstance(walks, list) else walks['walks']
@@ -105,6 +107,8 @@ for key, g in GX.items():
     # same structure as the first maps' spline, with no bending: the app evaluates it the same way
     fwd = {'ctrl': [[0.0, 0.0]], 'w': [[0.0, 0.0]], 'a': [A[2].tolist(), (A[0] * 100).tolist(), (A[1] * 100).tolist()]}
     page = {'file': f, 'w': W, 'h': H, 'fwd': fwd, 'rms_m': g['rms_m'], 'labels': {n: v for n, v in SX.get(key, {}).items()}}
+    if key in CARTO_PX:  # her dotted line between consecutive stops, in this map's pixels (book map trail)
+        page['legs'] = CARTO_PX[key]
     if g.get('skip_pins'):
         page['approximate'] = True
     if wid in out_maps:

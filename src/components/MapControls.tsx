@@ -4,9 +4,9 @@ import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Polyline } from 'react-native-svg';
-import { photo, TRAIL, walkNo, walkPath } from '../data';
+import { BOOK_TRAIL, photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
-import { bookLabel, bookPages, bookXY, pageFor } from '../lib/bookmap';
+import { bookLabel, bookLegs, bookPages, bookXY, pageFor } from '../lib/bookmap';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
 
@@ -140,14 +140,13 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
   // opens zoomed so it fills the space between the header and the sheet.
   const pg = pages[page];
   const height = pg ? (width * pg.h) / pg.w : width / 0.7;
-  const fill = Math.min(4, Math.max(1, (screenH - topInset - bottomInset) / height));
+  const fill = Math.min(4, Math.max(1, (screenH - topInset) / height)); // fills the full height under the header, even with the sheet lowered
   const file = page === 0 ? walk.bookMap : pages[page]?.file;
   const dot = me ? bookXY(walk.id, me.lat, me.lng, page) : null;
-  const reached = finished ? walk.stops.length - 1 : Math.max(-1, ...(visited ?? []));
-  const trail = useMemo(
-    () => (reached > 0 ? walkPath(walk, reached).map((c) => bookXY(walk.id, c.latitude, c.longitude, page)).filter((p): p is { x: number; y: number } => !!p) : []),
-    [walk, reached, page],
-  );
+  // Her own dotted line between stops fills in as each stop is reached: the intended route, never the walker's track.
+  const reachedN = finished ? Infinity : Math.max(0, ...(visited ?? []).map((i) => walk.stops[i]?.n ?? 0));
+  const trail = useMemo(() => bookLegs(walk.id, page).filter((l) => l.n + 1 <= reachedN), [walk.id, page, reachedN]);
+
   const scroll = useRef<ScrollViewInstance>(null);
   const [follow, setFollow] = useState(true);
   // Track the native zoom and scroll so the + and - buttons zoom around the middle of what is showing.
@@ -190,10 +189,11 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
       style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
         <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
-        {trail.length > 1 ? (
-          // The walked part of the route, filled in over her dotted line, in the street map's trail green.
+        {trail.length ? (
           <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
-            <Polyline points={trail.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={TRAIL} strokeOpacity={0.85} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+            {trail.map((l) => (
+              <Polyline key={l.n} points={l.pts.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={BOOK_TRAIL} strokeOpacity={0.6} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+            ))}
           </Svg>
         ) : null}
         {walk.stops.map((s, i) => {

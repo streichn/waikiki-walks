@@ -325,10 +325,11 @@
     // Testing aid: where the app's own pins land on her map, to check they sit on her numbers.
     const chk = S.showPins ? w.stops.map((s, i) => { const p = bookXY(w, s.lat, s.lng); return p ? `<span class="bchk" style="left:${p[0]}%;top:${p[1]}%">${s.n}</span>` : ''; }).join('') : '';
     const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
-    // The walked part of the route, filled in over her dotted line, in the same green as the street map's trail.
-    const reached = prog.finishedAt ? w.stops.length - 1 : Math.max(-1, ...(prog.visited || []));
-    const tp = reached > 0 ? walkPath(w, reached).map(([la, ln]) => bookXY(w, la, ln)).filter(Boolean) : [];
-    const trail = tp.length > 1 ? `<svg class="btrail" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="${tp.map((p) => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ')}" fill="none" stroke="${TRAIL}" stroke-width="6" stroke-opacity=".85" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>` : '';
+    // Her own dotted line between stops, filled in as each stop is reached (the intended route, never the walker's track),
+    // in a see-through blue so her map shows through (Nick, 19 Nov 2026).
+    const reachedN = prog.finishedAt ? Infinity : Math.max(0, ...(prog.visited || []).map((i) => w.stops[i] ? w.stops[i].n : 0));
+    const legs = Object.entries(g.legs || {}).filter(([n]) => Number(n) + 1 <= reachedN);
+    const trail = legs.length ? `<svg class="btrail" viewBox="0 0 ${g.w} ${g.h}" preserveAspectRatio="none" aria-hidden="true">${legs.map(([, pts]) => `<polyline points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="5" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`).join('')}</svg>` : '';
     return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
   }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
@@ -354,6 +355,11 @@
     if (S.bookPageStop[w.id] !== cur) { S.bookPage[w.id] = pageFor(w, Math.max(0, cur)); S.bookPageStop[w.id] = cur; }
     const ps = bmPages(w), g = bm(w), k = Math.min((S.bookPage || {})[w.id] || 0, Math.max(0, ps.length - 1));
     const tabs = ps.length > 1 ? `<div class="bookpages" role="tablist">${ps.map((p, j) => `<button role="tab" aria-selected="${j === k}" data-bookpage="${j}">Map ${j + 1}</button>`).join('')}</div>` : '';
+    // Open zoomed so her map fills the height between the header and the sheet (no empty band below it), until the walker zooms.
+    if (!S.bookZoomUser && g) {
+      const W = $app.clientWidth || 390, H = $app.clientHeight || 800, vis = H - 110;
+      S.bookZoom = Math.max(1, Math.min(5, vis / (W * g.h / g.w)));
+    }
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(g ? g.file : w.bookMap, '', 'Walk ' + wn(w.id) + ' map ' + (k + 1) + ' from the book')}${bookPins(w)}</div></div></div>${tabs}
       <button class="pinchk" data-act="pinchk" aria-pressed="${!!S.showPins}">${S.showPins ? 'Hide' : 'Check:'} app pins</button>
       ${zoomBtns()}`;
@@ -398,7 +404,8 @@
 
   // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
   const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
-  const TRAIL = '#3E8E5A';  // the walked trail, same green on the street map and the book map (and in the app)
+  const TRAIL = '#3E8E5A';  // the walked trail on the street map
+  const BOOK_TRAIL = '#1A73E8';  // the walked part of her dotted line on the book map, see-through blue
   const onMain = (s) => onMap(s) && !s.side;
   function between(w, i, j) {
     const a = w.stops[i], b = w.stops[j]; if (!a || !b) return [];
@@ -887,7 +894,7 @@
       if (!p0 || e.touches.length !== 2) return;
       e.preventDefault();
       const z = Math.max(1, Math.min(5, p0.z * span(e.touches) / p0.d)), bi = pane.querySelector('.bookimg');
-      S.bookZoom = z; bi.style.width = z * 100 + '%';
+      S.bookZoom = z; S.bookZoomUser = true; bi.style.width = z * 100 + '%';
       S.bookAuto = Date.now(); S.bookFollow = false;
       pane.scrollLeft = p0.cx * bi.offsetWidth - p0.mx; pane.scrollTop = p0.cy * bi.offsetHeight + bi.offsetTop - p0.my;
     }, { passive: false });
@@ -944,7 +951,7 @@
     if ((el = q('[data-mapstyle]'))) { S.mapStyle = el.dataset.mapstyle; wmap = null; gmap = null; render(); return; }
     if ((el = q('[data-bookpage]'))) { const w = walk(S.walkId); S.bookPage = S.bookPage || {}; S.bookPage[w.id] = Number(el.dataset.bookpage); return render(); }
     if ((el = q('[data-zoom]')) && S.mapStyle !== 'book') { const m = S.view === 'go' ? gmap : wmap; if (m) (Number(el.dataset.zoom) > 0 ? m.zoomIn() : m.zoomOut()); return; }
-    if ((el = q('[data-zoom]'))) { S.bookZoom = Math.max(1, Math.min(4, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
+    if ((el = q('[data-zoom]'))) { S.bookZoomUser = true; S.bookZoom = Math.max(1, Math.min(5, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
     if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-listen]'))) { const w = walk(S.walkId); const s = w.stops[Number(el.dataset.i)]; return speaking.stopId === s.id ? stopSpeak() : speakStop(s); }
     if ((el = q('[data-fav]'))) { const id = el.dataset.fav; S.favs = S.favs.includes(id) ? S.favs.filter((x) => x !== id) : [...S.favs, id]; persist(); el.innerHTML = ic(S.favs.includes(id) ? 'heartFill' : 'heart'); return; }

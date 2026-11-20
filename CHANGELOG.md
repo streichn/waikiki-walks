@@ -154,3 +154,8 @@
 ## 2026-11-19 · Real GPS in the preview; walked trail on the book map
 - Preview: a walk now starts in real mode. The phone's location moves the dot, triggers arrivals (same radius rule as the app) and updates the distance line. The demo walk only runs when tapped, or by itself when the browser has no location.
 - Book map (preview and app): the walked part of the route fills in over her dotted line, in the same green as the street map's trail (one shared TRAIL color).
+
+## 2026-11-19 · Book map trail follows her dotted line; map opens filling the screen
+- The walked part on the book map is now her own dotted line, leg by leg, filled in see-through blue once each stop is reached. It is never the walker's GPS track. carto_maps.py saves each traced leg in map pixels (routes_carto_px.json, carried into bookmaps.json as "legs").
+- Path tracing now bridges the small gaps where dashes meet at corners and picks up maps drawn with solid path strokes, so many more legs trace (Walk V 6 to 16, Walk VI 4 to 9, Walk XI 23 to 41).
+- The book map opens zoomed so her map fills the full height under the header, in the preview and the app, until the walker zooms.
