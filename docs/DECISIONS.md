@@ -106,3 +106,18 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Where walks start and end (text cleanup, 20 Nov 2026)
+- **Common practice:** tour apps present each stop as a self-contained page: its name, its own text and its own photos, and nothing from the next tour. Apple's writing guidance asks for text that is clear and consistent across the app. Reviewers of large tour catalogues complain when a stop has no real information or the map doesn't match the text.
+- **What we found:** the book PDF reads each walk's map page and title page before its title, so six walks ended with the next walk's opening text, four more with map labels, and Walk XII ended with the book's back matter.
+- **Our choice:** fix it in the build, not by hand: scripts/extract/walk_ends.json records, for each walk, the first text that is not part of it and where the next walk's opening begins, checked against the book pages. Opening text moves to the next walk's introduction; title-page photos go to that walk's stop 1 with their captions. This carries over the approach of the unmerged branch improve/2026-11-17-0651 (PR #9), rebuilt on today's main.
+- **Not done:** the book's own Hawaiian Glossary and Further Readings (back matter) are no longer in Walk XII. They could become an in-app glossary and reading list later, from the book.
+- Sources: Apple Human Interface Guidelines, Writing (developer.apple.com/design/human-interface-guidelines/writing); GPSmyCity reviews (justuseapp.com/en/app/417207307/gpsmycity-walks-in-1k-cities/reviews); VoiceMap reviews (trustpilot.com/review/voicemap.me).
+
+
+## Boxed plaques and quotations (text cleanup, 20 Nov 2026)
+- **Common practice:** digital books treat a sidebar as secondary content placed between paragraphs, never inside one, and mark it so readers can follow the main text past it. The EPUB accessibility guidelines say readers should be able to follow "a logical path that excludes the secondary material and orders the primary", and that a sidebar "may be placed between two paragraphs". DAISY recommends marking each one as an aside with its own heading. React Native exposes headings to VoiceOver and TalkBack with accessibilityRole "header".
+- **What we found:** the PDF gives each shaded box's text in the reading flow wherever its column breaks, after a hidden pin symbol and the background map label "‘Ena Rd.". Ten boxes landed inside other text, nine of them mid-sentence, six in the wrong stop.
+- **Our choice:** a reviewed list (scripts/extract/box_fixes.json) rather than a guess: each entry names the box's last words, the page, and the paragraph it follows in the book. build_data.py rejoins the cut sentence and marks the box blocks box: true. The app and preview draw them in a framed card; a short first line ending in a colon is the card's heading. Narration still reads the box where it sits. A missing anchor or end text stops the build, so a later PDF change cannot silently misplace a box.
+- **Not done:** other extraction slips found while auditing, for the next text pass: inline stop headings that lost their first words (Walk VIII stops 6, 7, 10, 21; Walk XII stops 5, 10), Walk XI stop 6's first sentence split in two, "Hawai‘ithe reason" in Walk IV stop 1, Walk IV stop 1's info box carrying map labels ("Parking Parking lot"), and doubled words ("of of", "the the").
+- Sources: W3C/IDPF EPUB Accessibility Guidelines, Logical Reading Order (idpf.github.io/a11y-guidelines/content/semantics/order.html); DAISY Knowledge Base, Asides (kb.daisy.org/publishing/docs/html/asides.html); React Native Accessibility (reactnative.dev/docs/accessibility).

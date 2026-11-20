@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-11-20 · Plaques and signs in their own box, not in the middle of sentences
+- The book prints plaques, signs and quotations in shaded boxes. The PDF gave each box's text in the middle of whatever came next, often splitting a sentence ("As vice-president of the ... Kapi‘olani Park Association"), and twice put the Kāhuna Stones plaque inside the wrong stop (Walk III stop 13 and Walk IV stop 27).
+- New scripts/extract/box_fixes.json, checked against the printed pages, lifts 10 boxes out, rejoins the 9 sentences they cut, and puts each box where the book prints it. A stray map label ("‘Ena Rd.") and pin symbol are gone from 10 stops.
+- Boxes now show framed, with their heading ("The plaque reads:") as a heading for screen readers, in the app and the preview.
+- Restored from the book: "Kealohilani Avenue - Kealohilani is a" (Walk IV stop 27) and the plaque date "1967" (Walk XI stop 6). "Drain- age Canal" is whole again (Walk VIII stop 16).
+
+## 2026-11-20 · Each walk starts and ends where the book does
+- The PDF lists each walk's map page and title page before its title, so the next walk's opening text, map labels and photos were showing at the end of the previous walk's last stop (Walks II to XI), and Walk XII's last stop carried the whole back matter (glossary, further readings, acknowledgements, back cover).
+- New scripts/extract/walk_ends.json, checked page by page against book/*.pdf, tells build_data.py where each walk ends. Opening text moves to the next walk's introduction; map labels and back matter are dropped.
+- Stop 1 of Walks VI, XI and XII now has its full book text (it began mid-sentence or was missing its first paragraphs). Walk XII's info box (length, parking, buses) is back.
+- The Wa‘ahila Ridge photo from Walk X's title page now shows at Walk X stop 1, not at the end of Walk IX.
+- Removed the stray space the PDF puts before punctuation after Hawaiian words ("Waikīkī ." is now "Waikīkī.").
+
 ## 2026-11-14 · First build
 - Extracted 12 walks and 308 stops from the book PDFs, with photos, fun facts and a glossary.
 - Geocoded stops with OpenStreetMap (named places, street corners, estimates); see review/stops_review.csv.

@@ -1,0 +1,16 @@
+{
+ "_note": "Where each walk really ends in the book. In the PDF, each walk's map page and title page come before its title in reading order, so the parser filed the next walk's map labels, opening text and photos under the previous walk's last stop, and sometimes the next walk's stop 1 as a stray 'stop 1' at the end of the previous walk. Checked page by page against book/*.pdf (20 Nov 2026; first done on the unmerged branch improve/2026-11-17-0651). Keys: 'drop_from': first text that is not part of this walk (map labels, a page reference); it may start a block or sit inside one. 'move_from': first block of the next walk's opening text; from here on it moves to the start of the next walk's introduction. 'page_from': photos of the last stop on this book page or later belong to the next walk. 'intro_drop': first and last block of map labels at the start of this walk's own introduction. Walk I is handled by TAIL_CUTS in build_data.py (Veneeta, 19 Nov 2026). For Walk XII, everything from drop_from on is the book's back matter (glossary, further readings, acknowledgements, back cover).",
+ "II": {"drop_from": "BEGIN WALK III", "page_from": "p1-58"},
+ "III": {"drop_from": "BEGIN WALK IV", "page_from": "p1-72"},
+ "IV": {"drop_from": "Tusitala St.", "move_from": "Last Days of the Monarchy", "page_from": "p2-1"},
+ "V": {"drop_from": "BEGIN WALK VI", "move_from": "Queen Kapi‘olani Regional Park and Honolulu Zoo", "page_from": "p2-17"},
+ "VI": {"drop_from": "4 5 7 8 9 10 11 12 13 14 15 Mauka", "page_from": "p2-29"},
+ "VII": {"drop_from": "See complete Walk viii map", "move_from": "Walk up Kapahulu Avenue through the neighborhood of Kaimukī", "page_from": "p2-47"},
+ "VIII": {"drop_from": "(Lē’ahi)", "page_from": "p2-65",
+          "intro_drop": ["ROUTE A ROUTE B ROUTE C", "Diamond Head State Monument"]},
+ "IX": {"drop_from": "Wa‘ahila Ridge – the Kanaka", "move_from": "Home to the first coffee", "page_from": "p3-1"},
+ "X": {"drop_from": "BEGIN WALK XI", "move_from": "The University of Hawai‘i, nestled in the beauty", "page_from": "p3-37",
+       "intro_drop": ["11 12 19 20 21 22 23 27 28 END", "Ala Wai Canal Walk X Map Key"]},
+ "XI": {"drop_from": "BEGIN WALK XII", "move_from": "Walk up Kapahulu Avenue to the Hawaiian Center", "page_from": "p3-61"},
+ "XII": {"drop_from": "WALK: 1", "page_from": "p3-77"}
+}
