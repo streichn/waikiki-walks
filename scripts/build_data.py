@@ -82,6 +82,8 @@ def clean_blocks(blocks):
     out = []
     for b in blocks or []:
         txt = b['text'].strip()
+        # The PDF puts a space before punctuation after some words, mostly ones with a kahakō or ‘okina ("Waikīkī .").
+        txt = re.sub(r'(?<=[^\s(]) +([.,;:])(?=\s|$)', r'\1', txt)
         if len(txt) < 2 or re.fullmatch(r'[\d\s.]+', txt):
             continue
         toks = txt.split(' ')
@@ -310,6 +312,103 @@ def apply_heading_fix(sid, title, sub, blocks):
             blocks = blocks[:k] + [{'kind': ins['kind'], 'text': ins['text']}] + blocks[k:]
     return title, sub, blocks
 
+
+WALK_ENDS = json.load(open(f'{ROOT}/scripts/extract/walk_ends.json')) if os.path.exists(f'{ROOT}/scripts/extract/walk_ends.json') else {}
+LETTER_SPACED = re.compile(r'^(?:\S ){6,}(?=\S{2,})')  # a decorative letter-spaced walk subtitle at the start of an info box
+
+
+def _page_key(p):
+    m = re.match(r'p(\d+)-(\d+)', p or '')
+    return (int(m.group(1)), int(m.group(2))) if m else (0, 0)
+
+
+def _find(blocks, marker, start=0):
+    return next((i for i in range(start, len(blocks)) if blocks[i].get('text', '').startswith(marker)), None)
+
+
+def apply_walk_ends(src):
+    """Give each walk back the opening text, photos and stop 1 that the parser filed under the previous walk's last
+    stop (scripts/extract/walk_ends.json), drop the map labels in between, and drop the back matter after Walk XII."""
+    ws = src['walks']
+    for w in ws:
+        drop = WALK_ENDS.get(w['roman'], {}).get('intro_drop')
+        intro = w.get('blocks') or []
+        if drop:
+            a = _find(intro, drop[0])
+            b = _find(intro, drop[1], a or 0)
+            if a is not None and b is not None:
+                del intro[a:b + 1]
+            else:
+                print('walk_ends: intro_drop not found', w['roman'], file=sys.stderr)
+    # The next walk's stop 1, printed on its title page, arrives as a stray stop 1 after this walk's last stop.
+    strays = {}
+    for k, w in enumerate(ws[:-1]):
+        st = w['stops']
+        if w['roman'] in WALK_ENDS and len(st) > 1 and st[-1]['n'] < st[-2]['n']:
+            strays[k] = st.pop()
+    for k, w in enumerate(ws):
+        cfg = WALK_ENDS.get(w['roman'])
+        if not cfg:
+            continue
+        nxt = ws[k + 1] if k + 1 < len(ws) else None
+        stray = strays.get(k)
+        last = w['stops'][-1]
+        blocks = last.get('blocks') or []
+        cut = _find(blocks, cfg['drop_from'])
+        if cut is None:
+            # The marker can sit at the end of a photo caption; split the block there.
+            j = next((i for i, b in enumerate(blocks) if ' ' + cfg['drop_from'] in b.get('text', '')), None)
+            if j is not None:
+                head, tail = blocks[j]['text'].split(' ' + cfg['drop_from'], 1)
+                blocks[j:j + 1] = [{**blocks[j], 'text': head}, {**blocks[j], 'text': cfg['drop_from'] + tail}]
+                cut = j + 1
+        if cut is None:
+            print('walk_ends: drop_from not found', w['roman'], file=sys.stderr)
+            continue
+        mv = _find(blocks, cfg['move_from'], cut) if cfg.get('move_from') else None
+        if cfg.get('move_from') and mv is None:
+            print('walk_ends: move_from not found', w['roman'], file=sys.stderr)
+        moved = blocks[mv:] if mv is not None else []
+        last['blocks'] = blocks[:cut]
+        lim = _page_key(cfg['page_from'])
+        later = [im for im in last.get('images', []) if _page_key(im['page']) >= lim]
+        last['images'] = [im for im in last.get('images', []) if _page_key(im['page']) < lim]
+        if nxt is None:
+            continue  # Walk XII: the rest is the book's back matter
+        nxt_intro = nxt.get('blocks') or []
+        if stray is None and nxt['stops'] and nxt['stops'][0]['n'] == 1:
+            # Photos on the next walk's title page go with its stop 1, with their captions from the dropped part.
+            caps = [b for b in blocks[cut:mv if mv is not None else len(blocks)] if _cap(b['text']) in CAPTIONS]
+            s1 = nxt['stops'][0]
+            s1['images'] = later + (s1.get('images') or [])
+            s1['blocks'] = [{'kind': 'caption', 'text': _cap(b['text'])} for b in caps] + (s1.get('blocks') or [])
+            later = []
+        nxt['images'] = later + nxt.get('images', [])
+        if stray is not None and not any(s['n'] == stray['n'] for s in nxt['stops']):
+            # Everything after the next walk's title until its next stop heading continues that stop 1;
+            # the sidebar boxes (walk length, parking, buses) stay with the walk.
+            head = [dict(b) for b in stray.get('blocks') or []]
+            rest = [b for b in nxt_intro if b['kind'] != 'info']
+            if head and rest and not SENT_END.search(head[-1]['text']):
+                # The sentence runs on from the title page to the next page ("...is perfect. McCully | Street is named").
+                head[-1]['text'] = join_text(head[-1]['text'], rest[0]['text'])
+                nxt_intro = [b for b in nxt_intro if b is not rest[0]]
+            body = head + nxt_intro
+            stray['blocks'] = [b for b in body if b['kind'] != 'info']
+            nxt_intro = [b for b in body if b['kind'] == 'info']
+            stray['images'] = (stray.get('images') or []) + nxt.get('images', [])
+            nxt['images'] = []
+            nxt['stops'].insert(0, stray)
+            # Its stop_fixes entry rebuilt this stop from the introduction; the whole stop is now here.
+            STOP_FIXES[nxt['roman']] = [fx for fx in STOP_FIXES.get(nxt['roman'], []) if fx['n'] != stray['n']]
+        nxt['blocks'] = moved + nxt_intro
+    for w in ws:
+        for b in w.get('blocks') or []:
+            if b['kind'] == 'info':
+                b['text'] = LETTER_SPACED.sub('', b['text'])
+
+
+apply_walk_ends(SRC)
 
 images_used = set()
 walks = []

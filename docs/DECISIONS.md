@@ -106,3 +106,11 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Where walks start and end (text cleanup, 20 Nov 2026)
+- **Common practice:** tour apps present each stop as a self-contained page: its name, its own text and its own photos, and nothing from the next tour. Apple's writing guidance asks for text that is clear and consistent across the app. Reviewers of large tour catalogues complain when a stop has no real information or the map doesn't match the text.
+- **What we found:** the book PDF reads each walk's map page and title page before its title, so six walks ended with the next walk's opening text, four more with map labels, and Walk XII ended with the book's back matter.
+- **Our choice:** fix it in the build, not by hand: scripts/extract/walk_ends.json records, for each walk, the first text that is not part of it and where the next walk's opening begins, checked against the book pages. Opening text moves to the next walk's introduction; title-page photos go to that walk's stop 1 with their captions. This carries over the approach of the unmerged branch improve/2026-11-17-0651 (PR #9), rebuilt on today's main.
+- **Not done:** the book's own Hawaiian Glossary and Further Readings (back matter) are no longer in Walk XII. They could become an in-app glossary and reading list later, from the book.
+- Sources: Apple Human Interface Guidelines, Writing (developer.apple.com/design/human-interface-guidelines/writing); GPSmyCity reviews (justuseapp.com/en/app/417207307/gpsmycity-walks-in-1k-cities/reviews); VoiceMap reviews (trustpilot.com/review/voicemap.me).
+
