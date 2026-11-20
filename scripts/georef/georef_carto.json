@@ -1,0 +1,1649 @@
+{
+ "X:map-X-c1.jpg": {
+  "walk": "X",
+  "file": "map-X-c1.jpg",
+  "source": "book/cartographer/W10-1.pdf",
+  "first": true,
+  "affine": [
+   [
+    -0.1755565349179031,
+    -0.4555691548235408
+   ],
+   [
+    -0.4585592333381598,
+    0.17341631019227902
+   ],
+   [
+    1608.4484267751177,
+    168.90083682842194
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "rms_m": 7.3,
+  "affine_rms_m": 7.3,
+  "m_per_px": 2.04,
+  "controls": [
+   {
+    "px": 1318.7,
+    "py": 420.9,
+    "lat": 21.2866847,
+    "lng": -157.8326581,
+    "name": "Niu St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1344.3,
+    "py": 504.5,
+    "lat": 21.28677,
+    "lng": -157.8343496,
+    "name": "‘Ena Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 912.5,
+    "py": 78.7,
+    "lat": 21.2913634,
+    "lng": -157.8234641,
+    "name": "Kapa‘akea Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 935.6,
+    "py": 44.6,
+    "lat": 21.2907567,
+    "lng": -157.8230029,
+    "name": "University Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 987.4,
+    "py": 120.7,
+    "lat": 21.2903696,
+    "lng": -157.8247703,
+    "name": "Hausten St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 930.1,
+    "py": 211.1,
+    "lat": 21.2919693,
+    "lng": -157.8260774,
+    "name": "Isenberg St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 904.4,
+    "py": 310.1,
+    "lat": 21.2930646,
+    "lng": -157.827714,
+    "name": "Makahiki Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 893.5,
+    "py": 402.5,
+    "lat": 21.2938319,
+    "lng": -157.8292557,
+    "name": "Wiliwili St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 863.9,
+    "py": 464.4,
+    "lat": 21.294763,
+    "lng": -157.8302178,
+    "name": "McCully St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 856.4,
+    "py": 266.0,
+    "lat": 21.2935895,
+    "lng": -157.8265394,
+    "name": "S. King St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 942.6,
+    "py": 355.6,
+    "lat": 21.2926419,
+    "lng": -157.8288215,
+    "name": "Waiola St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 995.1,
+    "py": 338.0,
+    "lat": 21.2916738,
+    "lng": -157.8288234,
+    "name": "Pa‘ani St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1168.1,
+    "py": 347.9,
+    "lat": 21.2887958,
+    "lng": -157.8302192,
+    "name": "Kapi‘olani Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1294.9,
+    "py": 367.9,
+    "lat": 21.2866445,
+    "lng": -157.8315585,
+    "name": "Ala Wai Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1028.6,
+    "py": 372.4,
+    "lat": 21.2912487,
+    "lng": -157.8297425,
+    "name": "Date St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 762.6,
+    "py": 277.8,
+    "lat": 21.2953457,
+    "lng": -157.8260775,
+    "name": "S. Beretania St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 955.7,
+    "py": 166.1,
+    "lat": 21.2912196,
+    "lng": -157.8253972,
+    "name": "Coolidge St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1286.7,
+    "py": 465.4,
+    "lat": 21.2874865,
+    "lng": -157.833173,
+    "name": "McCully St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 612.1,
+    "py": 418.8,
+    "lat": 21.2988188,
+    "lng": -157.8276604,
+    "name": "Metcalf St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 615.4,
+    "py": 318.1,
+    "lat": 21.2980877,
+    "lng": -157.8258151,
+    "name": "Wilder Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 491.4,
+    "py": 770.8,
+    "lat": 21.3032337,
+    "lng": -157.8333094,
+    "name": "Wilder Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 601.6,
+    "py": 447.8,
+    "lat": 21.2991961,
+    "lng": -157.8281354,
+    "name": "Oliver St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 594.8,
+    "py": 481.0,
+    "lat": 21.2995309,
+    "lng": -157.8286983,
+    "name": "Evelyn Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 551.8,
+    "py": 492.1,
+    "lat": 21.300432,
+    "lng": -157.8287032,
+    "name": "Artesian Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 605.4,
+    "py": 588.3,
+    "lat": 21.3000559,
+    "lng": -157.8307523,
+    "name": "Alexander St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 586.7,
+    "py": 668.2,
+    "lat": 21.3010274,
+    "lng": -157.831988,
+    "name": "Halekula Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 573.6,
+    "py": 701.5,
+    "lat": 21.3014131,
+    "lng": -157.8325615,
+    "name": "Spreckels St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 641.3,
+    "py": 416.6,
+    "lat": 21.2983026,
+    "lng": -157.8278119,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 266.9,
+    "py": 585.6,
+    "lat": 21.3056824,
+    "lng": -157.8283782,
+    "name": "Alihilani Pl.",
+    "kind": "street-label"
+   },
+   {
+    "px": 240.7,
+    "py": 540.1,
+    "lat": 21.3058248,
+    "lng": -157.8272699,
+    "name": "Ahualani Pl.",
+    "kind": "street-label"
+   },
+   {
+    "px": 216.6,
+    "py": 379.5,
+    "lat": 21.3053369,
+    "lng": -157.8241779,
+    "name": "Lanihuli Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 283.4,
+    "py": 241.9,
+    "lat": 21.3032766,
+    "lng": -157.8220624,
+    "name": "Hunnewell St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 165.9,
+    "py": 322.7,
+    "lat": 21.3058103,
+    "lng": -157.8227881,
+    "name": "Kamehameha Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 189.3,
+    "py": 210.8,
+    "lat": 21.3046965,
+    "lng": -157.8208678,
+    "name": "Ka‘ala Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 325.0,
+    "py": 619.4,
+    "lat": 21.3052133,
+    "lng": -157.829385,
+    "name": "Manoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 552.6,
+    "py": 743.2,
+    "lat": 21.3019621,
+    "lng": -157.833199,
+    "name": "Punahou St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 499.1,
+    "py": 169.2,
+    "lat": 21.2991495,
+    "lng": -157.8222536,
+    "name": "Metcalf St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 337.1,
+    "py": 47.1,
+    "lat": 21.301084,
+    "lng": -157.8188728,
+    "name": "Maile Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 542.6,
+    "py": 99.0,
+    "lat": 21.297881,
+    "lng": -157.8212017,
+    "name": "University Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 630.0,
+    "py": 169.9,
+    "lat": 21.2968865,
+    "lng": -157.8231828,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 109.4,
+    "py": 149.0,
+    "lat": 21.305664,
+    "lng": -157.8191483,
+    "name": "O‘ahu Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 93.8,
+    "py": 349.1,
+    "lat": 21.3072903,
+    "lng": -157.8227634,
+    "name": "Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 312.5,
+    "py": 719.6,
+    "lat": 21.3059271,
+    "lng": -157.8311599,
+    "name": "Nehoa St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 404.3,
+    "py": 209.0,
+    "lat": 21.3010379,
+    "lng": -157.8223251,
+    "name": "Vancouver Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 123.6,
+    "py": 92.0,
+    "lat": 21.3050517,
+    "lng": -157.818214,
+    "name": "University Ave.",
+    "kind": "street-label"
+   }
+  ],
+  "labels_used": [
+   "Niu St.",
+   "‘Ena Rd.",
+   "Kapa‘akea Ln.",
+   "University Ave.",
+   "Hausten St.",
+   "Isenberg St.",
+   "Makahiki Way",
+   "Wiliwili St.",
+   "McCully St.",
+   "S. King St.",
+   "Waiola St.",
+   "Pa‘ani St.",
+   "Kapi‘olani Blvd.",
+   "Ala Wai Blvd.",
+   "Date St.",
+   "S. Beretania St.",
+   "Coolidge St.",
+   "McCully St.",
+   "Metcalf St.",
+   "Wilder Ave.",
+   "Wilder Ave.",
+   "Oliver St.",
+   "Evelyn Ln.",
+   "Artesian Way",
+   "Alexander St.",
+   "Halekula Way",
+   "Spreckels St.",
+   "Dole St.",
+   "Alihilani Pl.",
+   "Ahualani Pl.",
+   "Lanihuli Dr.",
+   "Hunnewell St.",
+   "Kamehameha Ave.",
+   "Ka‘ala Way",
+   "Manoa Rd.",
+   "Punahou St.",
+   "Metcalf St.",
+   "Maile Way",
+   "University Ave.",
+   "Dole St.",
+   "O‘ahu Ave.",
+   "Mānoa Rd.",
+   "Nehoa St.",
+   "Vancouver Dr.",
+   "University Ave."
+  ],
+  "labels_unmatched": [
+   "Algoroba St.",
+   "McKinley St."
+  ],
+  "crossings": [
+   "Niu St. x Ala Wai Blvd.",
+   "Hausten St. x S. King St.",
+   "Isenberg St. x S. King St.",
+   "Makahiki Way x S. King St.",
+   "Makahiki Way x Waiola St.",
+   "Wiliwili St. x S. King St.",
+   "Wiliwili St. x Waiola St.",
+   "Wiliwili St. x Date St.",
+   "McCully St. x Waiola St.",
+   "S. King St. x Coolidge St.",
+   "Waiola St. x Pa‘ani St.",
+   "Pa‘ani St. x Date St.",
+   "Kapi‘olani Blvd. x McCully St.",
+   "Ala Wai Blvd. x McCully St.",
+   "Metcalf St. x Wilder Ave.",
+   "Metcalf St. x Dole St.",
+   "Wilder Ave. x Oliver St.",
+   "Wilder Ave. x Dole St.",
+   "Wilder Ave. x Halekula Way",
+   "Wilder Ave. x Spreckels St.",
+   "Wilder Ave. x Punahou St.",
+   "Oliver St. x Dole St.",
+   "Evelyn Ln. x Dole St.",
+   "Artesian Way x Dole St.",
+   "Alihilani Pl. x Manoa Rd.",
+   "Ahualani Pl. x Manoa Rd.",
+   "Lanihuli Dr. x Mānoa Rd.",
+   "Hunnewell St. x Vancouver Dr.",
+   "Kamehameha Ave. x Mānoa Rd.",
+   "Ka‘ala Way x O‘ahu Ave.",
+   "Manoa Rd. x Nehoa St.",
+   "Metcalf St. x University Ave.",
+   "University Ave. x Dole St."
+  ]
+ },
+ "X:map-X-c2.jpg": {
+  "walk": "X",
+  "file": "map-X-c2.jpg",
+  "source": "book/cartographer/W10-2.pdf",
+  "first": false,
+  "affine": [
+   [
+    0.36233970514350305,
+    -0.3181061466133127
+   ],
+   [
+    -0.3217215482104346,
+    -0.38538643226252106
+   ],
+   [
+    882.1079560066548,
+    3102.9035568810777
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "rms_m": 7.2,
+  "affine_rms_m": 6.4,
+  "m_per_px": 2.03,
+  "controls": [
+   {
+    "px": 202.3,
+    "py": 1832.2,
+    "lat": 21.3053158,
+    "lng": -157.8241361,
+    "name": "Lanihuli Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 354.2,
+    "py": 1847.4,
+    "lat": 21.303298,
+    "lng": -157.8220498,
+    "name": "Hunnewell St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 237.8,
+    "py": 1765.1,
+    "lat": 21.3057853,
+    "lng": -157.8227405,
+    "name": "Kamehameha Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 351.0,
+    "py": 1748.2,
+    "lat": 21.3046575,
+    "lng": -157.8207931,
+    "name": "Ka‘ala Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 553.1,
+    "py": 1828.4,
+    "lat": 21.3011355,
+    "lng": -157.8187035,
+    "name": "Maile Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 757.9,
+    "py": 1825.2,
+    "lat": 21.2986818,
+    "lng": -157.8155285,
+    "name": "Correa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 374.0,
+    "py": 1615.0,
+    "lat": 21.3062304,
+    "lng": -157.8188097,
+    "name": "O‘ahu Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 395.0,
+    "py": 1386.6,
+    "lat": 21.308984,
+    "lng": -157.8154109,
+    "name": "O‘ahu Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 320.8,
+    "py": 1511.4,
+    "lat": 21.3082532,
+    "lng": -157.8182218,
+    "name": "E Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 201.5,
+    "py": 1642.5,
+    "lat": 21.3078739,
+    "lng": -157.8217348,
+    "name": "Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 290.2,
+    "py": 1116.9,
+    "lat": 21.3139218,
+    "lng": -157.8136214,
+    "name": "Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 284.5,
+    "py": 955.5,
+    "lat": 21.3161413,
+    "lng": -157.811582,
+    "name": "O‘ahu Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 451.9,
+    "py": 1051.1,
+    "lat": 21.3129599,
+    "lng": -157.8102119,
+    "name": "Lowrey Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 560.0,
+    "py": 1194.8,
+    "lat": 21.3096872,
+    "lng": -157.8105004,
+    "name": "E Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 686.2,
+    "py": 887.4,
+    "lat": 21.3123443,
+    "lng": -157.8046006,
+    "name": "Kahaloa Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 712.0,
+    "py": 1066.7,
+    "lat": 21.3096352,
+    "lng": -157.806542,
+    "name": "Woodlawn Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 460.7,
+    "py": 1461.8,
+    "lat": 21.3072391,
+    "lng": -157.8154358,
+    "name": "Alaula Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 436.1,
+    "py": 1260.1,
+    "lat": 21.3102793,
+    "lng": -157.8132055,
+    "name": "Anuenue St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 336.4,
+    "py": 872.1,
+    "lat": 21.3166399,
+    "lng": -157.8097424,
+    "name": "Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 610.5,
+    "py": 625.5,
+    "lat": 21.3168402,
+    "lng": -157.8024655,
+    "name": "E Mānoa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 432.4,
+    "py": 1613.1,
+    "lat": 21.3055703,
+    "lng": -157.8179014,
+    "name": "University Ave.",
+    "kind": "street-label"
+   }
+  ],
+  "labels_used": [
+   "Lanihuli Dr.",
+   "Hunnewell St.",
+   "Kamehameha Ave.",
+   "Ka‘ala Way",
+   "Maile Way",
+   "Correa Rd.",
+   "O‘ahu Ave.",
+   "O‘ahu Ave.",
+   "E Mānoa Rd.",
+   "Mānoa Rd.",
+   "Mānoa Rd.",
+   "O‘ahu Ave.",
+   "Lowrey Ave.",
+   "E Mānoa Rd.",
+   "Kahaloa Dr.",
+   "Woodlawn Dr.",
+   "Alaula Way",
+   "Anuenue St.",
+   "Mānoa Rd.",
+   "E Mānoa Rd.",
+   "University Ave."
+  ],
+  "labels_unmatched": [
+   "McKinley St.",
+   "Ave.",
+   "Pakanu Pl."
+  ],
+  "crossings": [
+   "Kamehameha Ave. x Mānoa Rd.",
+   "Ka‘ala Way x O‘ahu Ave.",
+   "O‘ahu Ave. x E Mānoa Rd.",
+   "O‘ahu Ave. x Alaula Way",
+   "O‘ahu Ave. x Anuenue St.",
+   "Lowrey Ave. x E Mānoa Rd.",
+   "Lowrey Ave. x Mānoa Rd.",
+   "Pakanu St. x Pāwaina St."
+  ]
+ },
+ "XI:map-XI-c.jpg": {
+  "walk": "XI",
+  "file": "map-XI-c.jpg",
+  "source": "book/cartographer/W11.pdf",
+  "first": true,
+  "affine": [
+   [
+    0.4914116138181442,
+    0.010851906304782421
+   ],
+   [
+    0.013630636606741202,
+    -0.4869633700681279
+   ],
+   [
+    255.9824972065172,
+    1372.968092529489
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "rms_m": 5.5,
+  "affine_rms_m": 5.5,
+  "m_per_px": 2.04,
+  "controls": [
+   {
+    "px": 108.0,
+    "py": 1042.2,
+    "lat": 21.2860677,
+    "lng": -157.8331032,
+    "name": "Kalākaua Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 159.6,
+    "py": 1035.2,
+    "lat": 21.2862428,
+    "lng": -157.8320888,
+    "name": "Pa‘ū St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 131.3,
+    "py": 1008.4,
+    "lat": 21.286707,
+    "lng": -157.8326356,
+    "name": "Niu St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 47.9,
+    "py": 1001.3,
+    "lat": 21.2868174,
+    "lng": -157.8342869,
+    "name": "‘Ena Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 649.4,
+    "py": 1033.3,
+    "lat": 21.2864845,
+    "lng": -157.8224553,
+    "name": "Date St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 720.5,
+    "py": 1038.0,
+    "lat": 21.2863941,
+    "lng": -157.8210631,
+    "name": "Mahi‘ai St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 776.3,
+    "py": 1012.2,
+    "lat": 21.2868874,
+    "lng": -157.8200368,
+    "name": "Nāhaku Pl.",
+    "kind": "street-label"
+   },
+   {
+    "px": 764.0,
+    "py": 849.6,
+    "lat": 21.2898315,
+    "lng": -157.8202599,
+    "name": "Kahoaloha Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 751.4,
+    "py": 904.2,
+    "lat": 21.2889141,
+    "lng": -157.8205275,
+    "name": "Kuilei St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 769.7,
+    "py": 799.5,
+    "lat": 21.2909169,
+    "lng": -157.8201986,
+    "name": "S. King St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 881.7,
+    "py": 900.4,
+    "lat": 21.2890673,
+    "lng": -157.8180293,
+    "name": "Church Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 707.7,
+    "py": 974.9,
+    "lat": 21.2876829,
+    "lng": -157.8213701,
+    "name": "Kapi‘olani Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 700.2,
+    "py": 796.3,
+    "lat": 21.2908737,
+    "lng": -157.8215977,
+    "name": "Kahuna Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 605.8,
+    "py": 767.8,
+    "lat": 21.2913623,
+    "lng": -157.8234667,
+    "name": "Kapa‘akea Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 628.7,
+    "py": 802.3,
+    "lat": 21.2907484,
+    "lng": -157.8230105,
+    "name": "University Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 300.3,
+    "py": 656.2,
+    "lat": 21.2933044,
+    "lng": -157.829477,
+    "name": "Wiliwili St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 194.3,
+    "py": 753.9,
+    "lat": 21.2914647,
+    "lng": -157.8315504,
+    "name": "McCully St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 456.1,
+    "py": 647.3,
+    "lat": 21.2935646,
+    "lng": -157.8264694,
+    "name": "S. King St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 340.5,
+    "py": 693.3,
+    "lat": 21.2926097,
+    "lng": -157.8287319,
+    "name": "Waiola St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 331.7,
+    "py": 742.0,
+    "lat": 21.291719,
+    "lng": -157.8288033,
+    "name": "Pa‘ani St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 262.3,
+    "py": 904.9,
+    "lat": 21.288651,
+    "lng": -157.8301486,
+    "name": "Kapi‘olani Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 757.3,
+    "py": 1072.3,
+    "lat": 21.2857764,
+    "lng": -157.820353,
+    "name": "Menehune Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 794.4,
+    "py": 908.3,
+    "lat": 21.2888421,
+    "lng": -157.8196958,
+    "name": "Waiaka Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 292.2,
+    "py": 766.6,
+    "lat": 21.2912127,
+    "lng": -157.8296463,
+    "name": "Date St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 480.3,
+    "py": 556.1,
+    "lat": 21.2953247,
+    "lng": -157.8260199,
+    "name": "S. Beretania St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 406.4,
+    "py": 360.1,
+    "lat": 21.2988332,
+    "lng": -157.827599,
+    "name": "Metcalf St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 498.9,
+    "py": 404.6,
+    "lat": 21.2980563,
+    "lng": -157.8257898,
+    "name": "Wilder Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 126.6,
+    "py": 118.6,
+    "lat": 21.3032054,
+    "lng": -157.8332353,
+    "name": "Wilder Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 381.4,
+    "py": 340.4,
+    "lat": 21.2992198,
+    "lng": -157.8281122,
+    "name": "Oliver St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 353.4,
+    "py": 321.5,
+    "lat": 21.2995583,
+    "lng": -157.828671,
+    "name": "Evelyn Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 359.9,
+    "py": 277.1,
+    "lat": 21.300432,
+    "lng": -157.8287032,
+    "name": "Artesian Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 250.0,
+    "py": 291.0,
+    "lat": 21.3000889,
+    "lng": -157.8307292,
+    "name": "Alexander St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 183.0,
+    "py": 243.7,
+    "lat": 21.3010274,
+    "lng": -157.831988,
+    "name": "Halekula Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 157.2,
+    "py": 218.9,
+    "lat": 21.3014131,
+    "lng": -157.8325615,
+    "name": "Spreckels St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 397.9,
+    "py": 391.3,
+    "lat": 21.2982695,
+    "lng": -157.8277617,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 126.3,
+    "py": 184.0,
+    "lat": 21.3019974,
+    "lng": -157.8331716,
+    "name": "Punahou St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 681.0,
+    "py": 349.9,
+    "lat": 21.2991477,
+    "lng": -157.8222293,
+    "name": "Metcalf St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 854.4,
+    "py": 246.1,
+    "lat": 21.3010873,
+    "lng": -157.8188618,
+    "name": "Maile Way",
+    "kind": "street-label"
+   },
+   {
+    "px": 729.3,
+    "py": 419.8,
+    "lat": 21.2978829,
+    "lng": -157.8212016,
+    "name": "University Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 630.7,
+    "py": 470.9,
+    "lat": 21.2968851,
+    "lng": -157.8231486,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 984.3,
+    "py": 502.6,
+    "lat": 21.2964806,
+    "lng": -157.8161913,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1007.7,
+    "py": 382.1,
+    "lat": 21.2986749,
+    "lng": -157.8158047,
+    "name": "Correa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 680.1,
+    "py": 247.2,
+    "lat": 21.3010363,
+    "lng": -157.8223053,
+    "name": "Vancouver Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 790.7,
+    "py": 548.4,
+    "lat": 21.2955275,
+    "lng": -157.8200396,
+    "name": "Lower Campus Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 997.2,
+    "py": 743.2,
+    "lat": 21.2920181,
+    "lng": -157.815851,
+    "name": "Kalele Rd.",
+    "kind": "street-label"
+   }
+  ],
+  "labels_used": [
+   "Kalākaua Ave.",
+   "Pa‘ū St.",
+   "Niu St.",
+   "‘Ena Rd.",
+   "Date St.",
+   "Mahi‘ai St.",
+   "Nāhaku Pl.",
+   "Kahoaloha Ln.",
+   "Kuilei St.",
+   "S. King St.",
+   "Church Ln.",
+   "Kapi‘olani Blvd.",
+   "Kahuna Ln.",
+   "Kapa‘akea Ln.",
+   "University Ave.",
+   "Wiliwili St.",
+   "McCully St.",
+   "S. King St.",
+   "Waiola St.",
+   "Pa‘ani St.",
+   "Kapi‘olani Blvd.",
+   "Menehune Ln.",
+   "Waiaka Rd.",
+   "Date St.",
+   "S. Beretania St.",
+   "Metcalf St.",
+   "Wilder Ave.",
+   "Wilder Ave.",
+   "Oliver St.",
+   "Evelyn Ln.",
+   "Artesian Way",
+   "Alexander St.",
+   "Halekula Way",
+   "Spreckels St.",
+   "Dole St.",
+   "Punahou St.",
+   "Metcalf St.",
+   "Maile Way",
+   "University Ave.",
+   "Dole St.",
+   "Dole St.",
+   "Correa Rd.",
+   "Vancouver Dr.",
+   "Lower Campus Rd.",
+   "Kalele Rd."
+  ],
+  "labels_unmatched": [
+   "Algoroba St."
+  ],
+  "crossings": [
+   "Kalākaua Ave. x Pa‘ū St.",
+   "Kalākaua Ave. x Niu St.",
+   "Kalākaua Ave. x ‘Ena Rd.",
+   "Date St. x Mahi‘ai St.",
+   "Date St. x Kapi‘olani Blvd.",
+   "Date St. x Menehune Ln.",
+   "Mahi‘ai St. x Nāhaku Pl.",
+   "Mahi‘ai St. x Kapi‘olani Blvd.",
+   "Kahoaloha Ln. x Kuilei St.",
+   "Kahoaloha Ln. x S. King St.",
+   "Kuilei St. x Kahuna Ln.",
+   "Kuilei St. x Waiaka Rd.",
+   "S. King St. x Church Ln.",
+   "S. King St. x Kahuna Ln.",
+   "S. King St. x Kapa‘akea Ln.",
+   "S. King St. x University Ave.",
+   "S. King St. x Waiaka Rd.",
+   "Wiliwili St. x S. King St.",
+   "Wiliwili St. x Waiola St.",
+   "Wiliwili St. x Date St.",
+   "McCully St. x Waiola St.",
+   "McCully St. x Kapi‘olani Blvd.",
+   "McCully St. x Date St.",
+   "Waiola St. x Pa‘ani St.",
+   "Pa‘ani St. x Date St.",
+   "Metcalf St. x Wilder Ave.",
+   "Metcalf St. x Dole St.",
+   "Wilder Ave. x Oliver St.",
+   "Wilder Ave. x Dole St.",
+   "Wilder Ave. x Halekula Way",
+   "Wilder Ave. x Spreckels St.",
+   "Wilder Ave. x Punahou St.",
+   "Oliver St. x Dole St.",
+   "Evelyn Ln. x Dole St.",
+   "Artesian Way x Dole St.",
+   "Metcalf St. x University Ave.",
+   "University Ave. x Dole St."
+  ]
+ },
+ "XII:map-XII-c.jpg": {
+  "walk": "XII",
+  "file": "map-XII-c.jpg",
+  "source": "book/cartographer/W12.pdf",
+  "first": true,
+  "affine": [
+   [
+    0.36827408164839454,
+    -0.3162255304683915
+   ],
+   [
+    -0.31946126066505076,
+    -0.36986319643919213
+   ],
+   [
+    349.44236906870543,
+    1339.6012982801628
+   ]
+  ],
+  "origin": [
+   21.28,
+   -157.83
+  ],
+  "rms_m": 5.5,
+  "affine_rms_m": 5.5,
+  "m_per_px": 2.05,
+  "controls": [
+   {
+    "px": 738.2,
+    "py": 1145.2,
+    "lat": 21.2780252,
+    "lng": -157.8216509,
+    "name": "Ala Wai Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 958.1,
+    "py": 846.1,
+    "lat": 21.2795499,
+    "lng": -157.814487,
+    "name": "Date St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 407.1,
+    "py": 829.1,
+    "lat": 21.2865024,
+    "lng": -157.8224758,
+    "name": "Date St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1033.6,
+    "py": 791.0,
+    "lat": 21.2794608,
+    "lng": -157.8125962,
+    "name": "Mo‘oheau Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 887.4,
+    "py": 806.1,
+    "lat": 21.281001,
+    "lng": -157.814984,
+    "name": "Palani Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 840.5,
+    "py": 793.9,
+    "lat": 21.2817083,
+    "lng": -157.8154941,
+    "name": "Makaleka Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 794.5,
+    "py": 805.6,
+    "lat": 21.2821213,
+    "lng": -157.8163659,
+    "name": "Ekela Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 748.3,
+    "py": 791.4,
+    "lat": 21.2828743,
+    "lng": -157.8168733,
+    "name": "Lukepane Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 700.4,
+    "py": 794.4,
+    "lat": 21.2833904,
+    "lng": -157.8176096,
+    "name": "Olokele Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1058.8,
+    "py": 998.8,
+    "lat": 21.276256,
+    "lng": -157.8149573,
+    "name": "Kapahulu Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 976.1,
+    "py": 758.0,
+    "lat": 21.2806582,
+    "lng": -157.8129784,
+    "name": "Winam Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 904.7,
+    "py": 677.5,
+    "lat": 21.2826027,
+    "lng": -157.8130577,
+    "name": "Mokihana St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 877.0,
+    "py": 602.1,
+    "lat": 21.2839475,
+    "lng": -157.8125474,
+    "name": "Charles St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 873.5,
+    "py": 640.6,
+    "lat": 21.2834955,
+    "lng": -157.8130498,
+    "name": "Olu St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 909.9,
+    "py": 711.7,
+    "lat": 21.2820501,
+    "lng": -157.8134333,
+    "name": "Paliuli St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 855.9,
+    "py": 573.4,
+    "lat": 21.2847287,
+    "lng": -157.8123576,
+    "name": "Kaimuki  Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 651.0,
+    "py": 836.3,
+    "lat": 21.2834363,
+    "lng": -157.8189272,
+    "name": "Date St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 1096.3,
+    "py": 909.4,
+    "lat": 21.2770268,
+    "lng": -157.8132303,
+    "name": "Campbell Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 526.3,
+    "py": 863.9,
+    "lat": 21.2845298,
+    "lng": -157.8211841,
+    "name": "Lā‘au St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 462.8,
+    "py": 784.5,
+    "lat": 21.2863983,
+    "lng": -157.8210587,
+    "name": "Mahi‘ai St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 486.6,
+    "py": 727.8,
+    "lat": 21.2869069,
+    "lng": -157.820049,
+    "name": "Nāhaku Pl.",
+    "kind": "street-label"
+   },
+   {
+    "px": 367.7,
+    "py": 616.0,
+    "lat": 21.2898351,
+    "lng": -157.8202542,
+    "name": "Kahoaloha Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 395.4,
+    "py": 664.8,
+    "lat": 21.2889267,
+    "lng": -157.8205372,
+    "name": "Kuilei St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 338.0,
+    "py": 575.2,
+    "lat": 21.2909234,
+    "lng": -157.8202088,
+    "name": "S. King St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 488.9,
+    "py": 574.1,
+    "lat": 21.2890956,
+    "lng": -157.8179962,
+    "name": "Church Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 410.8,
+    "py": 746.6,
+    "lat": 21.2876819,
+    "lng": -157.8213861,
+    "name": "Kapi‘olani Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 284.7,
+    "py": 619.9,
+    "lat": 21.2908633,
+    "lng": -157.8216111,
+    "name": "Kahuna Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 195.8,
+    "py": 662.5,
+    "lat": 21.2913435,
+    "lng": -157.8235109,
+    "name": "Kapa‘akea Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 235.9,
+    "py": 672.6,
+    "lat": 21.2907226,
+    "lng": -157.823034,
+    "name": "University Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 185.7,
+    "py": 747.4,
+    "lat": 21.2902981,
+    "lng": -157.8247994,
+    "name": "Hausten St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 81.1,
+    "py": 725.0,
+    "lat": 21.2918845,
+    "lng": -157.8261124,
+    "name": "Isenberg St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 412.7,
+    "py": 1134.7,
+    "lat": 21.2821492,
+    "lng": -157.8263544,
+    "name": "Ala Wai Blvd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 513.1,
+    "py": 784.9,
+    "lat": 21.2857764,
+    "lng": -157.820353,
+    "name": "Menehune Ln.",
+    "kind": "street-label"
+   },
+   {
+    "px": 429.8,
+    "py": 638.8,
+    "lat": 21.2888573,
+    "lng": -157.8196808,
+    "name": "Waiaka Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 132.1,
+    "py": 733.3,
+    "lat": 21.2911427,
+    "lng": -157.8254281,
+    "name": "Coolidge St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 867.1,
+    "py": 333.2,
+    "lat": 21.2879186,
+    "lng": -157.8091381,
+    "name": "Wai‘alae  Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 734.5,
+    "py": 320.3,
+    "lat": 21.2896589,
+    "lng": -157.81096,
+    "name": "St. Louis Dr.",
+    "kind": "street-label"
+   },
+   {
+    "px": 843.0,
+    "py": 436.9,
+    "lat": 21.2867272,
+    "lng": -157.8108611,
+    "name": "Harding Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 691.2,
+    "py": 225.3,
+    "lat": 21.2915289,
+    "lng": -157.8104415,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 52.0,
+    "py": 322.5,
+    "lat": 21.2978621,
+    "lng": -157.8212024,
+    "name": "University Ave.",
+    "kind": "street-label"
+   },
+   {
+    "px": 296.1,
+    "py": 211.5,
+    "lat": 21.2964738,
+    "lng": -157.8161589,
+    "name": "Dole St.",
+    "kind": "street-label"
+   },
+   {
+    "px": 231.9,
+    "py": 106.7,
+    "lat": 21.2986764,
+    "lng": -157.8157593,
+    "name": "Correa Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 184.0,
+    "py": 375.8,
+    "lat": 21.2955293,
+    "lng": -157.8200394,
+    "name": "Lower Campus Rd.",
+    "kind": "street-label"
+   },
+   {
+    "px": 472.9,
+    "py": 411.2,
+    "lat": 21.2916061,
+    "lng": -157.8161779,
+    "name": "Kalele Rd.",
+    "kind": "street-label"
+   }
+  ],
+  "labels_used": [
+   "Ala Wai Blvd.",
+   "Date St.",
+   "Date St.",
+   "Mo‘oheau Ave.",
+   "Palani Ave.",
+   "Makaleka Ave.",
+   "Ekela Ave.",
+   "Lukepane Ave.",
+   "Olokele Ave.",
+   "Kapahulu Ave.",
+   "Winam Ave.",
+   "Mokihana St.",
+   "Charles St.",
+   "Olu St.",
+   "Paliuli St.",
+   "Kaimuki  Ave.",
+   "Date St.",
+   "Campbell Ave.",
+   "Lā‘au St.",
+   "Mahi‘ai St.",
+   "Nāhaku Pl.",
+   "Kahoaloha Ln.",
+   "Kuilei St.",
+   "S. King St.",
+   "Church Ln.",
+   "Kapi‘olani Blvd.",
+   "Kahuna Ln.",
+   "Kapa‘akea Ln.",
+   "University Ave.",
+   "Hausten St.",
+   "Isenberg St.",
+   "Ala Wai Blvd.",
+   "Menehune Ln.",
+   "Waiaka Rd.",
+   "Coolidge St.",
+   "Wai‘alae  Ave.",
+   "St. Louis Dr.",
+   "Harding Ave.",
+   "Dole St.",
+   "University Ave.",
+   "Dole St.",
+   "Correa Rd.",
+   "Lower Campus Rd.",
+   "Kalele Rd."
+  ],
+  "labels_unmatched": [
+   "Kamuela St."
+  ],
+  "crossings": [
+   "Date St. x Mo‘oheau Ave.",
+   "Date St. x Palani Ave.",
+   "Date St. x Makaleka Ave.",
+   "Date St. x Kapahulu Ave.",
+   "Date St. x Mahi‘ai St.",
+   "Date St. x Kapi‘olani Blvd.",
+   "Date St. x Menehune Ln.",
+   "Mo‘oheau Ave. x Winam Ave.",
+   "Palani Ave. x Winam Ave.",
+   "Makaleka Ave. x Winam Ave.",
+   "Ekela Ave. x Date St.",
+   "Lukepane Ave. x Date St.",
+   "Olokele Ave. x Date St.",
+   "Kapahulu Ave. x Campbell Ave.",
+   "Date St. x Menehune Ln.",
+   "Mahi‘ai St. x Nāhaku Pl.",
+   "Mahi‘ai St. x Kapi‘olani Blvd.",
+   "Kahoaloha Ln. x Kuilei St.",
+   "Kahoaloha Ln. x S. King St.",
+   "Kuilei St. x Kahuna Ln.",
+   "Kuilei St. x Waiaka Rd.",
+   "S. King St. x Church Ln.",
+   "S. King St. x Kahuna Ln.",
+   "S. King St. x Kapa‘akea Ln.",
+   "S. King St. x University Ave.",
+   "S. King St. x Waiaka Rd.",
+   "Wai‘alae  Ave. x St. Louis Dr."
+  ]
+ }
+}

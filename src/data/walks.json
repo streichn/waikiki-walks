@@ -8914,7 +8914,7 @@
    "C h a s i n g R a i n b o w s ! Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator. 1.5 hour, 3 miles round trip, 6,000 steps PARKING: On-street parking can be found along Date Street on the mauka side of the canal. It’s free, except no parking 3:30 to 6:30 pm Mondays through Fridays. Parking garage across from the Hale Koa Hotel on Kālia Road. Parking lot on the corner of Kālia and Saratoga roads. Contact information for the places you will visit so that you can plan: Mānoa Heritage Center manoaheritagecenter.org or call (808) 988-1287 Lyon Arboretum: (808) 988-0456 or go to Eventbrite"
   ],
   "cover": "p3-29-311.jpg",
-  "bookMap": "map-X.jpg",
+  "bookMap": "map-X-c1.jpg",
   "color": "#D1495B",
   "stops": [
    {
@@ -8928,11 +8928,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.28765,
-    "lng": -157.833068,
+    "lat": 21.287437,
+    "lng": -157.832782,
     "geo": "book",
     "page": "p3-7",
-    "radius": 55
+    "radius": 71
    },
    {
     "id": "X-02",
@@ -8945,8 +8945,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.288973,
-    "lng": -157.832214,
+    "lat": 21.288876,
+    "lng": -157.832283,
     "geo": "book",
     "page": "p3-7",
     "radius": 63
@@ -9005,11 +9005,11 @@
       "caption": "Mānoa Valley in 1924, including Kūali‘i, the Cooke house. (Hawai‘i State Archives)"
      }
     ],
-    "lat": 21.289471,
-    "lng": -157.832067,
+    "lat": 21.289405,
+    "lng": -157.832111,
     "geo": "book",
     "page": "p3-7",
-    "radius": 58
+    "radius": 59
    },
    {
     "id": "X-04",
@@ -9027,11 +9027,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.292381,
-    "lng": -157.828795,
+    "lat": 21.292407,
+    "lng": -157.828882,
     "geo": "book",
     "page": "p3-8",
-    "radius": 90
+    "radius": 55
    },
    {
     "id": "X-05",
@@ -9068,11 +9068,11 @@
       "h": 274
      }
     ],
-    "lat": 21.294109,
-    "lng": -157.829993,
+    "lat": 21.293983,
+    "lng": -157.830084,
     "geo": "book",
     "page": "p3-8",
-    "radius": 78
+    "radius": 77
    },
    {
     "id": "X-06",
@@ -9126,11 +9126,11 @@
       "caption": "This sign is a landmark."
      }
     ],
-    "lat": 21.297194,
-    "lng": -157.829942,
+    "lat": 21.296986,
+    "lng": -157.829881,
     "geo": "book",
     "page": "p3-9",
-    "radius": 67
+    "radius": 64
    },
    {
     "id": "X-07",
@@ -9183,10 +9183,11 @@
       "caption": "As you walk across McCully Bridge, notice the green roofed building on the ‘Ewa side of the hills before you. This is Punahou’s middle school."
      }
     ],
-    "lat": 21.298765,
-    "lng": -157.828585,
+    "lat": 21.298697,
+    "lng": -157.828658,
     "geo": "book",
-    "page": "p3-10"
+    "page": "p3-10",
+    "radius": 42
    },
    {
     "id": "X-08",
@@ -9203,8 +9204,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.299627,
-    "lng": -157.826875,
+    "lat": 21.29958,
+    "lng": -157.826945,
     "geo": "book",
     "page": "p3-11",
     "radius": 63
@@ -9224,11 +9225,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298827,
-    "lng": -157.826398,
+    "lat": 21.298784,
+    "lng": -157.826485,
     "geo": "book",
     "page": "p3-11",
-    "radius": 62
+    "radius": 64
    },
    {
     "id": "X-10",
@@ -9241,8 +9242,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.29994,
-    "lng": -157.827395,
+    "lat": 21.299907,
+    "lng": -157.827469,
     "geo": "book",
     "page": "p3-11",
     "radius": 62
@@ -9258,11 +9259,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299648,
-    "lng": -157.828156,
+    "lat": 21.299589,
+    "lng": -157.828232,
     "geo": "book",
     "page": "p3-11",
-    "radius": 64
+    "radius": 66
    },
    {
     "id": "X-12",
@@ -9283,11 +9284,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.300274,
-    "lng": -157.82783,
+    "lat": 21.300223,
+    "lng": -157.827912,
     "geo": "book",
     "page": "p3-11",
-    "radius": 66
+    "radius": 64
    },
    {
     "id": "X-13",
@@ -9300,8 +9301,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.299947,
-    "lng": -157.829345,
+    "lat": 21.299873,
+    "lng": -157.829408,
     "geo": "book",
     "page": "p3-12",
     "radius": 90
@@ -9325,11 +9326,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.300917,
-    "lng": -157.83019,
+    "lat": 21.300843,
+    "lng": -157.830242,
     "geo": "book",
     "page": "p3-11",
-    "radius": 70
+    "radius": 71
    },
    {
     "id": "X-15",
@@ -9350,11 +9351,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301381,
-    "lng": -157.830934,
+    "lat": 21.301307,
+    "lng": -157.830985,
     "geo": "book",
     "page": "p3-12",
-    "radius": 72
+    "radius": 73
    },
    {
     "id": "X-16",
@@ -9367,11 +9368,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301803,
-    "lng": -157.831562,
+    "lat": 21.301725,
+    "lng": -157.831598,
     "geo": "book",
     "page": "p3-12",
-    "radius": 70
+    "radius": 71
    },
    {
     "id": "X-17",
@@ -9384,8 +9385,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.302141,
-    "lng": -157.832148,
+    "lat": 21.302054,
+    "lng": -157.832184,
     "geo": "book",
     "page": "p3-12",
     "radius": 75
@@ -9421,8 +9422,8 @@
       "caption": "This covered shelter serviced the 1.7 mile open-air trolley ride to the terminus in Mānoa Valley."
      }
     ],
-    "lat": 21.302733,
-    "lng": -157.833333,
+    "lat": 21.302642,
+    "lng": -157.833384,
     "geo": "book",
     "page": "p3-12",
     "radius": 90
@@ -9477,11 +9478,11 @@
       "caption": "Punahou “new spring” School’s seal incorporates the ubiquitous Hala tree in the center and Taro leaves in the outer circle."
      }
     ],
-    "lat": 21.303034,
-    "lng": -157.83236,
+    "lat": 21.302938,
+    "lng": -157.832396,
     "geo": "book",
     "page": "p3-13",
-    "radius": 44
+    "radius": 46
    },
    {
     "id": "X-20",
@@ -9494,8 +9495,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.303474,
-    "lng": -157.831767,
+    "lat": 21.303408,
+    "lng": -157.831783,
     "geo": "book",
     "page": "p3-14",
     "radius": 50
@@ -9519,11 +9520,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.303834,
-    "lng": -157.831282,
+    "lat": 21.303774,
+    "lng": -157.831317,
     "geo": "book",
     "page": "p3-13",
-    "radius": 56
+    "radius": 54
    },
    {
     "id": "X-22",
@@ -9536,11 +9537,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.304314,
-    "lng": -157.830938,
+    "lat": 21.304271,
+    "lng": -157.830946,
     "geo": "book",
-    "page": "p3-13",
-    "radius": 42
+    "page": "p3-13"
    },
    {
     "id": "X-23",
@@ -9565,8 +9565,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.305394,
-    "lng": -157.83062,
+    "lat": 21.305354,
+    "lng": -157.830612,
     "geo": "book",
     "page": "p3-13",
     "radius": 79
@@ -9606,11 +9606,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.304689,
-    "lng": -157.829366,
+    "lat": 21.304653,
+    "lng": -157.829373,
     "geo": "book",
     "page": "p3-14",
-    "radius": 71
+    "radius": 73
    },
    {
     "id": "X-25",
@@ -9659,8 +9659,8 @@
       "h": 354
      }
     ],
-    "lat": 21.305801,
-    "lng": -157.825319,
+    "lat": 21.305839,
+    "lng": -157.825316,
     "geo": "book",
     "page": "p3-15"
    },
@@ -9675,8 +9675,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.30466,
-    "lng": -157.823821,
+    "lat": 21.304712,
+    "lng": -157.823826,
     "geo": "book",
     "page": "p3-16",
     "radius": 90
@@ -9734,8 +9734,8 @@
       "caption": "Formerly the home of the Atherton family, now the “president’s house” of the University of Hawai‘i, it is used mainly for academic gatherings."
      }
     ],
-    "lat": 21.303717,
-    "lng": -157.821259,
+    "lat": 21.303797,
+    "lng": -157.821277,
     "geo": "book",
     "page": "p3-16",
     "radius": 77
@@ -9771,8 +9771,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.303288,
-    "lng": -157.821696,
+    "lat": 21.303349,
+    "lng": -157.821734,
     "geo": "book",
     "page": "p3-16"
    },
@@ -9795,10 +9795,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.304145,
-    "lng": -157.820064,
+    "lat": 21.304236,
+    "lng": -157.820083,
     "geo": "book",
-    "page": "p3-18"
+    "page": "p3-18",
+    "radius": 53
    },
    {
     "id": "X-30",
@@ -9811,11 +9812,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.304766,
-    "lng": -157.819528,
+    "lat": 21.304785,
+    "lng": -157.819341,
     "geo": "book",
     "page": "p3-17",
-    "radius": 62
+    "radius": 60
    },
    {
     "id": "X-31",
@@ -9840,11 +9841,11 @@
       "caption": "As you walk along O‘ahu avenue, look up to take in the glory of the Ko‘olau mountains. Kōnāhuanui – straight ahead – at 3,100 is the highest point."
      }
     ],
-    "lat": 21.305489,
-    "lng": -157.819047,
+    "lat": 21.305558,
+    "lng": -157.818823,
     "geo": "book",
     "page": "p3-18",
-    "radius": 62
+    "radius": 64
    },
    {
     "id": "X-32",
@@ -9861,11 +9862,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.30781,
-    "lng": -157.816912,
+    "lat": 21.307746,
+    "lng": -157.816831,
     "geo": "book",
     "page": "p3-19",
-    "radius": 62
+    "radius": 61
    },
    {
     "id": "X-33",
@@ -9909,11 +9910,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.309178,
-    "lng": -157.815716,
+    "lat": 21.309059,
+    "lng": -157.815829,
     "geo": "book",
     "page": "p3-19",
-    "radius": 57
+    "radius": 63
    },
    {
     "id": "X-34",
@@ -9941,8 +9942,8 @@
       "caption": "O‘ahu avenue with all its Historic Residences rivals Kāhala Avenue for its beauty."
      }
     ],
-    "lat": 21.310537,
-    "lng": -157.813124,
+    "lat": 21.310434,
+    "lng": -157.81309,
     "geo": "book",
     "page": "p3-19",
     "radius": 90
@@ -9962,11 +9963,10 @@
      }
     ],
     "photos": [],
-    "lat": 21.311067,
-    "lng": -157.814231,
+    "lat": 21.310157,
+    "lng": -157.81455,
     "geo": "book",
-    "page": "p3-20",
-    "radius": 57
+    "page": "p3-20"
    },
    {
     "id": "X-36",
@@ -10168,11 +10168,11 @@
       "h": 497
      }
     ],
-    "lat": 21.311742,
-    "lng": -157.814035,
+    "lat": 21.311575,
+    "lng": -157.814139,
     "geo": "book",
     "page": "p3-20",
-    "radius": 78
+    "radius": 75
    },
    {
     "id": "X-37",
@@ -10220,8 +10220,8 @@
       "caption": "This gate was the entryway to the Woolsey Poi Factory."
      }
     ],
-    "lat": 21.311391,
-    "lng": -157.81245,
+    "lat": 21.311278,
+    "lng": -157.812452,
     "geo": "book",
     "page": "p3-23",
     "radius": 90
@@ -10242,11 +10242,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.314414,
-    "lng": -157.812698,
+    "lat": 21.314152,
+    "lng": -157.812951,
     "geo": "book",
     "page": "p3-24",
-    "radius": 60
+    "radius": 58
    },
    {
     "id": "X-39",
@@ -10390,11 +10390,11 @@
       "h": 281
      }
     ],
-    "lat": 21.315835,
-    "lng": -157.812309,
+    "lat": 21.315514,
+    "lng": -157.812619,
     "geo": "book",
     "page": "p3-24",
-    "radius": 86
+    "radius": 63
    },
    {
     "id": "X-40",
@@ -10446,11 +10446,10 @@
       "caption": "There are so many place to visit at the Chinese Cemetary."
      }
     ],
-    "lat": 21.314226,
-    "lng": -157.808396,
+    "lat": 21.317221,
+    "lng": -157.808369,
     "geo": "book",
-    "page": "p3-27",
-    "radius": 60
+    "page": "p3-27"
    },
    {
     "id": "X-41",
@@ -10499,11 +10498,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.318734,
-    "lng": -157.802185,
+    "lat": 21.318141,
+    "lng": -157.803162,
     "geo": "book",
     "page": "p3-28",
-    "radius": 60
+    "radius": 90
    },
    {
     "id": "X-42",
@@ -10749,11 +10748,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.308923,
-    "lng": -157.809552,
+    "lat": 21.308971,
+    "lng": -157.80926,
     "geo": "book",
     "page": "p3-32",
-    "radius": 90
+    "radius": 89
    },
    {
     "id": "X-45",
@@ -10766,11 +10765,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307468,
-    "lng": -157.810727,
+    "lat": 21.307576,
+    "lng": -157.810368,
     "geo": "book",
     "page": "p3-33",
-    "radius": 80
+    "radius": 78
    },
    {
     "id": "X-46",
@@ -10787,11 +10786,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.307013,
-    "lng": -157.811502,
+    "lat": 21.307121,
+    "lng": -157.811144,
     "geo": "book",
     "page": "p3-33",
-    "radius": 79
+    "radius": 66
    },
    {
     "id": "X-47",
@@ -10833,8 +10832,8 @@
       "caption": "Over 150 prisms can create over 150 rainbows on this wall!"
      }
     ],
-    "lat": 21.305801,
-    "lng": -157.811933,
+    "lat": 21.305935,
+    "lng": -157.811522,
     "geo": "book",
     "page": "p3-33",
     "radius": 90
@@ -10850,11 +10849,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.306986,
-    "lng": -157.812521,
+    "lat": 21.307058,
+    "lng": -157.812215,
     "geo": "book",
     "page": "p3-34",
-    "radius": 68
+    "radius": 67
    },
    {
     "id": "X-49",
@@ -10883,11 +10882,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.30764,
-    "lng": -157.81399,
+    "lat": 21.307644,
+    "lng": -157.813789,
     "geo": "book",
     "page": "p3-34",
-    "radius": 60
+    "radius": 62
    },
    {
     "id": "X-50",
@@ -10916,11 +10915,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.306913,
-    "lng": -157.816564,
+    "lat": 21.306876,
+    "lng": -157.816405,
     "geo": "book",
     "page": "p3-34",
-    "radius": 76
+    "radius": 86
    },
    {
     "id": "X-51",
@@ -10941,11 +10940,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.303088,
-    "lng": -157.818997,
+    "lat": 21.303176,
+    "lng": -157.818657,
     "geo": "book",
     "page": "p3-34",
-    "radius": 77
+    "radius": 80
    },
    {
     "id": "X-52",
@@ -11041,10 +11040,11 @@
       "caption": "Mānoa Valley 1890 (Hawai‘i State Archives)"
      }
     ],
-    "lat": 21.301415,
-    "lng": -157.820345,
+    "lat": 21.301554,
+    "lng": -157.819926,
     "geo": "book",
-    "page": "p3-35"
+    "page": "p3-35",
+    "radius": 53
    }
   ]
  },
@@ -11059,7 +11059,7 @@
    "B a c k t o c o l l e g e ! Parking: Street parking on Date Street – free except for afternoons Monday through Friday Parking lot across from the Hale Koa Hotel on Kālia Road. Street parking on Dole Street on the weekends Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 – for a live operator. There are several buses that will take you directly to the UH campus A, 4, 13, 6, 18. Get off at Sinclair Circle, a sheltered bus stop."
   ],
   "cover": "p3-40-329.jpg",
-  "bookMap": "map-XI.jpg",
+  "bookMap": "map-XI-c.jpg",
   "color": "#2E86AB",
   "stops": [
    {
@@ -11073,11 +11073,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.287537,
-    "lng": -157.83333,
+    "lat": 21.287586,
+    "lng": -157.833127,
     "geo": "book",
     "page": "p3-38",
-    "radius": 56
+    "radius": 52
    },
    {
     "id": "XI-02",
@@ -11090,11 +11090,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.288556,
-    "lng": -157.83246,
+    "lat": 21.288588,
+    "lng": -157.832255,
     "geo": "book",
     "page": "p3-40",
-    "radius": 64
+    "radius": 66
    },
    {
     "id": "XI-03",
@@ -11115,8 +11115,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.289388,
-    "lng": -157.832478,
+    "lat": 21.289442,
+    "lng": -157.83228,
     "geo": "book",
     "page": "p3-40"
    },
@@ -11173,11 +11173,11 @@
       "caption": "Judge Lawrence McCully (1831 - 1892) meets Queen Kapi‘olani (1834 – 1899)!"
      }
     ],
-    "lat": 21.29398,
-    "lng": -157.830192,
+    "lat": 21.294002,
+    "lng": -157.830041,
     "geo": "book",
     "page": "p3-40",
-    "radius": 80
+    "radius": 82
    },
    {
     "id": "XI-05",
@@ -11194,8 +11194,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.295732,
-    "lng": -157.829976,
+    "lat": 21.295752,
+    "lng": -157.829838,
     "geo": "book",
     "page": "p3-41"
    },
@@ -11254,11 +11254,11 @@
       "caption": "On old maps, Kapa‘akea is the original name for Dole Street."
      }
     ],
-    "lat": 21.298365,
-    "lng": -157.828463,
+    "lat": 21.298383,
+    "lng": -157.828346,
     "geo": "book",
     "page": "p3-41",
-    "radius": 52
+    "radius": 49
    },
    {
     "id": "XI-07",
@@ -11303,8 +11303,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.297121,
-    "lng": -157.820743,
+    "lat": 21.296996,
+    "lng": -157.820968,
     "geo": "book",
     "page": "p3-42",
     "radius": 63
@@ -11351,11 +11351,11 @@
       "caption": "“Above all nations is humanity” - the translation - is inscribed on the bench across University Avenue."
      }
     ],
-    "lat": 21.29762,
-    "lng": -157.821492,
+    "lat": 21.297554,
+    "lng": -157.821789,
     "geo": "book",
     "page": "p3-43",
-    "radius": 56
+    "radius": 57
    },
    {
     "id": "XI-09",
@@ -11385,8 +11385,8 @@
       "caption": "Atherton House in 1932 – former YMCA, the precursor to RISE. (University Archives)"
      }
     ],
-    "lat": 21.299589,
-    "lng": -157.821342,
+    "lat": 21.299599,
+    "lng": -157.821692,
     "geo": "book",
     "page": "p3-44",
     "radius": 90
@@ -11439,11 +11439,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298915,
-    "lng": -157.820356,
+    "lat": 21.298916,
+    "lng": -157.820613,
     "geo": "book",
     "page": "p3-45",
-    "radius": 58
+    "radius": 60
    },
    {
     "id": "XI-11",
@@ -11480,8 +11480,8 @@
       "h": 224
      }
     ],
-    "lat": 21.299677,
-    "lng": -157.820517,
+    "lat": 21.299822,
+    "lng": -157.820777,
     "geo": "book",
     "page": "p3-45",
     "radius": 58
@@ -11532,11 +11532,11 @@
       "caption": "In the Shidler courtyard, can you find the State of Hawai‘i on the wall map?"
      }
     ],
-    "lat": 21.299831,
-    "lng": -157.818774,
+    "lat": 21.299932,
+    "lng": -157.819093,
     "geo": "book",
     "page": "p3-46",
-    "radius": 50
+    "radius": 53
    },
    {
     "id": "XI-13",
@@ -11557,8 +11557,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.300509,
-    "lng": -157.818896,
+    "lat": 21.300634,
+    "lng": -157.819251,
     "geo": "book",
     "page": "p3-47",
     "radius": 61
@@ -11574,11 +11574,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299627,
-    "lng": -157.818182,
+    "lat": 21.299741,
+    "lng": -157.81846,
     "geo": "book",
     "page": "p3-47",
-    "radius": 59
+    "radius": 61
    },
    {
     "id": "XI-15",
@@ -11614,8 +11614,8 @@
       "caption": "This sacred ahu commemorates Kamaka‘eha - Queen Lili‘uokalani."
      }
     ],
-    "lat": 21.300332,
-    "lng": -157.818238,
+    "lat": 21.3005,
+    "lng": -157.81856,
     "geo": "book",
     "page": "p3-47",
     "radius": 70
@@ -11631,11 +11631,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299732,
-    "lng": -157.817412,
+    "lat": 21.299888,
+    "lng": -157.81762,
     "geo": "book",
     "page": "p3-48",
-    "radius": 44
+    "radius": 41
    },
    {
     "id": "XI-17",
@@ -11656,8 +11656,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.30049,
-    "lng": -157.817435,
+    "lat": 21.300612,
+    "lng": -157.817661,
     "geo": "book",
     "page": "p3-48",
     "radius": 90
@@ -11702,8 +11702,8 @@
       "caption": "Are you able to find this sculpture in the atrium of the art building. You might also find sculpted ears and mouths!"
      }
     ],
-    "lat": 21.29917,
-    "lng": -157.817353,
+    "lat": 21.299276,
+    "lng": -157.817583,
     "geo": "book",
     "page": "p3-48",
     "radius": 90
@@ -11739,8 +11739,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.299165,
-    "lng": -157.816611,
+    "lat": 21.299256,
+    "lng": -157.816758,
     "geo": "book",
     "page": "p3-49",
     "radius": 90
@@ -11775,11 +11775,11 @@
       "caption": "Do these two crossed beams look like chopsticks?!?"
      }
     ],
-    "lat": 21.300499,
-    "lng": -157.81616,
+    "lat": 21.300733,
+    "lng": -157.816292,
     "geo": "book",
     "page": "p3-49",
-    "radius": 60
+    "radius": 63
    },
    {
     "id": "XI-21",
@@ -11808,11 +11808,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.300686,
-    "lng": -157.815611,
+    "lat": 21.300914,
+    "lng": -157.81565,
     "geo": "book",
     "page": "p3-50",
-    "radius": 56
+    "radius": 59
    },
    {
     "id": "XI-22",
@@ -11883,8 +11883,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.30242,
-    "lng": -157.816969,
+    "lat": 21.302684,
+    "lng": -157.817173,
     "geo": "book",
     "page": "p3-50",
     "radius": 90
@@ -11932,11 +11932,11 @@
       "h": 230
      }
     ],
-    "lat": 21.303276,
-    "lng": -157.814158,
+    "lat": 21.303596,
+    "lng": -157.814395,
     "geo": "book",
     "page": "p3-51",
-    "radius": 73
+    "radius": 79
    },
    {
     "id": "XI-24",
@@ -11953,11 +11953,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.301935,
-    "lng": -157.815052,
+    "lat": 21.302242,
+    "lng": -157.815218,
     "geo": "book",
     "page": "p3-52",
-    "radius": 76
+    "radius": 71
    },
    {
     "id": "XI-25",
@@ -12004,11 +12004,11 @@
       "caption": "This building is a tribute to the architectural talent of Edward Durell Stone."
      }
     ],
-    "lat": 21.300772,
-    "lng": -157.815168,
+    "lat": 21.300998,
+    "lng": -157.815201,
     "geo": "book",
     "page": "p3-52",
-    "radius": 90
+    "radius": 85
    },
    {
     "id": "XI-26",
@@ -12038,8 +12038,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.30007,
-    "lng": -157.814531,
+    "lat": 21.300286,
+    "lng": -157.814611,
     "geo": "book",
     "page": "p3-53"
    },
@@ -12090,11 +12090,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.299182,
-    "lng": -157.814244,
+    "lat": 21.299422,
+    "lng": -157.814193,
     "geo": "book",
     "page": "p3-53",
-    "radius": 59
+    "radius": 71
    },
    {
     "id": "XI-28",
@@ -12107,11 +12107,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298772,
-    "lng": -157.814894,
+    "lat": 21.299347,
+    "lng": -157.815113,
     "geo": "book",
     "page": "p3-54",
-    "radius": 49
+    "radius": 77
    },
    {
     "id": "XI-29",
@@ -12143,11 +12143,11 @@
       "caption": "Have a snack while you sit in the glorious Thai Pavilion presiding over the campus."
      }
     ],
-    "lat": 21.299085,
-    "lng": -157.815458,
+    "lat": 21.298922,
+    "lng": -157.814983,
     "geo": "book",
     "page": "p3-54",
-    "radius": 73
+    "radius": 49
    },
    {
     "id": "XI-30",
@@ -12160,11 +12160,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29837,
-    "lng": -157.815889,
+    "lat": 21.298401,
+    "lng": -157.815948,
     "geo": "book",
     "page": "p3-56",
-    "radius": 43
+    "radius": 49
    },
    {
     "id": "XI-31",
@@ -12181,11 +12181,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29812,
-    "lng": -157.816325,
+    "lat": 21.298112,
+    "lng": -157.81641,
     "geo": "book",
     "page": "p3-56",
-    "radius": 73
+    "radius": 82
    },
    {
     "id": "XI-32",
@@ -12218,11 +12218,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29779,
-    "lng": -157.815072,
+    "lat": 21.297898,
+    "lng": -157.815129,
     "geo": "book",
     "page": "p3-56",
-    "radius": 43
+    "radius": 44
    },
    {
     "id": "XI-33",
@@ -12252,11 +12252,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.296576,
-    "lng": -157.815459,
+    "lat": 21.296551,
+    "lng": -157.815599,
     "geo": "book",
     "page": "p3-56",
-    "radius": 56
+    "radius": 54
    },
    {
     "id": "XI-34",
@@ -12273,11 +12273,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29706,
-    "lng": -157.817658,
+    "lat": 21.297007,
+    "lng": -157.817751,
     "geo": "book",
     "page": "p3-56",
-    "radius": 64
+    "radius": 67
    },
    {
     "id": "XI-35",
@@ -12294,11 +12294,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.296603,
-    "lng": -157.818082,
+    "lat": 21.296401,
+    "lng": -157.818322,
     "geo": "book",
     "page": "p3-57",
-    "radius": 47
+    "radius": 61
    },
    {
     "id": "XI-36",
@@ -12311,10 +12311,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297085,
-    "lng": -157.818142,
+    "lat": 21.2972,
+    "lng": -157.818286,
     "geo": "book",
-    "page": "p3-57"
+    "page": "p3-57",
+    "radius": 46
    },
    {
     "id": "XI-37",
@@ -12327,11 +12328,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29741,
-    "lng": -157.818653,
+    "lat": 21.297263,
+    "lng": -157.818818,
     "geo": "book",
     "page": "p3-57",
-    "radius": 73
+    "radius": 76
    },
    {
     "id": "XI-38",
@@ -12352,8 +12353,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.297757,
-    "lng": -157.817538,
+    "lat": 21.297713,
+    "lng": -157.817733,
     "geo": "book",
     "page": "p3-57",
     "radius": 90
@@ -12388,11 +12389,11 @@
       "caption": "A “Chance Meeting” is often festooned with lei."
      }
     ],
-    "lat": 21.298521,
-    "lng": -157.818922,
+    "lat": 21.298557,
+    "lng": -157.819131,
     "geo": "book",
     "page": "p3-57",
-    "radius": 55
+    "radius": 54
    },
    {
     "id": "XI-40",
@@ -12413,11 +12414,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298924,
-    "lng": -157.818462,
+    "lat": 21.298973,
+    "lng": -157.818751,
     "geo": "book",
     "page": "p3-58",
-    "radius": 61
+    "radius": 57
    },
    {
     "id": "XI-41",
@@ -12434,11 +12435,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298985,
-    "lng": -157.819392,
+    "lat": 21.299141,
+    "lng": -157.819599,
     "geo": "book",
     "page": "p3-58",
-    "radius": 58
+    "radius": 46
    },
    {
     "id": "XI-42",
@@ -12455,11 +12456,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.298621,
-    "lng": -157.819466,
+    "lat": 21.298729,
+    "lng": -157.819783,
     "geo": "book",
     "page": "p3-58",
-    "radius": 67
+    "radius": 61
    },
    {
     "id": "XI-43",
@@ -12476,10 +12477,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29768,
-    "lng": -157.820868,
-    "geo": "low",
-    "page": "p3-58"
+    "lat": 21.298451,
+    "lng": -157.820619,
+    "geo": "book",
+    "page": "p3-58",
+    "radius": 81
    },
    {
     "id": "XI-44",
@@ -12520,11 +12522,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.297327,
-    "lng": -157.819784,
+    "lat": 21.297237,
+    "lng": -157.820092,
     "geo": "book",
     "page": "p3-58",
-    "radius": 65
+    "radius": 67
    },
    {
     "id": "XI-45",
@@ -12600,11 +12602,11 @@
       "caption": "1929 photo. The original engineering buildings – Young Engineering Quadrangle – is the H-shaped complex in the center. That facility was replaced by the Campus Center and the Rec Center, with one of the 5 engineering buildings attached to the gym. The University Farms have been replaced by Webster Hall, Art Building, and Kuykendall Hall. (University Archives)"
      }
     ],
-    "lat": 21.296673,
-    "lng": -157.820511,
+    "lat": 21.296535,
+    "lng": -157.820778,
     "geo": "book",
     "page": "p3-59",
-    "radius": 44
+    "radius": 53
    }
   ]
  },
@@ -12630,7 +12632,7 @@
   ],
   "info": [],
   "cover": "p3-64-378.jpg",
-  "bookMap": "map-XII.jpg",
+  "bookMap": "map-XII-c.jpg",
   "color": "#3A7D44",
   "stops": [
    {
@@ -12648,11 +12650,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.273274,
-    "lng": -157.816808,
+    "lat": 21.274007,
+    "lng": -157.81626,
     "geo": "book",
     "page": "p3-62",
-    "radius": 48
+    "radius": 53
    },
    {
     "id": "XII-02",
@@ -12665,8 +12667,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.273382,
-    "lng": -157.817951,
+    "lat": 21.273964,
+    "lng": -157.817426,
     "geo": "book",
     "page": "p3-64",
     "radius": 90
@@ -12700,8 +12702,8 @@
       "caption": "E Pluribus Unum - ‘one from many’"
      }
     ],
-    "lat": 21.272369,
-    "lng": -157.816903,
+    "lat": 21.273204,
+    "lng": -157.816296,
     "geo": "book",
     "page": "p3-64",
     "radius": 90
@@ -12725,8 +12727,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.273915,
-    "lng": -157.817491,
+    "lat": 21.274526,
+    "lng": -157.816907,
     "geo": "book",
     "page": "p3-65",
     "radius": 90
@@ -12742,11 +12744,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.273835,
-    "lng": -157.816143,
+    "lat": 21.274559,
+    "lng": -157.815515,
     "geo": "book",
     "page": "p3-65",
-    "radius": 62
+    "radius": 65
    },
    {
     "id": "XII-06",
@@ -12791,11 +12793,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.274374,
-    "lng": -157.81665,
+    "lat": 21.274981,
+    "lng": -157.816041,
     "geo": "book",
     "page": "p3-65",
-    "radius": 64
+    "radius": 61
    },
    {
     "id": "XII-07",
@@ -12809,8 +12811,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.279146,
-    "lng": -157.813645,
+    "lat": 21.279115,
+    "lng": -157.813605,
     "geo": "book",
     "page": "p3-66",
     "radius": 64
@@ -12830,10 +12832,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.279658,
-    "lng": -157.814104,
+    "lat": 21.279694,
+    "lng": -157.814143,
     "geo": "book",
-    "page": "p3-66"
+    "page": "p3-66",
+    "radius": 42
    },
    {
     "id": "XII-09",
@@ -12846,8 +12849,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.28122,
-    "lng": -157.813996,
+    "lat": 21.281048,
+    "lng": -157.813912,
     "geo": "book",
     "page": "p3-66",
     "radius": 50
@@ -12867,8 +12870,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.281724,
-    "lng": -157.81479,
+    "lat": 21.281679,
+    "lng": -157.81482,
     "geo": "book",
     "page": "p3-66",
     "radius": 90
@@ -12888,11 +12891,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.283687,
-    "lng": -157.814387,
+    "lat": 21.283409,
+    "lng": -157.814294,
     "geo": "book",
     "page": "p3-66",
-    "radius": 79
+    "radius": 77
    },
    {
     "id": "XII-12",
@@ -12910,8 +12913,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.282456,
-    "lng": -157.812856,
+    "lat": 21.281982,
+    "lng": -157.812394,
     "geo": "book",
     "page": "p3-66",
     "radius": 90
@@ -12954,11 +12957,11 @@
       "caption": "Leonard’s Malasadas – try one, try them all. You won’t be sorry!"
      }
     ],
-    "lat": 21.285309,
-    "lng": -157.813397,
+    "lat": 21.284881,
+    "lng": -157.813142,
     "geo": "book",
     "page": "p3-66",
-    "radius": 60
+    "radius": 62
    },
    {
     "id": "XII-14",
@@ -13016,8 +13019,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.288738,
-    "lng": -157.810253,
+    "lat": 21.288325,
+    "lng": -157.810089,
     "geo": "book",
     "page": "p3-67",
     "radius": 90
@@ -13041,11 +13044,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.289603,
-    "lng": -157.810145,
+    "lat": 21.289534,
+    "lng": -157.81062,
     "geo": "book",
     "page": "p3-68",
-    "radius": 60
+    "radius": 64
    },
    {
     "id": "XII-16",
@@ -13070,11 +13073,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.29069,
-    "lng": -157.810414,
+    "lat": 21.29076,
+    "lng": -157.810533,
     "geo": "book",
     "page": "p3-68",
-    "radius": 50
+    "radius": 43
    },
    {
     "id": "XII-17",
@@ -13087,11 +13090,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.291615,
-    "lng": -157.810665,
+    "lat": 21.291686,
+    "lng": -157.810803,
     "geo": "book",
     "page": "p3-68",
-    "radius": 66
+    "radius": 62
    },
    {
     "id": "XII-18",
@@ -13189,11 +13192,11 @@
       "caption": "Ka Papa Lo‘i ‘O Kānewai Kalo (taro) once grew abundantly in Hawai‘i. Today, this lo‘i is a model for the resurgence of kalo lo‘i (taro fields)."
      }
     ],
-    "lat": 21.2953,
-    "lng": -157.812155,
+    "lat": 21.295255,
+    "lng": -157.812266,
     "geo": "book",
     "page": "p3-68",
-    "radius": 73
+    "radius": 72
    },
    {
     "id": "XII-19",
@@ -13210,11 +13213,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.296301,
-    "lng": -157.812711,
+    "lat": 21.296255,
+    "lng": -157.812782,
     "geo": "book",
     "page": "p3-71",
-    "radius": 66
+    "radius": 69
    },
    {
     "id": "XII-20",
@@ -13231,11 +13234,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.296112,
-    "lng": -157.815187,
+    "lat": 21.296027,
+    "lng": -157.815271,
     "geo": "book",
     "page": "p3-71",
-    "radius": 45
+    "radius": 41
    },
    {
     "id": "XII-21",
@@ -13341,8 +13344,8 @@
       "h": 496
      }
     ],
-    "lat": 21.295451,
-    "lng": -157.814228,
+    "lat": 21.295388,
+    "lng": -157.814291,
     "geo": "book",
     "page": "p3-71",
     "radius": 90
@@ -13365,8 +13368,8 @@
       "caption": "Enjoy a leisurely walk around the Asian-styled garden on the lower level of the Athletic Center."
      }
     ],
-    "lat": 21.293165,
-    "lng": -157.815967,
+    "lat": 21.293151,
+    "lng": -157.816045,
     "geo": "book",
     "page": "p3-73",
     "radius": 90
@@ -13410,8 +13413,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.294229,
-    "lng": -157.816952,
+    "lat": 21.294171,
+    "lng": -157.817012,
     "geo": "book",
     "page": "p3-74",
     "radius": 90
@@ -13439,8 +13442,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.294345,
-    "lng": -157.818808,
+    "lat": 21.294277,
+    "lng": -157.818851,
     "geo": "book",
     "page": "p3-74",
     "radius": 90
@@ -13490,11 +13493,11 @@
       "caption": "Are you able to figure out why this set of sculptures is called “Rainbows”? The artist, Shige Yamada, created “Storyteller” in Waikīkī as well as “Maui” at the Kahului, Maui airport."
      }
     ],
-    "lat": 21.293305,
-    "lng": -157.817681,
+    "lat": 21.293269,
+    "lng": -157.817716,
     "geo": "book",
     "page": "p3-74",
-    "radius": 50
+    "radius": 48
    },
    {
     "id": "XII-26",
@@ -13507,8 +13510,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.29537,
-    "lng": -157.819078,
+    "lat": 21.295309,
+    "lng": -157.819101,
     "geo": "book",
     "page": "p3-75",
     "radius": 90
@@ -13539,11 +13542,11 @@
       "caption": "The wood of the elegant bench is from a 100-year-old Mango tree."
      }
     ],
-    "lat": 21.296486,
-    "lng": -157.819531,
+    "lat": 21.296355,
+    "lng": -157.819521,
     "geo": "book",
     "page": "p3-75",
-    "radius": 77
+    "radius": 81
    },
    {
     "id": "XII-28",
@@ -13964,11 +13967,11 @@
       "caption": "I‘i, John Papa. Fragments of Hawaiian"
      }
     ],
-    "lat": 21.296607,
-    "lng": -157.820802,
+    "lat": 21.296459,
+    "lng": -157.820839,
     "geo": "book",
     "page": "p3-76",
-    "radius": 63
+    "radius": 53
    }
   ]
  }

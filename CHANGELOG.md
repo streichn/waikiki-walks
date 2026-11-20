@@ -131,3 +131,9 @@
 - Walked trail: the part of the route already walked shows as a solid green line over the dashed route, on every map, so the circuit fills in as you go; a finished walk shows all of it.
 - Finish: on the last stop, Finish opens "Walk complete" with "See my route" (the whole walk on the map, fully lit) or "Back to all walks".
 - Completed walks: the card says "Completed"; tapping it asks "Walk it again?" with "Start over" (from stop 1) or "Just look" (opens the walk's map, keeps the finished route). The walk page button reads "Walk it again".
+
+## 2026-11-19 · Cartographer's maps for Walks X, XI and XII
+- Jason Nakano's original vector maps (Drive folder Veneeta forwarded, saved in book/cartographer/) replace the book page renders and Veneeta's phone photos for Walks X (two maps), XI and XII. Every stop number is printed, including Walk XI stop 43.
+- New scripts/georef/carto_maps.py renders them, fits each to OpenStreetMap streets from its own street labels (5 to 7 m RMS, about twice as accurate as the old Walk XII fit) and traces the dotted walk path between stops.
+- Pins now sit where these maps print the numbers. Overrides dropped for Walk X 40 and 41 and Walk XII 15; kept for X 42 and 43, which the map squeezes at its top edge.
+- build.py, routes.py, warp.py and build_data.py use the new maps for these walks; the folder also holds maps for Walks I to IX and a master map, not yet used.

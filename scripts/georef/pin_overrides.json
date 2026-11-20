@@ -39,32 +39,15 @@
  },
  "_note_latlng": "Entries with lat/lng are for stops printed on a map page too sketchy to align with real streets (Walk X page 4, upper Mānoa). Places from OpenStreetMap.",
  "X": {
-  "40": {
-   "lat": 21.3142262,
-   "lng": -157.8083965,
-   "why": "Mānoa Valley District Park, where her map prints 40 beside the park on Mānoa Road"
-  },
-  "41": {
-   "lat": 21.3187338,
-   "lng": -157.802185,
-   "why": "Mānoa Chinese Cemetery"
-  },
   "42": {
    "lat": 21.3187517,
    "lng": -157.8071211,
-   "why": "Mānoa Road at Pāwaina Street, where the route to the falls and arboretum continues"
+   "why": "Mānoa Road at Pāwaina Street, where the route to the falls and arboretum continues. Kept with the cartographer's map (19 Nov 2026): its top edge squeezes upper Mānoa, so the printed 42 sits about 250 m off Mānoa Road"
   },
   "43": {
    "lat": 21.3333815,
    "lng": -157.8033873,
-   "why": "Lyon Arboretum"
-  }
- },
- "XII": {
-  "15": {
-   "lat": 21.2896027,
-   "lng": -157.8101449,
-   "why": "Printed just past the left edge of the PDF page; placed from Veneeta's photo of page 1 (IMG_4707), registered to the PDF page (its 14 lands within 1 px of the PDF's 14)"
+   "why": "Lyon Arboretum. Kept with the cartographer's map: the arboretum is past its top edge"
   }
  },
  "II": {

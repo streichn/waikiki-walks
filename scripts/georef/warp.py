@@ -8,6 +8,9 @@ import importlib.util
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 spec = importlib.util.spec_from_file_location('b', os.path.join(HERE, 'build.py'))
 G = json.load(open(os.path.join(HERE, 'georef.json')))
+_c = os.path.join(HERE, 'georef_carto.json')
+if os.path.exists(_c):  # the cartographer's first map replaces the book page for these walks
+    G.update({g['walk']: g for g in json.load(open(_c)).values() if g['first']})
 LAT0, LNG0 = 21.28, -157.83
 KX, KY = 111320 * math.cos(math.radians(LAT0)), 110574
 

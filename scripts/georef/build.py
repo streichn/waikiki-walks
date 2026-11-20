@@ -41,18 +41,25 @@ def route_mask(file):
     im = np.asarray(Image.open(os.path.join(ROOT, 'assets/book', file)).convert('RGB')).astype(int)
     r, g, b = im[..., 0], im[..., 1], im[..., 2]
     m = (r > 150) & (g < 80) & (b < 110) & (r - g > 110)  # the red dotted walk path
+    if file in CARTO_FILES:  # the cartographer's maps draw the path in peach
+        m = (r > 235) & (g > 170) & (g < 215) & (b > 125) & (b < 180)
     ys, xs = np.nonzero(m)
     return np.stack([xs, ys], 1)
 
 _ov = os.path.join(ROOT, 'scripts/georef/pin_overrides.json')
 OVERRIDES = {k: {n: x for n, x in v.items() if isinstance(x, list)} for k, v in json.load(open(_ov)).items() if not k.startswith('_')} if os.path.exists(_ov) else {}
 LL_OVERRIDES = {k: {n: x for n, x in v.items() if isinstance(x, dict)} for k, v in json.load(open(_ov)).items() if not k.startswith('_')} if os.path.exists(_ov) else {}
+# The cartographer's full-walk maps (carto_maps.py) replace the book pages for these walks.
+CARTO = json.load(open(os.path.join(HERE, 'georef_carto.json'))) if os.path.exists(os.path.join(HERE, 'georef_carto.json')) else {}
+CARTO_STOPS = json.load(open(os.path.join(HERE, 'map_stops_carto.json'))) if CARTO else {}
+CARTO_WALKS = {g['walk'] for g in CARTO.values()}
+CARTO_FILES = {g['file'] for g in CARTO.values()}
 out_maps, pins = {}, {}
 walks = json.load(open(os.path.join(ROOT, 'src/data/walks.json')))
 walks = walks if isinstance(walks, list) else walks['walks']
 for w in walks:
     wid, f = w['id'], w.get('bookMap')
-    if not f or wid not in G: continue
+    if not f or wid not in G or wid in CARTO_WALKS: continue
     ctl = G[wid]['controls']
     px = np.array([[c['px'], c['py']] for c in ctl], float)
     m = np.array([to_m(c['lat'], c['lng']) for c in ctl])
@@ -87,6 +94,10 @@ SX = json.load(open(os.path.join(HERE, 'map_stops_extra.json'))) if os.path.exis
 for _f, _d in (('georef_photo.json', GX), ('map_stops_photo.json', SX)):
     if os.path.exists(os.path.join(HERE, _f)):
         _d.update(json.load(open(os.path.join(HERE, _f))))
+# Cartographer maps go first (a walk's first map becomes its main map); book pages and photos for those walks drop out.
+GX = {**{k: g for k, g in sorted(CARTO.items(), key=lambda kv: not kv[1]['first'])},
+      **{k: g for k, g in GX.items() if g['walk'] not in CARTO_WALKS}}
+SX = {**CARTO_STOPS, **{k: v for k, v in SX.items() if k.split(':')[0] not in CARTO_WALKS}}
 for key, g in GX.items():
     wid, f = g['walk'], g['file']
     A = np.array(g['affine'])  # [x_m, y_m, 1] @ A = px

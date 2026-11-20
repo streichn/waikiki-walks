@@ -500,6 +500,10 @@ for k, w in enumerate(SRC['walks']):
             pix.save(f'{ASSETS}/{book_map}', jpg_quality=80)
         except Exception as e:
             print('map render failed', wid, e, file=sys.stderr)
+    # The cartographer's full-walk map replaces the book page where we have it (scripts/georef/carto_maps.py).
+    _carto = f'{ROOT}/scripts/georef/georef_carto.json'
+    if os.path.exists(_carto):
+        book_map = next((g['file'] for g in json.load(open(_carto)).values() if g['walk'] == wid and g['first']), book_map)
     walks.append({'id': wid, 'num': k + 1, 'title': title, 'theme': theme, 'facts': FACTS.get(wid, {}), 'intro': intro, 'info': info,
                   **({'cover': cover} if cover else {}), **({'bookMap': book_map} if book_map else {}), 'color': COLORS[k % len(COLORS)], 'stops': stops})
 
