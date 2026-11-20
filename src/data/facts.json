@@ -451,7 +451,7 @@
  },
  {
   "id": "f76",
-  "text": "The first intersection after the canal is Kapi‘olani Boulevard, a major westeast thoroughfare, named for Queen Nāpelakapuokākae Kapi‘olani.",
+  "text": "The first intersection after the canal is Kapi‘olani Boulevard, a major west-east thoroughfare, named for Queen Nāpelakapuokākae Kapi‘olani.",
   "walkId": "X",
   "stopId": "X-03"
  },
@@ -505,7 +505,7 @@
  },
  {
   "id": "f85",
-  "text": "John Burns Hall is named after Hawai‘i Governor John Burns (1909-75; governor 1962-74), one of the founders of the EastWest Center.",
+  "text": "John Burns Hall is named after Hawai‘i Governor John Burns (1909-75; governor 1962-74), one of the founders of the East-West Center.",
   "walkId": "XI",
   "stopId": "XI-26"
  },
@@ -547,32 +547,32 @@
  },
  {
   "id": "f92",
+  "text": "Kamakakūokalani Center for Hawaiian Studies is named after Gladys Kamakakūokalani ‘Ainoa Brandt (1906-2003).",
+  "walkId": "XII",
+  "stopId": "XII-18"
+ },
+ {
+  "id": "f93",
   "text": "The center is named after a well-loved University of Hawai‘i athletic director (from 1983 until his death in 1993).",
   "walkId": "XII",
   "stopId": "XII-24"
  },
  {
-  "id": "f93",
+  "id": "f94",
   "text": "Richardson School of Law, established in 1973, is named for former Hawai‘i State Supreme Court Chief Justice William S.",
   "walkId": "XII",
   "stopId": "XII-27"
  },
  {
-  "id": "f94",
+  "id": "f95",
   "text": "The University of Hawai‘i began as a land grant college under the land grant Morrill Act of 1890, first established in 1907 on Thomas Square close to downtown on S.",
   "walkId": "XII",
   "stopId": "XII-18"
  },
  {
-  "id": "f95",
+  "id": "f96",
   "text": "Although the University of Hawai‘i was established in 1907, the first course in Hawaiian language wasn’t until 1919.",
   "walkId": "XII",
   "stopId": "XII-18"
- },
- {
-  "id": "f96",
-  "text": "The University of Hawai‘i bought the land in 1953, with Klum Gym (Stop 26 ) as its first building in 1957.",
-  "walkId": "XII",
-  "stopId": "XII-21"
  }
 ]

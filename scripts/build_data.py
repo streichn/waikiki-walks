@@ -48,6 +48,11 @@ FACTS = {
 SIDE_STOPS = {'II': {13}}
 # Word-level corrections from the author's own marked-up copy of the book.
 TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")]}
+# Typos and extraction slips checked against the printed page (scripts/extract/text_fixes.json).
+if os.path.exists(f'{ROOT}/scripts/extract/text_fixes.json'):
+    for _sid, _fx in json.load(open(f'{ROOT}/scripts/extract/text_fixes.json')).items():
+        if not _sid.startswith('_'):
+            TEXT_FIXES.setdefault(_sid, []).extend((f['from'], f['to'], f['why']) for f in _fx)
 # Book pictures that are not photos once the page text is removed (scripts/extract/rerender_images.py).
 PHOTO_DROP = set(json.load(open(f'{ROOT}/scripts/extract/photo_fixes.json'))['drop']) if os.path.exists(f'{ROOT}/scripts/extract/photo_fixes.json') else set()
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to
@@ -304,8 +309,7 @@ def apply_heading_fix(sid, title, sub, blocks):
         blocks = [{**blocks[0], 'text': fx['first_prefix'] + blocks[0]['text']}] + blocks[1:]
     if fx.get('drop_first'):
         blocks = blocks[1:]
-    for pre in fx.get('prepend', []):
-        blocks = [pre] + blocks
+    blocks = list(fx.get('prepend', [])) + blocks  # in the order listed
     for ins in fx.get('insert', []):
         k = next((j for j, bb in enumerate(blocks) if bb['text'].startswith(ins['before'])), None)
         if k is not None:
@@ -555,7 +559,20 @@ for k, w in enumerate(SRC['walks']):
         blocks = [{**b, 'kind': 'p'} if b.get('aside') and b['kind'] == 'direction' and b['text'].startswith('•') else b for b in blocks]
         blocks = [{**b, 'text': re.sub(r'\s{2,}', ' ', re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', b['text'])).strip()} for b in blocks]
         for a, b, _why in TEXT_FIXES.get(f"{wid}-{s['n']:02d}", []):
+            if not any(a in x['text'] for x in blocks):
+                raise SystemExit(f"text fix {wid}-{s['n']:02d}: '{a}' not found")
             blocks = [{**x, 'text': x['text'].replace(a, b)} for x in blocks]
+        # A paragraph that stops mid-sentence and one that goes on in lower case are one paragraph
+        # the PDF split at a column or photo (Walk XI stop 6: "Notice" / "the older homes").
+        joined = []
+        for b in blocks:
+            a = joined[-1] if joined else None
+            if (a and a['kind'] == b['kind'] == 'p' and a.get('aside') == b.get('aside') and not a.get('box') and not b.get('box')
+                    and b['text'][:1].islower() and not a['text'].rstrip().endswith(('.', '!', '?', ':', '”', '’', ')', '"'))):
+                joined[-1] = {**a, 'text': join_text(a['text'], b['text'])}
+            else:
+                joined.append(b)
+        blocks = joined
         s['title'], s['subtitle'] = stitle, sub
         if s['n'] in SIDE_STOPS.get(wid, ()):
             s['side'] = True
@@ -680,6 +697,27 @@ def apply_box_fixes(walks):
 
 
 apply_box_fixes(walks)
+
+# Hyphens the book prints at a line end that belong to the word (1890-1968, well-known,
+# mauka-Koko Head). The PDF text drops them; scripts/extract/line_hyphens.py lists them.
+_LH = json.load(open(f'{ROOT}/scripts/extract/line_hyphens.json'))['keep'] if os.path.exists(f'{ROOT}/scripts/extract/line_hyphens.json') else {}
+_LH_RE = re.compile(r'(?<![\w‘’])(' + '|'.join(sorted((re.escape(h.replace('-', '')) for h in _LH), key=len, reverse=True)) + r')(?![\w‘’])') if _LH else None
+_LH_MAP = {h.replace('-', ''): h for h in _LH}
+_LH_SKIP_KEYS = {'id', 'geo', 'page', 'cover', 'bookMap', 'file', 'image', 'src', 'color'}
+
+
+def restore_line_hyphens(x):
+    if isinstance(x, str):
+        return _LH_RE.sub(lambda m: _LH_MAP[m.group(1)], x)
+    if isinstance(x, list):
+        return [restore_line_hyphens(v) for v in x]
+    if isinstance(x, dict):
+        return {k: (v if k in _LH_SKIP_KEYS else restore_line_hyphens(v)) for k, v in x.items()}
+    return x
+
+
+if _LH_RE:
+    walks = restore_line_hyphens(walks)
 
 # Copy referenced images into the app and write the require() map.
 for f in images_used:

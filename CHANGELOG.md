@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-20 · Stop names, hyphens and typos match the printed book
+- Twelve stops took their name from the first line of text, because the book prints the name in bold at the start of the first sentence. Walk VIII stop 6 was called "Da ‘Ono Hawaiian food on the ‘Ewa" and its text began "side of Kapahulu". Now the name is the bold words ("Da ‘Ono Hawaiian food") and the sentence is whole. Stops: VIII 6, 7, 10, 21; IX 7, 21; X 14, 15, 16, 32; XII 5, 10.
+- Hyphens the book prints at a line end and that belong to the word are back: 13 life dates such as "(1890-1968)" had read "(18901968)", and 25 words such as "well-known", "Mānoa-Pālolo" and "mauka-Koko Head" had lost their hyphen. New scripts/extract/line_hyphens.py finds them in the book PDFs and writes scripts/extract/line_hyphens.json; build_data.py restores them.
+- New scripts/extract/text_fixes.json: four book typos (a doubled word or period: Walk I stop 26, VII 2, X 21, XII 10) and four extraction slips (IV 1 "Hawai‘ithe reason" and "Parking Parking lot", IV 23 "(18601939)", IX 17 "Ala WaiCanal"). Each entry gives the page; a fix that no longer matches stops the build.
+- Walk VII stop 6 shows the book's two italic lines, "Kapua" and "Kapua Heiau", instead of "Kapua Kapua Heiau". Walk XI stop 6 and Walk II stop 20 no longer split a sentence into two paragraphs.
+
 ## 2026-11-20 · Plaques and signs in their own box, not in the middle of sentences
 - The book prints plaques, signs and quotations in shaded boxes. The PDF gave each box's text in the middle of whatever came next, often splitting a sentence ("As vice-president of the ... Kapi‘olani Park Association"), and twice put the Kāhuna Stones plaque inside the wrong stop (Walk III stop 13 and Walk IV stop 27).
 - New scripts/extract/box_fixes.json, checked against the printed pages, lifts 10 boxes out, rejoins the 9 sentences they cut, and puts each box where the book prints it. A stray map label ("‘Ena Rd.") and pin symbol are gone from 10 stops.

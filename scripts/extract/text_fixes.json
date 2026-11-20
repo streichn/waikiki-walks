@@ -1,0 +1,57 @@
+{
+ "_note": "Typos and PDF extraction slips, each checked against the printed page. 'from' must appear in the stop or the build stops. Book typos (a doubled word or period) are listed in docs/BOOK_UPDATES.md.",
+ "I-26": [
+  {
+   "from": "Lili‘uokalani..",
+   "to": "Lili‘uokalani.",
+   "why": "Book typo: double period (p1-36)."
+  }
+ ],
+ "IV-01": [
+  {
+   "from": "Hawai‘ithe reason",
+   "to": "Hawai‘i - the reason",
+   "why": "The book prints 'Hawai‘i- the reason' at a line end (p1-74); the dash was lost."
+  },
+  {
+   "from": "Kūhiō Avenue Parking Parking lot",
+   "to": "Kūhiō Avenue. Parking: Parking lot",
+   "why": "'Parking' is a label in the book's info box (p1-73), as on the other walks."
+  }
+ ],
+ "VII-02": [
+  {
+   "from": "father of of Princess",
+   "to": "father of Princess",
+   "why": "Book typo: doubled word (p2-32)."
+  }
+ ],
+ "IX-17": [
+  {
+   "from": "Ala WaiCanal",
+   "to": "Ala Wai Canal",
+   "why": "The book breaks 'Ala Wai-' / 'Canal' across a line (p2-74)."
+  }
+ ],
+ "X-21": [
+  {
+   "from": "in the the Richardsonian",
+   "to": "in the Richardsonian",
+   "why": "Book typo: doubled word (p3-14)."
+  }
+ ],
+ "XII-10": [
+  {
+   "from": "avenues..",
+   "to": "avenues.",
+   "why": "Book typo: double period (p3-66)."
+  }
+ ],
+ "IV-23": [
+  {
+   "from": "(18601939)",
+   "to": "(1860-1939)",
+   "why": "The book prints '(1860- 1939)' (p1-87); the hyphen was lost."
+  }
+ ]
+}
