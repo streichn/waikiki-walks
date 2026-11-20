@@ -414,22 +414,16 @@
    "route_offset_m": 12
   },
   "10": {
-   "lat": 21.283796,
-   "lng": -157.839746,
-   "px": [
-    568,
-    812
-   ],
-   "route_offset_m": 33
-  },
-  "11": {
    "lat": 21.283946,
    "lng": -157.839146,
-   "px": [
-    538,
-    792
-   ],
-   "route_offset_m": 12
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: move pin 10 to where 11 is"
+  },
+  "11": {
+   "lat": 21.2839212,
+   "lng": -157.8387688,
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: move 11 over a little bit (40 percent of the way toward 12, along Kahanamoku Street)"
   },
   "12": {
    "lat": 21.283884,
@@ -486,13 +480,10 @@
    "route_offset_m": 47
   },
   "18": {
-   "lat": 21.282274,
-   "lng": -157.834032,
-   "px": [
-    398,
-    488
-   ],
-   "route_offset_m": 26
+   "lat": 21.2825023,
+   "lng": -157.8338093,
+   "route_offset_m": 30,
+   "place": "Veneeta 19 Nov 2026: pin 18 should be on the other side of Kalia Rd (mirrored across the road)"
   },
   "19": {
    "lat": 21.282988,

@@ -1657,11 +1657,11 @@
       "caption": "Ala Wai Harbor at sunrise"
      }
     ],
-    "lat": 21.283796,
-    "lng": -157.839746,
+    "lat": 21.283946,
+    "lng": -157.839146,
     "geo": "book",
     "page": "p1-47",
-    "radius": 63
+    "radius": 60
    },
    {
     "id": "II-11",
@@ -1687,11 +1687,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.283946,
-    "lng": -157.839146,
+    "lat": 21.283921,
+    "lng": -157.838769,
     "geo": "book",
     "page": "p1-49",
-    "radius": 42
+    "radius": 60
    },
    {
     "id": "II-12",
@@ -1758,8 +1758,7 @@
      },
      {
       "kind": "direction",
-      "text": "If you would like to walk along the beach, find a comfortable place to read about the Hilton Hawaiian Village, then walk to Stop 14 at Paoa Place and Duke Kahanamoku Park, located between the Hilton and the Hale Koa hotels.",
-      "aside": true
+      "text": "If you would like to walk along the beach, find a comfortable place to read about the Hilton Hawaiian Village, then walk to Stop 14 at Paoa Place and Duke Kahanamoku Park, located between the Hilton and the Hale Koa hotels."
      },
      {
       "kind": "p",
@@ -1778,80 +1777,99 @@
       "text": "In 1956 the Hawai‘i Kai Hotel was purchased by Conrad Hilton, and expansion to the present-day Hilton Hawaiian Village was begun."
      },
      {
-      "kind": "direction",
-      "text": "13A Stylized Rainbow Mural on the Hilton Rainbow Tower"
+      "kind": "heading",
+      "text": "13A Stylized Rainbow Mural on the Hilton Rainbow Tower",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "The Hilton Rainbow Tower is known for its two 286-foot ceramic tile murals, one on the mauka (mountain) side of the building, the other on the makai (ocean) side. When these murals were created in 1968 by the artist Millard Sheets (1907 - 1990), it was claimed that they were the tallest murals in the world. More than 8,000 ceramic tiles were used in each mural."
+      "text": "The Hilton Rainbow Tower is known for its two 286-foot ceramic tile murals, one on the mauka (mountain) side of the building, the other on the makai (ocean) side. When these murals were created in 1968 by the artist Millard Sheets (1907 - 1990), it was claimed that they were the tallest murals in the world. More than 8,000 ceramic tiles were used in each mural.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "This mural portrays two separate stylized rainbows rather than the double rainbow often seen in Hawai‘i after a rainfall. Double rainbows consist of a bright main rainbow below a fainter outer rainbow. The outer rainbow is always a mirror image of the main rainbow, and its colors are in reverse order. Notice that in this mural the colors of both rainbows are in the same order. Perhaps Mr. Sheets didn’t spend enough time in Hawai‘i or perhaps he didn’t walk into Mānoa Valley where double rainbows appear daily."
+      "text": "This mural portrays two separate stylized rainbows rather than the double rainbow often seen in Hawai‘i after a rainfall. Double rainbows consist of a bright main rainbow below a fainter outer rainbow. The outer rainbow is always a mirror image of the main rainbow, and its colors are in reverse order. Notice that in this mural the colors of both rainbows are in the same order. Perhaps Mr. Sheets didn’t spend enough time in Hawai‘i or perhaps he didn’t walk into Mānoa Valley where double rainbows appear daily.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Rainbows are often visible from Waikīkī looking mauka (toward the mountains) in the afternoons. Look carefully at the next rainbow you see – it may well be a double rainbow!"
+      "text": "Rainbows are often visible from Waikīkī looking mauka (toward the mountains) in the afternoons. Look carefully at the next rainbow you see – it may well be a double rainbow!",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "The inscription beneath the mauka rainbow: Ua ao mālamalama ‘o Waikīkī i ka nani ‘ōlino o ke ‘ānuenue “Waikīkī is enlightened with the beauty of a rainbow.”"
+      "text": "The inscription beneath the mauka rainbow: Ua ao mālamalama ‘o Waikīkī i ka nani ‘ōlino o ke ‘ānuenue “Waikīkī is enlightened with the beauty of a rainbow.”",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "If you love rainbows, be sure to read The Rainbow Goblins by Ul de Rico. Or follow a walk into Mānoa Valley Walk X, after you finish the Waikīkī Beach Walks."
+      "text": "If you love rainbows, be sure to read The Rainbow Goblins by Ul de Rico. Or follow a walk into Mānoa Valley Walk X, after you finish the Waikīkī Beach Walks.",
+      "aside": true
      },
      {
       "kind": "heading",
-      "text": "13B Kālia Tower"
+      "text": "13B Kālia Tower",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "The building on Kālia Road is the Kālia Tower, named for the local area, Kālia. The lobby is splendid with a carpet of flowers and murals of Hawaiian women by island artist Yvonne Cheng."
+      "text": "The building on Kālia Road is the Kālia Tower, named for the local area, Kālia. The lobby is splendid with a carpet of flowers and murals of Hawaiian women by island artist Yvonne Cheng.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "If you have visited Waikīkī before, between the 60s and 80s, you may be looking for the Buckminster Fuller Dome, built in 1957 of Kaiser Aluminum and the 1980s home of Don Ho. Demolished in 1999, The Dome was replaced by the Kālia Tower. It was at the Buckminster Fuller Dome where Hawai‘i saw its first color TV program on May 5, 1957."
+      "text": "If you have visited Waikīkī before, between the 60s and 80s, you may be looking for the Buckminster Fuller Dome, built in 1957 of Kaiser Aluminum and the 1980s home of Don Ho. Demolished in 1999, The Dome was replaced by the Kālia Tower. It was at the Buckminster Fuller Dome where Hawai‘i saw its first color TV program on May 5, 1957.",
+      "aside": true
      },
      {
       "kind": "heading",
-      "text": "13C Tapa Tower"
+      "text": "13C Tapa Tower",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Walk through the lobby of the Tapa Tower on the Diamond Head side of the Hilton Hawaiian Village, stopping to learn about tapa."
+      "text": "Walk through the lobby of the Tapa Tower on the Diamond Head side of the Hilton Hawaiian Village, stopping to learn about tapa.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Here tapa refers to the pattern carved on the building. Tapa is the Anglicized version of the Hawaiian word, kapa: there’s no “t” letter or sound in standard Hawaiian. (Compare English “taboo” and Hawaiian kapu, the original word.) Kapa is the Hawaiian fabric made from the bark of the Wauke, paper mulberry trees. Kapa has been used for clothing and bedding. The term also refers to the geometric patterns made by wooden beaters applied to the cloth. To see actual fabric and the beaters, visit the Bishop Museum."
+      "text": "Here tapa refers to the pattern carved on the building. Tapa is the Anglicized version of the Hawaiian word, kapa: there’s no “t” letter or sound in standard Hawaiian. (Compare English “taboo” and Hawaiian kapu, the original word.) Kapa is the Hawaiian fabric made from the bark of the Wauke, paper mulberry trees. Kapa has been used for clothing and bedding. The term also refers to the geometric patterns made by wooden beaters applied to the cloth. To see actual fabric and the beaters, visit the Bishop Museum.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "A bronze sculpture and accompanying wall text describe the process of tapa making. In the 1970s Puanani Van Dorpe (1933-2014) revived the ancient art of kapa making. She was considered to be a Living Treasure of Hawai‘i."
+      "text": "A bronze sculpture and accompanying wall text describe the process of tapa making. In the 1970s Puanani Van Dorpe (1933-2014) revived the ancient art of kapa making. She was considered to be a Living Treasure of Hawai‘i.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Nearby are two bronze statues of Hawaiian performers. One is of Alfred Apaka (1919-1960), singer and ‘ukulele player who was greatly loved at the Hilton Hawaiian Village. The other statue is of ‘Iolani Luahine (1915-1978), one of Hawai‘i’s greatest hula dancers who performed here in the 1950s. Both statues are by local artist, Kim Duffett."
+      "text": "Nearby are two bronze statues of Hawaiian performers. One is of Alfred Apaka (1919-1960), singer and ‘ukulele player who was greatly loved at the Hilton Hawaiian Village. The other statue is of ‘Iolani Luahine (1915-1978), one of Hawai‘i’s greatest hula dancers who performed here in the 1950s. Both statues are by local artist, Kim Duffett.",
+      "aside": true
      },
      {
       "kind": "heading",
-      "text": "13D Ali‘i Tower"
+      "text": "13D Ali‘i Tower",
+      "aside": true
      },
      {
       "kind": "tagline",
-      "text": "Ali‘i means royalty."
+      "text": "Ali‘i means royalty.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "One plant, in particular, the ‘akia, a small leaf ground cover with tiny yellow flowers and reddish fruits is growing beautifully on the corner of the Ali‘i Tower, as well as on Kālia Avenue. The ‘akia plant is unique to Hawai‘i. The root and bark can be used to stun fish, temporarily, long enough to capture a net-full of fish!"
+      "text": "One plant, in particular, the ‘akia, a small leaf ground cover with tiny yellow flowers and reddish fruits is growing beautifully on the corner of the Ali‘i Tower, as well as on Kālia Avenue. The ‘akia plant is unique to Hawai‘i. The root and bark can be used to stun fish, temporarily, long enough to capture a net-full of fish!",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Walk around the gardens of the Hilton, reading the plaques to learn about the local plants, some unique to Hawai‘i and nowhere else in the world; others, indigenous plants are native to Hawai‘i and elsewhere in the Pacific. A Loulu Palm tree, unique to Hawai‘i, is located makai of Tapa Tower, in the open courtyard."
+      "text": "Walk around the gardens of the Hilton, reading the plaques to learn about the local plants, some unique to Hawai‘i and nowhere else in the world; others, indigenous plants are native to Hawai‘i and elsewhere in the Pacific. A Loulu Palm tree, unique to Hawai‘i, is located makai of Tapa Tower, in the open courtyard.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "The Hau Tree Bar is cover with hau, from the stalwart Hau tree."
+      "text": "The Hau Tree Bar is cover with hau, from the stalwart Hau tree.",
+      "aside": true
      }
     ],
     "photos": [
@@ -1871,7 +1889,8 @@
     "lng": -157.837264,
     "geo": "book",
     "page": "p1-50",
-    "radius": 90
+    "radius": 90,
+    "side": true
    },
    {
     "id": "II-14",
@@ -2129,11 +2148,11 @@
       "caption": "Nā Lehua Helele‘i – The Kū images honor fallen Hawaiian warriors."
      }
     ],
-    "lat": 21.282274,
-    "lng": -157.834032,
+    "lat": 21.282502,
+    "lng": -157.833809,
     "geo": "book",
     "page": "p1-56",
-    "radius": 56
+    "radius": 60
    },
    {
     "id": "II-19",
@@ -9619,15 +9638,18 @@
      },
      {
       "kind": "p",
-      "text": "An alternative side route, if you have lots of time (or come back another day for this hike), cross Mānoa Road ‘Ewa at the light at Lanihuli Way, walk mauka past Judd Hillside Road, to a “secret” right of way just past Kamehameha Avenue (It’s actually an easement.) between the low lava wall with bushes on the makai side of Mānoa Road and a high lava wall with glass light globes on the mauka side up to Ferdinand Avenue - the street up the hill that parallels Mānoa Road. As you exit the secret passageway, notice the exquisite 1925 house on the mauka-Diamond Head side of the street by architect Hart Wood."
+      "text": "An alternative side route, if you have lots of time (or come back another day for this hike), cross Mānoa Road ‘Ewa at the light at Lanihuli Way, walk mauka past Judd Hillside Road, to a “secret” right of way just past Kamehameha Avenue (It’s actually an easement.) between the low lava wall with bushes on the makai side of Mānoa Road and a high lava wall with glass light globes on the mauka side up to Ferdinand Avenue - the street up the hill that parallels Mānoa Road. As you exit the secret passageway, notice the exquisite 1925 house on the mauka-Diamond Head side of the street by architect Hart Wood.",
+      "aside": true
      },
      {
       "kind": "direction",
-      "text": "For the more adventuresome among you, after you exit this “secret” passage and look at the beautiful homes around you, walk mauka to the end of the street, turn ‘Ewa up Ventura Street, then walk either way on Sonoma Street, which dead ends on both ends. Look for the houses with tramways up to the front door. (Hint: both houses are on the mauka side of Sonoma). Comeback down the hill to cross (carefully) both Mānoa Road and E. Mānoa Road to Kamehameha Avenue."
+      "text": "For the more adventuresome among you, after you exit this “secret” passage and look at the beautiful homes around you, walk mauka to the end of the street, turn ‘Ewa up Ventura Street, then walk either way on Sonoma Street, which dead ends on both ends. Look for the houses with tramways up to the front door. (Hint: both houses are on the mauka side of Sonoma). Comeback down the hill to cross (carefully) both Mānoa Road and E. Mānoa Road to Kamehameha Avenue.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Walking along Kamehameha Avenue, notice the “Exceptional” Earpod Tree on the mauka side, just past the turn off E. Mānoa Road. You’ll cross McKinley (under whose presidency Hawai‘i passed from Hawaiian to American hands) Street and Beckwith (Rev. Beckwith was a past president of Punahou School) Street. After 2 blocks, Kamehameha Avenue veers makai for one block. Just before the turn, notice 9 stately Palm trees on the mauka side signifying an important and impressive house. Continue to the University of Hawai‘i ’s President’s House up on the hill."
+      "text": "Walking along Kamehameha Avenue, notice the “Exceptional” Earpod Tree on the mauka side, just past the turn off E. Mānoa Road. You’ll cross McKinley (under whose presidency Hawai‘i passed from Hawaiian to American hands) Street and Beckwith (Rev. Beckwith was a past president of Punahou School) Street. After 2 blocks, Kamehameha Avenue veers makai for one block. Just before the turn, notice 9 stately Palm trees on the mauka side signifying an important and impressive house. Continue to the University of Hawai‘i ’s President’s House up on the hill.",
+      "aside": true
      }
     ],
     "photos": [
@@ -10044,20 +10066,24 @@
       "text": "From Ānuenue Street, walk mauka on Kahawai (‘stream, ditch’) Street –where there are great views of the valley mountains – then turn Diamond Head on Huapala (‘ornamental vine; sweetheart; pretty’) Street, directly to Mānoa Marketplace on E. Mānoa Road with loads of stores and restaurants."
      },
      {
-      "kind": "direction",
-      "text": "36A Mānoa Marketplace “The Village”"
+      "kind": "heading",
+      "text": "36A Mānoa Marketplace “The Village”",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "On the mauka -‘Ewa corner of E. Mānoa Road and Huapala Street you will pass a lovely 1930s building that is often featured in Japanese magazines; hence, the frequent photo ops by our visitors from Japan."
+      "text": "On the mauka -‘Ewa corner of E. Mānoa Road and Huapala Street you will pass a lovely 1930s building that is often featured in Japanese magazines; hence, the frequent photo ops by our visitors from Japan.",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Across E. Mānoa Road, you’ll see the Safeway façade of sandstone blocks. The Bottle Brush and Monkey Pod trees provide welcomed shade. At one point the fate of these gorgeous Monkey Pod trees was in balance: the owners of the marketplace wanted to cut down the Monkey Pod trees because of the roots popping up in the parking areas and the shedding of the flowers and leaves; however, thanks to neighborhood outcry, the trees survived! Here’s to Neighborhood Power!"
+      "text": "Across E. Mānoa Road, you’ll see the Safeway façade of sandstone blocks. The Bottle Brush and Monkey Pod trees provide welcomed shade. At one point the fate of these gorgeous Monkey Pod trees was in balance: the owners of the marketplace wanted to cut down the Monkey Pod trees because of the roots popping up in the parking areas and the shedding of the flowers and leaves; however, thanks to neighborhood outcry, the trees survived! Here’s to Neighborhood Power!",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Check out the website and you’ll see the great variety of stores: manoamarketplacehawaii.com/ Once, just a few stores and known as “The Village,” the shopping area has mushroomed into several dozen stores and services, including a pre-school, doctors, and banks. Mānoa Marketplace opened to Mānoa Valley residents and community in 1961."
+      "text": "Check out the website and you’ll see the great variety of stores: manoamarketplacehawaii.com/ Once, just a few stores and known as “The Village,” the shopping area has mushroomed into several dozen stores and services, including a pre-school, doctors, and banks. Mānoa Marketplace opened to Mānoa Valley residents and community in 1961.",
+      "aside": true
      },
      {
       "kind": "direction",
@@ -10071,39 +10097,48 @@
      },
      {
       "kind": "p",
-      "text": "Mānoa Valley Theater is a half block makai of Mānoa Marketplace on E. Mānoa Road. Mānoa Church was established here – as evidenced by the tombstones, many engraved in Hawaiian –only to be replaced by a theater in 1987. Dating back to 1823, there are only 37 headstones in the cemetery; however, there are over 100 burial plots, some marked with natural features known only to the family. Descendants of the Woolsey family (of Woolsey Poi Factory fame), a local"
+      "text": "Mānoa Valley Theater is a half block makai of Mānoa Marketplace on E. Mānoa Road. Mānoa Church was established here – as evidenced by the tombstones, many engraved in Hawaiian –only to be replaced by a theater in 1987. Dating back to 1823, there are only 37 headstones in the cemetery; however, there are over 100 burial plots, some marked with natural features known only to the family. Descendants of the Woolsey family (of Woolsey Poi Factory fame), a local",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Hawaiian family, are buried on the makai side of the entrance walkway. The original sign to the factory is still visible on O‘ahu Avenue (Stop 37 )."
+      "text": "Hawaiian family, are buried on the makai side of the entrance walkway. The original sign to the factory is still visible on O‘ahu Avenue (Stop 37 ).",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Reminders of the church include not only the graveyard, but also the lava wall, pillars at the entryway, and the lava rock belfry, which is rung to alert theatergoers."
+      "text": "Reminders of the church include not only the graveyard, but also the lava wall, pillars at the entryway, and the lava rock belfry, which is rung to alert theatergoers.",
+      "aside": true
      },
      {
       "kind": "heading",
-      "text": "Ceramic Mural"
+      "text": "Ceramic Mural",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Just past the theater, the ceramic mural outside Bank of Hawai‘i is interesting: does it depict Mānoa Falls or a giraffe, which is how some children interpret this artwork!"
+      "text": "Just past the theater, the ceramic mural outside Bank of Hawai‘i is interesting: does it depict Mānoa Falls or a giraffe, which is how some children interpret this artwork!",
+      "aside": true
      },
      {
       "kind": "tagline",
-      "text": "Toyo’s Superette"
+      "text": "Toyo’s Superette",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "The row of stores, mainly restaurants, on the corner of Keama Place, was the home – for 80 years – of our local market: Toyo’s, from 1918 to 1998. Keama translates as ‘the outrigger float.’ Theh street is named for two kalo famers, Noah and James Keama."
+      "text": "The row of stores, mainly restaurants, on the corner of Keama Place, was the home – for 80 years – of our local market: Toyo’s, from 1918 to 1998. Keama translates as ‘the outrigger float.’ Theh street is named for two kalo famers, Noah and James Keama.",
+      "aside": true
      },
      {
       "kind": "heading",
-      "text": "Japanese Language School building"
+      "text": "Japanese Language School building",
+      "aside": true
      },
      {
       "kind": "p",
-      "text": "Across the way, the long grey building is the Japanese Language School, which is established in one of the former Mānoa Elementary School buildings when the elementary school moved near Mānoa Valley District Park in 1952."
+      "text": "Across the way, the long grey building is the Japanese Language School, which is established in one of the former Mānoa Elementary School buildings when the elementary school moved near Mānoa Valley District Park in 1952.",
+      "aside": true
      },
      {
       "kind": "direction",
@@ -13254,7 +13289,8 @@
      },
      {
       "kind": "heading",
-      "text": "21A ROTC buildings"
+      "text": "21A ROTC buildings",
+      "aside": true
      },
      {
       "kind": "p",
@@ -13420,7 +13456,8 @@
      },
      {
       "kind": "heading",
-      "text": "25A Mō‘ili‘ili Gateway"
+      "text": "25A Mō‘ili‘ili Gateway",
+      "aside": true
      },
      {
       "kind": "p",

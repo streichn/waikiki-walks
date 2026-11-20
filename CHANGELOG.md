@@ -120,3 +120,9 @@
 - Walk XI now has map pins for 44 of 45 stops; 43 (Sinclair) is not printed on her map, so it has none.
 - Preview street tiles extended over upper campus at the closest zoom.
 - Her photo of Walk XI page 1 (IMG_4705) has a short red handwritten note in the margin near stop 6; not legible in the photo, asked her.
+
+## 2026-11-19 · Veneeta's Walk II notes, side trips, street routes, book updates list
+- Walk II: pin 10 moved to where 11 was and 11 moved 40 percent of the way toward 12; pin 18 mirrored across Kālia Road; stop 13 is now a side trip (purple pin and dashed purple connector; the main line goes 12 to 14).
+- Side-trip boxes: lettered sub-stops (13A to 13D, 21A, 25A, 36A, 36B) now belong to their side trip; Walk II 13 no longer boxes the main beach route.
+- Map lines: legs with no traced red line now follow a walking route along the streets (142 legs, FOSSGIS OSRM foot router, cached in scripts/georef/street_legs.json), kept only when close to the straight line; 30 legs stay straight. Walk II 1 to 2 now runs along Ala Moana Boulevard.
+- docs/BOOK_UPDATES.md: her changes to the printed text, and statements checked for being out of date.

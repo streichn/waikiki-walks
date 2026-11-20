@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { legPath, onMap, walkPath } from '../data';
+import { legPath, onMap, SIDE_TRIP, sidePaths, walkPath } from '../data';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
@@ -70,13 +70,14 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       onMapReady={() => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: false })}
     >
       <Polyline coordinates={routeCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
+      {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
       {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor={t.accent} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
         if (!onMap(s)) return null;
         const isCur = i === current;
         const done = visited.includes(i);
         const locked = isLocked?.(i);
-        const bg = isCur ? t.accent : done ? t.leaf : locked ? '#8A9A9B' : walk.color;
+        const bg = isCur ? t.accent : done ? t.leaf : locked ? '#8A9A9B' : s.side ? SIDE_TRIP : walk.color;
         return (
           <Marker key={s.id} coordinate={coords[i]} onPress={() => onSelect?.(i)} tracksViewChanges={false} zIndex={isCur ? 10 : 1} accessibilityLabel={`Stop ${s.n}, ${s.title}`}>
             <View style={[styles.pin, { backgroundColor: bg, transform: [{ scale: isCur ? 1.25 : 1 }] }]}>

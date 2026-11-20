@@ -388,19 +388,36 @@
   }
 
   // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
-  function legPath(w, i) {
-    const a = w.stops[i], b = w.stops[i + 1]; if (!a || !b) return [];
-    const A = [a.lat, a.lng], B = [b.lat, b.lng], leg = ((D.routes || {})[w.id] || {})[String(a.n)];
+  const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
+  const onMain = (s) => onMap(s) && !s.side;
+  function between(w, i, j) {
+    const a = w.stops[i], b = w.stops[j]; if (!a || !b) return [];
+    const key = j === i + 1 ? String(a.n) : `${a.n}>${b.n}`;
+    const A = [a.lat, a.lng], B = [b.lat, b.lng], leg = ((D.routes || {})[w.id] || {})[key];
     if (!leg || leg.length < 2) return [A, B];
     const m = (p, q) => dist({ lat: p[0], lng: p[1] }, { lat: q[0], lng: q[1] });
     let len = 0; for (let k = 1; k < leg.length; k++) len += m(leg[k - 1], leg[k]);
     if (m(A, leg[0]) > 120 || m(B, leg[leg.length - 1]) > 120 || len > 3 * m(A, B) + 150) return [A, B];
     return [A, ...leg, B];
   }
+  // The walking line from stop i to the next: her traced red route, else a walking route along streets, else straight.
+  function legPath(w, i) {
+    const a = w.stops[i], b = w.stops[i + 1]; if (!a || !b) return [];
+    if (a.side || b.side) return [[a.lat, a.lng], [b.lat, b.lng]];
+    return between(w, i, i + 1);
+  }
+  // The main route through the stops her map prints, skipping side-trip stops.
   function walkPath(w) {
-    const out = [];
-    w.stops.forEach((s, i) => { if (!onMap(s)) return; const n = w.stops[i + 1]; if (n && onMap(n)) out.push(...legPath(w, i).slice(0, -1)); else out.push([s.lat, s.lng]); });
+    const idx = w.stops.map((s, i) => (onMain(s) ? i : -1)).filter((i) => i >= 0), out = [];
+    idx.forEach((i, k) => { const j = idx[k + 1]; if (j === undefined) out.push([w.stops[i].lat, w.stops[i].lng]); else out.push(...between(w, i, j).slice(0, -1)); });
     return out;
+  }
+  function sidePaths(w) {
+    return w.stops.flatMap((s, i) => {
+      if (!s.side || !onMap(s)) return [];
+      const before = w.stops.slice(0, i).reverse().find(onMain), after = w.stops.slice(i + 1).find(onMain);
+      return [[before, s, after].filter(Boolean).map((x) => [x.lat, x.lng])];
+    });
   }
   // Shared Leaflet map builder with offline tiles.
   function makeMap(el, w, opts) {
@@ -413,6 +430,7 @@
     // Only stops her book map prints get a pin, so this map shows what her map shows.
     const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
     L.polyline(walkPath(w).length > 1 ? walkPath(w) : mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    sidePaths(w).forEach((p) => L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map));
     const markers = w.stops.map((s, i) => {
       if (!onMap(s)) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
@@ -427,7 +445,7 @@
         markers.forEach((m, i) => {
           if (!m) return;
           const s = w.stops[i], locked = !canOpen(w.id, i), done = visited.includes(i), isCur = i === cur;
-          const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : w.color;
+          const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : s.side ? SIDE_TRIP : w.color;
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });

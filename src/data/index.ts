@@ -24,31 +24,54 @@ const metres = (a: LatLng, b: LatLng) => {
   return 6371000 * Math.hypot(x, y);
 };
 
-/** The walking line from stop i to the next stop: Veneeta's red route traced from her map where we have it, otherwise a straight line. */
-export function legPath(walk: Walk, i: number): LatLng[] {
-  const a = walk.stops[i], b = walk.stops[i + 1];
+/** The purple used for her map's side-trip (alternate route) lines. */
+export const SIDE_TRIP = '#8E6BB8';
+
+function between(walk: Walk, i: number, j: number): LatLng[] {
+  const a = walk.stops[i], b = walk.stops[j];
   if (!a || !b) return [];
   const A = { latitude: a.lat, longitude: a.lng }, B = { latitude: b.lat, longitude: b.lng };
-  const leg = (routes[walk.id] || {})[String(a.n)];
+  const key = j === i + 1 ? String(a.n) : `${a.n}>${b.n}`;
+  const leg = (routes[walk.id] || {})[key];
   if (!leg || leg.length < 2) return [A, B];
   const pts = leg.map(([latitude, longitude]) => ({ latitude, longitude }));
   let len = 0;
   for (let k = 1; k < pts.length; k++) len += metres(pts[k - 1], pts[k]);
-  // Use the traced line only when it starts and ends at these two stops and is not a wild detour.
+  // Use the traced or street line only when it starts and ends at these two stops and is not a wild detour.
   if (metres(A, pts[0]) > 120 || metres(B, pts[pts.length - 1]) > 120 || len > 3 * metres(A, B) + 150) return [A, B];
   return [A, ...pts, B];
 }
 
-/** The whole walk as one line through the stops her map prints. */
+const onMain = (s: { geo: string; side?: boolean }) => onMap(s) && !s.side;
+
+/** The walking line from stop i to the next stop: her red route where it was traced, else a walking route along
+ * the streets, else a straight line. Into or out of a side-trip stop it is a straight connector. */
+export function legPath(walk: Walk, i: number): LatLng[] {
+  const a = walk.stops[i], b = walk.stops[i + 1];
+  if (!a || !b) return [];
+  if (a.side || b.side) return [{ latitude: a.lat, longitude: a.lng }, { latitude: b.lat, longitude: b.lng }];
+  return between(walk, i, i + 1);
+}
+
+/** The main route as one line through the stops her map prints, skipping side-trip stops. */
 export function walkPath(walk: Walk): LatLng[] {
+  const idx = walk.stops.map((s, i) => (onMain(s) ? i : -1)).filter((i) => i >= 0);
   const out: LatLng[] = [];
-  walk.stops.forEach((s, i) => {
-    if (!onMap(s)) return;
-    const next = walk.stops[i + 1];
-    if (next && onMap(next)) out.push(...legPath(walk, i).slice(0, -1));
-    else out.push({ latitude: s.lat, longitude: s.lng });
+  idx.forEach((i, k) => {
+    const j = idx[k + 1];
+    if (j === undefined) out.push({ latitude: walk.stops[i].lat, longitude: walk.stops[i].lng });
+    else out.push(...between(walk, i, j).slice(0, -1));
   });
   return out;
+}
+
+/** Purple connectors for side-trip stops: from the main stop before, to the side stop, to the main stop after. */
+export function sidePaths(walk: Walk): LatLng[][] {
+  return walk.stops.flatMap((s, i) => {
+    if (!s.side || !onMap(s)) return [];
+    const before = [...walk.stops.slice(0, i)].reverse().find(onMain), after = walk.stops.slice(i + 1).find(onMain);
+    return [[before, s, after].filter(Boolean).map((x) => ({ latitude: x!.lat, longitude: x!.lng }))];
+  });
 }
 
 export function walkNo(id: string): number | string {

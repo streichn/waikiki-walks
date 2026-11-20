@@ -66,5 +66,22 @@
    "lng": -157.8101449,
    "why": "Printed just past the left edge of the PDF page; placed from Veneeta's photo of page 1 (IMG_4707), registered to the PDF page (its 14 lands within 1 px of the PDF's 14)"
   }
+ },
+ "II": {
+  "10": {
+   "lat": 21.283946,
+   "lng": -157.839146,
+   "why": "Veneeta 19 Nov 2026: move pin 10 to where 11 is"
+  },
+  "11": {
+   "lat": 21.2839212,
+   "lng": -157.8387688,
+   "why": "Veneeta 19 Nov 2026: move 11 over a little bit (40 percent of the way toward 12, along Kahanamoku Street)"
+  },
+  "18": {
+   "lat": 21.2825023,
+   "lng": -157.8338093,
+   "why": "Veneeta 19 Nov 2026: pin 18 should be on the other side of Kalia Rd (mirrored across the road)"
+  }
  }
 }
