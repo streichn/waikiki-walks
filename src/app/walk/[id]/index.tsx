@@ -133,7 +133,7 @@ export default function WalkOverview() {
           {bookMap && walk.bookMap ? (
             <BookMapPane walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} topInset={insets.top + 110} bottomInset={230} />
           ) : (
-            <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
+            <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
           )}
           {walk.bookMap ? (
             <View style={{ position: 'absolute', left: 14, top: insets.top + 64 }}>
@@ -198,7 +198,7 @@ export default function WalkOverview() {
         <Button
           kind={canStartWalk(walk.id, isPro) ? 'primary' : 'accent'}
           icon={canStartWalk(walk.id, isPro) ? 'navigate' : 'lock-open'}
-          label={!canStartWalk(walk.id, isPro) ? 'Unlock this walk' : isActive ? 'Return to walk' : resuming ? 'Continue walk' : 'Start walk'}
+          label={!canStartWalk(walk.id, isPro) ? 'Unlock this walk' : isActive ? 'Return to walk' : prog?.finishedAt ? 'Walk it again' : resuming ? 'Continue walk' : 'Start walk'}
           onPress={begin}
         />
         {prog?.visited.length ? (

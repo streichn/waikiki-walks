@@ -182,8 +182,12 @@ export default function ActiveWalk() {
   // "I'm here" covers weak GPS between tall buildings.
   const manualArrive = () => arrive(current);
 
+  // Finishing lands on the whole walk, its route lit up from where you started to where you ended.
   const finish = () => {
-    Alert.alert('Walk complete', `Mahalo for walking ${walk.title}!`, [{ text: 'Done', onPress: () => end(true) }]);
+    Alert.alert('Walk complete', `Mahalo for walking ${walk.title}. Your whole route is lit up on the map.`, [
+      { text: 'Back to all walks', style: 'cancel', onPress: async () => { await endWalkNow(walk, false, true); router.dismissAll(); } },
+      { text: 'See my route', onPress: async () => { await endWalkNow(walk, false, true); router.replace(`/walk/${walk.id}?mode=map`); } },
+    ]);
   };
 
   const end = async (finished = false) => {

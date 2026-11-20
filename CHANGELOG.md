@@ -126,3 +126,8 @@
 - Side-trip boxes: lettered sub-stops (13A to 13D, 21A, 25A, 36A, 36B) now belong to their side trip; Walk II 13 no longer boxes the main beach route.
 - Map lines: legs with no traced red line now follow a walking route along the streets (142 legs, FOSSGIS OSRM foot router, cached in scripts/georef/street_legs.json), kept only when close to the straight line; 30 legs stay straight. Walk II 1 to 2 now runs along Ala Moana Boulevard.
 - docs/BOOK_UPDATES.md: her changes to the printed text, and statements checked for being out of date.
+
+## 2026-11-19 · Finishing a walk (Nick)
+- Walked trail: the part of the route already walked shows as a solid green line over the dashed route, on every map, so the circuit fills in as you go; a finished walk shows all of it.
+- Finish: on the last stop, Finish opens "Walk complete" with "See my route" (the whole walk on the map, fully lit) or "Back to all walks".
+- Completed walks: the card says "Completed"; tapping it asks "Walk it again?" with "Start over" (from stop 1) or "Just look" (opens the walk's map, keeps the finished route). The walk page button reads "Walk it again".

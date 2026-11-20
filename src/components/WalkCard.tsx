@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, View } from 'react-native';
 import { TRIAL } from '../config';
 import { photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
@@ -16,12 +16,13 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
   const isPro = useIsPro();
   const prog = useProgress((s) => s.progress[walk.id]);
   const active = useProgress((s) => s.activeWalkId);
+  const resetWalk = useProgress((s) => s.resetWalk);
   const locked = !isPro && walk.id !== TRIAL.walkId;
   const done = prog?.finishedAt;
   const pct = prog ? Math.round((prog.visited.length / Math.max(1, walk.stops.length)) * 100) : 0;
   const started = !!prog && prog.visited.length > 0;
   const state = !started ? null : done
-    ? { label: 'Finished', bg: '#3E8E5A', fg: '#fff', bar: '#3E8E5A' }
+    ? { label: 'Completed', bg: '#3E8E5A', fg: '#fff', bar: '#3E8E5A' }
     : active === walk.id
       ? { label: `Walking now · ${prog!.visited.length} of ${walk.stops.length} stops`, bg: '#F4B740', fg: '#3a2200', bar: '#F4B740' }
       : { label: `Paused · ${prog!.visited.length} of ${walk.stops.length} stops`, bg: 'rgba(255,255,255,0.88)', fg: '#1d4a4c', bar: '#fff' };
@@ -31,7 +32,13 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
       accessibilityLabel={`Walk ${walk.id}, ${walk.title}`}
       onPress={() => {
         tap();
-        router.push(`/walk/${walk.id}`);
+        if (!done) return router.push(`/walk/${walk.id}`);
+        // A finished walk: walk it again from stop 1, or just look without losing the finished route.
+        Alert.alert('Walk it again?', `You finished ${walk.title}. Start over from stop 1, or just look through it again.`, [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Just look', onPress: () => router.push(`/walk/${walk.id}?mode=map`) },
+          { text: 'Start over', onPress: () => { resetWalk(walk.id); router.push(isPro || walk.id === TRIAL.walkId ? `/walk/${walk.id}/go` : '/paywall'); } },
+        ]);
       }}
       style={({ pressed }) => [styles.card, wide ? styles.wide : styles.narrow, { opacity: pressed ? 0.9 : 1, backgroundColor: t.card }]}
     >

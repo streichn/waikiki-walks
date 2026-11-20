@@ -202,7 +202,7 @@
     if (!p || !p.visited.length) return { tag: '', bar: '' };
     const done = p.finishedAt || p.visited.length >= n, pct = done ? 100 : Math.round(100 * p.visited.length / n);
     const cls = done ? 'done' : S.active === w.id ? 'live' : 'paused';
-    const txt = done ? 'Finished' : `${S.active === w.id ? 'Walking now' : 'Paused'} · ${p.visited.length} of ${n} stops`;
+    const txt = done ? 'Completed' : `${S.active === w.id ? 'Walking now' : 'Paused'} · ${p.visited.length} of ${n} stops`;
     return { tag: `<span class="wtag ${cls}">${txt}</span>`, bar: `<span class="wbar ${cls}"><i style="width:${pct}%"></i></span>` };
   }
 
@@ -271,7 +271,7 @@
 
   function renderWalk() {
     const w = walk(S.walkId), prog = S.progress[w.id];
-    const startLabel = !canStart(w.id) ? 'Unlock this walk' : S.active === w.id ? 'Return to walk' : prog && prog.visited.length && !prog.finishedAt ? 'Continue walk' : 'Start walk';
+    const startLabel = !canStart(w.id) ? 'Unlock this walk' : S.active === w.id ? 'Return to walk' : prog && prog.finishedAt ? 'Walk it again' : prog && prog.visited.length ? 'Continue walk' : 'Start walk';
     const chips = [w.facts.distance && `<span class="chip">${ic('steps', 'width="14" height="14"')} ${esc(w.facts.distance)}</span>`, w.facts.duration && `<span class="chip">${ic('time', 'width="14" height="14"')} ${esc(w.facts.duration)}</span>`, `<span class="chip">${ic('pin', 'width="14" height="14"')} ${w.stops.length} stops</span>`, w.id === TRIAL.walkId && !S.isPro ? `<span class="chip" style="color:var(--gold)">${ic('gift', 'width="14" height="14"')} First ${TRIAL.freeStops} free</span>` : ''].filter(Boolean).join('');
     const stops = `<div class="pad stack" style="gap:8px;margin-top:22px"><h2 style="font-size:22px">The stops</h2><p class="small" style="margin:0 0 4px">Tap a stop to read it, then swipe or use Next to go through them one at a time.</p>${w.stops.map((s, i) => {
       const locked = !canOpen(w.id, i), seen = prog && prog.visited.includes(i);
@@ -407,8 +407,8 @@
     return between(w, i, i + 1);
   }
   // The main route through the stops her map prints, skipping side-trip stops.
-  function walkPath(w) {
-    const idx = w.stops.map((s, i) => (onMain(s) ? i : -1)).filter((i) => i >= 0), out = [];
+  function walkPath(w, upto) {
+    const idx = w.stops.map((s, i) => (onMain(s) && (upto == null || i <= upto) ? i : -1)).filter((i) => i >= 0), out = [];
     idx.forEach((i, k) => { const j = idx[k + 1]; if (j === undefined) out.push([w.stops[i].lat, w.stops[i].lng]); else out.push(...between(w, i, j).slice(0, -1)); });
     return out;
   }
@@ -437,6 +437,8 @@
       m.on('click', () => opts.onSelect && opts.onSelect(i));
       return m;
     });
+    // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
+    const trail = L.polyline([], { color: '#3A7D44', weight: 6, opacity: 0.9 }).addTo(map);
     const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
@@ -449,6 +451,8 @@
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });
+        const p = S.progress[w.id], reached = p && p.finishedAt ? w.stops.length - 1 : Math.max(-1, ...visited);
+        trail.setLatLngs(reached > 0 ? walkPath(w, reached) : []);
         seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? legPath(w, cur) : []);
       },
       fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
@@ -475,7 +479,8 @@
       setTimeout(() => { if (wmap) wmap.overlay = addOverlay(wmap.map, w); }, 0);
       wmap = makeMap(document.getElementById('wmap'), w, { bottom: 200, onSelect: (i) => { S.focus = i; syncRail(true); wmap.paint(S.focus, (S.progress[w.id] || { visited: [] }).visited); } });
     }
-    setTimeout(() => { wmap.map.invalidateSize(); wmap.paint(S.focus, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(S.focus); syncRail(false); }, 50);
+    const whole = S.showWhole; S.showWhole = false;
+    setTimeout(() => { wmap.map.invalidateSize(); wmap.paint(whole ? -1 : S.focus, (S.progress[w.id] || { visited: [] }).visited); if (whole) wmap.fit(); else wmap.focus(S.focus); syncRail(false); }, 50);
   }
   function syncRail(scroll) {
     document.querySelectorAll('.mcard').forEach((c) => c.classList.toggle('on', Number(c.dataset.card) === S.focus));
@@ -629,7 +634,31 @@
     }, 700);
   }
   function stopSim() { S.sim = false; clearInterval(simTimer); }
-  function finishWalk() { const prog = S.progress[S.walkId]; prog.finishedAt = Date.now(); S.active = null; stopSim(); stopSpeak(); persist(); toast(`Mahalo for walking ${walk(S.walkId).title}!`); S.view = 'walk'; render(); }
+  function finishWalk() {
+    const w = walk(S.walkId), prog = S.progress[w.id];
+    prog.finishedAt = Date.now();
+    S.active = null; stopSim(); stopSpeak(); persist();
+    // Land on the whole walk, route lit up from start to end.
+    S.view = 'walk'; S.mode = 'map'; S.mapStyle = 'street'; S.showWhole = true; wmap = null; render();
+    const m = modal(`<div class="stack" style="gap:12px;text-align:center">${hib(56, '#D6336C', -15)}<h2 style="font-size:24px">Walk complete</h2><p class="small" style="margin:0">Mahalo for walking ${esc(w.title)}. Your whole route is lit up on the map, from where you started to where you ended.</p>
+      <button class="btn" data-close>${ic('map')} See my route</button>
+      <button class="btn" data-done="home" style="background:transparent;color:var(--primary)">Back to all walks</button></div>`, true);
+    m.addEventListener('click', (e) => { if (e.target.closest('[data-done="home"]')) { m.remove(); S.view = null; render(); } });
+  }
+  // A finished walk: walk it again from stop 1, or just look at it without losing the finished route.
+  function completedDialog(id) {
+    const w = walk(id);
+    const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">Walk it again?</h2><p class="small" style="margin:0">You finished ${esc(w.title)}. Start over from stop 1, or just look through it again.</p>
+      <button class="btn" data-again="start">${ic('navigate')} Start over</button>
+      <button class="btn" data-again="look" style="background:transparent;color:var(--accent);border:2px solid var(--accent)">${ic('map')} Just look</button>
+      <button class="btn" data-close style="background:transparent;color:var(--primary)">Cancel</button></div>`, true);
+    m.addEventListener('click', async (e) => {
+      const b = e.target.closest('[data-again]'); if (!b) return;
+      m.remove();
+      if (b.dataset.again === 'start') { S.walkId = id; delete S.progress[id]; persist(); await needImages(id); startWalk(); }
+      else { await openWalk(id); S.mode = 'map'; S.showWhole = true; wmap = null; render(); }
+    });
+  }
 
   function renderSaved() {
     const items = D.walks.flatMap((w) => w.stops.map((s, i) => ({ w, s, i }))).filter((x) => S.favs.includes(x.s.id));
@@ -851,7 +880,7 @@
     if ((el = q('[data-hush]'))) { stopSpeak(); return render(); }
     if ((el = q('.gw'))) return openGloss(el.dataset.word);
     if ((el = q('[data-tab]'))) { S.tab = el.dataset.tab; S.view = null; return render(); }
-    if ((el = q('[data-walk]'))) return openWalk(el.dataset.walk);
+    if ((el = q('[data-walk]'))) return (S.progress[el.dataset.walk] || {}).finishedAt ? completedDialog(el.dataset.walk) : openWalk(el.dataset.walk);
     if ((el = q('[data-open]'))) { const [w, i] = el.dataset.open.split(':'); return openWalk(w, Number(i)); }
     if ((el = q('#fact'))) { factIdx++; return showFact(); }
     if ((el = q('[data-mode]'))) { S.mode = el.dataset.mode; document.getElementById('readview').classList.toggle('hidden', S.mode !== 'read'); document.getElementById('mapview').classList.toggle('hidden', S.mode !== 'map'); document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-selected', b.dataset.mode === S.mode)); document.querySelector('.cta').classList.toggle('solid', S.mode === 'read'); if (S.mode === 'map') mountWalkMap(); else setTimeout(() => { const s = document.getElementById('stop-' + S.focus); s && S.focus && s.scrollIntoView({ block: 'start' }); }, 30); return; }

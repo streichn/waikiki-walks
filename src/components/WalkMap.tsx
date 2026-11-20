@@ -12,6 +12,7 @@ type Props = {
   walk: Walk;
   current?: number;
   visited?: number[];
+  finished?: boolean; // a completed walk: the whole route shows as walked
   isLocked?: (i: number) => boolean;
   onSelect?: (i: number) => void;
   showsUser?: boolean;
@@ -22,7 +23,7 @@ type Props = {
 };
 
 /** Numbered pins in walking order with the route drawn between them. */
-export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
+export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], finished = false, isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
@@ -31,6 +32,8 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     const c = walk.stops.filter(onMap).map((s) => ({ latitude: s.lat, longitude: s.lng }));
     return c.length ? c : [{ latitude: 21.29, longitude: -157.82 }];
   }, [walk]);
+  const reached = finished ? walk.stops.length - 1 : Math.max(-1, ...visited);
+  const trail = useMemo(() => (reached > 0 ? walkPath(walk, reached) : []), [walk, reached]);
   // Her red route between stops where it was traced, so the line follows streets rather than cutting across.
   const routeCoords = useMemo(() => { const p = walkPath(walk); return p.length > 1 ? p : mapCoords; }, [walk, mapCoords]);
   const initial: Region = useMemo(() => {
@@ -70,6 +73,8 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       onMapReady={() => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: false })}
     >
       <Polyline coordinates={routeCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
+      {/* The part already walked, solid and bright over the dashed route, so the circuit fills in as you go. */}
+      {trail.length > 1 ? <Polyline coordinates={trail} strokeColor="#3E8E5A" strokeWidth={6} /> : null}
       {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
       {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor={t.accent} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {

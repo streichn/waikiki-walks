@@ -53,9 +53,9 @@ export function legPath(walk: Walk, i: number): LatLng[] {
   return between(walk, i, i + 1);
 }
 
-/** The main route as one line through the stops her map prints, skipping side-trip stops. */
-export function walkPath(walk: Walk): LatLng[] {
-  const idx = walk.stops.map((s, i) => (onMain(s) ? i : -1)).filter((i) => i >= 0);
+/** The main route as one line through the stops her map prints, skipping side-trip stops; up to a stop if given. */
+export function walkPath(walk: Walk, upto?: number): LatLng[] {
+  const idx = walk.stops.map((s, i) => (onMain(s) && (upto === undefined || i <= upto) ? i : -1)).filter((i) => i >= 0);
   const out: LatLng[] = [];
   idx.forEach((i, k) => {
     const j = idx[k + 1];
