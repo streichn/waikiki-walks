@@ -899,7 +899,7 @@
     if (!canStart(w.id)) return openPaywall();
     const p = S.progress[w.id];
     if (!p || p.finishedAt) S.progress[w.id] = { current: 0, visited: [], startedAt: Date.now() };
-    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; persist(); await needImages(w.id); render();
+    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; S.simSession = null; persist(); await needImages(w.id); render();
     // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
     // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
     if (!navigator.geolocation) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
@@ -1022,7 +1022,18 @@
       if (a === 'resume') { S.walkId = S.active; S.view = 'go'; return needImages(S.active).then(render); }
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
       if (a === 'end') return endDialog(w);
-      if (a === 'sim') { if (S.sim) stopSim(); else startSim(); el.setAttribute('aria-pressed', S.sim); el.textContent = S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'; return; }
+      if (a === 'sim') {
+        if (S.sim) { stopSim(); el.setAttribute('aria-pressed', false); el.textContent = '▶ Demo walk'; return; }
+        // A demo begins at stop 1 and walks the whole route, with both maps following the dot. Pausing and
+        // tapping again carries on from where it paused (Nick, 19 Nov 2026).
+        if (S.simSession !== S.walkId) {
+          S.simSession = S.walkId; S.progress[S.walkId] = { current: 0, visited: [], startedAt: Date.now() };
+          S.me = null; S.legProg = {}; S.stopFocus = false; persist();
+        }
+        S.follow = 'follow'; S.bookFollow = true; render(); startSim();
+        const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
+        return;
+      }
       if (a === 'whole') { S.follow = 'off'; return gmap && gmap.fit(); }
       if (a === 'locate') {
         if (!S.me) { const p = S.progress[w.id]; const prev = w.stops[Math.max(0, p.current - 1)]; S.me = { lat: prev.lat - 0.0006, lng: prev.lng - 0.0004 }; }

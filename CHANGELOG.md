@@ -163,3 +163,4 @@
 ## 2026-11-19 · Blue line fills along her route as you walk
 - Book map (preview and app): while heading to a stop, her dotted line from the previous stop fills in blue as far as the walker has come along it. The position is projected onto her line, counts only near it, and never shrinks on doubling back. The whole leg fills on arrival.
 - Preview book map measures the real pane to fill its full height, on any screen size and after resizes, until the walker zooms; a new walk resets the zoom.
+- Preview: Demo walk now starts at stop 1 and walks the whole route, with the street map and the book map following the dot. Pausing and tapping again carries on from where it paused.
