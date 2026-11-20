@@ -25,7 +25,7 @@
 
 ## 2026-11-19 · Veneeta, email "Walk II"
 - "From pin 1 to 2, it needs to be along Ala Moana boulevard." Status: fixed (street route).
-- "From pin 2 to 4, likewise, along AMB." Status: legs 2 to 3 to 4 now follow the streets and promenade instead of straight lines; asked her to check it matches what she meant.
+- "From pin 2 to 4, likewise, along AMB." Status: settled 19 Nov 2026. Nick: she meant from Ala Moana Boulevard along Ala Wai Boulevard. The line from 2 to 4 runs up the canal promenade beside Ala Wai Boulevard to Kalākaua, matching the book ("walk on the Diamond Head side of the canal's promenade") and the cartographer's map. Nothing to change; no need to ask her again.
 - "Pin 10 move to where 11 is, and move 11 over a little bit." Status: fixed.
 - "Stop 13 is actually a side trip, a purple line, 13A through 13D." Status: fixed (side-trip pin and line; 13A to 13D in the side-trip box).
 - "Pin 18 should be on the other side of Kalia Rd." Status: fixed.
