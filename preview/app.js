@@ -336,21 +336,40 @@
   // While walking toward a stop, her dotted line from the previous stop fills in as far as the walker has come along it.
   // The walker's position is projected onto her line (so the fill always lies on the intended route), and it never
   // shrinks when someone doubles back. Only near the line counts, so a detour elsewhere draws nothing.
+  // Distance along a polyline to the point nearest (x, y), and how far off the line that point is.
+  function alongLine(pts, x, y) {
+    let best = { d: Infinity, s: 0 }, acc = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, ay] = pts[i - 1], [bx, by] = pts[i], dx = bx - ax, dy = by - ay, L = Math.hypot(dx, dy) || 1e-9;
+      const t = Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / (L * L))), d = Math.hypot(ax + t * dx - x, ay + t * dy - y);
+      if (d < best.d) best = { d, s: acc + t * L };
+      acc += L;
+    }
+    return best;
+  }
+  // The first `s` of a polyline's length, ending exactly at that point.
+  function lineUpTo(pts, s) {
+    const out = [pts[0]]; let acc = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, ay] = pts[i - 1], [bx, by] = pts[i], L = Math.hypot(bx - ax, by - ay);
+      if (acc + L >= s) { const t = L ? (s - acc) / L : 0; out.push([ax + t * (bx - ax), ay + t * (by - ay)]); return out; }
+      out.push(pts[i]); acc += L;
+    }
+    return out;
+  }
   function legPart(w, g) {
     const prog = S.progress[w.id]; if (!prog || prog.current < 1 || !g || !g.legs) return [];
     const from = w.stops[prog.current - 1], pts = from && g.legs[String(from.n)]; if (!pts) return [];
     const key = w.id + ':' + from.n; S.legProg = S.legProg || {};
-    if (S.me && !prog.visited.includes(prog.current)) {
+    if (prog.visited.includes(prog.current)) return pts;
+    if (S.me) {
       const p = bookXY(w, S.me.lat, S.me.lng);
       if (p) {
-        const x = p[0] / 100 * g.w, y = p[1] / 100 * g.h, near = Math.max(g.w, g.h) * 0.03;
-        let best = -1, bd = Infinity;
-        pts.forEach((q, i) => { const d = Math.hypot(q[0] - x, q[1] - y); if (d < bd) { bd = d; best = i; } });
-        if (bd <= near && best > (S.legProg[key] || 0)) S.legProg[key] = best;
+        const r = alongLine(pts, p[0] / 100 * g.w, p[1] / 100 * g.h);
+        if (r.d <= Math.max(g.w, g.h) * 0.03 && r.s > (S.legProg[key] || 0)) S.legProg[key] = r.s;
       }
     }
-    const k = prog.visited.includes(prog.current) ? pts.length - 1 : (S.legProg[key] || 0);
-    return k > 0 ? pts.slice(0, k + 1) : [];
+    return S.legProg[key] > 0 ? lineUpTo(pts, S.legProg[key]) : [];
   }
   function paintLegPart(w) {
     const el = document.getElementById('btrail-cur'), g = bm(w); if (!el || !g) return;
@@ -428,7 +447,7 @@
 
   // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
   const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
-  const TRAIL = '#3E8E5A';  // the walked trail on the street map
+  const TRAIL = '#1A73E8';  // blue for the walked trail and the leg ahead, on the street map and the book map (Nick, 19 Nov 2026)
   const BOOK_TRAIL = '#1A73E8';  // the walked part of her dotted line on the book map, see-through blue
   const onMain = (s) => onMap(s) && !s.side;
   function between(w, i, j) {
@@ -479,8 +498,8 @@
       return m;
     });
     // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
-    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.9 }).addTo(map);
-    const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
+    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.6 }).addTo(map);
+    const seg = L.polyline([], { color: TRAIL, weight: 5, opacity: 0.9, dashArray: '8 8' }).addTo(map);  // the leg ahead
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
       zoomIn() { map.zoomIn(); }, zoomOut() { map.zoomOut(); },
@@ -672,7 +691,7 @@
       if (p.coords.heading != null && !isNaN(p.coords.heading)) S.heading = p.coords.heading;
       const w = walk(S.walkId), prog = S.progress[w.id]; if (!prog) return;
       afterMove(w, prog, w.stops[prog.current]);
-    }, (e) => { gpsWatch = null; if (e.code === 1) toast('Location is off for this page. Allow location to walk for real, or tap Demo walk.'); }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
+    }, (e) => { gpsWatch = null; if (e.code === 1 && !S.sim && !S.gpsToasted) { S.gpsToasted = true; toast('Location is off for this page. Allow location to walk for real, or tap Demo walk.'); } }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
   }
   function stopGps() { if (gpsWatch !== null) { navigator.geolocation.clearWatch(gpsWatch); gpsWatch = null; } }
   // Demo walk: the dot walks to each stop, pauses there a few seconds, then carries on to the next one by itself.

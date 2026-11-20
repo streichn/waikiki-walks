@@ -164,3 +164,8 @@
 - Book map (preview and app): while heading to a stop, her dotted line from the previous stop fills in blue as far as the walker has come along it. The position is projected onto her line, counts only near it, and never shrinks on doubling back. The whole leg fills on arrival.
 - Preview book map measures the real pane to fill its full height, on any screen size and after resizes, until the walker zooms; a new walk resets the zoom.
 - Preview: Demo walk now starts at stop 1 and walks the whole route, with the street map and the book map following the dot. Pausing and tapping again carries on from where it paused.
+
+## 2026-11-19 · Blue lines on both maps; book trail sits straight on her line
+- Street map: the walked trail is see-through blue and the leg ahead is dashed blue (was green and red).
+- Book map: each traced leg is pulled back onto her drawn line and straightened, so the blue sits exactly on her dots with no wobble. The current leg fills smoothly to the walker's point along her line.
+- Preview: the "location is off" notice no longer shows during the demo walk, and shows once at most.

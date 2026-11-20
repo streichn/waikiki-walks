@@ -5130,8 +5130,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.271959,
-    "lng": -157.822645,
+    "lat": 21.271929,
+    "lng": -157.822605,
     "geo": "book",
     "page": "p2-18",
     "radius": 55
@@ -5172,8 +5172,8 @@
       "caption": "“A Fistful of Salt” is a poignant tale."
      }
     ],
-    "lat": 21.271532,
-    "lng": -157.822248,
+    "lat": 21.271497,
+    "lng": -157.822209,
     "geo": "book",
     "page": "p2-19"
    },
@@ -5192,8 +5192,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.268921,
-    "lng": -157.821668,
+    "lat": 21.268832,
+    "lng": -157.821631,
     "geo": "book",
     "page": "p2-20"
    },
@@ -5288,8 +5288,8 @@
       "h": 492
      }
     ],
-    "lat": 21.266954,
-    "lng": -157.819698,
+    "lat": 21.266842,
+    "lng": -157.819668,
     "geo": "book",
     "page": "p2-20",
     "radius": 90
@@ -5313,8 +5313,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.269664,
-    "lng": -157.821568,
+    "lat": 21.269593,
+    "lng": -157.821531,
     "geo": "book",
     "page": "p2-20"
    },
@@ -5352,8 +5352,8 @@
       "caption": "Can you find the various poses of the hula dancers etched on the columns of Kapi‘olani Bandstand?"
      }
     ],
-    "lat": 21.269726,
-    "lng": -157.820984,
+    "lat": 21.269664,
+    "lng": -157.82095,
     "geo": "book",
     "page": "p2-22",
     "radius": 45
@@ -5385,8 +5385,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.269044,
-    "lng": -157.821111,
+    "lat": 21.268964,
+    "lng": -157.821075,
     "geo": "book",
     "page": "p2-23"
    },
@@ -5412,8 +5412,8 @@
       "caption": "Lē‘ahi is a Registered National Natural Landmark"
      }
     ],
-    "lat": 21.268249,
-    "lng": -157.820839,
+    "lat": 21.268154,
+    "lng": -157.820804,
     "geo": "book",
     "page": "p2-23"
    },
@@ -5441,8 +5441,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.267728,
-    "lng": -157.821313,
+    "lat": 21.267615,
+    "lng": -157.821276,
     "geo": "book",
     "page": "p2-24"
    },
@@ -5461,8 +5461,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.266152,
-    "lng": -157.820689,
+    "lat": 21.26601,
+    "lng": -157.820654,
     "geo": "book",
     "page": "p2-24"
    },
@@ -5528,8 +5528,8 @@
       "caption": "Gabby “pops” Pahinui, one of Hawai‘i’s great musicians."
      }
     ],
-    "lat": 21.268282,
-    "lng": -157.818508,
+    "lat": 21.268216,
+    "lng": -157.818484,
     "geo": "book",
     "page": "p2-24",
     "radius": 90
@@ -5557,8 +5557,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.269295,
-    "lng": -157.815454,
+    "lat": 21.269289,
+    "lng": -157.815444,
     "geo": "book",
     "page": "p2-26",
     "radius": 52
@@ -5574,8 +5574,8 @@
      }
     ],
     "photos": [],
-    "lat": 21.269932,
-    "lng": -157.819109,
+    "lat": 21.269897,
+    "lng": -157.819083,
     "geo": "book",
     "page": "p2-26",
     "radius": 55
@@ -5660,11 +5660,11 @@
       "caption": "No matter where you go, our native Pueo turns his head to find you!"
      }
     ],
-    "lat": 21.271554,
-    "lng": -157.819598,
+    "lat": 21.271551,
+    "lng": -157.819571,
     "geo": "book",
     "page": "p2-26",
-    "radius": 56
+    "radius": 57
    }
   ]
  },

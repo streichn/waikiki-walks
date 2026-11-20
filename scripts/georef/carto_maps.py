@@ -20,6 +20,7 @@ import numpy as np
 import pymupdf
 from PIL import Image, ImageDraw
 from scipy import ndimage
+from scipy.spatial import cKDTree
 from shapely.geometry import Point
 from shapely.ops import nearest_points
 
@@ -178,7 +179,10 @@ def main():
         stop_ids = {str(s['n']) for s in walks[wid]['stops']}
         out_s[key] = {n: xy for n, xy in nums.items() if n in stop_ids}
         # trace the dotted path between consecutive stops printed on this map
-        mask = ndimage.binary_dilation(route_mask(page, SR), iterations=6)  # bridges the small gaps where dashes meet at corners
+        raw = route_mask(page, SR)
+        rpts = np.argwhere(raw)[:, ::-1].astype(float)
+        tree = cKDTree(rpts) if len(rpts) else None
+        mask = ndimage.binary_dilation(raw, iterations=6)  # bridges the small gaps where dashes meet at corners
         ys, xs = np.nonzero(mask); pool = np.stack([xs, ys], 1)
         lam = np.full(len(ctl), 2.0)
         inv = tps_fit(T / 100.0, P, lam)
@@ -195,10 +199,14 @@ def main():
             p = bfs(mask, snap[s0], snap[s1])
             if not p or len(p) > 6 * (abs(snap[s0][0] - snap[s1][0]) + abs(snap[s0][1] - snap[s1][1]) + 40):
                 continue
-            pts = np.array(p[::8] + [p[-1]], float)
+            # The search runs through a widened band, so its path wobbles. Pull every point back onto her drawn line,
+            # then straighten it: the result sits exactly on her dots, with straight runs along streets.
+            on = rpts[tree.query(np.array(p, float))[1]] if tree is not None else np.array(p, float)
+            line = LineString(on).simplify(1.5 * SR / S, preserve_topology=False)
+            pts = np.array(line.coords, float)
             mm = tps_many(inv, pts / 100.0)
             # the same leg in map pixels, so the book map can fill in exactly her dotted line as stops are reached
-            out_px.setdefault(key, {})[str(s0)] = [[int(x), int(y)] for x, y in (p[::4] + [p[-1]])]
+            out_px.setdefault(key, {})[str(s0)] = [[round(x, 1), round(y, 1)] for x, y in pts]
             legs[str(s0)] = [[round(21.28 + y / 110574, 6), round(-157.83 + x / (111320 * math.cos(math.radians(21.28))), 6)] for x, y in mm]
         out_r.setdefault(wid, {}).update(legs)
         print(f'{wid} {fname}: {len(out_s[key])} numbers, {len(used)}/{len(labels)} labels, {len(cross)} crossings, '

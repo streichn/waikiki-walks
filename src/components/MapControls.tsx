@@ -106,6 +106,30 @@ export function MapStyleSwitch({ book, onChange }: { book: boolean; onChange: (b
   );
 }
 
+type Pt = { x: number; y: number };
+/** Distance along a polyline to the point nearest (x, y), and how far off the line that point is. */
+function alongLine(pts: Pt[], x: number, y: number): { d: number; s: number } {
+  let best = { d: Infinity, s: 0 }, acc = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i], dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1e-9;
+    const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (y - a.y) * dy) / (L * L))), d = Math.hypot(a.x + t * dx - x, a.y + t * dy - y);
+    if (d < best.d) best = { d, s: acc + t * L };
+    acc += L;
+  }
+  return best;
+}
+/** The first `s` of a polyline's length, ending exactly at that point. */
+function lineUpTo(pts: Pt[], s: number): Pt[] {
+  const out = [pts[0]];
+  let acc = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i], L = Math.hypot(b.x - a.x, b.y - a.y);
+    if (acc + L >= s) { const t = L ? (s - acc) / L : 0; out.push({ x: a.x + t * (b.x - a.x), y: a.y + t * (b.y - a.y) }); return out; }
+    out.push(b); acc += L;
+  }
+  return out;
+}
+
 /** + and - for a map, stacked at its bottom right (Nick, 19 Nov 2026: zoom bottom right, map style bottom left, arrival banner on top). */
 export function ZoomButtons({ onZoom, bottom, children }: { onZoom: (dir: 1 | -1) => void; bottom: number; children?: ReactNode }) {
   const t = useTheme();
@@ -156,13 +180,13 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
   let partial: { x: number; y: number }[] = [];
   if (curLeg && current !== undefined && !(visited ?? []).includes(current)) {
     const key = `${walk.id}:${curLeg.n}`;
+    const P = curLeg.pts.map((q) => ({ x: q.x * width, y: q.y * height })); // in screen points, so distances are true
     if (dot) {
-      let best = -1, bd = Infinity;
-      curLeg.pts.forEach((q, i) => { const d = Math.hypot((q.x - dot.x) * width, (q.y - dot.y) * height); if (d < bd) { bd = d; best = i; } });
-      if (bd <= Math.max(width, height) * 0.03 && best > (legProg.current[key] ?? 0)) legProg.current[key] = best;
+      const r = alongLine(P, dot.x * width, dot.y * height);
+      if (r.d <= Math.max(width, height) * 0.03 && r.s > (legProg.current[key] ?? 0)) legProg.current[key] = r.s;
     }
-    const k = legProg.current[key] ?? 0;
-    if (k > 0) partial = curLeg.pts.slice(0, k + 1);
+    const s0 = legProg.current[key] ?? 0;
+    if (s0 > 0) partial = lineUpTo(P, s0).map((q) => ({ x: q.x / width, y: q.y / height }));
   }
 
   const scroll = useRef<ScrollViewInstance>(null);

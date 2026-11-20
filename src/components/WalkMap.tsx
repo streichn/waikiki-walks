@@ -83,7 +83,7 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       {/* The part already walked, solid and bright over the dashed route, so the circuit fills in as you go. */}
       {trail.length > 1 ? <Polyline coordinates={trail} strokeColor={TRAIL} strokeWidth={6} /> : null}
       {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
-      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor={t.accent} strokeWidth={6} /> : null}
+      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor="#1A73E8" strokeWidth={5} lineDashPattern={[8, 8]} /> : null}
       {walk.stops.map((s, i) => {
         if (!onMap(s)) return null;
         const isCur = i === current;
