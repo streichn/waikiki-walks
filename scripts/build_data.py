@@ -606,6 +606,81 @@ for k, w in enumerate(SRC['walks']):
     walks.append({'id': wid, 'num': k + 1, 'title': title, 'theme': theme, 'facts': FACTS.get(wid, {}), 'intro': intro, 'info': info,
                   **({'cover': cover} if cover else {}), **({'bookMap': book_map} if book_map else {}), 'color': COLORS[k % len(COLORS)], 'stops': stops})
 
+# Boxed plaques, signs and quotations (scripts/extract/box_fixes.json): lift each out of the sentence it
+# interrupts and put it where the book prints it, marked box: true so the app shows it framed.
+BOX_FIXES = json.load(open(f'{ROOT}/scripts/extract/box_fixes.json'))['fixes'] if os.path.exists(f'{ROOT}/scripts/extract/box_fixes.json') else []
+BOX_MARK = re.compile(r'\s*\s*(?:‘?Ena Rd\.)?\s*|\s*‘Ena Rd\.\s*')
+
+
+def apply_box_fixes(walks):
+    by_id = {s['id']: s for w in walks for s in w['stops']}
+    for fx in BOX_FIXES:
+        s = by_id.get(fx['stop'])
+        if not s:
+            print('box fix: no stop', fx['stop'], file=sys.stderr); continue
+        bl = s['blocks']
+        m = next((i for i, b in enumerate(bl) if BOX_MARK.search(b['text'])), None)
+        if m is None:
+            print('box fix: no box marker in', fx['stop'], file=sys.stderr); continue
+        mt = BOX_MARK.search(bl[m]['text'])
+        head, rest = bl[m]['text'][:mt.start()].rstrip(), bl[m]['text'][mt.end():].strip()
+        if fx.get('drop_only'):
+            if head:
+                bl[m] = {**bl[m], 'text': head}
+            else:
+                del bl[m]
+            continue
+        pieces = [rest] if rest else []
+        j, tail = m + 1, ''
+        while True:
+            if pieces and fx['box_to'] in pieces[-1]:
+                k = pieces[-1].index(fx['box_to']) + len(fx['box_to'])
+                pieces[-1], tail = pieces[-1][:k].strip(), pieces[-1][k:].strip()
+                break
+            if j >= len(bl):
+                raise SystemExit(f"box fix {fx['stop']}: end '{fx['box_to']}' not found")
+            pieces.append(bl[j]['text']); j += 1
+        box = [{'kind': 'p', 'text': t, 'box': True} for t in pieces if t] + ([{'kind': 'p', 'text': fx['box_add'], 'box': True}] if fx.get('box_add') else [])
+        after = bl[j:]
+        if head:
+            h = dict(bl[m]); h['text'] = head
+            before = bl[:m] + [h]
+        else:
+            before = bl[:m]
+        joiner = fx.get('join', ' ')
+        if tail and (head or fx.get('rejoin') == 'prev') and before:
+            before[-1] = {**before[-1], 'text': before[-1]['text'].rstrip() + joiner + tail}
+        elif tail:
+            before.append({'kind': 'p', 'text': tail})
+        elif fx.get('rejoin') == 'next' and before and after:
+            before[-1] = {**before[-1], 'text': before[-1]['text'].rstrip() + joiner + after[0]['text']}
+            after = after[1:]
+        if before and (tail or fx.get('rejoin')) or fx.get('fix') or fx.get('kind'):
+            last = dict(before[-1])
+            for a, b in fx.get('fix', []):
+                if a not in last['text']:
+                    raise SystemExit(f"box fix {fx['stop']}: '{a}' not found")
+                last['text'] = last['text'].replace(a, b)
+            if fx.get('kind'):
+                last['kind'] = fx['kind']
+            parts = last['text'].split('\n\n')
+            before = before[:-1] + [{**last, 'text': parts[0]}] + [{'kind': 'p', 'text': t} for t in parts[1:]]
+        s['blocks'] = before + after
+        pl = fx.get('place')
+        if not pl:
+            s['blocks'] = before + box + after
+            continue
+        tgt = by_id[pl['stop']]['blocks']
+        key = pl.get('after') or pl.get('before')
+        a = next((i for i, b in enumerate(tgt) if b['text'].startswith(key)), None)
+        if a is None:
+            raise SystemExit(f"box fix {fx['stop']}: anchor '{key}' not in {pl['stop']}")
+        a += 1 if pl.get('after') else 0
+        tgt[a:a] = box
+
+
+apply_box_fixes(walks)
+
 # Copy referenced images into the app and write the require() map.
 for f in images_used:
     if os.path.abspath(IMG_DIR) != os.path.abspath(ASSETS):
