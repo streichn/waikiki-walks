@@ -325,7 +325,11 @@
     // Testing aid: where the app's own pins land on her map, to check they sit on her numbers.
     const chk = S.showPins ? w.stops.map((s, i) => { const p = bookXY(w, s.lat, s.lng); return p ? `<span class="bchk" style="left:${p[0]}%;top:${p[1]}%">${s.n}</span>` : ''; }).join('') : '';
     const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
-    return hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+    // The walked part of the route, filled in over her dotted line, in the same green as the street map's trail.
+    const reached = prog.finishedAt ? w.stops.length - 1 : Math.max(-1, ...(prog.visited || []));
+    const tp = reached > 0 ? walkPath(w, reached).map(([la, ln]) => bookXY(w, la, ln)).filter(Boolean) : [];
+    const trail = tp.length > 1 ? `<svg class="btrail" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="${tp.map((p) => p[0].toFixed(2) + ',' + p[1].toFixed(2)).join(' ')}" fill="none" stroke="${TRAIL}" stroke-width="6" stroke-opacity=".85" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>` : '';
+    return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
   }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
   function centerBookOnMe(smooth) { centerBookOn(document.getElementById('bme'), smooth); }
@@ -394,6 +398,7 @@
 
   // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
   const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
+  const TRAIL = '#3E8E5A';  // the walked trail, same green on the street map and the book map (and in the app)
   const onMain = (s) => onMap(s) && !s.side;
   function between(w, i, j) {
     const a = w.stops[i], b = w.stops[j]; if (!a || !b) return [];
@@ -443,7 +448,7 @@
       return m;
     });
     // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
-    const trail = L.polyline([], { color: '#3A7D44', weight: 6, opacity: 0.9 }).addTo(map);
+    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.9 }).addTo(map);
     const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
@@ -613,13 +618,31 @@
       if (d <= budget) { S.me = { ...nxt }; budget -= d; if (simPath.length > 1) simPath.shift(); else break; }
       else { S.heading = bearing(S.me, nxt); const f = budget / d; S.me = { lat: S.me.lat + (nxt.lat - S.me.lat) * f, lng: S.me.lng + (nxt.lng - S.me.lng) * f }; budget = 0; }
     }
-    if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
+    afterMove(w, prog, target);
+  }
+  // After the walker's position changes (demo or real GPS): move the dot on both maps, check arrival, update the distance line.
+  function afterMove(w, prog, target) {
+    if (gmap) gmap.me(S.me, S.heading);
     const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
-    if (onMap(target) && dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
-    const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
-    const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = 'rotate(0deg)';
+    if (onMap(target) && dist(S.me, target) <= S.settings.arrival + (S.gpsAcc ? Math.min(S.gpsAcc, 30) * 0.5 : 0) && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
+    const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(bearing(S.me, target))}`; }
+    const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = `rotate(${S.sim ? 0 : bearing(S.me, target) - S.heading}deg)`;
   }
+  // Real GPS (Nick, 19 Nov 2026): while a walk is open and the demo is off, the phone's location moves the dot and triggers arrivals.
+  let gpsWatch = null;
+  function startGps() {
+    if (gpsWatch !== null || !navigator.geolocation) return;
+    gpsWatch = navigator.geolocation.watchPosition((p) => {
+      S.gpsAcc = p.coords.accuracy;
+      if (S.sim || S.view !== 'go') return;
+      S.me = { lat: p.coords.latitude, lng: p.coords.longitude };
+      if (p.coords.heading != null && !isNaN(p.coords.heading)) S.heading = p.coords.heading;
+      const w = walk(S.walkId), prog = S.progress[w.id]; if (!prog) return;
+      afterMove(w, prog, w.stops[prog.current]);
+    }, (e) => { gpsWatch = null; if (e.code === 1) toast('Location is off for this page. Allow location to walk for real, or tap Demo walk.'); }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
+  }
+  function stopGps() { if (gpsWatch !== null) { navigator.geolocation.clearWatch(gpsWatch); gpsWatch = null; } }
   // Demo walk: the dot walks to each stop, pauses there a few seconds, then carries on to the next one by itself.
   let simPause = 0;
   function startSim() {
@@ -845,8 +868,9 @@
     const p = S.progress[w.id];
     if (!p || p.finishedAt) S.progress[w.id] = { current: 0, visited: [], startedAt: Date.now() };
     S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; persist(); await needImages(w.id); render();
-    // The preview can't read real GPS, so it walks the route for you; tap the demo button to pause.
-    startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
+    // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
+    // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
+    if (!navigator.geolocation) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
   }
 
   // Pinch to zoom on the book map: two fingers scale the page around their midpoint (the browser would otherwise zoom the whole page).
@@ -882,7 +906,7 @@
     else html = (S.tab === 'home' ? renderHome() : S.tab === 'explore' ? renderExplore() : S.tab === 'saved' ? renderSaved() : renderProfile()) + minibar() + tabs();
     $app.innerHTML = html;
     if (S.view === 'walk' && S.mode === 'map') mountWalkMap();
-    if (S.view === 'go') { mountSheet(); mountGoMap(); }
+    if (S.view === 'go') { mountSheet(); mountGoMap(); startGps(); } else stopGps();
     const bp = document.getElementById('bookpane');
     if (bp && keep && keep.view === S.view && keep.walk === S.walkId) { S.bookAuto = Date.now(); bp.scrollTop = keep.top; bp.scrollLeft = keep.left; }
     if (bp) {

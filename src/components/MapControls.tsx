@@ -1,9 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { photo, walkNo } from '../data';
+import Svg, { Polyline } from 'react-native-svg';
+import { photo, TRAIL, walkNo, walkPath } from '../data';
 import type { Walk } from '../data/types';
 import { bookLabel, bookPages, bookXY, pageFor } from '../lib/bookmap';
 import { useTheme } from '../theme';
@@ -125,8 +126,8 @@ export function ZoomButtons({ onZoom, bottom, children }: { onZoom: (dir: 1 | -1
  * Veneeta's walk map filling the map area, with the stops and the walker's position drawn on it.
  * Pinch or the + and - buttons to zoom; drag to pan.
  */
-export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, topInset = 0, bottomInset = 0 }: {
-  walk: Walk; current?: number; visited?: number[]; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
+export function BookMapPane({ walk, current, visited, finished, isLocked, me, onSelect, topInset = 0, bottomInset = 0 }: {
+  walk: Walk; current?: number; visited?: number[]; finished?: boolean; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
   const { width, height: screenH } = useWindowDimensions();
@@ -142,6 +143,11 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
   const fill = Math.min(4, Math.max(1, (screenH - topInset - bottomInset) / height));
   const file = page === 0 ? walk.bookMap : pages[page]?.file;
   const dot = me ? bookXY(walk.id, me.lat, me.lng, page) : null;
+  const reached = finished ? walk.stops.length - 1 : Math.max(-1, ...(visited ?? []));
+  const trail = useMemo(
+    () => (reached > 0 ? walkPath(walk, reached).map((c) => bookXY(walk.id, c.latitude, c.longitude, page)).filter((p): p is { x: number; y: number } => !!p) : []),
+    [walk, reached, page],
+  );
   const scroll = useRef<ScrollViewInstance>(null);
   const [follow, setFollow] = useState(true);
   // Track the native zoom and scroll so the + and - buttons zoom around the middle of what is showing.
@@ -184,6 +190,12 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
       style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
         <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
+        {trail.length > 1 ? (
+          // The walked part of the route, filled in over her dotted line, in the street map's trail green.
+          <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
+            <Polyline points={trail.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={TRAIL} strokeOpacity={0.85} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+          </Svg>
+        ) : null}
         {walk.stops.map((s, i) => {
           // Her printed number is the pin; this is just an invisible tap target over it (ringed when current).
           const L = bookLabel(walk.id, s.n, page);

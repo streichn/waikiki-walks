@@ -150,3 +150,7 @@
 - The speaker button left the map. Next to the headphones (read this stop) there is now an "Audio mode" switch: when on, each stop is read aloud on arrival, so the phone can stay in a pocket.
 - Preview: two-finger pinch zooms the book map around the fingers; street maps zoom out one level further.
 - App: street maps already pinch natively; the book map pinches on iPhone.
+
+## 2026-11-19 · Real GPS in the preview; walked trail on the book map
+- Preview: a walk now starts in real mode. The phone's location moves the dot, triggers arrivals (same radius rule as the app) and updates the distance line. The demo walk only runs when tapped, or by itself when the browser has no location.
+- Book map (preview and app): the walked part of the route fills in over her dotted line, in the same green as the street map's trail (one shared TRAIL color).

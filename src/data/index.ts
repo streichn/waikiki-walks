@@ -26,6 +26,7 @@ const metres = (a: LatLng, b: LatLng) => {
 
 /** The purple used for her map's side-trip (alternate route) lines. */
 export const SIDE_TRIP = '#8E6BB8';
+export const TRAIL = '#3E8E5A'; // the walked trail, same green on the street map and the book map
 
 function between(walk: Walk, i: number, j: number): LatLng[] {
   const a = walk.stops[i], b = walk.stops[j];

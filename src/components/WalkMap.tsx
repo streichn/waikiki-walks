@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { legPath, onMap, SIDE_TRIP, sidePaths, walkPath } from '../data';
+import { legPath, onMap, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
@@ -81,7 +81,7 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     >
       <Polyline coordinates={routeCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
       {/* The part already walked, solid and bright over the dashed route, so the circuit fills in as you go. */}
-      {trail.length > 1 ? <Polyline coordinates={trail} strokeColor="#3E8E5A" strokeWidth={6} /> : null}
+      {trail.length > 1 ? <Polyline coordinates={trail} strokeColor={TRAIL} strokeWidth={6} /> : null}
       {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
       {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor={t.accent} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
