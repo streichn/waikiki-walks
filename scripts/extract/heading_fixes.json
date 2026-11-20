@@ -178,5 +178,93 @@
  "IX-04": {
   "title": "First Hawaiian Bank",
   "first_prefix": "First Hawaiian Bank also on the "
+ },
+ "VIII-06": {
+  "page": "p2-53",
+  "title": "Da ‘Ono Hawaiian food",
+  "first_prefix": "Da ‘Ono Hawaiian food on the ‘Ewa ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "VIII-07": {
+  "page": "p2-53",
+  "title": "Haili’s Hawaiian food",
+  "first_prefix": "Haili’s Hawaiian food is located at ",
+  "_why": "The bold run-in heading reads \"Haili’s Hawaiian food is located\"; the title keeps the place name."
+ },
+ "VIII-10": {
+  "page": "p2-54",
+  "title": "Kapahulu Shopping Center",
+  "first_prefix": "Kapahulu Shopping Center, on ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "VIII-21": {
+  "page": "p2-58",
+  "title": "Non-descript 12th Avenue",
+  "first_prefix": "Non-descript 12th Avenue is bakery ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "IX-07": {
+  "page": "p2-69",
+  "title": "The Ala Wai Golf Course",
+  "first_prefix": "The Ala Wai Golf Course, a 146-acre ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "IX-21": {
+  "page": "p2-77",
+  "title": "Isenberg Street",
+  "first_prefix": "Isenberg Street is the home of the ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "X-14": {
+  "page": "p3-11",
+  "title": "Alexander Street",
+  "first_prefix": "Alexander Street is named for the ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "X-15": {
+  "page": "p3-12",
+  "title": "Sacred Heart Catholic Church",
+  "first_prefix": "Sacred Heart Catholic Church, ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "X-16": {
+  "page": "p3-12",
+  "title": "Halekula (schoolhouse) Way",
+  "first_prefix": "Halekula (schoolhouse) Way refers ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "X-32": {
+  "page": "p3-19",
+  "title": "The Wan Tsick Buddhist Temple",
+  "first_prefix": "The Wan Tsick Buddhist Temple ",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "XII-05": {
+  "page": "p3-65",
+  "title": "First Hawaiian Bank",
+  "first_prefix": "First Hawaiian Bank is architectur",
+  "_why": "Run-in heading: the book prints the stop name in bold at the start of its first sentence. The title is the bold words; the sentence keeps them."
+ },
+ "XII-10": {
+  "page": "p3-66",
+  "title": "Haili’s Hawaiian food",
+  "first_prefix": "Haili’s Hawaiian food is at the ‘Ewa ",
+  "_why": "The bold run-in heading stops at \"Haili’s Hawaiian\"; the title matches Walk VIII stop 7, the same place."
+ },
+ "VII-06": {
+  "page": "p2-34",
+  "subtitle": null,
+  "drop_first": true,
+  "prepend": [
+   {
+    "kind": "tagline",
+    "text": "Kapua"
+   },
+   {
+    "kind": "tagline",
+    "text": "Kapua Heiau"
+   }
+  ],
+  "_why": "The book prints two italic lines under the heading, 'Kapua' and 'Kapua Heiau'; the PDF ran them together."
  }
 }

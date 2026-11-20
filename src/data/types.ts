@@ -1,7 +1,10 @@
 export type BlockKind = 'p' | 'direction' | 'info' | 'caption' | 'tagline' | 'heading';
 
-/** aside: part of a purple-line side trip in the book, shown as a highlighted box. */
-export type Block = { kind: BlockKind; text: string; aside?: boolean };
+/**
+ * aside: part of a purple-line side trip in the book, shown as a highlighted box.
+ * box: part of a plaque, sign or quotation the book prints in a shaded box, shown framed.
+ */
+export type Block = { kind: BlockKind; text: string; aside?: boolean; box?: boolean };
 
 export type Photo = { file: string; w: number; h: number; caption?: string };
 

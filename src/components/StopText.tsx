@@ -67,6 +67,32 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
   // Side trips from the book (its purple-line detours) sit in one highlighted box beside the main walk.
   const items: React.ReactNode[] = [];
   for (let i = 0; i < blocks.length; i++) {
+    if (blocks[i].box && !blocks[i].aside) {
+      // A plaque, sign or quotation the book prints in a shaded box: framed, between paragraphs, never inside one.
+      const start = i;
+      const inner: React.ReactNode[] = [];
+      while (i < blocks.length && blocks[i].box) {
+        const b = blocks[i];
+        if (i === start && b.text.length < 90 && b.text.trim().endsWith(':')) {
+          readable += 1;
+          inner.push(
+            <Text key={i} accessibilityRole="header" style={{ fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale, color: t.leaf, textAlign: 'center' }}>
+              {b.text}
+            </Text>,
+          );
+        } else {
+          inner.push(one(b, i));
+        }
+        i++;
+      }
+      i--;
+      items.push(
+        <View key={`box-${start}`} style={[styles.box, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
+          {inner}
+        </View>,
+      );
+      continue;
+    }
     if (!blocks[i].aside) {
       items.push(one(blocks[i], i));
       continue;
@@ -157,6 +183,7 @@ function Rich({ text, style, hits, onWord }: { text: string; style: object; hits
 
 const styles = StyleSheet.create({
   aside: { borderLeftWidth: 4, borderRadius: 12, padding: 14, gap: 12 },
+  box: { borderWidth: 1, borderRadius: 12, padding: 16, gap: 10 },
   direction: { flexDirection: 'row', gap: 10, padding: 14, borderRadius: 16, borderWidth: 2 },
   info: { flexDirection: 'row', gap: 8, padding: 12, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth },
   backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'center', padding: 28 },

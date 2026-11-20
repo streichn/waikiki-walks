@@ -17,6 +17,15 @@ Clarifications that change how a walk reads, not its wording:
 |---|---|---|---|
 | 2026-11-19 | Walk II, stop 13 | Stop 13 is a side trip (the purple line, 13A to 13D), not part of the main route | Her email "Walk II" |
 
+Typos in the printed book that the app corrects (found 20 Nov 2026; for Veneeta to confirm and for the next printing):
+
+| Walk and stop | Page | Printed | App |
+|---|---|---|---|
+| Walk I, stop 26 | p1-36 | "Queen Lili‘uokalani.." | "Queen Lili‘uokalani." |
+| Walk VII, stop 2 | p2-32 | "father of of Princess Ka‘iulani" | "father of Princess Ka‘iulani" |
+| Walk X, stop 21 | p3-14 | "in the the Richardsonian Romanesque style" | "in the Richardsonian Romanesque style" |
+| Walk XII, stop 10 | p3-66 | "Palani avenues.." | "Palani avenues." |
+
 ## B. Possibly out of date (checked 19 Nov 2026)
 
 ### Changed since printing (ask her how to word it)

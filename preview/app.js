@@ -174,6 +174,20 @@
     // Side trips from the book (its purple-line detours) sit in one highlighted box beside the main walk.
     let html = '';
     for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].box && !blocks[i].aside) {
+        // A plaque, sign or quotation the book prints in a shaded box: framed, between paragraphs.
+        let inner = '';
+        const start = i;
+        while (i < blocks.length && blocks[i].box) {
+          const b = blocks[i];
+          if (i === start && b.text.length < 90 && b.text.trim().endsWith(':')) { r++; inner += `<h4 class="box-h" data-stop="${stopId}" data-para="${r}">${esc(b.text)}</h4>`; }
+          else inner += one(b);
+          i++;
+        }
+        i--;
+        html += `<aside class="bookbox">${inner}</aside>`;
+        continue;
+      }
       if (!blocks[i].aside) { html += one(blocks[i]); continue; }
       let inner = '';
       while (i < blocks.length && blocks[i].aside) inner += one(blocks[i++]);
