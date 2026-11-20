@@ -329,8 +329,32 @@
     // in a see-through blue so her map shows through (Nick, 19 Nov 2026).
     const reachedN = prog.finishedAt ? Infinity : Math.max(0, ...(prog.visited || []).map((i) => w.stops[i] ? w.stops[i].n : 0));
     const legs = Object.entries(g.legs || {}).filter(([n]) => Number(n) + 1 <= reachedN);
-    const trail = legs.length ? `<svg class="btrail" viewBox="0 0 ${g.w} ${g.h}" preserveAspectRatio="none" aria-hidden="true">${legs.map(([, pts]) => `<polyline points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="5" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`).join('')}</svg>` : '';
+    const line = (pts, id) => `<polyline ${id ? `id="${id}" ` : ''}points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="5" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+    const trail = `<svg class="btrail" id="btrail" viewBox="0 0 ${g.w} ${g.h}" preserveAspectRatio="none" aria-hidden="true">${legs.map(([, pts]) => line(pts)).join('')}${line(legPart(w, g), 'btrail-cur')}</svg>`;
     return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+  }
+  // While walking toward a stop, her dotted line from the previous stop fills in as far as the walker has come along it.
+  // The walker's position is projected onto her line (so the fill always lies on the intended route), and it never
+  // shrinks when someone doubles back. Only near the line counts, so a detour elsewhere draws nothing.
+  function legPart(w, g) {
+    const prog = S.progress[w.id]; if (!prog || prog.current < 1 || !g || !g.legs) return [];
+    const from = w.stops[prog.current - 1], pts = from && g.legs[String(from.n)]; if (!pts) return [];
+    const key = w.id + ':' + from.n; S.legProg = S.legProg || {};
+    if (S.me && !prog.visited.includes(prog.current)) {
+      const p = bookXY(w, S.me.lat, S.me.lng);
+      if (p) {
+        const x = p[0] / 100 * g.w, y = p[1] / 100 * g.h, near = Math.max(g.w, g.h) * 0.03;
+        let best = -1, bd = Infinity;
+        pts.forEach((q, i) => { const d = Math.hypot(q[0] - x, q[1] - y); if (d < bd) { bd = d; best = i; } });
+        if (bd <= near && best > (S.legProg[key] || 0)) S.legProg[key] = best;
+      }
+    }
+    const k = prog.visited.includes(prog.current) ? pts.length - 1 : (S.legProg[key] || 0);
+    return k > 0 ? pts.slice(0, k + 1) : [];
+  }
+  function paintLegPart(w) {
+    const el = document.getElementById('btrail-cur'), g = bm(w); if (!el || !g) return;
+    el.setAttribute('points', legPart(w, g).map((q) => q[0] + ',' + q[1]).join(' '));
   }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
   function centerBookOnMe(smooth) { centerBookOn(document.getElementById('bme'), smooth); }
@@ -630,6 +654,7 @@
   // After the walker's position changes (demo or real GPS): move the dot on both maps, check arrival, update the distance line.
   function afterMove(w, prog, target) {
     if (gmap) gmap.me(S.me, S.heading);
+    paintLegPart(w);
     const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
     if (onMap(target) && dist(S.me, target) <= S.settings.arrival + (S.gpsAcc ? Math.min(S.gpsAcc, 30) * 0.5 : 0) && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
@@ -874,12 +899,26 @@
     if (!canStart(w.id)) return openPaywall();
     const p = S.progress[w.id];
     if (!p || p.finishedAt) S.progress[w.id] = { current: 0, visited: [], startedAt: Date.now() };
-    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; persist(); await needImages(w.id); render();
+    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; persist(); await needImages(w.id); render();
     // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
     // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
     if (!navigator.geolocation) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
   }
 
+  // Fill the pane's full height under the header with her map, measured on the real pane once it is on screen
+  // (and again when the image or the window size changes), until the walker zooms by hand.
+  function fitBook(bp) {
+    const bi = bp.querySelector('.bookimg'), im = bi && bi.querySelector('img'); if (!im) return;
+    const fit = () => {
+      if (S.bookZoomUser || !bp.isConnected) return;
+      const ratio = (im.naturalHeight && im.naturalWidth) ? im.naturalHeight / im.naturalWidth : (im.offsetHeight / Math.max(1, im.offsetWidth));
+      if (!ratio || !bp.clientWidth) return;
+      const z = Math.max(1, Math.min(5, (bp.clientHeight - 110) / (bp.clientWidth * ratio)));
+      if (Math.abs(z - (S.bookZoom || 0)) > 0.01) { S.bookZoom = z; bi.style.width = z * 100 + '%'; }
+    };
+    fit(); if (!im.complete) im.addEventListener('load', fit, { once: true });
+    if (!window._bookFitResize) { window._bookFitResize = true; window.addEventListener('resize', () => { const p = document.getElementById('bookpane'); if (p) fitBook(p); }); }
+  }
   // Pinch to zoom on the book map: two fingers scale the page around their midpoint (the browser would otherwise zoom the whole page).
   function bindBookPinch(pane) {
     let p0 = null;
@@ -918,7 +957,7 @@
     if (bp && keep && keep.view === S.view && keep.walk === S.walkId) { S.bookAuto = Date.now(); bp.scrollTop = keep.top; bp.scrollLeft = keep.left; }
     if (bp) {
       bp.addEventListener('scroll', () => { if (Date.now() - (S.bookAuto || 0) > 900) S.bookFollow = false; }, { passive: true });
-      bindBookPinch(bp);
+      bindBookPinch(bp); fitBook(bp);
       if (S.view === 'go' && S.stopFocus) setTimeout(() => centerBookOnStop(false), 60);
       else if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
     }

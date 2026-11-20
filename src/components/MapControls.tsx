@@ -146,6 +146,24 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
   // Her own dotted line between stops fills in as each stop is reached: the intended route, never the walker's track.
   const reachedN = finished ? Infinity : Math.max(0, ...(visited ?? []).map((i) => walk.stops[i]?.n ?? 0));
   const trail = useMemo(() => bookLegs(walk.id, page).filter((l) => l.n + 1 <= reachedN), [walk.id, page, reachedN]);
+  // While walking toward a stop, her line from the previous stop fills in as far as the walker has come along it: the
+  // position is projected onto her line, only counts when near it, and the fill never shrinks when someone doubles back.
+  const legProg = useRef<Record<string, number>>({});
+  const curLeg = useMemo(() => {
+    const from = current !== undefined && current > 0 ? walk.stops[current - 1] : undefined;
+    return from ? bookLegs(walk.id, page).find((l) => l.n === from.n) : undefined;
+  }, [walk, current, page]);
+  let partial: { x: number; y: number }[] = [];
+  if (curLeg && current !== undefined && !(visited ?? []).includes(current)) {
+    const key = `${walk.id}:${curLeg.n}`;
+    if (dot) {
+      let best = -1, bd = Infinity;
+      curLeg.pts.forEach((q, i) => { const d = Math.hypot((q.x - dot.x) * width, (q.y - dot.y) * height); if (d < bd) { bd = d; best = i; } });
+      if (bd <= Math.max(width, height) * 0.03 && best > (legProg.current[key] ?? 0)) legProg.current[key] = best;
+    }
+    const k = legProg.current[key] ?? 0;
+    if (k > 0) partial = curLeg.pts.slice(0, k + 1);
+  }
 
   const scroll = useRef<ScrollViewInstance>(null);
   const [follow, setFollow] = useState(true);
@@ -189,11 +207,14 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
       style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
         <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
-        {trail.length ? (
+        {trail.length || partial.length > 1 ? (
           <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
             {trail.map((l) => (
               <Polyline key={l.n} points={l.pts.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={BOOK_TRAIL} strokeOpacity={0.6} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
             ))}
+            {partial.length > 1 ? (
+              <Polyline points={partial.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={BOOK_TRAIL} strokeOpacity={0.6} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+            ) : null}
           </Svg>
         ) : null}
         {walk.stops.map((s, i) => {

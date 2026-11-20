@@ -159,3 +159,7 @@
 - The walked part on the book map is now her own dotted line, leg by leg, filled in see-through blue once each stop is reached. It is never the walker's GPS track. carto_maps.py saves each traced leg in map pixels (routes_carto_px.json, carried into bookmaps.json as "legs").
 - Path tracing now bridges the small gaps where dashes meet at corners and picks up maps drawn with solid path strokes, so many more legs trace (Walk V 6 to 16, Walk VI 4 to 9, Walk XI 23 to 41).
 - The book map opens zoomed so her map fills the full height under the header, in the preview and the app, until the walker zooms.
+
+## 2026-11-19 · Blue line fills along her route as you walk
+- Book map (preview and app): while heading to a stop, her dotted line from the previous stop fills in blue as far as the walker has come along it. The position is projected onto her line, counts only near it, and never shrinks on doubling back. The whole leg fills on arrival.
+- Preview book map measures the real pane to fill its full height, on any screen size and after resizes, until the walker zooms; a new walk resets the zoom.
