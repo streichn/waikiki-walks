@@ -150,8 +150,8 @@ export function ZoomButtons({ onZoom, bottom, children }: { onZoom: (dir: 1 | -1
  * Veneeta's walk map filling the map area, with the stops and the walker's position drawn on it.
  * Pinch or the + and - buttons to zoom; drag to pan.
  */
-export function BookMapPane({ walk, current, visited, finished, isLocked, me, onSelect, topInset = 0, bottomInset = 0 }: {
-  walk: Walk; current?: number; visited?: number[]; finished?: boolean; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
+export function BookMapPane({ walk, current, visited, finished, isLocked, me, heading, onSelect, topInset = 0, bottomInset = 0 }: {
+  walk: Walk; current?: number; visited?: number[]; finished?: boolean; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null; heading?: number | null;
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
   const { width, height: screenH } = useWindowDimensions();
@@ -167,6 +167,12 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
   const fill = Math.min(4, Math.max(1, (screenH - topInset) / height)); // fills the full height under the header, even with the sheet lowered
   const file = page === 0 ? walk.bookMap : pages[page]?.file;
   const dot = me ? bookXY(walk.id, me.lat, me.lng, page) : null;
+  // Her maps are drawn mauka-up, not north-up: find which way north points on this page so the heading wedge is true.
+  const north = useMemo(() => {
+    const c = walk.stops.find((s) => bookXY(walk.id, s.lat, s.lng, page)) ?? walk.stops[0];
+    const a = bookXY(walk.id, c.lat, c.lng, page), b = bookXY(walk.id, c.lat + 0.002, c.lng, page);
+    return a && b ? (Math.atan2((b.x - a.x) * width, -(b.y - a.y) * height) * 180) / Math.PI : 0;
+  }, [walk, page, width, height]);
   // Her own dotted line between stops fills in as each stop is reached: the intended route, never the walker's track.
   const reachedN = finished ? Infinity : Math.max(0, ...(visited ?? []).map((i) => walk.stops[i]?.n ?? 0));
   const trail = useMemo(() => bookLegs(walk.id, page).filter((l) => l.n + 1 <= reachedN), [walk.id, page, reachedN]);
@@ -252,7 +258,15 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, on
         })}
         {dot ? (
           // Sized like her own map markers (it zooms with the map), translucent with a soft glow so her streets show through.
-          <View pointerEvents="none" style={[styles.me, { left: dot.x * width - (width * 0.028) / 2, top: dot.y * height - (width * 0.028) / 2, width: width * 0.028, height: width * 0.028, borderRadius: width * 0.014 }]} />
+          <>
+            {heading !== null && heading !== undefined ? (
+              // which way the walker faces, as on the street map
+              <View pointerEvents="none" style={{ position: 'absolute', left: dot.x * width - width * 0.03, top: dot.y * height - width * 0.075, width: width * 0.06, height: width * 0.075, transform: [{ translateY: width * 0.0375 }, { rotate: `${heading + north}deg` }, { translateY: -width * 0.0375 }] }}>
+                <View style={{ width: 0, height: 0, borderLeftWidth: width * 0.03, borderRightWidth: width * 0.03, borderTopWidth: width * 0.075, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderTopColor: 'rgba(26,115,232,0.35)', transform: [{ rotate: '180deg' }] }} />
+              </View>
+            ) : null}
+            <View pointerEvents="none" style={[styles.me, { left: dot.x * width - (width * 0.028) / 2, top: dot.y * height - (width * 0.028) / 2, width: width * 0.028, height: width * 0.028, borderRadius: width * 0.014 }]} />
+          </>
         ) : null}
       </View>
     </ScrollView>

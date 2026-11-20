@@ -169,3 +169,10 @@
 - Street map: the walked trail is see-through blue and the leg ahead is dashed blue (was green and red).
 - Book map: each traced leg is pulled back onto her drawn line and straightened, so the blue sits exactly on her dots with no wobble. The current leg fills smoothly to the walker's point along her line.
 - Preview: the "location is off" notice no longer shows during the demo walk, and shows once at most.
+
+## 2026-11-19 · Direction controls on the book map
+- Preview: the follow-me button and the whole-walk button now work on the book map (follow scrolls with the dot; whole shows the full page). No made-up position when location isn't known yet.
+- Preview: the directions button opens walking directions to the next stop in Apple Maps on iPhone, Google Maps elsewhere.
+- Preview: the phone's compass sets the heading when standing still (iPhone asks once, on Start).
+- Book map (preview and app): the walker's dot has a heading wedge like the street map, turned for each map's own orientation (her maps are mauka-up, not north-up).
+- App: the street-only buttons hide on the book map, which keeps its own follow-me button beside + and -.

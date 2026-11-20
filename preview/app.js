@@ -331,7 +331,7 @@
     const legs = Object.entries(g.legs || {}).filter(([n]) => Number(n) + 1 <= reachedN);
     const line = (pts, id) => `<polyline ${id ? `id="${id}" ` : ''}points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="5" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
     const trail = `<svg class="btrail" id="btrail" viewBox="0 0 ${g.w} ${g.h}" preserveAspectRatio="none" aria-hidden="true">${legs.map(([, pts]) => line(pts)).join('')}${line(legPart(w, g), 'btrail-cur')}</svg>`;
-    return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+    return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"><span class="bcone" id="bcone" style="transform:rotate(${bookHeading(w)}deg)"></span></span>`;
   }
   // While walking toward a stop, her dotted line from the previous stop fills in as far as the walker has come along it.
   // The walker's position is projected onto her line (so the fill always lies on the intended route), and it never
@@ -375,6 +375,21 @@
     const el = document.getElementById('btrail-cur'), g = bm(w); if (!el || !g) return;
     el.setAttribute('points', legPart(w, g).map((q) => q[0] + ',' + q[1]).join(' '));
   }
+  // Which way is north on this map page, in degrees clockwise from straight up. Her maps are drawn mauka-up, not north-up.
+  function bookNorth(w) {
+    const g = bm(w); if (!g) return 0;
+    const c = w.stops.find(onMap) || { lat: 21.28, lng: -157.83 }, a = bookXY(w, c.lat, c.lng), b = bookXY(w, c.lat + 0.002, c.lng);
+    if (!a || !b) return 0;
+    return Math.atan2((b[0] - a[0]) * g.w, -(b[1] - a[1]) * g.h) * 180 / Math.PI;
+  }
+  const bookHeading = (w) => ((S.heading || 0) + bookNorth(w)) % 360;
+  function paintBookDot(w) {
+    const bme = document.getElementById('bme'); if (!bme || !S.me) return;
+    const p = bookXY(w, S.me.lat, S.me.lng); if (!p) return;
+    bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%';
+    const c = document.getElementById('bcone'); if (c) c.style.transform = `rotate(${bookHeading(w)}deg)`;
+    if (S.bookFollow) centerBookOnMe(true);
+  }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
   function centerBookOnMe(smooth) { centerBookOn(document.getElementById('bme'), smooth); }
   // Same, for the ring on the current stop's printed number (after Next, Previous or a tap on a stop).
@@ -389,7 +404,7 @@
   // + and - for both maps, at the bottom right of the map (Nick, 19 Nov 2026)
   function zoomBtns() {
     const book = S.mapStyle === 'book';
-    return `<div class="zoombtns">${S.view === 'go' && book ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
+    return `<div class="zoombtns"><button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
   }
   function bookPane(w) {
     // Open the page that prints the current stop; a tap on "Map 2" etc. sticks until the stop changes.
@@ -674,7 +689,7 @@
   function afterMove(w, prog, target) {
     if (gmap) gmap.me(S.me, S.heading);
     paintLegPart(w);
-    const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
+    paintBookDot(w);
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
     if (onMap(target) && dist(S.me, target) <= S.settings.arrival + (S.gpsAcc ? Math.min(S.gpsAcc, 30) * 0.5 : 0) && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(bearing(S.me, target))}`; }
@@ -913,7 +928,28 @@
     if (stopIdx != null && !Number.isNaN(stopIdx)) { S.view = 'stop'; S.stopIdx = stopIdx; } else S.view = 'walk';
     await needImages(id); render();
   }
+  let compassOn = false;
+  function startCompass() {
+    if (compassOn || typeof DeviceOrientationEvent === 'undefined') return;
+    const listen = () => {
+      compassOn = true;
+      window.addEventListener('deviceorientation', (e) => {
+        if (S.sim || S.view !== 'go') return;
+        const h = e.webkitCompassHeading != null ? e.webkitCompassHeading : (e.absolute && e.alpha != null ? 360 - e.alpha : null);
+        if (h == null || isNaN(h)) return;
+        S.heading = h;
+        const w = walk(S.walkId); if (!w) return;
+        const c = document.getElementById('bcone'); if (c) c.style.transform = `rotate(${bookHeading(w)}deg)`;
+        if (gmap && S.me) gmap.me(S.me, S.heading);
+        const prog = S.progress[w.id], t = prog && w.stops[prog.current], ar = document.querySelector('.nav .arrow');
+        if (ar && t && S.me) ar.style.transform = `rotate(${bearing(S.me, t) - h}deg)`;
+      });
+    };
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then((r) => { if (r === 'granted') listen(); }).catch(() => {});
+    else listen();
+  }
   async function startWalk() {
+    startCompass();
     const w = walk(S.walkId);
     if (!canStart(w.id)) return openPaywall();
     const p = S.progress[w.id];
@@ -1053,11 +1089,19 @@
         const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
         return;
       }
-      if (a === 'whole') { S.follow = 'off'; return gmap && gmap.fit(); }
+      if (a === 'whole') {
+        S.follow = 'off';
+        if (S.mapStyle === 'book') { // the whole page of her map, fitted to the screen width
+          const bp = document.getElementById('bookpane'), bi = bp && bp.querySelector('.bookimg'); if (!bi) return;
+          S.bookFollow = false; S.bookZoomUser = true; S.bookZoom = 1; bi.style.width = '100%'; S.bookAuto = Date.now(); bp.scrollTo({ left: 0, top: 0, behavior: 'smooth' }); return;
+        }
+        return gmap && gmap.fit();
+      }
       if (a === 'locate') {
-        if (!S.me) { const p = S.progress[w.id]; const prev = w.stops[Math.max(0, p.current - 1)]; S.me = { lat: prev.lat - 0.0006, lng: prev.lng - 0.0004 }; }
+        if (!S.me) return toast(S.sim ? 'Starting the demo walk…' : 'Waiting for your location…');
         S.follow = S.follow === 'off' ? 'follow' : S.follow === 'follow' ? 'heading' : 'off';
         el.classList.toggle('on', S.follow !== 'off'); el.innerHTML = ic(S.follow === 'heading' ? 'compass' : 'navigate');
+        if (S.mapStyle === 'book') { S.bookFollow = S.follow !== 'off'; if (S.bookFollow) centerBookOnMe(true); return toast(S.bookFollow ? 'Following you' : 'Free map'); }
         if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') { document.getElementById('gmap').style.transform = ''; } }
         return toast(S.follow === 'off' ? 'Free map' : S.follow === 'follow' ? 'Following you' : 'Map turns with you');
       }
@@ -1068,7 +1112,12 @@
       if (a === 'next') return showStop(S.progress[w.id].current + 1);
       if (a === 'prev') return showStop(S.progress[w.id].current - 1);
       if (a === 'play') { const s = w.stops[S.progress[w.id].current]; return speaking.stopId ? stopSpeak() : speakStop(s); }
-      if (a === 'directions') return toast('In the app this opens Apple Maps or Google Maps walking directions to the next stop.');
+      if (a === 'directions') {
+        const p = S.progress[w.id], t = w.stops[p ? p.current : 0]; if (!t) return;
+        const ios = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+        const url = ios ? `https://maps.apple.com/?daddr=${t.lat},${t.lng}&dirflg=w` : `https://www.google.com/maps/dir/?api=1&destination=${t.lat},${t.lng}&travelmode=walking`;
+        const link = Object.assign(document.createElement('a'), { href: url, target: '_blank', rel: 'noopener' }); document.body.appendChild(link); link.click(); link.remove(); return;
+      }
     }
   });
   $app.addEventListener('scroll', (e) => {

@@ -214,7 +214,7 @@ export default function ActiveWalk() {
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <View style={StyleSheet.absoluteFill}>
         {bookMap && walk.bookMap ? (
-          <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
+          <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} heading={heading} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
         ) : (
         <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
         )}
@@ -226,7 +226,8 @@ export default function ActiveWalk() {
         </View>
       ) : null}
       {detent !== 'full' && !(bookMap && walk.bookMap) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={snaps[detent] + 12} /> : null}
-      {detent !== 'full' ? (
+      {/* Street-map controls; the book map has its own follow-me button beside its + and - */}
+      {detent !== 'full' && !(bookMap && walk.bookMap) ? (
         <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
           <LocateButton
             mode={follow}
