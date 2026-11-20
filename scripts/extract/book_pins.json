@@ -1,94 +1,92 @@
 {
  "I": {
   "1": {
-   "lat": 21.288529,
-   "lng": -157.832924,
+   "lat": 21.288282,
+   "lng": -157.83281,
    "px": [
-    545,
-    997
+    102,
+    636
    ],
-   "route_offset_m": 27
+   "page": "map-I-c.jpg",
+   "route_offset_m": 31
   },
   "2": {
-   "lat": 21.288272,
-   "lng": -157.832139,
+   "lat": 21.287902,
+   "lng": -157.83222,
    "px": [
-    530,
-    967
+    138,
+    632
    ],
-   "route_offset_m": 11
+   "page": "map-I-c.jpg",
+   "route_offset_m": 46
   },
   "3": {
-   "lat": 21.286802,
-   "lng": -157.82954,
+   "lat": 21.286719,
+   "lng": -157.829546,
    "px": [
-    507,
-    852
+    282,
+    592
    ],
-   "route_offset_m": 11
+   "page": "map-I-c.jpg",
+   "route_offset_m": 35
   },
   "4": {
-   "lat": 21.285497,
-   "lng": -157.828314,
+   "lat": 21.285426,
+   "lng": -157.828308,
    "px": [
-    519,
-    778
+    375,
+    604
    ],
-   "route_offset_m": 21
+   "page": "map-I-c.jpg",
+   "route_offset_m": 15
   },
   "5": {
-   "lat": 21.285377,
-   "lng": -157.827652,
+   "lat": 21.285353,
+   "lng": -157.827643,
    "px": [
-    505,
-    755
+    403,
+    585
    ],
-   "route_offset_m": 16
+   "page": "map-I-c.jpg",
+   "route_offset_m": 54
   },
   "6": {
-   "lat": 21.284356,
-   "lng": -157.827089,
+   "lat": 21.284313,
+   "lng": -157.827113,
    "px": [
-    524,
-    710
+    460,
+    610
    ],
-   "route_offset_m": 23
+   "page": "map-I-c.jpg",
+   "route_offset_m": 5
   },
   "7": {
    "lat": 21.284907,
    "lng": -157.82071,
-   "px": [
-    339,
-    526
-   ],
-   "route_offset_m": 3
+   "route_offset_m": 30,
+   "place": "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to. Moved from book-map pixels to lat/lng when the cartographer's map replaced the book page (19 Nov 2026)"
   },
   "8": {
    "lat": 21.284684,
    "lng": -157.820413,
-   "px": [
-    339,
-    510
-   ],
-   "route_offset_m": 0
+   "route_offset_m": 30,
+   "place": "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to. Moved from book-map pixels to lat/lng when the cartographer's map replaced the book page (19 Nov 2026)"
   },
   "9": {
    "lat": 21.284453,
    "lng": -157.820117,
-   "px": [
-    339,
-    494
-   ],
-   "route_offset_m": 4
+   "route_offset_m": 30,
+   "place": "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to. Moved from book-map pixels to lat/lng when the cartographer's map replaced the book page (19 Nov 2026)"
   },
   "10": {
-   "lat": 21.284443,
-   "lng": -157.81966,
+   "lat": 21.284256,
+   "lng": -157.819663,
    "px": [
-    328,
-    480
+    747,
+    366
    ],
-   "route_offset_m": 31
+   "page": "map-I-c.jpg",
+   "route_offset_m": 15
   },
   "11": {
    "lat": 21.283548,
@@ -97,40 +95,44 @@
    "place": "Veneeta 19 Nov 2026: pin 11 on Date Street between 10 and 12 (midpoint of neighbors)"
   },
   "12": {
-   "lat": 21.282653,
-   "lng": -157.817786,
+   "lat": 21.282442,
+   "lng": -157.817781,
    "px": [
-    337,
-    372
+    883,
+    378
    ],
-   "route_offset_m": 16
+   "page": "map-I-c.jpg",
+   "route_offset_m": 2
   },
   "13": {
-   "lat": 21.272998,
-   "lng": -157.816337,
+   "lat": 21.273032,
+   "lng": -157.816266,
    "px": [
-    605,
-    57
+    1273,
+    713
    ],
-   "route_offset_m": 109
+   "page": "map-I-c.jpg",
+   "route_offset_m": 95
   },
   "14": {
-   "lat": 21.274485,
-   "lng": -157.816933,
+   "lat": 21.274526,
+   "lng": -157.816875,
    "px": [
-    572,
-    118
+    1197,
+    672
    ],
-   "route_offset_m": 31
+   "page": "map-I-c.jpg",
+   "route_offset_m": 41
   },
   "15": {
-   "lat": 21.274984,
-   "lng": -157.817992,
+   "lat": 21.274993,
+   "lng": -157.817907,
    "px": [
-    585,
-    165
+    1141,
+    687
    ],
-   "route_offset_m": 7
+   "page": "map-I-c.jpg",
+   "route_offset_m": 6
   },
   "16": {
    "lat": 21.275183,
@@ -139,40 +141,44 @@
    "place": "Veneeta 19 Nov 2026: pin 16 on the same side as the other street pins, between 15 and 17 (midpoint of neighbors)"
   },
   "17": {
-   "lat": 21.275382,
-   "lng": -157.818518,
+   "lat": 21.27549,
+   "lng": -157.818521,
    "px": [
-    587,
-    193
+    1100,
+    687
    ],
-   "route_offset_m": 13
+   "page": "map-I-c.jpg",
+   "route_offset_m": 6
   },
   "18": {
-   "lat": 21.276112,
-   "lng": -157.819189,
+   "lat": 21.276086,
+   "lng": -157.819199,
    "px": [
-    583,
-    235
+    1053,
+    685
    ],
-   "route_offset_m": 5
+   "page": "map-I-c.jpg",
+   "route_offset_m": 4
   },
   "19": {
-   "lat": 21.276586,
-   "lng": -157.819724,
+   "lat": 21.276607,
+   "lng": -157.819843,
    "px": [
-    583,
-    265
+    1010,
+    685
    ],
-   "route_offset_m": 8
+   "page": "map-I-c.jpg",
+   "route_offset_m": 2
   },
   "20": {
-   "lat": 21.277158,
-   "lng": -157.820416,
+   "lat": 21.277202,
+   "lng": -157.820549,
    "px": [
-    583,
-    305
+    962,
+    684
    ],
-   "route_offset_m": 13
+   "page": "map-I-c.jpg",
+   "route_offset_m": 8
   },
   "21": {
    "lat": 21.278218,
@@ -181,121 +187,134 @@
    "place": "Veneeta 19 Nov 2026: pin 21 alongside the canal, between 20 and 22 (midpoint of neighbors)"
   },
   "22": {
-   "lat": 21.279278,
-   "lng": -157.822797,
+   "lat": 21.278869,
+   "lng": -157.822462,
    "px": [
-    580,
-    415
+    830,
+    679
    ],
-   "route_offset_m": 21
+   "page": "map-I-c.jpg",
+   "route_offset_m": 3
   },
   "23": {
-   "lat": 21.279803,
-   "lng": -157.8234,
+   "lat": 21.27939,
+   "lng": -157.823106,
    "px": [
-    580,
-    450
+    787,
+    679
    ],
-   "route_offset_m": 16
+   "page": "map-I-c.jpg",
+   "route_offset_m": 0
   },
   "24": {
-   "lat": 21.280214,
-   "lng": -157.823804,
+   "lat": 21.279791,
+   "lng": -157.823572,
    "px": [
-    578,
-    480
+    755,
+    678
    ],
-   "route_offset_m": 13
+   "page": "map-I-c.jpg",
+   "route_offset_m": 0
   },
   "25": {
-   "lat": 21.280648,
-   "lng": -157.824283,
+   "lat": 21.280388,
+   "lng": -157.82425,
    "px": [
-    578,
-    515
+    708,
+    676
    ],
-   "route_offset_m": 16
+   "page": "map-I-c.jpg",
+   "route_offset_m": 2
   },
   "26": {
-   "lat": 21.281203,
-   "lng": -157.824879,
+   "lat": 21.280958,
+   "lng": -157.824926,
    "px": [
-    575,
-    550
+    662,
+    675
    ],
-   "route_offset_m": 8
+   "page": "map-I-c.jpg",
+   "route_offset_m": 12
   },
   "27": {
-   "lat": 21.281702,
-   "lng": -157.825678,
+   "lat": 21.281604,
+   "lng": -157.825665,
    "px": [
-    575,
-    587
+    611,
+    673
    ],
-   "route_offset_m": 17
+   "page": "map-I-c.jpg",
+   "route_offset_m": 0
   },
   "28": {
-   "lat": 21.282747,
-   "lng": -157.826859,
+   "lat": 21.282771,
+   "lng": -157.827019,
    "px": [
-    572,
-    660
+    518,
+    670
    ],
-   "route_offset_m": 14
+   "page": "map-I-c.jpg",
+   "route_offset_m": 0
   },
   "29": {
-   "lat": 21.283443,
-   "lng": -157.827664,
+   "lat": 21.283378,
+   "lng": -157.82774,
    "px": [
-    572,
-    702
+    469,
+    669
    ],
-   "route_offset_m": 13
+   "page": "map-I-c.jpg",
+   "route_offset_m": 12
   },
   "30": {
-   "lat": 21.283971,
-   "lng": -157.828211,
+   "lat": 21.283876,
+   "lng": -157.828326,
    "px": [
-    570,
-    732
+    429,
+    668
    ],
-   "route_offset_m": 14
+   "page": "map-I-c.jpg",
+   "route_offset_m": 0
   },
   "31": {
-   "lat": 21.284547,
-   "lng": -157.828865,
+   "lat": 21.284374,
+   "lng": -157.828912,
    "px": [
-    569,
-    767
+    389,
+    667
    ],
-   "route_offset_m": 11
+   "page": "map-I-c.jpg",
+   "route_offset_m": 4
   },
   "32": {
-   "lat": 21.284968,
-   "lng": -157.829313,
+   "lat": 21.284814,
+   "lng": -157.829396,
    "px": [
-    567,
-    792
+    355,
+    665
    ],
-   "route_offset_m": 9
+   "page": "map-I-c.jpg",
+   "route_offset_m": 2
   },
   "33": {
-   "lat": 21.285463,
-   "lng": -157.829869,
+   "lat": 21.285276,
+   "lng": -157.829937,
    "px": [
-    566,
-    825
+    318,
+    664
    ],
-   "route_offset_m": 8
+   "page": "map-I-c.jpg",
+   "route_offset_m": 2
   },
   "34": {
-   "lat": 21.285904,
-   "lng": -157.830385,
+   "lat": 21.285788,
+   "lng": -157.83051,
    "px": [
-    566,
-    855
+    278,
+    662
    ],
-   "route_offset_m": 10
+   "page": "map-I-c.jpg",
+   "route_offset_m": 0
   },
   "35": {
    "lat": 21.286137,
@@ -304,114 +323,126 @@
    "place": "Veneeta 19 Nov 2026: pin 35 on the canal side, between 34 and 36 (midpoint of neighbors)"
   },
   "36": {
-   "lat": 21.28637,
-   "lng": -157.83093,
+   "lat": 21.286209,
+   "lng": -157.831062,
    "px": [
-    566,
-    885
+    242,
+    663
    ],
-   "route_offset_m": 13
+   "page": "map-I-c.jpg",
+   "route_offset_m": 2
   },
   "37": {
-   "lat": 21.286905,
-   "lng": -157.831532,
+   "lat": 21.286685,
+   "lng": -157.831591,
    "px": [
-    564,
-    915
+    205,
+    661
    ],
-   "route_offset_m": 10
+   "page": "map-I-c.jpg",
+   "route_offset_m": 3
   },
   "38": {
-   "lat": 21.287414,
-   "lng": -157.832075,
+   "lat": 21.287137,
+   "lng": -157.832089,
    "px": [
-    562,
-    942
+    170,
+    659
    ],
-   "route_offset_m": 8
+   "page": "map-I-c.jpg",
+   "route_offset_m": 25
   }
  },
  "II": {
   "1": {
-   "lat": 21.284412,
-   "lng": -157.836178,
+   "lat": 21.284607,
+   "lng": -157.835759,
    "px": [
-    381,
-    680
+    458,
+    375
    ],
-   "route_offset_m": 25
+   "page": "map-II-c.jpg",
+   "route_offset_m": 23
   },
   "2": {
-   "lat": 21.287503,
-   "lng": -157.839719,
+   "lat": 21.287333,
+   "lng": -157.839546,
    "px": [
-    401,
-    967
+    130,
+    398
    ],
-   "route_offset_m": 2
+   "page": "map-II-c.jpg",
+   "route_offset_m": 5
   },
   "3": {
-   "lat": 21.288769,
-   "lng": -157.837033,
+   "lat": 21.288828,
+   "lng": -157.837059,
    "px": [
-    234,
-    912
+    186,
+    205
    ],
-   "route_offset_m": 82
+   "page": "map-II-c.jpg",
+   "route_offset_m": 90
   },
   "4": {
-   "lat": 21.289345,
-   "lng": -157.834238,
+   "lat": 21.28944,
+   "lng": -157.834065,
    "px": [
-    88,
-    808
+    311,
+    37
    ],
-   "route_offset_m": 92
+   "page": "map-II-c.jpg",
+   "route_offset_m": 97
   },
   "5": {
-   "lat": 21.286819,
-   "lng": -157.834248,
-   "px": [
-    202,
-    700
-   ],
-   "route_offset_m": 4
-  },
-  "6": {
-   "lat": 21.287494,
-   "lng": -157.837174,
-   "px": [
-    301,
-    862
-   ],
-   "route_offset_m": 39
-  },
-  "7": {
-   "lat": 21.28709,
-   "lng": -157.836951,
-   "px": [
-    309,
-    835
-   ],
-   "route_offset_m": 7
-  },
-  "8": {
-   "lat": 21.285697,
-   "lng": -157.838381,
+   "lat": 21.286949,
+   "lng": -157.834024,
    "px": [
     434,
-    842
+    170
    ],
-   "route_offset_m": 14
+   "page": "map-II-c.jpg",
+   "route_offset_m": 5
+  },
+  "6": {
+   "lat": 21.287466,
+   "lng": -157.837176,
+   "px": [
+    246,
+    284
+   ],
+   "page": "map-II-c.jpg",
+   "route_offset_m": 42
+  },
+  "7": {
+   "lat": 21.287104,
+   "lng": -157.836897,
+   "px": [
+    278,
+    291
+   ],
+   "page": "map-II-c.jpg",
+   "route_offset_m": 5
+  },
+  "8": {
+   "lat": 21.285663,
+   "lng": -157.838405,
+   "px": [
+    270,
+    437
+   ],
+   "page": "map-II-c.jpg",
+   "route_offset_m": 16
   },
   "9": {
-   "lat": 21.284506,
-   "lng": -157.838618,
+   "lat": 21.284527,
+   "lng": -157.838505,
    "px": [
-    493,
-    795
+    320,
+    503
    ],
-   "route_offset_m": 12
+   "page": "map-II-c.jpg",
+   "route_offset_m": 5
   },
   "10": {
    "lat": 21.283946,
@@ -426,58 +457,64 @@
    "place": "Veneeta 19 Nov 2026: move 11 over a little bit (40 percent of the way toward 12, along Kahanamoku Street)"
   },
   "12": {
-   "lat": 21.283884,
-   "lng": -157.838203,
+   "lat": 21.283754,
+   "lng": -157.837953,
    "px": [
-    501,
-    747
+    386,
+    520
    ],
-   "route_offset_m": 4
+   "page": "map-II-c.jpg",
+   "route_offset_m": 2
   },
   "13": {
-   "lat": 21.282424,
-   "lng": -157.837264,
+   "lat": 21.283365,
+   "lng": -157.837041,
    "px": [
-    525,
-    640
+    452,
+    500
    ],
-   "route_offset_m": 68
+   "page": "map-II-c.jpg",
+   "route_offset_m": 74
   },
   "14": {
-   "lat": 21.281131,
-   "lng": -157.837166,
+   "lat": 21.281621,
+   "lng": -157.836744,
    "px": [
-    590,
-    585
+    552,
+    581
    ],
-   "route_offset_m": 21
+   "page": "map-II-c.jpg",
+   "route_offset_m": 67
   },
   "15": {
-   "lat": 21.280843,
-   "lng": -157.835354,
+   "lat": 21.281106,
+   "lng": -157.835215,
    "px": [
-    526,
-    490
+    656,
+    540
    ],
-   "route_offset_m": 152
+   "page": "map-II-c.jpg",
+   "route_offset_m": 161
   },
   "16": {
-   "lat": 21.278863,
-   "lng": -157.835375,
+   "lat": 21.278693,
+   "lng": -157.835333,
    "px": [
-    640,
-    413
+    767,
+    676
    ],
-   "route_offset_m": 35
+   "page": "map-II-c.jpg",
+   "route_offset_m": 39
   },
   "17": {
-   "lat": 21.278965,
-   "lng": -157.833879,
+   "lat": 21.278894,
+   "lng": -157.833887,
    "px": [
-    575,
-    352
+    832,
+    600
    ],
-   "route_offset_m": 47
+   "page": "map-II-c.jpg",
+   "route_offset_m": 44
   },
   "18": {
    "lat": 21.2825023,
@@ -486,1503 +523,1640 @@
    "place": "Veneeta 19 Nov 2026: pin 18 should be on the other side of Kalia Rd (mirrored across the road)"
   },
   "19": {
-   "lat": 21.282988,
-   "lng": -157.832773,
+   "lat": 21.282881,
+   "lng": -157.832464,
    "px": [
-    325,
-    465
+    712,
+    320
    ],
-   "route_offset_m": 8
+   "page": "map-II-c.jpg",
+   "route_offset_m": 15
   },
   "20": {
-   "lat": 21.284081,
-   "lng": -157.834037,
+   "lat": 21.284308,
+   "lng": -157.833602,
    "px": [
-    312,
-    565
+    584,
+    294
    ],
-   "route_offset_m": 2
+   "page": "map-II-c.jpg",
+   "route_offset_m": 23
   }
  },
  "III": {
   "1": {
-   "lat": 21.278898,
-   "lng": -157.831283,
+   "lat": 21.278948,
+   "lng": -157.831221,
    "px": [
-    490,
-    670
+    279,
+    424
    ],
-   "route_offset_m": 31
+   "page": "map-III-c.jpg",
+   "route_offset_m": 28
   },
   "2": {
-   "lat": 21.278622,
-   "lng": -157.830973,
+   "lat": 21.278594,
+   "lng": -157.830889,
    "px": [
-    492,
-    642
+    331,
+    431
    ],
-   "route_offset_m": 55
+   "page": "map-III-c.jpg",
+   "route_offset_m": 48
   },
   "3": {
-   "lat": 21.277269,
-   "lng": -157.83051,
+   "lat": 21.27711,
+   "lng": -157.83048,
    "px": [
-    552,
-    557
+    474,
+    527
    ],
-   "route_offset_m": 8
+   "page": "map-III-c.jpg",
+   "route_offset_m": 4
   },
   "4": {
-   "lat": 21.277138,
-   "lng": -157.829452,
+   "lat": 21.276869,
+   "lng": -157.829448,
    "px": [
-    524,
-    502
+    571,
+    477
    ],
-   "route_offset_m": 18
+   "page": "map-III-c.jpg",
+   "route_offset_m": 22
   },
   "5": {
-   "lat": 21.277131,
-   "lng": -157.827409,
+   "lat": 21.276948,
+   "lng": -157.827486,
    "px": [
-    439,
-    415
+    715,
+    337
    ],
-   "route_offset_m": 58
+   "page": "map-III-c.jpg",
+   "route_offset_m": 60
   },
   "6": {
-   "lat": 21.277137,
-   "lng": -157.828326,
+   "lat": 21.276867,
+   "lng": -157.828416,
    "px": [
-    481,
-    452
+    650,
+    407
    ],
-   "route_offset_m": 40
+   "page": "map-III-c.jpg",
+   "route_offset_m": 45
   },
   "7": {
-   "lat": 21.276727,
-   "lng": -157.827643,
+   "lat": 21.276383,
+   "lng": -157.82769,
    "px": [
-    477,
-    405
+    742,
+    398
    ],
-   "route_offset_m": 2
+   "page": "map-III-c.jpg",
+   "route_offset_m": 3
   },
   "8": {
-   "lat": 21.277417,
-   "lng": -157.828013,
+   "lat": 21.277195,
+   "lng": -157.828054,
    "px": [
-    450,
-    452
+    653,
+    355
    ],
-   "route_offset_m": 82
+   "page": "map-III-c.jpg",
+   "route_offset_m": 84
   },
   "9": {
-   "lat": 21.2764,
-   "lng": -157.826384,
+   "lat": 21.276275,
+   "lng": -157.826513,
    "px": [
-    430,
-    342
+    840,
+    327
    ],
-   "route_offset_m": 40
+   "page": "map-III-c.jpg",
+   "route_offset_m": 36
   },
   "10": {
-   "lat": 21.276129,
-   "lng": -157.826578,
+   "lat": 21.275904,
+   "lng": -157.826748,
    "px": [
-    462,
-    335
+    850,
+    374
    ],
-   "route_offset_m": 13
+   "page": "map-III-c.jpg",
+   "route_offset_m": 6
   },
   "11": {
-   "lat": 21.276073,
-   "lng": -157.826002,
+   "lat": 21.275986,
+   "lng": -157.82604,
    "px": [
-    430,
-    310
+    898,
+    319
    ],
-   "route_offset_m": 31
+   "page": "map-III-c.jpg",
+   "route_offset_m": 33
   },
   "12": {
-   "lat": 21.275673,
-   "lng": -157.825978,
+   "lat": 21.275555,
+   "lng": -157.826085,
    "px": [
-    455,
-    287
+    927,
+    358
    ],
-   "route_offset_m": 17
+   "page": "map-III-c.jpg",
+   "route_offset_m": 1
   },
   "13": {
-   "lat": 21.275335,
-   "lng": -157.825777,
+   "lat": 21.275135,
+   "lng": -157.825805,
    "px": [
-    462,
-    260
+    980,
+    374
    ],
-   "route_offset_m": 29
+   "page": "map-III-c.jpg",
+   "route_offset_m": 22
   },
   "14": {
-   "lat": 21.275631,
-   "lng": -157.825219,
+   "lat": 21.275579,
+   "lng": -157.825158,
    "px": [
-    415,
-    252
+    996,
+    293
    ],
-   "route_offset_m": 2
+   "page": "map-III-c.jpg",
+   "route_offset_m": 23
   }
  },
  "IV": {
   "1": {
-   "lat": 21.284363,
-   "lng": -157.832034,
+   "lat": 21.284097,
+   "lng": -157.831896,
    "px": [
-    347,
-    952
+    98,
+    236
    ],
-   "route_offset_m": 21
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 31
   },
   "2": {
-   "lat": 21.283691,
-   "lng": -157.831661,
+   "lat": 21.283436,
+   "lng": -157.83165,
    "px": [
-    366,
-    912
+    149,
+    265
    ],
-   "route_offset_m": 5
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 3
   },
   "3": {
-   "lat": 21.284185,
-   "lng": -157.831292,
+   "lat": 21.283933,
+   "lng": -157.831288,
    "px": [
-    327,
-    917
+    142,
+    215
    ],
-   "route_offset_m": 53
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 55
   },
   "4": {
-   "lat": 21.283627,
-   "lng": -157.830696,
+   "lat": 21.283488,
+   "lng": -157.830744,
    "px": [
-    328,
-    875
+    198,
+    215
    ],
-   "route_offset_m": 77
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 82
   },
   "5": {
-   "lat": 21.282451,
-   "lng": -157.831433,
+   "lat": 21.282312,
+   "lng": -157.831418,
    "px": [
-    411,
-    854
+    225,
+    324
    ],
-   "route_offset_m": 35
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 32
   },
   "6": {
-   "lat": 21.282319,
-   "lng": -157.830739,
+   "lat": 21.282253,
+   "lng": -157.830707,
    "px": [
-    389,
-    820
+    269,
+    291
    ],
-   "route_offset_m": 17
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 23
   },
   "7": {
-   "lat": 21.28273,
-   "lng": -157.830591,
+   "lat": 21.282592,
+   "lng": -157.830656,
    "px": [
-    365,
-    832
+    253,
+    267
    ],
-   "route_offset_m": 46
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 45
   },
   "8": {
-   "lat": 21.281291,
-   "lng": -157.83019,
+   "lat": 21.281285,
+   "lng": -157.830201,
    "px": [
-    415,
-    755
+    352,
+    326
    ],
-   "route_offset_m": 16
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 20
   },
   "9": {
-   "lat": 21.280075,
-   "lng": -157.829332,
+   "lat": 21.28013,
+   "lng": -157.829408,
    "px": [
-    436,
-    667
+    462,
+    358
    ],
-   "route_offset_m": 34
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 32
   },
   "10": {
-   "lat": 21.279992,
-   "lng": -157.830223,
+   "lat": 21.280039,
+   "lng": -157.830246,
    "px": [
-    475,
-    702
+    419,
+    407
    ],
+   "page": "map-IV-c.jpg",
    "route_offset_m": 41
   },
   "11": {
-   "lat": 21.278977,
-   "lng": -157.830664,
+   "lat": 21.27897,
+   "lng": -157.830607,
    "px": [
-    544,
-    672
+    458,
+    493
    ],
-   "route_offset_m": 137
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 136
   },
   "12": {
-   "lat": 21.278014,
-   "lng": -157.828225,
+   "lat": 21.277925,
+   "lng": -157.828204,
    "px": [
-    497,
-    520
+    654,
+    435
    ],
-   "route_offset_m": 32
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 30
   },
   "13": {
-   "lat": 21.277435,
-   "lng": -157.828104,
+   "lat": 21.277267,
+   "lng": -157.828077,
    "px": [
-    524,
-    490
+    698,
+    470
    ],
-   "route_offset_m": 73
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 72
   },
   "14": {
-   "lat": 21.279359,
-   "lng": -157.828092,
+   "lat": 21.279362,
+   "lng": -157.828061,
    "px": [
-    424,
-    577
+    582,
+    337
    ],
-   "route_offset_m": 78
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 85
   },
   "15": {
    "lat": 21.278665,
-   "lng": -157.828049,
+   "lng": -157.828042,
    "px": [
-    457,
-    542
+    622,
+    380
    ],
-   "route_offset_m": 28
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 33
   },
   "16": {
-   "lat": 21.278385,
-   "lng": -157.827749,
+   "lat": 21.278334,
+   "lng": -157.827753,
    "px": [
-    460,
-    517
+    657,
+    386
    ],
-   "route_offset_m": 26
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 29
   },
   "17": {
-   "lat": 21.27805,
-   "lng": -157.82735,
+   "lat": 21.27806,
+   "lng": -157.827322,
    "px": [
-    462,
-    487
+    697,
+    381
    ],
-   "route_offset_m": 26
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 39
   },
   "18": {
-   "lat": 21.277747,
-   "lng": -157.826345,
+   "lat": 21.277773,
+   "lng": -157.826467,
    "px": [
-    435,
-    435
+    762,
+    355
    ],
-   "route_offset_m": 76
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 79
+  },
+  "21": {
+   "lat": 21.276941,
+   "lng": -157.827155,
+   "px": [
+    769,
+    443
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 31
+  },
+  "22": {
+   "lat": 21.276423,
+   "lng": -157.826578,
+   "px": [
+    831,
+    446
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 28
+  },
+  "23": {
+   "lat": 21.275785,
+   "lng": -157.824983,
+   "px": [
+    958,
+    404
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 32
+  },
+  "24": {
+   "lat": 21.275823,
+   "lng": -157.825923,
+   "px": [
+    902,
+    450
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 27
+  },
+  "25": {
+   "lat": 21.275439,
+   "lng": -157.82553,
+   "px": [
+    946,
+    454
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 28
+  },
+  "26": {
+   "lat": 21.275045,
+   "lng": -157.825145,
+   "px": [
+    990,
+    459
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 31
+  },
+  "27": {
+   "lat": 21.2746,
+   "lng": -157.823903,
+   "px": [
+    1086,
+    423
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 44
+  },
+  "28": {
+   "lat": 21.273179,
+   "lng": -157.824083,
+   "px": [
+    1155,
+    522
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 39
+  },
+  "29": {
+   "lat": 21.273631,
+   "lng": -157.823416,
+   "px": [
+    1168,
+    459
+   ],
+   "page": "map-IV-c.jpg",
+   "route_offset_m": 23
   },
   "19": {
    "lat": 21.276931,
    "lng": -157.826057,
-   "px": [
-    462,
-    390
-   ],
-   "route_offset_m": 37
+   "route_offset_m": 30,
+   "place": "Not printed on the cartographer's Walk IV map; kept where the book's map printed it (19 Nov 2026)"
   },
   "20": {
    "lat": 21.276931,
    "lng": -157.826057,
-   "px": [
-    462,
-    390
-   ],
-   "route_offset_m": 37
-  },
-  "21": {
-   "lat": 21.277016,
-   "lng": -157.827045,
-   "px": [
-    505,
-    432
-   ],
-   "route_offset_m": 35
-  },
-  "22": {
-   "lat": 21.276457,
-   "lng": -157.826352,
-   "px": [
-    506,
-    382
-   ],
-   "route_offset_m": 31
-  },
-  "23": {
-   "lat": 21.275728,
-   "lng": -157.824991,
-   "px": [
-    475,
-    285
-   ],
-   "route_offset_m": 28
-  },
-  "24": {
-   "lat": 21.275896,
-   "lng": -157.825734,
-   "px": [
-    509,
-    330
-   ],
-   "route_offset_m": 30
-  },
-  "25": {
-   "lat": 21.275473,
-   "lng": -157.825367,
-   "px": [
-    512,
-    292
-   ],
-   "route_offset_m": 30
-  },
-  "26": {
-   "lat": 21.275108,
-   "lng": -157.825114,
-   "px": [
-    517,
-    262
-   ],
-   "route_offset_m": 36
-  },
-  "27": {
-   "lat": 21.274635,
-   "lng": -157.823979,
-   "px": [
-    487,
-    187
-   ],
-   "route_offset_m": 44
-  },
-  "28": {
-   "lat": 21.2733,
-   "lng": -157.824118,
-   "px": [
-    566,
-    135
-   ],
-   "route_offset_m": 44
-  },
-  "29": {
-   "lat": 21.27367,
-   "lng": -157.823474,
-   "px": [
-    519,
-    122
-   ],
-   "route_offset_m": 0
+   "route_offset_m": 30,
+   "place": "Not printed on the cartographer's Walk IV map; kept where the book's map printed it (19 Nov 2026)"
   }
  },
  "V": {
   "1": {
-   "lat": 21.277331,
-   "lng": -157.826533,
+   "lat": 21.277072,
+   "lng": -157.826065,
    "px": [
-    530,
-    795
+    168,
+    474
    ],
-   "route_offset_m": 24
+   "page": "map-V-c.jpg",
+   "route_offset_m": 25
   },
   "2": {
-   "lat": 21.277601,
-   "lng": -157.826088,
+   "lat": 21.277283,
+   "lng": -157.825607,
    "px": [
-    492,
-    790
+    188,
+    427
    ],
-   "route_offset_m": 40
+   "page": "map-V-c.jpg",
+   "route_offset_m": 23
   },
   "3": {
-   "lat": 21.276943,
-   "lng": -157.825798,
+   "lat": 21.276827,
+   "lng": -157.825346,
    "px": [
-    515,
-    745
+    240,
+    447
    ],
-   "route_offset_m": 31
+   "page": "map-V-c.jpg",
+   "route_offset_m": 26
   },
   "4": {
-   "lat": 21.277161,
-   "lng": -157.825235,
+   "lat": 21.277128,
+   "lng": -157.824817,
    "px": [
-    475,
-    732
+    259,
+    388
    ],
-   "route_offset_m": 41
+   "page": "map-V-c.jpg",
+   "route_offset_m": 36
   },
   "5": {
-   "lat": 21.277509,
-   "lng": -157.824984,
+   "lat": 21.277489,
+   "lng": -157.82464,
    "px": [
-    444,
-    740
+    247,
+    347
    ],
-   "route_offset_m": 22
+   "page": "map-V-c.jpg",
+   "route_offset_m": 19
   },
   "6": {
-   "lat": 21.278738,
-   "lng": -157.824231,
+   "lat": 21.278788,
+   "lng": -157.824054,
    "px": [
-    350,
-    772
+    200,
+    203
    ],
-   "route_offset_m": 32
+   "page": "map-V-c.jpg",
+   "route_offset_m": 33
   },
   "7": {
-   "lat": 21.277963,
-   "lng": -157.82283,
+   "lat": 21.278139,
+   "lng": -157.822815,
    "px": [
-    332,
-    675
+    340,
+    175
    ],
-   "route_offset_m": 2
+   "page": "map-V-c.jpg",
+   "route_offset_m": 3
   },
   "8": {
-   "lat": 21.277258,
-   "lng": -157.82245,
+   "lat": 21.277235,
+   "lng": -157.822378,
    "px": [
-    360,
-    610
+    437,
+    220
    ],
-   "route_offset_m": 17
+   "page": "map-V-c.jpg",
+   "route_offset_m": 19
   },
   "9": {
-   "lat": 21.276885,
-   "lng": -157.821353,
+   "lat": 21.276662,
+   "lng": -157.821357,
    "px": [
-    341,
-    535
+    555,
+    200
    ],
-   "route_offset_m": 30
+   "page": "map-V-c.jpg",
+   "route_offset_m": 24
   },
   "10": {
-   "lat": 21.27671,
-   "lng": -157.822284,
+   "lat": 21.276588,
+   "lng": -157.822214,
    "px": [
-    388,
-    568
+    495,
+    262
    ],
+   "page": "map-V-c.jpg",
    "route_offset_m": 2
   },
   "11": {
-   "lat": 21.276473,
-   "lng": -157.821392,
+   "lat": 21.276246,
+   "lng": -157.821374,
    "px": [
-    369,
-    515
+    583,
+    235
    ],
+   "page": "map-V-c.jpg",
    "route_offset_m": 3
   },
   "12": {
-   "lat": 21.276552,
-   "lng": -157.819931,
+   "lat": 21.27643,
+   "lng": -157.819981,
    "px": [
-    292,
-    450
+    676,
+    129
    ],
-   "route_offset_m": 12
+   "page": "map-V-c.jpg",
+   "route_offset_m": 16
   },
   "13": {
-   "lat": 21.275954,
-   "lng": -157.819271,
+   "lat": 21.275903,
+   "lng": -157.819338,
    "px": [
-    294,
-    390
+    762,
+    130
    ],
-   "route_offset_m": 13
+   "page": "map-V-c.jpg",
+   "route_offset_m": 15
   },
   "14": {
-   "lat": 21.275347,
-   "lng": -157.818637,
+   "lat": 21.275382,
+   "lng": -157.818704,
    "px": [
-    297,
-    332
+    847,
+    131
    ],
-   "route_offset_m": 0
-  },
-  "15": {
-   "lat": 21.274385,
-   "lng": -157.820299,
-   "px": [
-    446,
-    365
-   ],
-   "route_offset_m": 5
-  },
-  "16": {
-   "lat": 21.272854,
-   "lng": -157.823065,
-   "px": [
-    627,
-    425
-   ],
-   "route_offset_m": 31
-  },
-  "17": {
-   "lat": 21.275226,
-   "lng": -157.822133,
-   "px": [
-    469,
-    492
-   ],
+   "page": "map-V-c.jpg",
    "route_offset_m": 2
   },
-  "18": {
-   "lat": 21.275402,
-   "lng": -157.821533,
+  "15": {
+   "lat": 21.274102,
+   "lng": -157.820508,
    "px": [
-    439,
-    472
+    800,
+    353
    ],
+   "page": "map-V-c.jpg",
+   "route_offset_m": 2
+  },
+  "16": {
+   "lat": 21.272762,
+   "lng": -157.82288,
+   "px": [
+    714,
+    617
+   ],
+   "page": "map-V-c.jpg",
+   "route_offset_m": 29
+  },
+  "17": {
+   "lat": 21.275023,
+   "lng": -157.8221,
+   "px": [
+    614,
+    382
+   ],
+   "page": "map-V-c.jpg",
+   "route_offset_m": 0
+  },
+  "18": {
+   "lat": 21.275165,
+   "lng": -157.821587,
+   "px": [
+    643,
+    337
+   ],
+   "page": "map-V-c.jpg",
    "route_offset_m": 28
   },
   "19": {
-   "lat": 21.27361,
-   "lng": -157.824199,
+   "lat": 21.273495,
+   "lng": -157.824068,
    "px": [
-    639,
-    520
+    572,
+    635
    ],
-   "route_offset_m": 42
+   "page": "map-V-c.jpg",
+   "route_offset_m": 39
   },
   "20": {
-   "lat": 21.275536,
-   "lng": -157.825062,
+   "lat": 21.27534,
+   "lng": -157.824778,
    "px": [
-    571,
-    646
+    388,
+    531
    ],
-   "route_offset_m": 0
+   "page": "map-V-c.jpg",
+   "route_offset_m": 21
   }
  },
  "VI": {
   "1": {
-   "lat": 21.271626,
-   "lng": -157.82284,
+   "lat": 21.271959,
+   "lng": -157.822645,
    "px": [
-    602,
-    850
+    109,
+    675
    ],
+   "page": "map-VI-c.jpg",
    "route_offset_m": 25
   },
   "2": {
-   "lat": 21.271438,
-   "lng": -157.822543,
+   "lat": 21.271532,
+   "lng": -157.822248,
    "px": [
-    583,
-    820
+    160,
+    648
    ],
-   "route_offset_m": 2
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 3
   },
   "3": {
-   "lat": 21.269194,
-   "lng": -157.821691,
+   "lat": 21.268921,
+   "lng": -157.821668,
    "px": [
-    593,
-    642
+    456,
+    658
    ],
-   "route_offset_m": 2
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 5
   },
   "4": {
-   "lat": 21.267104,
-   "lng": -157.819673,
+   "lat": 21.266954,
+   "lng": -157.819698,
    "px": [
-    509,
-    500
+    692,
+    520
    ],
-   "route_offset_m": 81
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 71
   },
   "5": {
-   "lat": 21.269928,
-   "lng": -157.82169,
+   "lat": 21.269664,
+   "lng": -157.821568,
    "px": [
-    575,
-    690
+    374,
+    630
    ],
-   "route_offset_m": 12
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 9
   },
   "6": {
-   "lat": 21.269939,
-   "lng": -157.821131,
+   "lat": 21.269726,
+   "lng": -157.820984,
    "px": [
-    540,
-    690
+    372,
+    573
    ],
-   "route_offset_m": 14
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 15
   },
   "7": {
-   "lat": 21.269295,
-   "lng": -157.821176,
+   "lat": 21.269044,
+   "lng": -157.821111,
    "px": [
-    559,
-    647
+    447,
+    602
    ],
-   "route_offset_m": 7
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 3
   },
   "8": {
-   "lat": 21.268474,
-   "lng": -157.820857,
+   "lat": 21.268249,
+   "lng": -157.820839,
    "px": [
-    555,
-    593
+    538,
+    596
    ],
-   "route_offset_m": 2
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 4
   },
   "9": {
-   "lat": 21.267918,
-   "lng": -157.821275,
+   "lat": 21.267728,
+   "lng": -157.821313,
    "px": [
-    587,
-    560
+    592,
+    654
    ],
+   "page": "map-VI-c.jpg",
    "route_offset_m": 7
   },
   "10": {
-   "lat": 21.26616,
-   "lng": -157.820669,
+   "lat": 21.266152,
+   "lng": -157.820689,
    "px": [
-    577,
-    447
+    773,
+    634
    ],
-   "route_offset_m": 5
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 8
   },
   "11": {
-   "lat": 21.268332,
-   "lng": -157.818451,
+   "lat": 21.268282,
+   "lng": -157.818508,
    "px": [
-    418,
-    580
+    554,
+    374
    ],
-   "route_offset_m": 95
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 91
   },
   "12": {
-   "lat": 21.26943,
-   "lng": -157.815429,
+   "lat": 21.269295,
+   "lng": -157.815454,
    "px": [
-    229,
-    633
+    467,
+    59
    ],
+   "page": "map-VI-c.jpg",
    "route_offset_m": 22
   },
   "13": {
-   "lat": 21.269926,
-   "lng": -157.819143,
+   "lat": 21.269932,
+   "lng": -157.819109,
    "px": [
-    429,
-    690
+    365,
+    390
    ],
-   "route_offset_m": 18
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 25
   },
   "14": {
-   "lat": 21.271446,
-   "lng": -157.821641,
+   "lat": 21.271554,
+   "lng": -157.819598,
    "px": [
-    529,
-    803
+    180,
+    396
    ],
-   "route_offset_m": 47
+   "page": "map-VI-c.jpg",
+   "route_offset_m": 26
   }
  },
  "VII": {
   "1": {
-   "lat": 21.271532,
-   "lng": -157.822756,
+   "lat": 21.271519,
+   "lng": -157.822546,
    "px": [
-    397,
-    1050
+    50,
+    229
    ],
-   "route_offset_m": 31
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 32
   },
   "2": {
-   "lat": 21.270764,
-   "lng": -157.822991,
+   "lat": 21.270709,
+   "lng": -157.822815,
    "px": [
-    430,
-    1033
+    69,
+    271
    ],
+   "page": "map-VII-c.jpg",
    "route_offset_m": 22
   },
   "3": {
-   "lat": 21.269183,
-   "lng": -157.822672,
+   "lat": 21.269057,
+   "lng": -157.822616,
    "px": [
-    479,
-    979
+    136,
+    332
    ],
+   "page": "map-VII-c.jpg",
    "route_offset_m": 31
   },
   "4": {
-   "lat": 21.26683,
-   "lng": -157.822243,
+   "lat": 21.266795,
+   "lng": -157.822177,
    "px": [
-    543,
-    899
+    234,
+    410
    ],
+   "page": "map-VII-c.jpg",
    "route_offset_m": 30
   },
   "5": {
-   "lat": 21.265946,
-   "lng": -157.821893,
+   "lat": 21.265941,
+   "lng": -157.821906,
    "px": [
-    562,
-    864
+    275,
+    436
    ],
-   "route_offset_m": 36
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 43
   },
   "6": {
-   "lat": 21.264509,
-   "lng": -157.821956,
+   "lat": 21.264589,
+   "lng": -157.821898,
    "px": [
-    610,
-    827
+    324,
+    491
    ],
-   "route_offset_m": 9
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 6
   },
   "7": {
-   "lat": 21.263431,
-   "lng": -157.821966,
+   "lat": 21.26351,
+   "lng": -157.821894,
    "px": [
-    645,
-    795
+    363,
+    535
    ],
-   "route_offset_m": 19
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 17
   },
   "8": {
-   "lat": 21.263333,
-   "lng": -157.821,
+   "lat": 21.263372,
+   "lng": -157.820966,
    "px": [
-    624,
-    762
+    403,
+    510
    ],
+   "page": "map-VII-c.jpg",
    "route_offset_m": 27
   },
   "9": {
-   "lat": 21.262788,
-   "lng": -157.820876,
+   "lat": 21.262811,
+   "lng": -157.820786,
    "px": [
-    639,
-    742
+    430,
+    527
    ],
-   "route_offset_m": 33
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 28
   },
   "10": {
-   "lat": 21.26212,
-   "lng": -157.820704,
+   "lat": 21.262193,
+   "lng": -157.820687,
    "px": [
-    657,
-    718
+    456,
+    549
    ],
-   "route_offset_m": 34
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 31
   },
   "11": {
-   "lat": 21.260731,
-   "lng": -157.820298,
+   "lat": 21.260781,
+   "lng": -157.820391,
    "px": [
-    693,
-    668
+    518,
+    597
    ],
-   "route_offset_m": 48
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 52
   },
   "12": {
-   "lat": 21.258585,
-   "lng": -157.818664,
+   "lat": 21.258762,
+   "lng": -157.818105,
    "px": [
-    699,
-    537
+    677,
+    604
    ],
-   "route_offset_m": 26
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 32
   },
   "13": {
-   "lat": 21.258109,
-   "lng": -157.818466,
+   "lat": 21.258329,
+   "lng": -157.817539,
    "px": [
-    700,
-    510
+    714,
+    603
    ],
-   "route_offset_m": 5
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 6
   },
   "14": {
-   "lat": 21.257236,
-   "lng": -157.818067,
+   "lat": 21.257462,
+   "lng": -157.816829,
    "px": [
-    709,
-    462
+    772,
+    615
    ],
-   "route_offset_m": 13
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 12
   },
   "15": {
-   "lat": 21.256196,
-   "lng": -157.816623,
+   "lat": 21.256419,
+   "lng": -157.814963,
    "px": [
-    695,
-    373
+    880,
+    596
    ],
-   "route_offset_m": 11
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 5
   },
   "16": {
-   "lat": 21.256026,
-   "lng": -157.814368,
+   "lat": 21.256056,
+   "lng": -157.812396,
    "px": [
-    638,
-    287
+    990,
+    526
    ],
-   "route_offset_m": 4
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 6
   },
   "17": {
-   "lat": 21.255838,
-   "lng": -157.811762,
+   "lat": 21.255652,
+   "lng": -157.809657,
    "px": [
-    575,
-    190
+    1108,
+    452
    ],
-   "route_offset_m": 16
-  },
-  "18": {
-   "lat": 21.255214,
-   "lng": -157.808506,
-   "px": [
-    495,
-    72
-   ],
+   "page": "map-VII-c.jpg",
    "route_offset_m": 20
   },
-  "19": {
-   "lat": 21.255767,
-   "lng": -157.806035,
+  "18": {
+   "lat": 21.255304,
+   "lng": -157.806201,
    "px": [
-    393,
-    30
+    1251,
+    352
    ],
-   "route_offset_m": 22
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 19
+  },
+  "19": {
+   "lat": 21.256354,
+   "lng": -157.803718,
+   "px": [
+    1307,
+    227
+   ],
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 23
   },
   "20": {
-   "lat": 21.260062,
-   "lng": -157.817338,
+   "lat": 21.260207,
+   "lng": -157.817019,
    "px": [
-    623,
-    548
+    666,
+    509
    ],
-   "route_offset_m": 113
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 34
   },
   "21": {
-   "lat": 21.26087,
-   "lng": -157.816462,
+   "lat": 21.260991,
+   "lng": -157.816113,
    "px": [
-    574,
-    543
+    672,
+    447
    ],
-   "route_offset_m": 234
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 38
   },
   "22": {
-   "lat": 21.26135,
-   "lng": -157.818141,
+   "lat": 21.26139,
+   "lng": -157.818301,
    "px": [
-    618,
-    622
+    575,
+    503
    ],
-   "route_offset_m": 27
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 26
   },
   "23": {
-   "lat": 21.269298,
-   "lng": -157.816094,
+   "lat": 21.269251,
+   "lng": -157.816896,
    "px": [
-    292,
-    778
+    345,
+    135
    ],
-   "route_offset_m": 3
+   "page": "map-VII-c.jpg",
+   "route_offset_m": 25
   }
  },
  "VIII": {
   "1": {
-   "lat": 21.27145,
-   "lng": -157.822794,
+   "lat": 21.271623,
+   "lng": -157.822595,
    "px": [
-    178,
-    908
+    71,
+    1130
    ],
-   "route_offset_m": 28
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 26
   },
   "2": {
-   "lat": 21.273309,
-   "lng": -157.81664,
+   "lat": 21.273194,
+   "lng": -157.816561,
    "px": [
-    455,
-    823
+    373,
+    1037
    ],
-   "route_offset_m": 19
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 20
   },
   "3": {
-   "lat": 21.274354,
-   "lng": -157.816667,
+   "lat": 21.274268,
+   "lng": -157.816626,
    "px": [
-    452,
-    770
+    368,
+    979
    ],
-   "route_offset_m": 40
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 39
   },
   "4": {
-   "lat": 21.275015,
-   "lng": -157.816363,
+   "lat": 21.274944,
+   "lng": -157.816307,
    "px": [
-    465,
-    735
+    383,
+    942
    ],
-   "route_offset_m": 50
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 46
   },
   "5": {
-   "lat": 21.279076,
-   "lng": -157.813926,
+   "lat": 21.279195,
+   "lng": -157.814012,
    "px": [
-    565,
-    521
+    492,
+    709
    ],
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 5
   },
   "6": {
-   "lat": 21.279829,
-   "lng": -157.814206,
+   "lat": 21.279997,
+   "lng": -157.814323,
    "px": [
-    550,
-    481
+    475,
+    666
    ],
-   "route_offset_m": 25
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 23
   },
   "7": {
-   "lat": 21.281486,
-   "lng": -157.814751,
+   "lat": 21.281711,
+   "lng": -157.814863,
    "px": [
-    522,
-    397
+    445,
+    574
    ],
-   "route_offset_m": 70
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 68
   },
   "8": {
-   "lat": 21.280909,
-   "lng": -157.813782,
+   "lat": 21.281059,
+   "lng": -157.813913,
    "px": [
-    568,
-    428
+    494,
+    608
    ],
-   "route_offset_m": 25
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 23
   },
   "9": {
-   "lat": 21.281964,
-   "lng": -157.812372,
+   "lat": 21.282003,
+   "lng": -157.812456,
    "px": [
-    633,
-    380
+    566,
+    555
    ],
-   "route_offset_m": 168
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 166
   },
   "10": {
-   "lat": 21.283887,
-   "lng": -157.814147,
+   "lat": 21.283876,
+   "lng": -157.8142,
    "px": [
-    550,
-    289
+    475,
+    456
    ],
-   "route_offset_m": 48
-  },
-  "11": {
-   "lat": 21.284828,
-   "lng": -157.813037,
-   "px": [
-    601,
-    247
-   ],
-   "route_offset_m": 48
-  },
-  "12": {
-   "lat": 21.287311,
-   "lng": -157.812668,
-   "px": [
-    615,
-    132
-   ],
-   "route_offset_m": 36
-  },
-  "13": {
-   "lat": 21.288848,
-   "lng": -157.812105,
-   "px": [
-    637,
-    48
-   ],
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 45
   },
-  "14": {
-   "lat": 21.289095,
-   "lng": -157.810218,
+  "11": {
+   "lat": 21.284697,
+   "lng": -157.813044,
    "px": [
-    718,
-    30
+    532,
+    410
    ],
-   "route_offset_m": 53
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 49
+  },
+  "12": {
+   "lat": 21.287,
+   "lng": -157.812713,
+   "px": [
+    545,
+    285
+   ],
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 20
+  },
+  "13": {
+   "lat": 21.288669,
+   "lng": -157.812184,
+   "px": [
+    569,
+    194
+   ],
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 43
+  },
+  "14": {
+   "lat": 21.288995,
+   "lng": -157.810411,
+   "px": [
+    658,
+    174
+   ],
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 51
   },
   "15": {
-   "lat": 21.289168,
-   "lng": -157.80849,
+   "lat": 21.289205,
+   "lng": -157.808403,
    "px": [
-    41,
-    17
+    759,
+    160
    ],
-   "page": "map-VIII-2.jpg",
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 167
   },
   "16": {
-   "lat": 21.287665,
-   "lng": -157.807238,
+   "lat": 21.287714,
+   "lng": -157.807162,
    "px": [
-    101,
-    90
+    824,
+    239
    ],
-   "page": "map-VIII-2.jpg",
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 80
   },
   "17": {
-   "lat": 21.285454,
-   "lng": -157.80622,
+   "lat": 21.285509,
+   "lng": -157.806163,
    "px": [
-    150,
-    198
+    878,
+    357
    ],
-   "page": "map-VIII-2.jpg",
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 84
   },
   "18": {
-   "lat": 21.283747,
-   "lng": -157.802057,
+   "lat": 21.283778,
+   "lng": -157.801919,
    "px": [
-    349,
-    279
+    1095,
+    445
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 44
-  },
-  "19": {
-   "lat": 21.283101,
-   "lng": -157.800991,
-   "px": [
-    400,
-    310
-   ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 55
-  },
-  "20": {
-   "lat": 21.28353,
-   "lng": -157.79969,
-   "px": [
-    462,
-    288
-   ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 48
-  },
-  "21": {
-   "lat": 21.282344,
-   "lng": -157.799276,
-   "px": [
-    482,
-    346
-   ],
-   "page": "map-VIII-2.jpg",
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 43
   },
-  "22": {
-   "lat": 21.281614,
-   "lng": -157.798022,
+  "19": {
+   "lat": 21.283123,
+   "lng": -157.80085,
    "px": [
-    542,
-    381
+    1150,
+    479
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 57
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 54
+  },
+  "20": {
+   "lat": 21.283534,
+   "lng": -157.799489,
+   "px": [
+    1218,
+    455
+   ],
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 47
+  },
+  "21": {
+   "lat": 21.28236,
+   "lng": -157.799111,
+   "px": [
+    1239,
+    518
+   ],
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 42
+  },
+  "22": {
+   "lat": 21.281608,
+   "lng": -157.797827,
+   "px": [
+    1305,
+    557
+   ],
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 58
   },
   "23": {
-   "lat": 21.278422,
-   "lng": -157.799396,
+   "lat": 21.278484,
+   "lng": -157.799333,
    "px": [
-    477,
-    539
+    1234,
+    728
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 37
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 35
   },
   "24": {
-   "lat": 21.277713,
-   "lng": -157.799609,
+   "lat": 21.277769,
+   "lng": -157.799574,
    "px": [
-    467,
-    574
+    1223,
+    767
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 84
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 82
   },
   "25": {
-   "lat": 21.27703,
-   "lng": -157.798773,
+   "lat": 21.277101,
+   "lng": -157.798724,
    "px": [
-    507,
-    607
+    1267,
+    802
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 0
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 4
   },
   "26": {
-   "lat": 21.273143,
-   "lng": -157.799878,
+   "lat": 21.273269,
+   "lng": -157.799975,
    "px": [
-    455,
-    799
+    1210,
+    1011
    ],
-   "page": "map-VIII-2.jpg",
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 2
+  },
+  "27": {
+   "lat": 21.273089,
+   "lng": -157.800952,
+   "px": [
+    1161,
+    1022
+   ],
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 0
   },
   "28": {
-   "lat": 21.272907,
-   "lng": -157.801849,
+   "lat": 21.273041,
+   "lng": -157.802003,
    "px": [
-    361,
-    812
+    1108,
+    1026
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 77
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 76
   },
   "29": {
-   "lat": 21.271822,
-   "lng": -157.799947,
+   "lat": 21.271959,
+   "lng": -157.800076,
    "px": [
-    452,
-    864
+    1207,
+    1082
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 117
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 115
   },
   "30": {
-   "lat": 21.271134,
-   "lng": -157.802946,
+   "lat": 21.271295,
+   "lng": -157.803169,
    "px": [
-    309,
-    900
+    1052,
+    1122
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 58
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 54
   },
   "31": {
-   "lat": 21.268872,
-   "lng": -157.802662,
+   "lat": 21.269054,
+   "lng": -157.802963,
    "px": [
-    323,
-    1011
+    1066,
+    1243
    ],
-   "page": "map-VIII-2.jpg",
+   "page": "map-VIII-c.jpg",
    "route_offset_m": 79
   },
   "32": {
-   "lat": 21.269491,
-   "lng": -157.807437,
+   "lat": 21.269728,
+   "lng": -157.807855,
    "px": [
-    95,
-    984
+    818,
+    1213
    ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 0
-  },
-  "27": {
-   "lat": 21.272973,
-   "lng": -157.800822,
-   "px": [
-    410,
-    808
-   ],
-   "page": "map-VIII-2.jpg",
-   "route_offset_m": 2
+   "page": "map-VIII-c.jpg",
+   "route_offset_m": 23
   }
  },
  "IX": {
   "1": {
-   "lat": 21.273834,
-   "lng": -157.817798,
+   "lat": 21.273806,
+   "lng": -157.817652,
    "px": [
-    627,
-    97
+    1266,
+    730
    ],
-   "route_offset_m": 26
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 25
   },
   "2": {
-   "lat": 21.274319,
-   "lng": -157.816819,
+   "lat": 21.274284,
+   "lng": -157.816609,
    "px": [
-    585,
-    82
+    1289,
+    676
    ],
+   "page": "map-IX-c.jpg",
    "route_offset_m": 46
   },
   "3": {
-   "lat": 21.273594,
-   "lng": -157.816357,
+   "lat": 21.273511,
+   "lng": -157.816198,
    "px": [
-    597,
-    47
+    1332,
+    694
    ],
-   "route_offset_m": 37
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 38
   },
   "4": {
-   "lat": 21.274407,
-   "lng": -157.815698,
+   "lat": 21.274383,
+   "lng": -157.815551,
    "px": [
-    552,
-    51
+    1326,
+    637
    ],
-   "route_offset_m": 36
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 35
   },
   "5": {
-   "lat": 21.274713,
-   "lng": -157.816267,
+   "lat": 21.274779,
+   "lng": -157.816101,
    "px": [
-    557,
-    77
+    1291,
+    639
    ],
-   "route_offset_m": 27
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 30
   },
   "6": {
-   "lat": 21.278849,
-   "lng": -157.813814,
+   "lat": 21.279116,
+   "lng": -157.813592,
    "px": [
-    354,
-    122
+    1234,
+    379
    ],
-   "route_offset_m": 31
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 35
   },
   "7": {
-   "lat": 21.279213,
-   "lng": -157.815019,
+   "lat": 21.279438,
+   "lng": -157.814837,
    "px": [
-    375,
-    167
+    1175,
+    407
    ],
-   "route_offset_m": 44
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 37
   },
   "8": {
-   "lat": 21.284793,
-   "lng": -157.82052,
+   "lat": 21.284781,
+   "lng": -157.8205,
    "px": [
-    348,
-    488
+    770,
+    376
    ],
-   "route_offset_m": 8
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 12
   },
   "9": {
-   "lat": 21.285277,
-   "lng": -157.821074,
+   "lat": 21.285244,
+   "lng": -157.821042,
    "px": [
-    347,
-    517
+    733,
+    375
    ],
+   "page": "map-IX-c.jpg",
    "route_offset_m": 8
   },
   "10": {
-   "lat": 21.287618,
-   "lng": -157.819896,
+   "lat": 21.287645,
+   "lng": -157.819742,
    "px": [
-    239,
-    545
+    698,
+    234
    ],
-   "route_offset_m": 0
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 5
   },
   "11": {
-   "lat": 21.288163,
-   "lng": -157.820587,
+   "lat": 21.288136,
+   "lng": -157.82044,
    "px": [
-    239,
-    580
+    654,
+    237
    ],
-   "route_offset_m": 34
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 32
   },
   "12": {
-   "lat": 21.289475,
-   "lng": -157.820555,
+   "lat": 21.289483,
+   "lng": -157.820348,
    "px": [
-    195,
-    613
+    610,
+    179
    ],
-   "route_offset_m": 33
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 34
   },
   "13": {
-   "lat": 21.289339,
-   "lng": -157.818588,
+   "lat": 21.289313,
+   "lng": -157.818413,
    "px": [
-    148,
-    550
+    690,
+    122
    ],
-   "route_offset_m": 84
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 82
   },
   "14": {
-   "lat": 21.289616,
-   "lng": -157.819515,
+   "lat": 21.289632,
+   "lng": -157.819322,
    "px": [
-    163,
-    585
+    644,
+    139
    ],
-   "route_offset_m": 49
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 45
   },
   "15": {
-   "lat": 21.290699,
-   "lng": -157.821459,
+   "lat": 21.29067,
+   "lng": -157.82124,
    "px": [
-    179,
-    673
+    534,
+    160
    ],
-   "route_offset_m": 65
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 90
   },
   "16": {
-   "lat": 21.291849,
-   "lng": -157.821885,
+   "lat": 21.2918,
+   "lng": -157.821637,
    "px": [
-    153,
-    717
+    479,
+    127
    ],
-   "route_offset_m": 15
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 8
   },
   "17": {
-   "lat": 21.291894,
-   "lng": -157.82276,
+   "lat": 21.291857,
+   "lng": -157.822525,
    "px": [
-    175,
-    745
+    443,
+    154
    ],
-   "route_offset_m": 21
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 19
   },
   "18": {
-   "lat": 21.288223,
-   "lng": -157.824955,
+   "lat": 21.288123,
+   "lng": -157.824871,
    "px": [
-    353,
-    713
+    485,
+    384
    ],
-   "route_offset_m": 58
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 64
   },
   "19": {
-   "lat": 21.289416,
-   "lng": -157.825317,
+   "lat": 21.289383,
+   "lng": -157.825278,
    "px": [
-    325,
-    757
+    425,
+    346
    ],
-   "route_offset_m": 6
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 3
   },
   "20": {
-   "lat": 21.292733,
-   "lng": -157.823483,
+   "lat": 21.292646,
+   "lng": -157.823288,
    "px": [
-    169,
-    790
+    386,
+    147
    ],
-   "route_offset_m": 62
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 64
   },
   "21": {
-   "lat": 21.292979,
-   "lng": -157.825797,
+   "lat": 21.29281,
+   "lng": -157.8257,
    "px": [
-    225,
-    867
+    288,
+    220
    ],
-   "route_offset_m": 29
-  },
-  "22": {
-   "lat": 21.292925,
-   "lng": -157.826705,
-   "px": [
-    251,
-    893
-   ],
-   "route_offset_m": 4
-  },
-  "23": {
-   "lat": 21.29401,
-   "lng": -157.828805,
-   "px": [
-    272,
-    985
-   ],
-   "route_offset_m": 50
-  },
-  "24": {
-   "lat": 21.294979,
-   "lng": -157.829024,
-   "px": [
-    247,
-    1017
-   ],
+   "page": "map-IX-c.jpg",
    "route_offset_m": 31
   },
-  "25": {
-   "lat": 21.295419,
-   "lng": -157.830064,
+  "23": {
+   "lat": 21.293877,
+   "lng": -157.828743,
    "px": [
-    260,
-    1060
+    134,
+    277
    ],
-   "route_offset_m": 39
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 47
+  },
+  "22": {
+   "lat": 21.292784,
+   "lng": -157.826666,
+   "px": [
+    252,
+    253
+   ],
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 6
+  },
+  "24": {
+   "lat": 21.294734,
+   "lng": -157.828894,
+   "px": [
+    98,
+    247
+   ],
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 29
+  },
+  "25": {
+   "lat": 21.295213,
+   "lng": -157.82997,
+   "px": [
+    40,
+    263
+   ],
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 40
   },
   "26": {
-   "lat": 21.294345,
-   "lng": -157.830093,
+   "lat": 21.294197,
+   "lng": -157.830017,
    "px": [
-    295,
-    1033
+    74,
+    306
    ],
-   "route_offset_m": 42
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 41
   },
   "27": {
-   "lat": 21.294444,
-   "lng": -157.830993,
+   "lat": 21.294267,
+   "lng": -157.83092,
    "px": [
-    315,
-    1063
+    37,
+    333
    ],
-   "route_offset_m": 46
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 44
   },
   "28": {
-   "lat": 21.293311,
-   "lng": -157.830466,
+   "lat": 21.293159,
+   "lng": -157.830399,
    "px": [
-    337,
-    1017
+    96,
+    361
    ],
-   "route_offset_m": 43
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 42
   },
   "29": {
-   "lat": 21.289821,
-   "lng": -157.832358,
+   "lat": 21.289564,
+   "lng": -157.83225,
    "px": [
-    500,
-    975
+    152,
+    569
    ],
-   "route_offset_m": 3
+   "page": "map-IX-c.jpg",
+   "route_offset_m": 21
   }
  },
  "X": {
@@ -2277,121 +2451,121 @@
    "route_offset_m": 23
   },
   "30": {
-   "lat": 21.304785,
-   "lng": -157.819341,
+   "lat": 21.304776,
+   "lng": -157.819347,
    "px": [
-    401,
-    1695
+    511,
+    2160
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 30
+   "route_offset_m": 29
   },
   "31": {
-   "lat": 21.305558,
+   "lat": 21.30555,
    "lng": -157.818823,
    "px": [
-    393,
-    1645
-   ],
-   "page": "map-X-c2.jpg",
-   "route_offset_m": 34
-  },
-  "32": {
-   "lat": 21.307746,
-   "lng": -157.816831,
-   "px": [
-    390,
-    1486
-   ],
-   "page": "map-X-c2.jpg",
-   "route_offset_m": 31
-  },
-  "33": {
-   "lat": 21.309059,
-   "lng": -157.815829,
-   "px": [
-    381,
-    1397
+    501,
+    2096
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 33
   },
+  "32": {
+   "lat": 21.307755,
+   "lng": -157.816841,
+   "px": [
+    496,
+    1893
+   ],
+   "page": "map-X-c2.jpg",
+   "route_offset_m": 32
+  },
+  "33": {
+   "lat": 21.309058,
+   "lng": -157.815837,
+   "px": [
+    485,
+    1780
+   ],
+   "page": "map-X-c2.jpg",
+   "route_offset_m": 34
+  },
   "34": {
    "lat": 21.310434,
-   "lng": -157.81309,
+   "lng": -157.813093,
    "px": [
-    435,
-    1248
+    554,
+    1590
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 100
   },
   "35": {
-   "lat": 21.310157,
-   "lng": -157.81455,
+   "lat": 21.310158,
+   "lng": -157.814545,
    "px": [
-    390,
-    1308
+    497,
+    1666
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 0
   },
   "36": {
-   "lat": 21.311575,
-   "lng": -157.814139,
+   "lat": 21.311568,
+   "lng": -157.81413,
    "px": [
-    355,
-    1234
+    453,
+    1572
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 45
+   "route_offset_m": 44
   },
   "37": {
-   "lat": 21.311278,
-   "lng": -157.812452,
+   "lat": 21.311276,
+   "lng": -157.812443,
    "px": [
-    429,
-    1191
+    547,
+    1517
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 112
+   "route_offset_m": 121
   },
   "38": {
-   "lat": 21.314152,
-   "lng": -157.812951,
+   "lat": 21.314148,
+   "lng": -157.812941,
    "px": [
-    308,
-    1085
+    393,
+    1382
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 28
+   "route_offset_m": 26
   },
   "39": {
-   "lat": 21.315514,
-   "lng": -157.812619,
+   "lat": 21.315502,
+   "lng": -157.81262,
    "px": [
-    272,
-    1016
+    347,
+    1295
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 33
   },
   "40": {
-   "lat": 21.317221,
-   "lng": -157.808369,
+   "lat": 21.317217,
+   "lng": -157.808365,
    "px": [
-    371,
-    803
+    473,
+    1023
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 10
   },
   "41": {
-   "lat": 21.318141,
-   "lng": -157.803162,
+   "lat": 21.318145,
+   "lng": -157.803164,
    "px": [
-    534,
-    592
+    680,
+    754
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 106
@@ -2409,91 +2583,91 @@
    "place": "Lyon Arboretum. Kept with the cartographer's map: the arboretum is past its top edge"
   },
   "44": {
-   "lat": 21.308971,
-   "lng": -157.80926,
+   "lat": 21.308972,
+   "lng": -157.809277,
    "px": [
-    631,
-    1184
+    803,
+    1509
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 59
+   "route_offset_m": 58
   },
   "45": {
-   "lat": 21.307576,
-   "lng": -157.810368,
+   "lat": 21.307572,
+   "lng": -157.810372,
    "px": [
-    639,
-    1280
+    814,
+    1631
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 48
+   "route_offset_m": 47
   },
   "46": {
-   "lat": 21.307121,
-   "lng": -157.811144,
+   "lat": 21.307125,
+   "lng": -157.811151,
    "px": [
-    626,
-    1325
+    797,
+    1688
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 36
+   "route_offset_m": 47
   },
   "48": {
-   "lat": 21.307058,
-   "lng": -157.812215,
+   "lat": 21.307062,
+   "lng": -157.812212,
    "px": [
-    588,
-    1363
+    749,
+    1736
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 37
+   "route_offset_m": 39
   },
   "47": {
-   "lat": 21.305935,
+   "lat": 21.305938,
    "lng": -157.811522,
    "px": [
-    654,
-    1388
+    833,
+    1768
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 65
+   "route_offset_m": 64
   },
   "49": {
-   "lat": 21.307644,
-   "lng": -157.813789,
+   "lat": 21.307653,
+   "lng": -157.813784,
    "px": [
-    508,
-    1390
+    647,
+    1770
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 32
+   "route_offset_m": 30
   },
   "50": {
-   "lat": 21.306876,
-   "lng": -157.816405,
+   "lat": 21.306877,
+   "lng": -157.816398,
    "px": [
-    437,
-    1509
+    557,
+    1922
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 56
   },
   "51": {
-   "lat": 21.303176,
-   "lng": -157.818657,
+   "lat": 21.303171,
+   "lng": -157.818653,
    "px": [
-    484,
-    1741
+    617,
+    2218
    ],
    "page": "map-X-c2.jpg",
-   "route_offset_m": 50
+   "route_offset_m": 49
   },
   "52": {
-   "lat": 21.301554,
-   "lng": -157.819926,
+   "lat": 21.301549,
+   "lng": -157.819937,
    "px": [
-    494,
-    1852
+    629,
+    2360
    ],
    "page": "map-X-c2.jpg",
    "route_offset_m": 23
@@ -2502,450 +2676,450 @@
  "XI": {
   "1": {
    "lat": 21.287586,
-   "lng": -157.833127,
+   "lng": -157.833116,
    "px": [
-    108,
-    961
+    112,
+    991
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 22
+   "route_offset_m": 21
   },
   "2": {
-   "lat": 21.288588,
-   "lng": -157.832255,
+   "lat": 21.288595,
+   "lng": -157.83227,
    "px": [
-    154,
-    908
+    158,
+    936
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 36
+   "route_offset_m": 35
   },
   "3": {
-   "lat": 21.289442,
-   "lng": -157.83228,
+   "lat": 21.28944,
+   "lng": -157.832295,
    "px": [
-    154,
-    862
+    158,
+    889
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 6
+   "route_offset_m": 4
   },
   "4": {
-   "lat": 21.294002,
-   "lng": -157.830041,
+   "lat": 21.294008,
+   "lng": -157.830052,
    "px": [
-    275,
-    619
+    283,
+    638
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 52
+   "route_offset_m": 50
   },
   "5": {
-   "lat": 21.295752,
+   "lat": 21.295759,
    "lng": -157.829838,
    "px": [
-    288,
-    525
+    297,
+    541
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 10
+   "route_offset_m": 9
   },
   "6": {
    "lat": 21.298383,
-   "lng": -157.828346,
+   "lng": -157.828356,
    "px": [
-    368,
-    385
+    379,
+    397
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 19
   },
   "7": {
-   "lat": 21.296996,
-   "lng": -157.820968,
+   "lat": 21.296989,
+   "lng": -157.820971,
    "px": [
-    742,
-    468
+    765,
+    483
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 33
+   "route_offset_m": 29
   },
   "8": {
-   "lat": 21.297554,
-   "lng": -157.821789,
+   "lat": 21.297548,
+   "lng": -157.821787,
    "px": [
-    701,
-    437
-   ],
-   "page": "map-XI-c.jpg",
-   "route_offset_m": 27
-  },
-  "9": {
-   "lat": 21.299599,
-   "lng": -157.821692,
-   "px": [
-    709,
-    327
-   ],
-   "page": "map-XI-c.jpg",
-   "route_offset_m": 65
-  },
-  "10": {
-   "lat": 21.298916,
-   "lng": -157.820613,
-   "px": [
-    763,
-    365
-   ],
-   "page": "map-XI-c.jpg",
-   "route_offset_m": 30
-  },
-  "11": {
-   "lat": 21.299822,
-   "lng": -157.820777,
-   "px": [
-    756,
-    316
+    723,
+    451
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 28
   },
-  "12": {
-   "lat": 21.299932,
-   "lng": -157.819093,
+  "9": {
+   "lat": 21.299603,
+   "lng": -157.821695,
    "px": [
-    842,
-    312
+    731,
+    337
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 23
+   "route_offset_m": 64
+  },
+  "10": {
+   "lat": 21.298923,
+   "lng": -157.820629,
+   "px": [
+    786,
+    376
+   ],
+   "page": "map-XI-c.jpg",
+   "route_offset_m": 29
+  },
+  "11": {
+   "lat": 21.29982,
+   "lng": -157.820789,
+   "px": [
+    779,
+    326
+   ],
+   "page": "map-XI-c.jpg",
+   "route_offset_m": 29
+  },
+  "12": {
+   "lat": 21.299945,
+   "lng": -157.819099,
+   "px": [
+    868,
+    321
+   ],
+   "page": "map-XI-c.jpg",
+   "route_offset_m": 24
   },
   "13": {
-   "lat": 21.300634,
-   "lng": -157.819251,
+   "lat": 21.300644,
+   "lng": -157.819253,
    "px": [
-    835,
-    274
-   ],
-   "page": "map-XI-c.jpg",
-   "route_offset_m": 31
-  },
-  "14": {
-   "lat": 21.299741,
-   "lng": -157.81846,
-   "px": [
-    874,
-    323
-   ],
-   "page": "map-XI-c.jpg",
-   "route_offset_m": 31
-  },
-  "15": {
-   "lat": 21.3005,
-   "lng": -157.81856,
-   "px": [
-    870,
+    861,
     282
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 40
+   "route_offset_m": 32
+  },
+  "14": {
+   "lat": 21.299743,
+   "lng": -157.818447,
+   "px": [
+    902,
+    333
+   ],
+   "page": "map-XI-c.jpg",
+   "route_offset_m": 30
+  },
+  "15": {
+   "lat": 21.300497,
+   "lng": -157.818545,
+   "px": [
+    898,
+    291
+   ],
+   "page": "map-XI-c.jpg",
+   "route_offset_m": 42
   },
   "16": {
-   "lat": 21.299888,
-   "lng": -157.81762,
+   "lat": 21.299886,
+   "lng": -157.817614,
    "px": [
-    917,
-    316
+    946,
+    326
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 11
   },
   "17": {
-   "lat": 21.300612,
-   "lng": -157.817661,
+   "lat": 21.300606,
+   "lng": -157.817654,
    "px": [
-    916,
-    277
+    945,
+    286
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 62
+   "route_offset_m": 61
   },
   "18": {
-   "lat": 21.299276,
-   "lng": -157.817583,
+   "lat": 21.299275,
+   "lng": -157.817577,
    "px": [
-    918,
-    349
+    947,
+    360
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 78
+   "route_offset_m": 77
   },
   "19": {
    "lat": 21.299256,
    "lng": -157.816758,
    "px": [
-    960,
-    351
+    990,
+    362
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 72
+   "route_offset_m": 73
   },
   "20": {
-   "lat": 21.300733,
-   "lng": -157.816292,
+   "lat": 21.300724,
+   "lng": -157.816288,
    "px": [
-    986,
-    272
+    1017,
+    281
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 33
+   "route_offset_m": 34
   },
   "21": {
-   "lat": 21.300914,
-   "lng": -157.81565,
+   "lat": 21.300918,
+   "lng": -157.815647,
    "px": [
-    1019,
-    263
+    1051,
+    271
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 29
+   "route_offset_m": 28
   },
   "22": {
-   "lat": 21.302684,
-   "lng": -157.817173,
+   "lat": 21.302687,
+   "lng": -157.817183,
    "px": [
-    944,
-    166
+    973,
+    171
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 154
   },
   "23": {
-   "lat": 21.303596,
-   "lng": -157.814395,
+   "lat": 21.303591,
+   "lng": -157.814394,
    "px": [
-    1087,
-    120
+    1121,
+    124
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 49
   },
   "24": {
-   "lat": 21.302242,
-   "lng": -157.815218,
+   "lat": 21.302241,
+   "lng": -157.815229,
    "px": [
-    1043,
-    192
+    1075,
+    198
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 41
+   "route_offset_m": 40
   },
   "25": {
-   "lat": 21.300998,
-   "lng": -157.815201,
+   "lat": 21.300999,
+   "lng": -157.815212,
    "px": [
-    1042,
-    259
+    1074,
+    267
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 55
+   "route_offset_m": 57
   },
   "26": {
-   "lat": 21.300286,
-   "lng": -157.814611,
+   "lat": 21.300291,
+   "lng": -157.81462,
    "px": [
-    1071,
-    298
+    1104,
+    307
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 3
   },
   "27": {
-   "lat": 21.299422,
-   "lng": -157.814193,
+   "lat": 21.299418,
+   "lng": -157.814195,
    "px": [
-    1091,
-    345
+    1125,
+    356
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 41
+   "route_offset_m": 40
   },
   "28": {
-   "lat": 21.299347,
-   "lng": -157.815113,
+   "lat": 21.299344,
+   "lng": -157.815106,
    "px": [
-    1044,
-    348
+    1077,
+    359
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 47
+   "route_offset_m": 50
   },
   "29": {
-   "lat": 21.298922,
-   "lng": -157.814983,
+   "lat": 21.298933,
+   "lng": -157.814979,
    "px": [
-    1050,
-    371
+    1083,
+    382
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 19
+   "route_offset_m": 20
   },
   "30": {
-   "lat": 21.298401,
-   "lng": -157.815948,
+   "lat": 21.298408,
+   "lng": -157.815953,
    "px": [
-    1000,
-    398
+    1031,
+    410
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 19
+   "route_offset_m": 18
   },
   "31": {
-   "lat": 21.298112,
-   "lng": -157.81641,
+   "lat": 21.29811,
+   "lng": -157.81642,
    "px": [
-    976,
-    413
+    1006,
+    426
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 52
   },
   "32": {
-   "lat": 21.297898,
-   "lng": -157.815129,
+   "lat": 21.297903,
+   "lng": -157.815139,
    "px": [
-    1041,
-    426
+    1073,
+    439
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 14
+   "route_offset_m": 15
   },
   "33": {
-   "lat": 21.296551,
-   "lng": -157.815599,
+   "lat": 21.296543,
+   "lng": -157.815594,
    "px": [
-    1015,
-    498
+    1047,
+    514
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 24
   },
   "34": {
-   "lat": 21.297007,
-   "lng": -157.817751,
+   "lat": 21.297002,
+   "lng": -157.817738,
    "px": [
-    906,
-    471
+    935,
+    486
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 37
+   "route_offset_m": 36
   },
   "35": {
-   "lat": 21.296401,
-   "lng": -157.818322,
+   "lat": 21.296396,
+   "lng": -157.818329,
    "px": [
-    876,
-    503
+    903,
+    519
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 31
+   "route_offset_m": 30
   },
   "36": {
-   "lat": 21.2972,
-   "lng": -157.818286,
+   "lat": 21.297207,
+   "lng": -157.818276,
    "px": [
-    879,
-    460
+    907,
+    474
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 16
+   "route_offset_m": 15
   },
   "37": {
-   "lat": 21.297263,
-   "lng": -157.818818,
+   "lat": 21.297268,
+   "lng": -157.81883,
    "px": [
-    852,
-    456
+    878,
+    470
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 46
   },
   "38": {
-   "lat": 21.297713,
-   "lng": -157.817733,
+   "lat": 21.297705,
+   "lng": -157.81774,
    "px": [
-    908,
-    433
+    936,
+    447
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 65
   },
   "39": {
-   "lat": 21.298557,
-   "lng": -157.819131,
+   "lat": 21.29854,
+   "lng": -157.819134,
    "px": [
-    838,
-    386
+    864,
+    399
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 24
   },
   "40": {
-   "lat": 21.298973,
-   "lng": -157.818751,
+   "lat": 21.29898,
+   "lng": -157.818747,
    "px": [
-    858,
-    364
+    885,
+    375
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 27
+   "route_offset_m": 29
   },
   "41": {
-   "lat": 21.299141,
-   "lng": -157.819599,
+   "lat": 21.299142,
+   "lng": -157.819608,
    "px": [
-    815,
-    354
+    840,
+    365
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 16
   },
   "42": {
-   "lat": 21.298729,
-   "lng": -157.819783,
+   "lat": 21.298724,
+   "lng": -157.819786,
    "px": [
-    805,
-    376
+    830,
+    388
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 31
+   "route_offset_m": 30
   },
   "43": {
-   "lat": 21.298451,
-   "lng": -157.820619,
+   "lat": 21.298455,
+   "lng": -157.820615,
    "px": [
-    762,
-    390
+    786,
+    402
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 51
+   "route_offset_m": 50
   },
   "44": {
-   "lat": 21.297237,
-   "lng": -157.820092,
+   "lat": 21.297241,
+   "lng": -157.820104,
    "px": [
-    787,
-    456
+    811,
+    470
    ],
    "page": "map-XI-c.jpg",
-   "route_offset_m": 37
+   "route_offset_m": 38
   },
   "45": {
-   "lat": 21.296535,
-   "lng": -157.820778,
+   "lat": 21.296542,
+   "lng": -157.820787,
    "px": [
-    751,
-    493
+    774,
+    508
    ],
    "page": "map-XI-c.jpg",
    "route_offset_m": 23
@@ -2953,284 +3127,284 @@
  },
  "XII": {
   "1": {
-   "lat": 21.274007,
-   "lng": -157.81626,
+   "lat": 21.274021,
+   "lng": -157.816257,
    "px": [
-    1086,
-    1134
+    1139,
+    1189
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 23
+   "route_offset_m": 22
   },
   "2": {
-   "lat": 21.273964,
-   "lng": -157.817426,
+   "lat": 21.273962,
+   "lng": -157.817433,
    "px": [
-    1043,
-    1174
+    1094,
+    1232
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 132
+   "route_offset_m": 121
   },
   "3": {
-   "lat": 21.273204,
-   "lng": -157.816296,
+   "lat": 21.273206,
+   "lng": -157.816287,
    "px": [
-    1113,
-    1168
+    1168,
+    1225
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 110
+   "route_offset_m": 65
   },
   "4": {
    "lat": 21.274526,
-   "lng": -157.816907,
-   "px": [
-    1043,
-    1134
-   ],
-   "page": "map-XII-c.jpg",
-   "route_offset_m": 83
-  },
-  "5": {
-   "lat": 21.274559,
-   "lng": -157.815515,
+   "lng": -157.816887,
    "px": [
     1095,
-    1087
+    1189
+   ],
+   "page": "map-XII-c.jpg",
+   "route_offset_m": 68
+  },
+  "5": {
+   "lat": 21.274562,
+   "lng": -157.815507,
+   "px": [
+    1149,
+    1140
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 35
   },
   "6": {
-   "lat": 21.274981,
-   "lng": -157.816041,
+   "lat": 21.274987,
+   "lng": -157.816037,
    "px": [
-    1060,
-    1087
+    1112,
+    1140
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 31
   },
   "7": {
-   "lat": 21.279115,
-   "lng": -157.813605,
+   "lat": 21.279111,
+   "lng": -157.813595,
    "px": [
-    1007,
-    838
+    1057,
+    879
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 34
+   "route_offset_m": 35
   },
   "8": {
-   "lat": 21.279694,
-   "lng": -157.814143,
+   "lat": 21.279697,
+   "lng": -157.814152,
    "px": [
-    966,
-    832
+    1013,
+    873
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 12
+   "route_offset_m": 11
   },
   "9": {
-   "lat": 21.281048,
-   "lng": -157.813912,
+   "lat": 21.281052,
+   "lng": -157.813922,
    "px": [
-    927,
-    769
+    972,
+    807
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 20
   },
   "10": {
-   "lat": 21.281679,
-   "lng": -157.81482,
+   "lat": 21.281688,
+   "lng": -157.814831,
    "px": [
-    870,
-    773
+    912,
+    811
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 64
+   "route_offset_m": 66
   },
   "11": {
-   "lat": 21.283409,
-   "lng": -157.814294,
+   "lat": 21.283401,
+   "lng": -157.814295,
    "px": [
-    829,
-    685
+    870,
+    719
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 47
+   "route_offset_m": 48
   },
   "12": {
-   "lat": 21.281982,
-   "lng": -157.812394,
+   "lat": 21.281986,
+   "lng": -157.812385,
    "px": [
-    952,
-    681
+    999,
+    714
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 169
+   "route_offset_m": 170
   },
   "13": {
-   "lat": 21.284881,
-   "lng": -157.813142,
+   "lat": 21.284883,
+   "lng": -157.813149,
    "px": [
-    821,
-    587
+    861,
+    616
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 32
   },
   "14": {
-   "lat": 21.288325,
-   "lng": -157.810089,
+   "lat": 21.288326,
+   "lng": -157.81009,
    "px": [
-    816,
-    346
+    856,
+    363
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 146
   },
   "15": {
-   "lat": 21.289534,
-   "lng": -157.81062,
+   "lat": 21.289539,
+   "lng": -157.810615,
    "px": [
-    753,
-    314
+    790,
+    329
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 34
+   "route_offset_m": 33
   },
   "16": {
-   "lat": 21.29076,
-   "lng": -157.810533,
+   "lat": 21.290758,
+   "lng": -157.810536,
    "px": [
-    713,
-    261
-   ],
-   "page": "map-XII-c.jpg",
-   "route_offset_m": 13
-  },
-  "17": {
-   "lat": 21.291686,
-   "lng": -157.810803,
-   "px": [
-    670,
-    232
-   ],
-   "page": "map-XII-c.jpg",
-   "route_offset_m": 32
-  },
-  "18": {
-   "lat": 21.295255,
-   "lng": -157.812266,
-   "px": [
-    488,
-    134
-   ],
-   "page": "map-XII-c.jpg",
-   "route_offset_m": 42
-  },
-  "19": {
-   "lat": 21.296255,
-   "lng": -157.812782,
-   "px": [
-    433,
-    110
-   ],
-   "page": "map-XII-c.jpg",
-   "route_offset_m": 39
-  },
-  "20": {
-   "lat": 21.296027,
-   "lng": -157.815271,
-   "px": [
-    346,
-    201
+    748,
+    274
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 11
   },
-  "21": {
-   "lat": 21.295388,
-   "lng": -157.814291,
+  "17": {
+   "lat": 21.291677,
+   "lng": -157.810809,
    "px": [
-    406,
-    195
+    703,
+    244
+   ],
+   "page": "map-XII-c.jpg",
+   "route_offset_m": 34
+  },
+  "18": {
+   "lat": 21.295263,
+   "lng": -157.812259,
+   "px": [
+    512,
+    140
+   ],
+   "page": "map-XII-c.jpg",
+   "route_offset_m": 41
+  },
+  "19": {
+   "lat": 21.296239,
+   "lng": -157.812778,
+   "px": [
+    455,
+    116
+   ],
+   "page": "map-XII-c.jpg",
+   "route_offset_m": 37
+  },
+  "20": {
+   "lat": 21.296013,
+   "lng": -157.815258,
+   "px": [
+    364,
+    211
+   ],
+   "page": "map-XII-c.jpg",
+   "route_offset_m": 17
+  },
+  "21": {
+   "lat": 21.295381,
+   "lng": -157.814295,
+   "px": [
+    426,
+    205
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 79
   },
   "22": {
-   "lat": 21.293151,
-   "lng": -157.816045,
+   "lat": 21.293169,
+   "lng": -157.816041,
    "px": [
-    418,
-    344
+    438,
+    360
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 104
+   "route_offset_m": 102
   },
   "23": {
-   "lat": 21.294171,
-   "lng": -157.817012,
+   "lat": 21.294176,
+   "lng": -157.817006,
    "px": [
-    345,
-    334
+    362,
+    350
    ],
    "page": "map-XII-c.jpg",
    "route_offset_m": 78
   },
   "24": {
-   "lat": 21.294277,
-   "lng": -157.818851,
+   "lat": 21.294283,
+   "lng": -157.818854,
    "px": [
-    271,
-    390
+    284,
+    409
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 66
+   "route_offset_m": 67
   },
   "25": {
-   "lat": 21.293269,
-   "lng": -157.817716,
+   "lat": 21.293276,
+   "lng": -157.817714,
    "px": [
-    350,
-    394
+    367,
+    413
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 18
+   "route_offset_m": 16
   },
   "26": {
-   "lat": 21.295309,
-   "lng": -157.819101,
+   "lat": 21.295316,
+   "lng": -157.819096,
    "px": [
-    225,
-    356
+    236,
+    373
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 98
+   "route_offset_m": 97
   },
   "27": {
-   "lat": 21.296355,
-   "lng": -157.819521,
+   "lat": 21.296361,
+   "lng": -157.819527,
    "px": [
-    172,
-    327
+    180,
+    343
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 51
+   "route_offset_m": 50
   },
   "28": {
-   "lat": 21.296459,
-   "lng": -157.820839,
+   "lat": 21.296456,
+   "lng": -157.820837,
    "px": [
-    118,
-    366
+    124,
+    384
    ],
    "page": "map-XII-c.jpg",
-   "route_offset_m": 23
+   "route_offset_m": 24
   }
  }
 }

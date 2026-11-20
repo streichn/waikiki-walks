@@ -1,6 +1,6 @@
-"""Use the cartographer's own map files for Walks X, XI and XII (Jason Nakano, Fruits Media, 2022; shared by
+"""Use the cartographer's own map files for every walk (Jason Nakano, Fruits Media, 2022; shared by
 Veneeta 19 Nov 2026 from Google Drive, saved in book/cartographer/). They are full vector maps, one per walk
-(Walk X in two), with every stop number printed, so they replace the book page renders and Veneeta's photos.
+(Walk X in two), with nearly every stop number printed, so they replace the book page renders and Veneeta's photos.
 
 For each map:
   1. render it to assets/book/<file>,
@@ -31,9 +31,19 @@ from intersect import street  # noqa: E402
 from shapely.geometry import LineString  # noqa: E402
 from shapely.ops import unary_union  # noqa: E402
 
-S = 2.2  # render scale (pixels per PDF point); these pages are 460 to 630 pt wide
+S = 2.2  # fitting scale (pixels per PDF point): the fit's thresholds are tuned for maps at this scale
+MIN_W = 1300  # small maps are rendered larger so they stay sharp; their fit is scaled to match
 # walk, source PDF, image file, is this the walk's first map
 MAPS = [
+    ('I', 'W01.pdf', 'map-I-c.jpg', True),
+    ('II', 'W02.pdf', 'map-II-c.jpg', True),
+    ('III', 'W03.pdf', 'map-III-c.jpg', True),
+    ('IV', 'W04.pdf', 'map-IV-c.jpg', True),
+    ('V', 'W05.pdf', 'map-V-c.jpg', True),
+    ('VI', 'W06.pdf', 'map-VI-c.jpg', True),
+    ('VII', 'W07.pdf', 'map-VII-c.jpg', True),
+    ('VIII', 'W08.pdf', 'map-VIII-c.jpg', True),
+    ('IX', 'W09.pdf', 'map-IX-c.jpg', True),
     ('X', 'W10-1.pdf', 'map-X-c1.jpg', True),
     ('X', 'W10-2.pdf', 'map-X-c2.jpg', False),
     ('XI', 'W11.pdf', 'map-XI-c.jpg', True),
@@ -42,7 +52,7 @@ MAPS = [
 ROUTE_COLORS = [(0.99, 0.77, 0.6), (0.86, 0.62, 0.78)]  # main walk path (dotted), alternate route (dotted)
 
 
-def read(pdf):
+def read(pdf, S=S):
     page = pymupdf.open(os.path.join(ROOT, 'book/cartographer', pdf))[0]
     nums = {}
     for x0, y0, x1, y1, w, *_ in page.get_text('words'):
@@ -59,7 +69,7 @@ def read(pdf):
     return page, nums, labels
 
 
-def route_mask(page):
+def route_mask(page, S):
     """Draw only the dotted walk-path strokes, as solid lines, on a blank canvas the size of the render."""
     W, H = round(page.rect.width * S), round(page.rect.height * S)
     im = Image.new('L', (W, H), 0)
@@ -142,15 +152,20 @@ def main():
     walks = {w['id']: w for w in json.load(open(os.path.join(ROOT, 'src/data/walks.json')))}
     out_g, out_s, out_r = {}, {}, {}
     for wid, pdf, fname, first in MAPS:
-        page, nums, labels = read(pdf)
-        page.get_pixmap(matrix=pymupdf.Matrix(S, S)).save(os.path.join(ROOT, 'assets/book', fname), jpg_quality=85)
+        page, _, labels = read(pdf)
+        SR = max(S, MIN_W / page.rect.width); k = SR / S  # render scale, and its ratio to the fitting scale
+        _, nums, _ = read(pdf, SR)
+        page.get_pixmap(matrix=pymupdf.Matrix(SR, SR)).save(os.path.join(ROOT, 'assets/book', fname), jpg_quality=85)
         cross = ransac_seed(crossing_seed(labels), tol_px=25 * S / (110 / 72))
         seed = [(p, m) for p, m, _ in cross]
         if len(seed) < 3:
             stops = {str(s['n']): s for s in walks[wid]['stops']}
-            seed += [(nums[n], to_m(stops[n]['lat'], stops[n]['lng'])) for n in nums if n in stops]
+            seed += [([v / k for v in nums[n]], to_m(stops[n]['lat'], stops[n]['lng'])) for n in nums if n in stops]
         A, rms, mpp, used, missing = georef(labels, seed)
         ctl = controls_from_fit(A, labels, used)
+        A = A * k; mpp = mpp / k  # from the fitting scale to the rendered image
+        for c in ctl:
+            c['px'], c['py'] = round(c['px'] * k, 1), round(c['py'] * k, 1)
         # how far each control sits from the affine fit, to see whether bending is needed at all
         P = np.array([to_m(c['lat'], c['lng']) for c in ctl]); T = np.array([[c['px'], c['py']] for c in ctl])
         aff_px = np.hstack([P, np.ones((len(P), 1))]) @ A
@@ -163,14 +178,14 @@ def main():
         stop_ids = {str(s['n']) for s in walks[wid]['stops']}
         out_s[key] = {n: xy for n, xy in nums.items() if n in stop_ids}
         # trace the dotted path between consecutive stops printed on this map
-        mask = ndimage.binary_dilation(route_mask(page), iterations=3)
+        mask = ndimage.binary_dilation(route_mask(page, SR), iterations=3)
         ys, xs = np.nonzero(mask); pool = np.stack([xs, ys], 1)
         lam = np.full(len(ctl), 2.0)
         inv = tps_fit(T / 100.0, P, lam)
         snap = {}
         for n, v in out_s[key].items():
             d = np.linalg.norm(pool - np.array(v), axis=1); i = int(np.argmin(d))
-            if d[i] < 40 * S / 1.5:
+            if d[i] < 40 * SR / 1.5:
                 snap[int(n)] = tuple(int(t) for t in pool[i])
         legs = {}
         for s0 in sorted(snap):

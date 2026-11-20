@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { photo, walkNo } from '../data';
@@ -105,30 +105,59 @@ export function MapStyleSwitch({ book, onChange }: { book: boolean; onChange: (b
   );
 }
 
+/** + and - for a map, stacked at its bottom right (Nick, 19 Nov 2026: zoom bottom right, map style bottom left, arrival banner on top). */
+export function ZoomButtons({ onZoom, bottom, children }: { onZoom: (dir: 1 | -1) => void; bottom: number; children?: ReactNode }) {
+  const t = useTheme();
+  return (
+    <View style={[styles.zoomCol, { bottom }]}>
+      {children}
+      <Pressable accessibilityRole="button" accessibilityLabel="Zoom in" onPress={() => { tap(); onZoom(1); }} style={[styles.btn, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Ionicons name="add" size={24} color={t.text} />
+      </Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel="Zoom out" onPress={() => { tap(); onZoom(-1); }} style={[styles.btn, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Ionicons name="remove" size={24} color={t.text} />
+      </Pressable>
+    </View>
+  );
+}
+
 /**
  * Veneeta's walk map filling the map area, with the stops and the walker's position drawn on it.
- * Pinch to zoom on iPhone; drag to pan.
+ * Pinch or the + and - buttons to zoom; drag to pan.
  */
 export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, topInset = 0, bottomInset = 0 }: {
   walk: Walk; current?: number; visited?: number[]; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
   const { width, height: screenH } = useWindowDimensions();
-  const height = width / 0.7;
   // Open the page that prints the current stop; the page buttons switch until the stop changes.
   const pages = bookPages(walk.id);
   const curN = current !== undefined && current >= 0 ? walk.stops[current]?.n : undefined;
   const [page, setPage] = useState(() => pageFor(walk.id, curN));
   useEffect(() => setPage(pageFor(walk.id, curN)), [walk.id, curN]);
+  // The page keeps its own shape (the cartographer's maps are mostly wider than tall), and a wide map
+  // opens zoomed so it fills the space between the header and the sheet.
+  const pg = pages[page];
+  const height = pg ? (width * pg.h) / pg.w : width / 0.7;
+  const fill = Math.min(4, Math.max(1, (screenH - topInset - bottomInset) / height));
   const file = page === 0 ? walk.bookMap : pages[page]?.file;
   const dot = me ? bookXY(walk.id, me.lat, me.lng, page) : null;
   const scroll = useRef<ScrollViewInstance>(null);
   const [follow, setFollow] = useState(true);
+  // Track the native zoom and scroll so the + and - buttons zoom around the middle of what is showing.
+  const view = useRef({ zoom: fill, x: 0, y: 0, w: width, h: screenH });
+  useEffect(() => { view.current.zoom = fill; }, [fill, page]);
+  const zoomBy = (dir: 1 | -1) => {
+    const v = view.current;
+    const z = Math.max(1, Math.min(4, v.zoom * (dir > 0 ? 1.6 : 1 / 1.6)));
+    const cx = (v.x + v.w / 2) / v.zoom, cy = (v.y + v.h / 2) / v.zoom;
+    scroll.current?.scrollResponderZoomTo({ x: cx - v.w / (2 * z), y: cy - v.h / (2 * z), width: v.w / z, height: v.h / z, animated: true });
+  };
   // Keep the walker's dot in the middle of the visible map, like follow mode on a street map.
   const centerOnMe = () => {
     if (!dot) return;
-    const visible = screenH - topInset - bottomInset;
-    scroll.current?.scrollTo({ y: Math.max(0, dot.y * height - visible / 2), animated: true });
+    const visible = screenH - topInset - bottomInset, z = view.current.zoom;
+    scroll.current?.scrollTo({ x: Math.max(0, dot.x * width * z - width / 2), y: Math.max(0, dot.y * height * z - visible / 2), animated: true });
   };
   useEffect(() => {
     if (follow) centerOnMe();
@@ -142,14 +171,17 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
     const L = bookLabel(walk.id, curN, pageFor(walk.id, curN));
     if (!L) return;
     setFollow(false);
-    const visible = screenH - topInset - bottomInset;
-    const t = setTimeout(() => scroll.current?.scrollTo({ y: Math.max(0, L.y * height - visible / 2), animated: true }), 50);
+    const visible = screenH - topInset - bottomInset, z = view.current.zoom;
+    const t = setTimeout(() => scroll.current?.scrollTo({ x: Math.max(0, L.x * width * z - width / 2), y: Math.max(0, L.y * height * z - visible / 2), animated: true }), 50);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walk.id, curN]);
   return (
     <View style={{ flex: 1 }}>
-    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
+    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} scrollEventThrottle={100}
+      onScroll={(e) => { const n = e.nativeEvent; view.current = { zoom: n.zoomScale || 1, x: n.contentOffset.x, y: n.contentOffset.y, w: n.layoutMeasurement.width, h: n.layoutMeasurement.height }; }}
+      key={`${walk.id}-${page}`} zoomScale={fill}
+      style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
         <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
         {walk.stops.map((s, i) => {
@@ -177,11 +209,13 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
         ))}
       </View>
     ) : null}
-    {dot ? (
-      <Pressable accessibilityLabel="Go to my position" onPress={() => { tap(); setFollow(true); centerOnMe(); }} style={[styles.btn, styles.meBtn, { top: topInset + 46 }]}>
-        <Ionicons name={follow ? 'navigate' : 'navigate-outline'} size={22} color="#1A73E8" />
-      </Pressable>
-    ) : null}
+    <ZoomButtons onZoom={zoomBy} bottom={bottomInset + 12}>
+      {dot ? (
+        <Pressable accessibilityLabel="Go to my position" onPress={() => { tap(); setFollow(true); centerOnMe(); }} style={[styles.btn, styles.meBtn]}>
+          <Ionicons name={follow ? 'navigate' : 'navigate-outline'} size={22} color="#1A73E8" />
+        </Pressable>
+      ) : null}
+    </ZoomButtons>
     </View>
   );
 }
@@ -218,7 +252,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, borderWidth: 1.5 },
   bhit: { position: 'absolute', width: 36, height: 36, borderRadius: 18 },
   bpin: { position: 'absolute', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#fff', shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 3 },
-  meBtn: { position: 'absolute', left: 14, backgroundColor: '#fff', borderColor: '#ddd' },
+  meBtn: { backgroundColor: '#fff', borderColor: '#ddd' },
+  zoomCol: { position: 'absolute', right: 14, gap: 10 },
   me: { position: 'absolute', backgroundColor: 'rgba(26,115,232,0.5)', borderWidth: 1.5, borderColor: 'rgba(255,255,255,0.9)', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
   styleSwitch: { flexDirection: 'row', padding: 3, gap: 3, borderRadius: 14, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 8, shadowOffset: { width: 0, height: 2 }, elevation: 4 },
   styleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 11 },

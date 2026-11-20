@@ -6,7 +6,7 @@ import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
 
-export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void };
+export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void; zoomBy: (dir: 1 | -1) => void };
 
 type Props = {
   walk: Walk;
@@ -49,6 +49,13 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     focusStop: (i) => {
       const c = walk.stops[i] && onMap(walk.stops[i]) ? coords[i] : undefined;
       if (c) map.current?.animateCamera({ center: c, zoom: 17 }, { duration: 600 });
+    },
+    // Apple Maps cameras use altitude, Google Maps cameras use zoom.
+    zoomBy: async (dir) => {
+      const c = await map.current?.getCamera();
+      if (!c) return;
+      if (c.altitude) map.current?.animateCamera({ altitude: c.altitude * (dir > 0 ? 0.5 : 2) }, { duration: 250 });
+      else if (c.zoom !== undefined) map.current?.animateCamera({ zoom: c.zoom + dir }, { duration: 250 });
     },
     fitAll: () => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: true }),
     recenter: (lat, lng) => map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 17, heading: 0 }, { duration: 500 }),

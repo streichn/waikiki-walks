@@ -5,7 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BookMapPane, type FollowMode, LayersButton, type Layer, LocateButton, MapStyleSwitch, nextFollow } from '../../../components/MapControls';
+import { BookMapPane, type FollowMode, type Layer, LocateButton, MapStyleSwitch, nextFollow, ZoomButtons } from '../../../components/MapControls';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { Button, IconButton, T, tap } from '../../../components/ui';
@@ -39,7 +39,7 @@ export default function ActiveWalk() {
   const speakingId = useNarration((s) => s.speakingStopId);
 
   const [follow, setFollow] = useState<FollowMode>('follow');
-  const [layer, setLayer] = useState<Layer>('standard');
+  const [layer] = useState<Layer>('standard'); // street map only; satellite dropped as redundant (Nick, 19 Nov 2026)
   const [bookMap, setBookMap] = useState(false);
   const [pos, setPos] = useState<{ lat: number; lng: number; acc: number } | null>(null);
   const [heading, setHeading] = useState<number | null>(null);
@@ -219,11 +219,13 @@ export default function ActiveWalk() {
         <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
         )}
       </View>
+      {/* Map style at the bottom left and zoom at the bottom right, so the top stays clear for the arrival banner */}
       {detent !== 'full' && walk.bookMap ? (
-        <View style={{ position: 'absolute', left: 14, top: insets.top + 64 }}>
+        <View style={{ position: 'absolute', left: 14, bottom: snaps[detent] + 12 }}>
           <MapStyleSwitch book={bookMap} onChange={setBookMap} />
         </View>
       ) : null}
+      {detent !== 'full' && !(bookMap && walk.bookMap) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={snaps[detent] + 12} /> : null}
       {detent !== 'full' ? (
         <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
           <LocateButton
@@ -240,7 +242,6 @@ export default function ActiveWalk() {
             label={settings.autoNarrate ? 'Stop reading stops aloud on arrival' : 'Read each stop aloud on arrival'}
             onPress={() => { if (settings.autoNarrate) stopSpeech(); settings.set({ autoNarrate: !settings.autoNarrate }); }}
           />
-          <LayersButton layer={layer} onChange={(l) => { setBookMap(false); setLayer(l); }} bookMap={walk.bookMap} bookActive={bookMap} onBook={() => setBookMap(true)} />
           <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
         </View>
       ) : null}

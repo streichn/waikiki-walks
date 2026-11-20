@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Hibiscus } from '../../../components/Flora';
 import { FunFacts } from '../../../components/FunFacts';
 import { StopText } from '../../../components/StopText';
-import { BookMapPane, LayersButton, type Layer, MapStyleSwitch } from '../../../components/MapControls';
+import { BookMapPane, type Layer, MapStyleSwitch, ZoomButtons } from '../../../components/MapControls';
 import { Button, Chip, IconButton, Segmented, T, tap } from '../../../components/ui';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { TRIAL } from '../../../config';
@@ -32,7 +32,7 @@ export default function WalkOverview() {
   const activeId = useProgress((s) => s.activeWalkId);
   const [mode, setMode] = useState<Mode>(modeParam === 'map' ? 'map' : 'read');
   const [focus, setFocus] = useState(stopParam ? Number(stopParam) : 0);
-  const [layer, setLayer] = useState<Layer>('standard');
+  const [layer] = useState<Layer>('standard'); // street map only; satellite dropped as redundant (Nick, 19 Nov 2026)
   const [bookMap, setBookMap] = useState(false);
   const scroll = useRef<ScrollViewInstance>(null);
   const mapRef = useRef<WalkMapHandle>(null);
@@ -136,13 +136,11 @@ export default function WalkOverview() {
             <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
           )}
           {walk.bookMap ? (
-            <View style={{ position: 'absolute', left: 14, top: insets.top + 64 }}>
+            <View style={{ position: 'absolute', left: 14, bottom: 242 }}>
               <MapStyleSwitch book={bookMap} onChange={setBookMap} />
             </View>
           ) : null}
-          <View style={{ position: 'absolute', right: 14, top: insets.top + 64, gap: 10 }}>
-            <LayersButton layer={layer} onChange={(l) => { setBookMap(false); setLayer(l); }} bookMap={walk.bookMap} bookActive={bookMap} onBook={() => setBookMap(true)} />
-          </View>
+          {!(bookMap && walk.bookMap) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={242} /> : null}
           <FlatList
             ref={cards}
             data={walk.stops}

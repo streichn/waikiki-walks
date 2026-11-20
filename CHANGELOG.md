@@ -137,3 +137,11 @@
 - New scripts/georef/carto_maps.py renders them, fits each to OpenStreetMap streets from its own street labels (5 to 7 m RMS, about twice as accurate as the old Walk XII fit) and traces the dotted walk path between stops.
 - Pins now sit where these maps print the numbers. Overrides dropped for Walk X 40 and 41 and Walk XII 15; kept for X 42 and 43, which the map squeezes at its top edge.
 - build.py, routes.py, warp.py and build_data.py use the new maps for these walks; the folder also holds maps for Walks I to IX and a master map, not yet used.
+
+## 2026-11-19 · Cartographer's maps for every walk; map controls rearranged
+- Walks I to IX now use Jason Nakano's vector maps too, fitted the same way (4 to 8 m RMS). Walk VIII's two book pages become one map. Small maps render at least 1300 px wide.
+- Pins checked against landmarks moved closer: Diamond Head Lighthouse (VII 17) now within about 20 m (was 235 m), Honolulu Zoo (VI 14) about 70 m (was 280 m).
+- Walk I 7 to 9 overrides converted from book-map pixels to lat/lng; Walk IV 19 and 20, which the new map does not print, keep their book-map spots.
+- Map controls (Nick): Street map / Book map switch at the bottom left with Demo walk above it, + and - at the bottom right on both maps, the top left clear for the arrival banner. The layers button is gone (redundant with the switch; no satellite view).
+- App book map keeps each map's own shape and opens wide maps zoomed to fill the space; + and - zoom around the middle of the view.
+- Nominatim lookups back off and retry when rate limited.

@@ -22,7 +22,11 @@
 .bookimg img { width: 100%; height: auto; display: block; }
 .zoombtns { position: absolute; right: 12px; top: calc(env(safe-area-inset-top) + 120px); z-index: 900; display: flex; flex-direction: column; gap: 8px; }
 .zoombtns .mapbtn { font-size: 22px; font-weight: 800; }
-#go .zoombtns { top: auto; left: 12px; right: auto; bottom: calc(var(--sh, 56%) + 60px); flex-direction: row; }
+#go .zoombtns { top: auto; right: 12px; bottom: calc(var(--sh, 56%) + 12px); }
+#mapview .zoombtns { top: auto; bottom: calc(196px + env(safe-area-inset-bottom)); }
+/* Street map / Book map at the bottom left, Demo walk above it; the top stays clear for the arrival banner */
+#go .mapstyle { top: auto; bottom: calc(var(--sh, 56%) + 12px); }
+#go .simtoggle { bottom: calc(var(--sh, 56%) + 62px); }
 #go.sheet-full .zoombtns { opacity: 0; pointer-events: none; }
 .minibar .endx { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 16px; background: rgba(255,255,255,.2); flex: none; margin-left: 4px; }
 .bookwrap { position: relative; }

@@ -285,7 +285,7 @@
         ${stops}
       </div>
     </div>
-    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>'}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
+    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
     <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button>${S.progress[w.id] && S.progress[w.id].visited.length ? `<button class="resetw" data-act="resetwalk">Start this walk over</button>` : ''}</div>`;
   }
@@ -338,6 +338,11 @@
     S.bookAuto = Date.now();
     pane.scrollTo({ left: x - pane.clientWidth / 2, top: y - visibleH / 2, behavior: smooth ? 'smooth' : 'auto' });
   }
+  // + and - for both maps, at the bottom right of the map (Nick, 19 Nov 2026)
+  function zoomBtns() {
+    const book = S.mapStyle === 'book';
+    return `<div class="zoombtns">${S.view === 'go' && book ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
+  }
   function bookPane(w) {
     // Open the page that prints the current stop; a tap on "Map 2" etc. sticks until the stop changes.
     const prog = S.progress[w.id] || { current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
@@ -347,7 +352,7 @@
     const tabs = ps.length > 1 ? `<div class="bookpages" role="tablist">${ps.map((p, j) => `<button role="tab" aria-selected="${j === k}" data-bookpage="${j}">Map ${j + 1}</button>`).join('')}</div>` : '';
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(g ? g.file : w.bookMap, '', 'Walk ' + wn(w.id) + ' map ' + (k + 1) + ' from the book')}${bookPins(w)}</div></div></div>${tabs}
       <button class="pinchk" data-act="pinchk" aria-pressed="${!!S.showPins}">${S.showPins ? 'Hide' : 'Check:'} app pins</button>
-      <div class="zoombtns">${S.view === 'go' ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
+      ${zoomBtns()}`;
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
   function overlayCtl(w) {
@@ -442,6 +447,7 @@
     const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
+      zoomIn() { map.zoomIn(); }, zoomOut() { map.zoomOut(); },
       map,
       paint(cur, visited) {
         markers.forEach((m, i) => {
@@ -497,9 +503,9 @@
     if (here) navLine = 'Read or listen below, then tap Next.';
     else if (S.me) { const d = dist(S.me, stop), b = bearing(S.me, stop); rot = b - S.heading; navLine = `${fmt(d)} · about ${Math.max(1, Math.round(d / 67))} min · head ${hawaiianDir(b)}`; }
     return `<div id="go" style="position:absolute;inset:0">
-      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>'}${styleSwitch(w)}${overlayCtl(w)}</div>
+      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn ${S.settings.autoNarrate ? 'on' : ''}" data-act="autoread" aria-pressed="${!!S.settings.autoNarrate}" aria-label="Read each stop aloud on arrival">${ic(S.settings.autoNarrate ? 'volume' : 'mute')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn ${S.settings.autoNarrate ? 'on' : ''}" data-act="autoread" aria-pressed="${!!S.settings.autoNarrate}" aria-label="Read each stop aloud on arrival">${ic(S.settings.autoNarrate ? 'volume' : 'mute')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet" id="sheet">
         <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
@@ -891,6 +897,7 @@
     if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return showStop(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-mapstyle]'))) { S.mapStyle = el.dataset.mapstyle; wmap = null; gmap = null; render(); return; }
     if ((el = q('[data-bookpage]'))) { const w = walk(S.walkId); S.bookPage = S.bookPage || {}; S.bookPage[w.id] = Number(el.dataset.bookpage); return render(); }
+    if ((el = q('[data-zoom]')) && S.mapStyle !== 'book') { const m = S.view === 'go' ? gmap : wmap; if (m) (Number(el.dataset.zoom) > 0 ? m.zoomIn() : m.zoomOut()); return; }
     if ((el = q('[data-zoom]'))) { S.bookZoom = Math.max(1, Math.min(4, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
     if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-listen]'))) { const w = walk(S.walkId); const s = w.stops[Number(el.dataset.i)]; return speaking.stopId === s.id ? stopSpeak() : speakStop(s); }
