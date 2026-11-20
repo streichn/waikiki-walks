@@ -428,7 +428,7 @@
   function makeMap(el, w, opts) {
     const T = window.WWTILES || {};
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else { t.style.background = '#e9e5dc'; } t.alt = ''; return t; } });
-    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 });
+    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 13, maxZoom: 18, touchZoom: true, bounceAtZoomLimits: false });
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14, tileSize: 256 }).addTo(map);
     map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
@@ -505,7 +505,7 @@
     return `<div id="go" style="position:absolute;inset:0">
       <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn ${S.settings.autoNarrate ? 'on' : ''}" data-act="autoread" aria-pressed="${!!S.settings.autoNarrate}" aria-label="Read each stop aloud on arrival">${ic(S.settings.autoNarrate ? 'volume' : 'mute')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet" id="sheet">
         <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
@@ -515,7 +515,7 @@
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
-        <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button>
+        <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
   }
@@ -718,7 +718,7 @@
     const el = document.getElementById('emap'); if (!el) return;
     const T = window.WWTILES || {};
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else t.style.background = '#e9e5dc'; return t; } });
-    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 }).setView([21.283, -157.825], 14);
+    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 13, maxZoom: 18, touchZoom: true, bounceAtZoomLimits: false }).setView([21.283, -157.825], 14);
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14 }).addTo(map);
     const group = L.layerGroup().addTo(map);
     const showAll = () => {
@@ -849,6 +849,27 @@
     startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
   }
 
+  // Pinch to zoom on the book map: two fingers scale the page around their midpoint (the browser would otherwise zoom the whole page).
+  function bindBookPinch(pane) {
+    let p0 = null;
+    const span = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+    pane.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 2) return;
+      const r = pane.getBoundingClientRect(), mx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, my = (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top;
+      const bi = pane.querySelector('.bookimg');
+      p0 = { d: span(e.touches), z: S.bookZoom || 1.6, mx, my, cx: (pane.scrollLeft + mx) / bi.offsetWidth, cy: (pane.scrollTop + my - bi.offsetTop) / bi.offsetHeight };
+    }, { passive: true });
+    pane.addEventListener('touchmove', (e) => {
+      if (!p0 || e.touches.length !== 2) return;
+      e.preventDefault();
+      const z = Math.max(1, Math.min(5, p0.z * span(e.touches) / p0.d)), bi = pane.querySelector('.bookimg');
+      S.bookZoom = z; bi.style.width = z * 100 + '%';
+      S.bookAuto = Date.now(); S.bookFollow = false;
+      pane.scrollLeft = p0.cx * bi.offsetWidth - p0.mx; pane.scrollTop = p0.cy * bi.offsetHeight + bi.offsetTop - p0.my;
+    }, { passive: false });
+    pane.addEventListener('touchend', (e) => { if (e.touches.length < 2) p0 = null; }, { passive: true });
+  }
+
   function render() {
     const oldPane = document.getElementById('bookpane');
     const keep = oldPane ? { top: oldPane.scrollTop, left: oldPane.scrollLeft, view: S.view, walk: S.walkId } : null;
@@ -866,6 +887,7 @@
     if (bp && keep && keep.view === S.view && keep.walk === S.walkId) { S.bookAuto = Date.now(); bp.scrollTop = keep.top; bp.scrollLeft = keep.left; }
     if (bp) {
       bp.addEventListener('scroll', () => { if (Date.now() - (S.bookAuto || 0) > 900) S.bookFollow = false; }, { passive: true });
+      bindBookPinch(bp);
       if (S.view === 'go' && S.stopFocus) setTimeout(() => centerBookOnStop(false), 60);
       else if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
     }
@@ -916,7 +938,7 @@
         m.addEventListener('click', (e) => { if (!e.target.closest('[data-reset]')) return; m.remove(); if (S.active === w.id) { stopSim(); stopSpeak(); S.active = null; } delete S.progress[w.id]; persist(); toast('Walk reset. It will start from stop 1.'); render(); });
         return;
       }
-      if (a === 'autoread') { S.settings.autoNarrate = !S.settings.autoNarrate; if (!S.settings.autoNarrate) stopSpeak(); persist(); toast(S.settings.autoNarrate ? 'Each stop will be read aloud when you arrive.' : 'Stops won\u2019t be read aloud automatically. Tap the headphones to listen.'); return render(); }
+      if (a === 'autoread') { S.settings.autoNarrate = !S.settings.autoNarrate; if (!S.settings.autoNarrate) stopSpeak(); persist(); toast(S.settings.autoNarrate ? 'Audio mode on: each stop is read aloud when you arrive.' : 'Audio mode off. Tap the headphones to hear a stop.'); return render(); }
       if (a === 'start') { if (S.active === S.walkId) { S.view = 'go'; return render(); } return startWalk(); }
       if (a === 'paywall') return openPaywall();
       if (a === 'auth') return openAuth();

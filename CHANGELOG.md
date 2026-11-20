@@ -145,3 +145,8 @@
 - Map controls (Nick): Street map / Book map switch at the bottom left with Demo walk above it, + and - at the bottom right on both maps, the top left clear for the arrival banner. The layers button is gone (redundant with the switch; no satellite view).
 - App book map keeps each map's own shape and opens wide maps zoomed to fill the space; + and - zoom around the middle of the view.
 - Nominatim lookups back off and retry when rate limited.
+
+## 2026-11-19 · Audio mode; pinch zoom everywhere
+- The speaker button left the map. Next to the headphones (read this stop) there is now an "Audio mode" switch: when on, each stop is read aloud on arrival, so the phone can stay in a pocket.
+- Preview: two-finger pinch zooms the book map around the fingers; street maps zoom out one level further.
+- App: street maps already pinch natively; the book map pinches on iPhone.

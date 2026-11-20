@@ -237,11 +237,6 @@ export default function ActiveWalk() {
               if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
             }}
           />
-          <IconButton
-            icon={settings.autoNarrate ? 'volume-high' : 'volume-mute'}
-            label={settings.autoNarrate ? 'Stop reading stops aloud on arrival' : 'Read each stop aloud on arrival'}
-            onPress={() => { if (settings.autoNarrate) stopSpeech(); settings.set({ autoNarrate: !settings.autoNarrate }); }}
-          />
           <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
         </View>
       ) : null}
@@ -349,6 +344,17 @@ export default function ActiveWalk() {
             >
               <Ionicons name={speakingId === stop.id ? 'stop' : 'headset'} size={24} color="#fff" />
             </Pressable>
+            {/* Audio mode: each stop is read aloud on arrival, so the phone can stay in a pocket (Nick, 19 Nov 2026) */}
+            <Pressable
+              accessibilityRole="switch"
+              accessibilityState={{ checked: settings.autoNarrate }}
+              accessibilityLabel="Audio mode: read each stop aloud when you arrive"
+              onPress={() => { tap(); if (settings.autoNarrate) stopSpeech(); settings.set({ autoNarrate: !settings.autoNarrate }); }}
+              style={[styles.audioMode, { borderColor: settings.autoNarrate ? t.accent : t.border, backgroundColor: settings.autoNarrate ? t.accent : t.card }]}
+            >
+              <Ionicons name={settings.autoNarrate ? 'volume-high' : 'volume-mute'} size={18} color={settings.autoNarrate ? '#fff' : t.text} />
+              <T style={{ fontSize: 11, fontFamily: t.font.bodyBold, color: settings.autoNarrate ? '#fff' : t.text }}>Audio mode</T>
+            </Pressable>
             {arrivedHere ? (
               <Button
                 label={current + 1 >= walk.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}
@@ -392,6 +398,7 @@ const styles = StyleSheet.create({
   pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14 },
   nav: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, padding: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
   dirBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  audioMode: { width: 76, height: 52, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center', gap: 2 },
   controls: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
   playBtn: { width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
 });
