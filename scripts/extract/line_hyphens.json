@@ -1,0 +1,153 @@
+{
+ "_note": "Find hyphens that the book prints at the end of a line and that belong to the word.",
+ "keep": {
+  "1794-1869": {
+   "page": "p3-17",
+   "why": "year range"
+  },
+  "1826-1883": {
+   "page": "p2-4",
+   "why": "year range"
+  },
+  "1841-1929": {
+   "page": "p3-11",
+   "why": "year range"
+  },
+  "1874-1943": {
+   "page": "p3-50",
+   "why": "year range"
+  },
+  "1887-1929": {
+   "page": "p3-50",
+   "why": "year range"
+  },
+  "1890-1968": {
+   "page": "p1-82",
+   "why": "year range"
+  },
+  "1904-1987": {
+   "page": "p1-46",
+   "why": "year range"
+  },
+  "1906-2003": {
+   "page": "p3-69",
+   "why": "year range"
+  },
+  "1936-2022": {
+   "page": "p3-21",
+   "why": "year range"
+  },
+  "Asian-Pacific": {
+   "page": "p3-53",
+   "why": "capital after the hyphen"
+  },
+  "Department-Waikīkī": {
+   "page": "p1-87",
+   "why": "capital after the hyphen"
+  },
+  "East-West": {
+   "page": "p3-51",
+   "why": "capital after the hyphen"
+  },
+  "Hawaiian-English": {
+   "page": "p1-39",
+   "why": "capital after the hyphen"
+  },
+  "Hawaiian-style": {
+   "page": "p1-31",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "Hawai‘i-born": {
+   "page": "p3-49",
+   "why": "compound word, checked on the page"
+  },
+  "Japanese-Monet": {
+   "page": "p1-27",
+   "why": "capital after the hyphen"
+  },
+  "Mānoa-Pālolo": {
+   "page": "p1-28",
+   "why": "capital after the hyphen"
+  },
+  "Night-Blooming": {
+   "page": "p3-20",
+   "why": "capital after the hyphen"
+  },
+  "Star-Bulletin": {
+   "page": "p1-46",
+   "why": "capital after the hyphen"
+  },
+  "Yat-Sen": {
+   "page": "p2-70",
+   "why": "capital after the hyphen"
+  },
+  "burnt-out": {
+   "page": "p2-58",
+   "why": "compound word, checked on the page"
+  },
+  "close-up": {
+   "page": "p2-42",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "full-blooded": {
+   "page": "p3-74",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "makai-Diamond": {
+   "page": "p3-75",
+   "why": "capital after the hyphen"
+  },
+  "mauka-Koko": {
+   "page": "p3-67",
+   "why": "capital after the hyphen"
+  },
+  "mauka-‘Ewa": {
+   "page": "p1-83",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "mid-1890s": {
+   "page": "p2-36",
+   "why": "compound word, checked on the page"
+  },
+  "non-sacrificial": {
+   "page": "p1-59",
+   "why": "compound word, checked on the page"
+  },
+  "present-day": {
+   "page": "p3-12",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "red-orange": {
+   "page": "p3-56",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "stained-glass": {
+   "page": "p1-91",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "three-block": {
+   "page": "p1-79",
+   "why": "compound word, checked on the page"
+  },
+  "well-cooked": {
+   "page": "p1-42",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "well-known": {
+   "page": "p2-36",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "well-maintained": {
+   "page": "p2-58",
+   "why": "compound word, checked on the page"
+  },
+  "west-east": {
+   "page": "p3-7",
+   "why": "printed with the hyphen mid-line elsewhere in the book"
+  },
+  "‘Āinahau-Hamohamo": {
+   "page": "p1-83",
+   "why": "capital after the hyphen"
+  }
+ }
+}

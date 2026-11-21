@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-11-21 · Walk information boxes laid out like the book
+- Each walk's information box (time and distance, buses, parking, websites) read as one run-on line, with labels like "Parking:" buried mid-sentence. It now shows one row per paragraph the book prints, with the book's own labels in bold, an icon for each kind of row, and a "Before you go" heading. New scripts/extract/info_boxes.py reads the boxes from the PDFs and writes scripts/extract/info_boxes.json; build_data.py uses it.
+- Walks I and IV showed no information box on the walk page; the box had been filed as a paragraph inside stop 1. It is now on the walk page and gone from stop 1.
+- Web addresses and phone numbers the book prints (thebus.org, 808-848-5555, Mānoa Heritage Center, Lyon Arboretum, Honolulu Zoo, Royal Hawaiian Band, Waikīkī Aquarium) can be tapped to open or call, in the app and the preview. Screen readers announce them as links.
+- Walk III's time chip said "1.5 to 2 hr"; the book prints "0.5 to 2 hours". Fixed.
+- Walk IX's box prints "Mō`ili`ili" with backticks; the app shows the ‘okina. Listed in docs/BOOK_UPDATES.md with two questions for Veneeta (Walk X's box repeats Walk I's; a word missing in Walk III's "Lewers Street & Road").
+
+## 2026-11-20 · Stop names, hyphens and typos match the printed book
+- Twelve stops took their name from the first line of text, because the book prints the name in bold at the start of the first sentence. Walk VIII stop 6 was called "Da ‘Ono Hawaiian food on the ‘Ewa" and its text began "side of Kapahulu". Now the name is the bold words ("Da ‘Ono Hawaiian food") and the sentence is whole. Stops: VIII 6, 7, 10, 21; IX 7, 21; X 14, 15, 16, 32; XII 5, 10.
+- Hyphens the book prints at a line end and that belong to the word are back: 13 life dates such as "(1890-1968)" had read "(18901968)", and 25 words such as "well-known", "Mānoa-Pālolo" and "mauka-Koko Head" had lost their hyphen. New scripts/extract/line_hyphens.py finds them in the book PDFs and writes scripts/extract/line_hyphens.json; build_data.py restores them.
+- New scripts/extract/text_fixes.json: four book typos (a doubled word or period: Walk I stop 26, VII 2, X 21, XII 10) and four extraction slips (IV 1 "Hawai‘ithe reason" and "Parking Parking lot", IV 23 "(18601939)", IX 17 "Ala WaiCanal"). Each entry gives the page; a fix that no longer matches stops the build.
+- Walk VII stop 6 shows the book's two italic lines, "Kapua" and "Kapua Heiau", instead of "Kapua Kapua Heiau". Walk XI stop 6 and Walk II stop 20 no longer split a sentence into two paragraphs.
+
+## 2026-11-20 · Plaques and signs in their own box, not in the middle of sentences
+- The book prints plaques, signs and quotations in shaded boxes. The PDF gave each box's text in the middle of whatever came next, often splitting a sentence ("As vice-president of the ... Kapi‘olani Park Association"), and twice put the Kāhuna Stones plaque inside the wrong stop (Walk III stop 13 and Walk IV stop 27).
+- New scripts/extract/box_fixes.json, checked against the printed pages, lifts 10 boxes out, rejoins the 9 sentences they cut, and puts each box where the book prints it. A stray map label ("‘Ena Rd.") and pin symbol are gone from 10 stops.
+- Boxes now show framed, with their heading ("The plaque reads:") as a heading for screen readers, in the app and the preview.
+- Restored from the book: "Kealohilani Avenue - Kealohilani is a" (Walk IV stop 27) and the plaque date "1967" (Walk XI stop 6). "Drain- age Canal" is whole again (Walk VIII stop 16).
+
+## 2026-11-20 · Each walk starts and ends where the book does
+- The PDF lists each walk's map page and title page before its title, so the next walk's opening text, map labels and photos were showing at the end of the previous walk's last stop (Walks II to XI), and Walk XII's last stop carried the whole back matter (glossary, further readings, acknowledgements, back cover).
+- New scripts/extract/walk_ends.json, checked page by page against book/*.pdf, tells build_data.py where each walk ends. Opening text moves to the next walk's introduction; map labels and back matter are dropped.
+- Stop 1 of Walks VI, XI and XII now has its full book text (it began mid-sentence or was missing its first paragraphs). Walk XII's info box (length, parking, buses) is back.
+- The Wa‘ahila Ridge photo from Walk X's title page now shows at Walk X stop 1, not at the end of Walk IX.
+- Removed the stray space the PDF puts before punctuation after Hawaiian words ("Waikīkī ." is now "Waikīkī.").
+
 ## 2026-11-14 · First build
 - Extracted 12 walks and 308 stops from the book PDFs, with photos, fun facts and a glossary.
 - Geocoded stops with OpenStreetMap (named places, street corners, estimates); see review/stops_review.csv.

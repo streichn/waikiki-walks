@@ -10,6 +10,7 @@ import { FunFacts } from '../../../components/FunFacts';
 import { StopText } from '../../../components/StopText';
 import { BookMapPane, type Layer, MapStyleSwitch, ZoomButtons } from '../../../components/MapControls';
 import { Button, Chip, IconButton, Segmented, T, tap } from '../../../components/ui';
+import { WalkInfoBox } from '../../../components/WalkInfoBox';
 import { WalkMap, type WalkMapHandle } from '../../../components/WalkMap';
 import { TRIAL } from '../../../config';
 import { getWalk, photo, walkNo } from '../../../data';
@@ -97,14 +98,7 @@ export default function WalkOverview() {
               {walk.id === TRIAL.walkId && !isPro ? <Chip icon="gift" color={t.gold} label={`First ${TRIAL.freeStops} free`} /> : null}
             </View>
             <StopText blocks={walk.intro} stopId={`${walk.id}-intro`} />
-            {walk.info.map((x, i) => (
-              <View key={i} style={[styles.info, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
-                <Ionicons name="bus" size={18} color={t.gold} />
-                <T variant="small" style={{ flex: 1, color: t.text }}>
-                  {x}
-                </T>
-              </View>
-            ))}
+            <WalkInfoBox rows={walk.info} />
             <FunFacts walkId={walk.id} />
           </View>
 
@@ -222,7 +216,6 @@ const styles = StyleSheet.create({
   hero: { height: 330 },
   heroFlower: { position: 'absolute', right: -24, bottom: 40 },
   roman: { alignSelf: 'flex-start', paddingHorizontal: 12, paddingVertical: 5, borderRadius: 14 },
-  info: { flexDirection: 'row', gap: 8, padding: 12, borderRadius: 14, borderWidth: StyleSheet.hairlineWidth },
   topBar: { position: 'absolute', left: 14, right: 14, flexDirection: 'row', alignItems: 'center' },
   cta: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 20, paddingTop: 10, },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth },
