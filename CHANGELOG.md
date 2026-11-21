@@ -176,3 +176,17 @@
 - Preview: the phone's compass sets the heading when standing still (iPhone asks once, on Start).
 - Book map (preview and app): the walker's dot has a heading wedge like the street map, turned for each map's own orientation (her maps are mauka-up, not north-up).
 - App: the street-only buttons hide on the book map, which keeps its own follow-me button beside + and -.
+
+## 2026-11-18 · "What am I looking at?" done right
+- Asks for the camera and location only when the walker opens the feature. If the camera is refused, it still works from location and compass; if location is refused, it says what is missing and how to turn it on, instead of "Finding your location..." forever.
+- Steadier answers: compass readings are smoothed, and a figure 8 tip appears when the compass is unsure.
+- Honest labels: "You are looking at" only after a photo match; otherwise "Probably in view". The shutter appears only when the photo service is set up.
+- Smaller, private photos: about a tenth of the size, upright, no location tags, deleted after the check. Server caps photo size and only answers with the book's stops.
+- No microphone permission and no barcode scanner in the app any more.
+- Spoken labels and announcements for screen reader users.
+
+## 2026-11-21 · Database and photo-check safety
+- The photo check in "What am I looking at?" now has a daily limit per walker (60 photos for a signed-in walker, 40 per guest network, 1,500 in total), so nobody can run up the paid vision service through the public address. Past the limit, the app says photo checks are resting for today and still answers from location and compass.
+- Signed-in walkers send their own sign-in token with a photo check, so their limit is theirs alone. Guest network addresses are hashed with a secret and the date; nothing about the photo, the place or the address is stored, only a count per day, kept for a week.
+- The server refuses anything that is not a JPEG before it reaches the vision service.
+- New migration `server/003_security_and_limits.sql`: policies are for signed-in walkers only ("to authenticated"), guests get no table access, the sign-up function can't be called through the API and has a fixed search path, and size checks stop oversized rows (names, settings, walk numbers, stop ids).
