@@ -176,3 +176,7 @@
 - Preview: the phone's compass sets the heading when standing still (iPhone asks once, on Start).
 - Book map (preview and app): the walker's dot has a heading wedge like the street map, turned for each map's own orientation (her maps are mauka-up, not north-up).
 - App: the street-only buttons hide on the book map, which keeps its own follow-me button beside + and -.
+
+## 2026-11-21 · Pin audit against Veneeta's maps
+- New `scripts/georef/audit_pins.py` (read-only) checks every pin against the numbers printed on her maps and writes `docs/PIN_AUDIT.md`. `--strict` exits with an error if a pin has no printed number or has drifted off it.
+- First run: 344 pins, 0 rule breaks, 0 pins off her number. 12 pins moved at her request are listed with her reason. Walk IV stops 19 and 20 are printed on the book's own map page but not on the cartographer's map, and share one pin spot.
