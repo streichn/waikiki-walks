@@ -1,6 +1,6 @@
 """Find where two named Honolulu streets cross, from OpenStreetMap geometry (Nominatim), with a cache.
 Used to georeference Veneeta's book maps: each control point is an intersection she labels on the map."""
-import json, os, sys, time, urllib.parse, urllib.request
+import json, os, sys, time, urllib.error, urllib.parse, urllib.request
 from shapely.geometry import LineString, MultiLineString, Point
 from shapely.ops import unary_union, nearest_points
 
@@ -16,7 +16,13 @@ def street(name):
         q = {'street': name, 'city': 'Honolulu', 'format': 'json', 'polygon_geojson': 1, 'dedupe': 0, 'limit': 50,
              'viewbox': '-157.86,21.32,-157.79,21.25', 'bounded': 1}
         if seen: q['exclude_place_ids'] = ','.join(seen)
-        d = json.load(urllib.request.urlopen(urllib.request.Request('https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode(q), headers=UA), timeout=40))
+        for wait in (0, 30, 60, 120, 240):  # Nominatim answers 429 when asked too fast; back off and retry
+            time.sleep(wait)
+            try:
+                d = json.load(urllib.request.urlopen(urllib.request.Request('https://nominatim.openstreetmap.org/search?' + urllib.parse.urlencode(q), headers=UA), timeout=40))
+                break
+            except urllib.error.HTTPError as e:
+                if e.code != 429 or wait == 240: raise
         time.sleep(1.1)
         new = [x for x in d if str(x['place_id']) not in seen]
         if not new: break

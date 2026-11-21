@@ -98,6 +98,85 @@
 - Fixed Walk XI stop 1: it is "McCully Street" (book p. 38). The parser had given number 1 to Walk XII's opening paragraph, which is back in Walk XII's introduction.
 - Not on any of her maps: Walk XI stops 7 to 45 (campus) and Walk XII stops 15 to 28 (lower campus). These have no pins until she maps them.
 
+## 2026-11-19 · Veneeta's Walk I notes, Next keeps the map on the stop
+- Walk I pins 11, 16, 21 and 35 moved into line with their neighbors: 11 on Date Street between 10 and 12, and 16, 21 and 35 along the canal with the other street pins (scripts/georef/pin_overrides.json).
+- The Kālia opening that had ended up at the bottom of Walk I stop 38 now opens Walk II, where the book prints it (page 40). Map labels after stop 38 removed.
+- Next, Previous, or a tap on a pin now centers that stop on the street map and her book map, in the app and the preview. Following the walker resumes with the locate button.
+
+## 2026-11-19 · Walk XII map page 2 from Veneeta's photo, Walk I route and stop 38
+- Walk XII foldout page 2 (stops 16 to 28), which is missing from the PDF, now comes from Veneeta's photo: straightened (the map key fitted to a true rectangle and the page edge made vertical), lighting evened, colors matched to page 1, sharpened (scripts/georef/photo_clean.py). Georeferenced from three street crossings, 4.7 m RMS (scripts/georef/photo_maps.py). Stops 23 to 26 land within 6 to 19 m of where their buildings had been geocoded independently.
+- Walk XII stop 15, printed just past the edge of the PDF page, placed from her photo of page 1 registered to the PDF page. All 28 Walk XII stops now have pins from her maps.
+- Walk I stop 38 completed from her photo of book page 17, also missing from the PDF. Stop 36 "kahuna nui" corrected to "kuhina nui" from her hand correction (to confirm with her).
+- The dashed route follows her traced red line between stops where we have it, instead of straight lines. Walk I 12 to 13 now goes along Date Street and down Kapahulu Avenue, around the golf course (her request).
+- Book map page tabs moved out of the middle of the map, where they hid the current stop; the selected tab now shows.
+
+## 2026-11-19 · Book photos without page text
+- Pictures were cut from the page with the book's text, captions and page numbers printed over them (Nick: page 215 "cropped wrong"). All pictures re-rendered from the PDF with the page text removed (scripts/extract/rerender_images.py).
+- Reviewed by eye: 146 boxes were not photos once the text was gone (map keys, page tints, slivers, blank page backgrounds) and are no longer shown; 55 trimmed to the photo inside. 190 stop photos remain; OCR finds no page text left in any of them (only real signs).
+- Walk I stop 36: "kahuna nui" corrected to "kuhina nui" (Veneeta confirmed by email).
+
+## 2026-11-19 · Walk XI map page 2 from Veneeta's photo
+- Walk XI foldout page 2 (stops 7 to 45), missing from the PDF, from her photo IMG_4706: same cleanup as Walk XII page 2 (scripts/georef/photo_clean.py, now one config per page). Georeferenced from three route corners, 6.8 m RMS. Spot checks: Hamilton Library, Hawaiʻi Hall, Campus Center and Bachman Hall land on their buildings.
+- Walk XI now has map pins for 44 of 45 stops; 43 (Sinclair) is not printed on her map, so it has none.
+- Preview street tiles extended over upper campus at the closest zoom.
+- Her photo of Walk XI page 1 (IMG_4705) has a short red handwritten note in the margin near stop 6; not legible in the photo, asked her.
+
+## 2026-11-19 · Veneeta's Walk II notes, side trips, street routes, book updates list
+- Walk II: pin 10 moved to where 11 was and 11 moved 40 percent of the way toward 12; pin 18 mirrored across Kālia Road; stop 13 is now a side trip (purple pin and dashed purple connector; the main line goes 12 to 14).
+- Side-trip boxes: lettered sub-stops (13A to 13D, 21A, 25A, 36A, 36B) now belong to their side trip; Walk II 13 no longer boxes the main beach route.
+- Map lines: legs with no traced red line now follow a walking route along the streets (142 legs, FOSSGIS OSRM foot router, cached in scripts/georef/street_legs.json), kept only when close to the straight line; 30 legs stay straight. Walk II 1 to 2 now runs along Ala Moana Boulevard.
+- docs/BOOK_UPDATES.md: her changes to the printed text, and statements checked for being out of date.
+
+## 2026-11-19 · Finishing a walk (Nick)
+- Walked trail: the part of the route already walked shows as a solid green line over the dashed route, on every map, so the circuit fills in as you go; a finished walk shows all of it.
+- Finish: on the last stop, Finish opens "Walk complete" with "See my route" (the whole walk on the map, fully lit) or "Back to all walks".
+- Completed walks: the card says "Completed"; tapping it asks "Walk it again?" with "Start over" (from stop 1) or "Just look" (opens the walk's map, keeps the finished route). The walk page button reads "Walk it again".
+
+## 2026-11-19 · Cartographer's maps for Walks X, XI and XII
+- Jason Nakano's original vector maps (Drive folder Veneeta forwarded, saved in book/cartographer/) replace the book page renders and Veneeta's phone photos for Walks X (two maps), XI and XII. Every stop number is printed, including Walk XI stop 43.
+- New scripts/georef/carto_maps.py renders them, fits each to OpenStreetMap streets from its own street labels (5 to 7 m RMS, about twice as accurate as the old Walk XII fit) and traces the dotted walk path between stops.
+- Pins now sit where these maps print the numbers. Overrides dropped for Walk X 40 and 41 and Walk XII 15; kept for X 42 and 43, which the map squeezes at its top edge.
+- build.py, routes.py, warp.py and build_data.py use the new maps for these walks; the folder also holds maps for Walks I to IX and a master map, not yet used.
+
+## 2026-11-19 · Cartographer's maps for every walk; map controls rearranged
+- Walks I to IX now use Jason Nakano's vector maps too, fitted the same way (4 to 8 m RMS). Walk VIII's two book pages become one map. Small maps render at least 1300 px wide.
+- Pins checked against landmarks moved closer: Diamond Head Lighthouse (VII 17) now within about 20 m (was 235 m), Honolulu Zoo (VI 14) about 70 m (was 280 m).
+- Walk I 7 to 9 overrides converted from book-map pixels to lat/lng; Walk IV 19 and 20, which the new map does not print, keep their book-map spots.
+- Map controls (Nick): Street map / Book map switch at the bottom left with Demo walk above it, + and - at the bottom right on both maps, the top left clear for the arrival banner. The layers button is gone (redundant with the switch; no satellite view).
+- App book map keeps each map's own shape and opens wide maps zoomed to fill the space; + and - zoom around the middle of the view.
+- Nominatim lookups back off and retry when rate limited.
+
+## 2026-11-19 · Audio mode; pinch zoom everywhere
+- The speaker button left the map. Next to the headphones (read this stop) there is now an "Audio mode" switch: when on, each stop is read aloud on arrival, so the phone can stay in a pocket.
+- Preview: two-finger pinch zooms the book map around the fingers; street maps zoom out one level further.
+- App: street maps already pinch natively; the book map pinches on iPhone.
+
+## 2026-11-19 · Real GPS in the preview; walked trail on the book map
+- Preview: a walk now starts in real mode. The phone's location moves the dot, triggers arrivals (same radius rule as the app) and updates the distance line. The demo walk only runs when tapped, or by itself when the browser has no location.
+- Book map (preview and app): the walked part of the route fills in over her dotted line, in the same green as the street map's trail (one shared TRAIL color).
+
+## 2026-11-19 · Book map trail follows her dotted line; map opens filling the screen
+- The walked part on the book map is now her own dotted line, leg by leg, filled in see-through blue once each stop is reached. It is never the walker's GPS track. carto_maps.py saves each traced leg in map pixels (routes_carto_px.json, carried into bookmaps.json as "legs").
+- Path tracing now bridges the small gaps where dashes meet at corners and picks up maps drawn with solid path strokes, so many more legs trace (Walk V 6 to 16, Walk VI 4 to 9, Walk XI 23 to 41).
+- The book map opens zoomed so her map fills the full height under the header, in the preview and the app, until the walker zooms.
+
+## 2026-11-19 · Blue line fills along her route as you walk
+- Book map (preview and app): while heading to a stop, her dotted line from the previous stop fills in blue as far as the walker has come along it. The position is projected onto her line, counts only near it, and never shrinks on doubling back. The whole leg fills on arrival.
+- Preview book map measures the real pane to fill its full height, on any screen size and after resizes, until the walker zooms; a new walk resets the zoom.
+- Preview: Demo walk now starts at stop 1 and walks the whole route, with the street map and the book map following the dot. Pausing and tapping again carries on from where it paused.
+
+## 2026-11-19 · Blue lines on both maps; book trail sits straight on her line
+- Street map: the walked trail is see-through blue and the leg ahead is dashed blue (was green and red).
+- Book map: each traced leg is pulled back onto her drawn line and straightened, so the blue sits exactly on her dots with no wobble. The current leg fills smoothly to the walker's point along her line.
+- Preview: the "location is off" notice no longer shows during the demo walk, and shows once at most.
+
+## 2026-11-19 · Direction controls on the book map
+- Preview: the follow-me button and the whole-walk button now work on the book map (follow scrolls with the dot; whole shows the full page). No made-up position when location isn't known yet.
+- Preview: the directions button opens walking directions to the next stop in Apple Maps on iPhone, Google Maps elsewhere.
+- Preview: the phone's compass sets the heading when standing still (iPhone asks once, on Start).
+- Book map (preview and app): the walker's dot has a heading wedge like the street map, turned for each map's own orientation (her maps are mauka-up, not north-up).
+- App: the street-only buttons hide on the book map, which keeps its own follow-me button beside + and -.
+
 ## 2026-11-18 · "What am I looking at?" done right
 - Asks for the camera and location only when the walker opens the feature. If the camera is refused, it still works from location and compass; if location is refused, it says what is missing and how to turn it on, instead of "Finding your location..." forever.
 - Steadier answers: compass readings are smoothed, and a figure 8 tip appears when the compass is unsure.

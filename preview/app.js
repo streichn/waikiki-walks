@@ -202,7 +202,7 @@
     if (!p || !p.visited.length) return { tag: '', bar: '' };
     const done = p.finishedAt || p.visited.length >= n, pct = done ? 100 : Math.round(100 * p.visited.length / n);
     const cls = done ? 'done' : S.active === w.id ? 'live' : 'paused';
-    const txt = done ? 'Finished' : `${S.active === w.id ? 'Walking now' : 'Paused'} · ${p.visited.length} of ${n} stops`;
+    const txt = done ? 'Completed' : `${S.active === w.id ? 'Walking now' : 'Paused'} · ${p.visited.length} of ${n} stops`;
     return { tag: `<span class="wtag ${cls}">${txt}</span>`, bar: `<span class="wbar ${cls}"><i style="width:${pct}%"></i></span>` };
   }
 
@@ -271,7 +271,7 @@
 
   function renderWalk() {
     const w = walk(S.walkId), prog = S.progress[w.id];
-    const startLabel = !canStart(w.id) ? 'Unlock this walk' : S.active === w.id ? 'Return to walk' : prog && prog.visited.length && !prog.finishedAt ? 'Continue walk' : 'Start walk';
+    const startLabel = !canStart(w.id) ? 'Unlock this walk' : S.active === w.id ? 'Return to walk' : prog && prog.finishedAt ? 'Walk it again' : prog && prog.visited.length ? 'Continue walk' : 'Start walk';
     const chips = [w.facts.distance && `<span class="chip">${ic('steps', 'width="14" height="14"')} ${esc(w.facts.distance)}</span>`, w.facts.duration && `<span class="chip">${ic('time', 'width="14" height="14"')} ${esc(w.facts.duration)}</span>`, `<span class="chip">${ic('pin', 'width="14" height="14"')} ${w.stops.length} stops</span>`, w.id === TRIAL.walkId && !S.isPro ? `<span class="chip" style="color:var(--gold)">${ic('gift', 'width="14" height="14"')} First ${TRIAL.freeStops} free</span>` : ''].filter(Boolean).join('');
     const stops = `<div class="pad stack" style="gap:8px;margin-top:22px"><h2 style="font-size:22px">The stops</h2><p class="small" style="margin:0 0 4px">Tap a stop to read it, then swipe or use Next to go through them one at a time.</p>${w.stops.map((s, i) => {
       const locked = !canOpen(w.id, i), seen = prog && prog.visited.includes(i);
@@ -285,7 +285,7 @@
         ${stops}
       </div>
     </div>
-    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>'}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div><div style="position:absolute;right:12px;top:calc(env(safe-area-inset-top) + 66px);z-index:900"><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button></div></div>
+    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
     <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button>${S.progress[w.id] && S.progress[w.id].visited.length ? `<button class="resetw" data-act="resetwalk">Start this walk over</button>` : ''}</div>`;
   }
@@ -325,26 +325,102 @@
     // Testing aid: where the app's own pins land on her map, to check they sit on her numbers.
     const chk = S.showPins ? w.stops.map((s, i) => { const p = bookXY(w, s.lat, s.lng); return p ? `<span class="bchk" style="left:${p[0]}%;top:${p[1]}%">${s.n}</span>` : ''; }).join('') : '';
     const me = S.view === 'go' && S.me ? bookXY(w, S.me.lat, S.me.lng) : null;
-    return hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"></span>`;
+    // Her own dotted line between stops, filled in as each stop is reached (the intended route, never the walker's track),
+    // in a see-through blue so her map shows through (Nick, 19 Nov 2026).
+    const reachedN = prog.finishedAt ? Infinity : Math.max(0, ...(prog.visited || []).map((i) => w.stops[i] ? w.stops[i].n : 0));
+    const legs = Object.entries(g.legs || {}).filter(([n]) => Number(n) + 1 <= reachedN);
+    const line = (pts, id) => `<polyline ${id ? `id="${id}" ` : ''}points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="5" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+    const trail = `<svg class="btrail" id="btrail" viewBox="0 0 ${g.w} ${g.h}" preserveAspectRatio="none" aria-hidden="true">${legs.map(([, pts]) => line(pts)).join('')}${line(legPart(w, g), 'btrail-cur')}</svg>`;
+    return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"><span class="bcone" id="bcone" style="transform:rotate(${bookHeading(w)}deg)"></span></span>`;
+  }
+  // While walking toward a stop, her dotted line from the previous stop fills in as far as the walker has come along it.
+  // The walker's position is projected onto her line (so the fill always lies on the intended route), and it never
+  // shrinks when someone doubles back. Only near the line counts, so a detour elsewhere draws nothing.
+  // Distance along a polyline to the point nearest (x, y), and how far off the line that point is.
+  function alongLine(pts, x, y) {
+    let best = { d: Infinity, s: 0 }, acc = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, ay] = pts[i - 1], [bx, by] = pts[i], dx = bx - ax, dy = by - ay, L = Math.hypot(dx, dy) || 1e-9;
+      const t = Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / (L * L))), d = Math.hypot(ax + t * dx - x, ay + t * dy - y);
+      if (d < best.d) best = { d, s: acc + t * L };
+      acc += L;
+    }
+    return best;
+  }
+  // The first `s` of a polyline's length, ending exactly at that point.
+  function lineUpTo(pts, s) {
+    const out = [pts[0]]; let acc = 0;
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, ay] = pts[i - 1], [bx, by] = pts[i], L = Math.hypot(bx - ax, by - ay);
+      if (acc + L >= s) { const t = L ? (s - acc) / L : 0; out.push([ax + t * (bx - ax), ay + t * (by - ay)]); return out; }
+      out.push(pts[i]); acc += L;
+    }
+    return out;
+  }
+  function legPart(w, g) {
+    const prog = S.progress[w.id]; if (!prog || prog.current < 1 || !g || !g.legs) return [];
+    const from = w.stops[prog.current - 1], pts = from && g.legs[String(from.n)]; if (!pts) return [];
+    const key = w.id + ':' + from.n; S.legProg = S.legProg || {};
+    if (prog.visited.includes(prog.current)) return pts;
+    if (S.me) {
+      const p = bookXY(w, S.me.lat, S.me.lng);
+      if (p) {
+        const r = alongLine(pts, p[0] / 100 * g.w, p[1] / 100 * g.h);
+        if (r.d <= Math.max(g.w, g.h) * 0.03 && r.s > (S.legProg[key] || 0)) S.legProg[key] = r.s;
+      }
+    }
+    return S.legProg[key] > 0 ? lineUpTo(pts, S.legProg[key]) : [];
+  }
+  function paintLegPart(w) {
+    const el = document.getElementById('btrail-cur'), g = bm(w); if (!el || !g) return;
+    el.setAttribute('points', legPart(w, g).map((q) => q[0] + ',' + q[1]).join(' '));
+  }
+  // Which way is north on this map page, in degrees clockwise from straight up. Her maps are drawn mauka-up, not north-up.
+  function bookNorth(w) {
+    const g = bm(w); if (!g) return 0;
+    const c = w.stops.find(onMap) || { lat: 21.28, lng: -157.83 }, a = bookXY(w, c.lat, c.lng), b = bookXY(w, c.lat + 0.002, c.lng);
+    if (!a || !b) return 0;
+    return Math.atan2((b[0] - a[0]) * g.w, -(b[1] - a[1]) * g.h) * 180 / Math.PI;
+  }
+  const bookHeading = (w) => ((S.heading || 0) + bookNorth(w)) % 360;
+  function paintBookDot(w) {
+    const bme = document.getElementById('bme'); if (!bme || !S.me) return;
+    const p = bookXY(w, S.me.lat, S.me.lng); if (!p) return;
+    bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%';
+    const c = document.getElementById('bcone'); if (c) c.style.transform = `rotate(${bookHeading(w)}deg)`;
+    if (S.bookFollow) centerBookOnMe(true);
   }
   // Scroll her map so the walker's dot is in the middle of the visible part (above the sheet).
-  function centerBookOnMe(smooth) {
-    const pane = document.getElementById('bookpane'), dot = document.getElementById('bme'); if (!pane || !dot || dot.style.display === 'none') return;
+  function centerBookOnMe(smooth) { centerBookOn(document.getElementById('bme'), smooth); }
+  // Same, for the ring on the current stop's printed number (after Next, Previous or a tap on a stop).
+  function centerBookOnStop(smooth) { centerBookOn(document.querySelector('.bhit.on'), smooth); }
+  function centerBookOn(dot, smooth) {
+    const pane = document.getElementById('bookpane'); if (!pane || !dot || dot.style.display === 'none') return;
     const wrap = dot.parentElement, visibleH = pane.clientHeight - (S.view === 'go' ? sheetPx() : 0);
     const x = wrap.offsetLeft + dot.offsetLeft, y = wrap.offsetTop + dot.offsetTop; // bookwrap is positioned inside the scrolling pane
     S.bookAuto = Date.now();
     pane.scrollTo({ left: x - pane.clientWidth / 2, top: y - visibleH / 2, behavior: smooth ? 'smooth' : 'auto' });
+  }
+  // + and - for both maps, at the bottom right of the map (Nick, 19 Nov 2026)
+  function zoomBtns() {
+    const book = S.mapStyle === 'book';
+    return `<div class="zoombtns"><button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
   }
   function bookPane(w) {
     // Open the page that prints the current stop; a tap on "Map 2" etc. sticks until the stop changes.
     const prog = S.progress[w.id] || { current: -1 }, cur = S.view === 'go' ? prog.current : S.focus;
     S.bookPage = S.bookPage || {}; S.bookPageStop = S.bookPageStop || {};
     if (S.bookPageStop[w.id] !== cur) { S.bookPage[w.id] = pageFor(w, Math.max(0, cur)); S.bookPageStop[w.id] = cur; }
-    const ps = bmPages(w), g = bm(w), k = ps.indexOf(g);
+    const ps = bmPages(w), g = bm(w), k = Math.min((S.bookPage || {})[w.id] || 0, Math.max(0, ps.length - 1));
     const tabs = ps.length > 1 ? `<div class="bookpages" role="tablist">${ps.map((p, j) => `<button role="tab" aria-selected="${j === k}" data-bookpage="${j}">Map ${j + 1}</button>`).join('')}</div>` : '';
+    // Open zoomed so her map fills the height between the header and the sheet (no empty band below it), until the walker zooms.
+    if (!S.bookZoomUser && g) {
+      const W = $app.clientWidth || 390, H = $app.clientHeight || 800, vis = H - 110;
+      S.bookZoom = Math.max(1, Math.min(5, vis / (W * g.h / g.w)));
+    }
     return `<div class="bookpane" id="bookpane"><div class="bookimg" style="width:${(S.bookZoom || 1.6) * 100}%"><div class="bookwrap">${img(g ? g.file : w.bookMap, '', 'Walk ' + wn(w.id) + ' map ' + (k + 1) + ' from the book')}${bookPins(w)}</div></div></div>${tabs}
       <button class="pinchk" data-act="pinchk" aria-pressed="${!!S.showPins}">${S.showPins ? 'Hide' : 'Check:'} app pins</button>
-      <div class="zoombtns">${S.view === 'go' ? `<button class="mapbtn" data-act="bookme" aria-label="Go to my position">${ic('locate')}</button>` : ''}<button class="mapbtn" data-zoom="1" aria-label="Zoom in">+</button><button class="mapbtn" data-zoom="-1" aria-label="Zoom out">&minus;</button></div>`;
+      ${zoomBtns()}`;
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
   function overlayCtl(w) {
@@ -384,39 +460,79 @@
     el.addEventListener('touchend', (e) => { if (skip || x0 === null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null; if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8 && Date.now() - t0 < 700) stepStop(dx < 0 ? 1 : -1); }, { passive: true });
   }
 
+  // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
+  const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
+  const TRAIL = '#1A73E8';  // blue for the walked trail and the leg ahead, on the street map and the book map (Nick, 19 Nov 2026)
+  const BOOK_TRAIL = '#1A73E8';  // the walked part of her dotted line on the book map, see-through blue
+  const onMain = (s) => onMap(s) && !s.side;
+  function between(w, i, j) {
+    const a = w.stops[i], b = w.stops[j]; if (!a || !b) return [];
+    const key = j === i + 1 ? String(a.n) : `${a.n}>${b.n}`;
+    const A = [a.lat, a.lng], B = [b.lat, b.lng], leg = ((D.routes || {})[w.id] || {})[key];
+    if (!leg || leg.length < 2) return [A, B];
+    const m = (p, q) => dist({ lat: p[0], lng: p[1] }, { lat: q[0], lng: q[1] });
+    let len = 0; for (let k = 1; k < leg.length; k++) len += m(leg[k - 1], leg[k]);
+    if (m(A, leg[0]) > 120 || m(B, leg[leg.length - 1]) > 120 || len > 3 * m(A, B) + 150) return [A, B];
+    return [A, ...leg, B];
+  }
+  // The walking line from stop i to the next: her traced red route, else a walking route along streets, else straight.
+  function legPath(w, i) {
+    const a = w.stops[i], b = w.stops[i + 1]; if (!a || !b) return [];
+    if (a.side || b.side) return [[a.lat, a.lng], [b.lat, b.lng]];
+    return between(w, i, i + 1);
+  }
+  // The main route through the stops her map prints, skipping side-trip stops.
+  function walkPath(w, upto) {
+    const idx = w.stops.map((s, i) => (onMain(s) && (upto == null || i <= upto) ? i : -1)).filter((i) => i >= 0), out = [];
+    idx.forEach((i, k) => { const j = idx[k + 1]; if (j === undefined) out.push([w.stops[i].lat, w.stops[i].lng]); else out.push(...between(w, i, j).slice(0, -1)); });
+    return out;
+  }
+  function sidePaths(w) {
+    return w.stops.flatMap((s, i) => {
+      if (!s.side || !onMap(s)) return [];
+      const before = w.stops.slice(0, i).reverse().find(onMain), after = w.stops.slice(i + 1).find(onMain);
+      return [[before, s, after].filter(Boolean).map((x) => [x.lat, x.lng])];
+    });
+  }
   // Shared Leaflet map builder with offline tiles.
   function makeMap(el, w, opts) {
     const T = window.WWTILES || {};
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else { t.style.background = '#e9e5dc'; } t.alt = ''; return t; } });
-    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 });
+    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 13, maxZoom: 18, touchZoom: true, bounceAtZoomLimits: false });
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14, tileSize: 256 }).addTo(map);
     map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     // Only stops her book map prints get a pin, so this map shows what her map shows.
     const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-    L.polyline(mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    L.polyline(walkPath(w).length > 1 ? walkPath(w) : mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    sidePaths(w).forEach((p) => L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map));
     const markers = w.stops.map((s, i) => {
       if (!onMap(s)) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
       m.on('click', () => opts.onSelect && opts.onSelect(i));
       return m;
     });
-    const seg = L.polyline([], { color: '#D6336C', weight: 6 }).addTo(map);
+    // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
+    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.6 }).addTo(map);
+    const seg = L.polyline([], { color: TRAIL, weight: 5, opacity: 0.9, dashArray: '8 8' }).addTo(map);  // the leg ahead
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
+      zoomIn() { map.zoomIn(); }, zoomOut() { map.zoomOut(); },
       map,
       paint(cur, visited) {
         markers.forEach((m, i) => {
           if (!m) return;
           const s = w.stops[i], locked = !canOpen(w.id, i), done = visited.includes(i), isCur = i === cur;
-          const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : w.color;
+          const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : s.side ? SIDE_TRIP : w.color;
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });
-        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? [pts[cur], pts[cur + 1]] : []);
+        const p = S.progress[w.id], reached = p && p.finishedAt ? w.stops.length - 1 : Math.max(-1, ...visited);
+        trail.setLatLngs(reached > 0 ? walkPath(w, reached) : []);
+        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? legPath(w, cur) : []);
       },
       fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
-      focus(i) { if (onMap(w.stops[i])) map.setView(pts[i], 17, { animate: true }); },
+      focus(i) { if (!onMap(w.stops[i])) return; const c = map.project(pts[i], 17).add([0, (opts.bottom || 0) / 2]); map.setView(map.unproject(c, 17), 17, { animate: true }); }, // centered in the part above the sheet
       me(p, heading) {
         if (!p) return;
         if (!map.hasLayer(me)) me.addTo(map);
@@ -439,7 +555,8 @@
       setTimeout(() => { if (wmap) wmap.overlay = addOverlay(wmap.map, w); }, 0);
       wmap = makeMap(document.getElementById('wmap'), w, { bottom: 200, onSelect: (i) => { S.focus = i; syncRail(true); wmap.paint(S.focus, (S.progress[w.id] || { visited: [] }).visited); } });
     }
-    setTimeout(() => { wmap.map.invalidateSize(); wmap.paint(S.focus, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(S.focus); syncRail(false); }, 50);
+    const whole = S.showWhole; S.showWhole = false;
+    setTimeout(() => { wmap.map.invalidateSize(); wmap.paint(whole ? -1 : S.focus, (S.progress[w.id] || { visited: [] }).visited); if (whole) wmap.fit(); else wmap.focus(S.focus); syncRail(false); }, 50);
   }
   function syncRail(scroll) {
     document.querySelectorAll('.mcard').forEach((c) => c.classList.toggle('on', Number(c.dataset.card) === S.focus));
@@ -456,9 +573,9 @@
     if (here) navLine = 'Read or listen below, then tap Next.';
     else if (S.me) { const d = dist(S.me, stop), b = bearing(S.me, stop); rot = b - S.heading; navLine = `${fmt(d)} · about ${Math.max(1, Math.round(d / 67))} min · head ${hawaiianDir(b)}`; }
     return `<div id="go" style="position:absolute;inset:0">
-      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>'}${styleSwitch(w)}${overlayCtl(w)}</div>
+      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="layers" aria-label="Map style">${ic('layers')}</button><button class="mapbtn ${S.settings.autoNarrate ? 'on' : ''}" data-act="autoread" aria-pressed="${!!S.settings.autoNarrate}" aria-label="Read each stop aloud on arrival">${ic(S.settings.autoNarrate ? 'volume' : 'mute')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet" id="sheet">
         <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
@@ -468,17 +585,18 @@
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
-        <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button>
+        <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
   }
   function mountGoMap() {
     const w = walk(S.walkId), prog = S.progress[w.id];
     const el = document.getElementById('gmap'); if (!el) { gmap = null; return; }
-    gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => goTo(i) });
+    gmap = makeMap(el, w, { showSeg: true, bottom: sheetPx() + 10, onSelect: (i) => showStop(i) });
     gmap.overlay = addOverlay(gmap.map, w);
     gmap.paint(prog.current, prog.visited); gmap.me(S.me, S.heading);
-    setTimeout(() => { gmap.map.invalidateSize(); if (S.me) gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
+    const toStop = S.stopFocus;
+    setTimeout(() => { gmap.map.invalidateSize(); if (S.me && !toStop && S.follow !== 'off') gmap.map.setView([S.me.lat, S.me.lng], 17); else gmap.focus(prog.current); }, 60);
   }
   // Bottom sheet with three resting heights, like Apple Maps: peek, half, full.
   function detents() {
@@ -537,6 +655,8 @@
     render();
     if (S.settings.autoNarrate) speakStop(w.stops[i]);
   }
+  // Next, Previous, or a tap on a pin: stop following the walker and show that stop on the map.
+  function showStop(i) { S.follow = 'off'; S.bookFollow = false; S.stopFocus = true; goTo(i); }
   function goTo(i) {
     const w = walk(S.walkId), prog = S.progress[w.id];
     if (i < 0) return;
@@ -563,13 +683,32 @@
       if (d <= budget) { S.me = { ...nxt }; budget -= d; if (simPath.length > 1) simPath.shift(); else break; }
       else { S.heading = bearing(S.me, nxt); const f = budget / d; S.me = { lat: S.me.lat + (nxt.lat - S.me.lat) * f, lng: S.me.lng + (nxt.lng - S.me.lng) * f }; budget = 0; }
     }
-    if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') {} }
-    const bme = document.getElementById('bme'); if (bme) { const p = bookXY(w, S.me.lat, S.me.lng); if (p) { bme.style.display = ''; bme.style.left = p[0] + '%'; bme.style.top = p[1] + '%'; if (S.bookFollow) centerBookOnMe(true); } }
-    // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
-    if (onMap(target) && dist(S.me, target) <= S.settings.arrival && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
-    const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(S.heading)}`; }
-    const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = 'rotate(0deg)';
+    afterMove(w, prog, target);
   }
+  // After the walker's position changes (demo or real GPS): move the dot on both maps, check arrival, update the distance line.
+  function afterMove(w, prog, target) {
+    if (gmap) gmap.me(S.me, S.heading);
+    paintLegPart(w);
+    paintBookDot(w);
+    // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
+    if (onMap(target) && dist(S.me, target) <= S.settings.arrival + (S.gpsAcc ? Math.min(S.gpsAcc, 30) * 0.5 : 0) && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
+    const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(bearing(S.me, target))}`; }
+    const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = `rotate(${S.sim ? 0 : bearing(S.me, target) - S.heading}deg)`;
+  }
+  // Real GPS (Nick, 19 Nov 2026): while a walk is open and the demo is off, the phone's location moves the dot and triggers arrivals.
+  let gpsWatch = null;
+  function startGps() {
+    if (gpsWatch !== null || !navigator.geolocation) return;
+    gpsWatch = navigator.geolocation.watchPosition((p) => {
+      S.gpsAcc = p.coords.accuracy;
+      if (S.sim || S.view !== 'go') return;
+      S.me = { lat: p.coords.latitude, lng: p.coords.longitude };
+      if (p.coords.heading != null && !isNaN(p.coords.heading)) S.heading = p.coords.heading;
+      const w = walk(S.walkId), prog = S.progress[w.id]; if (!prog) return;
+      afterMove(w, prog, w.stops[prog.current]);
+    }, (e) => { gpsWatch = null; if (e.code === 1 && !S.sim && !S.gpsToasted) { S.gpsToasted = true; toast('Location is off for this page. Allow location to walk for real, or tap Demo walk.'); } }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
+  }
+  function stopGps() { if (gpsWatch !== null) { navigator.geolocation.clearWatch(gpsWatch); gpsWatch = null; } }
   // Demo walk: the dot walks to each stop, pauses there a few seconds, then carries on to the next one by itself.
   let simPause = 0;
   function startSim() {
@@ -590,7 +729,31 @@
     }, 700);
   }
   function stopSim() { S.sim = false; clearInterval(simTimer); }
-  function finishWalk() { const prog = S.progress[S.walkId]; prog.finishedAt = Date.now(); S.active = null; stopSim(); stopSpeak(); persist(); toast(`Mahalo for walking ${walk(S.walkId).title}!`); S.view = 'walk'; render(); }
+  function finishWalk() {
+    const w = walk(S.walkId), prog = S.progress[w.id];
+    prog.finishedAt = Date.now();
+    S.active = null; stopSim(); stopSpeak(); persist();
+    // Land on the whole walk, route lit up from start to end.
+    S.view = 'walk'; S.mode = 'map'; S.mapStyle = 'street'; S.showWhole = true; wmap = null; render();
+    const m = modal(`<div class="stack" style="gap:12px;text-align:center">${hib(56, '#D6336C', -15)}<h2 style="font-size:24px">Walk complete</h2><p class="small" style="margin:0">Mahalo for walking ${esc(w.title)}. Your whole route is lit up on the map, from where you started to where you ended.</p>
+      <button class="btn" data-close>${ic('map')} See my route</button>
+      <button class="btn" data-done="home" style="background:transparent;color:var(--primary)">Back to all walks</button></div>`, true);
+    m.addEventListener('click', (e) => { if (e.target.closest('[data-done="home"]')) { m.remove(); S.view = null; render(); } });
+  }
+  // A finished walk: walk it again from stop 1, or just look at it without losing the finished route.
+  function completedDialog(id) {
+    const w = walk(id);
+    const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">Walk it again?</h2><p class="small" style="margin:0">You finished ${esc(w.title)}. Start over from stop 1, or just look through it again.</p>
+      <button class="btn" data-again="start">${ic('navigate')} Start over</button>
+      <button class="btn" data-again="look" style="background:transparent;color:var(--accent);border:2px solid var(--accent)">${ic('map')} Just look</button>
+      <button class="btn" data-close style="background:transparent;color:var(--primary)">Cancel</button></div>`, true);
+    m.addEventListener('click', async (e) => {
+      const b = e.target.closest('[data-again]'); if (!b) return;
+      m.remove();
+      if (b.dataset.again === 'start') { S.walkId = id; delete S.progress[id]; persist(); await needImages(id); startWalk(); }
+      else { await openWalk(id); S.mode = 'map'; S.showWhole = true; wmap = null; render(); }
+    });
+  }
 
   function renderSaved() {
     const items = D.walks.flatMap((w) => w.stops.map((s, i) => ({ w, s, i }))).filter((x) => S.favs.includes(x.s.id));
@@ -644,7 +807,7 @@
     const el = document.getElementById('emap'); if (!el) return;
     const T = window.WWTILES || {};
     const Layer = L.GridLayer.extend({ createTile(c) { const t = document.createElement('img'); const k = `${c.z}/${c.x}/${c.y}`; if (T[k]) t.src = T[k]; else t.style.background = '#e9e5dc'; return t; } });
-    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 14, maxZoom: 18 }).setView([21.283, -157.825], 14);
+    const map = L.map(el, { zoomControl: false, attributionControl: false, minZoom: 13, maxZoom: 18, touchZoom: true, bounceAtZoomLimits: false }).setView([21.283, -157.825], 14);
     new Layer({ maxNativeZoom: 16, minNativeZoom: 14 }).addTo(map);
     const group = L.layerGroup().addTo(map);
     const showAll = () => {
@@ -657,7 +820,7 @@
     const showWalk = (w) => {
       group.clearLayers();
       const pts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-      L.polyline(pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
+      L.polyline(walkPath(w).length > 1 ? walkPath(w) : pts, { color: w.color, weight: 4, dashArray: '8 6' }).addTo(group);
       w.stops.forEach((s, i) => onMap(s) && L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: `<div class="pin" style="background:${canOpen(w.id, i) ? w.color : '#8A9A9B'}">${canOpen(w.id, i) ? s.n : ic('lock', 'width="11" height="11"')}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }) }).addTo(group).on('click', () => openWalk(w.id, i)));
       map.fitBounds(L.latLngBounds(pts), { paddingTopLeft: [30, 70], paddingBottomRight: [30, 200] });
       const h = document.getElementById('ehint'); h.innerHTML = `${ic('back', 'width="14" height="14"')} All walks`; h.setAttribute('role', 'button'); h.onclick = showAll;
@@ -765,14 +928,71 @@
     if (stopIdx != null && !Number.isNaN(stopIdx)) { S.view = 'stop'; S.stopIdx = stopIdx; } else S.view = 'walk';
     await needImages(id); render();
   }
+  let compassOn = false;
+  function startCompass() {
+    if (compassOn || typeof DeviceOrientationEvent === 'undefined') return;
+    const listen = () => {
+      compassOn = true;
+      window.addEventListener('deviceorientation', (e) => {
+        if (S.sim || S.view !== 'go') return;
+        const h = e.webkitCompassHeading != null ? e.webkitCompassHeading : (e.absolute && e.alpha != null ? 360 - e.alpha : null);
+        if (h == null || isNaN(h)) return;
+        S.heading = h;
+        const w = walk(S.walkId); if (!w) return;
+        const c = document.getElementById('bcone'); if (c) c.style.transform = `rotate(${bookHeading(w)}deg)`;
+        if (gmap && S.me) gmap.me(S.me, S.heading);
+        const prog = S.progress[w.id], t = prog && w.stops[prog.current], ar = document.querySelector('.nav .arrow');
+        if (ar && t && S.me) ar.style.transform = `rotate(${bearing(S.me, t) - h}deg)`;
+      });
+    };
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then((r) => { if (r === 'granted') listen(); }).catch(() => {});
+    else listen();
+  }
   async function startWalk() {
+    startCompass();
     const w = walk(S.walkId);
     if (!canStart(w.id)) return openPaywall();
     const p = S.progress[w.id];
     if (!p || p.finishedAt) S.progress[w.id] = { current: 0, visited: [], startedAt: Date.now() };
-    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; persist(); await needImages(w.id); render();
-    // The preview can't read real GPS, so it walks the route for you; tap the demo button to pause.
-    startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
+    S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; S.simSession = null; persist(); await needImages(w.id); render();
+    // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
+    // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
+    if (!navigator.geolocation) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
+  }
+
+  // Fill the pane's full height under the header with her map, measured on the real pane once it is on screen
+  // (and again when the image or the window size changes), until the walker zooms by hand.
+  function fitBook(bp) {
+    const bi = bp.querySelector('.bookimg'), im = bi && bi.querySelector('img'); if (!im) return;
+    const fit = () => {
+      if (S.bookZoomUser || !bp.isConnected) return;
+      const ratio = (im.naturalHeight && im.naturalWidth) ? im.naturalHeight / im.naturalWidth : (im.offsetHeight / Math.max(1, im.offsetWidth));
+      if (!ratio || !bp.clientWidth) return;
+      const z = Math.max(1, Math.min(5, (bp.clientHeight - 110) / (bp.clientWidth * ratio)));
+      if (Math.abs(z - (S.bookZoom || 0)) > 0.01) { S.bookZoom = z; bi.style.width = z * 100 + '%'; }
+    };
+    fit(); if (!im.complete) im.addEventListener('load', fit, { once: true });
+    if (!window._bookFitResize) { window._bookFitResize = true; window.addEventListener('resize', () => { const p = document.getElementById('bookpane'); if (p) fitBook(p); }); }
+  }
+  // Pinch to zoom on the book map: two fingers scale the page around their midpoint (the browser would otherwise zoom the whole page).
+  function bindBookPinch(pane) {
+    let p0 = null;
+    const span = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+    pane.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 2) return;
+      const r = pane.getBoundingClientRect(), mx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left, my = (e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top;
+      const bi = pane.querySelector('.bookimg');
+      p0 = { d: span(e.touches), z: S.bookZoom || 1.6, mx, my, cx: (pane.scrollLeft + mx) / bi.offsetWidth, cy: (pane.scrollTop + my - bi.offsetTop) / bi.offsetHeight };
+    }, { passive: true });
+    pane.addEventListener('touchmove', (e) => {
+      if (!p0 || e.touches.length !== 2) return;
+      e.preventDefault();
+      const z = Math.max(1, Math.min(5, p0.z * span(e.touches) / p0.d)), bi = pane.querySelector('.bookimg');
+      S.bookZoom = z; S.bookZoomUser = true; bi.style.width = z * 100 + '%';
+      S.bookAuto = Date.now(); S.bookFollow = false;
+      pane.scrollLeft = p0.cx * bi.offsetWidth - p0.mx; pane.scrollTop = p0.cy * bi.offsetHeight + bi.offsetTop - p0.my;
+    }, { passive: false });
+    pane.addEventListener('touchend', (e) => { if (e.touches.length < 2) p0 = null; }, { passive: true });
   }
 
   function render() {
@@ -787,13 +1007,16 @@
     else html = (S.tab === 'home' ? renderHome() : S.tab === 'explore' ? renderExplore() : S.tab === 'saved' ? renderSaved() : renderProfile()) + minibar() + tabs();
     $app.innerHTML = html;
     if (S.view === 'walk' && S.mode === 'map') mountWalkMap();
-    if (S.view === 'go') { mountSheet(); mountGoMap(); }
+    if (S.view === 'go') { mountSheet(); mountGoMap(); startGps(); } else stopGps();
     const bp = document.getElementById('bookpane');
     if (bp && keep && keep.view === S.view && keep.walk === S.walkId) { S.bookAuto = Date.now(); bp.scrollTop = keep.top; bp.scrollLeft = keep.left; }
     if (bp) {
       bp.addEventListener('scroll', () => { if (Date.now() - (S.bookAuto || 0) > 900) S.bookFollow = false; }, { passive: true });
-      if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
+      bindBookPinch(bp); fitBook(bp);
+      if (S.view === 'go' && S.stopFocus) setTimeout(() => centerBookOnStop(false), 60);
+      else if (S.view === 'go' && S.bookFollow !== false && !(keep && keep.view === 'go')) { S.bookFollow = true; setTimeout(() => centerBookOnMe(false), 60); }
     }
+    S.stopFocus = false;
     if (S.view === 'stop') bindSwipe(document.getElementById('stopread'));
     if (!S.view && S.tab === 'explore') mountExplore();
     if (!S.view && S.tab === 'home') { showFact(); clearInterval(factTimer); factTimer = setInterval(() => { factIdx++; showFact(); }, 9000); }
@@ -810,7 +1033,7 @@
     if ((el = q('[data-hush]'))) { stopSpeak(); return render(); }
     if ((el = q('.gw'))) return openGloss(el.dataset.word);
     if ((el = q('[data-tab]'))) { S.tab = el.dataset.tab; S.view = null; return render(); }
-    if ((el = q('[data-walk]'))) return openWalk(el.dataset.walk);
+    if ((el = q('[data-walk]'))) return (S.progress[el.dataset.walk] || {}).finishedAt ? completedDialog(el.dataset.walk) : openWalk(el.dataset.walk);
     if ((el = q('[data-open]'))) { const [w, i] = el.dataset.open.split(':'); return openWalk(w, Number(i)); }
     if ((el = q('#fact'))) { factIdx++; return showFact(); }
     if ((el = q('[data-mode]'))) { S.mode = el.dataset.mode; document.getElementById('readview').classList.toggle('hidden', S.mode !== 'read'); document.getElementById('mapview').classList.toggle('hidden', S.mode !== 'map'); document.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-selected', b.dataset.mode === S.mode)); document.querySelector('.cta').classList.toggle('solid', S.mode === 'read'); if (S.mode === 'map') mountWalkMap(); else setTimeout(() => { const s = document.getElementById('stop-' + S.focus); s && S.focus && s.scrollIntoView({ block: 'start' }); }, 30); return; }
@@ -818,10 +1041,11 @@
     if ((el = q('[data-read]'))) { const i = Number(el.dataset.read); S.stopIdx = i; S.focus = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-step]'))) return stepStop(Number(el.dataset.step));
     if ((el = q('[data-detent]'))) { S.detent = el.dataset.detent; setSheet(detents()[S.detent], true); markDetent(); if (gmap) setTimeout(() => gmap.map.invalidateSize(), 300); return; }
-    if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return goTo(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
+    if ((el = q('[data-bpin]'))) { const i = Number(el.dataset.bpin); if (S.view === 'go') return showStop(i); S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-mapstyle]'))) { S.mapStyle = el.dataset.mapstyle; wmap = null; gmap = null; render(); return; }
     if ((el = q('[data-bookpage]'))) { const w = walk(S.walkId); S.bookPage = S.bookPage || {}; S.bookPage[w.id] = Number(el.dataset.bookpage); return render(); }
-    if ((el = q('[data-zoom]'))) { S.bookZoom = Math.max(1, Math.min(4, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
+    if ((el = q('[data-zoom]')) && S.mapStyle !== 'book') { const m = S.view === 'go' ? gmap : wmap; if (m) (Number(el.dataset.zoom) > 0 ? m.zoomIn() : m.zoomOut()); return; }
+    if ((el = q('[data-zoom]'))) { S.bookZoomUser = true; S.bookZoom = Math.max(1, Math.min(5, (S.bookZoom || 1.6) + Number(el.dataset.zoom) * 0.5)); const bi = document.querySelector('.bookimg'); if (bi) bi.style.width = S.bookZoom * 100 + '%'; return; }
     if ((el = q('[data-card]'))) { const i = Number(el.dataset.card); const w = walk(S.walkId); if (!canOpen(w.id, i)) return openPaywall(); if (S.focus !== i) { S.focus = i; syncRail(true); wmap.paint(i, (S.progress[w.id] || { visited: [] }).visited); wmap.focus(i); return; } S.focus = i; S.stopIdx = i; S.view = 'stop'; return render(); }
     if ((el = q('[data-listen]'))) { const w = walk(S.walkId); const s = w.stops[Number(el.dataset.i)]; return speaking.stopId === s.id ? stopSpeak() : speakStop(s); }
     if ((el = q('[data-fav]'))) { const id = el.dataset.fav; S.favs = S.favs.includes(id) ? S.favs.filter((x) => x !== id) : [...S.favs, id]; persist(); el.innerHTML = ic(S.favs.includes(id) ? 'heartFill' : 'heart'); return; }
@@ -831,7 +1055,7 @@
       const a = el.dataset.act, w = S.walkId && walk(S.walkId);
       if (a === 'back') { S.view = null; return render(); }
       if (a === 'stopback') { stopSpeak(); S.view = 'walk'; S.mode = 'read'; render(); const r = document.querySelector(`[data-read="${S.stopIdx}"]`); r && r.scrollIntoView({ block: 'center' }); return; }
-      if (a === 'skip') return goTo(S.progress[w.id].current + 1);
+      if (a === 'skip') return showStop(S.progress[w.id].current + 1);
       if (a === 'fit') { if (S.mode === 'map' && wmap) wmap.fit(); else document.querySelector('[data-mode="map"]').click(); return; }
       if (a === 'resetwalk') {
         const m = modal(`<div class="stack" style="gap:12px"><h2 style="font-size:22px">Start this walk over?</h2><p class="small" style="margin:0">This clears the stops you've visited on this walk. Your saved stops stay saved.</p>
@@ -839,7 +1063,7 @@
         m.addEventListener('click', (e) => { if (!e.target.closest('[data-reset]')) return; m.remove(); if (S.active === w.id) { stopSim(); stopSpeak(); S.active = null; } delete S.progress[w.id]; persist(); toast('Walk reset. It will start from stop 1.'); render(); });
         return;
       }
-      if (a === 'autoread') { S.settings.autoNarrate = !S.settings.autoNarrate; if (!S.settings.autoNarrate) stopSpeak(); persist(); toast(S.settings.autoNarrate ? 'Each stop will be read aloud when you arrive.' : 'Stops won\u2019t be read aloud automatically. Tap the headphones to listen.'); return render(); }
+      if (a === 'autoread') { S.settings.autoNarrate = !S.settings.autoNarrate; if (!S.settings.autoNarrate) stopSpeak(); persist(); toast(S.settings.autoNarrate ? 'Audio mode on: each stop is read aloud when you arrive.' : 'Audio mode off. Tap the headphones to hear a stop.'); return render(); }
       if (a === 'start') { if (S.active === S.walkId) { S.view = 'go'; return render(); } return startWalk(); }
       if (a === 'paywall') return openPaywall();
       if (a === 'auth') return openAuth();
@@ -853,12 +1077,31 @@
       if (a === 'resume') { S.walkId = S.active; S.view = 'go'; return needImages(S.active).then(render); }
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
       if (a === 'end') return endDialog(w);
-      if (a === 'sim') { if (S.sim) stopSim(); else startSim(); el.setAttribute('aria-pressed', S.sim); el.textContent = S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'; return; }
-      if (a === 'whole') { S.follow = 'off'; return gmap && gmap.fit(); }
+      if (a === 'sim') {
+        if (S.sim) { stopSim(); el.setAttribute('aria-pressed', false); el.textContent = '▶ Demo walk'; return; }
+        // A demo begins at stop 1 and walks the whole route, with both maps following the dot. Pausing and
+        // tapping again carries on from where it paused (Nick, 19 Nov 2026).
+        if (S.simSession !== S.walkId) {
+          S.simSession = S.walkId; S.progress[S.walkId] = { current: 0, visited: [], startedAt: Date.now() };
+          S.me = null; S.legProg = {}; S.stopFocus = false; persist();
+        }
+        S.follow = 'follow'; S.bookFollow = true; render(); startSim();
+        const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
+        return;
+      }
+      if (a === 'whole') {
+        S.follow = 'off';
+        if (S.mapStyle === 'book') { // the whole page of her map, fitted to the screen width
+          const bp = document.getElementById('bookpane'), bi = bp && bp.querySelector('.bookimg'); if (!bi) return;
+          S.bookFollow = false; S.bookZoomUser = true; S.bookZoom = 1; bi.style.width = '100%'; S.bookAuto = Date.now(); bp.scrollTo({ left: 0, top: 0, behavior: 'smooth' }); return;
+        }
+        return gmap && gmap.fit();
+      }
       if (a === 'locate') {
-        if (!S.me) { const p = S.progress[w.id]; const prev = w.stops[Math.max(0, p.current - 1)]; S.me = { lat: prev.lat - 0.0006, lng: prev.lng - 0.0004 }; }
+        if (!S.me) return toast(S.sim ? 'Starting the demo walk…' : 'Waiting for your location…');
         S.follow = S.follow === 'off' ? 'follow' : S.follow === 'follow' ? 'heading' : 'off';
         el.classList.toggle('on', S.follow !== 'off'); el.innerHTML = ic(S.follow === 'heading' ? 'compass' : 'navigate');
+        if (S.mapStyle === 'book') { S.bookFollow = S.follow !== 'off'; if (S.bookFollow) centerBookOnMe(true); return toast(S.bookFollow ? 'Following you' : 'Free map'); }
         if (gmap) { gmap.me(S.me, S.heading); if (S.follow === 'off') { document.getElementById('gmap').style.transform = ''; } }
         return toast(S.follow === 'off' ? 'Free map' : S.follow === 'follow' ? 'Following you' : 'Map turns with you');
       }
@@ -866,10 +1109,15 @@
       if (a === 'pinchk') { S.showPins = !S.showPins; const sc = document.getElementById('bookpane').scrollTop; render(); const bp = document.getElementById('bookpane'); if (bp) { S.bookAuto = Date.now(); bp.scrollTop = sc; } return; }
       if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
       if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
-      if (a === 'next') return goTo(S.progress[w.id].current + 1);
-      if (a === 'prev') return goTo(S.progress[w.id].current - 1);
+      if (a === 'next') return showStop(S.progress[w.id].current + 1);
+      if (a === 'prev') return showStop(S.progress[w.id].current - 1);
       if (a === 'play') { const s = w.stops[S.progress[w.id].current]; return speaking.stopId ? stopSpeak() : speakStop(s); }
-      if (a === 'directions') return toast('In the app this opens Apple Maps or Google Maps walking directions to the next stop.');
+      if (a === 'directions') {
+        const p = S.progress[w.id], t = w.stops[p ? p.current : 0]; if (!t) return;
+        const ios = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+        const url = ios ? `https://maps.apple.com/?daddr=${t.lat},${t.lng}&dirflg=w` : `https://www.google.com/maps/dir/?api=1&destination=${t.lat},${t.lng}&travelmode=walking`;
+        const link = Object.assign(document.createElement('a'), { href: url, target: '_blank', rel: 'noopener' }); document.body.appendChild(link); link.click(); link.remove(); return;
+      }
     }
   });
   $app.addEventListener('scroll', (e) => {

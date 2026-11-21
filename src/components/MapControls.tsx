@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { photo, walkNo } from '../data';
+import Svg, { Polyline } from 'react-native-svg';
+import { BOOK_TRAIL, photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
-import { bookLabel, bookPages, bookXY, pageFor } from '../lib/bookmap';
+import { bookLabel, bookLegs, bookPages, bookXY, pageFor } from '../lib/bookmap';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
 
@@ -105,40 +106,147 @@ export function MapStyleSwitch({ book, onChange }: { book: boolean; onChange: (b
   );
 }
 
+type Pt = { x: number; y: number };
+/** Distance along a polyline to the point nearest (x, y), and how far off the line that point is. */
+function alongLine(pts: Pt[], x: number, y: number): { d: number; s: number } {
+  let best = { d: Infinity, s: 0 }, acc = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i], dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1e-9;
+    const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (y - a.y) * dy) / (L * L))), d = Math.hypot(a.x + t * dx - x, a.y + t * dy - y);
+    if (d < best.d) best = { d, s: acc + t * L };
+    acc += L;
+  }
+  return best;
+}
+/** The first `s` of a polyline's length, ending exactly at that point. */
+function lineUpTo(pts: Pt[], s: number): Pt[] {
+  const out = [pts[0]];
+  let acc = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i], L = Math.hypot(b.x - a.x, b.y - a.y);
+    if (acc + L >= s) { const t = L ? (s - acc) / L : 0; out.push({ x: a.x + t * (b.x - a.x), y: a.y + t * (b.y - a.y) }); return out; }
+    out.push(b); acc += L;
+  }
+  return out;
+}
+
+/** + and - for a map, stacked at its bottom right (Nick, 19 Nov 2026: zoom bottom right, map style bottom left, arrival banner on top). */
+export function ZoomButtons({ onZoom, bottom, children }: { onZoom: (dir: 1 | -1) => void; bottom: number; children?: ReactNode }) {
+  const t = useTheme();
+  return (
+    <View style={[styles.zoomCol, { bottom }]}>
+      {children}
+      <Pressable accessibilityRole="button" accessibilityLabel="Zoom in" onPress={() => { tap(); onZoom(1); }} style={[styles.btn, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Ionicons name="add" size={24} color={t.text} />
+      </Pressable>
+      <Pressable accessibilityRole="button" accessibilityLabel="Zoom out" onPress={() => { tap(); onZoom(-1); }} style={[styles.btn, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Ionicons name="remove" size={24} color={t.text} />
+      </Pressable>
+    </View>
+  );
+}
+
 /**
  * Veneeta's walk map filling the map area, with the stops and the walker's position drawn on it.
- * Pinch to zoom on iPhone; drag to pan.
+ * Pinch or the + and - buttons to zoom; drag to pan.
  */
-export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, topInset = 0, bottomInset = 0 }: {
-  walk: Walk; current?: number; visited?: number[]; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null;
+export function BookMapPane({ walk, current, visited, finished, isLocked, me, heading, onSelect, topInset = 0, bottomInset = 0 }: {
+  walk: Walk; current?: number; visited?: number[]; finished?: boolean; isLocked?: (i: number) => boolean; me?: { lat: number; lng: number } | null; heading?: number | null;
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
   const { width, height: screenH } = useWindowDimensions();
-  const height = width / 0.7;
   // Open the page that prints the current stop; the page buttons switch until the stop changes.
   const pages = bookPages(walk.id);
   const curN = current !== undefined && current >= 0 ? walk.stops[current]?.n : undefined;
   const [page, setPage] = useState(() => pageFor(walk.id, curN));
   useEffect(() => setPage(pageFor(walk.id, curN)), [walk.id, curN]);
+  // The page keeps its own shape (the cartographer's maps are mostly wider than tall), and a wide map
+  // opens zoomed so it fills the space between the header and the sheet.
+  const pg = pages[page];
+  const height = pg ? (width * pg.h) / pg.w : width / 0.7;
+  const fill = Math.min(4, Math.max(1, (screenH - topInset) / height)); // fills the full height under the header, even with the sheet lowered
   const file = page === 0 ? walk.bookMap : pages[page]?.file;
   const dot = me ? bookXY(walk.id, me.lat, me.lng, page) : null;
+  // Her maps are drawn mauka-up, not north-up: find which way north points on this page so the heading wedge is true.
+  const north = useMemo(() => {
+    const c = walk.stops.find((s) => bookXY(walk.id, s.lat, s.lng, page)) ?? walk.stops[0];
+    const a = bookXY(walk.id, c.lat, c.lng, page), b = bookXY(walk.id, c.lat + 0.002, c.lng, page);
+    return a && b ? (Math.atan2((b.x - a.x) * width, -(b.y - a.y) * height) * 180) / Math.PI : 0;
+  }, [walk, page, width, height]);
+  // Her own dotted line between stops fills in as each stop is reached: the intended route, never the walker's track.
+  const reachedN = finished ? Infinity : Math.max(0, ...(visited ?? []).map((i) => walk.stops[i]?.n ?? 0));
+  const trail = useMemo(() => bookLegs(walk.id, page).filter((l) => l.n + 1 <= reachedN), [walk.id, page, reachedN]);
+  // While walking toward a stop, her line from the previous stop fills in as far as the walker has come along it: the
+  // position is projected onto her line, only counts when near it, and the fill never shrinks when someone doubles back.
+  const legProg = useRef<Record<string, number>>({});
+  const curLeg = useMemo(() => {
+    const from = current !== undefined && current > 0 ? walk.stops[current - 1] : undefined;
+    return from ? bookLegs(walk.id, page).find((l) => l.n === from.n) : undefined;
+  }, [walk, current, page]);
+  let partial: { x: number; y: number }[] = [];
+  if (curLeg && current !== undefined && !(visited ?? []).includes(current)) {
+    const key = `${walk.id}:${curLeg.n}`;
+    const P = curLeg.pts.map((q) => ({ x: q.x * width, y: q.y * height })); // in screen points, so distances are true
+    if (dot) {
+      const r = alongLine(P, dot.x * width, dot.y * height);
+      if (r.d <= Math.max(width, height) * 0.03 && r.s > (legProg.current[key] ?? 0)) legProg.current[key] = r.s;
+    }
+    const s0 = legProg.current[key] ?? 0;
+    if (s0 > 0) partial = lineUpTo(P, s0).map((q) => ({ x: q.x / width, y: q.y / height }));
+  }
+
   const scroll = useRef<ScrollViewInstance>(null);
   const [follow, setFollow] = useState(true);
+  // Track the native zoom and scroll so the + and - buttons zoom around the middle of what is showing.
+  const view = useRef({ zoom: fill, x: 0, y: 0, w: width, h: screenH });
+  useEffect(() => { view.current.zoom = fill; }, [fill, page]);
+  const zoomBy = (dir: 1 | -1) => {
+    const v = view.current;
+    const z = Math.max(1, Math.min(4, v.zoom * (dir > 0 ? 1.6 : 1 / 1.6)));
+    const cx = (v.x + v.w / 2) / v.zoom, cy = (v.y + v.h / 2) / v.zoom;
+    scroll.current?.scrollResponderZoomTo({ x: cx - v.w / (2 * z), y: cy - v.h / (2 * z), width: v.w / z, height: v.h / z, animated: true });
+  };
   // Keep the walker's dot in the middle of the visible map, like follow mode on a street map.
   const centerOnMe = () => {
     if (!dot) return;
-    const visible = screenH - topInset - bottomInset;
-    scroll.current?.scrollTo({ y: Math.max(0, dot.y * height - visible / 2), animated: true });
+    const visible = screenH - topInset - bottomInset, z = view.current.zoom;
+    scroll.current?.scrollTo({ x: Math.max(0, dot.x * width * z - width / 2), y: Math.max(0, dot.y * height * z - visible / 2), animated: true });
   };
   useEffect(() => {
     if (follow) centerOnMe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dot?.x, dot?.y, follow]);
+  // When the stop changes (Next, Previous, a tap), show its printed number instead of the walker's dot.
+  const firstStop = useRef(true);
+  useEffect(() => {
+    if (firstStop.current) { firstStop.current = false; return; }
+    if (curN === undefined) return;
+    const L = bookLabel(walk.id, curN, pageFor(walk.id, curN));
+    if (!L) return;
+    setFollow(false);
+    const visible = screenH - topInset - bottomInset, z = view.current.zoom;
+    const t = setTimeout(() => scroll.current?.scrollTo({ x: Math.max(0, L.x * width * z - width / 2), y: Math.max(0, L.y * height * z - visible / 2), animated: true }), 50);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [walk.id, curN]);
   return (
     <View style={{ flex: 1 }}>
-    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
+    <ScrollView ref={scroll} onScrollBeginDrag={() => setFollow(false)} scrollEventThrottle={100}
+      onScroll={(e) => { const n = e.nativeEvent; view.current = { zoom: n.zoomScale || 1, x: n.contentOffset.x, y: n.contentOffset.y, w: n.layoutMeasurement.width, h: n.layoutMeasurement.height }; }}
+      key={`${walk.id}-${page}`} zoomScale={fill}
+      style={{ flex: 1, backgroundColor: '#FBF6EC' }} maximumZoomScale={4} minimumZoomScale={1} contentContainerStyle={{ paddingTop: topInset, paddingBottom: bottomInset }} showsVerticalScrollIndicator={false}>
       <View style={{ width, height }}>
         <Image source={photo(file)} style={{ width, height }} contentFit="contain" accessibilityLabel={`Walk ${walkNo(walk.id)} map ${page + 1} from the book`} />
+        {trail.length || partial.length > 1 ? (
+          <Svg pointerEvents="none" width={width} height={height} style={StyleSheet.absoluteFill}>
+            {trail.map((l) => (
+              <Polyline key={l.n} points={l.pts.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={BOOK_TRAIL} strokeOpacity={0.6} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+            ))}
+            {partial.length > 1 ? (
+              <Polyline points={partial.map((p) => `${p.x * width},${p.y * height}`).join(' ')} fill="none" stroke={BOOK_TRAIL} strokeOpacity={0.6} strokeWidth={5} strokeLinecap="round" strokeLinejoin="round" />
+            ) : null}
+          </Svg>
+        ) : null}
         {walk.stops.map((s, i) => {
           // Her printed number is the pin; this is just an invisible tap target over it (ringed when current).
           const L = bookLabel(walk.id, s.n, page);
@@ -150,7 +258,15 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
         })}
         {dot ? (
           // Sized like her own map markers (it zooms with the map), translucent with a soft glow so her streets show through.
-          <View pointerEvents="none" style={[styles.me, { left: dot.x * width - (width * 0.028) / 2, top: dot.y * height - (width * 0.028) / 2, width: width * 0.028, height: width * 0.028, borderRadius: width * 0.014 }]} />
+          <>
+            {heading !== null && heading !== undefined ? (
+              // which way the walker faces, as on the street map
+              <View pointerEvents="none" style={{ position: 'absolute', left: dot.x * width - width * 0.03, top: dot.y * height - width * 0.075, width: width * 0.06, height: width * 0.075, transform: [{ translateY: width * 0.0375 }, { rotate: `${heading + north}deg` }, { translateY: -width * 0.0375 }] }}>
+                <View style={{ width: 0, height: 0, borderLeftWidth: width * 0.03, borderRightWidth: width * 0.03, borderTopWidth: width * 0.075, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderTopColor: 'rgba(26,115,232,0.35)', transform: [{ rotate: '180deg' }] }} />
+              </View>
+            ) : null}
+            <View pointerEvents="none" style={[styles.me, { left: dot.x * width - (width * 0.028) / 2, top: dot.y * height - (width * 0.028) / 2, width: width * 0.028, height: width * 0.028, borderRadius: width * 0.014 }]} />
+          </>
         ) : null}
       </View>
     </ScrollView>
@@ -164,11 +280,13 @@ export function BookMapPane({ walk, current, visited, isLocked, me, onSelect, to
         ))}
       </View>
     ) : null}
-    {dot ? (
-      <Pressable accessibilityLabel="Go to my position" onPress={() => { tap(); setFollow(true); centerOnMe(); }} style={[styles.btn, styles.meBtn, { top: topInset + 46 }]}>
-        <Ionicons name={follow ? 'navigate' : 'navigate-outline'} size={22} color="#1A73E8" />
-      </Pressable>
-    ) : null}
+    <ZoomButtons onZoom={zoomBy} bottom={bottomInset + 12}>
+      {dot ? (
+        <Pressable accessibilityLabel="Go to my position" onPress={() => { tap(); setFollow(true); centerOnMe(); }} style={[styles.btn, styles.meBtn]}>
+          <Ionicons name={follow ? 'navigate' : 'navigate-outline'} size={22} color="#1A73E8" />
+        </Pressable>
+      ) : null}
+    </ZoomButtons>
     </View>
   );
 }
@@ -205,7 +323,8 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 14, borderWidth: 1.5 },
   bhit: { position: 'absolute', width: 36, height: 36, borderRadius: 18 },
   bpin: { position: 'absolute', alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#fff', shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 3 },
-  meBtn: { position: 'absolute', left: 14, backgroundColor: '#fff', borderColor: '#ddd' },
+  meBtn: { backgroundColor: '#fff', borderColor: '#ddd' },
+  zoomCol: { position: 'absolute', right: 14, gap: 10 },
   me: { position: 'absolute', backgroundColor: 'rgba(26,115,232,0.5)', borderWidth: 1.5, borderColor: 'rgba(255,255,255,0.9)', shadowColor: '#1A73E8', shadowOpacity: 0.5, shadowRadius: 8, elevation: 4, zIndex: 3 },
   styleSwitch: { flexDirection: 'row', padding: 3, gap: 3, borderRadius: 14, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 8, shadowOffset: { width: 0, height: 2 }, elevation: 4 },
   styleBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 11 },

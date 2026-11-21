@@ -5,7 +5,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BookMapPane, type FollowMode, LayersButton, type Layer, LocateButton, MapStyleSwitch, nextFollow } from '../../../components/MapControls';
+import { BookMapPane, type FollowMode, type Layer, LocateButton, MapStyleSwitch, nextFollow, ZoomButtons } from '../../../components/MapControls';
 import { PhotoStrip } from '../../../components/Photos';
 import { StopText } from '../../../components/StopText';
 import { Button, IconButton, T, tap } from '../../../components/ui';
@@ -39,7 +39,7 @@ export default function ActiveWalk() {
   const speakingId = useNarration((s) => s.speakingStopId);
 
   const [follow, setFollow] = useState<FollowMode>('follow');
-  const [layer, setLayer] = useState<Layer>('standard');
+  const [layer] = useState<Layer>('standard'); // street map only; satellite dropped as redundant (Nick, 19 Nov 2026)
   const [bookMap, setBookMap] = useState(false);
   const [pos, setPos] = useState<{ lat: number; lng: number; acc: number } | null>(null);
   const [heading, setHeading] = useState<number | null>(null);
@@ -173,6 +173,8 @@ export default function ActiveWalk() {
     goTo(walk.id, i);
     LiveActivity.update(walk, i);
     advanceBackground(walk, i).catch(() => undefined);
+    // Show the chosen stop; following the walker resumes when they tap the locate button.
+    setFollow('off');
     mapRef.current?.focusStop(i);
     textRef.current?.scrollTo({ y: 0, animated: false });
   };
@@ -180,8 +182,12 @@ export default function ActiveWalk() {
   // "I'm here" covers weak GPS between tall buildings.
   const manualArrive = () => arrive(current);
 
+  // Finishing lands on the whole walk, its route lit up from where you started to where you ended.
   const finish = () => {
-    Alert.alert('Walk complete', `Mahalo for walking ${walk.title}!`, [{ text: 'Done', onPress: () => end(true) }]);
+    Alert.alert('Walk complete', `Mahalo for walking ${walk.title}. Your whole route is lit up on the map.`, [
+      { text: 'Back to all walks', style: 'cancel', onPress: async () => { await endWalkNow(walk, false, true); router.dismissAll(); } },
+      { text: 'See my route', onPress: async () => { await endWalkNow(walk, false, true); router.replace(`/walk/${walk.id}?mode=map`); } },
+    ]);
   };
 
   const end = async (finished = false) => {
@@ -208,17 +214,20 @@ export default function ActiveWalk() {
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <View style={StyleSheet.absoluteFill}>
         {bookMap && walk.bookMap ? (
-          <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
+          <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} heading={heading} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
         ) : (
         <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
         )}
       </View>
+      {/* Map style at the bottom left and zoom at the bottom right, so the top stays clear for the arrival banner */}
       {detent !== 'full' && walk.bookMap ? (
-        <View style={{ position: 'absolute', left: 14, top: insets.top + 64 }}>
+        <View style={{ position: 'absolute', left: 14, bottom: snaps[detent] + 12 }}>
           <MapStyleSwitch book={bookMap} onChange={setBookMap} />
         </View>
       ) : null}
-      {detent !== 'full' ? (
+      {detent !== 'full' && !(bookMap && walk.bookMap) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={snaps[detent] + 12} /> : null}
+      {/* Street-map controls; the book map has its own follow-me button beside its + and - */}
+      {detent !== 'full' && !(bookMap && walk.bookMap) ? (
         <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
           <LocateButton
             mode={follow}
@@ -229,12 +238,6 @@ export default function ActiveWalk() {
               if (m === 'off' && pos) mapRef.current?.recenter(pos.lat, pos.lng);
             }}
           />
-          <IconButton
-            icon={settings.autoNarrate ? 'volume-high' : 'volume-mute'}
-            label={settings.autoNarrate ? 'Stop reading stops aloud on arrival' : 'Read each stop aloud on arrival'}
-            onPress={() => { if (settings.autoNarrate) stopSpeech(); settings.set({ autoNarrate: !settings.autoNarrate }); }}
-          />
-          <LayersButton layer={layer} onChange={(l) => { setBookMap(false); setLayer(l); }} bookMap={walk.bookMap} bookActive={bookMap} onBook={() => setBookMap(true)} />
           <IconButton icon="git-network-outline" label="Show whole walk" onPress={() => { setFollow('off'); mapRef.current?.fitAll(); }} />
         </View>
       ) : null}
@@ -342,6 +345,17 @@ export default function ActiveWalk() {
             >
               <Ionicons name={speakingId === stop.id ? 'stop' : 'headset'} size={24} color="#fff" />
             </Pressable>
+            {/* Audio mode: each stop is read aloud on arrival, so the phone can stay in a pocket (Nick, 19 Nov 2026) */}
+            <Pressable
+              accessibilityRole="switch"
+              accessibilityState={{ checked: settings.autoNarrate }}
+              accessibilityLabel="Audio mode: read each stop aloud when you arrive"
+              onPress={() => { tap(); if (settings.autoNarrate) stopSpeech(); settings.set({ autoNarrate: !settings.autoNarrate }); }}
+              style={[styles.audioMode, { borderColor: settings.autoNarrate ? t.accent : t.border, backgroundColor: settings.autoNarrate ? t.accent : t.card }]}
+            >
+              <Ionicons name={settings.autoNarrate ? 'volume-high' : 'volume-mute'} size={18} color={settings.autoNarrate ? '#fff' : t.text} />
+              <T style={{ fontSize: 11, fontFamily: t.font.bodyBold, color: settings.autoNarrate ? '#fff' : t.text }}>Audio mode</T>
+            </Pressable>
             {arrivedHere ? (
               <Button
                 label={current + 1 >= walk.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}
@@ -385,6 +399,7 @@ const styles = StyleSheet.create({
   pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14 },
   nav: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, padding: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
   dirBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  audioMode: { width: 76, height: 52, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center', gap: 2 },
   controls: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
   playBtn: { width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
 });

@@ -18,6 +18,7 @@ export type Stop = {
   lng: number;
   geo: GeoConfidence;
   radius?: number; // arrival radius override in meters
+  side?: boolean; // a whole stop that is a purple-line side trip, off the main route
   page: string; // source page in the PDF, for review
 };
 

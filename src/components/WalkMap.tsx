@@ -1,17 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { onMap } from '../data';
+import { legPath, onMap, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
 
-export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void };
+export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void; zoomBy: (dir: 1 | -1) => void };
 
 type Props = {
   walk: Walk;
   current?: number;
   visited?: number[];
+  finished?: boolean; // a completed walk: the whole route shows as walked
   isLocked?: (i: number) => boolean;
   onSelect?: (i: number) => void;
   showsUser?: boolean;
@@ -22,7 +23,7 @@ type Props = {
 };
 
 /** Numbered pins in walking order with the route drawn between them. */
-export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
+export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], finished = false, isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
@@ -31,6 +32,10 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     const c = walk.stops.filter(onMap).map((s) => ({ latitude: s.lat, longitude: s.lng }));
     return c.length ? c : [{ latitude: 21.29, longitude: -157.82 }];
   }, [walk]);
+  const reached = finished ? walk.stops.length - 1 : Math.max(-1, ...visited);
+  const trail = useMemo(() => (reached > 0 ? walkPath(walk, reached) : []), [walk, reached]);
+  // Her red route between stops where it was traced, so the line follows streets rather than cutting across.
+  const routeCoords = useMemo(() => { const p = walkPath(walk); return p.length > 1 ? p : mapCoords; }, [walk, mapCoords]);
   const initial: Region = useMemo(() => {
     const lats = mapCoords.map((c) => c.latitude);
     const lngs = mapCoords.map((c) => c.longitude);
@@ -44,6 +49,13 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     focusStop: (i) => {
       const c = walk.stops[i] && onMap(walk.stops[i]) ? coords[i] : undefined;
       if (c) map.current?.animateCamera({ center: c, zoom: 17 }, { duration: 600 });
+    },
+    // Apple Maps cameras use altitude, Google Maps cameras use zoom.
+    zoomBy: async (dir) => {
+      const c = await map.current?.getCamera();
+      if (!c) return;
+      if (c.altitude) map.current?.animateCamera({ altitude: c.altitude * (dir > 0 ? 0.5 : 2) }, { duration: 250 });
+      else if (c.zoom !== undefined) map.current?.animateCamera({ zoom: c.zoom + dir }, { duration: 250 });
     },
     fitAll: () => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: true }),
     recenter: (lat, lng) => map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 17, heading: 0 }, { duration: 500 }),
@@ -67,14 +79,17 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       mapPadding={{ top: 0, left: 0, right: 0, bottom: bottomInset }}
       onMapReady={() => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: false })}
     >
-      <Polyline coordinates={mapCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
-      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={[coords[current], coords[current + 1]]} strokeColor={t.accent} strokeWidth={6} /> : null}
+      <Polyline coordinates={routeCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
+      {/* The part already walked, solid and bright over the dashed route, so the circuit fills in as you go. */}
+      {trail.length > 1 ? <Polyline coordinates={trail} strokeColor={TRAIL} strokeWidth={6} /> : null}
+      {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
+      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor="#1A73E8" strokeWidth={5} lineDashPattern={[8, 8]} /> : null}
       {walk.stops.map((s, i) => {
         if (!onMap(s)) return null;
         const isCur = i === current;
         const done = visited.includes(i);
         const locked = isLocked?.(i);
-        const bg = isCur ? t.accent : done ? t.leaf : locked ? '#8A9A9B' : walk.color;
+        const bg = isCur ? t.accent : done ? t.leaf : locked ? '#8A9A9B' : s.side ? SIDE_TRIP : walk.color;
         return (
           <Marker key={s.id} coordinate={coords[i]} onPress={() => onSelect?.(i)} tracksViewChanges={false} zIndex={isCur ? 10 : 1} accessibilityLabel={`Stop ${s.n}, ${s.title}`}>
             <View style={[styles.pin, { backgroundColor: bg, transform: [{ scale: isCur ? 1.25 : 1 }] }]}>

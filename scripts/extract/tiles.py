@@ -1,7 +1,7 @@
 """Download a small set of CARTO Voyager basemap tiles for the offline web preview."""
 import math, os, time, urllib.request
 
-OUT = '/root/preview/tiles'
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'preview', 'tiles')
 UA = {'User-Agent': 'WaikikiWalksPreview/0.1 (one-time private preview)'}
 
 
@@ -38,5 +38,6 @@ def grab(bbox, zooms, style='voyager'):
 
 WIDE = (-157.862, 21.255, -157.79, 21.335)
 CORE = (-157.845, 21.262, -157.812, 21.296)
+CAMPUS = (-157.826, 21.288, -157.806, 21.306)  # Walk XI and XII pins from the photo map pages
 for style in ('osm',):
-    print(style, grab(WIDE, [14, 15], style), grab(CORE, [16], style))
+    print(style, grab(WIDE, [14, 15], style), grab(CORE, [16], style), grab(CAMPUS, [16], style))

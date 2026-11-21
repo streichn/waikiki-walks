@@ -1,43 +1,82 @@
 {
  "_note": "Where the author wants a pin to sit when it differs from where her map prints the number. Book-map pixels. Her printed number stays tappable where it is; only the arrival point moves.",
  "I": {
-  "7": [
-   339,
-   526,
-   "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to"
-  ],
-  "8": [
-   339,
-   510,
-   "same"
-  ],
-  "9": [
-   339,
-   494,
-   "same"
-  ]
+  "7": {
+   "lat": 21.284907,
+   "lng": -157.82071,
+   "why": "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to. Moved from book-map pixels to lat/lng when the cartographer's map replaced the book page (19 Nov 2026)"
+  },
+  "8": {
+   "lat": 21.284684,
+   "lng": -157.820413,
+   "why": "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to. Moved from book-map pixels to lat/lng when the cartographer's map replaced the book page (19 Nov 2026)"
+  },
+  "9": {
+   "lat": 21.284453,
+   "lng": -157.820117,
+   "why": "Veneeta 17 Nov 2026: 7, 8, 9 line up on the Date Street side of the golf course; they are sites to talk about, not to walk to. Moved from book-map pixels to lat/lng when the cartographer's map replaced the book page (19 Nov 2026)"
+  },
+  "11": {
+   "lat": 21.283548,
+   "lng": -157.818723,
+   "why": "Veneeta 19 Nov 2026: pin 11 on Date Street between 10 and 12 (midpoint of neighbors)"
+  },
+  "16": {
+   "lat": 21.275183,
+   "lng": -157.818255,
+   "why": "Veneeta 19 Nov 2026: pin 16 on the same side as the other street pins, between 15 and 17 (midpoint of neighbors)"
+  },
+  "21": {
+   "lat": 21.278218,
+   "lng": -157.8216065,
+   "why": "Veneeta 19 Nov 2026: pin 21 alongside the canal, between 20 and 22 (midpoint of neighbors)"
+  },
+  "35": {
+   "lat": 21.286137,
+   "lng": -157.8306575,
+   "why": "Veneeta 19 Nov 2026: pin 35 on the canal side, between 34 and 36 (midpoint of neighbors)"
+  }
  },
  "_note_latlng": "Entries with lat/lng are for stops printed on a map page too sketchy to align with real streets (Walk X page 4, upper Mānoa). Places from OpenStreetMap.",
  "X": {
-  "40": {
-   "lat": 21.3142262,
-   "lng": -157.8083965,
-   "why": "Mānoa Valley District Park, where her map prints 40 beside the park on Mānoa Road"
-  },
-  "41": {
-   "lat": 21.3187338,
-   "lng": -157.802185,
-   "why": "Mānoa Chinese Cemetery"
-  },
   "42": {
    "lat": 21.3187517,
    "lng": -157.8071211,
-   "why": "Mānoa Road at Pāwaina Street, where the route to the falls and arboretum continues"
+   "why": "Mānoa Road at Pāwaina Street, where the route to the falls and arboretum continues. Kept with the cartographer's map (19 Nov 2026): its top edge squeezes upper Mānoa, so the printed 42 sits about 250 m off Mānoa Road"
   },
   "43": {
    "lat": 21.3333815,
    "lng": -157.8033873,
-   "why": "Lyon Arboretum"
+   "why": "Lyon Arboretum. Kept with the cartographer's map: the arboretum is past its top edge"
+  }
+ },
+ "II": {
+  "10": {
+   "lat": 21.283946,
+   "lng": -157.839146,
+   "why": "Veneeta 19 Nov 2026: move pin 10 to where 11 is"
+  },
+  "11": {
+   "lat": 21.2839212,
+   "lng": -157.8387688,
+   "why": "Veneeta 19 Nov 2026: move 11 over a little bit (40 percent of the way toward 12, along Kahanamoku Street)"
+  },
+  "18": {
+   "lat": 21.2825023,
+   "lng": -157.8338093,
+   "why": "Veneeta 19 Nov 2026: pin 18 should be on the other side of Kalia Rd (mirrored across the road)"
+  }
+ },
+ "IV": {
+  "19": {
+   "lat": 21.276931,
+   "lng": -157.826057,
+   "why": "Not printed on the cartographer's Walk IV map; kept where the book's map printed it (19 Nov 2026)"
+  },
+  "20": {
+   "lat": 21.276931,
+   "lng": -157.826057,
+   "why": "Not printed on the cartographer's Walk IV map; kept where the book's map printed it (19 Nov 2026)"
   }
  }
 }

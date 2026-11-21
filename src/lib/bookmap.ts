@@ -1,7 +1,7 @@
 import bookmapsJson from '../data/bookmaps.json';
 
 type Fit = { ctrl: number[][]; w: number[][]; a: number[][] };
-type BookPage = { file: string; w: number; h: number; fwd: Fit; labels?: Record<string, number[]> };
+type BookPage = { file: string; w: number; h: number; fwd: Fit; labels?: Record<string, number[]>; legs?: Record<string, number[][]> };
 type BookMap = BookPage & { origin: [number, number]; k: [number, number]; scale: number; rms_m: number; pages?: BookPage[] };
 const maps = bookmapsJson as unknown as Record<string, BookMap>;
 
@@ -49,4 +49,11 @@ export function pageFor(walkId: string, n: number | undefined): number {
   if (n === undefined) return 0;
   const k = bookPages(walkId).findIndex((p) => p.labels?.[String(n)]);
   return k >= 0 ? k : 0;
+}
+
+/** Her dotted line from stop n to n + 1 on a map page, as fractions of the image, for every leg traced on that page. */
+export function bookLegs(walkId: string, page = 0): { n: number; pts: { x: number; y: number }[] }[] {
+  const g = bookPages(walkId)[page];
+  if (!g?.legs) return [];
+  return Object.entries(g.legs).map(([n, pts]) => ({ n: Number(n), pts: pts.map(([x, y]) => ({ x: x / g.w, y: y / g.h })) }));
 }

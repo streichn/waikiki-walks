@@ -4,6 +4,7 @@ Inputs: scripts/extract/geo.json (stops with coordinates), assets/book/*.jpg (ph
 Outputs: src/data/walks.json, facts.json, glossary.json, about.json, images.ts, assets/book/*.jpg,
          and review/stops_review.csv for Veneeta to check every pin.
 """
+from PIL import Image
 import csv, glob, json, os, re, shutil, statistics, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +44,22 @@ FACTS = {
     'IX': {'distance': '2.5 mi', 'duration': '2 hr', 'steps': '6,000'},
     'XII': {'distance': '3 mi', 'duration': '2 hr', 'steps': '5,000'},
 }
+# Whole stops that are purple-line side trips on her map, off the main red route (Veneeta, 19 Nov 2026).
+SIDE_STOPS = {'II': {13}}
+# Word-level corrections from the author's own marked-up copy of the book.
+TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")]}
+# Book pictures that are not photos once the page text is removed (scripts/extract/rerender_images.py).
+PHOTO_DROP = set(json.load(open(f'{ROOT}/scripts/extract/photo_fixes.json'))['drop']) if os.path.exists(f'{ROOT}/scripts/extract/photo_fixes.json') else set()
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to
+# A stop whose tail is really the next walk's opening: cut at 'at' and move the rest to that walk's intro.
+TAIL_CUTS = {'I-38': {'at': 'This walk covers part of a much larger district once known as K', 'carry_to': 'II', 'keep': 1, 'strip': ' Kahanamoku St.',
+                      # Book page 17 is missing from the PDF; text transcribed from Veneeta's photo of it (19 Nov 2026).
+                      'continue': 'plant throughout the Pacific, brought to Hawai‘i by the early Polynesians. There is also a Coconut Avenue at the foot of Lē‘ahi. There are no coconut trees native to Hawai‘i; they were brought by the early Polynesians, and, therefore, referred to as a canoe plant. Be sure to eat some coconut! If you are adventurous, try the local dessert of coconut, haupia – it has the consistency of jello, but is much more delicious!',
+                      'append': [{'kind': 'p', 'text': 'The only Palm tree that is native to Hawai‘i-only is the Loulu Palm.'},
+                                 {'kind': 'direction', 'text': 'You are back at McCully Street and have reached the end of your tour around the Ala Wai Canal!'},
+                                 {'kind': 'p', 'text': 'The canal continues for another ¼ mile to the Ala Wai Harbor, which you can follow in Kālia, Walk II.'},
+                                 {'kind': 'info', 'text': 'Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator.'}],
+                      '_why': 'Veneeta 19 Nov 2026: Kalia text at the end of Walk I belongs to Walk II (book p40)'}}
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
@@ -211,7 +227,9 @@ def join_page_breaks(blocks):
 
 
 ASIDE_START = re.compile(r'purple line|side trip|side stroll|detour', re.I)
-ASIDE_END = re.compile(r'^(Return|Come back|Back |Continue|Walk back|From here)')
+ASIDE_END = re.compile(r'^(Return|Come back|Back |Continue|Walk back|From here|From this point)')
+# Lettered sub-stops (13A, 36B, 21A) are the places on a side trip.
+LETTERED = re.compile(r'^\d+[A-D]\s')
 
 
 def mark_asides(blocks):
@@ -235,6 +253,8 @@ def mark_asides(blocks):
                     break
                 if nb['kind'] not in ('p', 'direction', 'heading'):
                     break
+                if re.match(r'^If you would (rather|like to walk along)', nb['text']):  # the book offering the main route instead
+                    break
                 # Only bullets, "Name:" items, sub-stops and short follow-ons stay in the box.
                 if not (nb['text'].startswith('•') or re.match(r'^[A-Z0-9‘][\w‘’ʻ .\-]{1,40}:', nb['text'])
                         or re.match(r'^\d+[A-D]\b', nb['text']) or n == 0):
@@ -242,6 +262,27 @@ def mark_asides(blocks):
                 nb['aside'] = True
                 n += 1
                 j += 1
+            i = j
+            continue
+        i += 1
+    # Second pass: a lettered sub-stop opens or belongs to a side trip (Veneeta, 19 Nov 2026: "Stop 13 is
+    # actually a side trip, a purple line, 13A through 13D"). It runs through the side-trip box that follows it;
+    # with no box after it, it runs until the book returns to the main route or the stop ends.
+    i = 0
+    while i < len(out):
+        b = out[i]
+        if b['kind'] in ('heading', 'direction', 'p') and LETTERED.match(b['text']):
+            if b['kind'] == 'direction' and len(b['text']) < 90 and not b['text'].rstrip().endswith('.'):
+                b['kind'] = 'heading'
+            b['aside'] = True
+            j = i + 1
+            if j < len(out) and out[j].get('aside'):
+                while j < len(out) and (out[j].get('aside') or out[j]['kind'] == 'caption'):
+                    j += 1
+            else:
+                while j < len(out) and not (out[j]['kind'] == 'direction' and ASIDE_END.match(out[j]['text'])):
+                    out[j]['aside'] = True
+                    j += 1
             i = j
             continue
         i += 1
@@ -371,12 +412,30 @@ for k, w in enumerate(SRC['walks']):
     for s in stops_src:
         photos = []
         for im in s.get('images', []):
+            if im['file'] in PHOTO_DROP:
+                continue
+            if os.path.exists(f'{ASSETS}/{im["file"]}'):  # crops change the size
+                im['w'], im['h'] = Image.open(f'{ASSETS}/{im["file"]}').size
             if im['w'] < 260 or im['h'] < 180:
                 continue
             im['overlay'] = OVERLAY.get(im['file'], 0)
             photos.append({'file': im['file'], 'w': im['w'], 'h': im['h']})
             images_used.add(im['file'])
         blocks = clean_blocks(s.get('blocks'))
+        tc = TAIL_CUTS.get(f"{wid}-{s['n']:02d}")
+        if tc:
+            cut = next((j for j, b in enumerate(blocks) if b.get('text', '').startswith(tc['at'])), None)
+            if cut is not None:
+                CARRY.setdefault(tc['carry_to'], []).extend(b for b in blocks[cut:] if b.get('kind') != 'info')
+                blocks = blocks[:cut]
+            # Street labels from the Walk II map page (p1-39) that follow the stop's last line.
+            if tc.get('keep'):
+                blocks = blocks[:tc['keep']]
+            if tc.get('strip') and blocks and blocks[-1]['text'].endswith(tc['strip']):
+                blocks[-1] = {**blocks[-1], 'text': blocks[-1]['text'][:-len(tc['strip'])]}
+            if tc.get('continue') and blocks:
+                blocks[-1] = {**blocks[-1], 'text': blocks[-1]['text'].rstrip() + ' ' + tc['continue']}
+            blocks = blocks + [dict(b) for b in tc.get('append', [])]
         # Captions in the book are short sentences next to photos; attach them to photos when we can.
         blocks = pull_captions(blocks)
         blocks = join_page_breaks(drop_map_text(blocks))
@@ -396,13 +455,18 @@ for k, w in enumerate(SRC['walks']):
         # Inside a side-trip box, a bulleted place is a description, not a walking instruction.
         blocks = [{**b, 'kind': 'p'} if b.get('aside') and b['kind'] == 'direction' and b['text'].startswith('•') else b for b in blocks]
         blocks = [{**b, 'text': re.sub(r'\s{2,}', ' ', re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', b['text'])).strip()} for b in blocks]
+        for a, b, _why in TEXT_FIXES.get(f"{wid}-{s['n']:02d}", []):
+            blocks = [{**x, 'text': x['text'].replace(a, b)} for x in blocks]
         s['title'], s['subtitle'] = stitle, sub
+        if s['n'] in SIDE_STOPS.get(wid, ()):
+            s['side'] = True
         stops.append({
             'id': f"{wid}-{s['n']:02d}", 'n': s['n'], 'title': s['title'].rstrip(' .:'),
             **({'subtitle': sub} if sub else {}),
             'blocks': blocks, 'photos': photos,
             'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6), 'geo': g.get('confidence', 'medium'), 'page': s['page'],
             **({'radius': s['radius']} if s.get('radius') else {}),
+            **({'side': True} if s.get('side') else {}),
         })
         if not cover:
             for p in photos:
@@ -413,7 +477,7 @@ for k, w in enumerate(SRC['walks']):
                        'confidence': g.get('confidence', 'medium'), 'matched': g.get('osm', g.get('query', '')),
                        'map_link': f"https://www.google.com/maps?q={round(g['lat'], 6)},{round(g['lng'], 6)}", 'book_page': s['page']})
     for im in w.get('images', []):
-        if im['w'] >= 260:
+        if im['w'] >= 260 and im['file'] not in PHOTO_DROP:
             images_used.add(im['file'])
             if not cover and im['w'] >= im['h'] * 1.15 and im['w'] >= 500 and OVERLAY.get(im["file"], 0) < 0.003:
                 cover = im['file']
@@ -436,6 +500,10 @@ for k, w in enumerate(SRC['walks']):
             pix.save(f'{ASSETS}/{book_map}', jpg_quality=80)
         except Exception as e:
             print('map render failed', wid, e, file=sys.stderr)
+    # The cartographer's full-walk map replaces the book page where we have it (scripts/georef/carto_maps.py).
+    _carto = f'{ROOT}/scripts/georef/georef_carto.json'
+    if os.path.exists(_carto):
+        book_map = next((g['file'] for g in json.load(open(_carto)).values() if g['walk'] == wid and g['first']), book_map)
     walks.append({'id': wid, 'num': k + 1, 'title': title, 'theme': theme, 'facts': FACTS.get(wid, {}), 'intro': intro, 'info': info,
                   **({'cover': cover} if cover else {}), **({'bookMap': book_map} if book_map else {}), 'color': COLORS[k % len(COLORS)], 'stops': stops})
 

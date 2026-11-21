@@ -45,10 +45,12 @@ def simplify(pts, step=6):
     return pts[::step] + [pts[-1]]
 
 walks = {w['id']: w for w in json.load(open(os.path.join(ROOT, 'src/data/walks.json')))}
-out = {}
+# Walks drawn from the cartographer's maps were traced by carto_maps.py.
+_rc = os.path.join(HERE, 'routes_carto.json')
+out = json.load(open(_rc)) if os.path.exists(_rc) else {}
 for wid, labels in STOPS.items():
     w = walks.get(wid); f = w and w.get('bookMap')
-    if not f or wid not in G: continue
+    if not f or wid not in G or wid in out: continue
     a = np.asarray(Image.open(os.path.join(ROOT, 'assets/book', f)).convert('RGB')).astype(int)
     red = (a[..., 0] > 150) & (a[..., 1] < 90) & (a[..., 2] < 120) & (a[..., 0] - a[..., 1] > 100)
     mask = ndimage.binary_dilation(red, iterations=4)  # join the dots of her dotted line
