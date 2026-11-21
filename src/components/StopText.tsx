@@ -8,6 +8,7 @@ import { speakShort, useNarration } from '../lib/narration';
 import { useSettings } from '../store';
 import { useTheme } from '../theme';
 import { Button, T } from './ui';
+import { LinkedText } from './WalkInfoBox';
 
 /**
  * Renders a stop's text from the book. Directions are styled as "walking" callouts,
@@ -37,9 +38,9 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
           return (
             <View key={i} style={[styles.info, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
               <Ionicons name="information-circle" size={18} color={t.gold} />
-              <T variant="small" style={{ flex: 1, color: t.text }}>
-                {b.text}
-              </T>
+              <View style={{ flex: 1 }}>
+                <LinkedText text={b.text} color={t.text} linkColor={t.primary} font={t.font.body} />
+              </View>
             </View>
           );
         }

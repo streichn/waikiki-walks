@@ -39,3 +39,6 @@
 
 ## 2026-11-20 · Scheduled run, 18:51Z
 - No new app comments from Veneeta since 20 Nov 00:16Z. Her one new email (15:30Z, "Good morning from Nicholas and Claude") is personal, with no app comments. Open questions to her are unchanged: map permission, the red note near Walk XI stop 6, and the list of possibly dated items.
+
+## 2026-11-21 · Scheduled run, 00:51Z
+- No new email from Veneeta since 20 Nov 15:30Z (already logged as personal). Open questions to her are unchanged (map permission, the red note near Walk XI stop 6, the list of possibly dated items), plus two new ones about the walk information boxes in docs/BOOK_UPDATES.md.

@@ -35,7 +35,29 @@
     "text": "This walk begins at the Ala Wai Canal and McCully Street. * Suggested reading on a bench"
    }
   ],
-  "info": [],
+  "info": [
+   {
+    "kind": "bus",
+    "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "time",
+    "text": "1.5 hour, 3 miles round trip, 6,000 steps"
+   },
+   {
+    "kind": "parking",
+    "label": "Parking",
+    "text": "On-street parking can be found along Date Street on the mauka side of the canal. It’s free, except no parking 3:30 to 6:30 pm Mondays through Fridays."
+   },
+   {
+    "kind": "parking",
+    "text": "Parking garage across from the Hale Koa Hotel on Kālia Road."
+   },
+   {
+    "kind": "parking",
+    "text": "Parking lot on the corner of Kālia and Saratoga roads."
+   }
+  ],
   "cover": "p1-26-65.jpg",
   "bookMap": "map-I-c.jpg",
   "color": "#0E6E74",
@@ -56,10 +78,6 @@
      {
       "kind": "p",
       "text": "After the bridge, just before Kapi‘olani Boulevard, at the first opening in the lava stone wall, turn Diamond Head and walk into Ala Wai Community Park."
-     },
-     {
-      "kind": "info",
-      "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator. 1.5 hour, 3 miles round trip, 6,000 steps PARKING: On-street parking can be found along Date Street on the mauka side of the canal. It’s free, except no parking 3:30 to 6:30 pm Mondays through Fridays. Parking garage across from the Hale Koa Hotel on Kālia Road. Parking lot on the corner of Kālia and Saratoga roads."
      },
      {
       "kind": "caption",
@@ -1269,7 +1287,26 @@
    }
   ],
   "info": [
-   "2 - 2.5 hours; 2.5 - 3 miles; 7000-10,000 steps (The additional half-hour and half mile are for the optional time and distance walking around the Hilton Hawaiian Village) Parking: Parking lot on the corner of Saratoga and Kālia roads Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   {
+    "kind": "time",
+    "text": "2 - 2.5 hours; 2.5 - 3 miles; 7000-10,000 steps"
+   },
+   {
+    "kind": "time",
+    "text": "(The additional half-hour and half mile are for the optional time and distance walking around the Hilton Hawaiian Village)"
+   },
+   {
+    "kind": "heading",
+    "text": "Parking"
+   },
+   {
+    "kind": "parking",
+    "text": "Parking lot on the corner of Saratoga and Kālia roads"
+   },
+   {
+    "kind": "bus",
+    "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   }
   ],
   "cover": "p1-43-87.jpg",
   "bookMap": "map-II-c.jpg",
@@ -2214,7 +2251,7 @@
   "theme": "Residence and recreation of the early royals",
   "facts": {
    "distance": "1 mi",
-   "duration": "1.5 to 2 hr",
+   "duration": "0.5 to 2 hr",
    "steps": "2,000 to 4,000"
   },
   "intro": [
@@ -2248,7 +2285,19 @@
    }
   ],
   "info": [
-   "From Lewers Street & Road to Uluniu Avenue & Kalākaua Avenue 0.5 to 2 hours, depending upon your imagination; 1 mile; 2,000-4,000 steps Parking lot: corner of Saratoga and Kālia roads"
+   {
+    "kind": "route",
+    "text": "From Lewers Street & Road to Uluniu Avenue & Kalākaua Avenue"
+   },
+   {
+    "kind": "time",
+    "text": "0.5 to 2 hours, depending upon your imagination; 1 mile; 2,000-4,000 steps"
+   },
+   {
+    "kind": "parking",
+    "label": "Parking lot",
+    "text": "corner of Saratoga and Kālia roads"
+   }
   ],
   "cover": "p1-71-122.jpg",
   "bookMap": "map-III-c.jpg",
@@ -2996,7 +3045,30 @@
     "text": "Please try to walk in the shade: mauka side in the morning; makai side in the afternoon."
    }
   ],
-  "info": [],
+  "info": [
+   {
+    "kind": "bus",
+    "label": "Bus routes and times",
+    "text": "www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "bus",
+    "text": "Buses 2,8,13,20,23,42 run along Kūhiō Avenue"
+   },
+   {
+    "kind": "parking",
+    "label": "Parking",
+    "text": "Parking lot at the corner of Saratoga Avenue and Kālia Road"
+   },
+   {
+    "kind": "parking",
+    "text": "Parking garage across from the Hale Koa Hotel on Kālia Road"
+   },
+   {
+    "kind": "time",
+    "text": "Walking times: 2 miles; 45 minutes to 1 hour; 6,000 steps"
+   }
+  ],
   "cover": "p1-82-139.jpg",
   "bookMap": "map-IV-c.jpg",
   "color": "#6A4C93",
@@ -3030,10 +3102,6 @@
      {
       "kind": "p",
       "text": "As you continue to walk along Kalākaua Avenue, appreciate the stone pavers with carved Hawaiian words beginning on the mauka side at Beachwalk (street) and on the makai side at the Saratoga Road triangle."
-     },
-     {
-      "kind": "info",
-      "text": "Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator. Buses 2,8,13,20,23,42 run along Kūhiō Avenue. Parking: Parking lot at the corner of Saratoga Avenue and Kālia Road Parking garage across from the Hale Koa Hotel on Kālia Road Walking times: 2 miles; 45 minutes to 1 hour; 6,000 steps"
      },
      {
       "kind": "p",
@@ -4277,7 +4345,27 @@
    }
   ],
   "info": [
-   "2 miles; 1 hour; 6,000 steps Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator. Parking: Honolulu Zoo parking lot Corner of Monsarrat and Paki avenues"
+   {
+    "kind": "time",
+    "text": "2 miles; 1 hour; 6,000 steps"
+   },
+   {
+    "kind": "heading",
+    "text": "Bus routes and times"
+   },
+   {
+    "kind": "bus",
+    "text": "www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "parking",
+    "label": "Parking",
+    "text": "Honolulu Zoo parking lot"
+   },
+   {
+    "kind": "parking",
+    "text": "Corner of Monsarrat and Paki avenues"
+   }
   ],
   "cover": "p2-6-157.jpg",
   "bookMap": "map-V-c.jpg",
@@ -5082,7 +5170,37 @@
    }
   ],
   "info": [
-   "Useful websites: Honolulu Zoo: www.honoluluzoo.org (for open and closing times) Royal Hawaiian Band: www.rhb-music.com Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator. Parking: Honolulu zoo parking lot Corner of Monsarrat and Paki avenues"
+   {
+    "kind": "heading",
+    "text": "Useful websites"
+   },
+   {
+    "kind": "web",
+    "label": "Honolulu Zoo",
+    "text": "www.honoluluzoo.org (for open and closing times)"
+   },
+   {
+    "kind": "web",
+    "label": "Royal Hawaiian Band",
+    "text": "www.rhb-music.com"
+   },
+   {
+    "kind": "bus",
+    "label": "Bus routes and times",
+    "text": "www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "heading",
+    "text": "Parking"
+   },
+   {
+    "kind": "parking",
+    "text": "Honolulu zoo parking lot"
+   },
+   {
+    "kind": "parking",
+    "text": "Corner of Monsarrat and Paki avenues"
+   }
   ],
   "cover": "p2-19-178.jpg",
   "bookMap": "map-VI-c.jpg",
@@ -5710,7 +5828,42 @@
    }
   ],
   "info": [
-   "Useful websites: Waikīkī aquarium www.waikikiaquarium.org Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator. Walking times: 2 miles one way; 1.5 hours; 7,000 steps Parking lots: Corner of Kapahulu and Kalākaua avenues at the Honolulu Zoo Corner of Monsarrat and Paki avenues Anywhere along Paki Avenue"
+   {
+    "kind": "heading",
+    "text": "Useful websites"
+   },
+   {
+    "kind": "web",
+    "text": "Waikīkī aquarium www.waikikiaquarium.org"
+   },
+   {
+    "kind": "bus",
+    "text": "Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "heading",
+    "text": "Walking times"
+   },
+   {
+    "kind": "time",
+    "text": "2 miles one way; 1.5 hours; 7,000 steps"
+   },
+   {
+    "kind": "heading",
+    "text": "Parking lots"
+   },
+   {
+    "kind": "parking",
+    "text": "Corner of Kapahulu and Kalākaua avenues at the Honolulu Zoo"
+   },
+   {
+    "kind": "parking",
+    "text": "Corner of Monsarrat and Paki avenues"
+   },
+   {
+    "kind": "parking",
+    "text": "Anywhere along Paki Avenue"
+   }
   ],
   "cover": "p2-33-197.jpg",
   "bookMap": "map-VII-c.jpg",
@@ -7806,7 +7959,27 @@
    }
   ],
   "info": [
-   "2.5 miles; 2 hours; 6,000 steps Buses along Kapahulu Avenue to Mō`ili`ili: Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator. Parking: Parking lot at the Honolulu Zoo If you would like to drive part way and then park your car, on-street parking can be found along Date Street –free, except no parking 3:30 to 6:30 Monday through Friday."
+   {
+    "kind": "time",
+    "text": "2.5 miles; 2 hours; 6,000 steps"
+   },
+   {
+    "kind": "heading",
+    "text": "Buses along Kapahulu Avenue to Mō‘ili‘ili"
+   },
+   {
+    "kind": "bus",
+    "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "parking",
+    "label": "Parking",
+    "text": "Parking lot at the Honolulu Zoo"
+   },
+   {
+    "kind": "parking",
+    "text": "If you would like to drive part way and then park your car, on-street parking can be found along Date Street –free, except no parking 3:30 to 6:30 Monday through Friday."
+   }
   ],
   "cover": "p2-67-235.jpg",
   "bookMap": "map-IX-c.jpg",
@@ -8877,7 +9050,41 @@
    }
   ],
   "info": [
-   "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator. 1.5 hour, 3 miles round trip, 6,000 steps PARKING: On-street parking can be found along Date Street on the mauka side of the canal. It’s free, except no parking 3:30 to 6:30 pm Mondays through Fridays. Parking garage across from the Hale Koa Hotel on Kālia Road. Parking lot on the corner of Kālia and Saratoga roads. Contact information for the places you will visit so that you can plan: Mānoa Heritage Center manoaheritagecenter.org or call (808) 988-1287 Lyon Arboretum: (808) 988-0456 or go to Eventbrite"
+   {
+    "kind": "bus",
+    "text": "Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   },
+   {
+    "kind": "time",
+    "text": "1.5 hour, 3 miles round trip, 6,000 steps"
+   },
+   {
+    "kind": "parking",
+    "label": "Parking",
+    "text": "On-street parking can be found along Date Street on the mauka side of the canal. It’s free, except no parking 3:30 to 6:30 pm Mondays through Fridays."
+   },
+   {
+    "kind": "parking",
+    "text": "Parking garage across from the Hale Koa Hotel on Kālia Road."
+   },
+   {
+    "kind": "parking",
+    "text": "Parking lot on the corner of Kālia and Saratoga roads."
+   },
+   {
+    "kind": "heading",
+    "text": "Contact information for the places you will visit so that you can plan"
+   },
+   {
+    "kind": "contact",
+    "label": "Mānoa Heritage Center",
+    "text": "manoaheritagecenter.org or call (808) 988-1287"
+   },
+   {
+    "kind": "contact",
+    "label": "Lyon Arboretum",
+    "text": "(808) 988-0456 or go to Eventbrite"
+   }
   ],
   "cover": "p3-29-311.jpg",
   "bookMap": "map-X-c1.jpg",
@@ -10999,7 +11206,28 @@
    }
   ],
   "info": [
-   "Parking: Street parking on Date Street – free except for afternoons Monday through Friday Parking lot across from the Hale Koa Hotel on Kālia Road. Street parking on Dole Street on the weekends Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 – for a live operator. There are several buses that will take you directly to the UH campus A, 4, 13, 6, 18. Get off at Sinclair Circle, a sheltered bus stop."
+   {
+    "kind": "parking",
+    "label": "Parking",
+    "text": "Street parking on Date Street – free except for afternoons Monday through Friday"
+   },
+   {
+    "kind": "parking",
+    "text": "Parking lot across from the Hale Koa Hotel on Kālia Road."
+   },
+   {
+    "kind": "parking",
+    "text": "Street parking on Dole Street on the weekends"
+   },
+   {
+    "kind": "bus",
+    "label": "Bus routes and times",
+    "text": "www.thebus.org or call 808-848-5555 - option 2 – for a live operator."
+   },
+   {
+    "kind": "bus",
+    "text": "There are several buses that will take you directly to the UH campus A, 4, 13, 6, 18. Get off at Sinclair Circle, a sheltered bus stop."
+   }
   ],
   "cover": "p3-40-329.jpg",
   "bookMap": "map-XI-c.jpg",
@@ -12577,7 +12805,27 @@
    }
   ],
   "info": [
-   "2 hours; 3 miles; 5,000 steps Street parking along Date Street – free, but no parking 3:30-6:30 Monday through Friday. Parking lot at the Zoo or at Monsarrat and Paki avenues. Street parking along Dole Street Bus routes and times: www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   {
+    "kind": "time",
+    "text": "2 hours; 3 miles; 5,000 steps"
+   },
+   {
+    "kind": "parking",
+    "text": "Street parking along Date Street – free, but no parking 3:30-6:30 Monday through Friday."
+   },
+   {
+    "kind": "parking",
+    "text": "Parking lot at the Zoo or at Monsarrat and Paki avenues."
+   },
+   {
+    "kind": "parking",
+    "text": "Street parking along Dole Street"
+   },
+   {
+    "kind": "bus",
+    "label": "Bus routes and times",
+    "text": "www.thebus.org or call 808-848-5555 - option 2 for a live operator."
+   }
   ],
   "cover": "p3-64-378.jpg",
   "bookMap": "map-XII-c.jpg",

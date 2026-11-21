@@ -165,6 +165,12 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .dir { display: flex; gap: 10px; padding: 14px; border-radius: 16px; background: var(--dirbg); font-weight: 700; font-size: calc(16px * var(--ts, 1)); line-height: 1.45; border: 2px solid transparent; }
 .dir.reading { border-color: var(--gold); }
 .dir svg { flex: none; width: 20px; height: 20px; color: var(--primary); margin-top: 2px; }
+.infobox { display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); font-size: 15px; line-height: 1.4; }
+.infobox .lbl { font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.infobox h3 { margin: 4px 0 0; font: inherit; font-weight: 800; }
+.infobox .irow { display: flex; gap: 10px; align-items: flex-start; }
+.infobox .irow > span { color: var(--gold); flex: none; margin-top: 1px; }
+.infobox a, .info a { color: var(--primary); white-space: nowrap; }
 .info { display: flex; gap: 8px; padding: 12px; border-radius: 14px; background: var(--card2); border: 1px solid var(--line); font-size: 14px; }
 .gw { color: var(--primary); text-decoration: underline dotted; cursor: pointer; }
 .lock { display: flex; gap: 12px; align-items: center; padding: 16px; border-radius: 18px; background: var(--card2); border: 1px solid var(--line); width: 100%; text-align: left; }

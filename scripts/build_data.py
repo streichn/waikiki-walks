@@ -36,7 +36,7 @@ MAP_PAGES = {'I': (1, 22), 'II': (1, 40), 'III': (1, 58), 'IV': (1, 72), 'V': (2
 FACTS = {
     'I': {'distance': '3 mi round trip', 'duration': '1.5 hr', 'steps': '6,000'},
     'II': {'distance': '2.5 to 3 mi', 'duration': '2 to 2.5 hr', 'steps': '7,000 to 10,000'},
-    'III': {'distance': '1 mi', 'duration': '1.5 to 2 hr', 'steps': '2,000 to 4,000'},
+    'III': {'distance': '1 mi', 'duration': '0.5 to 2 hr', 'steps': '2,000 to 4,000'},
     'IV': {'distance': '2 mi', 'duration': '45 min to 1 hr', 'steps': '6,000'},
     'V': {'distance': '2 mi', 'duration': '1 hr', 'steps': '6,000'},
     'VI': {'duration': 'Wander at your own pace'},
@@ -55,6 +55,8 @@ if os.path.exists(f'{ROOT}/scripts/extract/text_fixes.json'):
             TEXT_FIXES.setdefault(_sid, []).extend((f['from'], f['to'], f['why']) for f in _fx)
 # Book pictures that are not photos once the page text is removed (scripts/extract/rerender_images.py).
 PHOTO_DROP = set(json.load(open(f'{ROOT}/scripts/extract/photo_fixes.json'))['drop']) if os.path.exists(f'{ROOT}/scripts/extract/photo_fixes.json') else set()
+# Each walk's information box with the book's own paragraphs and labels (scripts/extract/info_boxes.py).
+INFO_BOXES = json.load(open(f'{ROOT}/scripts/extract/info_boxes.json')) if os.path.exists(f'{ROOT}/scripts/extract/info_boxes.json') else {}
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to
 # A stop whose tail is really the next walk's opening: cut at 'at' and move the rest to that walk's intro.
 TAIL_CUTS = {'I-38': {'at': 'This walk covers part of a much larger district once known as K', 'carry_to': 'II', 'keep': 1, 'strip': ' Kahanamoku St.',
@@ -620,6 +622,15 @@ for k, w in enumerate(SRC['walks']):
     _carto = f'{ROOT}/scripts/georef/georef_carto.json'
     if os.path.exists(_carto):
         book_map = next((g['file'] for g in json.load(open(_carto)).values() if g['walk'] == wid and g['first']), book_map)
+    if wid in INFO_BOXES:
+        info = INFO_BOXES[wid]['rows']
+        # The parser filed some boxes (Walks I and IV) as an 'info' paragraph in stop 1; the box is shown once, on the walk page.
+        texts = [r['text'] for r in info if r['kind'] != 'heading']
+        norm = lambda x: re.sub(r'[^\w]', '', x)
+        for st in stops:
+            st['blocks'] = [b for b in st['blocks'] if not (b['kind'] == 'info' and sum(norm(t) in norm(b['text']) for t in texts) >= 2)]
+    else:
+        info = [{'kind': 'note', 'text': x} for x in info]
     walks.append({'id': wid, 'num': k + 1, 'title': title, 'theme': theme, 'facts': FACTS.get(wid, {}), 'intro': intro, 'info': info,
                   **({'cover': cover} if cover else {}), **({'bookMap': book_map} if book_map else {}), 'color': COLORS[k % len(COLORS)], 'stops': stops})
 

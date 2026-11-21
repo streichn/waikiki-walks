@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-21 · Walk information boxes laid out like the book
+- Each walk's information box (time and distance, buses, parking, websites) read as one run-on line, with labels like "Parking:" buried mid-sentence. It now shows one row per paragraph the book prints, with the book's own labels in bold, an icon for each kind of row, and a "Before you go" heading. New scripts/extract/info_boxes.py reads the boxes from the PDFs and writes scripts/extract/info_boxes.json; build_data.py uses it.
+- Walks I and IV showed no information box on the walk page; the box had been filed as a paragraph inside stop 1. It is now on the walk page and gone from stop 1.
+- Web addresses and phone numbers the book prints (thebus.org, 808-848-5555, Mānoa Heritage Center, Lyon Arboretum, Honolulu Zoo, Royal Hawaiian Band, Waikīkī Aquarium) can be tapped to open or call, in the app and the preview. Screen readers announce them as links.
+- Walk III's time chip said "1.5 to 2 hr"; the book prints "0.5 to 2 hours". Fixed.
+- Walk IX's box prints "Mō`ili`ili" with backticks; the app shows the ‘okina. Listed in docs/BOOK_UPDATES.md with two questions for Veneeta (Walk X's box repeats Walk I's; a word missing in Walk III's "Lewers Street & Road").
+
 ## 2026-11-20 · Stop names, hyphens and typos match the printed book
 - Twelve stops took their name from the first line of text, because the book prints the name in bold at the start of the first sentence. Walk VIII stop 6 was called "Da ‘Ono Hawaiian food on the ‘Ewa" and its text began "side of Kapahulu". Now the name is the bold words ("Da ‘Ono Hawaiian food") and the sentence is whole. Stops: VIII 6, 7, 10, 21; IX 7, 21; X 14, 15, 16, 32; XII 5, 10.
 - Hyphens the book prints at a line end and that belong to the word are back: 13 life dates such as "(1890-1968)" had read "(18901968)", and 25 words such as "well-known", "Mānoa-Pālolo" and "mauka-Koko Head" had lost their hyphen. New scripts/extract/line_hyphens.py finds them in the book PDFs and writes scripts/extract/line_hyphens.json; build_data.py restores them.

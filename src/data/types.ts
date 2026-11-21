@@ -25,6 +25,9 @@ export type Stop = {
   page: string; // source page in the PDF, for review
 };
 
+/** One printed paragraph of a walk's information box. kind picks the row icon; heading is a label printed on its own line. */
+export type InfoRow = { kind: 'heading' | 'time' | 'route' | 'bus' | 'parking' | 'web' | 'contact' | 'note'; label?: string; text: string };
+
 export type Walk = {
   id: string; // roman numeral, e.g. "IV"
   num: number;
@@ -33,7 +36,7 @@ export type Walk = {
   theme?: string; // e.g. "King Kalākaua welcomes you to his Great Street"
   facts: { distance?: string; duration?: string; steps?: string };
   intro: Block[];
-  info: string[]; // parking, bus, timing boxes
+  info: InfoRow[]; // the walk's information box: time, buses, parking, websites
   cover?: string; // photo file
   bookMap?: string; // rendered map page from the book
   color: string;
