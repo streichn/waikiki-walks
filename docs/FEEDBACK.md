@@ -29,3 +29,6 @@
 - "Pin 10 move to where 11 is, and move 11 over a little bit." Status: fixed.
 - "Stop 13 is actually a side trip, a purple line, 13A through 13D." Status: fixed (side-trip pin and line; 13A to 13D in the side-trip box).
 - "Pin 18 should be on the other side of Kalia Rd." Status: fixed.
+
+## 2026-11-21 · Scheduled run, 13:00Z
+- No new email from Veneeta since 20 Nov 15:30Z (personal, already logged). Open questions to her are unchanged.

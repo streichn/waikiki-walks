@@ -106,3 +106,9 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Checking pins against the author's maps (2026-11-21)
+- **How it is normally done:** VoiceMap asks publishers to place each location "on the line" of the route, then test on the ground in at least two rounds, reporting each trigger that fires early or late ("moved ten metres forward"). Its smallest trigger radius is 21 m because of GPS bounce, and it warns that a stop can fail to play when the previous one runs into it.
+- **What we chose:** an automatic check before anyone walks. `scripts/georef/audit_pins.py` draws every app pin back onto Veneeta's map with the app's own transform and compares it with the number she printed. It also checks the rule in reverse (every printed number has a stop), lists pins she asked to move with her reason, flags pins that share one spot, and lists long jumps between consecutive pins. It writes `docs/PIN_AUDIT.md`. Ground testing still follows for the stops it lists.
+- **Why:** Nick's rule (17 Nov 2026) says a pin exists only where her map prints the number. Many hands touch the pipeline (map fits, overrides, cartographer's maps), so a repeatable check catches drift cheaply and gives Nick a short list to verify instead of 344 pins.
+- Sources: https://docs.voicemap.me/tour-publishers/choosing-locations/ , https://docs.voicemap.me/tour-publishers/testing/ , https://docs.voicemap.me/tour-publishers/plotting-a-route/
