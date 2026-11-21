@@ -106,3 +106,11 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Background reading and Hawaiian pronunciation (21 Nov 2026)
+- **Common practice:** tour apps keep orientation and background content out of the way of the tour itself, in a place people can open any time, rather than in a long first-run flow. Apple's onboarding guidance says to let people start quickly and find extra information later; Nielsen Norman Group says the same for mobile onboarding. Hawaiʻi visitor guides (for example the Hawaiʻi Tourism Authority's language page) give a short pronunciation guide covering vowels, the ʻokina and the kahakō, since visitors meet many place names.
+- **Our choice:** the book's own front matter (Introduction, the pronunciation guide, the Monarchy table and dates, Wahi Pana) lives on the About screen, with a short contents list at the top that jumps to each part. The Hawaiian word card on each stop links to the pronunciation guide, so help is one tap away at the moment a walker meets a new word. Nothing is added that is not in the book.
+- **Why:** the walks refer often to the monarchs, the ʻili and the streams the Introduction explains, and walkers see Hawaiian words on every stop. The book puts this material before Walk I for that reason.
+- **Not done:** we did not change how read-aloud says Hawaiian words. Phone voices are English voices, and respelling words for them could not be checked by ear in this run.
+- Sources: https://developer.apple.com/design/human-interface-guidelines/onboarding ; https://www.nngroup.com/articles/mobile-app-onboarding/ ; https://www.gohawaii.com/hawaiian-culture/hawaiian-language-guide
+
