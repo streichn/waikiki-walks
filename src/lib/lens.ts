@@ -1,4 +1,5 @@
-import { LENS_ENDPOINT } from '../config';
+import { LENS_ENDPOINT, SUPABASE } from '../config';
+import { supabase } from './auth';
 import { walks, onMap } from '../data';
 import type { Stop, Walk } from '../data/types';
 import { bearingDeg, distanceM, headingDelta, type LatLng } from './geo';
@@ -61,15 +62,21 @@ export async function identifyPhoto(base64Jpeg: string, candidates: LensCandidat
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 12000);
   try {
+    // A signed-in walker sends their own token, so the daily photo cap is theirs alone.
+    // Guests send only the public key and share a cap per network (server/lens.ts).
+    const session = supabase ? (await supabase.auth.getSession()).data.session : null;
+    const headers: Record<string, string> = { 'Content-Type': 'application/json', apikey: SUPABASE.anonKey };
+    if (session?.access_token) headers.Authorization = `Bearer ${session.access_token}`;
     const res = await fetch(LENS_ENDPOINT, {
       method: 'POST',
       signal: ctrl.signal,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
         image: base64Jpeg,
         candidates: candidates.map((c) => ({ id: c.stop.id, title: c.stop.title, distance: Math.round(c.distance), summary: c.stop.blocks.find((b) => b.kind === 'p')?.text.slice(0, 400) })),
       }),
     });
+    if (res.status === 429) return { stopId: null, reason: 'Could not check the photo: photo checks are resting for today.' };
     if (!res.ok) throw new Error('Could not identify the photo');
     const out = (await res.json()) as Partial<LensAnswer>;
     const ok = candidates.some((c) => c.stop.id === out.stopId);
