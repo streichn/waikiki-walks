@@ -898,9 +898,20 @@
     });
     m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
   }
-  function openAbout() {
-    modal(`<div class="stack" style="align-items:stretch"><div style="text-align:center">${hib(64, 'var(--accent)')}<h1 style="font-size:32px">Waikīkī</h1><div style="font-family:var(--display);letter-spacing:.15em">TWELVE WALKS THROUGH TIME</div><div class="italic">Veneeta Acson, Ph.D.</div></div>
-      ${D.about.map((s) => `<div class="card stack" style="gap:10px"><h2 style="font-size:21px">${esc(s.title)}</h2>${s.paragraphs.map((p) => `<p class="p" style="font-size:16px">${rich(p)}</p>`).join('')}</div>`).join('')}<p class="small" style="text-align:center">Text and photographs © 2023 Island Heritage. All rights reserved.</p></div>`);
+  function aboutBlock(b) {
+    if (b.k === 'lead') return `<p class="italic" style="font-size:16px">${esc(b.t)}</p>`;
+    if (b.k === 'h') return `<h3 style="font-family:var(--body);font-weight:800;font-size:17px;color:var(--primary);margin-top:6px;white-space:pre-line">${esc(b.t)}</h3>`;
+    if (b.k === 'li') return `<div class="row" style="gap:8px;align-items:flex-start;padding-left:4px"><span style="color:var(--accent)">•</span><p class="p" style="font-size:16px;flex:1;margin:0">${rich(b.t)}</p></div>`;
+    if (b.k === 'date') return `<p class="p" style="font-size:16px"><b>${esc(b.d)}</b> ${rich(b.t)}</p>`;
+    if (b.k === 'royal') return `<div style="border-top:1px solid var(--line);padding-top:8px"><div style="font-weight:800;color:var(--primary)">${esc(b.name)}${b.alt ? ` <span class="small">(${esc(b.alt)})</span>` : ''}</div><div class="small">Lived ${esc(b.lived)}${b.ruled ? ` · Ruled ${esc(b.ruled)}` : ''}</div><div class="small">Consorts: ${esc(b.consorts)}</div></div>`;
+    return `<p class="p" style="font-size:16px">${rich(b.t)}</p>`;
+  }
+  function openAbout(section) {
+    const m = modal(`<div class="stack" style="align-items:stretch"><div style="text-align:center">${hib(64, 'var(--accent)')}<h1 style="font-size:32px">Waikīkī</h1><div style="font-family:var(--display);letter-spacing:.15em">TWELVE WALKS THROUGH TIME</div><div class="italic">Veneeta Acson, Ph.D.</div></div>
+      <div class="card stack" style="gap:2px"><div class="label">In this section</div>${D.about.map((s, i) => `<button class="row" data-aboutjump="${i}" style="min-height:44px;text-align:left;background:none;border:0;color:var(--primary);font-weight:700;font-size:16px;padding:0">${esc(s.title)}</button>`).join('')}</div>
+      ${D.about.map((s, i) => `<div class="card stack" id="about-${i}" data-aboutid="${esc(s.id || '')}" style="gap:10px"><h2 style="font-size:21px">${esc(s.title)}</h2>${s.blocks.map(aboutBlock).join('')}</div>`).join('')}<p class="small" style="text-align:center">Text and photographs © 2023 Island Heritage. All rights reserved.</p></div>`);
+    m.addEventListener('click', (e) => { const b = e.target.closest('[data-aboutjump]'); if (b) m.querySelector(`#about-${b.dataset.aboutjump}`).scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    if (section) { const el = m.querySelector(`[data-aboutid="${section}"]`); if (el) setTimeout(() => el.scrollIntoView({ block: 'start' }), 0); }
   }
   function openLayers(w) {
     const m = modal(`<div class="stack"><div class="label">Map style</div>
@@ -941,8 +952,8 @@
   }
   function openGloss(word) {
     const g = D.glossary.find((x) => x.word === word); if (!g) return;
-    const m = modal(`<div class="stack"><h1 style="font-size:30px">${esc(g.word)}</h1><p class="p">${esc(g.meaning)}</p><div class="row"><button class="btn outline" style="flex:1" data-say>${ic('volume')} Hear it</button><button class="btn" style="flex:1" data-close>Mahalo</button></div><p class="small">As defined in the book.</p></div>`, true);
-    m.addEventListener('click', (e) => { if (e.target.closest('[data-say]') && synth) { synth.cancel(); const u = new SpeechSynthesisUtterance(g.word); u.rate = 0.85; synth.speak(u); } });
+    const m = modal(`<div class="stack"><h1 style="font-size:30px">${esc(g.word)}</h1><p class="p">${esc(g.meaning)}</p><div class="row"><button class="btn outline" style="flex:1" data-say>${ic('volume')} Hear it</button><button class="btn" style="flex:1" data-close>Mahalo</button></div><p class="small">As defined in the book.</p><button class="btn ghost" data-howtosay style="color:var(--primary);background:none;min-height:44px">How to say Hawaiian words</button></div>`, true);
+    m.addEventListener('click', (e) => { if (e.target.closest('[data-howtosay]')) { m.remove(); openAbout('pronunciation'); return; } if (e.target.closest('[data-say]') && synth) { synth.cancel(); const u = new SpeechSynthesisUtterance(g.word); u.rate = 0.85; synth.speak(u); } });
   }
   function openPhotos(stop, idx) {
     const p = stop.photos[idx]; if (!p) return;

@@ -1,30 +1,710 @@
 [
  {
   "title": "Dedications",
-  "paragraphs": [
-   "To my grandchildren, Alice and Ezra, who have learned to love walking in the ahupua‘a of Waikīkī.",
-   "To my husband and best friend, Howard Z. Streicher, who brought me to this magical place in 1974 and loves all things Hawaiian.",
-   "This book is dedicated, especially, to the Hawaiians and early Polynesians who had the foresight to settle on this magnificent ‘āina. Mahalo piha.",
-   "In memory of my mother, Alice Acson, who loved walking in Waikīkī."
+  "blocks": [
+   {
+    "k": "p",
+    "t": "To my grandchildren, Alice and Ezra, who have learned to love walking in the ahupua‘a of Waikīkī."
+   },
+   {
+    "k": "p",
+    "t": "To my husband and best friend, Howard Z. Streicher, who brought me to this magical place in 1974 and loves all things Hawaiian."
+   },
+   {
+    "k": "p",
+    "t": "This book is dedicated, especially, to the Hawaiians and early Polynesians who had the foresight to settle on this magnificent ‘āina. Mahalo piha."
+   },
+   {
+    "k": "p",
+    "t": "In memory of my mother, Alice Acson, who loved walking in Waikīkī."
+   }
   ]
  },
  {
   "title": "Foreword",
-  "paragraphs": [
-   "Waikīkī and Neighborhoods: An Urban Walking Guide into History",
-   "Respecting the Wahi Pana Walk Waikīkī for your Health!",
-   "The history of Hawai‘i is opened up to you, as the life of Hawai‘i is revealed to you through these walks.",
-   "Venture into the wild side of the ahupua‘a of Waikīkī and its history: urban walks with good, sensible shoes!",
-   "It is suggested that you take these walks in cool weather, which means early mornings or late afternoons. Also, try to walk in the shade, which, generally, means makai-Diamond Head side in the mornings and mauka-‘Ewa side in the afternoons.",
-   "The first book about historic walks in Waikīkī appeared in 1983. I am proud to say that it was among the first books to describe the real Waikīkī, not just the glittery hotels and restaurants. Even historian and revered Hawaiian scholar, George S. Kanahele, the author of the definitive book on Waikīkī, Waikīkī, stated: “We should acknowledge Veneeta Acson’s book[] Waikīkī: Nine Walks Through Time, Island Heritage, 1983, certainly the precursor of the Historical Trail idea.”",
-   "The second book, which came out 20 years later, saw some changes including the disappearance of some old, charming buildings and structures, such as the original Halekūlani Hotel and Buckminster Fuller’s Geodesic Dome, which was replaced by the Kālia Tower of the Hilton Hawaiian Village.",
-   "Since then, several other books about Waikīkī especially some beautiful “coffee table” books, have been published. Much has happened in those intervening years, not only in Waikīkī, but also in the United States and our world.",
-   "Other sites are still standing, but much improved and better integrated into Hawaiian life: the Kāhuna Stones; ‘Āinahau Park/Princes Ka‘iulani Park; and Kūka‘ō‘ō Heiau.",
-   "This book, the third book about historic walks, 20 years later, is expanded to include the neighborhoods mauka of the beach area of Waikīkī, all within the ahupua‘a of Waikīkī. The neighborhoods of Mō‘ili‘ili, Kaimukī, and Mānoa Valley offer a rich panoply of early Hawaiian life as well as bustling life today: Mō‘ili‘ili with its underground caverns and lizard mo‘olelo (legends); Kaimukī and its Pu‘u o Kaimukī,",
-   "the high point (literally and figuratively) of the walk where you can see not only the Wai‘anae mountain in the west, but also the islands of Lāna’i and Moloka‘i in the east; and Mānoa Valley, which proudly presents the only restored intact heiau in Waikīkī at the Mānoa Heritage Center, along with marvelous Mānoa Falls, Lyon Arboretum, Mānoa Chinese Cemetery, and the fabulous University of Hawai‘i.",
-   "The walks to Mānoa Valley and to the main campus of the University of Hawai‘i follow McCully Street.",
-   "The walks to Kaimukī, Mō‘ili‘ili, and the lower UH campus walks proceed along Kapahulu Avenue.",
-   "For Waikīkī residents and visitors, the walks into the ahupua‘a begin or go along Kapahulu Avenue (on the Diamond Head side) or McCully Street (on the ‘Ewa side). However, for residents who live mauka of the canal, the walks can begin further inland. Just be sure to read the introductions to each walk before you proceed."
+  "blocks": [
+   {
+    "k": "p",
+    "t": "Waikīkī and Neighborhoods: An Urban Walking Guide into History"
+   },
+   {
+    "k": "p",
+    "t": "Respecting the Wahi Pana Walk Waikīkī for your Health!"
+   },
+   {
+    "k": "p",
+    "t": "The history of Hawai‘i is opened up to you, as the life of Hawai‘i is revealed to you through these walks."
+   },
+   {
+    "k": "p",
+    "t": "Venture into the wild side of the ahupua‘a of Waikīkī and its history: urban walks with good, sensible shoes!"
+   },
+   {
+    "k": "p",
+    "t": "It is suggested that you take these walks in cool weather, which means early mornings or late afternoons. Also, try to walk in the shade, which, generally, means makai-Diamond Head side in the mornings and mauka-‘Ewa side in the afternoons."
+   },
+   {
+    "k": "p",
+    "t": "The first book about historic walks in Waikīkī appeared in 1983. I am proud to say that it was among the first books to describe the real Waikīkī, not just the glittery hotels and restaurants. Even historian and revered Hawaiian scholar, George S. Kanahele, the author of the definitive book on Waikīkī, Waikīkī, stated: “We should acknowledge Veneeta Acson’s book[] Waikīkī: Nine Walks Through Time, Island Heritage, 1983, certainly the precursor of the Historical Trail idea.”"
+   },
+   {
+    "k": "p",
+    "t": "The second book, which came out 20 years later, saw some changes including the disappearance of some old, charming buildings and structures, such as the original Halekūlani Hotel and Buckminster Fuller’s Geodesic Dome, which was replaced by the Kālia Tower of the Hilton Hawaiian Village."
+   },
+   {
+    "k": "p",
+    "t": "Since then, several other books about Waikīkī especially some beautiful “coffee table” books, have been published. Much has happened in those intervening years, not only in Waikīkī, but also in the United States and our world."
+   },
+   {
+    "k": "p",
+    "t": "Other sites are still standing, but much improved and better integrated into Hawaiian life: the Kāhuna Stones; ‘Āinahau Park/Princes Ka‘iulani Park; and Kūka‘ō‘ō Heiau."
+   },
+   {
+    "k": "p",
+    "t": "This book, the third book about historic walks, 20 years later, is expanded to include the neighborhoods mauka of the beach area of Waikīkī, all within the ahupua‘a of Waikīkī. The neighborhoods of Mō‘ili‘ili, Kaimukī, and Mānoa Valley offer a rich panoply of early Hawaiian life as well as bustling life today: Mō‘ili‘ili with its underground caverns and lizard mo‘olelo (legends); Kaimukī and its Pu‘u o Kaimukī,"
+   },
+   {
+    "k": "p",
+    "t": "the high point (literally and figuratively) of the walk where you can see not only the Wai‘anae mountain in the west, but also the islands of Lāna’i and Moloka‘i in the east; and Mānoa Valley, which proudly presents the only restored intact heiau in Waikīkī at the Mānoa Heritage Center, along with marvelous Mānoa Falls, Lyon Arboretum, Mānoa Chinese Cemetery, and the fabulous University of Hawai‘i."
+   },
+   {
+    "k": "p",
+    "t": "The walks to Mānoa Valley and to the main campus of the University of Hawai‘i follow McCully Street."
+   },
+   {
+    "k": "p",
+    "t": "The walks to Kaimukī, Mō‘ili‘ili, and the lower UH campus walks proceed along Kapahulu Avenue."
+   },
+   {
+    "k": "p",
+    "t": "For Waikīkī residents and visitors, the walks into the ahupua‘a begin or go along Kapahulu Avenue (on the Diamond Head side) or McCully Street (on the ‘Ewa side). However, for residents who live mauka of the canal, the walks can begin further inland. Just be sure to read the introductions to each walk before you proceed."
+   }
+  ]
+ },
+ {
+  "title": "Introduction",
+  "blocks": [
+   {
+    "k": "lead",
+    "t": "Waikīkī is more amazing than you think: from the capital of O‘ahu to the resort capital (arguably) of the world!"
+   },
+   {
+    "k": "p",
+    "t": "Waikīkī: Wai - water, liquid of any kind other than sea water (kai), but especially fresh stream water from the mountains."
+   },
+   {
+    "k": "p",
+    "t": "Kīkī – spouting or shooting water from the numerous springs and streams."
+   },
+   {
+    "k": "p",
+    "t": "Fresh water spouting everywhere – not just along the ocean front, but all over – along the plains from the slopes of the mountains in the ahupua‘a of Waikīkī. You are walking in the ahupua‘a of Waikīkī within the moku (larger land division) of Kona on the island of O‘ahu. An ahupua‘a is divided into ‘ili, ‘districts.’ The names of the different ‘ili will be mentioned as you walk along."
+   },
+   {
+    "k": "h",
+    "t": "Ahupua‘a of Waikīkī"
+   },
+   {
+    "k": "p",
+    "t": "Waikīkī can no longer be thought of as the area between the ocean and the Ala Wai Canal; rather, it must be known as the correct place: the ahupua‘a of Waikīkī, an expanse of land that is divided into ‘ili, ‘districts.’"
+   },
+   {
+    "k": "p",
+    "t": "Ahupua‘a is translated as ahu for ‘pile or heap’ and pua‘a for ‘pig,’ whose head or facsimile carving was atop the ahu as a land boundary or tribute. An ahupua‘a can be thought of as a watershed, the area from the ocean to the mountain top including the ridges to the west and to the east. An ahupua‘a is an irregularly (usually) pieshaped land division extending from the mountain crest to the ocean. The origin and naming of the moku and ahupua‘a system date to the 15th century and O‘ahu Chief Mā‘ilikūkahi. During the Māhele of 1848, the land division, the lands of Hawai‘i were chopped up, divided, appropriated, and distributed, resulting in today’s smaller land units."
+   },
+   {
+    "k": "p",
+    "t": "The physical boundaries of modern-day Waikīkī Beach have been defined with reference to the Ala Wai Canal, the Pacific Ocean, and Diamond Head. However, this delineation is no longer acceptable! The boundaries of Waikīkī are far broader. The ahupua‘a of Waikīkī extends from Ke‘eaumoku Street and Pi‘ikoi Street in the west – see posted signage - to the ahupua‘a of Waimānalo at Kuli‘ou‘ou (‘sounding knee’ – a kind of drum) Ridge in the east. As an interesting aside, Ke‘eaumoku was King Kamehameha I’s father-in-law! Ke‘eaumoku was Queen Ka‘ahumanu’s father; Nāmāhana (a street name in Waikīkī) was her mother."
+   },
+   {
+    "k": "p",
+    "t": "A cave in Kuli‘ou‘ou dates to the oldest carbon findings in the islands, to approximately 1,000 CE."
+   },
+   {
+    "k": "h",
+    "t": "The Waterways of Waikīkī"
+   },
+   {
+    "k": "p",
+    "t": "The area today known as Waikīkī beach was synonymous with abundance of aquatic life due to the three streams that flowed down from the Ko‘olau Range. However, the ahupua‘a of Waikīkī, which extends to East Honolulu for another 5 miles, has other major water sources with Wai‘alae and Kapakahi streams in Kāhala; and Kapa‘au, Kuli‘ou‘ou, Wailupe, Pia, and Niu streams at the eastern end of the ahupua‘a of Waikīkī. Many of these streams are not even labeled on today’s maps. Although none of these streams provided the rich waterways that the 3 streams into Waikīkī beach did, there were, indeed, numerous fishponds along the coast, as there were in Waikīkī beach."
+   },
+   {
+    "k": "p",
+    "t": "Recently, the streams and watershed of East Honolulu, which are within the ahupua‘a of Waikīkī, have been undergoing extensive ecological management to improve the forest, reefs, and ocean. Moanalua Bay, where the streams flow into the waterfront of East Honolulu, stretches for almost 9 miles from Black Point at Lē‘ahi to Portock."
+   },
+   {
+    "k": "p",
+    "t": "The next ahupua‘a east of Waikīkī is the ahupua‘a of Waimānalo, which includes Moanalua/“Hawai‘i Kai.” Keahupuaomaunalua (aka Kuapa) Pond is the original name for the waters of Moanalua. Kuapa Pond, the largest in Hawai‘i at over 500 acres, was fed from the waters of Hahaione, Kamolonui, and Kamiloiki streams in the Ko‘olau Mountains. It is believed that this pond connects with Ka‘elepulu pond in Kailua via an underground tunnel."
+   },
+   {
+    "k": "p",
+    "t": "Waikīkī’s name refers to the great abundance of freshwater, rainwater that collects in the mountains and gathers in the streams as fresh water. Before the 1920s, several freshwater streams flowed from the mountains, across the valley floors, across the plains, to the ocean front, and into the Pacific Ocean."
+   },
+   {
+    "k": "p",
+    "t": "Three streams, Pi‘inaio, ‘Āpuakēhau, and Kuekaunahi, provided Waikīkī with an effective natural irrigation system. For the early Hawaiians, this led to an intricate aquaculture system of kalo fields and fish ponds. In the late 19th century, when the Chinese arrived, they added rice fields and duck ponds. However, in the 1920s these streams were all filled in with the material that was dredged from the Ala Wai Canal. Fortunately, the locations where the streams emptied into the Pacific Ocean are known and partially visible, if not on the beaches, at least in the reefs offshore: Pi‘inaio Stream, near the ‘Ilikai Hotel; ‘Āpuakēhau Stream at the Outrigger Hotel; and Kuekaunahi Stream, ‘Ewa of Kapahulu Pier."
+   },
+   {
+    "k": "h",
+    "t": "(Very) Brief History of Waikīkī"
+   },
+   {
+    "k": "p",
+    "t": "When Mā‘ilikūkahi became king (mō‘ī) of O‘ahu in the 15th century, he was taken by the chiefs to reside in Waikīkī. That event may mark the origin of the long tradition of royal residences in Waikīkī."
+   },
+   {
+    "k": "p",
+    "t": "Kamehameha the Great moved his court, including his favorite wife, Ka‘ahumanu, and his sacred wife, Keōpūolani, from the island of Hawai‘i, here in 1795. With Waikīkī as the capital of O‘ahu, he remained here off and on until 1809, a year before he unified the islands. Soon after Kamehameha the Great unified the islands, he moved the capital to Honolulu. Had he stayed in Waikīkī, Waikīkī would have been the capital of all the islands. As it stands, Waikīkī must be content with having been the capital of O‘ahu for 400 years."
+   },
+   {
+    "k": "p",
+    "t": "During the Māhele of 1848, Kamehameha III enacted land reform, moving from the traditional Hawaiian system of crown-owned land to a system of private ownership, thus paving the way for subsequent development."
+   },
+   {
+    "k": "p",
+    "t": "The most scholarly and authoritative book about the early history of Waikīkī is Waikīkī: 100 B.C. to 1900 A.D.: An Untold Story by George S. Kanahele (1995)."
+   },
+   {
+    "k": "h",
+    "t": "Early Description of Waikīkī"
+   },
+   {
+    "k": "p",
+    "t": "One of the earliest available accounts of Waikīkī was written in 1792 by the English explorer Captain Vancouver. He described the numerous and large villages along the shores of Waikīkī (“Whyteete,” as he wrote it) with vast wet kalo fields and an abundance of waterfowl."
+   },
+   {
+    "k": "h",
+    "t": "Early Hotels of Waikīkī Beach and Building of the Ala Wai Canal"
+   },
+   {
+    "k": "p",
+    "t": "Waikīkī’s first documented hotel, Hotel Waikīkī, opened in 1837. Several hotels opened in the 1880s and 1890s: Sans Souci in 1884; Park Beach in 1888; and Waikīkī Seaside in 1894. In 1901, the time was ripe for a large deluxe hotel in the very center of the beach area: the Moana Hotel. The Moana was so successful that in 1917 its owners built an addition."
+   },
+   {
+    "k": "p",
+    "t": "A drastic change in the topography and development of Waikīkī occurred with the building of the Ala Wai Drainage Canal, as it was called at its inception. The excavation of the canal and the diversion of Waikīkī’s streams resulted in the intentional drying up of the ponds and fields. Coral dredged from the canal bed was used to fill in the dried-up areas. The development of hotels and more recently, co-ops and condominiums followed."
+   },
+   {
+    "k": "p",
+    "t": "As the Ala Wai Canal was being completed in the late 1920s, another large hotel was being finalized: the Royal Hawaiian Hotel. This hotel was opened in 1927 with the expectation that tourism would continue to grow. Unfortunately, the stock market crash two years later and the depression that followed reduced tourism to a low point during those years."
+   },
+   {
+    "k": "h",
+    "t": "Waikīkī Beach Today"
+   },
+   {
+    "k": "p",
+    "t": "Lē‘ahi, the now extinct crater that was formed 300,000 years ago, was the home of Pele, the volcano deity. After traveling the islands, Pele now lives in Halema‘uma‘u Caldera of Kīlauea Crater in Hawai‘i Volcanoes National Park on Hawai‘i Island."
+   },
+   {
+    "k": "p",
+    "t": "Over the years, Waikīkī’s beach sand has been altered by erosion and by the construction of buildings close to the shore. During the past one hundred years, there have been changes in the composition of the sand along Waikīkī’s beaches. Tons of sand have been imported from places off-shore O‘ahu, neighbor islands, and reportedly from as far away as California. Due to the changing tides and shifting sands of progress, the urban walker is cautioned that some of the sites may suddenly disappear."
+   },
+   {
+    "k": "p",
+    "t": "The ahupua‘a of Waikīkī welcomes you! Enjoy exploring the ahupua‘a of Waikīkī!"
+   },
+   {
+    "k": "p",
+    "t": "And please remember to mālama ka ‘āina - take care of the land as well as care for the land."
+   }
+  ]
+ },
+ {
+  "title": "Hawaiian Language and Guide to Pronunciation",
+  "blocks": [
+   {
+    "k": "p",
+    "t": "Hawaiian belongs to the Polynesian language family — a group of about thirty languages, most of which lie within a triangle formed with Hawai‘i, Rapa Nui (Easter Island), and Ao Te Roa (New Zealand) at the corners. Polynesian is, in turn, part of a larger language family: Austronesian, which includes many more distantly related languages in Melanesia, Micronesia, the Philippines, Indonesia, and Malaysia."
+   },
+   {
+    "k": "h",
+    "t": "Hawaiian Alphabet"
+   },
+   {
+    "k": "p",
+    "t": "Although many explorers and traders wrote Hawaiian words according to how they heard them, it was Protestant missionaries who first studied the language systematically in the 1820s and developed an alphabet, modified since that time with the introduction of diacritical markings. Once you know how this efficient writing system works, you can spell any word that you hear, and pronounce any word that you read."
+   },
+   {
+    "k": "p",
+    "t": "The short vowels are as follows: a, e, i, o, u"
+   },
+   {
+    "k": "p",
+    "t": "The long vowels, marked with a line over the vowel, kahakō, (macron) are similar to the short vowels in quality, but are longer and stressed."
+   },
+   {
+    "k": "p",
+    "t": "This difference is important: for example, kau means ‘to put’, but kāu means ‘your’. Certain vowels combine to form diphthongs: ai, au, ae, ao, ei, eu, oi, ou, and iu. In a diphthong, the first vowel is always accented."
+   },
+   {
+    "k": "p",
+    "t": "The consonants are pronounced as follows:"
+   },
+   {
+    "k": "p",
+    "t": "h, l, m, and n as in English."
+   },
+   {
+    "k": "p",
+    "t": "p and k as in English, but without the puff of air that you hear in words like pick and kick."
+   },
+   {
+    "k": "p",
+    "t": "w varies between an English v and w."
+   },
+   {
+    "k": "p",
+    "t": "‘okina (glottal stop) is similar to the sound in the middle of ‘oh-oh.’ Like any other consonant, it can change the meaning of a word; for example, kou means ‘your’; ko‘u means ‘my’."
+   },
+   {
+    "k": "p",
+    "t": "Every syllable contains a vowel or diphthong, and it may or may not be preceded by a consonant. For example, a-lo-ha shows both kinds of syllables. As all the examples illustrate, no syllable (or word) can end with a consonant."
+   },
+   {
+    "k": "h",
+    "t": "Hawaiian Grammar"
+   },
+   {
+    "k": "p",
+    "t": "As you become more familiar with some common Hawaiian words, you’ll begin to recognize them when they appear in longer words. For example, Uluniu ‘coconut grove’ is made up of two common words: ulu ‘grove’ and niu ‘coconut.’ This example also demonstrates that adjectives follow nouns (grove-coconut)—just the opposite of English."
+   },
+   {
+    "k": "p",
+    "t": "You may have noticed that many Hawaiian words begin with k-; that is because the word “the” is ke or ka, and is often included in the name (person or place), as in: Kalei, ‘the lei (garland),’ a woman’s name. The king’s name, Kamehameha, is translated as ka ‘the’ and mehameha, ‘lonely one.’"
+   },
+   {
+    "k": "p",
+    "t": "Plurals are usually formed with a separate word, nā, as in nā hōkū, ‘the stars.’ I have chosen to omit the English plural -s when using a Hawaiian word in context, as in “She wore many lei” (not leis)."
+   },
+   {
+    "k": "h",
+    "t": "Hawaiian Spelling"
+   },
+   {
+    "k": "p",
+    "t": "The first Hawaiian alphabet of the 1820s, which was written using English letters, has been modified. This is because the missionaries did not hear all the distinctive sounds of the language. In particular, they were unable to hear the glottal stop, a distinct consonant, and the long vowels. However, the examples above demonstrate the importance of these distinctions in Hawaiian. Writing Hawaiian without them is like writing English without several of the consonants and half the vowels. Still, in most cases, the native speakers (and readers) were able to use the context of the sentence to decide which word was actually meant in a spelling such as pau (which could be any of these words: pau ‘finished,’ pa‘ū ‘moist,’ pa‘u ‘soot,’ pā‘ū ‘sarong’, or even a place name)."
+   },
+   {
+    "k": "p",
+    "t": "Since Hawaiian was written for well over a century without marking the glottal stop and long vowels, the proper pronunciation of some uncommon words has been lost. Therefore, you might see some variation in the spelling of words. For example, the stream Kuekaunahi is also written Ku‘ekaunahi and Kukaunahi on old maps and in documents. Both the meaning and the correct pronunciation have been lost; therefore, the correct spelling is uncertain."
+   },
+   {
+    "k": "p",
+    "t": "Many words may seem or sound familiar, but that might be because they have been Hawaiianized. For example, ‘alani is the Hawaiian pronunciation for the English word ‘orange.’"
+   },
+   {
+    "k": "h",
+    "t": "‘Ōlelo Hawai‘i Pī‘āpā (Hawaiian Language Alphabet)"
+   },
+   {
+    "k": "li",
+    "t": "Vowels: A, Ā, E, Ē, I, Ī, O, Ō, U, Ū"
+   },
+   {
+    "k": "li",
+    "t": "Consonants: H (hē), K (kē), L (lā), M (mū), N (nū), P (pī), W (wē), ‘ (‘okina)"
+   }
+  ],
+  "id": "pronunciation"
+ },
+ {
+  "title": "Hawaiian Monarchy and Some Historic Dates",
+  "blocks": [
+   {
+    "k": "royal",
+    "name": "Kamehameha I",
+    "alt": "Kamehameha the Great",
+    "lived": "1758-1819",
+    "ruled": "1810-1819",
+    "consorts": "Ka‘ahumanu, Keōpūolani"
+   },
+   {
+    "k": "royal",
+    "name": "Kamehameha II",
+    "alt": "Liholiho",
+    "lived": "1798-1824",
+    "ruled": "1819-1824",
+    "consorts": "Kamāmalu"
+   },
+   {
+    "k": "royal",
+    "name": "Kamehameha III",
+    "alt": "Kauikeaouli",
+    "lived": "1814-1854",
+    "ruled": "1825-1854",
+    "consorts": "Nāhi‘ena‘ena, Kalama"
+   },
+   {
+    "k": "royal",
+    "name": "Kamehameha IV",
+    "alt": "Alexander Liholiho",
+    "lived": "1834-1863",
+    "ruled": "1854-1863",
+    "consorts": "Emma Na‘ea"
+   },
+   {
+    "k": "royal",
+    "name": "Kamehameha V",
+    "alt": "Lot Kapuāiwa",
+    "lived": "1830-1872",
+    "ruled": "1863-1872",
+    "consorts": "Victoria Kamāmalu"
+   },
+   {
+    "k": "royal",
+    "name": "Lunalilo",
+    "alt": "William Charles Lunalilo",
+    "lived": "1835-1874",
+    "ruled": "1873-1874",
+    "consorts": "Eliza Meek"
+   },
+   {
+    "k": "royal",
+    "name": "King Kalākaua",
+    "alt": "David Kalākaua",
+    "lived": "1836-1891",
+    "ruled": "1874-1891",
+    "consorts": "Kapi‘olani"
+   },
+   {
+    "k": "royal",
+    "name": "Queen Lili‘uokalani",
+    "alt": "Lydia Dominis",
+    "lived": "1838-1917",
+    "ruled": "1891-1893",
+    "consorts": "Gov. John Owen Dominis Holt"
+   },
+   {
+    "k": "royal",
+    "name": "Princess Bernice Pauahi Bishop",
+    "alt": "",
+    "lived": "1831-1899",
+    "ruled": "",
+    "consorts": "Charles Reed Bishop"
+   },
+   {
+    "k": "royal",
+    "name": "Princess Likelike",
+    "alt": "",
+    "lived": "1851-1887",
+    "ruled": "",
+    "consorts": "Gov. Archibald Scott Cleghorn"
+   },
+   {
+    "k": "royal",
+    "name": "Princess Ka‘iulani",
+    "alt": "",
+    "lived": "1875-1899",
+    "ruled": "",
+    "consorts": "(never married)"
+   },
+   {
+    "k": "royal",
+    "name": "Prince Kūhiō",
+    "alt": "",
+    "lived": "1871-1922",
+    "ruled": "",
+    "consorts": "Elizabeth Kahanu Kalaniana‘ole"
+   },
+   {
+    "k": "p",
+    "t": "King Kalākaua, Queen Lili‘uokalani, and Princess Likelike were siblings and were very musical;"
+   },
+   {
+    "k": "p",
+    "t": "Princess Ka‘iulani was the daughter of Princess Likelike;"
+   },
+   {
+    "k": "p",
+    "t": "Prince Kūhiō was nephew to Queen Kapi‘olani and heir apparent."
+   },
+   {
+    "k": "h",
+    "t": "Important dates in Hawaiian history during the monarchy:"
+   },
+   {
+    "k": "date",
+    "t": "Kamehameha the Great unites the Hawaiian Islands.",
+    "d": "April 1810"
+   },
+   {
+    "k": "date",
+    "t": "Kamehameha the Great dies.",
+    "d": "May 1819"
+   },
+   {
+    "k": "date",
+    "t": "Kamehameha II eats a meal with his mothers, Ka‘ahumanu and Keōpūolani, thereby breaking and ending the ‘ai kapu, the eating taboo and establishing ‘ai noa, free eating.",
+    "d": "November 7, 1819"
+   },
+   {
+    "k": "date",
+    "t": "The decisive battle on Hawai‘i Island over ‘ai kapu, establishing the official end of the restriction.",
+    "d": "December 1819"
+   },
+   {
+    "k": "date",
+    "t": "The missionaries arrive.",
+    "d": "March 30, 1820"
+   },
+   {
+    "k": "date",
+    "t": "Queen Lili‘uokalani is deposed, overthrown by an oligarchy of businessmen, thereby ending the era of Hawaiian Monarchs. The provisional government is headed by Sanford Dole.",
+    "d": "January 17, 1893"
+   },
+   {
+    "k": "h",
+    "t": "Dates since the Monarchy"
+   },
+   {
+    "k": "date",
+    "t": "Creation of the Republic of Hawai‘i",
+    "d": "July 4, 1894"
+   },
+   {
+    "k": "date",
+    "t": "U.S. Territory of Hawai‘i",
+    "d": "July 14, 1900"
+   },
+   {
+    "k": "date",
+    "t": "Statehood",
+    "d": "August 21, 1959"
+   }
+  ]
+ },
+ {
+  "title": "Wahi Pana",
+  "blocks": [
+   {
+    "k": "p",
+    "t": "Wahi Pana is a legendary, sacred space or site, and today revered as a cultural site."
+   },
+   {
+    "k": "p",
+    "t": "Every attempt possible has been made to make this book – certainly an unusual guide book – culturally sensitive with respect to Wahi Pana, sacred space and sites. Every walk is imbued with Wahi Pana, from the streams to the reconstructed heiau in Mānoa and the Kāhuna Stones in Waikīkī."
+   },
+   {
+    "k": "p",
+    "t": "Rather than asking what’s in a name, we should be asking what’s lost in a name and how can we find it."
+   },
+   {
+    "k": "h",
+    "t": "I Ala Wai Canal"
+   },
+   {
+    "k": "li",
+    "t": "Mālia– the sacred canoe"
+   },
+   {
+    "k": "p",
+    "t": "The 3 streams that made Waikīkī, Waikīkī: ‘fresh stream water shooting, spurting’"
+   },
+   {
+    "k": "li",
+    "t": "Pi‘inaio Stream"
+   },
+   {
+    "k": "li",
+    "t": "‘Āpuakēhau Stream"
+   },
+   {
+    "k": "li",
+    "t": "Kuekaunahi stream"
+   },
+   {
+    "k": "h",
+    "t": "II Kālia"
+   },
+   {
+    "k": "li",
+    "t": "Kālia, the placename"
+   },
+   {
+    "k": "li",
+    "t": "Remnants of Pi‘inaio Stream"
+   },
+   {
+    "k": "li",
+    "t": "Līpe‘epe‘e Street – sacred to hula"
+   },
+   {
+    "k": "h",
+    "t": "III Kāneloa\nQueen Kapi‘olani Regional Park\nHonolulu Zoo"
+   },
+   {
+    "k": "li",
+    "t": "Kāneloa"
+   },
+   {
+    "k": "li",
+    "t": "Burial Memorial"
+   },
+   {
+    "k": "li",
+    "t": "Lē‘ahi plaque"
+   },
+   {
+    "k": "h",
+    "t": "IV ‘Āinahau and Hamohamo – Princess Ka‘iulani’s and Queen Lili‘uokalani’s residences"
+   },
+   {
+    "k": "p",
+    "t": "2 streams"
+   },
+   {
+    "k": "li",
+    "t": "‘Āpuakēhau Stream"
+   },
+   {
+    "k": "li",
+    "t": "Kuekaunahi stream"
+   },
+   {
+    "k": "p",
+    "t": "Place names recorded as street names:"
+   },
+   {
+    "k": "li",
+    "t": "Uluniu"
+   },
+   {
+    "k": "li",
+    "t": "Kāneloa"
+   },
+   {
+    "k": "h",
+    "t": "V Kalākaua Avenue"
+   },
+   {
+    "k": "li",
+    "t": "Kāhuna Stones"
+   },
+   {
+    "k": "li",
+    "t": "‘Āpuakēhau Stream"
+   },
+   {
+    "k": "p",
+    "t": "Place names recorded as street names:"
+   },
+   {
+    "k": "li",
+    "t": "Pā‘ū"
+   },
+   {
+    "k": "li",
+    "t": "Helumoa"
+   },
+   {
+    "k": "h",
+    "t": "VI Kapua (Kalākaua Avenue east)"
+   },
+   {
+    "k": "li",
+    "t": "Kapua"
+   },
+   {
+    "k": "li",
+    "t": "Kuekaunahi Stream"
+   },
+   {
+    "k": "h",
+    "t": "VII Helumoa"
+   },
+   {
+    "k": "li",
+    "t": "Helumoa"
+   },
+   {
+    "k": "li",
+    "t": "Ulukou"
+   },
+   {
+    "k": "h",
+    "t": "VIII Kaimukī"
+   },
+   {
+    "k": "li",
+    "t": "Pu‘u o Kaimukī"
+   },
+   {
+    "k": "h",
+    "t": "IX Mō‘ili‘ili"
+   },
+   {
+    "k": "li",
+    "t": "Mauoki Heiau"
+   },
+   {
+    "k": "li",
+    "t": "Battle of Mō‘ili‘ili"
+   },
+   {
+    "k": "li",
+    "t": "Ala Naio"
+   },
+   {
+    "k": "h",
+    "t": "X Mānoa"
+   },
+   {
+    "k": "li",
+    "t": "Kūka‘ō‘ō Heiau"
+   },
+   {
+    "k": "li",
+    "t": "Kawapopo Heiau"
+   },
+   {
+    "k": "li",
+    "t": "Pōhakuloa"
+   },
+   {
+    "k": "li",
+    "t": "Ka‘ahumanu"
+   },
+   {
+    "k": "li",
+    "t": "Rain names"
+   },
+   {
+    "k": "li",
+    "t": "Heiau at Kamānele Park"
+   },
+   {
+    "k": "h",
+    "t": "XI University of Hawai‘i upper campus"
+   },
+   {
+    "k": "li",
+    "t": "Hipawai Heiau"
+   },
+   {
+    "k": "li",
+    "t": "Ahu"
+   },
+   {
+    "k": "h",
+    "t": "XII University of Hawai‘i lower campus"
+   },
+   {
+    "k": "li",
+    "t": "Kānewai"
+   },
+   {
+    "k": "li",
+    "t": "Quarry"
+   },
+   {
+    "k": "li",
+    "t": "Mauoki Heiau"
+   },
+   {
+    "k": "p",
+    "t": "…and all the street names that hold fast to wahi pana. We should not lose sight of the history and meaning of those names."
+   }
   ]
  }
 ]

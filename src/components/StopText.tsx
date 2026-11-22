@@ -1,5 +1,6 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { lookupWord } from '../data';
@@ -106,6 +107,16 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
             <T variant="small" style={{ marginTop: 10 }}>
               From the book's Hawaiian glossary.
             </T>
+            <Pressable
+              accessibilityRole="link"
+              onPress={() => {
+                setWord(null);
+                router.push({ pathname: '/about', params: { section: 'pronunciation' } });
+              }}
+              style={({ pressed }) => ({ minHeight: 44, justifyContent: 'center', opacity: pressed ? 0.6 : 1 })}
+            >
+              <T style={{ color: t.primary, fontFamily: t.font.bodySemi }}>How to say Hawaiian words</T>
+            </Pressable>
           </View>
         </Pressable>
       </Modal>

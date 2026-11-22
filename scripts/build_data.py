@@ -590,6 +590,122 @@ for sec in about:
         sec['paragraphs'] = [x for x in sec['paragraphs'] if x.startswith(('To my', 'This book is dedicated', 'In memory'))]
     if sec['title'] == 'Foreword':
         sec['paragraphs'] = [('T' + x if x.startswith('he history') else x) for x in sec['paragraphs']]
+for sec in about:
+    sec['blocks'] = [{'k': 'p', 't': x} for x in sec['paragraphs']]
+
+
+# The rest of the book's front matter (pages viii to xix): Introduction, the Hawaiian
+# language and pronunciation guide, the Monarchy table and dates, and Wahi Pana.
+# Text is the book's own; we only rejoin paragraphs that a photo split across a page
+# and drop photo captions, since the photos are not shown here.
+def front_section(title, start_heading, end_heading, captions=()):
+    i = next(k for k, b in enumerate(front) if b.get('kind') == 'heading' and b['text'].strip().upper() == start_heading)
+    blocks, photo = [], False
+    for b in front[i + 1:]:
+        txt = (b.get('text') or '').replace('\x07', '').replace('\x08', '').strip()
+        if b.get('kind') == 'image' or txt in captions:
+            photo = True
+            continue
+        if b.get('kind') == 'heading':
+            if txt.upper() == end_heading:
+                break
+            continue
+        if b.get('kind') not in ('p', 'direction', 'tagline') or not txt or txt in captions:
+            continue
+        kind = 'h' if b['kind'] == 'direction' else 'p'
+        # A paragraph that stops mid-sentence and resumes after a photo is one paragraph in the book.
+        if kind == 'p' and photo and blocks and blocks[-1]['k'] == 'p' and not blocks[-1]['t'].endswith(('.', '!', ':', '?', '”', '’', ';')) and blocks[-1]['t'][-1:].isalpha():
+            blocks[-1]['t'] += ' ' + txt
+            photo = False
+            continue
+        photo = False
+        blocks.append({'k': kind, 't': txt})
+    return {'title': title, 'blocks': blocks}
+
+
+intro = front_section('Introduction', 'INTRODUCTION', 'HAWAIIAN LANGUAGE AND GUIDE TO PRONUNCIATION', captions=(
+    'The signs along Ke‘eaumoku Street delineate the ‘Ewa-most boundary of the Waikīkī ahupua‘a.',
+    '‘Āpuakēhau Stream in the times before the Ala Wai Canal (Hawai‘i State Archives)',
+    'The ahupua‘a of Waikīkī is outlined in red.'))
+for b in intro['blocks']:
+    if b['k'] == 'h':
+        t = b['t'].title().replace('‘A', '‘a')
+        for small in (' Of ', ' And ', ' The '):
+            t = t.replace(small, small.lower())
+        b['t'] = t
+intro['blocks'][0]['k'] = 'lead'  # the book's tagline under the title
+
+lang = front_section('Hawaiian Language and Guide to Pronunciation', 'HAWAIIAN LANGUAGE AND GUIDE TO PRONUNCIATION', 'HAWAIIAN MONARCHY AND')
+# The alphabet chart at the foot of the section (page xv) is laid out as a table in the book.
+k = next(i for i, b in enumerate(lang['blocks']) if b['t'].startswith('‘Ōlelo Hawai‘i Pī‘āpā'))
+lang['blocks'] = lang['blocks'][:k] + [
+    {'k': 'h', 't': '‘Ōlelo Hawai‘i Pī‘āpā (Hawaiian Language Alphabet)'},
+    {'k': 'li', 't': 'Vowels: A, Ā, E, Ē, I, Ī, O, Ō, U, Ū'},
+    {'k': 'li', 't': 'Consonants: H (hē), K (kē), L (lā), M (mū), N (nū), P (pī), W (wē), ‘ (‘okina)'},
+]
+lang['id'] = 'pronunciation'
+
+# Monarchy table, transcribed from the book's page xvi (columns: royalty, lived, ruled, consorts).
+ROYALTY = [
+    ('Kamehameha I', 'Kamehameha the Great', '1758-1819', '1810-1819', 'Ka‘ahumanu, Keōpūolani'),
+    ('Kamehameha II', 'Liholiho', '1798-1824', '1819-1824', 'Kamāmalu'),
+    ('Kamehameha III', 'Kauikeaouli', '1814-1854', '1825-1854', 'Nāhi‘ena‘ena, Kalama'),
+    ('Kamehameha IV', 'Alexander Liholiho', '1834-1863', '1854-1863', 'Emma Na‘ea'),
+    ('Kamehameha V', 'Lot Kapuāiwa', '1830-1872', '1863-1872', 'Victoria Kamāmalu'),
+    ('Lunalilo', 'William Charles Lunalilo', '1835-1874', '1873-1874', 'Eliza Meek'),
+    ('King Kalākaua', 'David Kalākaua', '1836-1891', '1874-1891', 'Kapi‘olani'),
+    ('Queen Lili‘uokalani', 'Lydia Dominis', '1838-1917', '1891-1893', 'Gov. John Owen Dominis Holt'),
+    ('Princess Bernice Pauahi Bishop', '', '1831-1899', '', 'Charles Reed Bishop'),
+    ('Princess Likelike', '', '1851-1887', '', 'Gov. Archibald Scott Cleghorn'),
+    ('Princess Ka‘iulani', '', '1875-1899', '', '(never married)'),
+    ('Prince Kūhiō', '', '1871-1922', '', 'Elizabeth Kahanu Kalaniana‘ole'),
+]
+monarchy = front_section('Hawaiian Monarchy and Some Historic Dates', 'SOME HISTORIC DATES', 'WAHI PANA',
+                         captions=('Our last reigning monarch: Queen Lili‘uokalani (Hawai‘i State Archives)',))
+# Keep only the notes and dates that follow the table; the table itself comes from ROYALTY.
+k = next(i for i, b in enumerate(monarchy['blocks']) if 'King Kalākaua, Queen' in b['t'])
+end = next(i for i, b in enumerate(monarchy['blocks']) if 'Statehood' in b['t'])
+dates = monarchy['blocks'][k:end + 1]
+dates[0] = {'k': 'p', 't': dates[0]['t'][dates[0]['t'].index('King Kalākaua, Queen'):]}
+for b in dates:
+    if 'Statehood' in b['t']:
+        b['k'] = 'p'
+    m = re.match(r'^((?:January|February|March|April|May|June|July|August|September|October|November|December)\s+(?:\d{1,2},\s+)?\d{4})\s+(.*)$', b['t'])
+    if b['k'] == 'p' and m:
+        b.update({'k': 'date', 'd': re.sub(r'\s+', ' ', m.group(1)), 't': m.group(2)})
+monarchy['blocks'] = [{'k': 'royal', 'name': n, 'alt': a, 'lived': l, 'ruled': r, 'consorts': c} for n, a, l, r, c in ROYALTY] + dates
+
+# Wahi Pana (pages xviii and xix): an introduction, then sacred places walk by walk.
+w = next(i for i, b in enumerate(front) if b.get('kind') == 'heading' and b['text'].strip().upper() == 'WAHI PANA')
+pana = {'title': 'Wahi Pana', 'blocks': []}
+for b in front[w + 1:w + 4]:
+    pana['blocks'].append({'k': 'p', 't': b['text'].strip()})
+WALK_HEAD = re.compile(r'^(XII|XI|IX|X|VIII|VII|VI|IV|V|III|II|I)\s?(\S.*)$')
+first = next(i for i, b in enumerate(front) if b.get('kind') == 'direction' and b['text'].strip() == 'I Ala Wai Canal')
+lists = [b for b in front[first:w] + front[w + 4:] if b.get('kind') in ('p', 'direction')]
+started = False
+for b in lists:
+    txt = b['text'].strip()
+    m = WALK_HEAD.match(txt) if b['kind'] == 'direction' else None
+    if m:
+        started = True
+        # Walk III's heading is three lines in the book.
+        head = m.group(2).replace('Kāneloa Queen', 'Kāneloa\nQueen').replace('Park Honolulu', 'Park\nHonolulu')
+        pana['blocks'].append({'k': 'h', 't': f'{m.group(1)} {head}'})
+        continue
+    if not started or b['kind'] != 'p':
+        continue
+    if txt.startswith('Kūka‘ō‘ō Heiau at Mānoa Heritage Center. Photograph'):
+        continue  # photo caption
+    if txt.startswith('…and all the street names'):
+        pana['blocks'].append({'k': 'p', 't': txt})
+        break
+    for item in re.split(r'\s+-\s+', re.sub(r'^-\s*', '', txt).replace('‘ Ā', '‘Ā')):
+        pana['blocks'].append({'k': 'p' if item.endswith(':') or item[:1].isdigit() or item.startswith('The 3 streams') else 'li', 't': item})
+
+about += [intro, lang, monarchy, pana]
+for sec in about:
+    sec.pop('paragraphs', None)
 json.dump(about, open(f'{OUT}/about.json', 'w'), ensure_ascii=False, indent=1)
 
 json.dump(walks, open(f'{OUT}/walks.json', 'w'), ensure_ascii=False, indent=1)

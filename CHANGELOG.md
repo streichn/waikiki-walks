@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-21 · The book's front matter in About
+- About the book now has the rest of the book's opening pages, word for word: Introduction, Hawaiian Language and Guide to Pronunciation (with the ʻŌlelo Hawaiʻi Pīʻāpā alphabet), Hawaiian Monarchy and Some Historic Dates (the royalty table and the dates), and Wahi Pana (sacred places, walk by walk). Before, only Dedications and Foreword were there.
+- A short "In this section" list at the top of About jumps to each part.
+- The Hawaiian word card on a stop has a "How to say Hawaiian words" link that opens the pronunciation guide.
+- Built by scripts/build_data.py from the book's front matter; paragraphs that a photo split across pages are rejoined, and photo captions are left out because the photos are not shown there. The Monarchy table is transcribed from page xvi.
+- Web preview updated the same way.
+
 ## 2026-11-14 · First build
 - Extracted 12 walks and 308 stops from the book PDFs, with photos, fun facts and a glossary.
 - Geocoded stops with OpenStreetMap (named places, street corners, estimates); see review/stops_review.csv.

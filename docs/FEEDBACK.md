@@ -38,3 +38,7 @@
 - No new app comments from Veneeta since 20 Nov. Her 20 Nov 15:30Z note in "Good morning from Nicholas and Claude" is personal. The "Fwd: MAPS!" forward of Jason Nakano's map files (19 Nov) was handled in a live session (book/cartographer/). Her open questions (Walk XI red note near stop 6, permission for Jason's maps) are still waiting for her.
 ## 2026-11-21 · Scheduled run, 13:00Z
 - No new email from Veneeta since 20 Nov 15:30Z (personal, already logged). Open questions to her are unchanged.
+## 2026-11-21 · Scheduled run, 19:00Z
+- No new email from Veneeta since 20 Nov 15:30Z (personal, already logged).
+- Spelling to ask her about, seen while adding the book's front matter to About (copied as printed, nothing changed): Introduction "from Black Point at Lēʻahi to Portock" (Portlock?); pronunciation guide "Ao Te Roa (New Zealand)" (Aotearoa?); Wahi Pana, Walk I "Mālia– the sacred canoe" (missing space). Status: needs her decision.
+
