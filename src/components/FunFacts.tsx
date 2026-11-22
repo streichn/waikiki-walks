@@ -2,11 +2,17 @@ import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, Pressable, StyleSheet, View } from 'react-native';
 import { facts, walkNo } from '../data';
+import { useReduceMotion, useScreenReader } from '../lib/motion';
 import { useTheme } from '../theme';
 import { Hibiscus } from './Flora';
 import { T, tap } from './ui';
 
-/** Rotating "Did you know?" card. Every fact is a sentence from the book. */
+/**
+ * Rotating "Did you know?" card. Every fact is a sentence from the book.
+ * It changes on its own only while nobody is reading it closely: with Reduce Motion
+ * or a screen reader on, it waits for a tap (WCAG 2.2.2 Pause, Stop, Hide), and with
+ * Reduce Motion the fade is skipped.
+ */
 export function FunFacts({ walkId, interval = 9000 }: { walkId?: string; interval?: number }) {
   const t = useTheme();
   const pool = useMemo(() => {
@@ -16,8 +22,15 @@ export function FunFacts({ walkId, interval = 9000 }: { walkId?: string; interva
   }, [walkId]);
   const [i, setI] = useState(0);
   const fade = useRef(new Animated.Value(1)).current;
+  const still = useReduceMotion();
+  const reader = useScreenReader();
+  const auto = !still && !reader;
 
   const next = () => {
+    if (still) {
+      setI((x) => (x + 1) % pool.length);
+      return;
+    }
     Animated.timing(fade, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
       setI((x) => (x + 1) % pool.length);
       Animated.timing(fade, { toValue: 1, duration: 320, useNativeDriver: true }).start();
@@ -25,15 +38,18 @@ export function FunFacts({ walkId, interval = 9000 }: { walkId?: string; interva
   };
 
   useEffect(() => {
+    if (!auto) return;
     const id = setInterval(next, interval);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pool.length, interval]);
+  }, [pool.length, interval, auto]);
 
   if (!pool.length) return null;
   const f = pool[i];
   return (
     <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={`Did you know? ${f.text}${f.walkId ? `. From Walk ${walkNo(f.walkId)}` : ''}`}
       accessibilityHint="Shows another fact"
       onPress={() => {
         tap();

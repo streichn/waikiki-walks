@@ -2,6 +2,7 @@
 
 ## 2026-11-22
 
+- From #29, only the "Did you know?" card change: with Reduce Motion or VoiceOver/TalkBack on, it waits for a tap instead of changing every 9 seconds, and it reads as a button. The rest of #29 (maps, stop sheet and arrival banner following Reduce Motion) is left out for now.
 - Welcome screens: a Skip button on every page but the last, so people can start right away. The last page says what is free: Walk IV, Kalākaua Avenue, stops 1 to 5, no account needed (from src/config.ts). The arrival page now says alerts need location, asked when you start a walk, instead of "Your phone knows when you arrive". The page dots read as "Page 1 of 3" to VoiceOver and TalkBack, and with Reduce Motion on the pages change without sliding.
 - The camera feature ("What am I looking at?") shows as Coming soon until its server endpoint is deployed: the home screen button is hidden, the Profile row is greyed out, and the unlock screen says coming soon. Setting EXPO_PUBLIC_LENS_ENDPOINT turns it back on everywhere.
 
