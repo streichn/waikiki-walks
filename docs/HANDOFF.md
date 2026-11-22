@@ -1,0 +1,21 @@
+# Handoff: live sessions and improvement runs
+
+Shared notes between Nick's live Claude sessions and the scheduled improvement runs. Read this first, every run. Newest first. Keep entries short.
+
+## Rules for improvement runs
+- Build on the latest main. Live sessions commit straight to main, often several times a day: read `git log -20 main` and CHANGELOG.md before choosing work, and never redo something already on main.
+- If one of your earlier pull requests is now replaced by work on main, close it with a one-line note saying what replaced it. Keep at most three of your own pull requests open; if more are open, tidy them (rebase, merge-ready, or close) instead of starting new work.
+- Veneeta's email is handled by the live session when Nick is around. Before fixing one of her comments, check docs/FEEDBACK.md and main: if it is already marked fixed, skip it.
+- Questions for Nick go in "Questions for Nick" below and in the push notification, first sentence.
+- Never run SQL against the live database or deploy functions; list what Nick must run in the pull request.
+
+## Current state (21 Nov 2026, live session)
+- Maps: every walk uses the cartographer's vector maps (book/cartographer/, scripts/georef/carto_maps.py). Pins sit on his printed numbers, with author moves in pin_overrides.json. The route is her dotted line (yellow dots on both maps); the walked part fills in see-through blue, live along the current leg. Stop pins on the street map: blue, red for the current stop, purple for side trips.
+- Before unlocking: no book maps; the street map shows only the stops you can open (Walk IV stops 1 to 5, or a locked walk's first stop).
+- Reading: Read / Pause / Resume button above the stop text; Audio mode (read on arrival) beside Next stop.
+- All open pull requests up to #28 were merged or closed on 21 Nov 2026.
+- Waiting on Nick: run server/003_security_and_limits.sql, redeploy the lens and delete-account functions, set an Anthropic Console spend limit.
+- Waiting on Veneeta: twelve possible book typos (docs/BOOK_UPDATES.md), five possibly dated places, permission to use Jason Nakano's map files, the red note near Walk XI stop 6.
+
+## Questions for Nick
+(none open)

@@ -1,6 +1,6 @@
 # Waikīkī Walks: working notes for Claude
 
-Follow AGENTS.md for Expo rules. Project-specific rules:
+Follow AGENTS.md for Expo rules. Read docs/HANDOFF.md first: it is the shared notes between live sessions and the scheduled improvement runs. Project-specific rules:
 
 - Source of truth for content is the book (book/*.pdf) by Veneeta Acson, Ph.D. Never invent historical facts, dates, or translations; app text must come from the book.
 - Data pipeline: scripts/extract/* (PDF → geo.json) then `python3 -I scripts/build_data.py` → src/data/*. Never hand-edit src/data/images.ts.
