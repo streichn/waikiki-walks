@@ -17,6 +17,12 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 - Waiting on Nick: run server/003_security_and_limits.sql, redeploy the lens and delete-account functions, set an Anthropic Console spend limit.
 - Waiting on Veneeta: twelve possible book typos (docs/BOOK_UPDATES.md), five possibly dated places, permission to use Jason Nakano's map files, the red note near Walk XI stop 6.
 
+## Decisions from Nick (22 Nov 2026)
+
+- Reduce Motion (PR #29): leave it out for now. Only the "Did you know?" card change went in. Don't re-propose the map, sheet or banner motion changes unless Nick asks.
+- Welcome screens (PR #30): merged.
+- Camera "What am I looking at?": shows Coming soon until the lens endpoint is deployed (LENS_LIVE in src/config.ts).
+
 ## Questions for Nick
 (none open)
 
