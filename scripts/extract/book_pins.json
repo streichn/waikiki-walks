@@ -487,24 +487,16 @@
    "route_offset_m": 67
   },
   "15": {
-   "lat": 21.281106,
-   "lng": -157.835215,
-   "px": [
-    656,
-    540
-   ],
-   "page": "map-II-c.jpg",
-   "route_offset_m": 161
+   "lat": 21.280374,
+   "lng": -157.836225,
+   "route_offset_m": 30,
+   "place": "Veneeta 21 Nov 2026: pin 15 should be between 14 and 16 (on the beach walkway in front of the Hale Koa, halfway along the walk from 14 to 16)"
   },
   "16": {
-   "lat": 21.278693,
-   "lng": -157.835333,
-   "px": [
-    767,
-    676
-   ],
-   "page": "map-II-c.jpg",
-   "route_offset_m": 39
+   "lat": 21.279031,
+   "lng": -157.835236,
+   "route_offset_m": 30,
+   "place": "Veneeta 21 Nov 2026: pin 16 should be on the same line, no loop (on the beach walkway where her dotted line turns toward the museum, about 40 m from the printed number)"
   },
   "17": {
    "lat": 21.278894,

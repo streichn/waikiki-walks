@@ -10,6 +10,7 @@ App-only fixes (pin positions, map layout, parsing errors) are in docs/FEEDBACK.
 | Date | Walk and stop | Printed | Now | Source |
 |---|---|---|---|---|
 | 2026-11-19 | Walk I, stop 36, Keoniana Street | "John Young II, son of ʻOlohana, who served as kahuna nui" | "... who served as kuhina nui" | Her email "my mistake", and her hand correction in her copy (page 16) |
+| 2026-11-21 | Walk II, stop 16, Fort DeRussy Beach | Paragraph "In the late-1800s..." ends with the Bob Dye book title | Adds: "Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!" | Her email "Walk I I" (Walk II) |
 
 Clarifications that change how a walk reads, not its wording:
 

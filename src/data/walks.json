@@ -1954,11 +1954,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.281106,
-    "lng": -157.835215,
+    "lat": 21.280374,
+    "lng": -157.836225,
     "geo": "book",
     "page": "p1-53",
-    "radius": 90
+    "radius": 60
    },
    {
     "id": "II-16",
@@ -1991,7 +1991,7 @@
      },
      {
       "kind": "p",
-      "text": "In the late-1800s, the home of Chun Afong (1825-1906), the first Chinese millionaire in Hawai‘i, occupied three acres along the waterfront. This was a home of opulent parties for local and foreign dignitaries. Chun Afong was known as “the merchant prince of the Sandalwood Mountains.” Because of the great deal of Sandalwood trees and the Chinese love for Sandalwood, Hawai‘i was referred to as the “Sandalwood Mountains.” Unfortunately, these trees are endangered, if not for all practical purposes, extinct. Chun Afong was a shrewd businessman: He had his hand in real estate, rice, sugar, and even opium! However, he was also a keen politician under King Kalākaua, having married Julia Fayerweather, of the Hawaiian monarchy. The Afong family served as character models in Jack London’s short story Chun Ah Chun. A book recounting the life of Chun Afong is revealed in Bob Dye’s, Merchant Prince of the Sandalwood Mountains: Afong and the Chinese in Hawai‘i."
+      "text": "In the late-1800s, the home of Chun Afong (1825-1906), the first Chinese millionaire in Hawai‘i, occupied three acres along the waterfront. This was a home of opulent parties for local and foreign dignitaries. Chun Afong was known as “the merchant prince of the Sandalwood Mountains.” Because of the great deal of Sandalwood trees and the Chinese love for Sandalwood, Hawai‘i was referred to as the “Sandalwood Mountains.” Unfortunately, these trees are endangered, if not for all practical purposes, extinct. Chun Afong was a shrewd businessman: He had his hand in real estate, rice, sugar, and even opium! However, he was also a keen politician under King Kalākaua, having married Julia Fayerweather, of the Hawaiian monarchy. The Afong family served as character models in Jack London’s short story Chun Ah Chun. A book recounting the life of Chun Afong is revealed in Bob Dye’s, Merchant Prince of the Sandalwood Mountains: Afong and the Chinese in Hawai‘i. Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!"
      },
      {
       "kind": "p",
@@ -2024,11 +2024,11 @@
       "caption": "Fort DeRussy in 1949 (Hawai‘i State Archives)"
      }
     ],
-    "lat": 21.278693,
-    "lng": -157.835333,
+    "lat": 21.279031,
+    "lng": -157.835236,
     "geo": "book",
     "page": "p1-53",
-    "radius": 69
+    "radius": 60
    },
    {
     "id": "II-17",

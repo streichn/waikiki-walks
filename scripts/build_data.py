@@ -47,7 +47,9 @@ FACTS = {
 # Whole stops that are purple-line side trips on her map, off the main red route (Veneeta, 19 Nov 2026).
 SIDE_STOPS = {'II': {13}}
 # Word-level corrections from the author's own marked-up copy of the book.
-TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")]}
+TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")],
+              'II-16': [('Afong and the Chinese in Hawai‘i.', 'Afong and the Chinese in Hawai‘i. Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!',
+                         "Veneeta's addition to the paragraph that starts 'In the late-1800s' (email 21 Nov 2026)")]}
 # Book pictures that are not photos once the page text is removed (scripts/extract/rerender_images.py).
 PHOTO_DROP = set(json.load(open(f'{ROOT}/scripts/extract/photo_fixes.json'))['drop']) if os.path.exists(f'{ROOT}/scripts/extract/photo_fixes.json') else set()
 CARRY = {}  # blocks the parser put under the wrong walk, keyed by the walk they belong to

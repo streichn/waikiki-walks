@@ -106,3 +106,9 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## Walk lines through parks and past buildings (22 Nov 2026)
+- **Common practice:** VoiceMap tells tour makers to draw walking routes by hand, node by node (snapping to roads is only automatic for driving tours), to "stick to the pavement (or sidewalk)", and to keep the line from drifting "through buildings or into roads". Listeners are expected to follow the line "more or less exactly", and when a route doubles back the two lines should not overlap.
+- **Our choice:** keep Veneeta's traced line by default, but when she says a leg loops or cuts through a building, list it in `FORCE` in scripts/georef/street_legs.py with her words. That leg is routed along real OpenStreetMap walkways (OSRM foot router) and ends exactly where the next leg starts, so there are no loops or gaps. Pins she moves go in pin_overrides.json as before.
+- **Why:** a traced map line can be off by a few metres after fitting to real streets, which is enough to cross a building in a park. Walkways from OpenStreetMap are what a walker can actually follow.
+- Sources: https://docs.voicemap.me/tour-publishers/plotting-a-route/ ; https://wiki.openstreetmap.org/wiki/Walking_Routes

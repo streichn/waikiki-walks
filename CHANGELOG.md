@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-22 · Walk II stops 14 to 17 and Chun Afong (Veneeta's 21 Nov notes)
+- Pin 15 (Hale Koa Hotel) moved onto the beach walkway, halfway between 14 and 16.
+- Pin 16 (Fort DeRussy Beach) moved onto the walk line where her dotted line turns toward the museum; the line no longer loops back.
+- The line from 16 to 17 follows the park walkways and passes beside the Army Museum on its mauka side, as the book says, instead of cutting through the building.
+- Stop 16: added her sentence after the late-1800s paragraph: "Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!"
+- street_legs.py can now force a leg onto real walkways when the author asks (FORCE list, with her reason).
+
 ## 2026-11-14 · First build
 - Extracted 12 walks and 308 stops from the book PDFs, with photos, fun facts and a glossary.
 - Geocoded stops with OpenStreetMap (named places, street corners, estimates); see review/stops_review.csv.

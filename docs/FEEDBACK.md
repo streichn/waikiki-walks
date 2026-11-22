@@ -29,3 +29,10 @@
 - "Pin 10 move to where 11 is, and move 11 over a little bit." Status: fixed.
 - "Stop 13 is actually a side trip, a purple line, 13A through 13D." Status: fixed (side-trip pin and line; 13A to 13D in the side-trip box).
 - "Pin 18 should be on the other side of Kalia Rd." Status: fixed.
+
+## 2026-11-21 · Veneeta, email "Walk I I" (Walk II), 23:28Z
+- "Pin 15 should be between 14 & 16" (Walk II 15, Hale Koa Hotel). Status: fixed in this PR (on the beach walkway, halfway from 14 to 16).
+- "Pin 16 should be on the same line (no loop)" (Walk II 16). Status: fixed in this PR (on the walk line at the turn toward the museum).
+- "then the line to 17 should not cut through the building; just along the side" (Walk II 16 to 17). Status: fixed in this PR (follows park walkways past the mauka side of the Army Museum).
+- At the end of the paragraph that starts "In the late-1800s", add "Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!" (Walk II 16). Status: fixed in this PR (her addition to the book; noted in BOOK_UPDATES.md).
+- Same day, "Good morning" thread: personal note only, no app comments.

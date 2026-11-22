@@ -10,6 +10,11 @@ Usage: python3 -I scripts/georef/street_legs.py"""
 import json, math, os, time, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 CACHE = os.path.join(HERE, 'street_legs.json')
+# Legs the author asked to follow the real walkway instead of the line traced from the map. Each leg is routed
+# from its stop to the start of the next leg (when that leg is not also forced), so the line joins up with no loop.
+FORCE = {'II': {'14': 'Veneeta 21 Nov 2026: pin 15 between 14 and 16, on the beach walkway',
+                '15': 'Veneeta 21 Nov 2026: pin 16 on the same line, no loop',
+                '16': 'Veneeta 21 Nov 2026: the line to 17 should not cut through the building, just along the side'}}
 URL = 'https://routing.openstreetmap.de/routed-foot/route/v1/foot/{},{};{},{}?overview=full&geometries=geojson'
 
 def metres(a, b):
@@ -39,8 +44,12 @@ def main():
             adjacent = w['stops'].index(b) == w['stops'].index(a) + 1
             key = str(a['n']) if adjacent else f"{a['n']}>{b['n']}"
             A, B = (a['lat'], a['lng']), (b['lat'], b['lng'])
-            if adjacent and traced_ok(routes.get(w['id'], {}).get(key), A, B):
+            forced = key in FORCE.get(w['id'], {})
+            if not forced and adjacent and traced_ok(routes.get(w['id'], {}).get(key), A, B):
                 continue
+            nxt = routes.get(w['id'], {}).get(str(b['n']))
+            if forced and nxt and str(b['n']) not in FORCE[w['id']]:
+                B = tuple(nxt[0])  # end where the next leg begins (it was traced from her map)
             ck = f"{w['id']}:{key}:{A[0]:.6f},{A[1]:.6f}:{B[0]:.6f},{B[1]:.6f}"
             if ck not in cache:
                 try:
@@ -53,7 +62,7 @@ def main():
             straight = metres(A, B)
             L = sum(metres(path[i - 1], path[i]) for i in range(1, len(path)))
             dev = max(off_line(p, A, B) for p in path)
-            if L <= 1.8 * straight + 120 and dev <= max(120, 0.45 * straight):
+            if forced or (L <= 1.8 * straight + 120 and dev <= max(120, 0.45 * straight)):
                 routes.setdefault(w['id'], {})[key] = path; kept += 1
             else:
                 skipped += 1; print(f"kept straight {w['id']} {key}: route {L:.0f} m vs {straight:.0f} m, strays {dev:.0f} m")
