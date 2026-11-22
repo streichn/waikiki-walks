@@ -215,3 +215,10 @@
 ## 2026-11-21 · Pin audit against Veneeta's maps
 - New `scripts/georef/audit_pins.py` (read-only) checks every pin against the numbers printed on her maps and writes `docs/PIN_AUDIT.md`. `--strict` exits with an error if a pin has no printed number or has drifted off it.
 - First run: 344 pins, 0 rule breaks, 0 pins off her number. 12 pins moved at her request are listed with her reason. Walk IV stops 19 and 20 are printed on the book's own map page but not on the cartographer's map, and share one pin spot.
+## 2026-11-15 · Account deletion done right
+- Deleting an account that used Sign in with Apple now revokes the app's Apple access, as Apple requires (TN3194). Apple asks the walker to confirm once; nothing is stored.
+- Google accounts: the app's Google access is revoked on the phone.
+- Fixed the server function, which tried to delete from a table that does not exist; the database now removes everything through cascades.
+- Clear messages: what gets deleted, that purchases stay with Apple or Google, an error if deletion fails, and manual Apple steps if revocation fails.
+- The app signs out if the walker stops using Sign in with Apple from iPhone Settings.
+- Draft Google Play account deletion page (legal/DELETE-ACCOUNT.md); privacy policy and checklist updated.

@@ -19,8 +19,9 @@ Have a lawyer review before launch. Status: [ ] open, [x] done.
 ## App Store and Google Play
 - [ ] Privacy policy at a public URL, linked in App Store Connect and inside the app (draft: PRIVACY.md). Replace the placeholder links in src/legal.ts.
 - [ ] Terms of use (draft: TERMS.md), or rely on Apple's standard EULA.
-- [x] In-app account deletion (Settings > Delete my account). Deploy server/delete-account.ts. For Sign in with Apple, the deletion should also revoke the Apple token.
-- [ ] Google Play also expects a web page where people can request account deletion.
+- [x] In-app account deletion (Settings > Delete my account), with Sign in with Apple token revocation (Apple TN3194) and Google access revoked on the device.
+- [ ] Deploy server/delete-account.ts and set its Apple secrets (APPLE_TEAM_ID, APPLE_KEY_ID, APPLE_PRIVATE_KEY, APPLE_CLIENT_ID). See docs/DECISIONS.md, "Account deletion".
+- [ ] Google Play web deletion page: publish legal/DELETE-ACCOUNT.md at a public URL and add it to the Data safety form. Fill in [OWNER NAME] and [CONTACT EMAIL].
 - [x] Sign in with Apple offered alongside Google sign-in (Guideline 4.8).
 - [x] Guest access, so registration isn't forced (Guideline 5.1.1).
 - [x] Restore Purchases button and auto-renewal wording on the paywall.
