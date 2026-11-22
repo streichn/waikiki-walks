@@ -37,6 +37,8 @@ Questions about the walk information boxes (found 21 Nov 2026; the app shows the
 
 ## B. Possibly out of date (checked 19 Nov 2026)
 
+Superseded on 22 Nov 2026 by docs/MOM_REVIEW.md, the go / no-go list sent to Veneeta and tracked there. Keep this section as history.
+
 ### Changed since printing (ask her how to word it)
 
 | Walk and stop | Book says | Found | Source |
