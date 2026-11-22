@@ -5,6 +5,7 @@ import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Polyline } from 'react-native-svg';
 import { BOOK_TRAIL, photo, walkNo } from '../data';
+import { alongLine, lineUpTo } from '../lib/polyline';
 import type { Walk } from '../data/types';
 import { bookLabel, bookLegs, bookPages, bookXY, pageFor } from '../lib/bookmap';
 import { useTheme } from '../theme';
@@ -104,30 +105,6 @@ export function MapStyleSwitch({ book, onChange }: { book: boolean; onChange: (b
       {opt('Book map', true, 'book')}
     </View>
   );
-}
-
-type Pt = { x: number; y: number };
-/** Distance along a polyline to the point nearest (x, y), and how far off the line that point is. */
-function alongLine(pts: Pt[], x: number, y: number): { d: number; s: number } {
-  let best = { d: Infinity, s: 0 }, acc = 0;
-  for (let i = 1; i < pts.length; i++) {
-    const a = pts[i - 1], b = pts[i], dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1e-9;
-    const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (y - a.y) * dy) / (L * L))), d = Math.hypot(a.x + t * dx - x, a.y + t * dy - y);
-    if (d < best.d) best = { d, s: acc + t * L };
-    acc += L;
-  }
-  return best;
-}
-/** The first `s` of a polyline's length, ending exactly at that point. */
-function lineUpTo(pts: Pt[], s: number): Pt[] {
-  const out = [pts[0]];
-  let acc = 0;
-  for (let i = 1; i < pts.length; i++) {
-    const a = pts[i - 1], b = pts[i], L = Math.hypot(b.x - a.x, b.y - a.y);
-    if (acc + L >= s) { const t = L ? (s - acc) / L : 0; out.push({ x: a.x + t * (b.x - a.x), y: a.y + t * (b.y - a.y) }); return out; }
-    out.push(b); acc += L;
-  }
-  return out;
 }
 
 /** + and - for a map, stacked at its bottom right (Nick, 19 Nov 2026: zoom bottom right, map style bottom left, arrival banner on top). */

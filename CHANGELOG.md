@@ -182,3 +182,8 @@
 - Walk II stop 16 ends with her new sentence about Bob Magoon and Chun Afong.
 - Walk II stop 4: "Sandalwood" (the book's line-break hyphen had left "Sandalewood").
 - docs/BOOK_UPDATES.md lists twelve possible typos in the printed book, sent to her to confirm.
+
+## 2026-11-21 · Street map matches the book map; Read and Pause by the text
+- Street map (preview and app): her route is a dotted yellow line like her map, and the walked part fills in solid see-through blue over it, live along the leg being walked (never the walker's own track). The dashed leg-ahead line is gone.
+- Reading: a Read / Pause / Resume button sits just above the stop text; the headphones button left the bottom bar. Audio mode stays beside Next stop.
+- Shared polyline helpers in src/lib/polyline.ts.

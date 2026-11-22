@@ -150,11 +150,15 @@
     };
     next();
   }
-  function stopSpeak() { speakTok++; if (synth) synth.cancel(); if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
+  function stopSpeak() { speaking.paused = false; speakTok++; if (synth) synth.cancel(); if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
+  // Read, Pause and Resume for the stop on screen (Nick, 21 Nov 2026: a read button up by the text instead of the headphones).
+  function readLabel() { return speaking.stopId ? (speaking.paused ? `${ic('play')} Resume` : `${ic('pause')} Pause`) : `${ic('volume')} Read`; }
+  function pauseSpeak() { speaking.paused = true; if (speaking.audio) speaking.audio.pause(); else if (synth) synth.pause(); markReading(); }
+  function resumeSpeak() { speaking.paused = false; if (speaking.audio) speaking.audio.play().catch(() => {}); else if (synth) synth.resume(); markReading(); }
   function markReading() {
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
-    const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = ic(speaking.stopId ? 'stop' : 'headset');
+    const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = readLabel();
     const mb = document.querySelector('.minibar'); if (mb && !speaking.stopId) { const h = mb.querySelector('.hush'); if (h) h.outerHTML = ic('down', 'width="22" height="22" style="transform:rotate(180deg)"'); }
   }
 
@@ -463,7 +467,8 @@
   // The walking line from stop i to the next: her red route traced from the book map where we have it, else straight.
   const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
   const TRAIL = '#1A73E8';  // blue for the walked trail and the leg ahead, on the street map and the book map (Nick, 19 Nov 2026)
-  const BOOK_TRAIL = '#1A73E8';  // the walked part of her dotted line on the book map, see-through blue
+  const BOOK_TRAIL = '#1A73E8';
+  const ROUTE_DOTS = '#F0A04B';  // her dotted route, in a yellow-orange that reads on the street map  // the walked part of her dotted line on the book map, see-through blue
   const onMain = (s) => onMap(s) && !s.side;
   function between(w, i, j) {
     const a = w.stops[i], b = w.stops[j]; if (!a || !b) return [];
@@ -504,7 +509,8 @@
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     // Only stops her book map prints get a pin, so this map shows what her map shows.
     const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
-    L.polyline(walkPath(w).length > 1 ? walkPath(w) : mapPts, { color: isDark() ? '#7FD1C7' : '#0E6E74', weight: 4, dashArray: '8 6' }).addTo(map);
+    // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
+    L.polyline(walkPath(w).length > 1 ? walkPath(w) : mapPts, { color: ROUTE_DOTS, weight: 5, dashArray: '1 9', lineCap: 'round' }).addTo(map);
     sidePaths(w).forEach((p) => L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map));
     const markers = w.stops.map((s, i) => {
       if (!onMap(s)) return null;
@@ -514,7 +520,7 @@
     });
     // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
     const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.6 }).addTo(map);
-    const seg = L.polyline([], { color: TRAIL, weight: 5, opacity: 0.9, dashArray: '8 8' }).addTo(map);  // the leg ahead
+    const part = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.6 }).addTo(map);  // the leg being walked, as far as the walker has come
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
       zoomIn() { map.zoomIn(); }, zoomOut() { map.zoomOut(); },
@@ -529,7 +535,17 @@
         });
         const p = S.progress[w.id], reached = p && p.finishedAt ? w.stops.length - 1 : Math.max(-1, ...visited);
         trail.setLatLngs(reached > 0 ? walkPath(w, reached) : []);
-        seg.setLatLngs(cur >= 0 && cur < pts.length - 1 && opts.showSeg && onMap(w.stops[cur]) && onMap(w.stops[cur + 1]) ? legPath(w, cur) : []);
+        api.part();
+      },
+      // The leg toward the current stop fills in along her route up to the walker's nearest point on it.
+      part() {
+        const p = S.progress[w.id]; if (!p || p.current < 1 || p.visited.includes(p.current) || !opts.showSeg) return part.setLatLngs([]);
+        const leg = legPath(w, p.current - 1); if (!leg || leg.length < 2) return part.setLatLngs([]);
+        const k = Math.cos(21.3 * Math.PI / 180), xy = leg.map(([la, ln]) => [ln * 111320 * k, la * 110574]);
+        const key = 'st:' + w.id + ':' + (p.current - 1); S.legProg = S.legProg || {};
+        if (S.me) { const r = alongLine(xy, S.me.lng * 111320 * k, S.me.lat * 110574); if (r.d <= 40 && r.s > (S.legProg[key] || 0)) S.legProg[key] = r.s; }
+        const sDone = S.legProg[key] || 0;
+        part.setLatLngs(sDone > 0 ? lineUpTo(xy, sDone).map(([x, y]) => [y / 110574, x / (111320 * k)]) : []);
       },
       fit() { if (!mapPts.length) { map.setView([21.2900, -157.8200], 14); return; } map.fitBounds(L.latLngBounds(mapPts), { paddingTopLeft: [40, 80], paddingBottomRight: [40, opts.bottom || 40] }); },
       focus(i) { if (!onMap(w.stops[i])) return; const c = map.project(pts[i], 17).add([0, (opts.bottom || 0) / 2]); map.setView(map.unproject(c, 17), 17, { animate: true }); }, // centered in the part above the sheet
@@ -584,8 +600,9 @@
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
           <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
+        <div class="readbar"><button class="readbtn" id="playbtn" data-act="play" aria-label="Read this stop aloud, or pause">${readLabel()}</button></div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
-        <div class="controls"><button class="play" id="playbtn" data-act="play" aria-label="Read aloud or stop">${ic(speaking.stopId ? 'stop' : 'headset')}</button><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
+        <div class="controls"><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
   }
@@ -687,7 +704,7 @@
   }
   // After the walker's position changes (demo or real GPS): move the dot on both maps, check arrival, update the distance line.
   function afterMove(w, prog, target) {
-    if (gmap) gmap.me(S.me, S.heading);
+    if (gmap) { gmap.me(S.me, S.heading); gmap.part(); }
     paintLegPart(w);
     paintBookDot(w);
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
@@ -1111,7 +1128,11 @@
       if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return showStop(S.progress[w.id].current + 1);
       if (a === 'prev') return showStop(S.progress[w.id].current - 1);
-      if (a === 'play') { const s = w.stops[S.progress[w.id].current]; return speaking.stopId ? stopSpeak() : speakStop(s); }
+      if (a === 'play') {
+        const s = w.stops[S.progress[w.id].current];
+        if (speaking.stopId === s.id) return speaking.paused ? resumeSpeak() : pauseSpeak();
+        speaking.paused = false; return speakStop(s);
+      }
       if (a === 'directions') {
         const p = S.progress[w.id], t = w.stops[p ? p.current : 0]; if (!t) return;
         const ios = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;

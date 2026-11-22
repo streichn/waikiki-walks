@@ -15,7 +15,7 @@ import { canOpenStop, useIsPro } from '../../../lib/access';
 import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta, walkMinutes } from '../../../lib/geo';
 import { confirmEndWalk, endWalkNow } from '../../../lib/endWalk';
 import * as LiveActivity from '../../../lib/liveActivity';
-import { play, stop as stopSpeech, useNarration } from '../../../lib/narration';
+import { play, stop as stopSpeech, togglePause, useNarration } from '../../../lib/narration';
 import { advanceBackground, requestPermissions, startBackground, stopBackground, watchForeground } from '../../../lib/tracking';
 import { useProgress, useSettings } from '../../../store';
 import { useTheme } from '../../../theme';
@@ -37,6 +37,7 @@ export default function ActiveWalk() {
   const endWalk = useProgress((s) => s.endWalk);
   const prog = useProgress((s) => s.progress[walk.id]);
   const speakingId = useNarration((s) => s.speakingStopId);
+  const paused = useNarration((s) => s.paused);
 
   const [follow, setFollow] = useState<FollowMode>('follow');
   const [layer] = useState<Layer>('standard'); // street map only; satellite dropped as redundant (Nick, 19 Nov 2026)
@@ -216,7 +217,7 @@ export default function ActiveWalk() {
         {bookMap && walk.bookMap ? (
           <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} heading={heading} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
         ) : (
-        <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
+        <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} me={pos} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
         )}
       </View>
       {/* Map style at the bottom left and zoom at the bottom right, so the top stays clear for the arrival banner */}
@@ -322,6 +323,18 @@ export default function ActiveWalk() {
           {/* Map view shows only where you are; the stop text appears at Both and Text. */}
           {detent === 'peek' ? <View style={{ height: 14 }} /> : (
           <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
+            {/* Read, Pause and Resume up by the text (Nick, 21 Nov 2026) */}
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={speakingId === stop.id ? (paused ? 'Resume reading' : 'Pause reading') : 'Read this stop aloud'}
+                onPress={() => { tap(); if (speakingId === stop.id) togglePause(); else play(stop); }}
+                style={[styles.readBtn, { backgroundColor: t.accent }]}
+              >
+                <Ionicons name={speakingId === stop.id ? (paused ? 'play' : 'pause') : 'volume-high'} size={18} color="#fff" />
+                <T style={{ color: '#fff', fontFamily: t.font.bodyBold, fontSize: 14 }}>{speakingId === stop.id ? (paused ? 'Resume' : 'Pause') : 'Read'}</T>
+              </Pressable>
+            </View>
             <PhotoStrip photos={stop.photos} height={170} />
             <StopText blocks={stop.blocks} stopId={stop.id} />
             {stop.geo !== 'verified' && stop.geo !== 'book' ? (
@@ -334,17 +347,6 @@ export default function ActiveWalk() {
 
           {/* Controls */}
           <View onLayout={(e) => setControlsH(Math.round(e.nativeEvent.layout.height))} style={[styles.controls, { paddingBottom: insets.bottom + 10, backgroundColor: t.bg, borderTopColor: t.border }]}>
-            <Pressable
-              accessibilityLabel={speakingId === stop.id ? 'Stop reading' : 'Read aloud'}
-              onPress={() => {
-                tap();
-                if (speakingId === stop.id) stopSpeech();
-                else play(stop);
-              }}
-              style={[styles.playBtn, { backgroundColor: t.accent }]}
-            >
-              <Ionicons name={speakingId === stop.id ? 'stop' : 'headset'} size={24} color="#fff" />
-            </Pressable>
             {/* Audio mode: each stop is read aloud on arrival, so the phone can stay in a pocket (Nick, 19 Nov 2026) */}
             <Pressable
               accessibilityRole="switch"
@@ -399,6 +401,7 @@ const styles = StyleSheet.create({
   pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14 },
   nav: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, padding: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
   dirBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  readBtn: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 36, paddingHorizontal: 14, borderRadius: 18 },
   audioMode: { width: 76, height: 52, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center', gap: 2 },
   controls: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
   playBtn: { width: 52, height: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },

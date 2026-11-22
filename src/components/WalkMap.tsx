@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { legPath, onMap, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
+import { legPath, onMap, ROUTE_DOTS, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
+import { alongLine, lineUpTo } from '../lib/polyline';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
 import { useTheme } from '../theme';
@@ -20,10 +21,11 @@ type Props = {
   bottomInset?: number;
   mapType?: 'standard' | 'satellite' | 'hybrid';
   onUserPan?: () => void;
+  me?: { lat: number; lng: number } | null; // the walker, for filling in the leg being walked
 };
 
 /** Numbered pins in walking order with the route drawn between them. */
-export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], finished = false, isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan }, ref) {
+export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], finished = false, isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan, me }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
@@ -34,6 +36,23 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
   }, [walk]);
   const reached = finished ? walk.stops.length - 1 : Math.max(-1, ...visited);
   const trail = useMemo(() => (reached > 0 ? walkPath(walk, reached) : []), [walk, reached]);
+  // The leg toward the current stop fills in along her route up to the walker's nearest point on it, never shrinking.
+  const legDone = useRef<Record<string, number>>({});
+  let part: { latitude: number; longitude: number }[] = [];
+  if (current >= 1 && !visited.includes(current)) {
+    const leg = legPath(walk, current - 1);
+    if (leg.length > 1) {
+      const k = Math.cos((21.3 * Math.PI) / 180);
+      const xy = leg.map((c) => ({ x: c.longitude * 111320 * k, y: c.latitude * 110574 }));
+      const key = `${walk.id}:${current - 1}`;
+      if (me) {
+        const r = alongLine(xy, me.lng * 111320 * k, me.lat * 110574);
+        if (r.d <= 40 && r.s > (legDone.current[key] ?? 0)) legDone.current[key] = r.s;
+      }
+      const sd = legDone.current[key] ?? 0;
+      if (sd > 0) part = lineUpTo(xy, sd).map((q) => ({ latitude: q.y / 110574, longitude: q.x / (111320 * k) }));
+    }
+  }
   // Her red route between stops where it was traced, so the line follows streets rather than cutting across.
   const routeCoords = useMemo(() => { const p = walkPath(walk); return p.length > 1 ? p : mapCoords; }, [walk, mapCoords]);
   const initial: Region = useMemo(() => {
@@ -79,11 +98,12 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       mapPadding={{ top: 0, left: 0, right: 0, bottom: bottomInset }}
       onMapReady={() => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: false })}
     >
-      <Polyline coordinates={routeCoords} strokeColor={t.dark ? '#7FD1C7' : '#0E6E74'} strokeWidth={4} lineDashPattern={[8, 6]} />
+      {/* Her route as on her map, a dotted yellow line; the part walked fills in solid blue over it (Nick, 21 Nov 2026) */}
+      <Polyline coordinates={routeCoords} strokeColor={ROUTE_DOTS} strokeWidth={5} lineDashPattern={[1, 9]} lineCap="round" />
       {/* The part already walked, solid and bright over the dashed route, so the circuit fills in as you go. */}
       {trail.length > 1 ? <Polyline coordinates={trail} strokeColor={TRAIL} strokeWidth={6} /> : null}
       {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
-      {current >= 0 && current < coords.length - 1 && onMap(walk.stops[current]) && onMap(walk.stops[current + 1]) ? <Polyline coordinates={legPath(walk, current)} strokeColor="#1A73E8" strokeWidth={5} lineDashPattern={[8, 8]} /> : null}
+      {part.length > 1 ? <Polyline coordinates={part} strokeColor={TRAIL} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
         if (!onMap(s)) return null;
         const isCur = i === current;
