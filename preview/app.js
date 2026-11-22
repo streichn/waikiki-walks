@@ -468,7 +468,8 @@
   const SIDE_TRIP = '#8E6BB8';  // her map's purple side-trip line
   const TRAIL = '#1A73E8';  // blue for the walked trail and the leg ahead, on the street map and the book map (Nick, 19 Nov 2026)
   const BOOK_TRAIL = '#1A73E8';
-  const ROUTE_DOTS = '#F0A04B';  // her dotted route, in a yellow-orange that reads on the street map  // the walked part of her dotted line on the book map, see-through blue
+  const ROUTE_DOTS = '#F0A04B';
+  const PIN = '#1A73E8', PIN_HERE = '#D6336C';  // stop pins: blue, and red for the current stop  // her dotted route, in a yellow-orange that reads on the street map  // the walked part of her dotted line on the book map, see-through blue
   const onMain = (s) => onMap(s) && !s.side;
   function between(w, i, j) {
     const a = w.stops[i], b = w.stops[j]; if (!a || !b) return [];
@@ -529,7 +530,8 @@
         markers.forEach((m, i) => {
           if (!m) return;
           const s = w.stops[i], locked = !canOpen(w.id, i), done = visited.includes(i), isCur = i === cur;
-          const bg = isCur ? '#D6336C' : done ? '#3A7D44' : locked ? '#8A9A9B' : s.side ? SIDE_TRIP : w.color;
+          // One color for every stop, red for the one you're heading to or at, purple for her side trips (Nick, 21 Nov 2026).
+          const bg = isCur ? PIN_HERE : s.side ? SIDE_TRIP : PIN;
           m.setIcon(L.divIcon({ className: '', html: `<div class="pin ${isCur ? 'cur' : ''}" style="background:${bg}">${locked ? ic('lock', 'width="11" height="11"') : s.n}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }));
           m.setZIndexOffset(isCur ? 1000 : 0);
         });

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
-import { legPath, onMap, ROUTE_DOTS, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
+import { legPath, onMap, PIN, PIN_HERE, ROUTE_DOTS, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
 import { alongLine, lineUpTo } from '../lib/polyline';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
@@ -109,10 +109,11 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
         const isCur = i === current;
         const done = visited.includes(i);
         const locked = isLocked?.(i);
-        const bg = isCur ? t.accent : done ? t.leaf : locked ? '#8A9A9B' : s.side ? SIDE_TRIP : walk.color;
+        // One color for every stop, red for the current one, purple for her side trips (Nick, 21 Nov 2026).
+        const bg = isCur ? PIN_HERE : s.side ? SIDE_TRIP : PIN;
         return (
           <Marker key={s.id} coordinate={coords[i]} onPress={() => onSelect?.(i)} tracksViewChanges={false} zIndex={isCur ? 10 : 1} accessibilityLabel={`Stop ${s.n}, ${s.title}`}>
-            <View style={[styles.pin, { backgroundColor: bg, transform: [{ scale: isCur ? 1.25 : 1 }] }]}>
+            <View style={[styles.pin, { backgroundColor: bg }]}>
               {locked ? <Ionicons name="lock-closed" size={11} color="#fff" /> : <Text style={styles.pinText}>{s.n}</Text>}
             </View>
             <View style={[styles.tail, { borderTopColor: bg }]} />

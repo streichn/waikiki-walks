@@ -187,3 +187,4 @@
 - Street map (preview and app): her route is a dotted yellow line like her map, and the walked part fills in solid see-through blue over it, live along the leg being walked (never the walker's own track). The dashed leg-ahead line is gone.
 - Reading: a Read / Pause / Resume button sits just above the stop text; the headphones button left the bottom bar. Audio mode stays beside Next stop.
 - Shared polyline helpers in src/lib/polyline.ts.
+- Street map pins: one color (blue) for every stop, red for the stop you're heading to or at, purple for her side trips; the current pin is no longer enlarged. Visited stops show through the blue trail instead of a green pin.

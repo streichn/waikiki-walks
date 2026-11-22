@@ -172,7 +172,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 :root[data-theme="dark"] .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); } }
 .pin { min-width: 28px; height: 28px; padding: 0 5px; border-radius: 14px; border: 2px solid #fff; color: #fff; font: 800 12px var(--body); display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
-.pin.cur { transform: scale(1.25); }
+.pin.cur { box-shadow: 0 0 0 3px rgba(214,51,108,.25), 0 1px 4px rgba(0,0,0,.35); }
 .me { position: relative; width: 18px; height: 18px; border-radius: 9px; background: #1A73E8; border: 3px solid #fff; box-shadow: 0 0 0 8px rgba(26,115,232,.2); }
 .me .cone { position: absolute; left: 50%; top: 50%; width: 0; height: 0; margin-left: -14px; margin-top: -40px; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 34px solid rgba(26,115,232,.28); transform-origin: 14px 40px; }
 .mapbtn { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: var(--card); border: 1px solid var(--line); box-shadow: 0 2px 6px rgba(0,0,0,.15); }

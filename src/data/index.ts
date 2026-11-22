@@ -27,6 +27,8 @@ const metres = (a: LatLng, b: LatLng) => {
 /** The purple used for her map's side-trip (alternate route) lines. */
 export const SIDE_TRIP = '#8E6BB8';
 export const TRAIL = 'rgba(26,115,232,0.6)'; // walked trail on the street map: see-through blue, like the book map (Nick, 19 Nov 2026)
+export const PIN = '#1A73E8'; // every stop pin on the street map
+export const PIN_HERE = '#D6336C'; // the stop you're heading to or at
 export const ROUTE_DOTS = '#F0A04B'; // her dotted route on the street map, yellow-orange like her map
 export const BOOK_TRAIL = '#1A73E8'; // the walked part of her dotted line on the book map, see-through blue
 
