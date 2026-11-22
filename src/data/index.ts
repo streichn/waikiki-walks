@@ -19,10 +19,6 @@ export function onMap(s: { geo: string }): boolean {
 
 type LatLng = { latitude: number; longitude: number };
 const routes = routesJson as unknown as Record<string, Record<string, [number, number][]>>;
-const metres = (a: LatLng, b: LatLng) => {
-  const k = Math.PI / 180, x = (b.longitude - a.longitude) * k * Math.cos(((a.latitude + b.latitude) / 2) * k), y = (b.latitude - a.latitude) * k;
-  return 6371000 * Math.hypot(x, y);
-};
 
 /** The purple used for her map's side-trip (alternate route) lines. */
 export const SIDE_TRIP = '#8E6BB8';
@@ -39,12 +35,8 @@ function between(walk: Walk, i: number, j: number): LatLng[] {
   const key = j === i + 1 ? String(a.n) : `${a.n}>${b.n}`;
   const leg = (routes[walk.id] || {})[key];
   if (!leg || leg.length < 2) return [A, B];
-  const pts = leg.map(([latitude, longitude]) => ({ latitude, longitude }));
-  let len = 0;
-  for (let k = 1; k < pts.length; k++) len += metres(pts[k - 1], pts[k]);
-  // Use the traced or street line only when it starts and ends at these two stops and is not a wild detour.
-  if (metres(A, pts[0]) > 120 || metres(B, pts[pts.length - 1]) > 120 || len > 3 * metres(A, B) + 150) return [A, B];
-  return [A, ...pts, B];
+  // Her dotted line as traced, exactly: no jog out to a pin printed beside it (Nick and Veneeta, 22 Nov 2026).
+  return leg.map(([latitude, longitude]) => ({ latitude, longitude }));
 }
 
 const onMain = (s: { geo: string; side?: boolean }) => onMap(s) && !s.side;

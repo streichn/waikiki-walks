@@ -187,6 +187,7 @@ export default function ActiveWalk() {
     for (let i = current; i < Math.min(walk.stops.length, current + 4); i++) {
       if (visited.includes(i)) continue;
       if (!canOpenStop(walk.id, i, isPro)) break;
+      if (walk.stops[i].look) break; // a look-at stop: the walker taps Next through it, so don't skip past it
       if (!onMap(walk.stops[i])) continue; // her map doesn't print it: reached with Next
       if (distanceM(pos, walk.stops[i]) <= radius) {
         arrive(i);
@@ -216,6 +217,7 @@ export default function ActiveWalk() {
     tap();
     stopSpeech();
     goTo(walk.id, i);
+    if (walk.stops[i].look) markVisited(walk.id, i); // looked at from her line: nothing to walk to
     LiveActivity.update(walk, i);
     advanceBackground(walk, i).catch(() => undefined);
     // Show the chosen stop; following the walker resumes when they tap the locate button.
@@ -358,7 +360,7 @@ export default function ActiveWalk() {
                 </View>
               )}
               <View style={{ flex: 1 }}>
-                <T variant="label">{arrivedHere ? `You're at stop ${stop.n}` : `Heading to stop ${stop.n}`}</T>
+                <T variant="label">{stop.look ? `Look from here: stop ${stop.n}` : arrivedHere ? `You're at stop ${stop.n}` : `Heading to stop ${stop.n}`}</T>
                 <T variant="h2" numberOfLines={2}>
                   {stop.title}
                 </T>
@@ -370,7 +372,9 @@ export default function ActiveWalk() {
                   </Pressable>
                 ) : (
                 <T variant="small">
-                  {arrivedHere
+                  {stop.look
+                      ? 'Look around as you walk on. Tap Next when you are ready.'
+                      : arrivedHere
                       ? 'Read or listen below, then tap Next.'
                       : dist !== null
                         ? `${formatDistance(dist, settings.units)} · about ${walkMinutes(dist)} min${brg !== null ? ` · head ${hawaiianDirection(brg)}` : ''}`

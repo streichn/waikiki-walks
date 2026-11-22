@@ -51,6 +51,7 @@ MAPS = [
     ('XI', 'W11.pdf', 'map-XI-c.jpg', True),
     ('XII', 'W12.pdf', 'map-XII-c.jpg', True),
 ]
+LOOK = json.load(open(os.path.join(HERE, 'look_stops.json')))  # look-at stops, from Veneeta
 ROUTE_COLORS = [(0.99, 0.77, 0.6), (0.86, 0.62, 0.78)]  # main walk path (dotted), alternate route (dotted)
 
 
@@ -187,35 +188,65 @@ def main():
         ys, xs = np.nonzero(mask); pool = np.stack([xs, ys], 1)
         lam = np.full(len(ctl), 2.0)
         inv = tps_fit(T / 100.0, P, lam)
-        snap = {}
-        for n, v in out_s[key].items():
-            ov = PIN_PX.get(wid, {}).get(n) if first and len([m for m in MAPS if m[0] == wid]) == 1 else None
-            if isinstance(ov, list) and len(rpts):  # an author-placed pin on her line: start or end the leg exactly there
-                j = int(np.argmin(np.linalg.norm(rpts - np.array(ov[:2], float), axis=1)))
-                snap[int(n)] = tuple(int(t) for t in rpts[j]); continue
-            d = np.linalg.norm(pool - np.array(v), axis=1); i = int(np.argmin(d))
-            if d[i] < 40 * SR / 1.5:
-                snap[int(n)] = tuple(int(t) for t in pool[i])
         legs = {}
-        for s0 in sorted(snap):
-            s1 = s0 + 1
-            if s1 not in snap:
-                continue
-            p = bfs(mask, snap[s0], snap[s1])
-            if not p or len(p) > 6 * (abs(snap[s0][0] - snap[s1][0]) + abs(snap[s0][1] - snap[s1][1]) + 40):
-                continue
-            # The search runs through a widened band, so its path wobbles. Pull every point back onto her drawn line,
-            # then straighten it: the result sits exactly on her dots, with straight runs along streets.
-            on = rpts[tree.query(np.array(p, float))[1]] if tree is not None else np.array(p, float)
-            line = LineString(on).simplify(1.5 * SR / S, preserve_topology=False)
-            pts = np.array(line.coords, float)
-            mm = tps_many(inv, pts / 100.0)
-            # the same leg in map pixels, so the book map can fill in exactly her dotted line as stops are reached
-            out_px.setdefault(key, {})[str(s0)] = [[round(x, 1), round(y, 1)] for x, y in pts]
-            legs[str(s0)] = [[round(21.28 + y / 110574, 6), round(-157.83 + x / (111320 * math.cos(math.radians(21.28))), 6)] for x, y in mm]
+        # Her dotted line is the route, whole and unchanged (Nick and Veneeta, 22 Nov 2026): the app never invents a
+        # path of its own. Trace the line once, through the stops you walk to, in order, then cut it into legs where
+        # each stop falls along it. A look-at stop (look_stops.json, e.g. Walk III 5, 6 and 8) is not walked to: its
+        # leg ends at the point on the line nearest its number.
+        masks = {}
+        side = {s['n'] for s in walks[wid]['stops'] if s.get('side')}
+        main = sorted(int(n) for n in out_s[key] if int(n) not in side)
+        lab = {int(n): np.array(out_s[key][n], float) for n in out_s[key]}
+        ov_ok = first and len([m for m in MAPS if m[0] == wid]) == 1
+        for n in main:
+            ov = PIN_PX.get(wid, {}).get(str(n)) if ov_ok else None
+            if isinstance(ov, list):
+                lab[n] = np.array(ov[:2], float)
+        look = set(LOOK.get(wid, {}).get('stops', [])) & set(main)
+        if main and tree is not None:
+            anchors = [n for n in main if n not in look or n in (main[0], main[-1])]
+            near = lambda xy: tuple(int(t) for t in rpts[tree.query(xy)[1]])
+            path, at = [], {}
+            for a, b in zip(anchors, anchors[1:]):
+                p = None
+                for it in (6, 10, 14, 20):  # wider bridging only where her dashes leave a bigger gap (a corner or a kink)
+                    mk = mask if it == 6 else masks.setdefault(it, ndimage.binary_dilation(raw, iterations=it))
+                    p = bfs(mk, near(lab[a]), near(lab[b]))
+                    if p and (it == 6 or len(p) <= 4 * (abs(lab[a][0] - lab[b][0]) + abs(lab[a][1] - lab[b][1]) + 60)):
+                        break
+                    p = None
+                if not p:
+                    print(f'  {wid} {fname}: no line found from {a} to {b}'); continue
+                on = rpts[tree.query(np.array(p, float))[1]]
+                if not path:
+                    at[a] = 0
+                path.extend(map(tuple, on if not path else on[1:]))
+                at[b] = len(path) - 1
+            if len(anchors) == 1:
+                path, at = [near(lab[anchors[0]])], {anchors[0]: 0}
+            P = np.array(path, float)
+            # where each stop falls along the line, never going backwards
+            last = 0
+            for n in main:
+                if n in at:
+                    last = at[n]; continue
+                nxt = min([at[m] for m in at if m > n] or [len(P) - 1])
+                seg = P[last:nxt + 1]
+                if len(seg):
+                    last = at[n] = last + int(np.argmin(np.linalg.norm(seg - lab[n], axis=1)))
+            for a, b in zip(main, main[1:]):
+                if a not in at or b not in at:
+                    continue
+                seg = P[at[a]:at[b] + 1]
+                if len(seg) < 2:
+                    seg = np.vstack([P[at[a]], P[at[a]]])
+                pts = np.array(LineString(seg).simplify(1.5 * SR / S, preserve_topology=False).coords, float) if len(seg) > 2 else seg
+                mm = tps_many(inv, pts / 100.0)
+                out_px.setdefault(key, {})[str(a)] = [[round(x, 1), round(y, 1)] for x, y in pts]
+                legs[str(a)] = [[round(21.28 + y / 110574, 6), round(-157.83 + x / (111320 * math.cos(math.radians(21.28))), 6)] for x, y in mm]
         out_r.setdefault(wid, {}).update(legs)
         print(f'{wid} {fname}: {len(out_s[key])} numbers, {len(used)}/{len(labels)} labels, {len(cross)} crossings, '
-              f'ICP RMS {rms:.0f} m, affine RMS on controls {aff_rms:.0f} m, {mpp:.2f} m/px, {len(snap)} on path, {len(legs)} legs traced; '
+              f'ICP RMS {rms:.0f} m, affine RMS on controls {aff_rms:.0f} m, {mpp:.2f} m/px, {len(legs)} legs traced; '
               f'unmatched {missing}')
     json.dump(out_g, open(os.path.join(HERE, 'georef_carto.json'), 'w'), ensure_ascii=False, indent=1)
     json.dump(out_s, open(os.path.join(HERE, 'map_stops_carto.json'), 'w'), ensure_ascii=False, indent=1)

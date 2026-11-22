@@ -93,6 +93,8 @@ TAIL_CUTS = {'I-38': {'at': 'This walk covers part of a much larger district onc
                                  {'kind': 'p', 'text': 'The canal continues for another ¼ mile to the Ala Wai Harbor, which you can follow in Kālia, Walk II.'},
                                  {'kind': 'info', 'text': 'Bus routes and times www.thebus.org or call 808-848-5555 - option 2 for a live operator.'}],
                       '_why': 'Veneeta 19 Nov 2026: Kalia text at the end of Walk I belongs to Walk II (book p40)'}}
+# Look-at stops: her map prints the number off her dotted line; you look from the line, no arrival alert (scripts/georef/look_stops.json).
+LOOK = {w: set(v['stops']) for w, v in json.load(open(f'{ROOT}/scripts/georef/look_stops.json')).items() if not w.startswith('_')}
 STOP_FIXES = json.load(open(f'{ROOT}/scripts/extract/stop_fixes.json')) if os.path.exists(f'{ROOT}/scripts/extract/stop_fixes.json') else {}
 BOOK_PINS = json.load(open(f'{ROOT}/scripts/extract/book_pins.json')) if os.path.exists(f'{ROOT}/scripts/extract/book_pins.json') else {}
 OVERLAY = json.load(open(f'{ROOT}/scripts/extract/overlay.json')) if os.path.exists(f'{ROOT}/scripts/extract/overlay.json') else {}
@@ -611,6 +613,7 @@ for k, w in enumerate(SRC['walks']):
             'lat': round(g['lat'], 6), 'lng': round(g['lng'], 6), 'geo': g.get('confidence', 'medium'), 'page': s['page'],
             **({'radius': s['radius']} if s.get('radius') else {}),
             **({'side': True} if s.get('side') else {}),
+            **({'look': True} if s['n'] in LOOK.get(wid, ()) else {}),
         })
         if not cover:
             for p in photos:

@@ -23,6 +23,12 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 - Welcome screens (PR #30): merged.
 - Camera "What am I looking at?": shows Coming soon until the lens endpoint is deployed (LENS_LIVE in src/config.ts).
 
+## Map lines and look-at stops (Nick and Veneeta by phone, 22 Nov 2026)
+
+- The route is her dotted line, exactly. Never draw or route a path of our own, and never jog the line out to a pin.
+- Some numbers sit off her line (Walk III: 2, 5, 6, 8). The walker looks at them from the line; there is no arrival alert, and the walker taps Next. Only Veneeta decides which stops these are: add them to scripts/georef/look_stops.json with her words.
+- The book text's bold "Walk ..." directions say where to go; when the line and the text disagree, ask Veneeta.
+
 ## Questions for Nick
 (none open)
 

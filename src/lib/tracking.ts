@@ -124,9 +124,11 @@ export async function requestPermissions(): Promise<{ foreground: boolean; backg
 function regionsFrom(walk: Walk, fromIndex: number): Location.LocationRegion[] {
   const radius = useSettings.getState().arrivalRadius || DEFAULT_ARRIVAL_RADIUS_M;
   const isPro = useAccount.getState().isPro;
-  return walk.stops
-    .map((s, k) => ({ s, k }))
-    .slice(fromIndex)
+  const rest = walk.stops.map((s, k) => ({ s, k })).slice(fromIndex);
+  // Stop at the next look-at stop: the walker taps Next through those, so later stops must not fire first.
+  const look = rest.findIndex(({ s }, j) => j > 0 && s.look);
+  return (look > 0 ? rest.slice(0, look) : rest)
+    .filter(({ s }) => !s.look)
     .filter(({ s }) => onMap(s)) // no arrival alert for a stop her map doesn't print
     .filter(({ k }) => canOpenStop(walk.id, k, isPro)) // no alert for a locked stop, as on the walk screen
     .slice(0, MAX_REGIONS)

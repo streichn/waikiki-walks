@@ -22,6 +22,7 @@ export type Stop = {
   geo: GeoConfidence;
   radius?: number; // arrival radius override in meters
   side?: boolean; // a whole stop that is a purple-line side trip, off the main route
+  look?: boolean; // her map prints the number off her line: you look at it from the line, so no arrival alert; tap Next
   page: string; // source page in the PDF, for review
 };
 

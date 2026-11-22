@@ -517,10 +517,7 @@ function blocksHtml(blocks, stopId) {
     const key = j === i + 1 ? String(a.n) : `${a.n}>${b.n}`;
     const A = [a.lat, a.lng], B = [b.lat, b.lng], leg = ((D.routes || {})[w.id] || {})[key];
     if (!leg || leg.length < 2) return [A, B];
-    const m = (p, q) => dist({ lat: p[0], lng: p[1] }, { lat: q[0], lng: q[1] });
-    let len = 0; for (let k = 1; k < leg.length; k++) len += m(leg[k - 1], leg[k]);
-    if (m(A, leg[0]) > 120 || m(B, leg[leg.length - 1]) > 120 || len > 3 * m(A, B) + 150) return [A, B];
-    return [A, ...leg, B];
+    return leg; // her dotted line as traced, exactly: no jog out to a pin printed beside it (22 Nov 2026)
   }
   // The walking line from stop i to the next: her traced red route, else a walking route along streets, else straight.
   function legPath(w, i) {
@@ -633,7 +630,8 @@ function blocksHtml(blocks, stopId) {
     const nextLocked = cur + 1 < w.stops.length && !canOpen(w.id, cur + 1);
     let navLine = 'Turn on “Simulate walking” to move along the route, or tap “I’m here”.';
     let rot = 0;
-    if (here) navLine = 'Read or listen below, then tap Next.';
+    if (stop.look) navLine = 'Look around as you walk on. Tap Next when you are ready.';
+    else if (here) navLine = 'Read or listen below, then tap Next.';
     else if (S.me) { const d = dist(S.me, stop), b = bearing(S.me, stop); rot = b - S.heading; navLine = `${fmt(d)} · about ${Math.max(1, Math.round(d / 67))} min · head ${hawaiianDir(b)}`; }
     return `<div id="go" style="position:absolute;inset:0">
       <div class="mapwrap">${S.mapStyle === 'book' && bookOk(w) ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
@@ -645,7 +643,7 @@ function blocksHtml(blocks, stopId) {
         <div class="viewsw" role="tablist" aria-label="Show map, both, or text">${[['peek', 'map', 'Map'], ['half', 'split', 'Both'], ['full', 'reader', 'Text']].map(([d, icn, t]) => `<button role="tab" data-detent="${d}" aria-selected="${S.detent === d}">${ic(icn, 'width="15" height="15"')} ${t}</button>`).join('')}</div>
         <div class="pager inline"><button class="pbtn" data-act="prev" ${cur === 0 ? 'disabled' : ''} aria-label="Previous stop">${ic('prev')} Previous</button><span class="pcount">Stop ${stop.n} of ${w.stops.length}</span><button class="pbtn" data-act="skip" ${cur >= w.stops.length - 1 ? 'disabled' : ''} aria-label="Skip to next stop">Next ${ic('fwd')}</button></div>
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
-          <div style="flex:1;min-width:0"><div class="label">${here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
+          <div style="flex:1;min-width:0"><div class="label">${stop.look ? `Look from here: stop ${stop.n}` : here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
         <div class="readbar"><button class="readbtn" id="playbtn" data-act="play" aria-label="Read this stop aloud, or pause">${readLabel()}</button></div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
@@ -726,10 +724,17 @@ function blocksHtml(blocks, stopId) {
     if (i < 0) return;
     if (i >= w.stops.length) { finishWalk(); return; }
     if (!canOpen(w.id, i)) { stopSim(); openPaywall(); return; }
-    stopSpeak(); prog.current = i; persist(); render();
+    stopSpeak(); prog.current = i;
+    if (w.stops[i].look && !prog.visited.includes(i)) prog.visited.push(i); // looked at from her line: nothing to walk to
+    persist(); render();
   }
   // The demo follows Veneeta's red route line between stops (scripts/georef/routes.py), straight where it isn't traced.
   let simPath = null, simFor = null;
+  // Where the walker stands for a stop: the end of her line into it (a look-at stop is seen from the line), else its pin.
+  function standAt(w, i) {
+    const leg = i > 0 && ((D.routes || {})[w.id] || {})[String(w.stops[i - 1].n)], s = w.stops[i];
+    return leg && leg.length ? { lat: leg[leg.length - 1][0], lng: leg[leg.length - 1][1] } : { lat: s.lat, lng: s.lng };
+  }
   function tickSim() {
     const w = walk(S.walkId), prog = S.progress[w.id], target = w.stops[prog.current];
     // A stop her map doesn't print has no spot to walk to: the demo reads it and moves on.
@@ -738,15 +743,17 @@ function blocksHtml(blocks, stopId) {
     if (simFor !== w.id + ':' + prog.current) {
       simFor = w.id + ':' + prog.current;
       const leg = prog.current > 0 && ((D.routes || {})[w.id] || {})[String(w.stops[prog.current - 1].n)];
-      simPath = (leg && dist(S.me, { lat: leg[0][0], lng: leg[0][1] }) < 80 ? leg.map(([lat, lng]) => ({ lat, lng })) : []).concat([{ lat: target.lat, lng: target.lng }]);
+      simPath = (leg && dist(S.me, { lat: leg[0][0], lng: leg[0][1] }) < 80 ? leg.map(([lat, lng]) => ({ lat, lng })) : []).concat([standAt(w, prog.current)]);
     }
-    if (!simPath || !simPath.length) simPath = [{ lat: target.lat, lng: target.lng }];
+    if (!simPath || !simPath.length) simPath = [standAt(w, prog.current)];
     let budget = 18; // meters per tick (a brisk, sped-up walk)
     while (budget > 0 && simPath.length) {
       const nxt = simPath[0], d = dist(S.me, nxt);
       if (d <= budget) { S.me = { ...nxt }; budget -= d; if (simPath.length > 1) simPath.shift(); else break; }
       else { S.heading = bearing(S.me, nxt); const f = budget / d; S.me = { lat: S.me.lat + (nxt.lat - S.me.lat) * f, lng: S.me.lng + (nxt.lng - S.me.lng) * f }; budget = 0; }
     }
+    // A look-at stop has no arrival: the demo counts it seen once it reaches that point on her line.
+    if (target.look && !prog.visited.includes(prog.current) && dist(S.me, standAt(w, prog.current)) <= 3) { prog.visited.push(prog.current); persist(); render(); return; }
     afterMove(w, prog, target);
   }
   // After the walker's position changes (demo or real GPS): move the dot on both maps, check arrival, update the distance line.
@@ -755,7 +762,7 @@ function blocksHtml(blocks, stopId) {
     paintLegPart(w);
     paintBookDot(w);
     // Arrival check, same rule as the app: within the arrival radius plus a GPS allowance.
-    if (onMap(target) && dist(S.me, target) <= S.settings.arrival + (S.gpsAcc ? Math.min(S.gpsAcc, 30) * 0.5 : 0) && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
+    if (onMap(target) && !target.look && dist(S.me, target) <= S.settings.arrival + (S.gpsAcc ? Math.min(S.gpsAcc, 30) * 0.5 : 0) && !prog.visited.includes(prog.current)) { arrive(prog.current); return; }
     const nav = document.querySelector('.nav .small'); if (nav && !prog.visited.includes(prog.current)) { const dd = dist(S.me, target); nav.textContent = `${fmt(dd)} · about ${Math.max(1, Math.round(dd / 67))} min · head ${hawaiianDir(bearing(S.me, target))}`; }
     const ar = document.querySelector('.nav .arrow'); if (ar) ar.style.transform = `rotate(${S.sim ? 0 : bearing(S.me, target) - S.heading}deg)`;
   }
@@ -781,7 +788,7 @@ function blocksHtml(blocks, stopId) {
       const w = walk(S.walkId), prog = S.progress[S.walkId]; if (!prog) return;
       if (prog.visited.includes(prog.current)) {
         const t = w.stops[prog.current];
-        if (S.me && dist(S.me, t) > 3) { tickSim(); return; }
+        if (S.me && dist(S.me, standAt(w, prog.current)) > 3) { tickSim(); return; }
         if (++simPause < 6) return;
         simPause = 0;
         const next = prog.current + 1;

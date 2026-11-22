@@ -33,7 +33,11 @@ def main():
     routes = json.load(open(f'{ROOT}/src/data/routes.json'))
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
     kept = skipped = 0
+    # Walks on the cartographer's maps follow her dotted line only; never a route of our own (Nick and Veneeta, 22 Nov 2026).
+    carto = set(json.load(open(os.path.join(HERE, 'routes_carto.json'))))
     for w in walks:
+        if w['id'] in carto:
+            continue
         main_stops = [s for s in w['stops'] if s['geo'] == 'book' and not s.get('side')]
         for a, b in zip(main_stops, main_stops[1:]):
             adjacent = w['stops'].index(b) == w['stops'].index(a) + 1
