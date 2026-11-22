@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import { legPath, onMap, PIN, PIN_HERE, ROUTE_DOTS, SIDE_TRIP, sidePaths, TRAIL, walkPath } from '../data';
+import { useReduceMotion } from '../lib/motion';
 import { alongLine, lineUpTo } from '../lib/polyline';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
@@ -69,23 +70,26 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
   }, [mapCoords]);
 
   const padding = { top: 80, right: 50, bottom: 60 + bottomInset, left: 50 };
+  // With Reduce Motion on, the map jumps instead of flying, and follow mode stays flat (no 3D tilt).
+  const still = useReduceMotion();
+  const move = (c: Parameters<MapView['animateCamera']>[0], ms: number) => (still ? map.current?.setCamera(c) : map.current?.animateCamera(c, { duration: ms }));
   useImperativeHandle(ref, () => ({
     focusStop: (i) => {
       const c = walk.stops[i] && onMap(walk.stops[i]) ? coords[i] : undefined;
-      if (c) map.current?.animateCamera({ center: c, zoom: 17 }, { duration: 600 });
+      if (c) move({ center: c, zoom: 17 }, 600);
     },
     // Apple Maps cameras use altitude, Google Maps cameras use zoom.
     zoomBy: async (dir) => {
       const c = await map.current?.getCamera();
       if (!c) return;
-      if (c.altitude) map.current?.animateCamera({ altitude: c.altitude * (dir > 0 ? 0.5 : 2) }, { duration: 250 });
-      else if (c.zoom !== undefined) map.current?.animateCamera({ zoom: c.zoom + dir }, { duration: 250 });
+      if (c.altitude) move({ altitude: c.altitude * (dir > 0 ? 0.5 : 2) }, 250);
+      else if (c.zoom !== undefined) move({ zoom: c.zoom + dir }, 250);
     },
-    fitAll: () => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: true }),
-    recenter: (lat, lng) => map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 17, heading: 0 }, { duration: 500 }),
+    fitAll: () => map.current?.fitToCoordinates(mapCoords, { edgePadding: padding, animated: !still }),
+    recenter: (lat, lng) => move({ center: { latitude: lat, longitude: lng }, zoom: 17, heading: 0 }, 500),
     // Follow mode keeps the blue dot centered; with a heading the map rotates to face where you face.
     follow: (lat, lng, heading) =>
-      map.current?.animateCamera({ center: { latitude: lat, longitude: lng }, zoom: 18, ...(heading !== undefined ? { heading, pitch: 35 } : { heading: 0, pitch: 0 }) }, { duration: 400 }),
+      move({ center: { latitude: lat, longitude: lng }, zoom: 18, ...(heading !== undefined ? { heading, pitch: still ? 0 : 35 } : { heading: 0, pitch: 0 }) }, 400),
   }));
 
   return (

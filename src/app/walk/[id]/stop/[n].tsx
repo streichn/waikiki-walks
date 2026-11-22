@@ -8,6 +8,7 @@ import { IconButton, T, tap } from '../../../../components/ui';
 import { getWalk, walkNo } from '../../../../data';
 import type { Stop } from '../../../../data/types';
 import { canOpenStop, useIsPro } from '../../../../lib/access';
+import { useReduceMotion } from '../../../../lib/motion';
 import { stop as stopSpeech } from '../../../../lib/narration';
 import { useTheme } from '../../../../theme';
 
@@ -19,6 +20,7 @@ export default function StopReader() {
   const { id, n } = useLocalSearchParams<{ id: string; n: string }>();
   const walk = getWalk(id)!;
   const t = useTheme();
+  const still = useReduceMotion();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isPro = useIsPro();
@@ -30,7 +32,7 @@ export default function StopReader() {
     tap();
     stopSpeech();
     setIndex(i);
-    list.current?.scrollToIndex({ index: i, animated: true });
+    list.current?.scrollToIndex({ index: i, animated: !still });
   };
 
   return (

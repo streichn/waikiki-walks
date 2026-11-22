@@ -1,6 +1,9 @@
 /* Waikīkī Walks web preview: same data, flows and paywall rules as the mobile app. */
 (function () {
   'use strict';
+  // Reduce Motion (prefers-reduced-motion): facts wait for a tap and scrolling jumps instead of gliding, like the app.
+  const still = () => !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const smooth = () => (still() ? 'auto' : 'smooth');
   const D = window.WW;
   const IMG = window.WWIMG = window.WWIMG || {};
   const TRIAL = D.trial;
@@ -623,7 +626,7 @@ function blocksHtml(blocks, stopId) {
   }
   function syncRail(scroll) {
     document.querySelectorAll('.mcard').forEach((c) => c.classList.toggle('on', Number(c.dataset.card) === S.focus));
-    if (scroll) { const c = document.querySelector(`.mcard[data-card="${S.focus}"]`); c && c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+    if (scroll) { const c = document.querySelector(`.mcard[data-card="${S.focus}"]`); c && c.scrollIntoView({ behavior: smooth(), inline: 'center', block: 'nearest' }); }
   }
 
   // Active walk
@@ -949,7 +952,7 @@ function blocksHtml(blocks, stopId) {
     const m = modal(`<div class="stack" style="align-items:stretch"><div style="text-align:center">${hib(64, 'var(--accent)')}<h1 style="font-size:32px">Waikīkī</h1><div style="font-family:var(--display);letter-spacing:.15em">TWELVE WALKS THROUGH TIME</div><div class="italic">Veneeta Acson, Ph.D.</div></div>
       <div class="card stack" style="gap:2px"><div class="label">In this section</div>${D.about.map((s, i) => `<button class="row" data-aboutjump="${i}" style="min-height:44px;text-align:left;background:none;border:0;color:var(--primary);font-weight:700;font-size:16px;padding:0">${esc(s.title)}</button>`).join('')}</div>
       ${D.about.map((s, i) => `<div class="card stack" id="about-${i}" data-aboutid="${esc(s.id || '')}" style="gap:10px"><h2 style="font-size:21px">${esc(s.title)}</h2>${s.blocks.map(aboutBlock).join('')}</div>`).join('')}<p class="small" style="text-align:center">Text and photographs © 2023 Island Heritage. All rights reserved.</p></div>`);
-    m.addEventListener('click', (e) => { const b = e.target.closest('[data-aboutjump]'); if (b) m.querySelector(`#about-${b.dataset.aboutjump}`).scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    m.addEventListener('click', (e) => { const b = e.target.closest('[data-aboutjump]'); if (b) m.querySelector(`#about-${b.dataset.aboutjump}`).scrollIntoView({ behavior: smooth(), block: 'start' }); });
     if (section) { const el = m.querySelector(`[data-aboutid="${section}"]`); if (el) setTimeout(() => el.scrollIntoView({ block: 'start' }), 0); }
   }
   function openLayers(w) {
@@ -1097,7 +1100,7 @@ function blocksHtml(blocks, stopId) {
     S.stopFocus = false;
     if (S.view === 'stop') bindSwipe(document.getElementById('stopread'));
     if (!S.view && S.tab === 'explore') mountExplore();
-    if (!S.view && S.tab === 'home') { showFact(); clearInterval(factTimer); factTimer = setInterval(() => { factIdx++; showFact(); }, 9000); }
+    if (!S.view && S.tab === 'home') { showFact(); clearInterval(factTimer); if (!still()) factTimer = setInterval(() => { factIdx++; showFact(); }, 9000); }
     markReading();
   }
   let lastView = null;
@@ -1171,7 +1174,7 @@ function blocksHtml(blocks, stopId) {
         S.follow = 'off';
         if (S.mapStyle === 'book') { // the whole page of her map, fitted to the screen width
           const bp = document.getElementById('bookpane'), bi = bp && bp.querySelector('.bookimg'); if (!bi) return;
-          S.bookFollow = false; S.bookZoomUser = true; S.bookZoom = 1; bi.style.width = '100%'; S.bookAuto = Date.now(); bp.scrollTo({ left: 0, top: 0, behavior: 'smooth' }); return;
+          S.bookFollow = false; S.bookZoomUser = true; S.bookZoom = 1; bi.style.width = '100%'; S.bookAuto = Date.now(); bp.scrollTo({ left: 0, top: 0, behavior: smooth() }); return;
         }
         return gmap && gmap.fit();
       }

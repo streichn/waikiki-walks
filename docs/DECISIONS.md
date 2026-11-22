@@ -301,3 +301,20 @@ Sources:
 - **Our choice:** read the boxes straight from the PDF with their paragraph breaks (scripts/extract/info_boxes.py), keep every word as printed, and only split off labels the book prints on their own line or before a colon. Each row gets a kind (time, route, bus, parking, web, contact) used only to pick its icon. Links are found in the text by pattern, so nothing is added that the book does not print.
 - **Not done:** Walk X's box repeats Walk I's word for word, and Walk III's says "Lewers Street & Road"; both are questions for Veneeta (docs/BOOK_UPDATES.md). Bus, phone and parking details may have changed since printing; the TheBus number was checked 19 Nov 2026, the others were not.
 - Sources: Nielsen Norman Group, How Users Read on the Web (nngroup.com/articles/how-users-read-on-the-web, alertbox 9710a) and Concise, Scannable, and Objective (nngroup.com/articles/concise-scannable-and-objective-how-to-write-for-the-web); Apple, Phone Links (developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/PhoneLinks/PhoneLinks.html); React Native, Linking (reactnative.dev/docs/linking); W3C, Understanding SC 2.5.8 Target Size (Minimum) (w3.org/WAI/WCAG22/Understanding/target-size-minimum); Apple Human Interface Guidelines, Writing (developer.apple.com/design/human-interface-guidelines/writing).
+
+## Reduce Motion (accessibility, 22 Nov 2026)
+- **How it is normally done:**
+  - Apple's Reduced Motion criteria for the App Store Accessibility Nutrition Label: once the setting is on, the app should no longer show "problematic motion triggers". Depth effects (parallax, 3D, animated blur), spinning and large scaling or zooming should be turned off or changed. Auto-advancing carousels should stop or offer a control. Decorative motion can simply stop. Meaningful motion should not vanish but be replaced, for example by "a dissolve, highlight fade, or color shift". The claim must be rechecked with each update.
+  - Apple's HIG on motion: "Make motion optional", don't rely on it alone to tell people something, and "Let people cancel motion".
+  - WCAG 2.2.2 Pause, Stop, Hide: content that moves or updates on its own for more than 5 seconds needs a way to pause or stop it.
+  - React Native exposes the setting on both platforms with `AccessibilityInfo.isReduceMotionEnabled()` and the `reduceMotionChanged` event, and `getRecommendedTimeoutMillis()` returns Android's "Time to take action" setting for messages that hide themselves.
+- **What we chose:**
+  - One shared hook (src/lib/motion.ts) that follows the setting live.
+  - Street map: `setCamera` (instant) instead of `animateCamera` flights; follow mode keeps its heading but drops the 35 degree tilt. Fit-all is not animated.
+  - Stop sheet snaps; book map, walk cards and the stop pager scroll without gliding.
+  - Arrival banner: a short fade in place (the "dissolve" Apple suggests) instead of a spring slide, because the banner carries information. Its hold time uses the phone's recommended timeout, and at least 10 seconds with a screen reader, since the HIG discourages views that vanish on a timer.
+  - "Did you know?" card: no auto-advance with Reduce Motion or a screen reader; tap for the next fact. It became a labeled button.
+  - Web preview: the same rules from `prefers-reduced-motion` (its CSS already turned off transitions).
+- **Why:** walkers look up and down between phone and street, and sliding or zooming views are a known trigger for people with vestibular sensitivity. This costs no data or permissions and lets us claim Reduced Motion in App Store Connect after a device check.
+- **Still to do:** check on a real iPhone (Settings > Accessibility > Motion > Reduce Motion) and Android (Remove animations) before ticking Reduced Motion in the Accessibility Nutrition Labels. The Lock Screen Live Activity and system sheets follow the system on their own.
+- Sources: developer.apple.com/help/app-store-connect/manage-app-accessibility/reduced-motion-evaluation-criteria; developer.apple.com/design/human-interface-guidelines/motion; w3.org/WAI/WCAG22/Understanding/pause-stop-hide; reactnative.dev/docs/accessibilityinfo

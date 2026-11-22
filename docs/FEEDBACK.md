@@ -62,3 +62,6 @@
 
 ## 2026-11-21 · Scheduled run, 00:51Z
 - No new email from Veneeta since 20 Nov 15:30Z (already logged as personal). Open questions to her are unchanged (map permission, the red note near Walk XI stop 6, the list of possibly dated items), plus two new ones about the walk information boxes in docs/BOOK_UPDATES.md.
+
+## 2026-11-22 · Scheduled run, 06:57Z
+- No new app comments from Veneeta. Her 21 Nov 23:28Z "Walk I I" notes (pins 15 and 16, the line to 17, the Bob Magoon sentence) are fixed on main (logged above), and Nick replied to her. Her 21 Nov 19:51Z "Good morning" note is personal. Open questions to her are unchanged (the twelve possible book typos, map permission, the red note near Walk XI stop 6, possibly dated places).

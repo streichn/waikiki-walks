@@ -16,6 +16,7 @@ import { TRIAL } from '../../../config';
 import { getWalk, photo, walkNo } from '../../../data';
 import type { Stop } from '../../../data/types';
 import { canOpenStop, canStartWalk, useIsPro } from '../../../lib/access';
+import { useReduceMotion } from '../../../lib/motion';
 import { stop as stopSpeech } from '../../../lib/narration';
 import { useProgress } from '../../../store';
 import { readableOn, useTheme } from '../../../theme';
@@ -26,6 +27,7 @@ export default function WalkOverview() {
   const { id, stop: stopParam, mode: modeParam } = useLocalSearchParams<{ id: string; stop?: string; mode?: string }>();
   const walk = getWalk(id)!;
   const t = useTheme();
+  const still = useReduceMotion();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isPro = useIsPro();
@@ -58,7 +60,7 @@ export default function WalkOverview() {
     setMode('map');
     setTimeout(() => {
       mapRef.current?.focusStop(i);
-      cards.current?.scrollToIndex({ index: i, animated: true });
+      cards.current?.scrollToIndex({ index: i, animated: !still });
     }, 250);
   };
   const readStop = (i: number) => {
@@ -128,9 +130,9 @@ export default function WalkOverview() {
       ) : (
         <View style={{ flex: 1 }}>
           {bookMap && bookOk ? (
-            <BookMapPane walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} topInset={insets.top + 110} bottomInset={230} />
+            <BookMapPane walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: !still }); }} topInset={insets.top + 110} bottomInset={230} />
           ) : (
-            <WalkMap ref={mapRef} limitTo={lastOpen} walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
+            <WalkMap ref={mapRef} limitTo={lastOpen} walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: !still }); }} bottomInset={230} mapType={layer} />
           )}
           {bookOk ? (
             <View style={{ position: 'absolute', left: 14, bottom: 242 }}>

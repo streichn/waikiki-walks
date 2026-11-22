@@ -18,6 +18,7 @@ import { bearingDeg, distanceM, formatDistance, hawaiianDirection, headingDelta,
 import { confirmEndWalk, endWalkNow } from '../../../lib/endWalk';
 import * as LiveActivity from '../../../lib/liveActivity';
 import { play, stop as stopSpeech, togglePause, useNarration } from '../../../lib/narration';
+import { messageTimeout, useReduceMotion, useScreenReader } from '../../../lib/motion';
 import { advanceBackground, requestPermissions, startBackground, stopBackground, watchForeground } from '../../../lib/tracking';
 import { useProgress, useSettings } from '../../../store';
 import { useTheme } from '../../../theme';
@@ -54,6 +55,9 @@ export default function ActiveWalk() {
   const mapRef = useRef<WalkMapHandle>(null);
   const textRef = useRef<ScrollViewInstance>(null);
   const banner = useRef(new Animated.Value(0)).current;
+  // Reduce Motion: the sheet snaps and the arrival banner fades in place instead of sliding.
+  const still = useReduceMotion();
+  const reader = useScreenReader();
 
   // Bottom sheet: the map always fills the screen and the stop text slides up over it.
   const headerBottom = insets.top + 62;
@@ -75,7 +79,8 @@ export default function ActiveWalk() {
   }, [sheetH]);
   const snapTo = (d: Detent) => {
     setDetent(d);
-    Animated.spring(sheetH, { toValue: snapsRef.current[d], useNativeDriver: false, bounciness: 0, speed: 16 }).start();
+    if (still) sheetH.setValue(snapsRef.current[d]);
+    else Animated.spring(sheetH, { toValue: snapsRef.current[d], useNativeDriver: false, bounciness: 0, speed: 16 }).start();
   };
   useEffect(() => {
     sheetH.setValue(snaps[detent]);
@@ -204,8 +209,12 @@ export default function ActiveWalk() {
     AccessibilityInfo.announceForAccessibility(`You've arrived at stop ${walk.stops[i].n}: ${walk.stops[i].title}`);
     LiveActivity.update(walk, i);
     if (settings.haptics) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => undefined);
-    Animated.sequence([Animated.spring(banner, { toValue: 1, useNativeDriver: true }), Animated.delay(4200), Animated.timing(banner, { toValue: 0, duration: 300, useNativeDriver: true })]).start(() => setJustArrived(null));
-    textRef.current?.scrollTo({ y: 0, animated: true });
+    // It stays up as long as the phone's accessibility timing asks (Android "Time to take action"; 10 s or more with a screen reader).
+    messageTimeout(4200, reader).then((hold) => {
+      const show = still ? Animated.timing(banner, { toValue: 1, duration: 200, useNativeDriver: true }) : Animated.spring(banner, { toValue: 1, useNativeDriver: true });
+      Animated.sequence([show, Animated.delay(hold), Animated.timing(banner, { toValue: 0, duration: 300, useNativeDriver: true })]).start(() => setJustArrived(null));
+    });
+    textRef.current?.scrollTo({ y: 0, animated: !still });
     if (settings.autoNarrate) play(walk.stops[i]);
   };
 
@@ -306,7 +315,7 @@ export default function ActiveWalk() {
 
       {/* Arrival banner */}
       {justArrived !== null ? (
-        <Animated.View style={[styles.arrived, { top: insets.top + 64, backgroundColor: t.leaf, opacity: banner, transform: [{ translateY: banner.interpolate({ inputRange: [0, 1], outputRange: [-30, 0] }) }] }]}>
+        <Animated.View style={[styles.arrived, { top: insets.top + 64, backgroundColor: t.leaf, opacity: banner, transform: [{ translateY: banner.interpolate({ inputRange: [0, 1], outputRange: [still ? 0 : -30, 0] }) }] }]}>
           <Ionicons name="flower" size={22} color="#fff" />
           <T style={{ color: '#fff', fontFamily: t.font.bodyBold, flex: 1 }}>You've arrived: {walk.stops[justArrived]?.title}</T>
         </Animated.View>

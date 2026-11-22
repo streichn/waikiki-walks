@@ -5,6 +5,7 @@ import { Modal, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, Text
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Polyline } from 'react-native-svg';
 import { BOOK_TRAIL, photo, walkNo } from '../data';
+import { useReduceMotion } from '../lib/motion';
 import { alongLine, lineUpTo } from '../lib/polyline';
 import type { Walk } from '../data/types';
 import { bookLabel, bookLegs, bookPages, bookXY, pageFor } from '../lib/bookmap';
@@ -132,6 +133,7 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, he
   onSelect?: (i: number) => void; topInset?: number; bottomInset?: number;
 }) {
   const t = useTheme();
+  const still = useReduceMotion();
   const { width, height: screenH } = useWindowDimensions();
   // Open the page that prints the current stop; the page buttons switch until the stop changes.
   const pages = bookPages(walk.id);
@@ -182,13 +184,13 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, he
     const v = view.current;
     const z = Math.max(1, Math.min(4, v.zoom * (dir > 0 ? 1.6 : 1 / 1.6)));
     const cx = (v.x + v.w / 2) / v.zoom, cy = (v.y + v.h / 2) / v.zoom;
-    scroll.current?.scrollResponderZoomTo({ x: cx - v.w / (2 * z), y: cy - v.h / (2 * z), width: v.w / z, height: v.h / z, animated: true });
+    scroll.current?.scrollResponderZoomTo({ x: cx - v.w / (2 * z), y: cy - v.h / (2 * z), width: v.w / z, height: v.h / z, animated: !still });
   };
   // Keep the walker's dot in the middle of the visible map, like follow mode on a street map.
   const centerOnMe = () => {
     if (!dot) return;
     const visible = screenH - topInset - bottomInset, z = view.current.zoom;
-    scroll.current?.scrollTo({ x: Math.max(0, dot.x * width * z - width / 2), y: Math.max(0, dot.y * height * z - visible / 2), animated: true });
+    scroll.current?.scrollTo({ x: Math.max(0, dot.x * width * z - width / 2), y: Math.max(0, dot.y * height * z - visible / 2), animated: !still });
   };
   useEffect(() => {
     if (follow) centerOnMe();
@@ -203,7 +205,7 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, he
     if (!L) return;
     setFollow(false);
     const visible = screenH - topInset - bottomInset, z = view.current.zoom;
-    const t = setTimeout(() => scroll.current?.scrollTo({ x: Math.max(0, L.x * width * z - width / 2), y: Math.max(0, L.y * height * z - visible / 2), animated: true }), 50);
+    const t = setTimeout(() => scroll.current?.scrollTo({ x: Math.max(0, L.x * width * z - width / 2), y: Math.max(0, L.y * height * z - visible / 2), animated: !still }), 50);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walk.id, curN]);

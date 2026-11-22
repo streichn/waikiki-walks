@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-22 · Reduce Motion and the self-changing "Did you know?" card
+- When the phone's Reduce Motion setting is on (iPhone: Accessibility > Motion; Android: Remove animations), the app now skips movement that can bother people with motion sensitivity: the street map jumps to a stop instead of flying there, follow mode stays flat instead of tilting into 3D, the stop sheet snaps instead of springing, the book map and stop pages jump instead of gliding, and the arrival banner fades in place instead of sliding down. The setting is followed live.
+- The "Did you know?" card used to change every 9 seconds on its own. With Reduce Motion or VoiceOver/TalkBack on, it now waits for a tap, so nothing changes while someone is reading it (WCAG 2.2.2). It is now a button whose spoken label includes the fact.
+- The arrival banner stays up as long as the phone's accessibility timing asks (Android "Time to take action"), and at least 10 seconds with a screen reader.
+- New src/lib/motion.ts holds the shared hooks. Web preview does the same with the browser's reduced-motion setting.
+
 ## 2026-11-22
 
 - The camera feature ("What am I looking at?") shows as Coming soon until its server endpoint is deployed: the home screen button is hidden, the Profile row is greyed out, and the unlock screen says coming soon. Setting EXPO_PUBLIC_LENS_ENDPOINT turns it back on everywhere.
