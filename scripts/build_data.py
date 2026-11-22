@@ -50,7 +50,9 @@ SIDE_STOPS = {'II': {13}}
 TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, page 16, corrected by hand (photo 19 Nov 2026)")],
               'II-16': [('Afong and the Chinese in Hawai‘i.', 'Afong and the Chinese in Hawai‘i. Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!',
                          "Veneeta's addition by email, 21 Nov 2026: end of the paragraph that starts 'In the late-1800s'")],
-              'II-04': [('Sandalewood', 'Sandalwood', "the book hyphenates 'Sandale- wood' across a line; joining it left a stray e")]}
+              'II-04': [('Sandalewood', 'Sandalwood', "the book hyphenates 'Sandale- wood' across a line; joining it left a stray e")],
+              'III-14': [(' If you have time to spare (if not, please do come back), visit the Ho‘okela Hawaiian Heritage and Culture Center on the 2nd Floor, Diamond Head Tower (Ho‘okela means ‘excellence’.) Monday through Friday 8 to 3. This the place where you will experience true Hawaiian culture.', '',
+                          "Veneeta by email, 22 Nov 2026 ('Delete this in Walk III')")]}
 # Typos in the printed book that Veneeta confirmed by email, 22 Nov 2026 ("typos..."), applied everywhere
 # (stop text, titles, photo captions, facts). Each must still be found, or the build stops.
 BOOK_CORRECTIONS = [('Makiki Sream', 'Makiki Stream'), ('Chung Afong', 'Chun Afong'), ('Planation style', 'Plantation style'),

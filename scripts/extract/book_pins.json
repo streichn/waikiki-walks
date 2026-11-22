@@ -665,14 +665,10 @@
    "route_offset_m": 1
   },
   "13": {
-   "lat": 21.275135,
-   "lng": -157.825805,
-   "px": [
-    980,
-    374
-   ],
-   "page": "map-III-c.jpg",
-   "route_offset_m": 22
+   "lat": 21.275356,
+   "lng": -157.825625,
+   "route_offset_m": 30,
+   "place": "Veneeta 22 Nov 2026 (email \"walk III\"): pin 13 should be on the land. Moved from the water to where stop 13 falls on her dotted line."
   },
   "14": {
    "lat": 21.275579,

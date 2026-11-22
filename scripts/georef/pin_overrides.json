@@ -88,5 +88,12 @@
    "lng": -157.826057,
    "why": "Not printed on the cartographer's Walk IV map; kept where the book's map printed it (19 Nov 2026)"
   }
+ },
+ "III": {
+  "13": {
+   "lat": 21.275356,
+   "lng": -157.825625,
+   "why": "Veneeta 22 Nov 2026 (email \"walk III\"): pin 13 should be on the land. Moved from the water to where stop 13 falls on her dotted line."
+  }
  }
 }

@@ -2967,11 +2967,11 @@
      }
     ],
     "photos": [],
-    "lat": 21.275135,
-    "lng": -157.825805,
+    "lat": 21.275356,
+    "lng": -157.825625,
     "geo": "book",
     "page": "p1-69",
-    "radius": 52
+    "radius": 60
    },
    {
     "id": "III-14",
@@ -3004,7 +3004,7 @@
      },
      {
       "kind": "p",
-      "text": "The Hyatt Regency Hotel calls its atrium, the Pualeilani Lobby, which is particularly restful with its massive waterfalls, birds, and plants. If you have time to spare (if not, please do come back), visit the Ho‘okela Hawaiian Heritage and Culture Center on the 2nd Floor, Diamond Head Tower (Ho‘okela means ‘excellence’.) Monday through Friday 8 to 3. This the place where you will experience true Hawaiian culture."
+      "text": "The Hyatt Regency Hotel calls its atrium, the Pualeilani Lobby, which is particularly restful with its massive waterfalls, birds, and plants."
      },
      {
       "kind": "direction",

@@ -316,3 +316,5 @@
 - New scripts/privacy/check_manifest.py checks app.json against every library's own manifest.
 - New docs/STORE_PRIVACY.md with draft answers for App Store "App Privacy" and Google Play "Data safety".
 - Logged Veneeta's 19 Nov emails in docs/FEEDBACK.md.
+
+- 2026-11-22: From Veneeta's emails "walk III" and "Delete this in Walk III": Walk III pin 13 moved from the water onto land where stop 13 meets her dotted line; the Ho‘okela paragraph removed from Walk III stop 14. Chapter-by-chapter go/no-go list of possibly dated text sent to her.
