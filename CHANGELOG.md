@@ -2,6 +2,7 @@
 
 ## 2026-11-22
 
+- Welcome screens: a Skip button on every page but the last, so people can start right away. The last page says what is free: Walk IV, Kalākaua Avenue, stops 1 to 5, no account needed (from src/config.ts). The arrival page now says alerts need location, asked when you start a walk, instead of "Your phone knows when you arrive". The page dots read as "Page 1 of 3" to VoiceOver and TalkBack, and with Reduce Motion on the pages change without sliding.
 - The camera feature ("What am I looking at?") shows as Coming soon until its server endpoint is deployed: the home screen button is hidden, the Profile row is greyed out, and the unlock screen says coming soon. Setting EXPO_PUBLIC_LENS_ENDPOINT turns it back on everywhere.
 
 ## 2026-11-21 · The book's front matter in About
