@@ -106,3 +106,38 @@ We store no addresses, phone numbers, birthdates, or payment details.
 
 ## Rights and legal
 - See `legal/CHECKLIST.md`. Publisher permission from Island Heritage is required before launch.
+
+## 2026-11-18 · Camera: "What am I looking at?"
+- **How it is normally done:**
+  - Apple: "Request permission only when your app clearly needs access", "ideally, wait to request permission until people actually use an app feature that requires access", and "Request access only to data that you actually need." A custom screen before the system alert may have only one button, titled like "Continue", never "Allow", and no way to leave without seeing the alert.
+  - Android: "Ask for a permission in context." If someone says no, "Minimize functionality loss", "Be specific. Don't display a generic message", "Don't block the user interface", and accept their choice without pressure. After a second "Deny" the system stops showing the prompt.
+  - Phone compasses report their own calibration. Expo's `watchHeadingAsync` gives 0 to 3 (on iOS 1 means up to 50 degrees of uncertainty). Google Maps shows a wider beam when the compass is off and tells people to move the phone in a figure 8. Phone compasses wobble by several degrees and get worse near strong magnetic fields (PeakVisor).
+  - Expo Camera: `skipProcessing: true` skips the whole pipeline, so `quality` is ignored and the photo can arrive sideways. The camera config plugin adds the microphone permission unless told not to.
+- **What we chose:**
+  - Ask for the camera, then location, right after the walker taps "What am I looking at?". No pre-alert screen: the tap is the context, and the purpose strings say why. The old "Allow camera / Not now" screen used the word Apple says to avoid.
+  - Camera refused: the screen still works from location and compass, says so in one line, and offers a quiet link to turn the camera on (Settings once the system stops asking).
+  - Location refused: say exactly what does not work and offer "Try again" or "Open Settings". Before, the screen said "Finding your location..." forever.
+  - Smooth the compass on the circle and re-rank only after a 3 degree change, so the answer holds still. When the compass reports low calibration, show the figure 8 tip.
+  - Be honest about matches. Without the photo service, or when the photo check fails or is unsure, the card says "Probably in view", never "You are looking at". The server and the app both accept only a stop id from the candidates sent.
+  - Photo minimization: one small upright JPEG (quality 0.4, no EXIF, so no GPS tags), deleted from the phone right after the check, 12 second timeout. The server refuses anything over about 1.5 MB or more than 5 candidates before calling the paid vision API.
+  - Removed the microphone permission (iOS and Android) and the unused barcode scanner from the camera plugin, since we never record video or scan codes.
+  - Screen reader: the result card, read-aloud button, and photo button have spoken labels, and changes to the best guess are announced.
+- **Still open:** the lens Edge Function is deployed with `--no-verify-jwt`, so anyone with the URL can call it. Supabase's default is `verify_jwt = true`; with the new publishable keys the function should check the caller itself (`withSupabase({ auth: 'publishable' })`). Do this before the photo service is switched on.
+- Sources: developer.apple.com/design/human-interface-guidelines/privacy; developer.android.com/training/permissions/requesting; expo-location 58 types (LocationHeadingObject.accuracy); expo-camera 58 types (CameraPictureOptions.skipProcessing); notebookcheck.net/Google-Maps-will-show-if-your-compass-is-uncalibrated-on-Android.177474.0.html; peakvisor.com/en/news/most-precise-compass.html; supabase.com/docs/guides/functions/auth
+
+## 2026-11-21 · Security: database rules and limits on paid services
+- **How it is normally done:**
+  - Supabase: "Always add 'authenticated' to the approved roles instead of nothing or public" in each policy, and never rely on `auth.uid()` alone to keep the anon role out (RLS Performance and Best Practices).
+  - Supabase: "RLS doesn't apply to functions, so grant `execute` only to the roles that need to call them. Review every `security definer` function carefully" (Securing your API). The advisors flag a mutable search path (lint 0011) and security definer functions callable by anon or authenticated (lints 0028, 0029). Fix: `set search_path = ''`, schema-qualified names, revoke execute.
+  - Supabase's rate-limiting guide limits Edge Functions per user ID from Supabase Auth (its example uses Upstash Redis). Its API guide rate-limits per IP from `x-forwarded-for`, with counts in a private table.
+  - OWASP API Security Top 10 (API4:2023, Unrestricted Resource Consumption): set spending limits and rate limits on any endpoint that calls a paid third-party service.
+- **What we chose:**
+  - All three policies name `to authenticated`; anon has no table grants.
+  - `handle_new_user` uses `search_path = ''`, trims the name to 80 characters, and can't be called through the API.
+  - CHECK constraints on every column the phone writes (added NOT VALID so they never block on old rows).
+  - The lens function counts each photo check in `private.lens_usage` through `public.lens_take`, which only the service-role key inside the function can call. Caps per day (Hawaii time): 60 per signed-in walker, 40 per guest network, 1,500 overall, all adjustable with function secrets without a new app release.
+  - Postgres instead of Upstash: no new vendor or account, and one count per photo is light work.
+  - Guests are not forced to sign in (Apple: don't require an account for features that don't need one). Their network address is hashed with a secret and the date, so the stored key can't be traced back and changes daily.
+  - When the counter can't be reached, the function refuses instead of spending, and the app falls back to location and compass.
+- **For Nick, in dashboards (not code):** set a monthly spend limit for the Anthropic API key in the Anthropic Console, and in Supabase Auth turn on leaked password protection and CAPTCHA if email sign-up is used.
+- Sources: supabase.com/docs/guides/troubleshooting/rls-performance-and-best-practices-Z5Jjwv; supabase.com/docs/guides/api/securing-your-api; supabase.com/docs/guides/observability/advisors; supabase.com/docs/guides/functions/examples/rate-limiting; owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/

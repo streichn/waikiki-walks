@@ -34,3 +34,5 @@
 - "Pin 15 should be between 14 & 16." Fixed: pin 15 sits on her dotted line between 14 and 16, at the point closest to the printed 15.
 - "Pin 16 should be on the same line (no loop), then the line to 17 should not cut through the building; just along the side." Fixed: pin 16 on her line; the 16 to 17 line follows her dotted line along the edge of the park.
 - "At the end of the paragraph that starts: In the late-1800s. Add: Bob Magoon, who we 'met' at stop 7, was the great-grandson of Chun Afong!" Fixed (Walk II stop 16), her wording.
+## 2026-11-21 · Check at 06:54Z
+- No new app comments from Veneeta since 20 Nov. Her 20 Nov 15:30Z note in "Good morning from Nicholas and Claude" is personal. The "Fwd: MAPS!" forward of Jason Nakano's map files (19 Nov) was handled in a live session (book/cartographer/). Her open questions (Walk XI red note near stop 6, permission for Jason's maps) are still waiting for her.
