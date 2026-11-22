@@ -276,3 +276,8 @@
 - On Android the screen says to choose "Allow all the time" for alerts with the app closed, as Android 11 and later only offers that option on a settings page.
 - If location is off, "turn on location" on the walk screen asks again, or opens the app's Settings page if the phone will not ask again.
 - Coming back from Settings with location now allowed starts following the walk right away, without leaving and reopening the walk.
+## 2026-11-19 · Privacy manifest and store privacy answers
+- iOS privacy manifest in app.json: no tracking, the required-reason APIs our libraries use, and the five data types the app collects (email, name, user ID, purchase history, walk progress). Location stays on the phone and is not listed.
+- New scripts/privacy/check_manifest.py checks app.json against every library's own manifest.
+- New docs/STORE_PRIVACY.md with draft answers for App Store "App Privacy" and Google Play "Data safety".
+- Logged Veneeta's 19 Nov emails in docs/FEEDBACK.md.
