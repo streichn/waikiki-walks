@@ -5,7 +5,7 @@ import { legPath, onMap, PIN, PIN_HERE, ROUTE_DOTS, SIDE_TRIP, sidePaths, TRAIL,
 import { alongLine, lineUpTo } from '../lib/polyline';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
-import { useTheme } from '../theme';
+import { readableOn, useTheme } from '../theme';
 
 export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void; zoomBy: (dir: 1 | -1) => void };
 

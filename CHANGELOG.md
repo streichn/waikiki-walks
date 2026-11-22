@@ -249,3 +249,13 @@
 - Android: arrival alerts have their own "Arrival alerts" channel (high importance, shows on the Lock Screen), created before the Android 13 permission prompt.
 - Tapping an arrival alert opens that stop even when the tap is what launched the app from closed.
 - Settings: if notifications or background location are off, a short note under Arrival alerts says what that means, with an "Open phone Settings" link.
+## 2026-11-18 · Readable in light and dark mode
+- Unlock buttons, the "Keep reading with Veneeta" banner, the read-aloud button and the "Continue" home card now use dark text on pink in dark mode. White on that pink measured 2.4:1; it is now 7.5:1.
+- Home card text and icon follow the card's color (pink, green or teal) in both modes, instead of white and gold everywhere.
+- Light mode pink deepened slightly (#D6336C to #C2255C) so white text on it and pink icons pass 4.5:1. The hibiscus drawings keep the original color.
+- Gold info, bus, gift and ribbon icons use a darker gold on light backgrounds (was 2:1, now 4.6:1 or better). Gold badges keep their color.
+- Stop number badges and map pins pick white or dark numbers by contrast with the walk's color; locked stops use a darker grey.
+- "Delete account" uses a theme red that passes in both modes.
+- Dark mode: the book map viewer sits on the dark background instead of a bright cream page edge.
+- Photos and book maps are left alone by Smart Invert, so they never show as negatives.
+- New scripts/check_contrast.py checks every theme color pair against WCAG in both modes.

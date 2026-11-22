@@ -31,7 +31,7 @@ export function T({ children, style, variant = 'body', numberOfLines, selectable
 export function Button({ label, onPress, icon, kind = 'primary', loading, style, disabled }: { label: string; onPress: () => void; icon?: keyof typeof Ionicons.glyphMap; kind?: 'primary' | 'accent' | 'ghost' | 'outline'; loading?: boolean; style?: ViewStyle; disabled?: boolean }) {
   const t = useTheme();
   const bg = kind === 'primary' ? t.primary : kind === 'accent' ? t.accent : 'transparent';
-  const fg = kind === 'primary' ? t.primaryText : kind === 'accent' ? '#fff' : t.primary;
+  const fg = kind === 'primary' ? t.primaryText : kind === 'accent' ? t.accentText : t.primary;
   return (
     <Pressable
       accessibilityRole="button"

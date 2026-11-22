@@ -72,7 +72,7 @@ export default function Profile() {
 
       <Card style={{ gap: 10 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Ionicons name={isPro ? 'ribbon' : 'lock-open'} size={20} color={isPro ? t.gold : t.primary} />
+          <Ionicons name={isPro ? 'ribbon' : 'lock-open'} size={20} color={isPro ? t.goldInk : t.primary} />
           <T variant="h2">{isPro ? 'All twelve walks unlocked' : 'Free preview'}</T>
         </View>
         <T variant="small">

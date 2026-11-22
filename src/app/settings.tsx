@@ -247,7 +247,7 @@ function Row({ label, onPress, danger }: { label: string; onPress: () => void; d
   const t = useTheme();
   return (
     <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 8, minHeight: 44 }}>
-      <T style={{ flex: 1, color: danger ? '#D33' : t.text }}>{label}</T>
+      <T style={{ flex: 1, color: danger ? t.danger : t.text }}>{label}</T>
       <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
     </Pressable>
   );
