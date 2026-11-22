@@ -20,16 +20,41 @@ export function isConfigured() {
   return configured;
 }
 
-/** When the newest week pass runs out, or null if there is none. */
+const DAY_MS = 86400000;
+
+/**
+ * When a run of week passes ends. Passes stack: a pass bought while another is still active
+ * starts when the active one ends, so a walker never loses days they paid for.
+ */
+export function passEnd(purchaseTimes: number[], days: number = PLANS.weekPass.days): number | null {
+  if (!purchaseTimes.length) return null;
+  let end = 0;
+  for (const t of [...purchaseTimes].sort((a, b) => a - b)) end = Math.max(end, t) + days * DAY_MS;
+  return end;
+}
+
+/** When the walker's week pass runs out, or null if they never bought one. */
 export function weekPassExpiry(info: CustomerInfo): Date | null {
-  const passes = info.nonSubscriptionTransactions.filter((t) => t.productIdentifier === PLANS.weekPass.productId);
-  if (!passes.length) return null;
-  const latest = Math.max(...passes.map((t) => Date.parse(t.purchaseDate)));
-  return new Date(latest + PLANS.weekPass.days * 86400000);
+  const times = info.nonSubscriptionTransactions
+    .filter((t) => t.productIdentifier === PLANS.weekPass.productId)
+    .map((t) => Date.parse(t.purchaseDate))
+    .filter((n) => Number.isFinite(n));
+  const end = passEnd(times);
+  return end === null ? null : new Date(end);
+}
+
+/** Whether the walker owns the forever unlock (not just a pass). */
+export function ownsForever(info: CustomerInfo): boolean {
+  return Boolean(info.entitlements.active[REVENUECAT.entitlement]);
+}
+
+/** "Wed, Nov 25, 3:40 PM" in the walker's own locale. */
+export function formatPassEnd(ms: number): string {
+  return new Date(ms).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
 
 function hasAccess(info: CustomerInfo) {
-  if (info.entitlements.active[REVENUECAT.entitlement]) return true;
+  if (ownsForever(info)) return true;
   const exp = weekPassExpiry(info);
   return Boolean(exp && exp.getTime() > Date.now());
 }
@@ -37,7 +62,8 @@ function hasAccess(info: CustomerInfo) {
 function apply(info: CustomerInfo) {
   useAccount.getState().setPro(hasAccess(info));
   const exp = weekPassExpiry(info);
-  useAccount.getState().setPassExpiry(exp && exp.getTime() > Date.now() ? exp.getTime() : undefined);
+  // A forever owner has no pass end to show, even if they bought a pass first.
+  useAccount.getState().setPassExpiry(!ownsForever(info) && exp && exp.getTime() > Date.now() ? exp.getTime() : undefined);
 }
 
 export async function initPurchases(appUserId?: string) {

@@ -8,7 +8,8 @@ import { Hibiscus } from '../../components/Flora';
 import { Button, Card, T } from '../../components/ui';
 import { walks } from '../../data';
 import { signOut, updateDisplayName } from '../../lib/auth';
-import { manageSubscriptionUrl } from '../../lib/purchases';
+import { formatPassEnd } from '../../lib/purchases';
+import { TRIAL } from '../../config';
 import { useAccount, useProgress } from '../../store';
 import { useTheme } from '../../theme';
 
@@ -77,21 +78,13 @@ export default function Profile() {
         <T variant="small">
           {isPro
             ? passExpiry
-              ? `Your 7-day pass runs until ${new Date(passExpiry).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. Mahalo for supporting the book.`
-              : 'Mahalo for supporting the book.'
-            : 'Unlock every walk, every stop, and read-aloud narration. Walks work without signal.'}
+              ? `Your 7-day pass runs until ${formatPassEnd(passExpiry)}. It never renews. Mahalo for supporting the book.`
+              : 'All twelve walks are yours for good. Mahalo for supporting the book.'
+            : `Walk ${TRIAL.walkId}, stops 1 to ${TRIAL.freeStops}, is free. Unlock every walk and every stop with a one-time purchase.`}
         </T>
-        {isPro ? (
-          <Button
-            kind="outline"
-            label="Manage subscription"
-            onPress={async () => {
-              const url = await manageSubscriptionUrl();
-              if (url) Linking.openURL(url);
-            }}
-          />
-        ) : (
-          <Button kind="accent" icon="sparkles" label="Unlock all walks" onPress={() => router.push('/paywall')} />
+        {/* Nothing here renews, so there is no subscription to manage. Pass holders can extend or keep the walks for good. */}
+        {isPro && !passExpiry ? null : (
+          <Button kind="accent" icon="sparkles" label={passExpiry ? 'Add days or keep forever' : 'Unlock all walks'} onPress={() => router.push('/paywall')} />
         )}
       </Card>
 

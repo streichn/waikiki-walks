@@ -229,3 +229,13 @@
 - New "Without signal" section in Settings, including the tip to turn off mobile data rather than use Airplane mode.
 - Fixed the "offline maps" claim on the profile screen; added a "Works without signal" line to the paywall.
 - Accessibility: Settings switches, rows, and voice choices now have screen reader labels, roles, and states; rows are at least 44 points tall.
+## 2026-11-18 · Clearer paywall: what is free, what you get, when a pass ends
+- Paywall says what stays free (Walk IV stops 1 to 5, plus every walk's overview, map and first stop), worded from src/config.ts.
+- Plan notes say how long each lasts: "for 7 days from purchase" and "on this trip and every visit after".
+- Fine print under the button changes with the plan: one charge, the exact date and time a pass would end, and that it never renews.
+- "BEST VALUE" badge replaced with "NEVER EXPIRES", which is literally true.
+- Week passes stack: a pass bought while one is active adds 7 days instead of restarting the clock. A pass holder sees "Add 7 days" and when the pass runs.
+- A forever owner who opens the paywall is told everything is already theirs.
+- Plans read as a radio group with checked state for VoiceOver and TalkBack.
+- Profile: removed the "Manage subscription" button (nothing renews, so there was nothing to manage); pass holders get "Add days or keep forever".
+- Web preview paywall and profile card match.
