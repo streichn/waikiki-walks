@@ -65,7 +65,7 @@ Each was checked against the book PDF, so these are in the book itself, not from
 - Walk II stop 17 and a photo caption: "Chung Afong" where the rest of the book has "Chun Afong".
 - Walk VII stop 2: "father of of Princess Ka‘iulani".
 - Walk VIII stop 25: "Hawaiian Planation style" (Plantation).
-- Walks IX and X: "Lili‘uokanlani", three times (Lili‘uokalani).
+- Walks V to IX: "Lili‘uokanlani", three times (book pages in part 2: 14, 75, 80; Lili‘uokalani).
 - Walk X stop 6: "McCulley" twice; the street and the rest of the book have McCully.
 - Walk X stop 21: "in the the Richardsonian Romanesque style".
 - Walk XI stop 22: "Kauwla‘a"; elsewhere Kauwala‘a.
