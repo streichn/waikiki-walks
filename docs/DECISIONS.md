@@ -203,3 +203,20 @@ We store no addresses, phone numbers, birthdates, or payment details.
   - Plans are a radio group for screen readers, with the badge hidden from them (the label already says it).
 - **Why:** visitors decide in seconds on a sidewalk. Clear duration and "never renews" remove the main worry people have about tour apps, and it is what App Review checks.
 - Sources: conductatlas.com/platform/apple/apple-app-store-review-guidelines/provision/CA-P-018923 (guideline 3.1.2 text); revenuecat.com/guides/revenuecat-replit/your-paywall-show-users-what-they-re-buying; shakaguide.com/article/app-faqs; support.voicemap.me/what-am-i-paying-for; appshunter.io/ios/app/417207307/reviews/7 (GPSmyCity reviews).
+## Arrival alerts and the Live Activity (2026-11-18)
+- **How it is normally done:**
+  - Apple: a Live Activity is for a task with a clear start and end (under eight hours), shows only what people need at a glance, is updated only when content changes, and ends as soon as the task ends. "Don't use push notifications alongside Live Activities for the same updates" applies to remote pushes; tour apps still post a local alert on arrival because the phone is in a pocket.
+  - Apple: avoid several notifications for the same thing; they fill Notification Center and people turn off all of an app's notifications. Keep content short and don't tell people what to do inside the app.
+  - Android: since Android 8 every notification belongs to a channel the user can tune, and on Android 13+ the notification permission prompt appears only after the app creates a channel. Expo's guide creates the channel first, then asks.
+  - Expo Router guide: handle a notification tap both with the listener and with `getLastNotificationResponse()`, so a tap that launches the app from closed still opens the right screen, then clear it.
+  - GPS tour apps (VoiceMap, Action Tour Guide, Shaka Guide) trigger audio or an alert as you approach each stop, in order, with the phone in a pocket.
+- **What we chose:**
+  - One Live Activity per walk (no duplicates when the walk screen reopens), "You are at" vs "Next" wording, and updates only when the text changes.
+  - The background geofence task now checks the same things as the walk screen: the walk is active, the stop is ahead and not yet reached, the stop is unlocked, and alerts are on. It waits for saved data to load first, since the OS can wake the app with nothing loaded.
+  - A single notification identifier, so each arrival replaces the last; a per-walk thread identifier groups them; ending a walk clears it.
+  - An Android "Arrival alerts" channel at high importance, created at startup and again just before asking permission.
+  - A Settings note when notifications or background location are blocked, with a link to the phone's Settings, instead of failing silently.
+- **Not done, and why:**
+  - Time-sensitive notifications (break through Focus) need an Apple entitlement and a strong case; a walking tour does not need to break through Focus.
+  - expo-live-activity 0.4.2 ends the activity with immediate dismissal and no stale date. Apple suggests a short custom dismissal (15 to 30 minutes) with a summary. That needs a library update or a config plugin; left for later.
+- Sources: developer.apple.com/design/human-interface-guidelines/live-activities; developer.apple.com/design/human-interface-guidelines/notifications; docs.expo.dev/versions/latest/sdk/notifications (channels before the Android 13 prompt, getLastNotificationResponse with Expo Router); developer.android.com/about/versions/13/changes/notification-permission; apps.apple.com/us/app/id852027939 (VoiceMap: GPS-triggered audio with the phone in a pocket).

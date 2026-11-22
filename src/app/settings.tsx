@@ -2,7 +2,9 @@ import Slider from '../components/Slider';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Alert, Linking, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import * as Location from 'expo-location';
+import * as Notifications from 'expo-notifications';
+import { Alert, AppState, Linking, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import type * as Speech from 'expo-speech';
 import { Card, Segmented, T } from '../components/ui';
 import { APPLE_MANUAL_REVOKE_URL, deleteAccount } from '../lib/auth';
@@ -43,6 +45,7 @@ export default function Settings() {
 
       <Section title="Walking">
         <Toggle label="Arrival alerts" hint="Tell me when I reach a stop" value={s.arrivalAlerts} onChange={(v) => s.set({ arrivalAlerts: v })} />
+        {s.arrivalAlerts ? <AlertsStatus /> : null}
         <T variant="small" style={{ marginTop: 8 }}>
           Arrival distance: {s.arrivalRadius} m (about {Math.round(s.arrivalRadius * 3.28)} ft)
         </T>
@@ -179,6 +182,50 @@ function Section({ title, children }: { title: string; children: React.ReactNode
     <View style={{ gap: 8 }}>
       <T variant="label">{title}</T>
       <Card style={{ gap: 10 }}>{children}</Card>
+    </View>
+  );
+}
+
+/**
+ * If the phone blocks what arrival alerts need, say so in plain words and offer the
+ * phone's Settings. Nothing shows before the walker has been asked (that happens when a walk starts).
+ */
+function AlertsStatus() {
+  const t = useTheme();
+  const [notes, setNotes] = useState<string[]>([]);
+  useEffect(() => {
+    const check = async () => {
+      const out: string[] = [];
+      const n = await Notifications.getPermissionsAsync().catch(() => undefined);
+      if (n && n.status === 'denied') out.push('Notifications are off for Waikīkī Walks, so arrival alerts show only while the app is open.');
+      const fg = await Location.getForegroundPermissionsAsync().catch(() => undefined);
+      const bg = await Location.getBackgroundPermissionsAsync().catch(() => undefined);
+      if (fg?.status === 'granted' && bg?.status === 'denied') {
+        out.push(
+          Platform.OS === 'ios'
+            ? 'Location is set to While Using the App. Choose Always to get alerts with your phone in your pocket.'
+            : 'Location is allowed only while using the app. Choose Allow all the time to get alerts with your phone in your pocket.',
+        );
+      } else if (fg?.status === 'denied') {
+        out.push('Location is off for Waikīkī Walks. You can still walk with the Next button.');
+      }
+      setNotes(out);
+    };
+    check();
+    const sub = AppState.addEventListener('change', (st) => st === 'active' && check());
+    return () => sub.remove();
+  }, []);
+  if (!notes.length) return null;
+  return (
+    <View style={{ marginTop: 10, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: t.border, gap: 6 }} accessibilityRole="summary">
+      {notes.map((x) => (
+        <T key={x} variant="small">
+          {x}
+        </T>
+      ))}
+      <Pressable onPress={() => Linking.openSettings()} accessibilityRole="button" hitSlop={8}>
+        <T style={{ color: t.primary, fontFamily: t.font.bodyBold }}>Open phone Settings</T>
+      </Pressable>
     </View>
   );
 }

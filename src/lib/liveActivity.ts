@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import type { Walk } from '../data/types';
+import { useProgress } from '../store';
 
 /**
  * iOS Live Activity: the walk shows on the Lock Screen and in the Dynamic Island,
@@ -8,6 +9,8 @@ import type { Walk } from '../data/types';
  */
 
 let activityId: string | undefined;
+let activityWalkId: string | undefined;
+let lastShown = ''; // Apple: update a Live Activity only when its content changes
 
 function mod() {
   if (Platform.OS !== 'ios') return undefined;
@@ -21,8 +24,10 @@ function mod() {
 
 function state(walk: Walk, index: number) {
   const stop = walk.stops[index];
+  // Once the walker has reached the stop, say so; before that it is the stop they are heading to.
+  const here = useProgress.getState().progress[walk.id]?.visited.includes(index);
   return {
-    title: stop ? `Next: ${stop.title}` : walk.title,
+    title: stop ? `${here ? 'You are at' : 'Next'}: ${stop.title}` : walk.title,
     subtitle: `Walk ${walk.id} · ${walk.title} · Stop ${Math.min(index + 1, walk.stops.length)} of ${walk.stops.length}`,
     progressBar: { progress: walk.stops.length ? index / walk.stops.length : 0 },
   };
@@ -32,14 +37,22 @@ export function start(walk: Walk, index: number) {
   const m = mod();
   if (!m) return;
   try {
-    const id = m.startActivity(state(walk, index), {
+    // Reopening the walk screen must not start a second Live Activity for the same walk.
+    if (activityId && activityWalkId === walk.id) return update(walk, index);
+    if (activityId) end(); // switched to a different walk
+    const st = state(walk, index);
+    const id = m.startActivity(st, {
       backgroundColor: '#0E6E74',
       titleColor: '#FFF6E9',
       subtitleColor: '#BFE7E3',
       progressViewTint: '#F29E4C',
       deepLinkUrl: `/walk/${walk.id}/go`,
     });
-    if (id) activityId = id;
+    if (id) {
+      activityId = id;
+      activityWalkId = walk.id;
+      lastShown = JSON.stringify(st);
+    }
   } catch {
     // Live Activities disabled by the user or unsupported device; the walk still works.
   }
@@ -47,9 +60,13 @@ export function start(walk: Walk, index: number) {
 
 export function update(walk: Walk, index: number) {
   const m = mod();
-  if (!m || !activityId) return;
+  if (!m || !activityId || activityWalkId !== walk.id) return;
+  const st = state(walk, index);
+  const key = JSON.stringify(st);
+  if (key === lastShown) return;
   try {
-    m.updateActivity(activityId, state(walk, index));
+    m.updateActivity(activityId, st);
+    lastShown = key;
   } catch {}
 }
 
@@ -60,4 +77,6 @@ export function end(walk?: Walk) {
     m.stopActivity(activityId, { title: walk ? `Finished ${walk.title}` : 'Walk ended', subtitle: 'Mahalo for walking with us' });
   } catch {}
   activityId = undefined;
+  activityWalkId = undefined;
+  lastShown = '';
 }

@@ -239,3 +239,13 @@
 - Plans read as a radio group with checked state for VoiceOver and TalkBack.
 - Profile: removed the "Manage subscription" button (nothing renews, so there was nothing to manage); pass holders get "Add days or keep forever".
 - Web preview paywall and profile card match.
+## 2026-11-18 · Arrival alerts and the Lock Screen walk, done the standard way
+- One Live Activity per walk. Leaving and reopening the walk screen used to start a second one; now it updates the one already showing.
+- The Live Activity says "You are at: ..." once you reach a stop, and "Next: ..." before. It changes only when something changes, as Apple asks.
+- Background arrival alerts (phone in pocket) now follow the same rules as the walk screen: no alert for a locked stop, a stop already reached, a stop behind you, a walk that has ended, or when Arrival alerts is off in Settings.
+- When the phone wakes the app in the background, it first reads back the saved walk, settings and purchase. Before, it could decide with empty defaults.
+- After an arrival in the background, the alerts move on to the stops ahead.
+- Each new arrival alert replaces the last one, and alerts from one walk group together. Ending a walk clears the last alert.
+- Android: arrival alerts have their own "Arrival alerts" channel (high importance, shows on the Lock Screen), created before the Android 13 permission prompt.
+- Tapping an arrival alert opens that stop even when the tap is what launched the app from closed.
+- Settings: if notifications or background location are off, a short note under Arrival alerts says what that means, with an "Open phone Settings" link.
