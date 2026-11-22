@@ -20,7 +20,8 @@ export function PhotoStrip({ photos, height = 190 }: { photos: Photo[]; height?:
           <Pressable
             key={p.file}
             accessibilityRole="imagebutton"
-            accessibilityLabel={p.caption ?? 'Photo from the book'}
+            accessibilityLabel={`Photo ${i + 1} of ${photos.length}. ${p.caption ?? 'Photo from the book'}`}
+            accessibilityHint="Opens the photo full screen"
             onPress={() => {
               tap();
               setOpen(i);
@@ -40,7 +41,7 @@ export function Lightbox({ photos, index, onClose }: { photos: Photo[]; index: n
   const { width, height } = Dimensions.get('window');
   return (
     <Modal visible={index !== null} animationType="fade" onRequestClose={onClose} statusBarTranslucent>
-      <View style={styles.lb}>
+      <View style={styles.lb} accessibilityViewIsModal>
         <FlatList
           data={photos}
           horizontal
@@ -50,7 +51,7 @@ export function Lightbox({ photos, index, onClose }: { photos: Photo[]; index: n
           keyExtractor={(p) => p.file}
           renderItem={({ item }) => (
             <View style={{ width, height, justifyContent: 'center' }}>
-              <Image accessibilityIgnoresInvertColors source={photo(item.file)} style={{ width, height: height * 0.72 }} contentFit="contain" />
+              <Image accessibilityIgnoresInvertColors source={photo(item.file)} style={{ width, height: height * 0.72 }} contentFit="contain" accessible accessibilityRole="image" accessibilityLabel={item.caption ?? 'Photo from the book'} />
               {item.caption ? (
                 <T style={{ color: '#eee', textAlign: 'center', paddingHorizontal: 24, marginTop: 12 }} variant="italic">
                   {item.caption}
@@ -59,7 +60,7 @@ export function Lightbox({ photos, index, onClose }: { photos: Photo[]; index: n
             </View>
           )}
         />
-        <Pressable accessibilityLabel="Close" onPress={onClose} style={[styles.close, { top: insets.top + 10 }]}>
+        <Pressable accessibilityRole="button" accessibilityLabel="Close photos" onPress={onClose} style={[styles.close, { top: insets.top + 10 }]}>
           <Ionicons name="close" size={26} color="#fff" />
         </Pressable>
       </View>

@@ -41,4 +41,6 @@
 ## 2026-11-21 · Scheduled run, 19:00Z
 - No new email from Veneeta since 20 Nov 15:30Z (personal, already logged).
 - Spelling to ask her about, seen while adding the book's front matter to About (copied as printed, nothing changed): Introduction "from Black Point at Lēʻahi to Portock" (Portlock?); pronunciation guide "Ao Te Roa (New Zealand)" (Aotearoa?); Wahi Pana, Walk I "Mālia– the sacred canoe" (missing space). Status: needs her decision.
+## 2026-11-19 · Run check
+- No new app comments from Veneeta since the 17 Nov "Walk I" notes (all fixed above). Her other recent mail (a heart reply to the good-morning note, and a personal note) is not about the app.
 

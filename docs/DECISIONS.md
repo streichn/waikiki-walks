@@ -231,3 +231,20 @@ Sources:
 - W3C, Understanding SC 1.4.11 Non-text Contrast: https://w3c.github.io/wcag21/understanding/non-text-contrast
 - Android Developers, Material 3 theming in Compose (color roles): https://developer.android.com/codelabs/jetpack-compose-theming
 - React Native accessibilityIgnoresInvertColors (View accessibility props), checked in node_modules/react-native ViewAccessibility.d.ts
+## Accessibility of the stop pages (2026-11-19)
+- **How it is normally done:**
+  - Apple asks for controls of at least 44 x 44 pt (28 pt minimum), about 12 pt of space around buttons, support for larger text (ideally up to 200 percent), a 17 pt default body size, information that does not rely on color alone, and VoiceOver labels for every control. Views that dismiss themselves on a timer are discouraged.
+  - Google asks for touch targets of at least 48 x 48 dp, 8 dp apart.
+  - React Native: mark section titles with the header role so screen readers can jump between them, label every pressable, use `accessibilityViewIsModal` so VoiceOver stays inside a popup, and give an "adjustable" control increment and decrement actions. Tappable words nested inside a paragraph are not reliably reachable with VoiceOver, so the usual fix is to also offer them as separate buttons.
+- **What we chose:**
+  - One heading per stop ("Stop 7, 'Iolani School"), header roles on taglines, book sub-headings and the Side trip box.
+  - Walking directions read with a "Walking direction" prefix.
+  - A visible "Hawaiian words on this stop" row of glossary buttons, in addition to the underlined words in the text. Words and meanings come only from the book's glossary.
+  - Stop action buttons at least 44 pt with a small vertical hitSlop for 48 dp on Android; directions and pager buttons raised to 44 pt.
+  - All stop text, including captions and info notes, follows the in-app Text size slider; the system text size also applies on top.
+  - The read-aloud highlight adds a gold left bar so it is not color alone.
+  - The stop panel handle answers VoiceOver swipe up and down; arrivals are announced with `AccessibilityInfo.announceForAccessibility`.
+- **Why:** walkers read in bright sun, often with one hand, and some use larger text or a screen reader. These are the platform defaults, they cost no new data or permissions, and they help everyone, not only screen reader users.
+- **Still to do:** test on a real iPhone with VoiceOver and Accessibility Inspector, and on Android with TalkBack and Accessibility Scanner; then fill in Apple's Accessibility Nutrition Labels in App Store Connect. Check Reduce Motion for the stop panel spring and the arrival banner.
+- Sources: developer.apple.com/design/human-interface-guidelines/accessibility (control size, spacing, text size, color, timers, Accessibility Nutrition Labels); support.google.com/accessibility/android/answer/7101858 (48 dp targets, 8 dp apart); reactnative.dev/docs/accessibility (header role, labels, accessibilityViewIsModal, accessibility actions); codegenes.net/blog/how-can-i-make-a-link-in-a-nested-text-element-accessible-in-react-native (nested Text links and screen readers).
+

@@ -3,7 +3,7 @@ import * as Haptics from 'expo-haptics';
 import * as Location from 'expo-location';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { AccessibilityInfo, Alert, Animated, Linking, PanResponder, Platform, Pressable, ScrollView, type ScrollViewInstance, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { OfflineNote } from '../../../components/OfflineNote';
 import { BookMapPane, type FollowMode, type Layer, LocateButton, MapStyleSwitch, nextFollow, ZoomButtons } from '../../../components/MapControls';
@@ -162,6 +162,8 @@ export default function ActiveWalk() {
     markVisited(walk.id, i);
     goTo(walk.id, i);
     setJustArrived(i);
+    // The arrival banner fades after a few seconds, so screen reader users hear it spoken too.
+    AccessibilityInfo.announceForAccessibility(`You've arrived at stop ${walk.stops[i].n}: ${walk.stops[i].title}`);
     LiveActivity.update(walk, i);
     if (settings.haptics) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => undefined);
     Animated.sequence([Animated.spring(banner, { toValue: 1, useNativeDriver: true }), Animated.delay(4200), Animated.timing(banner, { toValue: 0, duration: 300, useNativeDriver: true })]).start(() => setJustArrived(null));
@@ -276,12 +278,25 @@ export default function ActiveWalk() {
       {stop ? (
         <Animated.View style={[styles.sheet, { backgroundColor: t.bg, height: sheetH }]}>
           <View {...pan.panHandlers} onLayout={(e) => setTopBlockH(Math.round(e.nativeEvent.layout.height))}>
-            <Pressable onPress={cycleSheet} accessibilityRole="adjustable" accessibilityLabel="Resize the stop panel" style={styles.grab}>
+            <Pressable
+              onPress={cycleSheet}
+              accessibilityRole="adjustable"
+              accessibilityLabel="Stop panel size"
+              accessibilityValue={{ text: detent === 'peek' ? 'Map' : detent === 'half' ? 'Map and text' : 'Text' }}
+              accessibilityHint="Swipe up or down to show more text or more map"
+              accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+              onAccessibilityAction={(e) => {
+                const order: Detent[] = ['peek', 'half', 'full'];
+                const k = order.indexOf(detent) + (e.nativeEvent.actionName === 'increment' ? 1 : -1);
+                if (k >= 0 && k < order.length) snapTo(order[k]);
+              }}
+              style={styles.grab}
+            >
               <View style={[styles.handle, { backgroundColor: t.textMuted, opacity: 0.4 }]} />
             </Pressable>
             <View style={[styles.viewSwitch, { backgroundColor: t.cardAlt }]} accessibilityRole="tablist">
               {([['peek', 'map', 'Map'], ['half', 'albums', 'Both'], ['full', 'reader', 'Text']] as const).map(([d, icon, label]) => (
-                <Pressable key={d} accessibilityRole="tab" accessibilityState={{ selected: detent === d }} onPress={() => { tap(); snapTo(d); }} style={[styles.viewBtn, detent === d && { backgroundColor: t.card }]}>
+                <Pressable key={d} accessibilityRole="tab" accessibilityLabel={d === 'half' ? 'Map and text' : label} accessibilityState={{ selected: detent === d }} onPress={() => { tap(); snapTo(d); }} style={[styles.viewBtn, detent === d && { backgroundColor: t.card }]}>
                   <Ionicons name={icon} size={15} color={detent === d ? t.primary : t.textMuted} />
                   <T style={{ fontFamily: t.font.bodyBold, fontSize: 14, color: detent === d ? t.primary : t.textMuted }}>{label}</T>
                 </Pressable>
@@ -320,7 +335,7 @@ export default function ActiveWalk() {
                 </T>
               </View>
               {!arrivedHere ? (
-                <Pressable onPress={openDirections} accessibilityLabel="Walking directions" style={[styles.dirBtn, { backgroundColor: t.primary }]}>
+                <Pressable onPress={openDirections} accessibilityRole="button" accessibilityLabel="Walking directions" accessibilityHint="Opens your maps app" hitSlop={4} style={[styles.dirBtn, { backgroundColor: t.primary }]}>
                   <Ionicons name="arrow-redo" size={18} color={t.primaryText} />
                 </Pressable>
               ) : null}
@@ -403,11 +418,11 @@ const styles = StyleSheet.create({
   grab: { alignItems: 'center', paddingTop: 9, paddingBottom: 7 },
   handle: { width: 40, height: 5, borderRadius: 3 },
   viewSwitch: { flexDirection: 'row', gap: 4, marginHorizontal: 14, marginBottom: 10, padding: 3, borderRadius: 14 },
-  viewBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, paddingVertical: 7, borderRadius: 11 },
+  viewBtn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, paddingVertical: 7, minHeight: 36, borderRadius: 11 },
   pagerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 14, paddingBottom: 8 },
-  pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 14 },
+  pbtn: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 14, paddingVertical: 8, minHeight: 44, borderRadius: 14 },
   nav: { flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, padding: 12, borderRadius: 18, borderWidth: StyleSheet.hairlineWidth },
-  dirBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  dirBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   readBtn: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 36, paddingHorizontal: 14, borderRadius: 18 },
   audioMode: { width: 76, height: 52, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center', gap: 2 },
   controls: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 10, borderTopWidth: StyleSheet.hairlineWidth },
