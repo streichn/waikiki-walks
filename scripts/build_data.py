@@ -51,6 +51,29 @@ TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, pag
               'II-16': [('Afong and the Chinese in Hawai‘i.', 'Afong and the Chinese in Hawai‘i. Bob Magoon, who we “met” at stop 7, was the great-grandson of Chun Afong!',
                          "Veneeta's addition by email, 21 Nov 2026: end of the paragraph that starts 'In the late-1800s'")],
               'II-04': [('Sandalewood', 'Sandalwood', "the book hyphenates 'Sandale- wood' across a line; joining it left a stray e")]}
+# Typos in the printed book that Veneeta confirmed by email, 22 Nov 2026 ("typos..."), applied everywhere
+# (stop text, titles, photo captions, facts). Each must still be found, or the build stops.
+BOOK_CORRECTIONS = [('Makiki Sream', 'Makiki Stream'), ('Chung Afong', 'Chun Afong'), ('Planation style', 'Plantation style'),
+                    ('Lili‘uokanlani', 'Lili‘uokalani'), ('McCulley', 'McCully'), ('Kauwla‘a', 'Kauwala‘a'),
+                    ('Backman Hall', 'Bachman Hall'), ('Kana‘ina Stret', 'Kana‘ina Street'), ('Sherriff Center', 'Sheriff Center'),
+                    ('Archeology of O‘ahu', 'Archaeology of O‘ahu')]
+BOOK_CORRECTIONS_USED = set()
+
+
+def book_fix(o):
+    if isinstance(o, str):
+        for a, b in BOOK_CORRECTIONS:
+            if a in o:
+                BOOK_CORRECTIONS_USED.add(a)
+                o = o.replace(a, b)
+        return o
+    if isinstance(o, list):
+        return [book_fix(x) for x in o]
+    if isinstance(o, dict):
+        return {k: book_fix(v) for k, v in o.items()}
+    return o
+
+
 # Typos and extraction slips checked against the printed page (scripts/extract/text_fixes.json).
 if os.path.exists(f'{ROOT}/scripts/extract/text_fixes.json'):
     for _sid, _fx in json.load(open(f'{ROOT}/scripts/extract/text_fixes.json')).items():
@@ -769,6 +792,7 @@ for w in walks:
     cands.sort(key=lambda x: -x[0])
     for sc, sent, sid in cands[:8]:
         facts.append({'id': f'f{len(facts) + 1}', 'text': sent, 'walkId': w['id'], 'stopId': sid})
+facts = book_fix(facts)
 json.dump(facts, open(f'{OUT}/facts.json', 'w'), ensure_ascii=False, indent=1)
 
 # Glossary: definitions the book gives inline, e.g. "mo‘olelo (legend)" or "kapu ‘taboo,’".
@@ -931,6 +955,10 @@ for sec in about:
     sec.pop('paragraphs', None)
 json.dump(about, open(f'{OUT}/about.json', 'w'), ensure_ascii=False, indent=1)
 
+walks = book_fix(walks)
+_missing = [a for a, _ in BOOK_CORRECTIONS if a not in BOOK_CORRECTIONS_USED]
+if _missing:
+    raise SystemExit(f'book corrections not found: {_missing}')
 json.dump(walks, open(f'{OUT}/walks.json', 'w'), ensure_ascii=False, indent=1)
 with open(f'{ROOT}/review/stops_review.csv', 'w', newline='') as fh:
     wr = csv.DictWriter(fh, fieldnames=list(review[0].keys()))

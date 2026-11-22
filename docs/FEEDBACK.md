@@ -65,3 +65,7 @@
 
 ## 2026-11-22 · Scheduled run, 13:00Z
 - No new app comments from Veneeta since 21 Nov 23:28Z ("Walk I I", already fixed). Her 21 Nov 19:51Z note in "Good morning from Nicholas and Claude" is personal.
+
+## 2026-11-22 · Email "typos..."
+- Veneeta answered all twelve possible book typos: Stream, Chun, one "of", Plantation, Lili‘uokalani, McCully, one "the", Kauwala‘a, Bachman, Street, Stan Sheriff, Archaeology. Status: fixed (live session, 22 Nov).
+- Still open with her: the places that may have changed, the red ink note near Walk XI stop 6, and permission for Jason's maps.

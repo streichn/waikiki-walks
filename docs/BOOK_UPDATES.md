@@ -77,7 +77,8 @@ These say "new", "recent" or similar; they read differently every year the book 
 Other named businesses and websites (for example Duke's, the Hau Tree, South Shore Grill, Diamond Head Market, kuileicliffs.org, whiteterns.org, rhb-music.com) can be checked the same way when she reaches those walks.
 
 
-## Possible typos in the printed book (asked Veneeta 21 Nov 2026; not changed in the app until she confirms)
+## Typos in the printed book (asked Veneeta 21 Nov 2026; she confirmed all twelve on 22 Nov, and they are fixed in the app)
+Fixed by BOOK_CORRECTIONS in scripts/build_data.py (stop text, titles, captions, facts). Walk VII stop 2 and Walk X stop 21 were already fixed through scripts/extract/text_fixes.json.
 Each was checked against the book PDF, so these are in the book itself, not from our text extraction.
 - Walk II stop 4: "Makiki Sream" (Stream).
 - Walk II stop 17 and a photo caption: "Chung Afong" where the rest of the book has "Chun Afong".

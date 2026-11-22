@@ -2,6 +2,7 @@
 
 ## 2026-11-22
 
+- Veneeta confirmed the twelve typos in the printed book, and the app now has them corrected: Makiki Stream, Chun Afong (stop 17 and a caption), Hawaiian Plantation style, Lili‘uokalani (four places), McCully (Walk X stop 6 title and text), Kauwala‘a, Bachman Hall, Kana‘ina Street, Stan Sheriff Center, and Archaeology of O‘ahu.
 - From #29, only the "Did you know?" card change: with Reduce Motion or VoiceOver/TalkBack on, it waits for a tap instead of changing every 9 seconds, and it reads as a button. The rest of #29 (maps, stop sheet and arrival banner following Reduce Motion) is left out for now.
 - Welcome screens: a Skip button on every page but the last, so people can start right away. The last page says what is free: Walk IV, Kalākaua Avenue, stops 1 to 5, no account needed (from src/config.ts). The arrival page now says alerts need location, asked when you start a walk, instead of "Your phone knows when you arrive". The page dots read as "Page 1 of 3" to VoiceOver and TalkBack, and with Reduce Motion on the pages change without sliding.
 - The camera feature ("What am I looking at?") shows as Coming soon until its server endpoint is deployed: the home screen button is hidden, the Profile row is greyed out, and the unlock screen says coming soon. Setting EXPO_PUBLIC_LENS_ENDPOINT turns it back on everywhere.
