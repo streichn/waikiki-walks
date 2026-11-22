@@ -271,3 +271,8 @@
 - The glossary card and the photo viewer keep screen reader focus inside until closed; photo buttons say "Photo 2 of 3" and the caption.
 - Preview: the same "Hawaiian words on this stop" row, headings and reading bar.
 
+## 2026-11-19 · Asking for location the standard way
+- The first time a walk starts, a short screen explains what location is for (where you are, distance to the next stop, alerts even when the app is closed or not in use) and that it stays on the phone, then one "Continue" button opens the phone's own prompt. Before, three system prompts (location, notifications, background location) appeared at once with no explanation. (src/components/LocationPrimer.tsx)
+- On Android the screen says to choose "Allow all the time" for alerts with the app closed, as Android 11 and later only offers that option on a settings page.
+- If location is off, "turn on location" on the walk screen asks again, or opens the app's Settings page if the phone will not ask again.
+- Coming back from Settings with location now allowed starts following the walk right away, without leaving and reopening the walk.
