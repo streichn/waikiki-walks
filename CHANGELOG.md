@@ -176,3 +176,9 @@
 - Preview: the phone's compass sets the heading when standing still (iPhone asks once, on Start).
 - Book map (preview and app): the walker's dot has a heading wedge like the street map, turned for each map's own orientation (her maps are mauka-up, not north-up).
 - App: the street-only buttons hide on the book map, which keeps its own follow-me button beside + and -.
+
+## 2026-11-21 · Veneeta's Walk II notes
+- Pins 15 and 16 sit on her dotted line (no loop), and the line from 16 to 17 follows her route along the side of the park. carto_maps.py starts and ends legs at author-placed pixel pins.
+- Walk II stop 16 ends with her new sentence about Bob Magoon and Chun Afong.
+- Walk II stop 4: "Sandalwood" (the book's line-break hyphen had left "Sandalewood").
+- docs/BOOK_UPDATES.md lists twelve possible typos in the printed book, sent to her to confirm.

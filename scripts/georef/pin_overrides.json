@@ -65,7 +65,17 @@
    "lat": 21.2825023,
    "lng": -157.8338093,
    "why": "Veneeta 19 Nov 2026: pin 18 should be on the other side of Kalia Rd (mirrored across the road)"
-  }
+  },
+  "15": [
+   645,
+   647,
+   "Veneeta 21 Nov 2026: pin 15 should be between 14 and 16. Placed on her dotted line where it passes closest to the printed 15 (cartographer's map)"
+  ],
+  "16": [
+   749,
+   656,
+   "Veneeta 21 Nov 2026: pin 16 should be on the same line, no loop. Placed on her dotted line where it passes closest to the printed 16 (cartographer's map)"
+  ]
  },
  "IV": {
   "19": {

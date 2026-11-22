@@ -29,3 +29,8 @@
 - "Pin 10 move to where 11 is, and move 11 over a little bit." Status: fixed.
 - "Stop 13 is actually a side trip, a purple line, 13A through 13D." Status: fixed (side-trip pin and line; 13A to 13D in the side-trip box).
 - "Pin 18 should be on the other side of Kalia Rd." Status: fixed.
+
+## 2026-11-21 · Walk II (email "Walk I I")
+- "Pin 15 should be between 14 & 16." Fixed: pin 15 sits on her dotted line between 14 and 16, at the point closest to the printed 15.
+- "Pin 16 should be on the same line (no loop), then the line to 17 should not cut through the building; just along the side." Fixed: pin 16 on her line; the 16 to 17 line follows her dotted line along the edge of the park.
+- "At the end of the paragraph that starts: In the late-1800s. Add: Bob Magoon, who we 'met' at stop 7, was the great-grandson of Chun Afong!" Fixed (Walk II stop 16), her wording.

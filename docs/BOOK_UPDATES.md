@@ -57,3 +57,20 @@ These say "new", "recent" or similar; they read differently every year the book 
 ### Not yet checked
 
 Other named businesses and websites (for example Duke's, the Hau Tree, South Shore Grill, Diamond Head Market, kuileicliffs.org, whiteterns.org, rhb-music.com) can be checked the same way when she reaches those walks.
+
+
+## Possible typos in the printed book (asked Veneeta 21 Nov 2026; not changed in the app until she confirms)
+Each was checked against the book PDF, so these are in the book itself, not from our text extraction.
+- Walk II stop 4: "Makiki Sream" (Stream).
+- Walk II stop 17 and a photo caption: "Chung Afong" where the rest of the book has "Chun Afong".
+- Walk VII stop 2: "father of of Princess Ka‘iulani".
+- Walk VIII stop 25: "Hawaiian Planation style" (Plantation).
+- Walks IX and X: "Lili‘uokanlani", three times (Lili‘uokalani).
+- Walk X stop 6: "McCulley" twice; the street and the rest of the book have McCully.
+- Walk X stop 21: "in the the Richardsonian Romanesque style".
+- Walk XI stop 22: "Kauwla‘a"; elsewhere Kauwala‘a.
+- Walk XI stop 44: "Backman Hall"; elsewhere Bachman.
+- Walk XII stop 13: "Kana‘ina Stret" (Street).
+- Walk XII stop 23: "Stan Sherriff Center"; the arena is the Stan Sheriff Center.
+- McAllister's 1933 book is spelled "Archeology of O‘ahu" three times and "Archaeology" once; the published title is Archaeology of Oahu (Bishop Museum Bulletin 104).
+Fixed without asking (our extraction, not the book): Walk II stop 4 "Sandalewood" from the book's line-break hyphen "Sandale- wood".

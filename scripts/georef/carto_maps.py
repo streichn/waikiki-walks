@@ -32,6 +32,7 @@ from intersect import street  # noqa: E402
 from shapely.geometry import LineString  # noqa: E402
 from shapely.ops import unary_union  # noqa: E402
 
+PIN_PX = json.load(open(os.path.join(HERE, 'pin_overrides.json')))  # pixel pins on a walk's map, author-placed
 S = 2.2  # fitting scale (pixels per PDF point): the fit's thresholds are tuned for maps at this scale
 MIN_W = 1300  # small maps are rendered larger so they stay sharp; their fit is scaled to match
 # walk, source PDF, image file, is this the walk's first map
@@ -188,6 +189,10 @@ def main():
         inv = tps_fit(T / 100.0, P, lam)
         snap = {}
         for n, v in out_s[key].items():
+            ov = PIN_PX.get(wid, {}).get(n) if first and len([m for m in MAPS if m[0] == wid]) == 1 else None
+            if isinstance(ov, list) and len(rpts):  # an author-placed pin on her line: start or end the leg exactly there
+                j = int(np.argmin(np.linalg.norm(rpts - np.array(ov[:2], float), axis=1)))
+                snap[int(n)] = tuple(int(t) for t in rpts[j]); continue
             d = np.linalg.norm(pool - np.array(v), axis=1); i = int(np.argmin(d))
             if d[i] < 40 * SR / 1.5:
                 snap[int(n)] = tuple(int(t) for t in pool[i])
