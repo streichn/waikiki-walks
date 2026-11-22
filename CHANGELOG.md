@@ -205,3 +205,6 @@
 - Signed-in walkers send their own sign-in token with a photo check, so their limit is theirs alone. Guest network addresses are hashed with a secret and the date; nothing about the photo, the place or the address is stored, only a count per day, kept for a week.
 - The server refuses anything that is not a JPEG before it reaches the vision service.
 - New migration `server/003_security_and_limits.sql`: policies are for signed-in walkers only ("to authenticated"), guests get no table access, the sign-up function can't be called through the API and has a fixed search path, and size checks stop oversized rows (names, settings, walk numbers, stop ids).
+## 2026-11-21 · Pin audit against Veneeta's maps
+- New `scripts/georef/audit_pins.py` (read-only) checks every pin against the numbers printed on her maps and writes `docs/PIN_AUDIT.md`. `--strict` exits with an error if a pin has no printed number or has drifted off it.
+- First run: 344 pins, 0 rule breaks, 0 pins off her number. 12 pins moved at her request are listed with her reason. Walk IV stops 19 and 20 are printed on the book's own map page but not on the cartographer's map, and share one pin spot.
