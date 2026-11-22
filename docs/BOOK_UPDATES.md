@@ -17,6 +17,24 @@ Clarifications that change how a walk reads, not its wording:
 |---|---|---|---|
 | 2026-11-19 | Walk II, stop 13 | Stop 13 is a side trip (the purple line, 13A to 13D), not part of the main route | Her email "Walk II" |
 
+Typos in the printed book that the app corrects (found 20 Nov 2026; for Veneeta to confirm and for the next printing):
+
+| Walk and stop | Page | Printed | App |
+|---|---|---|---|
+| Walk I, stop 26 | p1-36 | "Queen Lili‘uokalani.." | "Queen Lili‘uokalani." |
+| Walk VII, stop 2 | p2-32 | "father of of Princess Ka‘iulani" | "father of Princess Ka‘iulani" |
+| Walk X, stop 21 | p3-14 | "in the the Richardsonian Romanesque style" | "in the Richardsonian Romanesque style" |
+| Walk XII, stop 10 | p3-66 | "Palani avenues.." | "Palani avenues." |
+| Walk IX, information box | p2-66 | "Mō`ili`ili" (backticks) | "Mō‘ili‘ili" |
+
+Questions about the walk information boxes (found 21 Nov 2026; the app shows them as printed until she answers):
+
+| Walk | Page | What the book prints | Question |
+|---|---|---|---|
+| Walk X | p3-2 | The same bus, time and parking lines as Walk I, word for word: "1.5 hour, 3 miles round trip, 6,000 steps" and parking along Date Street, at the Hale Koa and at Kālia and Saratoga | Is this Walk X's own time and distance, or copied from Walk I? The app shows no time or distance chips for Walk X until she says. |
+| Walk III | p1-59 | "From Lewers Street & Road to Uluniu Avenue & Kalākaua Avenue" | A word seems missing before "Road". Which road? |
+| Walk III | p1-59 | "0.5 to 2 hours, depending upon your imagination" | No question; noted because the app had shown "1.5 to 2 hr" and now shows the book's "0.5 to 2 hr". |
+
 ## B. Possibly out of date (checked 19 Nov 2026)
 
 ### Changed since printing (ask her how to word it)

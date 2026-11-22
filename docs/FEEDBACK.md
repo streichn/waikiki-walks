@@ -50,3 +50,15 @@
 - "last 1/3 of book WTWTT" (18:22Z): no message text, one attachment "WTWTT_150-bc_ ac.pdf". It is byte-for-byte the same file as book/part3_walks_X-XII.pdf (same MD5), with no added notes or marks. Status: nothing to change.
 - "maps" (18:25Z): "It looks like the maps are not in the set I sent you. Can I just take photos on my iPhone and send those to you? You might have a copy of my book at the house." Applies to the walks with no book map in our files: Walk XI stops 7 to 45 and Walk XII stops 15 to 28. Status: needs Nick's decision (reply to her, and whether to use her phone photos or the printed book). Phone photos can work, but extra_maps.py reads numbers and street names from the PDF text, so with photos her numbers and street labels would be marked by hand before fitting. A flat, straight-on, well-lit photo of each map page with all four edges showing makes that reliable.
 - "Good morning" thread (14:29Z): "I will work on my book later this morning". No app comments.
+## 2026-11-20 · Scheduled run, 06:53Z
+- No new app comments from Veneeta since 20 Nov 00:16Z. Her last email ("Fwd: MAPS! 12 walks through time", the cartographer Jason Nakano's original map files) was used in Nick's live session: every walk now uses his maps (main, CLAUDE.md). Questions to her (map permission, red note near Walk XI stop 6, list of possibly dated items) are still open.
+
+
+## 2026-11-20 · Scheduled run, 12:53Z
+- No new app comments from Veneeta since 20 Nov 00:16Z (her forward of Jason Nakano's map files, already handled). Open questions to her are unchanged: map permission, the red note near Walk XI stop 6, and the list of possibly dated items.
+
+## 2026-11-20 · Scheduled run, 18:51Z
+- No new app comments from Veneeta since 20 Nov 00:16Z. Her one new email (15:30Z, "Good morning from Nicholas and Claude") is personal, with no app comments. Open questions to her are unchanged: map permission, the red note near Walk XI stop 6, and the list of possibly dated items.
+
+## 2026-11-21 · Scheduled run, 00:51Z
+- No new email from Veneeta since 20 Nov 15:30Z (already logged as personal). Open questions to her are unchanged (map permission, the red note near Walk XI stop 6, the list of possibly dated items), plus two new ones about the walk information boxes in docs/BOOK_UPDATES.md.

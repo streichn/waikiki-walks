@@ -35,6 +35,10 @@
     flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
     locate: '<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>',
     sparkles: '<path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M19 15l.8 1.7 1.7.8-1.7.8L19 20l-.8-1.7-1.7-.8 1.7-.8z"/>',
+    car: '<path d="M5 16V11l2-5h10l2 5v5H5z"/><path d="M5 11h14"/><circle cx="8" cy="16" r="1.6"/><circle cx="16" cy="16" r="1.6"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+    call: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
     bus: '<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/>',
     gift: '<rect x="3" y="8" width="18" height="5"/><path d="M5 13v8h14v-8M12 8v13M12 8C10 4 7 5 8 8M12 8c2-4 5-3 4 0"/>',
     time: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
@@ -167,14 +171,31 @@
   }
 
   // ---------- rendering helpers ----------
-  function blocksHtml(blocks, stopId) {
+  // Web addresses and phone numbers as the book prints them, made tappable (tel: for phones).
+const LINK_RE = /(www\.[\w.-]+\.[a-z]{2,}|\b[\w-]+\.(?:org|com)\b|\(\d{3}\) ?\d{3}-\d{4}|\b\d{3}-\d{3}-\d{4}\b)/g;
+function linked(text) {
+  return text.split(LINK_RE).map((p, i) => {
+    if (i % 2 === 0) return esc(p);
+    const href = /^[\d(]/.test(p) ? 'tel:' + p.replace(/\D/g, '') : 'https://' + p;
+    return `<a href="${href}" target="_blank" rel="noopener">${esc(p)}</a>`;
+  }).join('');
+}
+const INFO_ICON = { time: 'time', route: 'flag', bus: 'bus', parking: 'car', web: 'globe', contact: 'call', note: 'info' };
+// The walk's information box from the book, one row per printed paragraph with its own labels.
+function infoBox(rows) {
+  if (!rows || !rows.length) return '';
+  return `<section class="infobox" aria-label="Before you go"><div class="lbl">Before you go</div>${rows.map((r) => r.kind === 'heading'
+    ? `<h3>${esc(r.text)}</h3>`
+    : `<div class="irow"><span aria-hidden="true">${ic(INFO_ICON[r.kind] || 'info', 'width="18" height="18"')}</span><div>${r.label ? `<b>${esc(r.label)}</b><br>` : ''}${linked(r.text)}</div></div>`).join('')}</section>`;
+}
+function blocksHtml(blocks, stopId) {
     let r = -1;
     richSeen = new Set();
     const one = (b) => {
       const readable = ['p', 'direction', 'tagline'].includes(b.kind); if (readable) r++;
       const attrs = readable ? `data-stop="${stopId}" data-para="${r}"` : '';
       if (b.kind === 'direction') return `<div class="dir" aria-label="Walking direction" role="group" ${attrs}>${ic('walk')}<div>${rich(b.text)}</div></div>`;
-      if (b.kind === 'info') return `<div class="info"><span style="color:var(--gold)">${ic('bus', 'width="18" height="18"')}</span><div>${esc(b.text)}</div></div>`;
+      if (b.kind === 'info') return `<div class="info"><span style="color:var(--gold)">${ic('bus', 'width="18" height="18"')}</span><div>${linked(b.text)}</div></div>`;
       if (b.kind === 'tagline' || b.kind === 'heading') return `<p class="p italic" role="heading" aria-level="3" style="color:var(--leaf);font-size:18px" ${attrs}>${esc(b.text)}</p>`;
       if (b.kind === 'caption') return `<p class="small italic">${esc(b.text)}</p>`;
       return `<p class="p" ${attrs}>${rich(b.text)}</p>`;
@@ -182,6 +203,20 @@
     // Side trips from the book (its purple-line detours) sit in one highlighted box beside the main walk.
     let html = '';
     for (let i = 0; i < blocks.length; i++) {
+      if (blocks[i].box && !blocks[i].aside) {
+        // A plaque, sign or quotation the book prints in a shaded box: framed, between paragraphs.
+        let inner = '';
+        const start = i;
+        while (i < blocks.length && blocks[i].box) {
+          const b = blocks[i];
+          if (i === start && b.text.length < 90 && b.text.trim().endsWith(':')) { r++; inner += `<h4 class="box-h" data-stop="${stopId}" data-para="${r}">${esc(b.text)}</h4>`; }
+          else inner += one(b);
+          i++;
+        }
+        i--;
+        html += `<aside class="bookbox">${inner}</aside>`;
+        continue;
+      }
       if (!blocks[i].aside) { html += one(blocks[i]); continue; }
       let inner = '';
       while (i < blocks.length && blocks[i].aside) inner += one(blocks[i++]);
@@ -291,7 +326,7 @@
       <div id="readview" class="${S.mode === 'read' ? '' : 'hidden'}">
         <div class="whero">${img(w.cover) || `<div style="height:100%;background:${w.color}"></div>`}<div class="fade"></div><div class="flower" style="right:-24px;bottom:40px">${hib(110, '#D6336C', 25)}</div></div>
         <div class="pad stack wtitle"><span class="romanchip" style="background:${w.color}">Walk ${wn(w.id)}</span><h1>${esc(w.title)}</h1><div class="italic" style="color:var(--leaf);font-size:19px">${esc(w.theme)}</div><div class="chips">${chips}</div>
-          ${blocksHtml(w.intro, w.id + '-intro')}${w.info.map((x) => `<div class="info"><span style="color:var(--gold)">${ic('bus', 'width="18" height="18"')}</span><div>${esc(x)}</div></div>`).join('')}</div>
+          ${blocksHtml(w.intro, w.id + '-intro')}${infoBox(w.info)}</div>
         ${stops}
       </div>
     </div>
