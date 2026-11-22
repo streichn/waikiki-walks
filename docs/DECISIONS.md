@@ -169,3 +169,22 @@ We store no addresses, phone numbers, birthdates, or payment details.
 - **Why a fresh Apple code at deletion instead of storing refresh tokens at sign-in:** Supabase's native Apple sign-in (`signInWithIdToken`) does not keep Apple refresh tokens. Storing them ourselves would mean holding a long-lived credential for every walker just in case they delete. Asking once at deletion keeps nothing on our side and doubles as a check that the account owner is the one deleting.
 - **Not done (open):** deleting the RevenueCat customer. It holds only the anonymous account ID and store receipts, and the 7-day pass expiry is computed from those receipts, so deleting it could cut short a pass someone already paid for. Revisit if a privacy review asks for it (needs a RevenueCat secret key on the server).
 - Sources: developer.apple.com/documentation/technotes/tn3194-handling-account-deletions-and-revoking-tokens-for-sign-in-with-apple; developer.apple.com/documentation/signinwithapplerestapi/revoke-tokens; support.apple.com/102571 (manual steps); support.google.com/googleplay/android-developer/answer/13327111; revenuecat.com/blog/engineering/app-store-account-deletion
+## Offline behavior (added 2026-11-15)
+- **Common practice:**
+  - VoiceMap and Shaka Guide download the whole tour (text, audio, images, map, geodata) so it works "100% offline". Both tell walkers to download on hotel Wi-Fi and not to use Airplane mode, since on some phones it turns off GPS.
+  - Google's offline design guidance: say clearly what works offline, keep content on the device, queue changes, and tell people when they are back online.
+- **What was already true here:** all book text, photos, book maps, pins, and walk data are bundled inside the app. GPS and arrival geofences need no data. Only three things need the internet: street and satellite map tiles (Apple Maps or Google Maps), cloud sync, and the photo step of "What am I looking at?".
+- **Our choice:**
+  - Detect connectivity with `expo-network` (`useNetworkState`); unknown counts as online so we never warn by mistake.
+  - On the walk screen, show a small notice that leads with what still works, not an error. It is announced once to screen readers.
+  - Sync: Supabase returns failures as `{ error }` instead of throwing, so we now check them. A failed push is retried when the network comes back. If the first pull after sign-in fails, we don't push until a pull succeeds, so an offline start can't overwrite another phone's progress.
+  - The camera feature sends no photo when offline and falls back to GPS and compass.
+  - We dropped the "offline maps" promise. Apple MapKit and Google Maps SDK have no offline download API for apps. Using OpenStreetMap's tile server for offline is not allowed either: its policy forbids "download for offline" features and prefetching. True offline street maps would need a provider that allows it (for example self-hosted or paid vector tiles). That is a cost decision for later.
+- **Not done:** an offline street map (see above), and a check that read-aloud voices are on the device on Android.
+- Sources: support.voicemap.me/can-i-use-my-tour-offline; shakaguide.com/frequently-asked-questions; design.google/library/offline-design; docs.expo.dev/versions/v58.0.0/sdk/network; operations.osmfoundation.org/policies/tiles
+
+## Accessibility basics (added 2026-11-15)
+- **Common practice:** every control a screen reader can reach has a label, a role (button, switch, radio), and its state (on, off, selected). Touch targets are at least 44 by 44 points (Apple).
+- **Our choice:** Settings switches carry their label and hint, rows are buttons at least 44 points tall, and voice choices are radios with a checked state. Changes in connection are announced with `AccessibilityInfo.announceForAccessibility`.
+- **Still to audit:** the rest of the screens, Dynamic Type (the app has its own text-size setting but doesn't follow the system size yet), and Reduce Motion for the arrival banner and sheet.
+- Sources: reactnative.dev/docs/accessibility; reactnative.dev/docs/accessibilityinfo

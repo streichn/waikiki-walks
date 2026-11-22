@@ -11,6 +11,7 @@ import { Button, IconButton, T } from '../components/ui';
 import { photo, walkNo } from '../data';
 import { canOpenStop, useIsPro } from '../lib/access';
 import { formatDistance, headingDelta } from '../lib/geo';
+import { useOnline } from '../lib/network';
 import { candidatesInView, compassUnsure, identifyPhoto, type LensCandidate, smoothHeading, visionAvailable } from '../lib/lens';
 import { speakShort } from '../lib/narration';
 import { useSettings } from '../store';
@@ -42,6 +43,7 @@ export default function Lens() {
   const [cands, setCands] = useState<LensCandidate[]>([]);
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
+  const online = useOnline();
   const smoothed = useRef<number | null>(null);
   const subs = useRef<Location.LocationSubscription[]>([]);
   const lastTop = useRef<string | null>(null);
@@ -98,6 +100,11 @@ export default function Lens() {
     setBusy(true);
     let uri: string | undefined;
     try {
+      // Without signal, skip the photo check and send nothing: location and compass alone still work.
+      if (visionAvailable && !online) {
+        setResult({ stopId: cands[0]?.stop.id ?? null, reason: 'No internet, so matched by location and direction.', heading });
+        return;
+      }
       // Small, upright JPEG with no EXIF (no GPS tags), used once and then deleted.
       const pic = await cam.current.takePictureAsync({ base64: true, quality: 0.4, exif: false, skipProcessing: false });
       uri = pic?.uri;

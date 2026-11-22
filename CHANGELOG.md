@@ -222,3 +222,10 @@
 - Clear messages: what gets deleted, that purchases stay with Apple or Google, an error if deletion fails, and manual Apple steps if revocation fails.
 - The app signs out if the walker stops using Sign in with Apple from iPhone Settings.
 - Draft Google Play account deletion page (legal/DELETE-ACCOUNT.md); privacy policy and checklist updated.
+## 2026-11-15 · Works without signal
+- Walk screen shows a calm "No internet. Your walk still works." notice when the phone loses signal, saying what still works (text, photos, pins, GPS, arrival alerts, the book's map). Screen readers hear it once.
+- Cloud sync now retries when the connection comes back. After an offline start it pulls from the cloud before pushing, so it can't overwrite progress saved on another phone.
+- "What am I looking at?" skips the photo upload with no signal and matches by location and direction instead.
+- New "Without signal" section in Settings, including the tip to turn off mobile data rather than use Airplane mode.
+- Fixed the "offline maps" claim on the profile screen; added a "Works without signal" line to the paywall.
+- Accessibility: Settings switches, rows, and voice choices now have screen reader labels, roles, and states; rows are at least 44 points tall.
