@@ -282,7 +282,7 @@ function blocksHtml(blocks, stopId) {
     return `<div class="screen" id="home">
       <div class="hero">${img(hero, '', 'Waikīkī in the early twentieth century')}<div class="fade"></div>
         <div class="flower" style="left:-26px;top:70px">${hib(92, '#D6336C', -20)}</div><div class="flower" style="right:70px;top:120px">${plum(54, 14)}</div>
-        <button class="iconbtn" style="position:absolute;right:16px;top:calc(env(safe-area-inset-top) + 14px)" data-act="lens" aria-label="What am I looking at?">${ic('scan')}</button>
+
         <div class="txt"><div class="italic" style="font-size:18px">${greet}${name}</div><h1>Waikīkī</h1><div class="sub">TWELVE WALKS THROUGH TIME</div><div class="small" style="margin-top:4px">by Veneeta Acson, Ph.D.</div></div></div>
       <div class="pad stack" style="gap:20px">
         ${smartCard()}
@@ -834,7 +834,7 @@ function blocksHtml(blocks, stopId) {
       ${signed ? '' : `<button class="btn block" data-act="auth">${ic('person')} Sign in or create account</button>`}
       <div class="card row" style="justify-content:space-around;text-align:center">${[[fin, 'Walks finished'], [vis, 'Stops visited'], [Math.round((vis / tot) * 100), '% of the book']].map(([n, l]) => `<div><div style="font-family:var(--display);font-size:28px;color:var(--primary)">${n}</div><div class="small">${l}</div></div>`).join('')}</div>
       <div class="card stack" style="gap:10px"><div class="row" style="font-weight:800">${ic(S.isPro ? 'sparkles' : 'unlock', 'width="20" height="20"')} ${S.isPro ? 'All twelve walks unlocked' : 'Free preview'}</div><div class="small">${S.isPro ? 'All twelve walks are yours for good. Mahalo for supporting the book.' : 'Walk IV, stops 1 to 5, is free. Unlock every walk and every stop with a one-time purchase.'}</div>${S.isPro ? `<button class="btn outline" data-act="unpro">Reset preview purchase</button>` : `<button class="btn accent" data-act="paywall">${ic('sparkles')} Unlock all walks</button>`}</div>
-      <div class="card" style="padding:4px 16px">${row('settings', 'Settings', 'settings')}${row('scan', 'What am I looking at?', 'lens')}${row('book', 'About the book', 'about')}${row('sparkles', 'Credits and copyright', 'credits')}${signed ? row('back', 'Sign out', 'signout') : ''}</div>
+      <div class="card" style="padding:4px 16px">${row('settings', 'Settings', 'settings')}<div class="setrow" aria-disabled="true" style="width:100%;border-bottom:1px solid var(--line);opacity:.55"><span>${ic('scan', 'width="22" height="22"')}</span><span style="flex:1">What am I looking at?</span><span class="small">Coming soon</span></div>${row('book', 'About the book', 'about')}${row('sparkles', 'Credits and copyright', 'credits')}${signed ? row('back', 'Sign out', 'signout') : ''}</div>
       <p class="small" style="text-align:center">Web preview of the iPhone and Android app. Purchases and sign-in are simulated here.</p></div></div>`;
   }
 
@@ -907,7 +907,7 @@ function blocksHtml(blocks, stopId) {
     const endStr = () => new Date(Date.now() + 7 * 86400000).toLocaleString([], { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
     const fine = (id) => id === 'week' ? `One charge of ${priceOf(id)}. Your pass would run until ${endStr()}. It never renews.` : `One charge of ${priceOf(id)}. All walks stay open for good. Nothing renews.`;
     const priceOf = (id) => plans.find((p) => p[0] === id)[2];
-    const perks = [['map', 'All 12 walks and every stop, from Kālia to Mānoa Falls'], ['headset', 'Read-aloud narration, hands free with headphones'], ['pin', 'Arrival alerts, even with your phone in your pocket'], ['book', 'Historic photographs from the book'], ['scan', '“What am I looking at?” for landmarks along the way'], ['book', 'Stories, photos and the book maps are stored on your phone, so they work without signal']];
+    const perks = [['map', 'All 12 walks and every stop, from Kālia to Mānoa Falls'], ['headset', 'Read-aloud narration, hands free with headphones'], ['pin', 'Arrival alerts, even with your phone in your pocket'], ['book', 'Historic photographs from the book'], ['scan', '“What am I looking at?” for landmarks along the way (coming soon)'], ['book', 'Stories, photos and the book maps are stored on your phone, so they work without signal']];
     const m = modal(`<div class="stack"><div class="row">${hib(64, '#D6336C', -15)}${plum(40, 20)}</div><h1 style="font-size:30px">Walk all of Waikīkī</h1><div class="italic" style="color:var(--leaf)">Twelve walks through a thousand years, in Veneeta’s own words.</div><div class="small">Free without paying: Walk IV, stops 1 to 5, plus the overview, map and first stop of every walk.</div>
       ${perks.map(([i, t]) => `<div class="perk"><i>${ic(i)}</i><span>${t}</span></div>`).join('')}
       <div class="stack" role="radiogroup" aria-label="Choose a plan" style="gap:12px;margin-top:6px">${plans.map(([id, t, p, n, b]) => `<button class="plan" role="radio" aria-checked="${id === sel}" data-plan="${id}" aria-label="${t}, ${p}. ${n}"><span style="flex:1"><b>${t}</b><div class="small">${n}</div></span><b>${p}</b>${b ? `<span class="best" aria-hidden="true">${b}</span>` : ''}</button>`).join('')}</div>

@@ -11,7 +11,7 @@ import { Button, IconButton, T, tap } from '../components/ui';
 import { photo, walks } from '../data';
 import { buy, formatPassEnd, isConfigured, loadPackages, passEnd, restore } from '../lib/purchases';
 import { LINKS } from '../legal';
-import { BROWSE_PREVIEW_STOPS, PLANS, TRIAL } from '../config';
+import { BROWSE_PREVIEW_STOPS, LENS_LIVE, PLANS, TRIAL } from '../config';
 import { useAccount } from '../store';
 import { useTheme } from '../theme';
 
@@ -45,7 +45,7 @@ const PERKS: { icon: keyof typeof Ionicons.glyphMap; text: string }[] = [
   { icon: 'cloud-offline', text: 'Works without signal: text, photos, and GPS are on your phone' },
   { icon: 'images', text: 'Historic photographs from the Hawaiʻi State Archives and the book' },
   { icon: 'cloud-offline', text: 'Stories, photos and the book maps are stored on your phone, so they work without signal' },
-  { icon: 'scan', text: '"What am I looking at?" for landmarks along the way' },
+  { icon: 'scan', text: LENS_LIVE ? '"What am I looking at?" for landmarks along the way' : '"What am I looking at?" for landmarks along the way (coming soon)' },
 ];
 
 export default function Paywall() {

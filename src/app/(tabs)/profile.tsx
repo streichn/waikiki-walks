@@ -9,7 +9,7 @@ import { Button, Card, T } from '../../components/ui';
 import { walks } from '../../data';
 import { signOut, updateDisplayName } from '../../lib/auth';
 import { formatPassEnd } from '../../lib/purchases';
-import { TRIAL } from '../../config';
+import { LENS_LIVE, TRIAL } from '../../config';
 import { useAccount, useProgress } from '../../store';
 import { useTheme } from '../../theme';
 
@@ -90,7 +90,7 @@ export default function Profile() {
 
       <Card style={{ paddingVertical: 4 }}>
         <Row icon="settings-outline" label="Settings" onPress={() => router.push('/settings')} />
-        <Row icon="scan-outline" label="What am I looking at?" onPress={() => router.push('/lens')} />
+        <Row icon="scan-outline" label="What am I looking at?" note={LENS_LIVE ? undefined : 'Coming soon'} onPress={LENS_LIVE ? () => router.push('/lens') : undefined} />
         <Row icon="book-outline" label="About the book" onPress={() => router.push('/about')} />
         <Row icon="ribbon-outline" label="Credits and copyright" onPress={() => router.push('/credits')} />
         <Row icon="mail-outline" label="Send feedback" onPress={() => Linking.openURL('mailto:?subject=Waik%C4%AB%C4%AB%20Walks%20feedback')} last={!signedIn} />
@@ -110,13 +110,13 @@ function Stat({ n, label }: { n: number; label: string }) {
   );
 }
 
-function Row({ icon, label, onPress, last }: { icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void; last?: boolean }) {
+function Row({ icon, label, onPress, last, note }: { icon: keyof typeof Ionicons.glyphMap; label: string; onPress?: () => void; last?: boolean; note?: string }) {
   const t = useTheme();
   return (
-    <Pressable onPress={onPress} style={[styles.row, !last && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.border }]}>
-      <Ionicons name={icon} size={22} color={t.primary} />
-      <T style={{ flex: 1 }}>{label}</T>
-      <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+    <Pressable onPress={onPress} disabled={!onPress} accessibilityState={{ disabled: !onPress }} style={[styles.row, !last && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.border }]}>
+      <Ionicons name={icon} size={22} color={onPress ? t.primary : t.textMuted} />
+      <T style={{ flex: 1, color: onPress ? t.text : t.textMuted }}>{label}</T>
+      {note ? <T style={{ color: t.textMuted, fontSize: 13 }}>{note}</T> : <Ionicons name="chevron-forward" size={18} color={t.textMuted} />}
     </Pressable>
   );
 }

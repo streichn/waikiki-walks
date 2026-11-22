@@ -9,7 +9,7 @@ import { FunFacts } from '../../components/FunFacts';
 import { SmartCard } from '../../components/SmartCard';
 import { T, tap } from '../../components/ui';
 import { WalkCard } from '../../components/WalkCard';
-import { TRIAL } from '../../config';
+import { LENS_LIVE, TRIAL } from '../../config';
 import { getWalk, photo, walks } from '../../data';
 import { useAccount } from '../../store';
 import { APP_COPYRIGHT, DEDICATION } from '../../legal';
@@ -37,9 +37,11 @@ export default function Home() {
           <Plumeria size={54} rotate={14} />
         </View>
         <View style={styles.heroTop}>
-          <Pressable accessibilityLabel="What am I looking at?" onPress={() => router.push('/lens')} style={styles.heroBtn}>
-            <Ionicons name="scan" size={20} color="#fff" />
-          </Pressable>
+          {LENS_LIVE ? (
+            <Pressable accessibilityLabel="What am I looking at?" onPress={() => router.push('/lens')} style={styles.heroBtn}>
+              <Ionicons name="scan" size={20} color="#fff" />
+            </Pressable>
+          ) : null}
         </View>
         <View style={{ paddingHorizontal: 20, marginTop: 'auto' }}>
           <T style={{ color: t.text, fontFamily: t.font.displayItalic, fontSize: 18 }}>

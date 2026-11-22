@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-22
+
+- The camera feature ("What am I looking at?") shows as Coming soon until its server endpoint is deployed: the home screen button is hidden, the Profile row is greyed out, and the unlock screen says coming soon. Setting EXPO_PUBLIC_LENS_ENDPOINT turns it back on everywhere.
+
 ## 2026-11-21 · The book's front matter in About
 - About the book now has the rest of the book's opening pages, word for word: Introduction, Hawaiian Language and Guide to Pronunciation (with the ʻŌlelo Hawaiʻi Pīʻāpā alphabet), Hawaiian Monarchy and Some Historic Dates (the royalty table and the dates), and Wahi Pana (sacred places, walk by walk). Before, only Dedications and Foreword were there.
 - A short "In this section" list at the top of About jumps to each part.

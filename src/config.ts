@@ -42,4 +42,7 @@ export const GOOGLE = {
 /** Optional server endpoint for camera identification ("What am I looking at?"). */
 export const LENS_ENDPOINT = process.env.EXPO_PUBLIC_LENS_ENDPOINT ?? '';
 
+/** The camera feature shows as "Coming soon" until its server endpoint is deployed. */
+export const LENS_LIVE = Boolean(LENS_ENDPOINT);
+
 export const DEFAULT_ARRIVAL_RADIUS_M = 35;
