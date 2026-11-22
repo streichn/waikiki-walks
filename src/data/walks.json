@@ -232,7 +232,8 @@
     "lng": -157.829546,
     "geo": "book",
     "page": "p1-26",
-    "radius": 65
+    "radius": 65,
+    "look": true
    },
    {
     "id": "I-04",
@@ -271,7 +272,8 @@
     "lng": -157.827643,
     "geo": "book",
     "page": "p1-27",
-    "radius": 84
+    "radius": 84,
+    "look": true
    },
    {
     "id": "I-06",
@@ -550,7 +552,8 @@
     "lng": -157.816266,
     "geo": "book",
     "page": "p1-31",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "I-14",
@@ -659,7 +662,8 @@
     "lng": -157.818255,
     "geo": "book",
     "page": "p1-33",
-    "radius": 60
+    "radius": 60,
+    "look": true
    },
    {
     "id": "I-17",
@@ -779,7 +783,8 @@
     "lng": -157.821607,
     "geo": "book",
     "page": "p1-34",
-    "radius": 60
+    "radius": 60,
+    "look": true
    },
    {
     "id": "I-22",
@@ -1459,7 +1464,8 @@
     "lng": -157.834065,
     "geo": "book",
     "page": "p1-44",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "II-05",
@@ -1500,7 +1506,8 @@
     "lng": -157.837176,
     "geo": "book",
     "page": "p1-45",
-    "radius": 72
+    "radius": 72,
+    "look": true
    },
    {
     "id": "II-07",
@@ -2124,7 +2131,8 @@
     "lng": -157.833887,
     "geo": "book",
     "page": "p1-55",
-    "radius": 74
+    "radius": 74,
+    "look": true
    },
    {
     "id": "II-18",
@@ -3212,7 +3220,8 @@
     "lng": -157.831288,
     "geo": "book",
     "page": "p1-75",
-    "radius": 85
+    "radius": 85,
+    "look": true
    },
    {
     "id": "IV-04",
@@ -3311,7 +3320,8 @@
     "lng": -157.830656,
     "geo": "book",
     "page": "p1-76",
-    "radius": 75
+    "radius": 75,
+    "look": true
    },
    {
     "id": "IV-08",
@@ -3363,7 +3373,8 @@
     "lng": -157.829408,
     "geo": "book",
     "page": "p1-78",
-    "radius": 62
+    "radius": 62,
+    "look": true
    },
    {
     "id": "IV-10",
@@ -3398,7 +3409,8 @@
     "lng": -157.830246,
     "geo": "book",
     "page": "p1-78",
-    "radius": 71
+    "radius": 71,
+    "look": true
    },
    {
     "id": "IV-11",
@@ -3431,7 +3443,8 @@
     "lng": -157.830607,
     "geo": "book",
     "page": "p1-78",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "IV-12",
@@ -3535,7 +3548,8 @@
     "lng": -157.828077,
     "geo": "book",
     "page": "p1-80",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "IV-14",
@@ -3584,7 +3598,8 @@
     "lng": -157.828061,
     "geo": "book",
     "page": "p1-81",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "IV-15",
@@ -3613,7 +3628,8 @@
     "lng": -157.828042,
     "geo": "book",
     "page": "p1-81",
-    "radius": 63
+    "radius": 63,
+    "look": true
    },
    {
     "id": "IV-16",
@@ -3638,7 +3654,8 @@
     "lng": -157.827753,
     "geo": "book",
     "page": "p1-82",
-    "radius": 59
+    "radius": 59,
+    "look": true
    },
    {
     "id": "IV-17",
@@ -3789,7 +3806,8 @@
     "lng": -157.827155,
     "geo": "book",
     "page": "p1-84",
-    "radius": 61
+    "radius": 61,
+    "look": true
    },
    {
     "id": "IV-22",
@@ -3891,7 +3909,8 @@
     "lng": -157.824983,
     "geo": "book",
     "page": "p1-86",
-    "radius": 62
+    "radius": 62,
+    "look": true
    },
    {
     "id": "IV-24",
@@ -3908,7 +3927,8 @@
     "lng": -157.825923,
     "geo": "book",
     "page": "p1-87",
-    "radius": 57
+    "radius": 57,
+    "look": true
    },
    {
     "id": "IV-25",
@@ -4467,7 +4487,8 @@
     "lng": -157.824817,
     "geo": "book",
     "page": "p2-5",
-    "radius": 66
+    "radius": 66,
+    "look": true
    },
    {
     "id": "V-05",
@@ -4600,7 +4621,8 @@
     "lng": -157.824054,
     "geo": "book",
     "page": "p2-7",
-    "radius": 63
+    "radius": 63,
+    "look": true
    },
    {
     "id": "V-07",
@@ -4985,7 +5007,8 @@
     "lng": -157.82288,
     "geo": "book",
     "page": "p2-13",
-    "radius": 59
+    "radius": 59,
+    "look": true
    },
    {
     "id": "V-17",
@@ -5641,7 +5664,8 @@
     "lng": -157.818471,
     "geo": "book",
     "page": "p2-24",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "VI-12",
@@ -6257,7 +6281,8 @@
     "lng": -157.820966,
     "geo": "book",
     "page": "p2-38",
-    "radius": 57
+    "radius": 57,
+    "look": true
    },
    {
     "id": "VII-09",
@@ -7094,7 +7119,8 @@
     "lng": -157.812456,
     "geo": "book",
     "page": "p2-54",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "VIII-10",
@@ -7253,7 +7279,8 @@
     "lng": -157.812184,
     "geo": "book",
     "page": "p2-55",
-    "radius": 73
+    "radius": 73,
+    "look": true
    },
    {
     "id": "VIII-14",
@@ -7327,7 +7354,8 @@
     "lng": -157.808403,
     "geo": "book",
     "page": "p2-56",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "VIII-16",
@@ -7464,7 +7492,8 @@
     "lng": -157.799489,
     "geo": "book",
     "page": "p2-58",
-    "radius": 77
+    "radius": 77,
+    "look": true
    },
    {
     "id": "VIII-21",
@@ -7496,7 +7525,8 @@
     "lng": -157.799111,
     "geo": "book",
     "page": "p2-58",
-    "radius": 72
+    "radius": 72,
+    "look": true
    },
    {
     "id": "VIII-22",
@@ -7559,7 +7589,8 @@
     "lng": -157.797827,
     "geo": "book",
     "page": "p2-59",
-    "radius": 88
+    "radius": 88,
+    "look": true
    },
    {
     "id": "VIII-23",
@@ -7787,7 +7818,8 @@
     "lng": -157.800076,
     "geo": "book",
     "page": "p2-63",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "VIII-30",
@@ -7904,7 +7936,8 @@
     "lng": -157.807855,
     "geo": "book",
     "page": "p2-64",
-    "radius": 53
+    "radius": 53,
+    "look": true
    }
   ]
  },
@@ -8157,7 +8190,8 @@
     "lng": -157.813592,
     "geo": "book",
     "page": "p2-69",
-    "radius": 65
+    "radius": 65,
+    "look": true
    },
    {
     "id": "IX-07",
@@ -8385,7 +8419,8 @@
     "lng": -157.820348,
     "geo": "book",
     "page": "p2-72",
-    "radius": 64
+    "radius": 64,
+    "look": true
    },
    {
     "id": "IX-13",
@@ -8482,7 +8517,8 @@
     "lng": -157.82124,
     "geo": "book",
     "page": "p2-73",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "IX-16",
@@ -8739,7 +8775,8 @@
     "lng": -157.8257,
     "geo": "book",
     "page": "p2-77",
-    "radius": 61
+    "radius": 61,
+    "look": true
    },
    {
     "id": "IX-22",
@@ -8820,7 +8857,8 @@
     "lng": -157.828743,
     "geo": "book",
     "page": "p2-78",
-    "radius": 77
+    "radius": 77,
+    "look": true
    },
    {
     "id": "IX-24",
@@ -8903,7 +8941,8 @@
     "lng": -157.830017,
     "geo": "book",
     "page": "p2-80",
-    "radius": 71
+    "radius": 71,
+    "look": true
    },
    {
     "id": "IX-27",
@@ -8924,7 +8963,8 @@
     "lng": -157.83092,
     "geo": "book",
     "page": "p2-80",
-    "radius": 74
+    "radius": 74,
+    "look": true
    },
    {
     "id": "IX-28",
@@ -8945,7 +8985,8 @@
     "lng": -157.830399,
     "geo": "book",
     "page": "p2-80",
-    "radius": 72
+    "radius": 72,
+    "look": true
    },
    {
     "id": "IX-29",
@@ -9191,7 +9232,8 @@
     "lng": -157.832111,
     "geo": "book",
     "page": "p3-7",
-    "radius": 59
+    "radius": 59,
+    "look": true
    },
    {
     "id": "X-04",
@@ -9254,7 +9296,8 @@
     "lng": -157.830084,
     "geo": "book",
     "page": "p3-8",
-    "radius": 77
+    "radius": 77,
+    "look": true
    },
    {
     "id": "X-06",
@@ -9313,7 +9356,8 @@
     "lng": -157.829881,
     "geo": "book",
     "page": "p3-9",
-    "radius": 64
+    "radius": 64,
+    "look": true
    },
    {
     "id": "X-07",
@@ -9412,7 +9456,8 @@
     "lng": -157.826485,
     "geo": "book",
     "page": "p3-11",
-    "radius": 64
+    "radius": 64,
+    "look": true
    },
    {
     "id": "X-10",
@@ -9429,7 +9474,8 @@
     "lng": -157.827469,
     "geo": "book",
     "page": "p3-11",
-    "radius": 62
+    "radius": 62,
+    "look": true
    },
    {
     "id": "X-11",
@@ -9446,7 +9492,8 @@
     "lng": -157.828232,
     "geo": "book",
     "page": "p3-11",
-    "radius": 66
+    "radius": 66,
+    "look": true
    },
    {
     "id": "X-12",
@@ -9471,7 +9518,8 @@
     "lng": -157.827912,
     "geo": "book",
     "page": "p3-11",
-    "radius": 64
+    "radius": 64,
+    "look": true
    },
    {
     "id": "X-13",
@@ -9488,7 +9536,8 @@
     "lng": -157.829408,
     "geo": "book",
     "page": "p3-12",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "X-14",
@@ -9513,7 +9562,8 @@
     "lng": -157.830242,
     "geo": "book",
     "page": "p3-11",
-    "radius": 71
+    "radius": 71,
+    "look": true
    },
    {
     "id": "X-15",
@@ -9538,7 +9588,8 @@
     "lng": -157.830985,
     "geo": "book",
     "page": "p3-12",
-    "radius": 73
+    "radius": 73,
+    "look": true
    },
    {
     "id": "X-16",
@@ -9555,7 +9606,8 @@
     "lng": -157.831598,
     "geo": "book",
     "page": "p3-12",
-    "radius": 71
+    "radius": 71,
+    "look": true
    },
    {
     "id": "X-17",
@@ -9572,7 +9624,8 @@
     "lng": -157.832184,
     "geo": "book",
     "page": "p3-12",
-    "radius": 75
+    "radius": 75,
+    "look": true
    },
    {
     "id": "X-18",
@@ -9862,7 +9915,8 @@
     "lng": -157.823826,
     "geo": "book",
     "page": "p3-16",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "X-27",
@@ -10129,7 +10183,8 @@
     "lng": -157.813093,
     "geo": "book",
     "page": "p3-19",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "X-35",
@@ -10407,7 +10462,8 @@
     "lng": -157.812443,
     "geo": "book",
     "page": "p3-23",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "X-38",
@@ -10685,7 +10741,8 @@
     "lng": -157.803164,
     "geo": "book",
     "page": "p3-28",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "X-42",
@@ -10893,7 +10950,8 @@
     "lng": -157.803387,
     "geo": "book",
     "page": "p3-30",
-    "radius": 60
+    "radius": 60,
+    "look": true
    },
    {
     "id": "X-44",
@@ -10935,7 +10993,8 @@
     "lng": -157.809277,
     "geo": "book",
     "page": "p3-32",
-    "radius": 88
+    "radius": 88,
+    "look": true
    },
    {
     "id": "X-45",
@@ -11127,7 +11186,8 @@
     "lng": -157.818653,
     "geo": "book",
     "page": "p3-34",
-    "radius": 79
+    "radius": 79,
+    "look": true
    },
    {
     "id": "X-52",
@@ -11358,7 +11418,8 @@
     "lng": -157.830052,
     "geo": "book",
     "page": "p3-40",
-    "radius": 80
+    "radius": 80,
+    "look": true
    },
    {
     "id": "XI-05",
@@ -11631,7 +11692,8 @@
     "lng": -157.820629,
     "geo": "book",
     "page": "p3-45",
-    "radius": 59
+    "radius": 59,
+    "look": true
    },
    {
     "id": "XI-11",
@@ -12075,7 +12137,8 @@
     "lng": -157.817183,
     "geo": "book",
     "page": "p3-50",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "XI-23",
@@ -12486,7 +12549,8 @@
     "lng": -157.818329,
     "geo": "book",
     "page": "p3-57",
-    "radius": 60
+    "radius": 60,
+    "look": true
    },
    {
     "id": "XI-36",
@@ -12669,7 +12733,8 @@
     "lng": -157.820615,
     "geo": "book",
     "page": "p3-58",
-    "radius": 80
+    "radius": 80,
+    "look": true
    },
    {
     "id": "XI-44",
@@ -12889,7 +12954,8 @@
     "lng": -157.817433,
     "geo": "book",
     "page": "p3-64",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "XII-03",
@@ -13033,7 +13099,8 @@
     "lng": -157.813595,
     "geo": "book",
     "page": "p3-66",
-    "radius": 65
+    "radius": 65,
+    "look": true
    },
    {
     "id": "XII-08",
@@ -13135,7 +13202,8 @@
     "lng": -157.812385,
     "geo": "book",
     "page": "p3-66",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "XII-13",
@@ -13243,7 +13311,8 @@
     "lng": -157.81009,
     "geo": "book",
     "page": "p3-67",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "XII-15",
@@ -13437,7 +13506,8 @@
     "lng": -157.812778,
     "geo": "book",
     "page": "p3-71",
-    "radius": 67
+    "radius": 67,
+    "look": true
    },
    {
     "id": "XII-20",
@@ -13734,7 +13804,8 @@
     "lng": -157.819096,
     "geo": "book",
     "page": "p3-75",
-    "radius": 90
+    "radius": 90,
+    "look": true
    },
    {
     "id": "XII-27",

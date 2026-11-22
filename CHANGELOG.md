@@ -2,6 +2,7 @@
 
 ## 2026-11-22
 
+- Look-at stops on every walk (75 in all), by the same rule as Walk III: her number sits off her line and the book says to look across or look for it, the place is gone, the stop is a street name, or the pin is too far from her line for an arrival alert. Each has its reason in scripts/georef/look_stops.json, for Veneeta to confirm.
 - Map lines now follow Veneeta's dotted line exactly, on every walk: it is traced once from start to end and cut where each stop falls on it. No more invented street routes, and no jogs out to pins printed beside the line. Walk III now goes down Lewers to Kālia Road and along the beach, as the book says.
 - Look-at stops: Walk III stops 2, 5, 6 and 8 are seen from the line, not walked to. They show "Look from here", give no arrival alert, and you tap Next. Later stops don't fire until you've tapped through them. The demo walks along her line to each stop.
 - Veneeta confirmed the twelve typos in the printed book, and the app now has them corrected: Makiki Stream, Chun Afong (stop 17 and a caption), Hawaiian Plantation style, Lili‘uokalani (four places), McCully (Walk X stop 6 title and text), Kauwala‘a, Bachman Hall, Kana‘ina Street, Stan Sheriff Center, and Archaeology of O‘ahu.

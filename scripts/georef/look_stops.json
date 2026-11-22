@@ -1,4 +1,138 @@
 {
- "_note": "Look-at stops: Veneeta's map prints the number away from her dotted line, because the walker looks at the place (or imagines what stood there) from the line instead of walking to it. They get no path of their own and no arrival alert; the walker taps Next. Only Veneeta's word goes here.",
- "III": {"stops": [2, 5, 6, 8], "why": "Veneeta by phone with Nick, 22 Nov 2026: stop 2 is looking at the street name Helumoa; after stop 4, numbers 5, 6 and 8 just sit there off the red line, and you stand between 4 and 7 and imagine what was there."}
+ "_note": "Look-at stops: the walker looks at the place (or imagines what stood there) from Veneeta's dotted line instead of walking to it. They get no path of their own and no arrival alert; the walker taps Next. Walk III is from Veneeta (22 Nov 2026). The others were picked by Claude at Nick's request (22 Nov 2026) with the same rule: the number is printed away from her line, and either the text says to look across, look for, or imagine something that is gone, or the stop is a street name, or the pin is too far from her line for an arrival alert to fire. They are listed for Veneeta to confirm.",
+ "III": {
+  "stops": [
+   2,
+   5,
+   6,
+   8
+  ],
+  "why": "Veneeta by phone with Nick, 22 Nov 2026: stop 2 is looking at the street name Helumoa; after stop 4, numbers 5, 6 and 8 just sit there off the red line, and you stand between 4 and 7 and imagine what was there."
+ },
+ "I": {
+  "stops": [
+   3,
+   5,
+   13,
+   16,
+   21
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 3 Ala Naio Stream (text:across,diagonally,view of); 5 University Avenue (street); 13 Waikīkī Fire Station (far); 16 Kuekaunahi Stream Hamohamo (text:across); 21 ‘Āpuakēhau Stream (text:across)"
+ },
+ "II": {
+  "stops": [
+   4,
+   6,
+   17
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 4 Makiki Stream (far); 6 Līpe‘epe‘e Street (street); 17 Fort DeRussy and Battery Randolph (text:look for)"
+ },
+ "IV": {
+  "stops": [
+   3,
+   7,
+   9,
+   10,
+   11,
+   13,
+   14,
+   15,
+   16,
+   21,
+   23,
+   24
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 3 Nāmāhana Street (street); 7 Kālaimoku Street (street); 9 Gump Building (text:across,diagonally); 10 Lewers Street (street); 11 Helumoa (far); 13 Princess Bernice Pauahi Bishop sta (text:look for,was once); 14 Seaside Avenue (street); 15 Former Waikīkī Theater (text:closed in,demolished); 16 Duke’s Lane/ Duke’s Marketplace (street); 21 Outrigger Hotel (text:across,former); 23 Hyatt Regency Waikīkī Hotel (text:across); 24 Honolulu Police Department Waikīkī (text:once owned,was located)"
+ },
+ "V": {
+  "stops": [
+   4,
+   6,
+   16
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 4 Prince Edward Street (street); 6 Kānekapōlei Street (street); 16 Lalani Hawaiian Village (text:was located)"
+ },
+ "VI": {
+  "stops": [
+   11
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 11 Waikīkī Shell Amphitheater (far)"
+ },
+ "VII": {
+  "stops": [
+   8
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 8 Kaimana Hotel/Beach (text:was located)"
+ },
+ "VIII": {
+  "stops": [
+   9,
+   13,
+   15,
+   20,
+   21,
+   22,
+   29,
+   32
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 9 Waiola (‘Water of Life’) Shave Ice (far); 13 Wai‘alae Avenue (street); 15 Chaminade University (far); 20 Queen Theater (text:view of); 21 Non-descript 12th Avenue (street); 22 Queen Lydia Lili‘uokalani Elementa (text:across); 29 Kapi‘olani Community College (far); 32 Monsarrat Avenue (far)"
+ },
+ "IX": {
+  "stops": [
+   6,
+   12,
+   15,
+   21,
+   23,
+   26,
+   27,
+   28
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 6 Date Street/ Mo‘oheau Avenue (street); 12 Kahoaloha Lane (street); 15 Kahuna Lane (far); 21 Isenberg Street (street); 23 Wiliwili Street (street); 26 Mō‘ili‘ili Fence (text:no longer); 27 Algaroba Street (street); 28 Waiola Street (street)"
+ },
+ "X": {
+  "stops": [
+   3,
+   5,
+   6,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   26,
+   34,
+   37,
+   41,
+   43,
+   44,
+   51
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 3 Kapi‘olani Boulevard/ along McCull (street); 5 Algaroba Street (street); 6 S. Beretania and McCully streets (text:across,was known as); 9 Wilder Avenue (street); 10 Clement Street (mauka on Wilder (street); 11 Oliver Street and Evelyn Lane (street); 12 First Artesian Well (text:across,was known as); 13 Artesian Way (street); 14 Alexander Street (street); 15 Sacred Heart Catholic Church (text:across); 16 Halekula (schoolhouse) Way (street); 17 Spreckels Street was named for Cla (street); 26 College Hill Tract (far); 34 Ānuenue Street (far); 37 Koganji Temple (far); 41 Mānoa Chinese Cemetery (far); 43 Lyon Arboretum (far); 44 Mānoa Marketplace (text:look for); 51 Kamānele Park (text:across)"
+ },
+ "XI": {
+  "stops": [
+   4,
+   10,
+   22,
+   35,
+   43
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 4 Algaroba Street (street); 10 Metcalf Street (street); 22 ‘Ili of Wailele (far); 35 “Chance Meeting” (text:across); 43 Sinclair (text:former)"
+ },
+ "XII": {
+  "stops": [
+   2,
+   7,
+   12,
+   14,
+   19,
+   26
+  ],
+  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 2 Thomas Jefferson Elementary School (far); 7 Date Street/ Mo‘oheau Avenue (street); 12 Mokihana Street (far); 14 Wai‘alae Avenue (far); 19 Wa‘ahila Ridge (text:across); 26 Klum Gym (far)"
+ }
 }
