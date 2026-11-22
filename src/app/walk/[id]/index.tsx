@@ -28,6 +28,9 @@ export default function WalkOverview() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isPro = useIsPro();
+  // Her book maps appear once the walks are unlocked; before that the street map shows only the stops you can open (Nick, 21 Nov 2026).
+  const bookOk = !!walk?.bookMap && isPro;
+  const lastOpen = walk ? walk.stops.reduce((k, _s, i) => (canOpenStop(walk.id, i, isPro) ? i : k), -1) : -1;
   const prog = useProgress((s) => s.progress[walk.id]);
   const activeId = useProgress((s) => s.activeWalkId);
   const [mode, setMode] = useState<Mode>(modeParam === 'map' ? 'map' : 'read');
@@ -130,17 +133,17 @@ export default function WalkOverview() {
         </ScrollView>
       ) : (
         <View style={{ flex: 1 }}>
-          {bookMap && walk.bookMap ? (
+          {bookMap && bookOk ? (
             <BookMapPane walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} topInset={insets.top + 110} bottomInset={230} />
           ) : (
-            <WalkMap ref={mapRef} walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
+            <WalkMap ref={mapRef} limitTo={lastOpen} walk={walk} current={focus} visited={prog?.visited} finished={!!prog?.finishedAt} isLocked={locked} onSelect={(i) => { setFocus(i); cards.current?.scrollToIndex({ index: i, animated: true }); }} bottomInset={230} mapType={layer} />
           )}
-          {walk.bookMap ? (
+          {bookOk ? (
             <View style={{ position: 'absolute', left: 14, bottom: 242 }}>
               <MapStyleSwitch book={bookMap} onChange={setBookMap} />
             </View>
           ) : null}
-          {!(bookMap && walk.bookMap) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={242} /> : null}
+          {!(bookMap && bookOk) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={242} /> : null}
           <FlatList
             ref={cards}
             data={walk.stops}

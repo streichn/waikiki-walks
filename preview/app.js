@@ -82,6 +82,10 @@
   const ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, XI: 11, XII: 12 };
   const wn = (id) => ROMAN[id] || id;
   const canOpen = (wid, i) => S.isPro || (wid === TRIAL.walkId ? i < TRIAL.freeStops : i < 1);
+  // Before unlocking, the maps show only the stops you can open (the trial's first stops, or a locked walk's first stop),
+  // and her book maps appear only once unlocked (Nick, 21 Nov 2026).
+  const lastOpen = (w) => { if (S.isPro) return w.stops.length - 1; let k = -1; w.stops.forEach((_, i) => { if (canOpen(w.id, i)) k = i; }); return k; };
+  const bookOk = (w) => !!w.bookMap && S.isPro;
   const onMap = (s) => s.geo === 'book'; // a stop gets a pin only if her book map prints it
   const canStart = (wid) => S.isPro || wid === TRIAL.walkId;
   const applyTheme = () => {
@@ -289,7 +293,7 @@
         ${stops}
       </div>
     </div>
-    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="wmap"></div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div></div>
+    <div id="mapview" class="${S.mode === 'map' ? '' : 'hidden'}" style="position:absolute;inset:0">${S.mapStyle === 'book' && bookOk(w) ? bookPane(w) : '<div class="map" id="wmap"></div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}<div class="maprail" id="rail">${w.stops.map((s, i) => `<button class="mcard ${i === S.focus ? 'on' : ''}" data-card="${i}">${!canOpen(w.id, i) ? `<span class="ph" style="background:#8A9A9B;color:#fff">${ic('lock')}</span>` : s.photos[0] && IMG[s.photos[0].file] ? img(s.photos[0].file) : `<span class="ph" style="background:${w.color}">${hib(40, '#fff')}</span>`}<div style="min-width:0"><div class="label">Stop ${s.n}</div><div style="font-weight:800;line-height:1.25">${esc(s.title)}</div><div class="small" style="color:var(--primary);margin-top:3px">${canOpen(w.id, i) ? 'Read this stop' : 'Unlock to read'}</div></div></button>`).join('')}</div><div class="attrib">© OpenStreetMap contributors</div></div>
     <div class="topbar"><button class="iconbtn" data-act="back" aria-label="Back">${ic('back')}</button><div class="seg" role="tablist"><button role="tab" aria-selected="${S.mode === 'read'}" data-mode="read">${ic('book')} Read</button><button role="tab" aria-selected="${S.mode === 'map'}" data-mode="map">${ic('map')} Map</button></div><button class="iconbtn" data-act="fit" aria-label="Show all stops">${ic('scan')}</button></div>
     <div class="cta ${S.mode === 'read' ? 'solid' : ''}"><button class="btn block ${canStart(w.id) ? '' : 'accent'}" data-act="start">${ic(canStart(w.id) ? 'navigate' : 'unlock')} ${startLabel}</button>${S.progress[w.id] && S.progress[w.id].visited.length ? `<button class="resetw" data-act="resetwalk">Start this walk over</button>` : ''}</div>`;
   }
@@ -428,7 +432,7 @@
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
   function overlayCtl(w) {
-    if (S.mapStyle === 'book' || !(window.WWWARP || {})[w.id]) return '';
+    if (S.mapStyle === 'book' || !S.isPro || !(window.WWWARP || {})[w.id]) return '';
     return `<label class="overlayctl">Street<input type="range" min="0" max="100" value="${S.overlay || 0}" data-overlay aria-label="Book map overlay strength">Book map</label>`;
   }
   function addOverlay(mapObj, w) {
@@ -437,7 +441,7 @@
     return o;
   }
   function styleSwitch(w) {
-    if (!w.bookMap) return '';
+    if (!bookOk(w)) return '';
     return `<div class="mapstyle" role="tablist" aria-label="Map style"><button role="tab" data-mapstyle="street" aria-selected="${S.mapStyle !== 'book'}">Street map</button><button role="tab" data-mapstyle="book" aria-selected="${S.mapStyle === 'book'}">${ic('book', 'width="14" height="14"')} Book map</button></div>`;
   }
 
@@ -509,12 +513,16 @@
     map.on('dragstart', () => { if (S.follow !== 'off') { S.follow = 'off'; el.style.transform = ''; const b = document.querySelector('[data-act="locate"]'); if (b) { b.classList.remove('on'); b.innerHTML = ic('navigate'); } } });
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     // Only stops her book map prints get a pin, so this map shows what her map shows.
-    const mapPts = w.stops.filter(onMap).map((s) => [s.lat, s.lng]);
+    const lim = lastOpen(w);
+    const mapPts = w.stops.filter((st, i) => onMap(st) && i <= lim).map((st) => [st.lat, st.lng]);
     // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
-    L.polyline(walkPath(w).length > 1 ? walkPath(w) : mapPts, { color: ROUTE_DOTS, weight: 5, dashArray: '1 9', lineCap: 'round' }).addTo(map);
-    sidePaths(w).forEach((p) => L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map));
+    // Before unlocking it runs only as far as the stops you can open.
+    const route = lim >= w.stops.length - 1 ? walkPath(w) : lim > 0 ? walkPath(w, lim) : [];
+    L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 5, dashArray: '1 9', lineCap: 'round' }).addTo(map);
+    const sideStops = w.stops.filter((st) => st.side && onMap(st));
+    sidePaths(w).forEach((p, k) => { if (w.stops.indexOf(sideStops[k]) <= lim) L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map); });
     const markers = w.stops.map((s, i) => {
-      if (!onMap(s)) return null;
+      if (!onMap(s) || i > lim) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
       m.on('click', () => opts.onSelect && opts.onSelect(i));
       return m;
@@ -591,7 +599,7 @@
     if (here) navLine = 'Read or listen below, then tap Next.';
     else if (S.me) { const d = dist(S.me, stop), b = bearing(S.me, stop); rot = b - S.heading; navLine = `${fmt(d)} · about ${Math.max(1, Math.round(d / 67))} min · head ${hawaiianDir(b)}`; }
     return `<div id="go" style="position:absolute;inset:0">
-      <div class="mapwrap">${S.mapStyle === 'book' && w.bookMap ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
+      <div class="mapwrap">${S.mapStyle === 'book' && bookOk(w) ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
       ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
@@ -1015,6 +1023,7 @@
   }
 
   function render() {
+    if (!S.isPro && S.mapStyle === 'book') S.mapStyle = 'street';
     const oldPane = document.getElementById('bookpane');
     const keep = oldPane ? { top: oldPane.scrollTop, left: oldPane.scrollLeft, view: S.view, walk: S.walkId } : null;
     stopSpeakIfLeaving();

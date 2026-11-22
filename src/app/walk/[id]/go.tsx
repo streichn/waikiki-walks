@@ -30,6 +30,9 @@ export default function ActiveWalk() {
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
   const isPro = useIsPro();
+  // Her book maps appear once the walks are unlocked; before that the street map shows only the stops you can open (Nick, 21 Nov 2026).
+  const bookOk = !!walk?.bookMap && isPro;
+  const lastOpen = walk ? walk.stops.reduce((k, _s, i) => (canOpenStop(walk.id, i, isPro) ? i : k), -1) : -1;
   const settings = useSettings();
   const startWalk = useProgress((s) => s.startWalk);
   const goTo = useProgress((s) => s.goTo);
@@ -214,21 +217,21 @@ export default function ActiveWalk() {
   return (
     <View style={{ flex: 1, backgroundColor: t.bg }}>
       <View style={StyleSheet.absoluteFill}>
-        {bookMap && walk.bookMap ? (
+        {bookMap && bookOk ? (
           <BookMapPane walk={walk} current={current} visited={visited} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} me={pos} heading={heading} onSelect={(i) => go(i)} topInset={insets.top + 110} bottomInset={snaps[detent]} />
         ) : (
-        <WalkMap ref={mapRef} walk={walk} current={current} visited={visited} me={pos} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
+        <WalkMap ref={mapRef} limitTo={lastOpen} walk={walk} current={current} visited={visited} me={pos} isLocked={(i) => !canOpenStop(walk.id, i, isPro)} onSelect={(i) => go(i)} bottomInset={snaps[detent]} mapType={layer} onUserPan={() => setFollow('off')} />
         )}
       </View>
       {/* Map style at the bottom left and zoom at the bottom right, so the top stays clear for the arrival banner */}
-      {detent !== 'full' && walk.bookMap ? (
+      {detent !== 'full' && bookOk ? (
         <View style={{ position: 'absolute', left: 14, bottom: snaps[detent] + 12 }}>
           <MapStyleSwitch book={bookMap} onChange={setBookMap} />
         </View>
       ) : null}
-      {detent !== 'full' && !(bookMap && walk.bookMap) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={snaps[detent] + 12} /> : null}
+      {detent !== 'full' && !(bookMap && bookOk) ? <ZoomButtons onZoom={(d) => mapRef.current?.zoomBy(d)} bottom={snaps[detent] + 12} /> : null}
       {/* Street-map controls; the book map has its own follow-me button beside its + and - */}
-      {detent !== 'full' && !(bookMap && walk.bookMap) ? (
+      {detent !== 'full' && !(bookMap && bookOk) ? (
         <View style={[styles.mapBtns, { top: insets.top + 64 }]}>
           <LocateButton
             mode={follow}

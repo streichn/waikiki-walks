@@ -22,18 +22,20 @@ type Props = {
   mapType?: 'standard' | 'satellite' | 'hybrid';
   onUserPan?: () => void;
   me?: { lat: number; lng: number } | null; // the walker, for filling in the leg being walked
+  limitTo?: number; // last stop index to show (before unlocking, only the stops you can open)
 };
 
 /** Numbered pins in walking order with the route drawn between them. */
-export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], finished = false, isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan, me }, ref) {
+export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk, current = -1, visited = [], finished = false, isLocked, onSelect, showsUser = true, style, bottomInset = 0, mapType = 'standard', onUserPan, me, limitTo }, ref) {
   const t = useTheme();
   const map = useRef<MapView>(null);
   const coords = useMemo(() => walk.stops.map((s) => ({ latitude: s.lat, longitude: s.lng })), [walk]);
   // Only stops her book map prints get a pin, so this map shows what her map shows.
+  const lim = limitTo ?? walk.stops.length - 1;
   const mapCoords = useMemo(() => {
-    const c = walk.stops.filter(onMap).map((s) => ({ latitude: s.lat, longitude: s.lng }));
+    const c = walk.stops.filter((s, i) => onMap(s) && i <= lim).map((s) => ({ latitude: s.lat, longitude: s.lng }));
     return c.length ? c : [{ latitude: 21.29, longitude: -157.82 }];
-  }, [walk]);
+  }, [walk, lim]);
   const reached = finished ? walk.stops.length - 1 : Math.max(-1, ...visited);
   const trail = useMemo(() => (reached > 0 ? walkPath(walk, reached) : []), [walk, reached]);
   // The leg toward the current stop fills in along her route up to the walker's nearest point on it, never shrinking.
@@ -54,7 +56,10 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
     }
   }
   // Her red route between stops where it was traced, so the line follows streets rather than cutting across.
-  const routeCoords = useMemo(() => { const p = walkPath(walk); return p.length > 1 ? p : mapCoords; }, [walk, mapCoords]);
+  const routeCoords = useMemo(() => {
+    const p = lim >= walk.stops.length - 1 ? walkPath(walk) : lim > 0 ? walkPath(walk, lim) : [];
+    return p.length > 1 ? p : mapCoords;
+  }, [walk, mapCoords, lim]);
   const initial: Region = useMemo(() => {
     const lats = mapCoords.map((c) => c.latitude);
     const lngs = mapCoords.map((c) => c.longitude);
@@ -102,10 +107,10 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
       <Polyline coordinates={routeCoords} strokeColor={ROUTE_DOTS} strokeWidth={5} lineDashPattern={[1, 9]} lineCap="round" />
       {/* The part already walked, solid and bright over the dashed route, so the circuit fills in as you go. */}
       {trail.length > 1 ? <Polyline coordinates={trail} strokeColor={TRAIL} strokeWidth={6} /> : null}
-      {sidePaths(walk).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
+      {sidePaths(walk).filter((_p, k) => walk.stops.indexOf(walk.stops.filter((s) => s.side && onMap(s))[k]) <= lim).map((p, k) => <Polyline key={`side${k}`} coordinates={p} strokeColor={SIDE_TRIP} strokeWidth={3} lineDashPattern={[4, 6]} />)}
       {part.length > 1 ? <Polyline coordinates={part} strokeColor={TRAIL} strokeWidth={6} /> : null}
       {walk.stops.map((s, i) => {
-        if (!onMap(s)) return null;
+        if (!onMap(s) || i > lim) return null;
         const isCur = i === current;
         const done = visited.includes(i);
         const locked = isLocked?.(i);

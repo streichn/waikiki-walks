@@ -188,3 +188,7 @@
 - Reading: a Read / Pause / Resume button sits just above the stop text; the headphones button left the bottom bar. Audio mode stays beside Next stop.
 - Shared polyline helpers in src/lib/polyline.ts.
 - Street map pins: one color (blue) for every stop, red for the stop you're heading to or at, purple for her side trips; the current pin is no longer enlarged. Visited stops show through the blue trail instead of a green pin.
+
+## 2026-11-21 · Maps before unlocking
+- Her book maps (and the book overlay on the street map) appear only once the walks are unlocked.
+- Before unlocking, the street map shows only the stops you can open: Walk IV's free stops 1 to 5 with the route between them, and a locked walk's first stop. The rest of the walk stays hidden until unlocked.
