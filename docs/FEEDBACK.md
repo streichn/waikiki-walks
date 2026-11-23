@@ -69,3 +69,11 @@
 ## 2026-11-22 · Email "typos..."
 - Veneeta answered all twelve possible book typos: Stream, Chun, one "of", Plantation, Lili‘uokalani, McCully, one "the", Kauwala‘a, Bachman, Street, Stan Sheriff, Archaeology. Status: fixed (live session, 22 Nov).
 - Still open with her: the places that may have changed, the red ink note near Walk XI stop 6, and permission for Jason's maps.
+
+## 2026-11-22 · Emails "walk III" and "Delete this in Walk III"
+- "Pin 13 should be on the land." (Walk III stop 13). Status: fixed (live session, 22 Nov, commit 8be9a59).
+- "Delete this in Walk III": the Ho‘okela Hawaiian Heritage and Culture Center paragraph (Walk III stop 14). Status: fixed (live session, 22 Nov). The same center at IV-23, V-15 and V-19 is on the go / no-go list in docs/MOM_REVIEW.md, waiting for her.
+- "Good morning" thread (16:52Z): about Alice studying French. Personal, no app comments.
+
+## 2026-11-23 · Scheduled run, 14:10Z
+- No new app comments from Veneeta since 22 Nov 21:29Z. Waiting on her: the go / no-go list (docs/MOM_REVIEW.md), look-at stops on every walk, the red note near Walk XI stop 6, and permission for Jason's map files.

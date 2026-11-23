@@ -5,6 +5,14 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, type TextStyle, View, t
 import { useSettings } from '../store';
 import { useTheme } from '../theme';
 
+// Large text (iOS Dynamic Type, Android font size). Reading text has no cap: it grows
+// as far as the phone's setting goes. Controls grow to at least 200% (Apple's Larger
+// Text bar) and wrap instead of clipping. Numbers inside fixed map pins grow a little,
+// since VoiceOver and TalkBack read the stop name. See docs/DECISIONS.md, 23 Nov 2026.
+export const MAX_CONTROL_SCALE = 2;
+export const MAX_SEGMENT_SCALE = 1.6;
+export const MAX_PIN_SCALE = 1.3;
+
 export function tap() {
   if (useSettings.getState().haptics) Haptics.selectionAsync().catch(() => undefined);
 }
@@ -47,7 +55,7 @@ export function Button({ label, onPress, icon, kind = 'primary', loading, style,
       ]}
     >
       {loading ? <ActivityIndicator color={fg} /> : icon ? <Ionicons name={icon} size={20} color={fg} /> : null}
-      <Text style={{ color: fg, fontFamily: t.font.bodyBold, fontSize: 16 }}>{label}</Text>
+      <Text maxFontSizeMultiplier={MAX_CONTROL_SCALE} style={{ color: fg, fontFamily: t.font.bodyBold, fontSize: 16, flexShrink: 1, textAlign: 'center' }}>{label}</Text>
     </Pressable>
   );
 }
@@ -79,7 +87,7 @@ export function Chip({ label, icon, color }: { label: string; icon?: keyof typeo
   return (
     <View style={[styles.chip, { backgroundColor: t.cardAlt }]}>
       {icon ? <Ionicons name={icon} size={14} color={color ?? t.primary} /> : null}
-      <Text style={{ color: t.text, fontFamily: t.font.bodySemi, fontSize: 13 }}>{label}</Text>
+      <Text maxFontSizeMultiplier={MAX_CONTROL_SCALE} style={{ color: t.text, fontFamily: t.font.bodySemi, fontSize: 13, flexShrink: 1 }}>{label}</Text>
     </View>
   );
 }
@@ -102,7 +110,7 @@ export function Segmented<V extends string>({ value, options, onChange }: { valu
             style={[styles.segItem, on && { backgroundColor: t.card, shadowOpacity: 0.12 }]}
           >
             {o.icon ? <Ionicons name={o.icon} size={16} color={on ? t.primary : t.textMuted} /> : null}
-            <Text style={{ fontFamily: t.font.bodyBold, fontSize: 14, color: on ? t.primary : t.textMuted }}>{o.label}</Text>
+            <Text maxFontSizeMultiplier={MAX_SEGMENT_SCALE} style={{ fontFamily: t.font.bodyBold, fontSize: 14, color: on ? t.primary : t.textMuted, flexShrink: 1, textAlign: 'center' }}>{o.label}</Text>
           </Pressable>
         );
       })}
@@ -116,5 +124,5 @@ const styles = StyleSheet.create({
   card: { borderRadius: 20, borderWidth: StyleSheet.hairlineWidth, padding: 16, shadowColor: '#3b2a12', shadowOpacity: 0.08, shadowRadius: 12, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 14 },
   seg: { flexDirection: 'row', borderRadius: 22, padding: 3, borderWidth: StyleSheet.hairlineWidth },
-  segItem: { flex: 1, flexDirection: 'row', gap: 6, alignItems: 'center', justifyContent: 'center', paddingVertical: 9, borderRadius: 19, shadowColor: '#000', shadowOpacity: 0, shadowRadius: 4, shadowOffset: { width: 0, height: 1 } },
+  segItem: { flex: 1, flexDirection: 'row', gap: 6, alignItems: 'center', justifyContent: 'center', paddingVertical: 9, paddingHorizontal: 4, borderRadius: 19, shadowColor: '#000', shadowOpacity: 0, shadowRadius: 4, shadowOffset: { width: 0, height: 1 } },
 });

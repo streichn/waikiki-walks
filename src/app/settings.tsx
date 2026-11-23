@@ -41,6 +41,9 @@ export default function Settings() {
         </T>
         <Slider value={s.textScale} min={0.9} max={1.4} step={0.05} onChange={(v) => s.set({ textScale: v })} />
         <T style={{ fontSize: 17 * s.textScale }}>Aloha ʻāina, love of the land.</T>
+        <T variant="small" style={{ marginTop: 6 }}>
+          This adds to the text size set on your phone.
+        </T>
       </Section>
 
       <Section title="Walking">

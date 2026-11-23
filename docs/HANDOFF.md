@@ -32,5 +32,8 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 ## Questions for Nick
 (none open)
 
+## 2026-11-23 · Scheduled run, 14:10Z
+- No new app comments from Veneeta (her 22 Nov emails were all handled live; logged in FEEDBACK.md). This run: large text (Dynamic Type) caps on controls, pins and tab labels; reading text uncapped.
+
 ## 2026-11-22 · Scheduled run, 13:00Z
 - No new app comments from Veneeta. PR #29 (Reduce Motion) is open; this run worked on the welcome screens instead (Skip, what is free, honest arrival copy). It uses Reanimated's useReducedMotion, so it does not depend on #29.
