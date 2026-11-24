@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-24 · Read-aloud without signal on Android
+- Android lists Google voices by raw names like "en-us-x-iol-network", and the ones ending in "network" stream from Google, so they go silent with no signal. The voice picker now shows plain names ("US English, voice IOL"), lists the voices stored on the phone first, and marks the others "Needs internet".
+- If you picked a "Needs internet" voice and lose signal, the walk reads with the phone's default voice instead of going quiet. It goes back to your voice when signal returns.
+- Android gets its own tip for adding voices (Settings › Accessibility › Text-to-speech output, then Install voice data); iPhone keeps the Enhanced voices tip. "Without signal" in Settings now mentions read-aloud.
+- Daily re-check of Walk I for Veneeta: one new item (I-g, "100 years ago, in 1927") in docs/MOM_REVIEW.md.
+
 ## 2026-11-22
 
 - Look-at stops on every walk (75 in all), by the same rule as Walk III: her number sits off her line and the book says to look across or look for it, the place is gone, the stop is a street name, or the pin is too far from her line for an arrival alert. Each has its reason in scripts/georef/look_stops.json, for Veneeta to confirm.

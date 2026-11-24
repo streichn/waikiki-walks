@@ -18,6 +18,7 @@ How this file is used:
 | I-d | I-5 | "A bridge is planned to span the canal to Kālaimoku Street." | still planned (Ala Pono) | no change | 22 Nov | waiting |
 | I-e | I-2 | Genki Balls "recently" | time word | drop "recently" | earlier list | waiting |
 | I-f | I-4 | "Until recently, the Mālia, a sacred canoe, was housed..." | time word | her wording | earlier list | waiting |
+| I-g | I-13 | "it was constructed 100 years ago, in 1927" (Waikīkī Fire Station No. 7) | time word: 1927 is 99 years before 2026, and the count grows each year | "it was constructed in 1927" (source: the book's own date) | | new |
 
 ## Walk II
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -101,6 +102,9 @@ How this file is used:
 ## Checked and still correct (22 Nov 2026)
 Army Museum (II-17), Hau Tree (II-13), Lappert's (II-12), Kani Ka Pila (III-2), Macy's (IV-17), Royal Hawaiian Band Sunday concerts, Art on the Zoo Fence hours (VI-13), South Shore Grill and Diamond Head Market, City Mill Kaimukī, Good Guys, Waiola Kapahulu, Nijiya and Longs, Mānoa Valley Inn, Mānoa Heritage Center, John Young Museum, whiteterns.org. Not yet checked: www.waimeavalley.net (III-6).
 
+Re-check 24 Nov 2026 (Walk I): Waikīkī-Kapahulu Public Library is open with regular programs (https://www.librarieshawaii.org/branch/waikiki-kapahulu-public-library/). Mānoa Falls trail (I-9): the book already says to check it is open, which still fits; DLNR closes it from time to time for maintenance (https://dlnr.hawaii.gov/?p=37808).
+
 ## Daily re-check log
 One line per run: date, walk checked, new items added (IDs) or "none".
 - 2026-11-22: all walks (first full pass).
+- 2026-11-24: Walk I. New: I-g.

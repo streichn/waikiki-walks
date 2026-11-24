@@ -8,7 +8,7 @@ import { Alert, AppState, Linking, Platform, Pressable, ScrollView, StyleSheet, 
 import type * as Speech from 'expo-speech';
 import { Card, Segmented, T } from '../components/ui';
 import { APPLE_MANUAL_REVOKE_URL, deleteAccount } from '../lib/auth';
-import { englishVoices, speakShort } from '../lib/narration';
+import { englishVoices, needsInternet, speakShort, voiceLabel } from '../lib/narration';
 import { restore } from '../lib/purchases';
 import { type ThemeMode, useAccount, useProgress, useSettings } from '../store';
 import { APP_COPYRIGHT, LINKS } from '../legal';
@@ -71,7 +71,10 @@ export default function Settings() {
           Voice
         </T>
         <View style={{ gap: 6 }}>
-          {[{ identifier: undefined as string | undefined, name: 'Phone default', quality: 'Default' }, ...voices.slice(0, 8)].map((v) => (
+          {[{ identifier: undefined as string | undefined, name: 'Phone default', quality: 'Default', language: 'en' }, ...voices.slice(0, 8)].map((v) => {
+            const label = v.identifier ? voiceLabel({ identifier: v.identifier, name: v.name, language: v.language }) : v.name;
+            const online = v.identifier ? needsInternet({ identifier: v.identifier }) : false;
+            return (
             <Pressable
               key={v.identifier ?? 'default'}
               onPress={() => {
@@ -80,21 +83,30 @@ export default function Settings() {
               }}
               accessibilityRole="radio"
               accessibilityState={{ checked: s.voiceId === v.identifier }}
-              accessibilityLabel={`${v.name}${v.quality === 'Enhanced' ? ', enhanced' : ''}`}
+              accessibilityLabel={`${label}${v.quality === 'Enhanced' ? ', enhanced' : ''}${online ? ', needs internet' : ''}`}
               style={[styles.voice, { borderColor: s.voiceId === v.identifier ? t.accent : t.border, backgroundColor: t.card }]}
             >
               <Ionicons name={s.voiceId === v.identifier ? 'radio-button-on' : 'radio-button-off'} size={18} color={t.accent} />
-              <T style={{ flex: 1 }}>{v.name}</T>
+              <View style={{ flex: 1 }}>
+                <T>{label}</T>
+                {online ? <T variant="small">Needs internet. Without signal, the phone default reads instead.</T> : null}
+              </View>
               {v.quality === 'Enhanced' ? <T variant="small">Enhanced</T> : null}
             </Pressable>
-          ))}
+            );
+          })}
         </View>
-        <T variant="small">Tip: download "Enhanced" or "Premium" voices in iPhone Settings › Accessibility › Spoken Content › Voices for a more natural reading.</T>
+        {Platform.OS === 'ios' ? (
+          <T variant="small">Tip: download "Enhanced" or "Premium" voices in iPhone Settings › Accessibility › Spoken Content › Voices for a more natural reading.</T>
+        ) : (
+          <T variant="small">Tip: to read with no signal, pick a voice that does not say "Needs internet". To add voices, open your phone's Settings › Accessibility › Text-to-speech output, then Install voice data.</T>
+        )}
       </Section>
 
       <Section title="Without signal">
         <T variant="small">The walk text, photos, pins, the book's walk maps, GPS, and arrival alerts are stored on your phone and work with no signal.</T>
         <T variant="small">Street and satellite maps come from Apple Maps or Google Maps and need a connection. Areas you have viewed recently may stay saved for a while.</T>
+        <T variant="small">Read-aloud uses voices stored on your phone.{Platform.OS === 'android' ? ' A voice marked "Needs internet" hands over to the phone default when there is no signal.' : ''}</T>
         <T variant="small">If you are avoiding roaming charges, turn off mobile data instead of using Airplane mode. On some phones, Airplane mode also turns off GPS.</T>
         <T variant="small">Progress you make offline is kept on your phone. If you are signed in, it is copied to your account when you are back online.</T>
       </Section>
