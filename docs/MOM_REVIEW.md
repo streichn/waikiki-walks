@@ -16,20 +16,22 @@ How this file is used:
 | I-b | I-27 | "the newly created Centennial Park" | renovated 2026, not new | drop "newly created" | 22 Nov | waiting |
 | I-c | I-28 | "Waikīkī Beach Walk, is a recently created walkway" | opened 2007 | "created in 2007" | 22 Nov | waiting |
 | I-d | I-5 | "A bridge is planned to span the canal to Kālaimoku Street." | still planned (Ala Pono) | no change | 22 Nov | waiting |
-| I-e | I-2 | Genki Balls "recently" | time word | drop "recently" | earlier list | waiting |
-| I-f | I-4 | "Until recently, the Mālia, a sacred canoe, was housed..." | time word | her wording | earlier list | waiting |
+| I-e | I-2 | Genki Balls "recently" | time word | drop "recently" | earlier list | done (go 25 Nov: her "Delete recently") |
+| I-f | I-4 | "Until recently, the Mālia, a sacred canoe, was housed..." | time word | her wording | earlier list | done (go 25 Nov: her rewrite) |
+| I-g | I-13 | "it was constructed 100 years ago, in 1927." | 1927 is 99 years ago and the count grows | her rewrite: "it was constructed over 100 years ago." | her email 25 Nov | done (go 25 Nov) |
+| I-h | I-11 | (new paragraph after "In 1948 ... clubhouse was constructed.") | her addition | the Dance Palladium paragraph, her wording | her email 25 Nov | done (go 25 Nov) |
 
 ## Walk II
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
-| II-a | II-14 | "many of the trees have recently succumbed to the chopping block" | time word | drop "recently" | earlier list | waiting |
+| II-a | II-14 | "many of the trees have recently succumbed to the chopping block" | time word | drop "recently" | earlier list | done (go 25 Nov: her "delete recently") |
 
 ## Walk III
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | III-a | III-14 | Ho‘okela paragraph ("If you have time to spare ... true Hawaiian culture.") | | delete | her email 22 Nov | done (8be9a59) |
 | III-b | III-13 | pin in the water | | pin on land | her email 22 Nov | done (8be9a59) |
-| III-c | III-9 | "Historic tours are offered throughout the week" | tours twice a week, free for hotel guests | "offered twice a week" | 22 Nov | waiting |
+| III-c | III-9 | "Historic tours are offered throughout the week" | tours twice a week, free for hotel guests | "offered twice a week" | 22 Nov | done (go 25 Nov: her edit: "Historic tours are offered: check dates and times in the main lobby.") |
 
 ## Walk IV
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -37,15 +39,17 @@ How this file is used:
 | IV-a | IV-23, V-19, V-15 | "Ho‘okela Hawaiian Heritage and Culture Center" | renamed Uluniu, daily programs | delete like Walk III, or rename to Uluniu | 22 Nov | waiting |
 | IV-b | IV-13 | "Waikīkī Business Plaza, which houses Top of Waikīkī" | closed 2020 | "which once housed" | 22 Nov | waiting |
 | IV-c | IV-28 | "St. Augustine Church and a related museum" | Damien and Marianne center, open status unclear | add "(check if open)" | 22 Nov | waiting |
+| IV-d | IV-23 | "A plaque behind one of the columns in the atrium recalls James Steiner (1860-1939) ..." | | delete the sentence | her email 25 Nov | done (go 25 Nov) |
+| IV-e | IV-13 | the three chant lines run together | | each Hawaiian line directly above its English, no blank line between, a blank line between pairs | her email 25 Nov | done (go 25 Nov) |
 
 ## Walks VI and VII
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | VII-a | VII-2 | "www.artonthezoofencehi.com" | site is artonthezoofence.com | fix address | 22 Nov | waiting |
 | VII-b | VII-5 | "open every day except Christmas Day" | also closed Honolulu Marathon day | add Marathon day | 22 Nov | waiting |
-| VII-c | VII-5 | "In 2021-2023 Hō‘ailona lived in California" | returned Sept 2025 | add "He returned to the aquarium in 2025." | 22 Nov | waiting |
+| VII-c | VII-5 | "In 2021-2023 Hō‘ailona lived in California" | returned Sept 2025 | add "He returned to the aquarium in 2025." | 22 Nov | done (go 25 Nov: her rewrite) |
 | VII-d | VII-6 | "will someday be renovated and restored" | future undecided | "its future is still being decided" | 22 Nov | waiting |
-| VII-e | VII-18 | "www.kuileicliffs.org" | could not confirm site works | remove link | 22 Nov | waiting |
+| VII-e | VII-18 | "www.kuileicliffs.org" | could not confirm site works | remove link | 22 Nov | done (go 25 Nov: her "Remove the entire line") |
 | VII-f | VII-1 | "recently renamed ... Queen’s Promenade" | time word | drop "recently" | 22 Nov | waiting |
 | VII-g | VII-7 | "Enjoy the newly installed beach showers!" | time word | "Enjoy the beach showers!" | 22 Nov | waiting |
 
@@ -53,7 +57,7 @@ How this file is used:
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | VIII-a | VIII-20 | "Queen Theater - with optimistic renovation plans afoot" | for sale June 2026; city reluctant to buy | "whose future is uncertain" | 22 Nov | waiting |
-| VIII-b | VIII-10, XII-11 | "7-foot telescope on its roof" | not confirmed | ask her | 22 Nov | waiting |
+| VIII-b | VIII-10, XII-11 | "7-foot telescope on its roof" | not confirmed | ask her | 22 Nov | done (go 25 Nov: she says the telescope is gone: both paragraphs deleted, with the web address) |
 
 ## Walk IX
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -74,6 +78,7 @@ How this file is used:
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | XII-a | XII-24 | "Stan Sheriff Center/ SimpliFi Arena" (title and text) | renamed Bankoh Arena, Aug 2025 | "Bankoh Arena" in both places | 22 Nov | waiting |
+| XII-b | XII-3 | "it was constructed in 1927." | same fire station as I-13 | "it was constructed over 100 years ago." (her note: "this change elsewhere - walk XII.3") | her email 25 Nov | done (go 25 Nov) |
 
 ## Look-at stops (scripts/georef/look_stops.json)
 | Walk | Stops | Sent | Status |

@@ -29,6 +29,11 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 - Some numbers sit off her line (Walk III: 2, 5, 6, 8, from Veneeta). The walker looks at them from the line; there is no arrival alert, and the walker taps Next. At Nick's request, Claude applied the same rule to every walk (75 stops in scripts/georef/look_stops.json, each with its reason); they are going to Veneeta to confirm. Change that list only with Nick's or Veneeta's word.
 - The book text's bold "Walk ..." directions say where to go; when the line and the text disagree, ask Veneeta.
 
+## 2026-11-25 · Live session (evening)
+- Veneeta answered part of the go / no-go list by email (reply in "Delete this in Walk III", 21:23Z and 22:16Z). Her written answers are applied in TEXT_FIXES (scripts/build_data.py); IDs and wording in docs/BOOK_UPDATES.md and docs/MOM_REVIEW.md. A fix may now empty a paragraph or start a new one with a blank line.
+- Left blank by her, so still waiting: I-12, I-27, I-28, I-5, IV-a (Ho‘okela, IV-23 and V-19), IV-b, IV-c, VII-a, VII-b, VII-d, VII-f, VII-g, VIII-a, IX-a, X-a to X-f, XII-a, and the look-at stops on other walks (she marked none; not treated as agreement).
+- Reading layout (margins, line spacing, smaller text) is in PR #34.
+
 ## Questions for Nick
 (none open)
 
