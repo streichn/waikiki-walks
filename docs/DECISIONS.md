@@ -315,3 +315,8 @@ Sources:
 - **Limits:** the name rule fits Google's engine; other engines (Samsung's, for example) may not use it, and then nothing is marked. A native check would need a small config plugin or a change to expo-speech.
 - Sources: https://developer.android.com/reference/android/speech/tts/Voice (isNetworkConnectionRequired, getName); https://support.google.com/accessibility/android/answer/6006983 (Text-to-speech output, Install voice data); https://docs.expo.dev/versions/v58.0.0/sdk/speech/ (Voice fields); node_modules/expo-speech/android SpeechModule.kt (identifier = Voice.getName()); https://support.voicemap.me/can-i-use-my-tour-offline
 
+## 2026-11-25 · Accessibility roles on custom tap targets
+- How it is normally done: React Native's Pressable has no role by default, so VoiceOver and TalkBack read only its text and give no hint it can be tapped. The React Native docs say to set accessibilityRole ("button", "link") on every custom touchable, and Apple's and Google's accessibility guidance asks that each control announce its type and a short label. Nearform's AMA guidelines treat a missing role as an error.
+- What we chose: role "button" for actions that open a screen or change state, "link" for the legal links and Credits; a single combined label for Saved rows so walk, stop and title read as one phrase; disabled state on the profile name when signed out. No visual change.
+- Sources: https://reactnative.dev/docs/accessibility, https://commerce.nearform.com/open-source/react-native-ama/guidelines/accessibility-role
+

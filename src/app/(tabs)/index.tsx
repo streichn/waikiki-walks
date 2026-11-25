@@ -38,7 +38,7 @@ export default function Home() {
         </View>
         <View style={styles.heroTop}>
           {LENS_LIVE ? (
-            <Pressable accessibilityLabel="What am I looking at?" onPress={() => router.push('/lens')} style={styles.heroBtn}>
+            <Pressable accessibilityRole="button" accessibilityLabel="What am I looking at?" onPress={() => router.push('/lens')} style={styles.heroBtn}>
               <Ionicons name="scan" size={20} color="#fff" />
             </Pressable>
           ) : null}
@@ -75,7 +75,7 @@ export default function Home() {
           ))}
         </View>
 
-        <Pressable onPress={() => router.push('/about')} style={[styles.about, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
+        <Pressable accessibilityRole="button" onPress={() => router.push('/about')} style={[styles.about, { backgroundColor: t.cardAlt, borderColor: t.border }]}>
           <View style={styles.leaf}>
             <Monstera size={130} color={t.leaf} opacity={0.22} rotate={20} />
           </View>
@@ -88,7 +88,7 @@ export default function Home() {
           <T variant="italic" style={{ color: t.leaf }}>
             {DEDICATION}
           </T>
-          <Pressable onPress={() => router.push('/credits')}>
+          <Pressable accessibilityRole="link" accessibilityLabel="Credits" onPress={() => router.push('/credits')}>
             <T variant="small">{APP_COPYRIGHT} · Credits</T>
           </Pressable>
         </View>

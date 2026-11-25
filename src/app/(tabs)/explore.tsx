@@ -41,7 +41,7 @@ export default function Explore() {
 
       <View style={[styles.top, { top: insets.top + 8, alignItems: 'center' }]}>
         {sel ? (
-          <Pressable onPress={() => setSel(null)} style={[styles.chip, { backgroundColor: t.card, flexDirection: 'row', gap: 6, alignItems: 'center' }]}>
+          <Pressable accessibilityRole="button" accessibilityLabel="Back to all walks" onPress={() => setSel(null)} style={[styles.chip, { backgroundColor: t.card, flexDirection: 'row', gap: 6, alignItems: 'center' }]}>
             <Ionicons name="chevron-back" size={16} color={t.primary} />
             <T style={{ color: t.text, fontFamily: t.font.bodyBold, fontSize: 13 }}>All walks</T>
           </Pressable>
@@ -59,7 +59,7 @@ export default function Explore() {
             {sel.title}
           </T>
           {sel.theme ? <T variant="small">{sel.theme}</T> : null}
-          <Pressable onPress={() => router.push(`/walk/${sel.id}`)} style={[styles.open, { backgroundColor: t.primary }]}>
+          <Pressable accessibilityRole="button" onPress={() => router.push(`/walk/${sel.id}`)} style={[styles.open, { backgroundColor: t.primary }]}>
             <T style={{ color: t.primaryText, fontFamily: t.font.bodyBold }}>Open walk</T>
             <Ionicons name="arrow-forward" size={18} color={t.primaryText} />
           </Pressable>

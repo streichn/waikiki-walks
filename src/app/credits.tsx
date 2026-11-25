@@ -29,13 +29,13 @@ export default function Credits() {
       ))}
       <Card style={{ gap: 10 }}>
         <T variant="label">Legal</T>
-        <Pressable onPress={() => Linking.openURL(LINKS.privacy)}>
+        <Pressable accessibilityRole="link" onPress={() => Linking.openURL(LINKS.privacy)}>
           <T style={{ color: t.primary }}>Privacy policy</T>
         </Pressable>
-        <Pressable onPress={() => Linking.openURL(LINKS.terms)}>
+        <Pressable accessibilityRole="link" onPress={() => Linking.openURL(LINKS.terms)}>
           <T style={{ color: t.primary }}>Terms of use</T>
         </Pressable>
-        <Pressable onPress={() => Linking.openURL(LINKS.appleEula)}>
+        <Pressable accessibilityRole="link" onPress={() => Linking.openURL(LINKS.appleEula)}>
           <T style={{ color: t.primary }}>Apple standard license agreement</T>
         </Pressable>
       </Card>

@@ -18,7 +18,7 @@ How this file is used:
 | I-d | I-5 | "A bridge is planned to span the canal to Kālaimoku Street." | still planned (Ala Pono) | no change | 22 Nov | waiting |
 | I-e | I-2 | Genki Balls "recently" | time word | drop "recently" | earlier list | waiting |
 | I-f | I-4 | "Until recently, the Mālia, a sacred canoe, was housed..." | time word | her wording | earlier list | waiting |
-| I-g | I-13 | "it was constructed 100 years ago, in 1927" (Waikīkī Fire Station No. 7) | time word: 1927 is 99 years before 2026, and the count grows each year | "it was constructed in 1927" (source: the book's own date) | | new |
+| I-g | I-13 | "it was constructed 100 years ago, in 1927" (Waikīkī Fire Station No. 7) | time word: 1927 is 99 years before 2026, and the count grows each year | "it was constructed in 1927" (source: the book's own date) | 25 Nov | waiting |
 
 ## Walk II
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -108,3 +108,4 @@ Re-check 24 Nov 2026 (Walk I): Waikīkī-Kapahulu Public Library is open with re
 One line per run: date, walk checked, new items added (IDs) or "none".
 - 2026-11-22: all walks (first full pass).
 - 2026-11-24: Walk I. New: I-g.
+- 2026-11-25: Walk II. None. Checked: Army Museum (II-17) open after its 2023 reopening (https://home.army.mil/hawaii/my-fort/recreation/army-museum); Honolulu Star-Bulletin "now the Honolulu Star Advertiser" (II-9) still right; McDonald's on Ala Moana Boulevard at Discovery Bay (II-8) still listed (https://www.storeopeninghours.com/mcdonalds-ala-moana-boulevard-honolulu-hi), koa paneling not confirmable online. I-g sent to her 25 Nov.

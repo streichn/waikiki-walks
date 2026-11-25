@@ -32,5 +32,9 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 ## Questions for Nick
 (none open)
 
+## 2026-11-25 · Scheduled run, 14:30Z
+- Veneeta asked for help writing to her publisher ("Should I tell him or ask him?"). The run replied in that thread: ask, with a draft asking Island Heritage about digital rights. Nick to review. No review answers yet.
+- Built on #32 (branch improve/2026-11-24-1417). Added accessibility roles on 13 custom tap targets; Walk II re-check found nothing new; I-g sent to her.
+
 ## 2026-11-22 · Scheduled run, 13:00Z
 - No new app comments from Veneeta. PR #29 (Reduce Motion) is open; this run worked on the welcome screens instead (Skip, what is free, honest arrival copy). It uses Reanimated's useReducedMotion, so it does not depend on #29.
