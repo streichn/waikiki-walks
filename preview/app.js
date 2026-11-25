@@ -76,7 +76,7 @@
   const save = (k, v) => { try { store && store.setItem('ww.' + k, JSON.stringify(v)); } catch (e) {} };
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
-    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }); if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
+    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, margin: 20, spacing: 1, alerts: true }); if (st.margin == null) { st.margin = 20; st.spacing = 1; } if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
     isPro: load('pro', false), demo: load('demo', false), realPro: load('realPro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
@@ -96,6 +96,8 @@
     const t = S.settings.theme;
     if (t === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
     document.documentElement.style.setProperty('--ts', S.settings.textScale);
+    document.documentElement.style.setProperty('--mg', S.settings.margin + 'px');
+    document.documentElement.style.setProperty('--ls', S.settings.spacing);
   };
   const isDark = () => S.settings.theme === 'dark' || (S.settings.theme === 'system' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
 
@@ -299,7 +301,7 @@ function blocksHtml(blocks, stopId) {
   function showFact() {
     const el = document.getElementById('ftxt'); if (!el) return;
     const f = factPool[factIdx % factPool.length]; el.style.opacity = 0;
-    setTimeout(() => { el.textContent = f.text; document.getElementById('fsrc').textContent = `From Walk ${wn(f.walkId)}, ${walk(f.walkId).title}`; el.style.opacity = 1; }, 220);
+    setTimeout(() => { const src = document.getElementById('fsrc'); if (!src || !el.isConnected) return; el.textContent = f.text; src.textContent = `From Walk ${wn(f.walkId)}, ${walk(f.walkId).title}`; el.style.opacity = 1; }, 220);
   }
 
   // Locked stops show the first photo and opening lines, fading out, with a one-tap unlock.
@@ -932,7 +934,11 @@ function blocksHtml(blocks, stopId) {
     const st = S.settings; const sw = (k, label, hint) => `<div class="setrow"><div style="flex:1"><div>${label}</div><div class="small">${hint}</div></div><button class="switch" role="switch" aria-checked="${st[k]}" data-sw="${k}" aria-label="${label}"></button></div>`;
     const m = modal(`<div class="stack"><h1 style="font-size:28px">Settings</h1>
       <div class="label">Appearance</div><div class="card stack" style="gap:10px"><div class="seg" role="tablist">${[['system', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button role="tab" aria-selected="${st.theme === v}" data-theme-set="${v}">${l}</button>`).join('')}</div>
-        <label class="small" for="ts">Text size</label><input id="ts" type="range" min="0.9" max="1.4" step="0.05" value="${st.textScale}"></div>
+        </div>
+      <div class="label">Reading</div><div class="card stack" style="gap:10px"><div class="seg" role="tablist">${[['comfortable', 'Comfortable'], ['compact', 'More words per screen']].map(([v, l]) => `<button role="tab" aria-selected="${(st.textScale <= 0.95 && st.margin <= 10 && st.spacing <= 0.95 ? 'compact' : 'comfortable') === v}" data-read-set="${v}">${l}</button>`).join('')}</div>
+        <label class="small" for="ts">Text size</label><input id="ts" type="range" min="0.85" max="1.6" step="0.05" value="${st.textScale}">
+        <label class="small" for="mg">Side margins</label><input id="mg" type="range" min="6" max="28" step="2" value="${st.margin}">
+        <label class="small" for="ls">Line spacing</label><input id="ls" type="range" min="0.9" max="1.4" step="0.05" value="${st.spacing}"></div>
       <div class="label">Walking</div><div class="card">${sw('alerts', 'Arrival alerts', 'Tell me when I reach a stop')}<label class="small" for="ar">Arrival distance: <span id="arv">${st.arrival}</span> m</label><input id="ar" type="range" min="15" max="80" step="5" value="${st.arrival}"></div>
       <div class="label">Read aloud</div><div class="card">${sw('autoNarrate', 'Read each stop on arrival', 'Great with headphones')}<label class="small" for="rt">Speed: <span id="rtv">${st.rate.toFixed(2)}</span>×</label><input id="rt" type="range" min="0.7" max="1.3" step="0.05" value="${st.rate}"><p class="small">The app uses the phone’s own voices (Siri on iPhone, Google on Android). Recorded narration can replace them later.</p></div>
       <div class="label">Privacy</div><div class="card small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to a server.</div>
@@ -940,9 +946,10 @@ function blocksHtml(blocks, stopId) {
     m.addEventListener('click', (e) => {
       const s = e.target.closest('[data-sw]'); if (s) { st[s.dataset.sw] = !st[s.dataset.sw]; s.setAttribute('aria-checked', st[s.dataset.sw]); persist(); }
       const t = e.target.closest('[data-theme-set]'); if (t) { st.theme = t.dataset.themeSet; m.querySelectorAll('[data-theme-set]').forEach((x) => x.setAttribute('aria-selected', x.dataset.themeSet === st.theme)); persist(); applyTheme(); }
+      const rd = e.target.closest('[data-read-set]'); if (rd) { const c = rd.dataset.readSet === 'compact'; st.textScale = c ? 0.95 : 1; st.margin = c ? 10 : 20; st.spacing = c ? 0.92 : 1; persist(); applyTheme(); m.querySelectorAll('[data-read-set]').forEach((x) => x.setAttribute('aria-selected', x === rd)); m.querySelector('#ts').value = st.textScale; m.querySelector('#mg').value = st.margin; m.querySelector('#ls').value = st.spacing; }
       if (e.target.closest('[data-reset]')) { S.progress = {}; S.active = null; persist(); toast('Progress reset'); m.remove(); render(); }
     });
-    m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
+    m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); applyTheme(); } if (e.target.id === 'mg') { st.margin = Number(e.target.value); applyTheme(); } if (e.target.id === 'ls') { st.spacing = Number(e.target.value); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
   }
   function aboutBlock(b) {
     if (b.k === 'lead') return `<p class="italic" style="font-size:16px">${esc(b.t)}</p>`;
