@@ -77,10 +77,10 @@
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
     settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }); if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
-    isPro: load('pro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
+    isPro: load('pro', false), demo: load('demo', false), realPro: load('realPro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
-  const persist = () => { save('settings', S.settings); save('pro', S.isPro); save('profile', S.profile); save('favs', S.favs); save('progress', S.progress); save('active', S.active); };
+  const persist = () => { save('settings', S.settings); save('pro', S.isPro); save('demo', S.demo); save('realPro', S.realPro); save('profile', S.profile); save('favs', S.favs); save('progress', S.progress); save('active', S.active); };
   const walk = (id) => D.walks.find((w) => w.id === id);
   // The book numbers its walks with Roman numerals; the app shows plain numbers.
   const ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, XI: 11, XII: 12 };
@@ -1041,7 +1041,7 @@ function blocksHtml(blocks, stopId) {
     S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; S.simSession = null; persist(); await needImages(w.id); render();
     // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
     // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
-    if (!navigator.geolocation) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
+    if (!navigator.geolocation || S.demo) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
   }
 
   // Fill the pane's full height under the header with her map, measured on the real pane once it is on screen
@@ -1215,6 +1215,30 @@ function blocksHtml(blocks, stopId) {
   }, true);
   $app.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.classList.contains('gw')) openGloss(e.target.dataset.word); });
   if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => S.settings.theme === 'system' && render());
+
+  // Demo bar: demo mode unlocks every walk and the book-map overlay and walks by itself; off is the real app
+  // (free trial, the phone's GPS). Reset clears everything this preview saved in the browser (Nick, 25 Nov 2026).
+  const demoBar = document.createElement('div');
+  demoBar.id = 'demobar';
+  document.body.insertBefore(demoBar, $app);
+  let resetArmed = 0;
+  const drawBar = () => {
+    demoBar.innerHTML = `<span class="dmtag">Preview</span><button class="dmsw" role="switch" aria-checked="${S.demo}" data-dm="demo"><i></i>Demo mode</button><button class="dmreset" data-dm="reset">${resetArmed ? 'Tap again to reset' : 'Reset'}</button>`;
+  };
+  demoBar.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-dm]'); if (!b) return;
+    if (b.dataset.dm === 'demo') {
+      S.demo = !S.demo;
+      if (S.demo) { S.realPro = S.isPro; S.isPro = true; toast('Demo mode on: every walk is open and the walk moves by itself.'); }
+      else { S.isPro = S.realPro; stopSim(); if (S.view === 'go' && !canOpen(S.walkId, S.progress[S.walkId] ? S.progress[S.walkId].current : 0)) { S.view = null; S.active = null; } toast('Demo mode off: the free trial and your phone\u2019s GPS.'); }
+      persist(); drawBar(); return render();
+    }
+    if (!resetArmed) { resetArmed = setTimeout(() => { resetArmed = 0; drawBar(); }, 3000); return drawBar(); }
+    clearTimeout(resetArmed); stopSim(); stopSpeak();
+    try { Object.keys(store).filter((k) => k.indexOf('ww.') === 0).forEach((k) => store.removeItem(k)); } catch (err) {}
+    location.reload();
+  });
+  drawBar();
 
   render();
   // Guest first: no sign-in wall on launch. Sign-in lives in Profile and the purchase sheet.

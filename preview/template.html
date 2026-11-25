@@ -85,12 +85,20 @@
   --primary: #2BA8A4; --onprimary: #04181C; --accent: #FF7AA2; --accentsoft: #5A2236; --gold: #FFB870; --leaf: #7CC08A;
   --dirbg: #103A3E; --hl: #3A2A10; --factbg: #1C3A2C; --factline: #2F5C45; color-scheme: dark; }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+#demobar { box-sizing: border-box; height: 34px; max-width: 520px; margin: 0 auto; padding: 0 12px; display: flex; align-items: center; gap: 10px; background: var(--card); border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 800; color: var(--muted); }
+#demobar .dmtag { flex: 1; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; }
+#demobar button { font: inherit; color: var(--text); background: none; border: 0; min-height: 30px; padding: 0 6px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+#demobar .dmsw i { width: 34px; height: 20px; border-radius: 10px; background: var(--line); position: relative; transition: background .15s; }
+#demobar .dmsw i::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .15s; }
+#demobar .dmsw[aria-checked="true"] i { background: var(--primary); }
+#demobar .dmsw[aria-checked="true"] i::after { transform: translateX(14px); }
+#demobar .dmreset { color: var(--primary); }
 html, body { height: 100%; margin: 0; }
 body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; overflow: hidden; }
 button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
 button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; }
-#app { position: relative; height: 100%; max-width: 520px; margin: 0 auto; overflow: hidden; background: var(--bg); }
+#app { position: relative; height: calc(100% - 34px); max-width: 520px; margin: 0 auto; overflow: hidden; background: var(--bg); }
 .screen { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: calc(150px + env(safe-area-inset-bottom)); background: var(--bg); }
 .hidden { display: none !important; }
 .screen, .gobody, .modal .panel, .rail, .photos, .maprail { scrollbar-width: none; }
