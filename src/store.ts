@@ -12,7 +12,9 @@ type SettingsState = {
   speechRate: number; // 0.7 to 1.3
   voiceId?: string;
   haptics: boolean;
-  textScale: number; // 0.9 to 1.4
+  textScale: number; // 0.8 to 1.4
+  textMargin: number; // side margin of stop text in points, 4 to 28
+  lineSpacing: number; // multiplier on line height and paragraph gap, 0.85 to 1.25
   units: 'imperial' | 'metric';
   onboarded: boolean;
   set: (patch: Partial<Omit<SettingsState, 'set'>>) => void;
@@ -29,6 +31,8 @@ export const useSettings = create<SettingsState>()(
       voiceId: undefined,
       haptics: true,
       textScale: 1,
+      textMargin: 20,
+      lineSpacing: 1,
       units: 'imperial',
       onboarded: false,
       set: (patch) => set(patch),

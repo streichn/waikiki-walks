@@ -6,13 +6,23 @@ import * as Location from 'expo-location';
 import * as Notifications from 'expo-notifications';
 import { Alert, AppState, Linking, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import type * as Speech from 'expo-speech';
-import { Card, Segmented, T } from '../components/ui';
+import { Button, Card, Segmented, T } from '../components/ui';
 import { APPLE_MANUAL_REVOKE_URL, deleteAccount } from '../lib/auth';
 import { englishVoices, speakShort } from '../lib/narration';
 import { restore } from '../lib/purchases';
 import { type ThemeMode, useAccount, useProgress, useSettings } from '../store';
 import { APP_COPYRIGHT, LINKS } from '../legal';
 import { useTheme } from '../theme';
+import { TRIAL } from '../config';
+import { getWalk } from '../data';
+
+/** A real paragraph from the free walk, so the margin and spacing sliders show the book's own text. */
+const SAMPLE = (() => {
+  const b = getWalk(TRIAL.walkId)?.stops[0]?.blocks.find((x) => x.kind === 'p' && x.text.length > 120);
+  if (!b) return 'Aloha ʻāina, love of the land.';
+  const cut = b.text.slice(0, 320);
+  return `${cut.slice(0, cut.lastIndexOf(' '))}…`;
+})();
 
 export default function Settings() {
   const t = useTheme();
@@ -37,10 +47,24 @@ export default function Settings() {
           ]}
         />
         <T variant="small" style={{ marginTop: 12 }}>
-          Text size
+          Text size: {Math.round(s.textScale * 100)}%
         </T>
-        <Slider value={s.textScale} min={0.9} max={1.4} step={0.05} onChange={(v) => s.set({ textScale: v })} />
-        <T style={{ fontSize: 17 * s.textScale }}>Aloha ʻāina, love of the land.</T>
+        <Slider value={s.textScale} min={0.8} max={1.4} step={0.05} onChange={(v) => s.set({ textScale: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Side margins: {s.textMargin} pt
+        </T>
+        <Slider value={s.textMargin} min={4} max={28} step={2} onChange={(v) => s.set({ textMargin: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Line spacing: {Math.round(s.lineSpacing * 100)}%
+        </T>
+        <Slider value={s.lineSpacing} min={0.85} max={1.25} step={0.05} onChange={(v) => s.set({ lineSpacing: v })} />
+        <View style={{ marginTop: 8, paddingHorizontal: s.textMargin }}>
+          <T style={{ fontSize: 17 * s.textScale, lineHeight: 27 * s.textScale * s.lineSpacing }}>
+            {SAMPLE}
+          </T>
+        </View>
+        <Button kind="outline" label="Fit more words on the page" onPress={() => s.set({ textScale: 0.9, textMargin: 10, lineSpacing: 0.9 })} />
+        <Button kind="ghost" label="Reset reading layout" onPress={() => s.set({ textScale: 1, textMargin: 20, lineSpacing: 1 })} />
       </Section>
 
       <Section title="Walking">

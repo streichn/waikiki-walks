@@ -392,7 +392,7 @@ export default function ActiveWalk() {
 
           {/* Map view shows only where you are; the stop text appears at Both and Text. */}
           {detent === 'peek' ? <View style={{ height: 14 }} /> : (
-          <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
+          <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: settings.textMargin, paddingTop: 16, paddingBottom: 28, gap: 14 * settings.lineSpacing }}>
             {/* Read, Pause and Resume up by the text (Nick, 21 Nov 2026) */}
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
               <Pressable

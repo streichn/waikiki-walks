@@ -9,6 +9,7 @@ import { getWalk, walkNo } from '../../../../data';
 import type { Stop } from '../../../../data/types';
 import { canOpenStop, useIsPro } from '../../../../lib/access';
 import { stop as stopSpeech } from '../../../../lib/narration';
+import { useSettings } from '../../../../store';
 import { useTheme } from '../../../../theme';
 
 /**
@@ -16,6 +17,7 @@ import { useTheme } from '../../../../theme';
  * Each page scrolls on its own, so a long stop never runs into the next one.
  */
 export default function StopReader() {
+  const margin = useSettings((s) => s.textMargin);
   const { id, n } = useLocalSearchParams<{ id: string; n: string }>();
   const walk = getWalk(id)!;
   const t = useTheme();
@@ -53,7 +55,7 @@ export default function StopReader() {
           }
         }}
         renderItem={({ item, index: i }) => (
-          <ScrollView style={{ width }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: insets.top + 74, paddingBottom: insets.bottom + 110 }}>
+          <ScrollView style={{ width }} contentContainerStyle={{ paddingHorizontal: margin, paddingTop: insets.top + 74, paddingBottom: insets.bottom + 110 }}>
             <T variant="label" style={{ marginBottom: 6 }}>
               Stop {item.n} of {walk.stops.length}
             </T>

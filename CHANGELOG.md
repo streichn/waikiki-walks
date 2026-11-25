@@ -2,6 +2,7 @@
 
 ## 2026-11-25
 
+- Reading layout (Veneeta found the text margins too wide): Settings now has Side margins (4 to 28 pt, was fixed at 20) and Line spacing (85 to 125%, also sets the gap between paragraphs) next to Text size, which now goes down to 80%. A sample paragraph from the book shows the effect, "Fit more words on the page" sets 90% / 10 pt / 90%, and Reset returns to 100% / 20 pt / 100%. Applies to the stop text in walk mode and the stop pages; the three values sync with the account like Text size. Same controls in the web preview.
 - Preview: a bar across the top with a Demo mode switch and a Reset button. Demo mode opens every walk and her book-map overlay and the walk moves by itself; off is the real app (free trial, the phone's GPS). Reset clears everything the preview saved in the browser (tap twice).
 - Starting a different walk while one is active now asks first, and saves your place in the current walk. Only one walk is active at a time.
 - Android: the walk's ongoing notification now names the next stop and follows you from stop to stop, and shows the right walk after a switch.

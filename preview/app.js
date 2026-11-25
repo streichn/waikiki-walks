@@ -76,7 +76,7 @@
   const save = (k, v) => { try { store && store.setItem('ww.' + k, JSON.stringify(v)); } catch (e) {} };
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
-    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }); if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
+    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, textMargin: 20, lineSpacing: 1, alerts: true }); if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
     isPro: load('pro', false), demo: load('demo', false), realPro: load('realPro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
@@ -96,6 +96,8 @@
     const t = S.settings.theme;
     if (t === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
     document.documentElement.style.setProperty('--ts', S.settings.textScale);
+    document.documentElement.style.setProperty('--tm', (S.settings.textMargin ?? 20) + 'px');
+    document.documentElement.style.setProperty('--tl', S.settings.lineSpacing ?? 1);
   };
   const isDark = () => S.settings.theme === 'dark' || (S.settings.theme === 'system' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
 
@@ -932,7 +934,10 @@ function blocksHtml(blocks, stopId) {
     const st = S.settings; const sw = (k, label, hint) => `<div class="setrow"><div style="flex:1"><div>${label}</div><div class="small">${hint}</div></div><button class="switch" role="switch" aria-checked="${st[k]}" data-sw="${k}" aria-label="${label}"></button></div>`;
     const m = modal(`<div class="stack"><h1 style="font-size:28px">Settings</h1>
       <div class="label">Appearance</div><div class="card stack" style="gap:10px"><div class="seg" role="tablist">${[['system', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button role="tab" aria-selected="${st.theme === v}" data-theme-set="${v}">${l}</button>`).join('')}</div>
-        <label class="small" for="ts">Text size</label><input id="ts" type="range" min="0.9" max="1.4" step="0.05" value="${st.textScale}"></div>
+        <label class="small" for="ts">Text size: <span id="tsv">${Math.round(st.textScale * 100)}</span>%</label><input id="ts" type="range" min="0.8" max="1.4" step="0.05" value="${st.textScale}">
+        <label class="small" for="tm">Side margins: <span id="tmv">${st.textMargin ?? 20}</span> px</label><input id="tm" type="range" min="4" max="28" step="2" value="${st.textMargin ?? 20}">
+        <label class="small" for="tl">Line spacing: <span id="tlv">${Math.round((st.lineSpacing ?? 1) * 100)}</span>%</label><input id="tl" type="range" min="0.85" max="1.25" step="0.05" value="${st.lineSpacing ?? 1}">
+        <div class="row" style="gap:8px"><button class="btn outline" data-readfit="compact" style="flex:1">Fit more words</button><button class="btn outline" data-readfit="reset" style="flex:1">Reset</button></div></div>
       <div class="label">Walking</div><div class="card">${sw('alerts', 'Arrival alerts', 'Tell me when I reach a stop')}<label class="small" for="ar">Arrival distance: <span id="arv">${st.arrival}</span> m</label><input id="ar" type="range" min="15" max="80" step="5" value="${st.arrival}"></div>
       <div class="label">Read aloud</div><div class="card">${sw('autoNarrate', 'Read each stop on arrival', 'Great with headphones')}<label class="small" for="rt">Speed: <span id="rtv">${st.rate.toFixed(2)}</span>×</label><input id="rt" type="range" min="0.7" max="1.3" step="0.05" value="${st.rate}"><p class="small">The app uses the phone’s own voices (Siri on iPhone, Google on Android). Recorded narration can replace them later.</p></div>
       <div class="label">Privacy</div><div class="card small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to a server.</div>
@@ -940,9 +945,10 @@ function blocksHtml(blocks, stopId) {
     m.addEventListener('click', (e) => {
       const s = e.target.closest('[data-sw]'); if (s) { st[s.dataset.sw] = !st[s.dataset.sw]; s.setAttribute('aria-checked', st[s.dataset.sw]); persist(); }
       const t = e.target.closest('[data-theme-set]'); if (t) { st.theme = t.dataset.themeSet; m.querySelectorAll('[data-theme-set]').forEach((x) => x.setAttribute('aria-selected', x.dataset.themeSet === st.theme)); persist(); applyTheme(); }
+      const ly = e.target.closest('[data-readfit]'); if (ly) { const c = ly.dataset.readfit === 'compact'; st.textScale = c ? 0.9 : 1; st.textMargin = c ? 10 : 20; st.lineSpacing = c ? 0.9 : 1; [['ts', st.textScale, 'tsv', Math.round(st.textScale * 100)], ['tm', st.textMargin, 'tmv', st.textMargin], ['tl', st.lineSpacing, 'tlv', Math.round(st.lineSpacing * 100)]].forEach(([i, v, o, txt]) => { m.querySelector('#' + i).value = v; m.querySelector('#' + o).textContent = txt; }); persist(); applyTheme(); }
       if (e.target.closest('[data-reset]')) { S.progress = {}; S.active = null; persist(); toast('Progress reset'); m.remove(); render(); }
     });
-    m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
+    m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); m.querySelector('#tsv').textContent = Math.round(st.textScale * 100); applyTheme(); } if (e.target.id === 'tm') { st.textMargin = Number(e.target.value); m.querySelector('#tmv').textContent = st.textMargin; applyTheme(); } if (e.target.id === 'tl') { st.lineSpacing = Number(e.target.value); m.querySelector('#tlv').textContent = Math.round(st.lineSpacing * 100); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
   }
   function aboutBlock(b) {
     if (b.k === 'lead') return `<p class="italic" style="font-size:16px">${esc(b.t)}</p>`;
