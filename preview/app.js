@@ -165,6 +165,10 @@
   function readLabel() { return speaking.stopId ? (speaking.paused ? `${ic('play')} Resume` : `${ic('pause')} Pause`) : `${ic('volume')} Read`; }
   function pauseSpeak() { speaking.paused = true; if (speaking.audio) speaking.audio.pause(); else if (synth) synth.pause(); markReading(); }
   function resumeSpeak() { speaking.paused = false; if (speaking.audio) speaking.audio.play().catch(() => {}); else if (synth) synth.resume(); markReading(); }
+  // True whenever anything is actually being read, even if speaking.stopId was lost.
+  function isReading() {
+    return !!(speaking.stopId || (synth && (synth.speaking || synth.pending)) || (speaking.audio && !speaking.audio.paused && !speaking.audio.ended));
+  }
   function markReading() {
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
@@ -173,7 +177,7 @@
     // A Stop button that shows on every screen whenever anything is being read aloud (Nick, 25 Nov 2026).
     let fab = document.getElementById('stopfab');
     if (!fab) { fab = document.createElement('button'); fab.id = 'stopfab'; fab.setAttribute('aria-label', 'Stop reading aloud'); fab.addEventListener('click', stopSpeak); document.body.appendChild(fab); }
-    fab.hidden = !speaking.stopId; fab.innerHTML = `${ic('stop')} Stop reading`;
+    fab.hidden = !isReading(); fab.innerHTML = `${ic('stop')} Stop reading`;
     const mb = document.querySelector('.minibar'); if (mb && !speaking.stopId) { const h = mb.querySelector('.hush'); if (h) h.outerHTML = ic('down', 'width="22" height="22" style="transform:rotate(180deg)"'); }
   }
 
@@ -1230,7 +1234,9 @@ function blocksHtml(blocks, stopId) {
 
   // Demo bar: demo mode unlocks every walk and the book-map overlay and walks by itself; off is the real app
   // (free trial, the phone's GPS). Reset clears everything this preview saved in the browser (Nick, 25 Nov 2026).
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && speaking.stopId) stopSpeak(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isReading()) stopSpeak(); });
+  // Keep the Stop button in step with real playback on every screen.
+  setInterval(() => { const fab = document.getElementById('stopfab'); if (!fab || fab.hidden === isReading()) markReading(); }, 400);
   const demoBar = document.createElement('div');
   demoBar.id = 'demobar';
   document.body.insertBefore(demoBar, $app);
