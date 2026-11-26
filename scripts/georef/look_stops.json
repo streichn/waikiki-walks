@@ -1,5 +1,5 @@
 {
- "_note": "Look-at stops: the walker looks at the place (or imagines what stood there) from Veneeta's dotted line instead of walking to it. They get no path of their own and no arrival alert; the walker taps Next. Walk III is from Veneeta (22 Nov 2026). The others were picked by Claude at Nick's request (22 Nov 2026) with the same rule: the number is printed away from her line, and either the text says to look across, look for, or imagine something that is gone, or the stop is a street name, or the pin is too far from her line for an arrival alert to fire. They are listed for Veneeta to confirm.",
+ "_note": "Look-at stops: the walker looks at the place (or imagines what stood there) from Veneeta's dotted line instead of walking to it. They get no path of their own and no arrival alert; the walker taps Next. Walk III is from Veneeta (22 Nov 2026). The others were picked by Claude at Nick's request (22 Nov 2026) with the same rule: the number is printed away from her line, and either the text says to look across, look for, or imagine something that is gone, or the stop is a street name, or the pin is too far from her line for an arrival alert to fire. They are listed for Veneeta to confirm. Walk I is from Veneeta (25 Nov 2026). For the other walks she wrote that most of Claude's picks are different from Walk III and she will review each walk herself; until she does, they stay as listed (Nick to decide).",
  "III": {
   "stops": [
    2,
@@ -11,13 +11,9 @@
  },
  "I": {
   "stops": [
-   3,
-   5,
-   13,
-   16,
-   21
+   9
   ],
-  "why": "Claude, 22 Nov 2026, for Veneeta to confirm: 3 Ala Naio Stream (text:across,diagonally,view of); 5 University Avenue (street); 13 Waikīkī Fire Station (far); 16 Kuekaunahi Stream Hamohamo (text:across); 21 ‘Āpuakēhau Stream (text:across)"
+  "why": "Veneeta by email, 25 Nov 2026 (reply in \"Delete this in Walk III\", 21:23Z): \"Walk I, Stop 9 is the only 'look at' stop in that walk.\" Stop 9 is the vantage point for the ridges and valleys."
  },
  "II": {
   "stops": [

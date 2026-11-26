@@ -10,6 +10,17 @@ App-only fixes (pin positions, map layout, parsing errors) are in docs/FEEDBACK.
 | Date | Walk and stop | Printed | Now | Source |
 |---|---|---|---|---|
 | 2026-11-19 | Walk I, stop 36, Keoniana Street | "John Young II, son of ʻOlohana, who served as kahuna nui" | "... who served as kuhina nui" | Her email "my mistake", and her hand correction in her copy (page 16) |
+| 2026-11-25 | Walk I, stop 2 | "Recently, the canal has been given ..." | "The canal has been given ..." | Her reply in "Delete this in Walk III" |
+| 2026-11-25 | Walk I, stop 4 | "Until recently, the Mālia, a sacred canoe, was housed at the Waikīkī Surf Club’s canoe hale." | "The Mālia, a sacred 6-person outrigger racing canoe, is housed at the Waikīkī Surf Club’s canoe hale. The Mālia was carved from a single koa log in 1933." (historic register sentence kept) | same |
+| 2026-11-25 | Walk I, stop 11 | (nothing after the 1948 clubhouse paragraph) | new paragraph: the Dance Palladium / Ala Wai Palladium, opened 1990, 11,000 square foot hardwood floor dance hall, soft-soled shoes, www.dancefeveroahu.com | same |
+| 2026-11-25 | Walk I, stop 13; Walk XII, stop 3 | "constructed 100 years ago, in 1927" (I-13); "constructed in 1927" (XII-3) | "constructed over 100 years ago" in both | same |
+| 2026-11-25 | Walk II, stop 14 | "have recently succumbed" | "have succumbed" | same |
+| 2026-11-25 | Walk III, stop 9 | "Historic tours are offered throughout the week: check on dates and times in the main lobby." | "Historic tours are offered: check dates and times in the main lobby." | same |
+| 2026-11-25 | Walk IV, stop 13 | chant printed as one run of text | each Hawaiian line directly above its English, blank line between pairs | same |
+| 2026-11-25 | Walk IV, stop 23 | "A plaque behind one of the columns in the atrium recalls James Steiner (1860-1939) ..." | sentence deleted | same |
+| 2026-11-25 | Walk VII, stop 5 | "In 2021-2023 Hō‘ailona lived in California ..." | "In the early 2020s, Hō‘ailona lived in California ... He returned to the aquarium in 2025." | same |
+| 2026-11-25 | Walk VII, stop 18 | "For more information: www.kuileicliffs.org" | line removed | same |
+| 2026-11-25 | Walk VIII, stop 10; Walk XII, stop 11 | Kapahulu Shopping Center telescope paragraph (with its web address) | deleted ("it's not there") | same |
 
 Clarifications that change how a walk reads, not its wording:
 
