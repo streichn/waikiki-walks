@@ -12,11 +12,12 @@ export function tap() {
 export function T({ children, style, variant = 'body', numberOfLines, selectable, header }: { children: ReactNode; style?: TextStyle | TextStyle[]; variant?: 'display' | 'title' | 'h2' | 'body' | 'small' | 'label' | 'italic'; numberOfLines?: number; selectable?: boolean; header?: boolean }) {
   const t = useTheme();
   const scale = useSettings((s) => s.textScale);
+  const spacing = useSettings((s) => s.lineSpacing ?? 1);
   const base: Record<string, TextStyle> = {
     display: { fontFamily: t.font.display, fontSize: 34, lineHeight: 40, color: t.text },
     title: { fontFamily: t.font.display, fontSize: 26, lineHeight: 32, color: t.text },
     h2: { fontFamily: t.font.bodyBold, fontSize: 18, lineHeight: 24, color: t.text },
-    body: { fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 26 * scale, color: t.text },
+    body: { fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 26 * scale * spacing, color: t.text },
     small: { fontFamily: t.font.body, fontSize: 14, lineHeight: 19, color: t.textMuted },
     label: { fontFamily: t.font.bodyBold, fontSize: 12, letterSpacing: 1.4, textTransform: 'uppercase', color: t.textMuted },
     italic: { fontFamily: t.font.displayItalic, fontSize: 17, lineHeight: 24, color: t.text },
