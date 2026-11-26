@@ -160,7 +160,7 @@
     };
     next();
   }
-  function stopSpeak() { speaking.paused = false; speakTok++; if (synth) synth.cancel(); if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
+  function stopSpeak() { speaking.paused = false; speakTok++; if (synth) { synth.resume(); synth.cancel(); setTimeout(() => synth.cancel(), 120); } if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
   // Read, Pause and Resume for the stop on screen (Nick, 21 Nov 2026: a read button up by the text instead of the headphones).
   function readLabel() { return speaking.stopId ? (speaking.paused ? `${ic('play')} Resume` : `${ic('pause')} Pause`) : `${ic('volume')} Read`; }
   function pauseSpeak() { speaking.paused = true; if (speaking.audio) speaking.audio.pause(); else if (synth) synth.pause(); markReading(); }
@@ -169,6 +169,11 @@
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
     const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = readLabel();
+    const sb = document.getElementById('stopbtn'); if (sb) sb.hidden = !speaking.stopId;
+    // A Stop button that shows on every screen whenever anything is being read aloud (Nick, 25 Nov 2026).
+    let fab = document.getElementById('stopfab');
+    if (!fab) { fab = document.createElement('button'); fab.id = 'stopfab'; fab.setAttribute('aria-label', 'Stop reading aloud'); fab.addEventListener('click', stopSpeak); document.body.appendChild(fab); }
+    fab.hidden = !speaking.stopId; fab.innerHTML = `${ic('stop')} Stop reading`;
     const mb = document.querySelector('.minibar'); if (mb && !speaking.stopId) { const h = mb.querySelector('.hush'); if (h) h.outerHTML = ic('down', 'width="22" height="22" style="transform:rotate(180deg)"'); }
   }
 
@@ -647,7 +652,7 @@ function blocksHtml(blocks, stopId) {
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
           <div style="flex:1;min-width:0"><div class="label">${stop.look ? `Look from here: stop ${stop.n}` : here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
-        <div class="readbar"><button class="readbtn" id="playbtn" data-act="play" aria-label="Read this stop aloud, or pause">${readLabel()}</button></div>
+        <div class="readbar"><button class="readbtn stopread" id="stopbtn" data-act="stopread" aria-label="Stop reading aloud" ${speaking.stopId ? '' : 'hidden'}>${ic('stop')} Stop</button><button class="readbtn" id="playbtn" data-act="play" aria-label="Read this stop aloud, or pause">${readLabel()}</button></div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
         <div class="controls"><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
@@ -1203,6 +1208,7 @@ function blocksHtml(blocks, stopId) {
       if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return showStop(S.progress[w.id].current + 1);
       if (a === 'prev') return showStop(S.progress[w.id].current - 1);
+      if (a === 'stopread') return stopSpeak();
       if (a === 'play') {
         const s = w.stops[S.progress[w.id].current];
         if (speaking.stopId === s.id) return speaking.paused ? resumeSpeak() : pauseSpeak();
@@ -1225,6 +1231,7 @@ function blocksHtml(blocks, stopId) {
 
   // Demo bar: demo mode unlocks every walk and the book-map overlay and walks by itself; off is the real app
   // (free trial, the phone's GPS). Reset clears everything this preview saved in the browser (Nick, 25 Nov 2026).
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && speaking.stopId) stopSpeak(); });
   const demoBar = document.createElement('div');
   demoBar.id = 'demobar';
   document.body.insertBefore(demoBar, $app);

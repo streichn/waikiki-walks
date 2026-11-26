@@ -85,6 +85,9 @@
   --primary: #2BA8A4; --onprimary: #04181C; --accent: #FF7AA2; --accentsoft: #5A2236; --gold: #FFB870; --leaf: #7CC08A;
   --dirbg: #103A3E; --hl: #3A2A10; --factbg: #1C3A2C; --factline: #2F5C45; color-scheme: dark; }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+#stopfab { position: fixed; top: 42px; right: 12px; z-index: 5000; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px; border-radius: 20px; border: 0; background: #B3261E; color: #fff; font: inherit; font-weight: 800; font-size: 14px; box-shadow: 0 4px 14px rgba(0,0,0,.3); cursor: pointer; }
+#stopfab[hidden] { display: none; }
+#stopfab svg { width: 16px; height: 16px; fill: currentColor; }
 #demobar { box-sizing: border-box; height: 34px; max-width: 520px; margin: 0 auto; padding: 0 12px; display: flex; align-items: center; gap: 10px; background: var(--card); border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 800; color: var(--muted); }
 #demobar .dmtag { flex: 1; letter-spacing: .04em; text-transform: uppercase; font-size: 11px; }
 #demobar button { font: inherit; color: var(--text); background: none; border: 0; min-height: 30px; padding: 0 6px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
@@ -243,7 +246,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .controls { display: flex; gap: 12px; align-items: center; padding: 10px 14px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--bg); }
 .audiomode { width: 76px; height: 52px; flex: none; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--text); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; font-weight: 800; }
 .audiomode[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.readbar { display: flex; justify-content: flex-end; padding: 2px 16px 0; }
+.readbar { display: flex; justify-content: flex-end; gap: 8px; padding: 2px 16px 0; }
+.readbtn[hidden] { display: none; }
+.readbtn.stopread { background: var(--card); color: var(--text); border: 1px solid var(--line); }
 .readbtn { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 18px; background: var(--accent); color: #fff; font-weight: 800; font-size: 14px; }
 .readbtn svg { width: 18px; height: 18px; }
 .play { width: 52px; height: 52px; border-radius: 26px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
