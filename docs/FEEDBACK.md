@@ -69,3 +69,9 @@
 ## 2026-11-22 · Email "typos..."
 - Veneeta answered all twelve possible book typos: Stream, Chun, one "of", Plantation, Lili‘uokalani, McCully, one "the", Kauwala‘a, Bachman, Street, Stan Sheriff, Archaeology. Status: fixed (live session, 22 Nov).
 - Still open with her: the places that may have changed, the red ink note near Walk XI stop 6, and permission for Jason's maps.
+
+## 2026-11-26 · Scheduled run: her look-at answer (25 Nov, 21:23Z, "Delete this in Walk III")
+- Under the look-at stops list she wrote: "No - most of these are different from Walk III, I'll review each walk separately. Walk I, Stop 9 is the only 'look at' stop in that walk." The live session on 25 Nov missed it (it told her she had marked none).
+- Walk I: look-at stops are now stop 9 only (were 3, 5, 13, 16, 21). Status: fixed in PR improve/2026-11-26-1430, waiting for Nick.
+- Other walks: she will review each one herself. Status: waiting for her; Nick to decide whether the current picks stay until then.
+- Her other new mail: "Perfect! Good morning and thank you!" (25 Nov, 16:00Z) about the publisher letter. Not about the app.

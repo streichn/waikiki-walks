@@ -232,8 +232,7 @@
     "lng": -157.829546,
     "geo": "book",
     "page": "p1-26",
-    "radius": 65,
-    "look": true
+    "radius": 65
    },
    {
     "id": "I-04",
@@ -272,8 +271,7 @@
     "lng": -157.827643,
     "geo": "book",
     "page": "p1-27",
-    "radius": 84,
-    "look": true
+    "radius": 84
    },
    {
     "id": "I-06",
@@ -407,7 +405,8 @@
     "lng": -157.820117,
     "geo": "book",
     "page": "p1-29",
-    "radius": 60
+    "radius": 60,
+    "look": true
    },
    {
     "id": "I-10",
@@ -556,8 +555,7 @@
     "lng": -157.816266,
     "geo": "book",
     "page": "p1-31",
-    "radius": 90,
-    "look": true
+    "radius": 90
    },
    {
     "id": "I-14",
@@ -666,8 +664,7 @@
     "lng": -157.818255,
     "geo": "book",
     "page": "p1-33",
-    "radius": 60,
-    "look": true
+    "radius": 60
    },
    {
     "id": "I-17",
@@ -787,8 +784,7 @@
     "lng": -157.821607,
     "geo": "book",
     "page": "p1-34",
-    "radius": 60,
-    "look": true
+    "radius": 60
    },
    {
     "id": "I-22",

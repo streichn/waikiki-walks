@@ -32,6 +32,8 @@ How this file is used:
 | III-a | III-14 | Ho‘okela paragraph ("If you have time to spare ... true Hawaiian culture.") | | delete | her email 22 Nov | done (8be9a59) |
 | III-b | III-13 | pin in the water | | pin on land | her email 22 Nov | done (8be9a59) |
 | III-c | III-9 | "Historic tours are offered throughout the week" | tours twice a week, free for hotel guests | "offered twice a week" | 22 Nov | done (go 25 Nov: her edit: "Historic tours are offered: check dates and times in the main lobby.") |
+| III-d | III-2 | "The little girl playing the ‘ukulele is Israel ‘Iz’ Kamakawiwo‘ole’s niece." | Outrigger's page for the mural names Kawena Kamakawiwo‘ole, "the grand-niece of Israel Kamakawiwo‘ole", at the bow of the canoe, and does not mention an ‘ukulele (https://outrigger.com/hawaii/oahu/outrigger-reef-waikiki-beach-resort/activities/artwork/kamea-hadar) | "The girl at the bow of the canoe is Israel ‘Iz’ Kamakawiwo‘ole’s grand-niece." (or her wording) | | new |
+| III-e | III-9 | "a plaque on the almost 100-year-old Banyan tree" | the book says the tree was planted in 1904, so it is about 122 years old, and the count grows each year | "a plaque on the Banyan tree, planted in 1904," (the book's own date) | | new |
 
 ## Walk IV
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -84,7 +86,7 @@ How this file is used:
 | Walk | Stops | Sent | Status |
 |---|---|---|---|
 | III | 2, 5, 6, 8 | her call 22 Nov | done |
-| I | 3, 5, 13, 16, 21 | 22 Nov | waiting |
+| I | 9 only (was 3, 5, 13, 16, 21) | 22 Nov | go (this PR): her reply 25 Nov 21:23Z: "Walk I, Stop 9 is the only 'look at' stop in that walk." |
 | II | 4, 6, 17 | 22 Nov | waiting |
 | IV | 3, 7, 9, 10, 11, 13, 14, 15, 16, 21, 23, 24 | 22 Nov | waiting |
 | V | 4, 6, 16 | 22 Nov | waiting |
@@ -96,6 +98,8 @@ How this file is used:
 | XI | 4, 10, 22, 35, 43 | 22 Nov | waiting |
 | XII | 2, 7, 12, 14, 19, 26 | 22 Nov | waiting |
 
+Her answer for the other walks (25 Nov, 21:23Z, under the list): "No - most of these are different from Walk III, I'll review each walk separately." So the list for Walks II and IV to XII is not agreed; she will review each walk herself. They stay as listed until she does or Nick decides otherwise (asked in the 26 Nov PR). The live session on 25 Nov missed this answer and told her she marked none; the 26 Nov morning email corrected that.
+
 ## Other open questions for her
 | ID | Question | Status |
 |---|---|---|
@@ -104,8 +108,10 @@ How this file is used:
 | Q-3 | Walk X time and distance chips; Walk III "Lewers Street & Road" | waiting |
 
 ## Checked and still correct (22 Nov 2026)
-Army Museum (II-17), Hau Tree (II-13), Lappert's (II-12), Kani Ka Pila (III-2), Macy's (IV-17), Royal Hawaiian Band Sunday concerts, Art on the Zoo Fence hours (VI-13), South Shore Grill and Diamond Head Market, City Mill Kaimukī, Good Guys, Waiola Kapahulu, Nijiya and Longs, Mānoa Valley Inn, Mānoa Heritage Center, John Young Museum, whiteterns.org. Not yet checked: www.waimeavalley.net (III-6).
+Army Museum (II-17), Hau Tree (II-13), Lappert's (II-12), Kani Ka Pila (III-2), Macy's (IV-17), Royal Hawaiian Band Sunday concerts, Art on the Zoo Fence hours (VI-13), South Shore Grill and Diamond Head Market, City Mill Kaimukī, Good Guys, Waiola Kapahulu, Nijiya and Longs, Mānoa Valley Inn, Mānoa Heritage Center, John Young Museum, whiteterns.org. www.waimeavalley.net (III-6) loads (checked 26 Nov); its exhibit page shows ‘ulu maika as artifacts, and no page found today says whether the games area is still set up.
 
 ## Daily re-check log
 One line per run: date, walk checked, new items added (IDs) or "none".
 - 2026-11-22: all walks (first full pass).
+- 2026-11-24 and 2026-11-25: Walks I and II, logged in PRs #32 and #33 (not yet merged).
+- 2026-11-26: Walk III. New: III-d, III-e. Checked and fine: Royal Hawaiian Hotel has Herb Kane's last painting on permanent display, at the entrance to the Monarch Room (https://www.hawaiimagazine.com/historic-hawaii-foundation-honors-herb-kane-unveils-big-island-artists-last-painting/, 2011); Moana's historical artifacts are in the second-floor lobby of the Banyan Wing, with tours (https://www.historichotels.org/us/hotels-resorts/moana-surfrider-a-westin-resort-and-spa); Kamea Hadar's mural is at the Outrigger Reef (link under III-d); waimeavalley.net loads. Not checked: the Sheraton beach walkway closure (III-3), no reliable current page found.

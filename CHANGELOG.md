@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-26
+
+- Walk I look-at stops follow Veneeta's answer (25 Nov): only stop 9, the view of the ridges and valleys, is a look-at stop. Stops 3, 5, 13, 16 and 21 are normal stops again, with arrival alerts, and her dotted line is cut at each of them. No pin moved.
+- Review list: two new items from the Walk III re-check, for her go or no-go (III-d, the mural at the Outrigger Reef; III-e, the Moana banyan's age).
+
 ## 2026-11-25
 
 - Book text, from Veneeta's go answers of 25 Nov (full list in docs/BOOK_UPDATES.md, status in docs/MOM_REVIEW.md): "recently" removed (I-2, II-14), the Mālia and fire station rewrites (I-4, I-13, XII-3), the Dance Palladium paragraph (I-11), Moana tours wording (III-9), the Walk IV stop 13 chant laid out line by line, the James Steiner plaque sentence deleted (IV-23), Hō‘ailona's return (VII-5), the Kuilei Cliffs web address removed (VII-18), and the Kapahulu Shopping Center telescope paragraphs deleted (VIII-10, XII-11). Her blank go / no-go lines stay waiting. A text fix can now delete a whole paragraph or start a new one (a blank line inside the replacement).
