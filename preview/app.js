@@ -471,7 +471,7 @@ function blocksHtml(blocks, stopId) {
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
   function overlayCtl(w) {
-    if (S.mapStyle === 'book' || !S.isPro || !(window.WWWARP || {})[w.id]) return '';
+    if (!S.demo || S.mapStyle === 'book' || !S.isPro || !(window.WWWARP || {})[w.id]) return '';
     return `<label class="overlayctl">Street<input type="range" min="0" max="100" value="${S.overlay || 0}" data-overlay aria-label="Book map overlay strength">Book map</label>`;
   }
   function addOverlay(mapObj, w) {
@@ -630,7 +630,7 @@ function blocksHtml(blocks, stopId) {
   function renderGo() {
     const w = walk(S.walkId), prog = S.progress[w.id], cur = prog.current, stop = w.stops[cur], visited = prog.visited, here = visited.includes(cur);
     const nextLocked = cur + 1 < w.stops.length && !canOpen(w.id, cur + 1);
-    let navLine = 'Turn on “Simulate walking” to move along the route, or tap “I’m here”.';
+    let navLine = 'Allow location to walk for real, switch on Demo mode at the top, or tap “I’m here”.';
     let rot = 0;
     if (stop.look) navLine = 'Look around as you walk on. Tap Next when you are ready.';
     else if (here) navLine = 'Read or listen below, then tap Next.';
@@ -638,7 +638,7 @@ function blocksHtml(blocks, stopId) {
     return `<div id="go" style="position:absolute;inset:0">
       <div class="mapwrap">${S.mapStyle === 'book' && bookOk(w) ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${S.demo ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Pause demo walk' : '▶ Resume demo walk'}</button>` : ''}${true ? `<div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet" id="sheet">
         <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
@@ -779,7 +779,7 @@ function blocksHtml(blocks, stopId) {
       if (p.coords.heading != null && !isNaN(p.coords.heading)) S.heading = p.coords.heading;
       const w = walk(S.walkId), prog = S.progress[w.id]; if (!prog) return;
       afterMove(w, prog, w.stops[prog.current]);
-    }, (e) => { gpsWatch = null; if (e.code === 1 && !S.sim && !S.gpsToasted) { S.gpsToasted = true; toast('Location is off for this page. Allow location to walk for real, or tap Demo walk.'); } }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
+    }, (e) => { gpsWatch = null; if (e.code === 1 && !S.sim && !S.gpsToasted) { S.gpsToasted = true; toast('Location is off for this page. Allow location to walk for real, or switch on Demo mode at the top.'); } }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
   }
   function stopGps() { if (gpsWatch !== null) { navigator.geolocation.clearWatch(gpsWatch); gpsWatch = null; } }
   // Demo walk: the dot walks to each stop, pauses there a few seconds, then carries on to the next one by itself.
@@ -1048,7 +1048,7 @@ function blocksHtml(blocks, stopId) {
     S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; S.simSession = null; persist(); await needImages(w.id); render();
     // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
     // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
-    if (!navigator.geolocation || S.demo) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
+    if (!navigator.geolocation || S.demo) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Pause demo walk'; } }
   }
 
   // Fill the pane's full height under the header with her map, measured on the real pane once it is on screen
@@ -1170,7 +1170,7 @@ function blocksHtml(blocks, stopId) {
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
       if (a === 'end') return endDialog(w);
       if (a === 'sim') {
-        if (S.sim) { stopSim(); el.setAttribute('aria-pressed', false); el.textContent = '▶ Demo walk'; return; }
+        if (S.sim) { stopSim(); el.setAttribute('aria-pressed', false); el.textContent = '▶ Resume demo walk'; return; }
         // A demo begins at stop 1 and walks the whole route, with both maps following the dot. Pausing and
         // tapping again carries on from where it paused (Nick, 19 Nov 2026).
         if (S.simSession !== S.walkId) {
@@ -1178,7 +1178,7 @@ function blocksHtml(blocks, stopId) {
           S.me = null; S.legProg = {}; S.stopFocus = false; persist();
         }
         S.follow = 'follow'; S.bookFollow = true; render(); startSim();
-        const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
+        const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Pause demo walk'; }
         return;
       }
       if (a === 'whole') {

@@ -2,6 +2,7 @@
 
 ## 2026-11-25
 
+- Preview: Demo mode (top bar) now controls everything demo. The on-map demo button is now only a pause and resume for the demo walk, shown in Demo mode, and the street/book-map overlay slider shows in Demo mode only.
 - Settings now has a Reading section (app and preview): text size (0.85 to 1.6), side margins (6 to 28), and line spacing (0.9 to 1.4), plus a "More words per screen" preset. Margins and spacing apply to the stop page and the walking screen. They sync with the other settings. Veneeta found the margins too wide and asked for adjustable type.
 - Preview: a bar across the top with a Demo mode switch and a Reset button. Demo mode opens every walk and her book-map overlay and the walk moves by itself; off is the real app (free trial, the phone's GPS). Reset clears everything the preview saved in the browser (tap twice).
 - Starting a different walk while one is active now asks first, and saves your place in the current walk. Only one walk is active at a time.
