@@ -193,6 +193,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .cta.solid { background: linear-gradient(transparent, var(--bg) 30%); }
 .map { position: absolute; inset: 0; background: #AAD3DF; }
 .leaflet-container { font-family: var(--body); background: #AAD3DF; }
+/* Fade the street map so its own footpath and boundary dashes do not compete with her route (Nick, 26 Nov 2026) */
+.map .leaflet-tile-pane { opacity: .55; }
 :root[data-theme="dark"] .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); } }
 .pin { min-width: 28px; height: 28px; padding: 0 5px; border-radius: 14px; border: 2px solid #fff; color: #fff; font: 800 12px var(--body); display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.35); }

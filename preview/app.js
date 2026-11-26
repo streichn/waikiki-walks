@@ -569,8 +569,8 @@ function blocksHtml(blocks, stopId) {
       return m;
     });
     // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
-    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.6 }).addTo(map);
-    const part = L.polyline([], { color: TRAIL, weight: 6, opacity: 0.6 }).addTo(map);  // the leg being walked, as far as the walker has come
+    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 1, lineCap: 'round' }).addTo(map);  // solid, so it covers the orange dots under it (Nick, 26 Nov 2026)
+    const part = L.polyline([], { color: TRAIL, weight: 6, opacity: 1, lineCap: 'round' }).addTo(map);  // the leg being walked, as far as the walker has come
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
       zoomIn() { map.zoomIn(); }, zoomOut() { map.zoomOut(); },
