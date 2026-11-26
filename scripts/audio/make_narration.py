@@ -69,17 +69,19 @@ if __name__ == '__main__':
     walks = json.load(open(os.path.join(ROOT, 'src/data/walks.json'))); walks = walks if isinstance(walks, list) else walks['walks']
     mpath = os.path.join(out_dir, 'manifest.json')
     manifest = json.load(open(mpath)) if os.path.exists(mpath) else {"voice": voice, "model": MODEL, "stops": {}}
-    jobs = []
+    jobs = []; limit = int(os.environ.get('STOP_LIMIT', '0')); pending = 0  # STOP_LIMIT: record at most N stops with new or changed text per run
     for w in walks:
         if w['id'] not in ids: continue
         for s in w['stops']:
-            entry = []
+            if limit and pending >= limit and s['id'] not in manifest['stops']: continue
+            entry = []; before = len(jobs)
             for i, text in enumerate(parts(s)):
                 rel = f"{w['id']}/{s['id']}/{i:02d}.mp3"; h = hashlib.sha1((voice + MODEL + text).encode()).hexdigest()[:12]
                 prev = {e['file']: e for e in manifest['stops'].get(s['id'], [])}.get(rel)
                 path = os.path.join(out_dir, rel); os.makedirs(os.path.dirname(path), exist_ok=True)
                 if not (os.path.exists(path) and (prev is None or prev.get('hash') == h)): jobs.append((text, path))
                 entry.append({"file": rel, "hash": h})
+            if len(jobs) > before: pending += 1
             manifest['stops'][s['id']] = entry
     print(len(jobs), 'paragraphs to record', flush=True)
     done = [0]
