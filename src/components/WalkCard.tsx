@@ -7,6 +7,7 @@ import { TRIAL } from '../config';
 import { photo, walkNo } from '../data';
 import type { Walk } from '../data/types';
 import { useIsPro } from '../lib/access';
+import { beginWalkOrSwitch } from '../lib/endWalk';
 import { useProgress } from '../store';
 import { useTheme } from '../theme';
 import { T, tap } from './ui';
@@ -37,7 +38,7 @@ export function WalkCard({ walk, wide }: { walk: Walk; wide?: boolean }) {
         Alert.alert('Walk it again?', `You finished ${walk.title}. Start over from stop 1, or just look through it again.`, [
           { text: 'Cancel', style: 'cancel' },
           { text: 'Just look', onPress: () => router.push(`/walk/${walk.id}?mode=map`) },
-          { text: 'Start over', onPress: () => { resetWalk(walk.id); router.push(isPro || walk.id === TRIAL.walkId ? `/walk/${walk.id}/go` : '/paywall'); } },
+          { text: 'Start over', onPress: () => { resetWalk(walk.id); if (!(isPro || walk.id === TRIAL.walkId)) return router.push('/paywall'); beginWalkOrSwitch(walk.id, () => router.push(`/walk/${walk.id}/go`)); } },
         ]);
       }}
       style={({ pressed }) => [styles.card, wide ? styles.wide : styles.narrow, { opacity: pressed ? 0.9 : 1, backgroundColor: t.card }]}

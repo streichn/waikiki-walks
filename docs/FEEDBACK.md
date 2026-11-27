@@ -77,3 +77,9 @@
 
 ## 2026-11-23 · Scheduled run, 14:10Z
 - No new app comments from Veneeta since 22 Nov 21:29Z. Waiting on her: the go / no-go list (docs/MOM_REVIEW.md), look-at stops on every walk, the red note near Walk XI stop 6, and permission for Jason's map files.
+
+## 2026-11-26 · Scheduled run: her look-at answer (25 Nov, 21:23Z, "Delete this in Walk III")
+- Under the look-at stops list she wrote: "No - most of these are different from Walk III, I'll review each walk separately. Walk I, Stop 9 is the only 'look at' stop in that walk." The live session on 25 Nov missed it (it told her she had marked none).
+- Walk I: look-at stops are now stop 9 only (were 3, 5, 13, 16, 21). Status: fixed in PR improve/2026-11-26-1430, waiting for Nick.
+- Other walks: she will review each one herself. Status: waiting for her; Nick to decide whether the current picks stay until then.
+- Her other new mail: "Perfect! Good morning and thank you!" (25 Nov, 16:00Z) about the publisher letter. Not about the app.

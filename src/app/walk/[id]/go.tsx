@@ -36,6 +36,7 @@ export default function ActiveWalk() {
   const bookOk = !!walk?.bookMap && isPro;
   const lastOpen = walk ? walk.stops.reduce((k, _s, i) => (canOpenStop(walk.id, i, isPro) ? i : k), -1) : -1;
   const settings = useSettings();
+  const margin = settings.sideMargin ?? 20;
   const startWalk = useProgress((s) => s.startWalk);
   const goTo = useProgress((s) => s.goTo);
   const markVisited = useProgress((s) => s.markVisited);
@@ -392,7 +393,7 @@ export default function ActiveWalk() {
 
           {/* Map view shows only where you are; the stop text appears at Both and Text. */}
           {detent === 'peek' ? <View style={{ height: 14 }} /> : (
-          <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
+          <ScrollView ref={textRef} style={{ flex: 1, marginTop: 12, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: t.border }} contentContainerStyle={{ paddingHorizontal: margin, paddingTop: 16, paddingBottom: 28, gap: 14 }}>
             {/* Read, Pause and Resume up by the text (Nick, 21 Nov 2026) */}
             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
               <Pressable

@@ -315,3 +315,10 @@ Sources:
 - **Why:** the book's readers include older walkers who use large text. The stories must stay readable at any size; the controls must stay usable and never cut off.
 - **Not done:** no on-device check at the largest accessibility sizes yet (please try Settings > Accessibility > Display & Text Size > Larger Text on an iPhone, and Font size on Android). Header titles and the walk page layout were not changed; a stacked layout for very large sizes could follow if anything overlaps.
 - Sources: developer.apple.com/design/human-interface-guidelines/typography (Dynamic Type); developer.apple.com/help/app-store-connect/manage-app-accessibility/larger-text-evaluation-criteria; reactnative.dev/docs/0.81/text (allowFontScaling, maxFontSizeMultiplier); node_modules/expo-router/build/react-navigation/bottom-tabs/types.d.ts (tabBarAllowFontScaling); ignitecookbook.com/docs/recipes/AccessibilityFontSizes
+
+## 2026-11-26 · Look-at stops are the author's call, walk by walk
+- How it is normally done: no outside research this run (the run was spent on her answers and the re-check). The standing rule here (HANDOFF, 22 Nov) is that the route and its stops come from her map and her word, never from our own judgment.
+- What we chose: a stop is a look-at stop only when Veneeta or Nick says so. Walk I now has one (stop 9), from her email of 25 Nov. The rule Claude used on 22 Nov to suggest look-at stops on the other walks (number off her line, "look across" in the text, a street name, or a pin far from the line) is only a suggestion list; she has said most of it is wrong and will review each walk.
+- Why: the author knows which places a walker actually goes to. A wrong look-at stop silently drops an arrival alert, which is the app's core promise.
+- Sources: her email of 25 Nov 2026 (thread "Delete this in Walk III"); scripts/georef/look_stops.json.
+

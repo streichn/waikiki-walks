@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-11-26
+
+- Walk I look-at stops follow Veneeta's answer (25 Nov): only stop 9, the view of the ridges and valleys, is a look-at stop. Stops 3, 5, 13, 16 and 21 are normal stops again, with arrival alerts, and her dotted line is cut at each of them. No pin moved.
+- Review list: two new items from the Walk III re-check, for her go or no-go (III-d, the mural at the Outrigger Reef; III-e, the Moana banyan's age).
+
+## 2026-11-25
+
+- Book text, from Veneeta's go answers of 25 Nov (full list in docs/BOOK_UPDATES.md, status in docs/MOM_REVIEW.md): "recently" removed (I-2, II-14), the Mālia and fire station rewrites (I-4, I-13, XII-3), the Dance Palladium paragraph (I-11), Moana tours wording (III-9), the Walk IV stop 13 chant laid out line by line, the James Steiner plaque sentence deleted (IV-23), Hō‘ailona's return (VII-5), the Kuilei Cliffs web address removed (VII-18), and the Kapahulu Shopping Center telescope paragraphs deleted (VIII-10, XII-11). Her blank go / no-go lines stay waiting. A text fix can now delete a whole paragraph or start a new one (a blank line inside the replacement).
+- Preview: reading aloud can always be stopped. A red Stop reading button shows on every screen while anything is being read, the walking screen has a Stop button beside Read and Pause, and Escape also stops it. (Nick: the voice itself is a placeholder; recorded narration comes later.)
+- Preview: Demo mode (top bar) now controls everything demo. The on-map demo button is now only a pause and resume for the demo walk, shown in Demo mode, and the street/book-map overlay slider shows in Demo mode only.
+- Settings now has a Reading section (app and preview): text size (0.85 to 1.6), side margins (6 to 28), and line spacing (0.9 to 1.4), plus a "More words per screen" preset. Margins and spacing apply to the stop page and the walking screen. They sync with the other settings. Veneeta found the margins too wide and asked for adjustable type.
+- Preview: a bar across the top with a Demo mode switch and a Reset button. Demo mode opens every walk and her book-map overlay and the walk moves by itself; off is the real app (free trial, the phone's GPS). Reset clears everything the preview saved in the browser (tap twice).
+- Starting a different walk while one is active now asks first, and saves your place in the current walk. Only one walk is active at a time.
+- Android: the walk's ongoing notification now names the next stop and follows you from stop to stop, and shows the right walk after a switch.
+
 ## 2026-11-23 · Large text without broken screens
 - Reading text (stop stories, walk introductions, About) still grows as far as the phone's text size setting goes, with no limit.
 - Buttons, chips and the Map 1 / Map 2 page tabs now grow to twice their size at most and wrap onto a second line instead of being cut off. The Light / Dark / System switch grows to 1.6 times and wraps.

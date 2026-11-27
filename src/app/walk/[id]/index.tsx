@@ -16,6 +16,7 @@ import { TRIAL } from '../../../config';
 import { getWalk, photo, walkNo } from '../../../data';
 import type { Stop } from '../../../data/types';
 import { canOpenStop, canStartWalk, useIsPro } from '../../../lib/access';
+import { beginWalkOrSwitch } from '../../../lib/endWalk';
 import { stop as stopSpeech } from '../../../lib/narration';
 import { useProgress } from '../../../store';
 import { readableOn, useTheme } from '../../../theme';
@@ -68,7 +69,7 @@ export default function WalkOverview() {
 
   const begin = () => {
     if (!canStartWalk(walk.id, isPro)) return router.push('/paywall');
-    router.push(`/walk/${walk.id}/go`);
+    beginWalkOrSwitch(walk.id, () => router.push(`/walk/${walk.id}/go`));
   };
   const resuming = prog && !prog.finishedAt && prog.visited.length > 0;
   const isActive = activeId === walk.id;

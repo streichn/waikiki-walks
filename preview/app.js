@@ -76,11 +76,11 @@
   const save = (k, v) => { try { store && store.setItem('ww.' + k, JSON.stringify(v)); } catch (e) {} };
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
-    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, alerts: true }); if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
-    isPro: load('pro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
+    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, margin: 20, spacing: 1, alerts: true }); if (st.margin == null) { st.margin = 20; st.spacing = 1; } if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
+    isPro: load('pro', false), demo: load('demo', false), realPro: load('realPro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
-  const persist = () => { save('settings', S.settings); save('pro', S.isPro); save('profile', S.profile); save('favs', S.favs); save('progress', S.progress); save('active', S.active); };
+  const persist = () => { save('settings', S.settings); save('pro', S.isPro); save('demo', S.demo); save('realPro', S.realPro); save('profile', S.profile); save('favs', S.favs); save('progress', S.progress); save('active', S.active); };
   const walk = (id) => D.walks.find((w) => w.id === id);
   // The book numbers its walks with Roman numerals; the app shows plain numbers.
   const ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6, VII: 7, VIII: 8, IX: 9, X: 10, XI: 11, XII: 12 };
@@ -96,6 +96,8 @@
     const t = S.settings.theme;
     if (t === 'system') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
     document.documentElement.style.setProperty('--ts', S.settings.textScale);
+    document.documentElement.style.setProperty('--mg', S.settings.margin + 'px');
+    document.documentElement.style.setProperty('--ls', S.settings.spacing);
   };
   const isDark = () => S.settings.theme === 'dark' || (S.settings.theme === 'system' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
 
@@ -158,7 +160,7 @@
     };
     next();
   }
-  function stopSpeak() { speaking.paused = false; speakTok++; if (synth) synth.cancel(); if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
+  function stopSpeak() { speaking.paused = false; speakTok++; if (synth) { synth.resume(); synth.cancel(); setTimeout(() => synth.cancel(), 120); } if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; } speaking.stopId = null; speaking.para = -1; markReading(); }
   // Read, Pause and Resume for the stop on screen (Nick, 21 Nov 2026: a read button up by the text instead of the headphones).
   function readLabel() { return speaking.stopId ? (speaking.paused ? `${ic('play')} Resume` : `${ic('pause')} Pause`) : `${ic('volume')} Read`; }
   function pauseSpeak() { speaking.paused = true; if (speaking.audio) speaking.audio.pause(); else if (synth) synth.pause(); markReading(); }
@@ -167,6 +169,11 @@
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
     const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = readLabel();
+    const sb = document.getElementById('stopbtn'); if (sb) sb.hidden = !speaking.stopId;
+    // A Stop button that shows on every screen whenever anything is being read aloud (Nick, 25 Nov 2026).
+    let fab = document.getElementById('stopfab');
+    if (!fab) { fab = document.createElement('button'); fab.id = 'stopfab'; fab.setAttribute('aria-label', 'Stop reading aloud'); fab.addEventListener('click', stopSpeak); document.body.appendChild(fab); }
+    fab.hidden = !speaking.stopId; fab.innerHTML = `${ic('stop')} Stop reading`;
     const mb = document.querySelector('.minibar'); if (mb && !speaking.stopId) { const h = mb.querySelector('.hush'); if (h) h.outerHTML = ic('down', 'width="22" height="22" style="transform:rotate(180deg)"'); }
   }
 
@@ -299,7 +306,7 @@ function blocksHtml(blocks, stopId) {
   function showFact() {
     const el = document.getElementById('ftxt'); if (!el) return;
     const f = factPool[factIdx % factPool.length]; el.style.opacity = 0;
-    setTimeout(() => { el.textContent = f.text; document.getElementById('fsrc').textContent = `From Walk ${wn(f.walkId)}, ${walk(f.walkId).title}`; el.style.opacity = 1; }, 220);
+    setTimeout(() => { const src = document.getElementById('fsrc'); if (!src || !el.isConnected) return; el.textContent = f.text; src.textContent = `From Walk ${wn(f.walkId)}, ${walk(f.walkId).title}`; el.style.opacity = 1; }, 220);
   }
 
   // Locked stops show the first photo and opening lines, fading out, with a one-tap unlock.
@@ -469,7 +476,7 @@ function blocksHtml(blocks, stopId) {
   }
   // Testing aid: lay her map (warped onto real coordinates) over the street map and fade between them.
   function overlayCtl(w) {
-    if (S.mapStyle === 'book' || !S.isPro || !(window.WWWARP || {})[w.id]) return '';
+    if (!S.demo || S.mapStyle === 'book' || !S.isPro || !(window.WWWARP || {})[w.id]) return '';
     return `<label class="overlayctl">Street<input type="range" min="0" max="100" value="${S.overlay || 0}" data-overlay aria-label="Book map overlay strength">Book map</label>`;
   }
   function addOverlay(mapObj, w) {
@@ -628,7 +635,7 @@ function blocksHtml(blocks, stopId) {
   function renderGo() {
     const w = walk(S.walkId), prog = S.progress[w.id], cur = prog.current, stop = w.stops[cur], visited = prog.visited, here = visited.includes(cur);
     const nextLocked = cur + 1 < w.stops.length && !canOpen(w.id, cur + 1);
-    let navLine = 'Turn on “Simulate walking” to move along the route, or tap “I’m here”.';
+    let navLine = 'Allow location to walk for real, switch on Demo mode at the top, or tap “I’m here”.';
     let rot = 0;
     if (stop.look) navLine = 'Look around as you walk on. Tap Next when you are ready.';
     else if (here) navLine = 'Read or listen below, then tap Next.';
@@ -636,7 +643,7 @@ function blocksHtml(blocks, stopId) {
     return `<div id="go" style="position:absolute;inset:0">
       <div class="mapwrap">${S.mapStyle === 'book' && bookOk(w) ? bookPane(w) : '<div class="map" id="gmap"></div><div class="attrib">© OpenStreetMap contributors</div>' + zoomBtns()}${styleSwitch(w)}${overlayCtl(w)}</div>
       <div class="gohead"><button class="iconbtn" data-act="minimize" aria-label="Minimize walk">${ic('down')}</button><div class="gopill"><div class="label">Walk ${wn(w.id)} · ${visited.length}/${w.stops.length}</div><div>${esc(w.title)}</div></div><button class="iconbtn" data-act="end" aria-label="End walk">${ic('close')}</button></div>
-      ${true ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Demo walk: moving' : '▶ Demo walk'}</button><div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
+      ${S.demo ? `<button class="simtoggle" data-act="sim" aria-pressed="${S.sim}">${S.sim ? '⏸ Pause demo walk' : '▶ Resume demo walk'}</button>` : ''}${true ? `<div class="simbar"><button class="mapbtn ${S.follow !== 'off' ? 'on' : ''}" data-act="locate" aria-label="Center on me">${ic(S.follow === 'heading' ? 'compass' : 'navigate')}</button><button class="mapbtn" data-act="whole" aria-label="Show whole walk">${ic('map')}</button></div>` : ''}
       ${S.arrivedBanner !== null ? `<div class="arrived" role="status">${hib(26, '#fff')}<span>You’ve arrived: ${esc(w.stops[S.arrivedBanner].title)}</span></div>` : ''}
       <div class="sheet" id="sheet">
         <div class="grab" id="grab" role="button" aria-label="Drag or tap to resize"><span class="handle"></span></div>
@@ -645,7 +652,7 @@ function blocksHtml(blocks, stopId) {
         <div class="nav ${here ? 'here' : ''}">${here ? `<span style="color:var(--leaf)">${ic('check', 'width="34" height="34"')}</span>` : `<span class="arrow" style="transform:rotate(${rot}deg)">${ic('navigate', 'width="30" height="30"')}</span>`}
           <div style="flex:1;min-width:0"><div class="label">${stop.look ? `Look from here: stop ${stop.n}` : here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
-        <div class="readbar"><button class="readbtn" id="playbtn" data-act="play" aria-label="Read this stop aloud, or pause">${readLabel()}</button></div>
+        <div class="readbar"><button class="readbtn stopread" id="stopbtn" data-act="stopread" aria-label="Stop reading aloud" ${speaking.stopId ? '' : 'hidden'}>${ic('stop')} Stop</button><button class="readbtn" id="playbtn" data-act="play" aria-label="Read this stop aloud, or pause">${readLabel()}</button></div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
         <div class="controls"><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
@@ -777,7 +784,7 @@ function blocksHtml(blocks, stopId) {
       if (p.coords.heading != null && !isNaN(p.coords.heading)) S.heading = p.coords.heading;
       const w = walk(S.walkId), prog = S.progress[w.id]; if (!prog) return;
       afterMove(w, prog, w.stops[prog.current]);
-    }, (e) => { gpsWatch = null; if (e.code === 1 && !S.sim && !S.gpsToasted) { S.gpsToasted = true; toast('Location is off for this page. Allow location to walk for real, or tap Demo walk.'); } }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
+    }, (e) => { gpsWatch = null; if (e.code === 1 && !S.sim && !S.gpsToasted) { S.gpsToasted = true; toast('Location is off for this page. Allow location to walk for real, or switch on Demo mode at the top.'); } }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 20000 });
   }
   function stopGps() { if (gpsWatch !== null) { navigator.geolocation.clearWatch(gpsWatch); gpsWatch = null; } }
   // Demo walk: the dot walks to each stop, pauses there a few seconds, then carries on to the next one by itself.
@@ -932,7 +939,11 @@ function blocksHtml(blocks, stopId) {
     const st = S.settings; const sw = (k, label, hint) => `<div class="setrow"><div style="flex:1"><div>${label}</div><div class="small">${hint}</div></div><button class="switch" role="switch" aria-checked="${st[k]}" data-sw="${k}" aria-label="${label}"></button></div>`;
     const m = modal(`<div class="stack"><h1 style="font-size:28px">Settings</h1>
       <div class="label">Appearance</div><div class="card stack" style="gap:10px"><div class="seg" role="tablist">${[['system', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) => `<button role="tab" aria-selected="${st.theme === v}" data-theme-set="${v}">${l}</button>`).join('')}</div>
-        <label class="small" for="ts">Text size</label><input id="ts" type="range" min="0.9" max="1.4" step="0.05" value="${st.textScale}"></div>
+        </div>
+      <div class="label">Reading</div><div class="card stack" style="gap:10px"><div class="seg" role="tablist">${[['comfortable', 'Comfortable'], ['compact', 'More words per screen']].map(([v, l]) => `<button role="tab" aria-selected="${(st.textScale <= 0.95 && st.margin <= 10 && st.spacing <= 0.95 ? 'compact' : 'comfortable') === v}" data-read-set="${v}">${l}</button>`).join('')}</div>
+        <label class="small" for="ts">Text size</label><input id="ts" type="range" min="0.85" max="1.6" step="0.05" value="${st.textScale}">
+        <label class="small" for="mg">Side margins</label><input id="mg" type="range" min="6" max="28" step="2" value="${st.margin}">
+        <label class="small" for="ls">Line spacing</label><input id="ls" type="range" min="0.9" max="1.4" step="0.05" value="${st.spacing}"></div>
       <div class="label">Walking</div><div class="card">${sw('alerts', 'Arrival alerts', 'Tell me when I reach a stop')}<label class="small" for="ar">Arrival distance: <span id="arv">${st.arrival}</span> m</label><input id="ar" type="range" min="15" max="80" step="5" value="${st.arrival}"></div>
       <div class="label">Read aloud</div><div class="card">${sw('autoNarrate', 'Read each stop on arrival', 'Great with headphones')}<label class="small" for="rt">Speed: <span id="rtv">${st.rate.toFixed(2)}</span>×</label><input id="rt" type="range" min="0.7" max="1.3" step="0.05" value="${st.rate}"><p class="small">The app uses the phone’s own voices (Siri on iPhone, Google on Android). Recorded narration can replace them later.</p></div>
       <div class="label">Privacy</div><div class="card small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to a server.</div>
@@ -940,9 +951,10 @@ function blocksHtml(blocks, stopId) {
     m.addEventListener('click', (e) => {
       const s = e.target.closest('[data-sw]'); if (s) { st[s.dataset.sw] = !st[s.dataset.sw]; s.setAttribute('aria-checked', st[s.dataset.sw]); persist(); }
       const t = e.target.closest('[data-theme-set]'); if (t) { st.theme = t.dataset.themeSet; m.querySelectorAll('[data-theme-set]').forEach((x) => x.setAttribute('aria-selected', x.dataset.themeSet === st.theme)); persist(); applyTheme(); }
+      const rd = e.target.closest('[data-read-set]'); if (rd) { const c = rd.dataset.readSet === 'compact'; st.textScale = c ? 0.95 : 1; st.margin = c ? 10 : 20; st.spacing = c ? 0.92 : 1; persist(); applyTheme(); m.querySelectorAll('[data-read-set]').forEach((x) => x.setAttribute('aria-selected', x === rd)); m.querySelector('#ts').value = st.textScale; m.querySelector('#mg').value = st.margin; m.querySelector('#ls').value = st.spacing; }
       if (e.target.closest('[data-reset]')) { S.progress = {}; S.active = null; persist(); toast('Progress reset'); m.remove(); render(); }
     });
-    m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
+    m.addEventListener('input', (e) => { if (e.target.id === 'ts') { st.textScale = Number(e.target.value); applyTheme(); } if (e.target.id === 'mg') { st.margin = Number(e.target.value); applyTheme(); } if (e.target.id === 'ls') { st.spacing = Number(e.target.value); applyTheme(); } if (e.target.id === 'ar') { st.arrival = Number(e.target.value); m.querySelector('#arv').textContent = st.arrival; } if (e.target.id === 'rt') { st.rate = Number(e.target.value); m.querySelector('#rtv').textContent = st.rate.toFixed(2); } persist(); });
   }
   function aboutBlock(b) {
     if (b.k === 'lead') return `<p class="italic" style="font-size:16px">${esc(b.t)}</p>`;
@@ -1041,7 +1053,7 @@ function blocksHtml(blocks, stopId) {
     S.active = w.id; S.view = 'go'; S.me = null; S.follow = 'follow'; S.bookZoomUser = false; S.simSession = null; persist(); await needImages(w.id); render();
     // Real mode first: the phone's GPS moves the dot (startGps runs with the walking screen). The demo walk is only
     // for trying the app away from Waikīkī; it starts by itself only when this browser has no location at all.
-    if (!navigator.geolocation) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; } }
+    if (!navigator.geolocation || S.demo) { startSim(); const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Pause demo walk'; } }
   }
 
   // Fill the pane's full height under the header with her map, measured on the real pane once it is on screen
@@ -1163,7 +1175,7 @@ function blocksHtml(blocks, stopId) {
       if (a === 'minimize') { stopSim(); S.view = null; S.tab = 'home'; return render(); }
       if (a === 'end') return endDialog(w);
       if (a === 'sim') {
-        if (S.sim) { stopSim(); el.setAttribute('aria-pressed', false); el.textContent = '▶ Demo walk'; return; }
+        if (S.sim) { stopSim(); el.setAttribute('aria-pressed', false); el.textContent = '▶ Resume demo walk'; return; }
         // A demo begins at stop 1 and walks the whole route, with both maps following the dot. Pausing and
         // tapping again carries on from where it paused (Nick, 19 Nov 2026).
         if (S.simSession !== S.walkId) {
@@ -1171,7 +1183,7 @@ function blocksHtml(blocks, stopId) {
           S.me = null; S.legProg = {}; S.stopFocus = false; persist();
         }
         S.follow = 'follow'; S.bookFollow = true; render(); startSim();
-        const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Demo walk: moving'; }
+        const b = document.querySelector('[data-act="sim"]'); if (b) { b.setAttribute('aria-pressed', true); b.textContent = '⏸ Pause demo walk'; }
         return;
       }
       if (a === 'whole') {
@@ -1196,6 +1208,7 @@ function blocksHtml(blocks, stopId) {
       if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
       if (a === 'next') return showStop(S.progress[w.id].current + 1);
       if (a === 'prev') return showStop(S.progress[w.id].current - 1);
+      if (a === 'stopread') return stopSpeak();
       if (a === 'play') {
         const s = w.stops[S.progress[w.id].current];
         if (speaking.stopId === s.id) return speaking.paused ? resumeSpeak() : pauseSpeak();
@@ -1215,6 +1228,31 @@ function blocksHtml(blocks, stopId) {
   }, true);
   $app.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.classList.contains('gw')) openGloss(e.target.dataset.word); });
   if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => S.settings.theme === 'system' && render());
+
+  // Demo bar: demo mode unlocks every walk and the book-map overlay and walks by itself; off is the real app
+  // (free trial, the phone's GPS). Reset clears everything this preview saved in the browser (Nick, 25 Nov 2026).
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && speaking.stopId) stopSpeak(); });
+  const demoBar = document.createElement('div');
+  demoBar.id = 'demobar';
+  document.body.insertBefore(demoBar, $app);
+  let resetArmed = 0;
+  const drawBar = () => {
+    demoBar.innerHTML = `<span class="dmtag">Preview</span><button class="dmsw" role="switch" aria-checked="${S.demo}" data-dm="demo"><i></i>Demo mode</button><button class="dmreset" data-dm="reset">${resetArmed ? 'Tap again to reset' : 'Reset'}</button>`;
+  };
+  demoBar.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-dm]'); if (!b) return;
+    if (b.dataset.dm === 'demo') {
+      S.demo = !S.demo;
+      if (S.demo) { S.realPro = S.isPro; S.isPro = true; toast('Demo mode on: every walk is open and the walk moves by itself.'); }
+      else { S.isPro = S.realPro; stopSim(); if (S.view === 'go' && !canOpen(S.walkId, S.progress[S.walkId] ? S.progress[S.walkId].current : 0)) { S.view = null; S.active = null; } toast('Demo mode off: the free trial and your phone\u2019s GPS.'); }
+      persist(); drawBar(); return render();
+    }
+    if (!resetArmed) { resetArmed = setTimeout(() => { resetArmed = 0; drawBar(); }, 3000); return drawBar(); }
+    clearTimeout(resetArmed); stopSim(); stopSpeak();
+    try { Object.keys(store).filter((k) => k.indexOf('ww.') === 0).forEach((k) => store.removeItem(k)); } catch (err) {}
+    location.reload();
+  });
+  drawBar();
 
   render();
   // Guest first: no sign-in wall on launch. Sign-in lives in Profile and the purchase sheet.

@@ -36,11 +36,32 @@ export default function Settings() {
             { value: 'dark', label: 'Dark', icon: 'moon' },
           ]}
         />
+      </Section>
+
+      <Section title="Reading">
+        <Segmented<'comfortable' | 'compact'>
+          value={s.textScale <= 0.95 && s.sideMargin <= 10 && s.lineSpacing <= 0.95 ? 'compact' : 'comfortable'}
+          onChange={(v) => s.set(v === 'compact' ? { textScale: 0.95, sideMargin: 10, lineSpacing: 0.92 } : { textScale: 1, sideMargin: 20, lineSpacing: 1 })}
+          options={[
+            { value: 'comfortable', label: 'Comfortable' },
+            { value: 'compact', label: 'More words per screen' },
+          ]}
+        />
         <T variant="small" style={{ marginTop: 12 }}>
           Text size
         </T>
-        <Slider value={s.textScale} min={0.9} max={1.4} step={0.05} onChange={(v) => s.set({ textScale: v })} />
-        <T style={{ fontSize: 17 * s.textScale }}>Aloha ʻāina, love of the land.</T>
+        <Slider value={s.textScale} min={0.85} max={1.6} step={0.05} onChange={(v) => s.set({ textScale: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Side margins
+        </T>
+        <Slider value={s.sideMargin} min={6} max={28} step={2} onChange={(v) => s.set({ sideMargin: v })} />
+        <T variant="small" style={{ marginTop: 8 }}>
+          Line spacing
+        </T>
+        <Slider value={s.lineSpacing} min={0.9} max={1.4} step={0.05} onChange={(v) => s.set({ lineSpacing: v })} />
+        <View style={{ marginHorizontal: -16, paddingHorizontal: s.sideMargin }}>
+          <T>Aloha ʻāina, love of the land. Walk down Kalākaua Avenue toward the sea, and the old fishponds of Waikīkī lie beneath your feet.</T>
+        </View>
         <T variant="small" style={{ marginTop: 6 }}>
           This adds to the text size set on your phone.
         </T>
