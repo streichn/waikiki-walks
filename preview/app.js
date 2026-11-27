@@ -385,7 +385,7 @@ function blocksHtml(blocks, stopId) {
     // in a see-through blue so her map shows through (Nick, 19 Nov 2026).
     const reachedN = prog.finishedAt ? Infinity : Math.max(0, ...(prog.visited || []).map((i) => w.stops[i] ? w.stops[i].n : 0));
     const legs = Object.entries(g.legs || {}).filter(([n]) => Number(n) + 1 <= reachedN);
-    const line = (pts, id) => `<polyline ${id ? `id="${id}" ` : ''}points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="5" stroke-opacity=".6" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+    const line = (pts, id) => `<polyline ${id ? `id="${id}" ` : ''}points="${pts.map((q) => q[0] + ',' + q[1]).join(' ')}" fill="none" stroke="${BOOK_TRAIL}" stroke-width="11" stroke-opacity=".45" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
     const trail = `<svg class="btrail" id="btrail" viewBox="0 0 ${g.w} ${g.h}" preserveAspectRatio="none" aria-hidden="true">${legs.map(([, pts]) => line(pts)).join('')}${line(legPart(w, g), 'btrail-cur')}</svg>`;
     return trail + hits + chk + `<span class="bme" id="bme" style="${me ? `left:${me[0]}%;top:${me[1]}%` : 'display:none'}"><span class="bcone" id="bcone" style="transform:rotate(${bookHeading(w)}deg)"></span></span>`;
   }
