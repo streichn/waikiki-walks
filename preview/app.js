@@ -563,7 +563,7 @@ function blocksHtml(blocks, stopId) {
     const mapPts = w.stops.filter((st, i) => onMap(st) && (i <= lim || i === lockIdx)).map((st) => [st.lat, st.lng]);
     // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
     // Free trial: the line runs the whole walk, open stops show numbers, the next one shows a lock.
-    const route = walkPath(w);  // her whole dotted line, free or paid (Nick, 26 Nov 2026)
+    const route = lockIdx >= 0 ? walkPath(w, lockIdx) : walkPath(w);  // her dotted line, cut at the lock when the walk is not fully open (Nick, 26 Nov 2026)
     L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 4, dashArray: '9 7', lineCap: 'butt' }).addTo(map);
     const sideStops = w.stops.filter((st) => st.side && onMap(st));
     sidePaths(w).forEach((p, k) => { if (w.stops.indexOf(sideStops[k]) <= lim) L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map); });
