@@ -30,9 +30,9 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 - The book text's bold "Walk ..." directions say where to go; when the line and the text disagree, ask Veneeta.
 
 ## 2026-11-27 · Scheduled run
-- Walk IV re-check: new IV-f to IV-i (status new, go out in tomorrow's review email). III-d and III-e sent to her today.
+- Walk IV re-check: new IV-f to IV-i, sent to her 27 Nov at Nick's word (banyan wording "over 100-year-old", Nick). III-d and III-e also sent today.
 - Text: PARA_JOINS in build_data.py rejoins three page-break splits before a capital letter.
-- Open PRs #31, #32, #33, #34: this run tried to close #34 (same feature is on main as f6a52d5) and #32 (contained in #33) but closing was not permitted; left for Nick.
+- Open PRs: #32 and #34 closed at Nick's word (27 Nov). #31 and #33 brought up to date with main (merge, no rebase).
 - The published preview's app.js is newer than main (a live session, likely narration-audio), so this run did not republish it.
 
 ## 2026-11-26 · Scheduled run
