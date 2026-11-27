@@ -1,6 +1,6 @@
 {
  "voice": "Sulafat",
- "model": "gemini-3.8-flash-tts",
+ "model": "gemini-3.1-flash-tts-preview",
  "stops": {
   "I-01": [
    {
@@ -87,8 +87,8 @@
    },
    {
     "file": "I/I-02/06.mp3",
-    "hash": "d3c62601f68e",
-    "sec": 28.51
+    "hash": "7a2f1f35970b",
+    "sec": 27.24
    },
    {
     "file": "I/I-02/07.mp3",
@@ -171,8 +171,8 @@
    },
    {
     "file": "I/I-04/01.mp3",
-    "hash": "5c1a2c34249a",
-    "sec": 13.9
+    "hash": "10a5dc6df909",
+    "sec": 17.33
    }
   ],
   "I-05": [
@@ -345,8 +345,13 @@
    },
    {
     "file": "I/I-11/04.mp3",
+    "hash": "ff750ec9adfb",
+    "sec": 17.62
+   },
+   {
+    "file": "I/I-11/05.mp3",
     "hash": "b2669f80d824",
-    "sec": 27.07
+    "sec": 26.09
    }
   ],
   "I-12": [
@@ -424,8 +429,8 @@
    },
    {
     "file": "I/I-13/01.mp3",
-    "hash": "62195cd69124",
-    "sec": 23.86
+    "hash": "431154b92fd5",
+    "sec": 25.25
    }
   ],
   "I-14": [
@@ -1066,6 +1071,728 @@
     "file": "II/II-06/01.mp3",
     "hash": "f96ac903d3e9",
     "sec": 20.3
+   }
+  ],
+  "II-04": [
+   {
+    "file": "II/II-04/00.mp3",
+    "hash": "b02b06a48545",
+    "sec": 2.66
+   },
+   {
+    "file": "II/II-04/01.mp3",
+    "hash": "2fde2ce9bd1f",
+    "sec": 13.37
+   },
+   {
+    "file": "II/II-04/02.mp3",
+    "hash": "98f647813953",
+    "sec": 25.66
+   },
+   {
+    "file": "II/II-04/03.mp3",
+    "hash": "20b1a80e137c",
+    "sec": 16.51
+   },
+   {
+    "file": "II/II-04/04.mp3",
+    "hash": "50272b1d90c5",
+    "sec": 25.42
+   },
+   {
+    "file": "II/II-04/05.mp3",
+    "hash": "8bf7d16bf858",
+    "sec": 16.97
+   },
+   {
+    "file": "II/II-04/06.mp3",
+    "hash": "80dc44ceeaa9",
+    "sec": 12.5
+   },
+   {
+    "file": "II/II-04/07.mp3",
+    "hash": "3a14964481b8",
+    "sec": 12.94
+   },
+   {
+    "file": "II/II-04/08.mp3",
+    "hash": "a756b72afd84",
+    "sec": 9.26
+   }
+  ],
+  "II-08": [
+   {
+    "file": "II/II-08/00.mp3",
+    "hash": "bb0dc8749dc4",
+    "sec": 4.1
+   },
+   {
+    "file": "II/II-08/01.mp3",
+    "hash": "33f49a2fab23",
+    "sec": 24.22
+   },
+   {
+    "file": "II/II-08/02.mp3",
+    "hash": "66211864f729",
+    "sec": 13.18
+   }
+  ],
+  "II-10": [
+   {
+    "file": "II/II-10/00.mp3",
+    "hash": "c299e330e640",
+    "sec": 2.9
+   },
+   {
+    "file": "II/II-10/01.mp3",
+    "hash": "f7b0bf56461f",
+    "sec": 6.19
+   },
+   {
+    "file": "II/II-10/02.mp3",
+    "hash": "c24fa25310bd",
+    "sec": 8.57
+   },
+   {
+    "file": "II/II-10/03.mp3",
+    "hash": "292517ebf6eb",
+    "sec": 31.85
+   },
+   {
+    "file": "II/II-10/04.mp3",
+    "hash": "8171d865985a",
+    "sec": 4.58
+   },
+   {
+    "file": "II/II-10/05.mp3",
+    "hash": "b2309b0b017e",
+    "sec": 4.08
+   },
+   {
+    "file": "II/II-10/06.mp3",
+    "hash": "9e771ec25454",
+    "sec": 4.85
+   },
+   {
+    "file": "II/II-10/07.mp3",
+    "hash": "a8284c86ca88",
+    "sec": 31.97
+   }
+  ],
+  "II-07": [
+   {
+    "file": "II/II-07/00.mp3",
+    "hash": "0a87393f72ff",
+    "sec": 2.83
+   },
+   {
+    "file": "II/II-07/01.mp3",
+    "hash": "95e9935eb0e6",
+    "sec": 7.8
+   },
+   {
+    "file": "II/II-07/02.mp3",
+    "hash": "c8244c96c43e",
+    "sec": 10.32
+   },
+   {
+    "file": "II/II-07/03.mp3",
+    "hash": "8fb2312f4716",
+    "sec": 12.58
+   },
+   {
+    "file": "II/II-07/04.mp3",
+    "hash": "d15da90ac5e2",
+    "sec": 20.18
+   },
+   {
+    "file": "II/II-07/05.mp3",
+    "hash": "1ddd7e7a5dbd",
+    "sec": 4.37
+   }
+  ],
+  "II-11": [
+   {
+    "file": "II/II-11/00.mp3",
+    "hash": "b63affc331cb",
+    "sec": 2.93
+   },
+   {
+    "file": "II/II-11/01.mp3",
+    "hash": "88c99d79ed7c",
+    "sec": 6.82
+   },
+   {
+    "file": "II/II-11/02.mp3",
+    "hash": "0bcb9f340af0",
+    "sec": 28.56
+   },
+   {
+    "file": "II/II-11/03.mp3",
+    "hash": "b4363f36053f",
+    "sec": 28.68
+   },
+   {
+    "file": "II/II-11/04.mp3",
+    "hash": "117260992d4a",
+    "sec": 13.56
+   }
+  ],
+  "II-12": [
+   {
+    "file": "II/II-12/00.mp3",
+    "hash": "00cfdcd66135",
+    "sec": 3.12
+   },
+   {
+    "file": "II/II-12/01.mp3",
+    "hash": "89f3cd15c2e0",
+    "sec": 5.09
+   },
+   {
+    "file": "II/II-12/02.mp3",
+    "hash": "0618c150c1dc",
+    "sec": 26.04
+   },
+   {
+    "file": "II/II-12/03.mp3",
+    "hash": "d8fe7c3f447e",
+    "sec": 29.18
+   },
+   {
+    "file": "II/II-12/04.mp3",
+    "hash": "ff81e19f5bad",
+    "sec": 15.07
+   },
+   {
+    "file": "II/II-12/05.mp3",
+    "hash": "513e6e430f69",
+    "sec": 5.86
+   },
+   {
+    "file": "II/II-12/06.mp3",
+    "hash": "61a475fd7a8c",
+    "sec": 33.94
+   },
+   {
+    "file": "II/II-12/07.mp3",
+    "hash": "e785715b1786",
+    "sec": 8.21
+   },
+   {
+    "file": "II/II-12/08.mp3",
+    "hash": "2e9236428c84",
+    "sec": 13.82
+   },
+   {
+    "file": "II/II-12/09.mp3",
+    "hash": "706baaed8c22",
+    "sec": 9.12
+   }
+  ],
+  "II-09": [
+   {
+    "file": "II/II-09/00.mp3",
+    "hash": "0a6ad9755ba5",
+    "sec": 2.66
+   },
+   {
+    "file": "II/II-09/01.mp3",
+    "hash": "fa594bc4a129",
+    "sec": 13.58
+   },
+   {
+    "file": "II/II-09/02.mp3",
+    "hash": "60f88ee159ab",
+    "sec": 3.98
+   },
+   {
+    "file": "II/II-09/03.mp3",
+    "hash": "e9ba8d97d199",
+    "sec": 5.02
+   },
+   {
+    "file": "II/II-09/04.mp3",
+    "hash": "665ee75407d2",
+    "sec": 4.58
+   },
+   {
+    "file": "II/II-09/05.mp3",
+    "hash": "bf0c10ef88e9",
+    "sec": 15.02
+   },
+   {
+    "file": "II/II-09/06.mp3",
+    "hash": "fc3f10ce796b",
+    "sec": 24.46
+   },
+   {
+    "file": "II/II-09/07.mp3",
+    "hash": "238a7fb94ff8",
+    "sec": 4.94
+   },
+   {
+    "file": "II/II-09/08.mp3",
+    "hash": "40839254a96e",
+    "sec": 22.06
+   },
+   {
+    "file": "II/II-09/09.mp3",
+    "hash": "a739ea8fdd93",
+    "sec": 18.29
+   },
+   {
+    "file": "II/II-09/10.mp3",
+    "hash": "d2293a4ecd38",
+    "sec": 1.34
+   },
+   {
+    "file": "II/II-09/11.mp3",
+    "hash": "41a92303d73b",
+    "sec": 6.53
+   },
+   {
+    "file": "II/II-09/12.mp3",
+    "hash": "3458a31990f9",
+    "sec": 7.51
+   },
+   {
+    "file": "II/II-09/13.mp3",
+    "hash": "280a1cf997a4",
+    "sec": 19.3
+   },
+   {
+    "file": "II/II-09/14.mp3",
+    "hash": "6a19f9a6ff91",
+    "sec": 3.05
+   }
+  ],
+  "II-15": [
+   {
+    "file": "II/II-15/00.mp3",
+    "hash": "5e4c13a594e7",
+    "sec": 3.14
+   },
+   {
+    "file": "II/II-15/01.mp3",
+    "hash": "79ce891728d9",
+    "sec": 16.13
+   },
+   {
+    "file": "II/II-15/02.mp3",
+    "hash": "ef025c0fb046",
+    "sec": 19.58
+   },
+   {
+    "file": "II/II-15/03.mp3",
+    "hash": "21ba8888a16b",
+    "sec": 34.06
+   },
+   {
+    "file": "II/II-15/04.mp3",
+    "hash": "c48f836ffbff",
+    "sec": 9.77
+   },
+   {
+    "file": "II/II-15/05.mp3",
+    "hash": "d527dd5fc396",
+    "sec": 14.3
+   }
+  ],
+  "II-14": [
+   {
+    "file": "II/II-14/00.mp3",
+    "hash": "bff2963a1ac3",
+    "sec": 3.02
+   },
+   {
+    "file": "II/II-14/01.mp3",
+    "hash": "1aff8bbed8af",
+    "sec": 19.68
+   },
+   {
+    "file": "II/II-14/02.mp3",
+    "hash": "784269feb5a9",
+    "sec": 18.89
+   },
+   {
+    "file": "II/II-14/03.mp3",
+    "hash": "aca886dca69c",
+    "sec": 2.78
+   },
+   {
+    "file": "II/II-14/04.mp3",
+    "hash": "43ac3da9bcee",
+    "sec": 18.91
+   },
+   {
+    "file": "II/II-14/05.mp3",
+    "hash": "eadd60feaea7",
+    "sec": 16.82
+   },
+   {
+    "file": "II/II-14/06.mp3",
+    "hash": "803993147796",
+    "sec": 26.14
+   }
+  ],
+  "II-13": [
+   {
+    "file": "II/II-13/00.mp3",
+    "hash": "26a7442c9bc8",
+    "sec": 6.72
+   },
+   {
+    "file": "II/II-13/01.mp3",
+    "hash": "43eaef200370",
+    "sec": 13.9
+   },
+   {
+    "file": "II/II-13/02.mp3",
+    "hash": "b9e6b3348726",
+    "sec": 3.98
+   },
+   {
+    "file": "II/II-13/03.mp3",
+    "hash": "75afdc25404a",
+    "sec": 15.0
+   },
+   {
+    "file": "II/II-13/04.mp3",
+    "hash": "802c49cae77e",
+    "sec": 23.78
+   },
+   {
+    "file": "II/II-13/05.mp3",
+    "hash": "ec31cfcc199e",
+    "sec": 35.33
+   },
+   {
+    "file": "II/II-13/06.mp3",
+    "hash": "64eab71a830e",
+    "sec": 13.82
+   },
+   {
+    "file": "II/II-13/07.mp3",
+    "hash": "b95dfe7fd900",
+    "sec": 9.24
+   },
+   {
+    "file": "II/II-13/08.mp3",
+    "hash": "2c5ccdae76b1",
+    "sec": 27.19
+   },
+   {
+    "file": "II/II-13/09.mp3",
+    "hash": "ecff97c9081f",
+    "sec": 33.84
+   },
+   {
+    "file": "II/II-13/10.mp3",
+    "hash": "2f3910cb8f75",
+    "sec": 11.54
+   },
+   {
+    "file": "II/II-13/11.mp3",
+    "hash": "7f9964a06043",
+    "sec": 11.47
+   },
+   {
+    "file": "II/II-13/12.mp3",
+    "hash": "5fca0bbd6425",
+    "sec": 11.38
+   },
+   {
+    "file": "II/II-13/13.mp3",
+    "hash": "2b29e91649f8",
+    "sec": 13.58
+   },
+   {
+    "file": "II/II-13/14.mp3",
+    "hash": "6d817ed3df23",
+    "sec": 26.5
+   },
+   {
+    "file": "II/II-13/15.mp3",
+    "hash": "69d3d1a7be85",
+    "sec": 7.37
+   },
+   {
+    "file": "II/II-13/16.mp3",
+    "hash": "9def5de14c43",
+    "sec": 32.54
+   },
+   {
+    "file": "II/II-13/17.mp3",
+    "hash": "7893274541fa",
+    "sec": 17.21
+   },
+   {
+    "file": "II/II-13/18.mp3",
+    "hash": "7e13d33b22dd",
+    "sec": 27.5
+   },
+   {
+    "file": "II/II-13/19.mp3",
+    "hash": "9c6a5dc96fb3",
+    "sec": 2.69
+   },
+   {
+    "file": "II/II-13/20.mp3",
+    "hash": "dc9f7490bf47",
+    "sec": 22.73
+   },
+   {
+    "file": "II/II-13/21.mp3",
+    "hash": "3c88128ef3f2",
+    "sec": 20.9
+   },
+   {
+    "file": "II/II-13/22.mp3",
+    "hash": "8e810d76e7b9",
+    "sec": 5.09
+   }
+  ],
+  "II-18": [
+   {
+    "file": "II/II-18/00.mp3",
+    "hash": "e93414717155",
+    "sec": 3.29
+   },
+   {
+    "file": "II/II-18/01.mp3",
+    "hash": "78ac782c78c7",
+    "sec": 6.98
+   },
+   {
+    "file": "II/II-18/02.mp3",
+    "hash": "3ee75174bda0",
+    "sec": 8.18
+   },
+   {
+    "file": "II/II-18/03.mp3",
+    "hash": "9490bd09684d",
+    "sec": 31.1
+   },
+   {
+    "file": "II/II-18/04.mp3",
+    "hash": "f93e521dc8fd",
+    "sec": 5.38
+   },
+   {
+    "file": "II/II-18/05.mp3",
+    "hash": "b662abe76ab3",
+    "sec": 29.54
+   },
+   {
+    "file": "II/II-18/06.mp3",
+    "hash": "fd18ca4ee421",
+    "sec": 13.18
+   },
+   {
+    "file": "II/II-18/07.mp3",
+    "hash": "2874db85df2f",
+    "sec": 10.06
+   },
+   {
+    "file": "II/II-18/08.mp3",
+    "hash": "d147b1899bf5",
+    "sec": 3.1
+   }
+  ],
+  "II-17": [
+   {
+    "file": "II/II-17/00.mp3",
+    "hash": "1cfe5f9f31f2",
+    "sec": 4.49
+   },
+   {
+    "file": "II/II-17/01.mp3",
+    "hash": "c509434a5db4",
+    "sec": 13.13
+   },
+   {
+    "file": "II/II-17/02.mp3",
+    "hash": "0da04480510e",
+    "sec": 24.98
+   },
+   {
+    "file": "II/II-17/03.mp3",
+    "hash": "ee76666c5f40",
+    "sec": 25.7
+   },
+   {
+    "file": "II/II-17/04.mp3",
+    "hash": "3c4e09655a95",
+    "sec": 19.06
+   },
+   {
+    "file": "II/II-17/05.mp3",
+    "hash": "8076fb70abaf",
+    "sec": 21.05
+   },
+   {
+    "file": "II/II-17/06.mp3",
+    "hash": "44862f6358a6",
+    "sec": 27.58
+   },
+   {
+    "file": "II/II-17/07.mp3",
+    "hash": "ce1a03005e68",
+    "sec": 19.9
+   },
+   {
+    "file": "II/II-17/08.mp3",
+    "hash": "6dc8338d6415",
+    "sec": 31.73
+   },
+   {
+    "file": "II/II-17/09.mp3",
+    "hash": "4f47e325c55c",
+    "sec": 49.7
+   },
+   {
+    "file": "II/II-17/10.mp3",
+    "hash": "9ca4c50b830b",
+    "sec": 13.78
+   },
+   {
+    "file": "II/II-17/11.mp3",
+    "hash": "297decd03ef1",
+    "sec": 9.5
+   },
+   {
+    "file": "II/II-17/12.mp3",
+    "hash": "e9b56a695143",
+    "sec": 20.54
+   }
+  ],
+  "II-16": [
+   {
+    "file": "II/II-16/00.mp3",
+    "hash": "c991e28502ad",
+    "sec": 3.38
+   },
+   {
+    "file": "II/II-16/01.mp3",
+    "hash": "fba7c3b24da7",
+    "sec": 9.65
+   },
+   {
+    "file": "II/II-16/02.mp3",
+    "hash": "5c08e35fda38",
+    "sec": 14.66
+   },
+   {
+    "file": "II/II-16/03.mp3",
+    "hash": "16e11f9e240e",
+    "sec": 8.86
+   },
+   {
+    "file": "II/II-16/04.mp3",
+    "hash": "bd33d3e9207d",
+    "sec": 35.3
+   },
+   {
+    "file": "II/II-16/05.mp3",
+    "hash": "590417e9f561",
+    "sec": 27.58
+   },
+   {
+    "file": "II/II-16/06.mp3",
+    "hash": "beb6a72003fd",
+    "sec": 9.14
+   },
+   {
+    "file": "II/II-16/07.mp3",
+    "hash": "fda01a3348cb",
+    "sec": 65.45
+   },
+   {
+    "file": "II/II-16/08.mp3",
+    "hash": "412680679985",
+    "sec": 47.45
+   },
+   {
+    "file": "II/II-16/09.mp3",
+    "hash": "693167face4b",
+    "sec": 17.78
+   },
+   {
+    "file": "II/II-16/10.mp3",
+    "hash": "d8213aee3b2f",
+    "sec": 33.98
+   },
+   {
+    "file": "II/II-16/11.mp3",
+    "hash": "229398d023c7",
+    "sec": 7.13
+   }
+  ],
+  "II-19": [
+   {
+    "file": "II/II-19/00.mp3",
+    "hash": "6dc80a92d8b2",
+    "sec": 4.06
+   },
+   {
+    "file": "II/II-19/01.mp3",
+    "hash": "cb4aa6f3e44d",
+    "sec": 12.82
+   },
+   {
+    "file": "II/II-19/02.mp3",
+    "hash": "adbce94f69fc",
+    "sec": 9.1
+   }
+  ],
+  "III-01": [
+   {
+    "file": "III/III-01/00.mp3",
+    "hash": "02fcb675295c",
+    "sec": 3.02
+   },
+   {
+    "file": "III/III-01/01.mp3",
+    "hash": "98ba1b8aaee9",
+    "sec": 10.94
+   },
+   {
+    "file": "III/III-01/02.mp3",
+    "hash": "56ce1a13a502",
+    "sec": 20.9
+   }
+  ],
+  "II-20": [
+   {
+    "file": "II/II-20/00.mp3",
+    "hash": "295e9afc4489",
+    "sec": 6.14
+   },
+   {
+    "file": "II/II-20/01.mp3",
+    "hash": "a5cbc9aec060",
+    "sec": 17.78
+   },
+   {
+    "file": "II/II-20/02.mp3",
+    "hash": "f5b477473953",
+    "sec": 21.62
+   },
+   {
+    "file": "II/II-20/03.mp3",
+    "hash": "c4cc576c24fd",
+    "sec": 16.82
+   },
+   {
+    "file": "II/II-20/04.mp3",
+    "hash": "8117524b44f6",
+    "sec": 5.38
+   },
+   {
+    "file": "II/II-20/05.mp3",
+    "hash": "3705af0d22ad",
+    "sec": 17.02
    }
   ]
  }
