@@ -307,3 +307,10 @@ Sources:
 - **What we chose:** keep the three short cards (they carry the author's name and dedication) but add a Skip button, state the free part (Walk IV stops 1 to 5, read from src/config.ts so it cannot drift from the paywall), and stop promising arrival detection without saying it needs location, which is asked at walk start (see "Asking for location permission"). The page indicator is one spoken element ("Page 1 of 3"), and Reduce Motion pages without sliding.
 - **Why:** walkers often open the app standing at the start of a walk; Skip gets them there. Saying what is free up front answers the first question people ask of a paid app and matches the paywall. No new data is collected.
 - Sources: https://developer.apple.com/design/human-interface-guidelines/onboarding ; https://www.nngroup.com/articles/mobile-app-onboarding/ ; https://www.nngroup.com/articles/mobile-tutorials/ ; https://shakaguide.freshdesk.com/support/solutions/articles/151000217331-shaka-guide-first-time-user-walkthrough
+
+## 2026-11-26 · Look-at stops are the author's call, walk by walk
+- How it is normally done: no outside research this run (the run was spent on her answers and the re-check). The standing rule here (HANDOFF, 22 Nov) is that the route and its stops come from her map and her word, never from our own judgment.
+- What we chose: a stop is a look-at stop only when Veneeta or Nick says so. Walk I now has one (stop 9), from her email of 25 Nov. The rule Claude used on 22 Nov to suggest look-at stops on the other walks (number off her line, "look across" in the text, a street name, or a pin far from the line) is only a suggestion list; she has said most of it is wrong and will review each walk.
+- Why: the author knows which places a walker actually goes to. A wrong look-at stop silently drops an arrival alert, which is the app's core promise.
+- Sources: her email of 25 Nov 2026 (thread "Delete this in Walk III"); scripts/georef/look_stops.json.
+

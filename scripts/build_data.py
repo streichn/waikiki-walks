@@ -52,7 +52,32 @@ TEXT_FIXES = {'I-36': [('kahuna nui', 'kuhina nui', "Veneeta's printed copy, pag
                          "Veneeta's addition by email, 21 Nov 2026: end of the paragraph that starts 'In the late-1800s'")],
               'II-04': [('Sandalewood', 'Sandalwood', "the book hyphenates 'Sandale- wood' across a line; joining it left a stray e")],
               'III-14': [(' If you have time to spare (if not, please do come back), visit the Ho‘okela Hawaiian Heritage and Culture Center on the 2nd Floor, Diamond Head Tower (Ho‘okela means ‘excellence’.) Monday through Friday 8 to 3. This the place where you will experience true Hawaiian culture.', '',
-                          "Veneeta by email, 22 Nov 2026 ('Delete this in Walk III')")]}
+                          "Veneeta by email, 22 Nov 2026 ('Delete this in Walk III')")],
+              # Her go answers of 25 Nov 2026 (docs/MOM_REVIEW.md), in her own wording.
+              'I-02': [('Recently, the canal has been given', 'The canal has been given', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): delete 'recently'")],
+              'I-04': [('Until recently, the Mālia, a sacred canoe, was housed at the Waikīkī Surf Club’s canoe hale. The Mālia, on the National',
+                        'The Mālia, a sacred 6-person outrigger racing canoe, is housed at the Waikīkī Surf Club’s canoe hale. The Mālia was carved from a single koa log in 1933. The Mālia, on the National',
+                        "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): her rewrite, continuing with the historic register sentence")],
+              'I-11': [('In 1989, a $5.8 million clubhouse was constructed.', 'In 1989, a $5.8 million clubhouse was constructed.\n\nThe elegant Dance Palladium / Ala Wai Palladium, opened in 1990, is an 11,000 square foot hardwood floor dance hall. Come dance, but only in your soft-soled dancing shoes! Information: www.dancefeveroahu.com',
+                        "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): her addition after the paragraph that starts 'In 1948'")],
+              'I-13': [('it was constructed 100 years ago, in 1927.', 'it was constructed over 100 years ago.', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): her rewrite (no counting of years)")],
+              'II-14': [('have recently succumbed', 'have succumbed', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): delete 'recently'")],
+              'III-09': [('Historic tours are offered throughout the week: check on dates and times in the main lobby.', 'Historic tours are offered: check dates and times in the main lobby.',
+                          "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): her edit of the suggested wording")],
+              'IV-13': [('PĀ KA MAKANI Blows –the wind NAUE KA LAU O KA NIU Sway –the leaves of the coconut tree HA‘A KA PUA KOALI I KE KULA Dance – the Koali flower on the plain',
+                         'PĀ KA MAKANI\nBlows –the wind\n\nNAUE KA LAU O KA NIU\nSway –the leaves of the coconut tree\n\nHA‘A KA PUA KOALI I KE KULA\nDance – the Koali flower on the plain',
+                         "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): layout she asked for, each Hawaiian line directly above its English, no space between")],
+              'IV-23': [('A plaque behind one of the columns in the atrium recalls James Steiner (18601939), who had a home and property near here on the makai side of Kalākaua Avenue. ', '',
+                         "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): delete the James Steiner plaque sentence")],
+              'VII-05': [('In 2021-2023 Hō‘ailona lived in California as scientists studied the monk’s underwater hearing.',
+                          'In the early 2020s, Hō‘ailona lived in California as scientists studied the monk’s underwater hearing. He returned to the aquarium in 2025.',
+                          "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): her rewrite")],
+              'VII-18': [(' For more information: www.kuileicliffs.org', '', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): remove the entire line")],
+              'VIII-10': [('Kapahulu Shopping Center, on the ‘Ewa side, might be the only shopping center with a 7-foot telescope on its roof. Check for moon-gazing dates:', '', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): the telescope is gone, delete"),
+                          ('kapahulushoppingcenter.com', '', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): the web address went with the telescope paragraph")],
+              'XII-03': [('but it was constructed in 1927.', 'but it was constructed over 100 years ago.', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): 'this change elsewhere - walk XII.3'")],
+              'XII-11': [('Kapahulu Shopping Center, a little further up on the ‘Ewa side of Kapahulu Avenue, might be the only shopping center with a 7-foot telescope on its roof. Check dates for https://kapahulushoppingcenter.com/', '', "Veneeta by email, 25 Nov 2026 (reply in 'Delete this in Walk III'): the telescope is gone, delete")]}
+
 # Typos in the printed book that Veneeta confirmed by email, 22 Nov 2026 ("typos..."), applied everywhere
 # (stop text, titles, photo captions, facts). Each must still be found, or the build stops.
 BOOK_CORRECTIONS = [('Makiki Sream', 'Makiki Stream'), ('Chung Afong', 'Chun Afong'), ('Planation style', 'Plantation style'),
@@ -592,8 +617,10 @@ for k, w in enumerate(SRC['walks']):
         blocks = [{**b, 'text': re.sub(r'\s{2,}', ' ', re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '', b['text'])).strip()} for b in blocks]
         for a, b, _why in TEXT_FIXES.get(f"{wid}-{s['n']:02d}", []):
             if not any(a in x['text'] for x in blocks):
-                raise SystemExit(f"text fix {wid}-{s['n']:02d}: '{a}' not found")
+                raise SystemExit(f"text fix {wid}-{s['n']:02d}: '{a}' not found in {[x['text'][:200] for x in blocks]}")
             blocks = [{**x, 'text': x['text'].replace(a, b)} for x in blocks]
+        # A fix may empty a paragraph (delete) or add one ("\n\n" inside its text starts a new paragraph).
+        blocks = [{**x, 'text': t.strip()} for x in blocks for t in x['text'].split('\n\n') if t.strip()]
         # A paragraph that stops mid-sentence and one that goes on in lower case are one paragraph
         # the PDF split at a column or photo (Walk XI stop 6: "Notice" / "the older homes").
         joined = []
