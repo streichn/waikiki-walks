@@ -29,6 +29,12 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 - Some numbers sit off her line (Walk III: 2, 5, 6, 8, from Veneeta). The walker looks at them from the line; there is no arrival alert, and the walker taps Next. At Nick's request, Claude applied the same rule to every walk (75 stops in scripts/georef/look_stops.json, each with its reason); they are going to Veneeta to confirm. Change that list only with Nick's or Veneeta's word.
 - The book text's bold "Walk ..." directions say where to go; when the line and the text disagree, ask Veneeta.
 
+## 2026-11-27 · Scheduled run
+- Walk IV re-check: new IV-f to IV-i (status new, go out in tomorrow's review email). III-d and III-e sent to her today.
+- Text: PARA_JOINS in build_data.py rejoins three page-break splits before a capital letter.
+- Open PRs #31, #32, #33, #34: this run tried to close #34 (same feature is on main as f6a52d5) and #32 (contained in #33) but closing was not permitted; left for Nick.
+- The published preview's app.js is newer than main (a live session, likely narration-audio), so this run did not republish it.
+
 ## 2026-11-26 · Scheduled run
 - Her 25 Nov 21:23Z reply did answer the look-at list (the live session read it as blank): Walk I has only stop 9; the other walks she will review herself. Walk I is applied in PR improve/2026-11-26-1430. Re-check: Walk III, new III-d and III-e.
 

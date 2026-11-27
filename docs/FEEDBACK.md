@@ -72,6 +72,9 @@
 
 ## 2026-11-26 · Scheduled run: her look-at answer (25 Nov, 21:23Z, "Delete this in Walk III")
 - Under the look-at stops list she wrote: "No - most of these are different from Walk III, I'll review each walk separately. Walk I, Stop 9 is the only 'look at' stop in that walk." The live session on 25 Nov missed it (it told her she had marked none).
-- Walk I: look-at stops are now stop 9 only (were 3, 5, 13, 16, 21). Status: fixed in PR improve/2026-11-26-1430, waiting for Nick.
+- Walk I: look-at stops are now stop 9 only (were 3, 5, 13, 16, 21). Status: fixed in PR #36 (merged 26 Nov).
 - Other walks: she will review each one herself. Status: waiting for her; Nick to decide whether the current picks stay until then.
 - Her other new mail: "Perfect! Good morning and thank you!" (25 Nov, 16:00Z) about the publisher letter. Not about the app.
+
+## 2026-11-27 · Scheduled run
+- No new app comments. Her mail since the last run: "I love these emails. And I love you !" (26 Nov 15:34Z, good-morning thread), and a note to Nick on his own children's book ("Greece?", "it could have more pages"). Neither is about the app.

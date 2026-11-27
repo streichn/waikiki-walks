@@ -32,8 +32,8 @@ How this file is used:
 | III-a | III-14 | Ho‘okela paragraph ("If you have time to spare ... true Hawaiian culture.") | | delete | her email 22 Nov | done (8be9a59) |
 | III-b | III-13 | pin in the water | | pin on land | her email 22 Nov | done (8be9a59) |
 | III-c | III-9 | "Historic tours are offered throughout the week" | tours twice a week, free for hotel guests | "offered twice a week" | 22 Nov | done (go 25 Nov: her edit: "Historic tours are offered: check dates and times in the main lobby.") |
-| III-d | III-2 | "The little girl playing the ‘ukulele is Israel ‘Iz’ Kamakawiwo‘ole’s niece." | Outrigger's page for the mural names Kawena Kamakawiwo‘ole, "the grand-niece of Israel Kamakawiwo‘ole", at the bow of the canoe, and does not mention an ‘ukulele (https://outrigger.com/hawaii/oahu/outrigger-reef-waikiki-beach-resort/activities/artwork/kamea-hadar) | "The girl at the bow of the canoe is Israel ‘Iz’ Kamakawiwo‘ole’s grand-niece." (or her wording) | | new |
-| III-e | III-9 | "a plaque on the almost 100-year-old Banyan tree" | the book says the tree was planted in 1904, so it is about 122 years old, and the count grows each year | "a plaque on the Banyan tree, planted in 1904," (the book's own date) | | new |
+| III-d | III-2 | "The little girl playing the ‘ukulele is Israel ‘Iz’ Kamakawiwo‘ole’s niece." | Outrigger's page for the mural names Kawena Kamakawiwo‘ole, "the grand-niece of Israel Kamakawiwo‘ole", at the bow of the canoe, and does not mention an ‘ukulele (https://outrigger.com/hawaii/oahu/outrigger-reef-waikiki-beach-resort/activities/artwork/kamea-hadar) | "The girl at the bow of the canoe is Israel ‘Iz’ Kamakawiwo‘ole’s grand-niece." (or her wording) | 27 Nov | waiting |
+| III-e | III-9 | "a plaque on the almost 100-year-old Banyan tree" | the book says the tree was planted in 1904, so it is about 122 years old, and the count grows each year | "a plaque on the Banyan tree, planted in 1904," (the book's own date) | 27 Nov | waiting |
 
 ## Walk IV
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -43,6 +43,10 @@ How this file is used:
 | IV-c | IV-28 | "St. Augustine Church and a related museum" | Damien and Marianne center, open status unclear | add "(check if open)" | 22 Nov | waiting |
 | IV-d | IV-23 | "A plaque behind one of the columns in the atrium recalls James Steiner (1860-1939) ..." | | delete the sentence | her email 25 Nov | done (go 25 Nov) |
 | IV-e | IV-13 | the three chant lines run together | | each Hawaiian line directly above its English, no blank line between, a blank line between pairs | her email 25 Nov | done (go 25 Nov) |
+| IV-f | IV-10 | "Makai of Kalākaua Avenue is newly named “Waikīkī Beach Walk”" | time word; Waikīkī Beach Walk opened in 2007 (same as I-c) | drop "newly": "Makai of Kalākaua Avenue is named “Waikīkī Beach Walk”" | | new |
+| IV-g | IV-22 | "a plaque on the almost 100-year-old Indian Banyan tree" | the book says the tree was planted in 1904, so it is about 122 years old, and the count grows (same as III-e) | "a plaque on the Indian Banyan tree, planted in 1904," | | new |
+| IV-h | IV-17 | "Federated Department Stores, which own Macy’s and Bloomingdale’s, took over the Liberty House chain ... in 2001." | Federated was renamed Macy's, Inc. in 2007 (https://en.wikipedia.org/wiki/Macy%27s,_Inc. ; https://chainstoreage.com/news/shareholders-approve-name-change-macys) | "Federated Department Stores (renamed Macy’s, Inc. in 2007) took over the Liberty House chain ... in 2001." | | new |
+| IV-i | IV-17 | "American Factors, today known as Amfac, Inc." | Amfac Hawaii went bankrupt in 2002 and was reorganized as Kaanapali Land, LLC; the bankruptcy closed in 2005 (https://en.wikipedia.org/wiki/Amfac ; Kaanapali Land SEC filings, e.g. https://www.sec.gov/Archives/edgar/data/0001230058/000089262625000011/kaa-k24.htm) | "American Factors, later known as Amfac, Inc." | | new |
 
 ## Walks VI and VII
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -86,7 +90,7 @@ How this file is used:
 | Walk | Stops | Sent | Status |
 |---|---|---|---|
 | III | 2, 5, 6, 8 | her call 22 Nov | done |
-| I | 9 only (was 3, 5, 13, 16, 21) | 22 Nov | go (this PR): her reply 25 Nov 21:23Z: "Walk I, Stop 9 is the only 'look at' stop in that walk." |
+| I | 9 only (was 3, 5, 13, 16, 21) | 22 Nov | done (#36): her reply 25 Nov 21:23Z: "Walk I, Stop 9 is the only 'look at' stop in that walk." |
 | II | 4, 6, 17 | 22 Nov | waiting |
 | IV | 3, 7, 9, 10, 11, 13, 14, 15, 16, 21, 23, 24 | 22 Nov | waiting |
 | V | 4, 6, 16 | 22 Nov | waiting |
@@ -115,3 +119,4 @@ One line per run: date, walk checked, new items added (IDs) or "none".
 - 2026-11-22: all walks (first full pass).
 - 2026-11-24 and 2026-11-25: Walks I and II, logged in PRs #32 and #33 (not yet merged).
 - 2026-11-26: Walk III. New: III-d, III-e. Checked and fine: Royal Hawaiian Hotel has Herb Kane's last painting on permanent display, at the entrance to the Monarch Room (https://www.hawaiimagazine.com/historic-hawaii-foundation-honors-herb-kane-unveils-big-island-artists-last-painting/, 2011); Moana's historical artifacts are in the second-floor lobby of the Banyan Wing, with tours (https://www.historichotels.org/us/hotels-resorts/moana-surfrider-a-westin-resort-and-spa); Kamea Hadar's mural is at the Outrigger Reef (link under III-d); waimeavalley.net loads. Not checked: the Sheraton beach walkway closure (III-3), no reliable current page found.
+- 2026-11-27: Walk IV. New: IV-f, IV-g, IV-h, IV-i. Checked and fine: Waikīkī Community Center still runs from the old St. Augustine school building at 310 Paoakalani Ave (2026 grant application, https://data.capitol.hawaii.gov/sessions/session2026/2026GIA-Apps/WaikikiCommunityCenter_OP_2026-01-23_1052_Redacted.pdf). Already listed: IV-a (Ho‘okela), IV-b (Top of Waikīkī), IV-c (St. Augustine museum). Not checked: which store is in the Gump Building today (IV-9, "a popular retail store" is general enough to stay), Duke's and the ABC store plaque.

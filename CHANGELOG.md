@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-27
+
+- Three sentences that a page break had cut in two are whole again: Walk III stop 2 (the mural, "Israel ‘Iz’ Kamakawiwo‘ole’s niece"), Walk X stop 36 (the Woolsey family) and Walk X stop 43 (Dr. Harold L. Lyon). Each was checked against the printed page. Before, the second half showed as its own short paragraph and reading aloud paused in the middle.
+- Review list: four new items from the Walk IV re-check, for Veneeta's go or no-go (IV-f "newly named" Waikīkī Beach Walk, IV-g the Moana banyan's age, IV-h Federated is now Macy's, Inc., IV-i Amfac). III-d and III-e went to her today.
+
 ## 2026-11-26
 
 - Walk I look-at stops follow Veneeta's answer (25 Nov): only stop 9, the view of the ridges and valleys, is a look-at stop. Stops 3, 5, 13, 16 and 21 are normal stops again, with arrival alerts, and her dotted line is cut at each of them. No pin moved.
