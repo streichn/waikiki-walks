@@ -15,6 +15,16 @@
 - Starting a different walk while one is active now asks first, and saves your place in the current walk. Only one walk is active at a time.
 - Android: the walk's ongoing notification now names the next stop and follows you from stop to stop, and shows the right walk after a switch.
 
+## 2026-11-25 · Screen readers announce buttons and links
+- Thirteen tappable rows and links did not tell VoiceOver or TalkBack what they were: the Saved list rows, the "All walks" and "Open walk" buttons on Explore, the About card and Credits link on Home, the camera button, the Profile rows and name, Google sign-in and "Continue as a guest", and the Privacy, Terms and Apple license links in Credits. Each now has a button or link role, and the Saved rows read "Walk II, stop 9: ‘Ilikai Hotel" in one phrase.
+- Review list: Walk II re-checked, nothing new. Walk I item I-g (Fire Station "100 years ago, in 1927") sent to Veneeta on 25 Nov.
+
+## 2026-11-24 · Read-aloud without signal on Android
+- Android lists Google voices by raw names like "en-us-x-iol-network", and the ones ending in "network" stream from Google, so they go silent with no signal. The voice picker now shows plain names ("US English, voice IOL"), lists the voices stored on the phone first, and marks the others "Needs internet".
+- If you picked a "Needs internet" voice and lose signal, the walk reads with the phone's default voice instead of going quiet. It goes back to your voice when signal returns.
+- Android gets its own tip for adding voices (Settings › Accessibility › Text-to-speech output, then Install voice data); iPhone keeps the Enhanced voices tip. "Without signal" in Settings now mentions read-aloud.
+- Daily re-check of Walk I for Veneeta: one new item (I-g, "100 years ago, in 1927") in docs/MOM_REVIEW.md.
+
 ## 2026-11-22
 
 - Look-at stops on every walk (75 in all), by the same rule as Walk III: her number sits off her line and the book says to look across or look for it, the place is gone, the stop is a street name, or the pin is too far from her line for an arrival alert. Each has its reason in scripts/georef/look_stops.json, for Veneeta to confirm.

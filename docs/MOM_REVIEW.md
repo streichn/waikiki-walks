@@ -110,8 +110,11 @@ Her answer for the other walks (25 Nov, 21:23Z, under the list): "No - most of t
 ## Checked and still correct (22 Nov 2026)
 Army Museum (II-17), Hau Tree (II-13), Lappert's (II-12), Kani Ka Pila (III-2), Macy's (IV-17), Royal Hawaiian Band Sunday concerts, Art on the Zoo Fence hours (VI-13), South Shore Grill and Diamond Head Market, City Mill Kaimukī, Good Guys, Waiola Kapahulu, Nijiya and Longs, Mānoa Valley Inn, Mānoa Heritage Center, John Young Museum, whiteterns.org. www.waimeavalley.net (III-6) loads (checked 26 Nov); its exhibit page shows ‘ulu maika as artifacts, and no page found today says whether the games area is still set up.
 
+Re-check 24 Nov 2026 (Walk I): Waikīkī-Kapahulu Public Library is open with regular programs (https://www.librarieshawaii.org/branch/waikiki-kapahulu-public-library/). Mānoa Falls trail (I-9): the book already says to check it is open, which still fits; DLNR closes it from time to time for maintenance (https://dlnr.hawaii.gov/?p=37808).
+
 ## Daily re-check log
 One line per run: date, walk checked, new items added (IDs) or "none".
 - 2026-11-22: all walks (first full pass).
-- 2026-11-24 and 2026-11-25: Walks I and II, logged in PRs #32 and #33 (not yet merged).
+- 2026-11-24: Walk I. New: I-g.
+- 2026-11-25: Walk II. None. Checked: Army Museum (II-17) open after its 2023 reopening (https://home.army.mil/hawaii/my-fort/recreation/army-museum); Honolulu Star-Bulletin "now the Honolulu Star Advertiser" (II-9) still right; McDonald's on Ala Moana Boulevard at Discovery Bay (II-8) still listed (https://www.storeopeninghours.com/mcdonalds-ala-moana-boulevard-honolulu-hi), koa paneling not confirmable online. I-g sent to her 25 Nov.
 - 2026-11-26: Walk III. New: III-d, III-e. Checked and fine: Royal Hawaiian Hotel has Herb Kane's last painting on permanent display, at the entrance to the Monarch Room (https://www.hawaiimagazine.com/historic-hawaii-foundation-honors-herb-kane-unveils-big-island-artists-last-painting/, 2011); Moana's historical artifacts are in the second-floor lobby of the Banyan Wing, with tours (https://www.historichotels.org/us/hotels-resorts/moana-surfrider-a-westin-resort-and-spa); Kamea Hadar's mural is at the Outrigger Reef (link under III-d); waimeavalley.net loads. Not checked: the Sheraton beach walkway closure (III-3), no reliable current page found.

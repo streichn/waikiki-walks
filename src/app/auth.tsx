@@ -49,7 +49,7 @@ export default function Auth() {
               onPress={() => run('apple', signInWithApple)}
             />
           ) : null}
-          <Pressable onPress={() => run('google', signInWithGoogle)} style={[styles.google, { backgroundColor: t.card, borderColor: t.border }]}>
+          <Pressable accessibilityRole="button" accessibilityState={{ busy: busy === 'google' }} onPress={() => run('google', signInWithGoogle)} style={[styles.google, { backgroundColor: t.card, borderColor: t.border }]}>
             <Ionicons name="logo-google" size={20} color="#4285F4" />
             <T style={{ fontFamily: t.font.bodyBold }}>{busy === 'google' ? 'Connecting…' : 'Continue with Google'}</T>
           </Pressable>
@@ -99,6 +99,7 @@ export default function Auth() {
         </View>
 
         <Pressable
+          accessibilityRole="button"
           onPress={() => {
             continueAsGuest();
             router.back();

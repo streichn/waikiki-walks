@@ -28,7 +28,7 @@ export default function Saved() {
       data={items}
       keyExtractor={(x) => x.s.id}
       renderItem={({ item }) => (
-        <Pressable onPress={() => router.push(`/walk/${item.w.id}?stop=${item.i}`)} style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}>
+        <Pressable accessibilityRole="button" accessibilityLabel={`Walk ${walkNo(item.w.id)}, stop ${item.s.n}: ${item.s.title}`} accessibilityHint="Opens this saved stop" onPress={() => router.push(`/walk/${item.w.id}?stop=${item.i}`)} style={[styles.row, { backgroundColor: t.card, borderColor: t.border }]}>
           {item.s.photos[0] ? <Image source={photo(item.s.photos[0].file)} style={styles.thumb} contentFit="cover" /> : <View style={[styles.thumb, { backgroundColor: item.w.color }]} />}
           <View style={{ flex: 1 }}>
             <T variant="label">

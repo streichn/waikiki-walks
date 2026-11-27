@@ -53,7 +53,7 @@ export default function Profile() {
               accessibilityLabel="Display name"
             />
           ) : (
-            <Pressable disabled={!signedIn} onPress={() => { setName(profile?.name ?? ''); setEditing(true); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <Pressable accessibilityRole="button" accessibilityHint={signedIn ? 'Edit your display name' : undefined} disabled={!signedIn} accessibilityState={{ disabled: !signedIn }} onPress={() => { setName(profile?.name ?? ''); setEditing(true); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <T variant="title">{signedIn ? profile?.name || 'Walker' : 'Guest walker'}</T>
               {signedIn ? <Ionicons name="pencil" size={16} color={t.textMuted} /> : null}
             </Pressable>
@@ -113,7 +113,7 @@ function Stat({ n, label }: { n: number; label: string }) {
 function Row({ icon, label, onPress, last, note }: { icon: keyof typeof Ionicons.glyphMap; label: string; onPress?: () => void; last?: boolean; note?: string }) {
   const t = useTheme();
   return (
-    <Pressable onPress={onPress} disabled={!onPress} accessibilityState={{ disabled: !onPress }} style={[styles.row, !last && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.border }]}>
+    <Pressable accessibilityRole="button" onPress={onPress} disabled={!onPress} accessibilityState={{ disabled: !onPress }} style={[styles.row, !last && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.border }]}>
       <Ionicons name={icon} size={22} color={onPress ? t.primary : t.textMuted} />
       <T style={{ flex: 1, color: onPress ? t.text : t.textMuted }}>{label}</T>
       {note ? <T style={{ color: t.textMuted, fontSize: 13 }}>{note}</T> : <Ionicons name="chevron-forward" size={18} color={t.textMuted} />}
