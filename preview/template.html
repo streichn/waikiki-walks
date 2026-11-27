@@ -194,7 +194,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .map { position: absolute; inset: 0; background: #AAD3DF; }
 .leaflet-container { font-family: var(--body); background: #AAD3DF; }
 /* Fade the street map so its own footpath and boundary dashes do not compete with her route (Nick, 26 Nov 2026) */
-.map .leaflet-tile-pane { opacity: .55; }
+.map .leaflet-tile-pane { opacity: .4; filter: grayscale(1) contrast(.8); }
 :root[data-theme="dark"] .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); } }
 .pin { min-width: 28px; height: 28px; padding: 0 5px; border-radius: 14px; border: 2px solid #fff; color: #fff; font: 800 12px var(--body); display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
@@ -248,6 +248,13 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .controls { display: flex; gap: 12px; align-items: center; padding: 10px 14px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--bg); }
 .audiomode { width: 76px; height: 52px; flex: none; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--text); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; font-weight: 800; }
 .audiomode[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.audiobar { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.modeseg { display: flex; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--card); }
+.modeseg button { flex: 1; height: 40px; border: 0; background: transparent; color: var(--text); font: inherit; font-weight: 800; font-size: 13px; }
+.modeseg button[aria-checked="true"] { background: var(--accent); color: #fff; }
+.stopread { height: 44px; border: 0; border-radius: 14px; background: #B3261E; color: #fff; font: inherit; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.stopread[hidden] { display: none; }
+.stopread svg { width: 16px; height: 16px; fill: currentColor; }
 .readbar { display: flex; justify-content: flex-end; gap: 8px; padding: 2px 16px 0; }
 .readbtn[hidden] { display: none; }
 .readbtn.stopread { background: var(--card); color: var(--text); border: 1px solid var(--line); }

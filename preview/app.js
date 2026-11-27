@@ -76,7 +76,7 @@
   const save = (k, v) => { try { store && store.setItem('ww.' + k, JSON.stringify(v)); } catch (e) {} };
   const S = {
     tab: 'home', view: null, walkId: null, mode: 'read', focus: 0,
-    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, margin: 20, spacing: 1, alerts: true }); if (st.margin == null) { st.margin = 20; st.spacing = 1; } if (!st.v2) { st.autoNarrate = false; st.v2 = true; } return st; })(),
+    settings: (() => { const st = load('settings', { theme: 'system', autoNarrate: false, arrival: 35, rate: 1, textScale: 1, margin: 20, spacing: 1, alerts: true }); if (st.margin == null) { st.margin = 20; st.spacing = 1; } if (!st.v2) { st.autoNarrate = false; st.v2 = true; } if (!st.audioMode) st.audioMode = st.autoNarrate ? 'gps' : 'off'; return st; })(),
     isPro: load('pro', false), demo: load('demo', false), realPro: load('realPro', false), profile: load('profile', null), favs: load('favs', []), progress: load('progress', {}), active: load('active', null),
     layout: 'split', detent: 'half', stopIdx: 0, pageAnim: '', sim: false, me: null, heading: 0, arrivedBanner: null, follow: 'follow',
   };
@@ -132,11 +132,11 @@
   function speakStop(stop) {
     if (speaking.audio) { speaking.audio.pause(); speaking.audio = null; }
     const tok = ++speakTok; if (synth) synth.cancel();
-    if (!synth && (window.WWAUDIO || {})[stop.id] === undefined) return toast('Read aloud is not available in this browser. It uses the phone voice in the app.');
     const parts = [`Stop ${stop.n}. ${stop.title}.`, ...stop.blocks.filter((b) => ['p', 'direction', 'tagline'].includes(b.kind)).map((b) => prep(b.text))];
     let i = 0;
     // Recorded narration when this stop has it; the browser voice otherwise.
     const rec = (window.WWAUDIO || {})[stop.id] === parts.length;
+    if (!rec) { speaking.stopId = null; speaking.para = -1; markReading(); return toast('Narration for this stop is still being recorded.'); }
     if (rec) {
       const wid = stop.id.split('-')[0];
       const nextRec = () => {
@@ -173,7 +173,7 @@
     document.querySelectorAll('[data-para]').forEach((el) => { el.classList.toggle('reading', el.dataset.stop === speaking.stopId && Number(el.dataset.para) === speaking.para); });
     document.querySelectorAll('[data-listen]').forEach((el) => { const on = el.dataset.listen === speaking.stopId; el.innerHTML = on ? `${ic('stop')} Stop` : `${ic('volume')} Listen`; });
     const pb = document.getElementById('playbtn'); if (pb) pb.innerHTML = readLabel();
-    const sb = document.getElementById('stopbtn'); if (sb) sb.hidden = !speaking.stopId;
+    const sb = document.getElementById('stopbtn'); if (sb) sb.hidden = !isReading();
     // A Stop button that shows on every screen whenever anything is being read aloud (Nick, 25 Nov 2026).
     let fab = document.getElementById('stopfab');
     if (!fab) { fab = document.createElement('button'); fab.id = 'stopfab'; fab.setAttribute('aria-label', 'Stop reading aloud'); fab.addEventListener('click', stopSpeak); document.body.appendChild(fab); }
@@ -563,7 +563,7 @@ function blocksHtml(blocks, stopId) {
     // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
     // Before unlocking it runs only as far as the stops you can open.
     const route = lim >= w.stops.length - 1 ? walkPath(w) : lim > 0 ? walkPath(w, lim) : [];
-    L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 5, dashArray: '1 9', lineCap: 'round' }).addTo(map);
+    L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 4, dashArray: '9 7', lineCap: 'butt' }).addTo(map);
     const sideStops = w.stops.filter((st) => st.side && onMap(st));
     sidePaths(w).forEach((p, k) => { if (w.stops.indexOf(sideStops[k]) <= lim) L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map); });
     const markers = w.stops.map((s, i) => {
@@ -573,8 +573,8 @@ function blocksHtml(blocks, stopId) {
       return m;
     });
     // The part already walked, solid and bright over the dashed route, so the circuit fills in as you go.
-    const trail = L.polyline([], { color: TRAIL, weight: 6, opacity: 1, lineCap: 'round' }).addTo(map);  // solid, so it covers the orange dots under it (Nick, 26 Nov 2026)
-    const part = L.polyline([], { color: TRAIL, weight: 6, opacity: 1, lineCap: 'round' }).addTo(map);  // the leg being walked, as far as the walker has come
+    const trail = L.polyline([], { color: TRAIL, weight: 10, opacity: .4, lineCap: 'round' }).addTo(map);  // solid, so it covers the orange dots under it (Nick, 26 Nov 2026)
+    const part = L.polyline([], { color: TRAIL, weight: 10, opacity: .4, lineCap: 'round' }).addTo(map);  // the leg being walked, as far as the walker has come
     const me = L.marker([0, 0], { icon: L.divIcon({ className: '', html: '<div class="me"><span class="cone"></span></div>', iconSize: [18, 18] }), interactive: false, zIndexOffset: 2000 });
     const api = {
       zoomIn() { map.zoomIn(); }, zoomOut() { map.zoomOut(); },
@@ -657,7 +657,8 @@ function blocksHtml(blocks, stopId) {
           <div style="flex:1;min-width:0"><div class="label">${stop.look ? `Look from here: stop ${stop.n}` : here ? `You’re at stop ${stop.n}` : `Heading to stop ${stop.n}`}</div><h3>${esc(stop.title)}</h3><div class="small">${navLine}</div></div>
           ${!here ? `<button class="iconbtn" style="background:var(--primary);color:var(--onprimary);border:0" data-act="directions" aria-label="Walking directions">${ic('directions')}</button>` : ''}</div>
         <div class="gobody" id="gobody">${photosHtml(stop.photos)}${blocksHtml(stop.blocks, stop.id)}${stop.geo !== 'verified' ? `<p class="small italic">Pin location is a draft (${stop.geo}). Use “I’m here” if the alert doesn’t fire.</p>` : ''}</div>
-        <div class="controls"><button class="audiomode" data-act="autoread" role="switch" aria-checked="${!!S.settings.autoNarrate}" aria-label="Audio mode: read each stop aloud when you arrive">${ic(S.settings.autoNarrate ? 'volume' : 'mute', 'width="18" height="18"')}<span>Audio mode</span></button>
+        <div class="audiobar"><div class="modeseg" role="radiogroup" aria-label="Audio mode">${[['read', 'Read aloud'], ['gps', 'GPS linked'], ['off', 'Off']].map(([m, t]) => `<button role="radio" aria-checked="${S.settings.audioMode === m}" data-act="audiomode" data-mode="${m}">${t}</button>`).join('')}</div><button class="stopread" id="stopbtn" data-act="stopread" ${isReading() ? '' : 'hidden'}>${ic('stop')} Stop reading</button></div>
+        <div class="controls">
           ${here ? `<button class="btn block ${nextLocked ? 'accent' : ''}" data-act="next">${ic(nextLocked ? 'unlock' : 'fwd')} ${cur + 1 >= w.stops.length ? 'Finish' : nextLocked ? 'Unlock next stop' : 'Next stop'}</button>` : `<button class="btn block" data-act="here">${ic('flag')} I’m here</button>`}</div>
       </div></div>`;
   }
@@ -725,7 +726,7 @@ function blocksHtml(blocks, stopId) {
     S.arrivedBanner = i; setTimeout(() => { S.arrivedBanner = null; const b = document.querySelector('.arrived'); b && b.remove(); }, 4200);
     if (navigator.vibrate) try { navigator.vibrate(120); } catch (e) {}
     render();
-    if (S.settings.autoNarrate) speakStop(w.stops[i]);
+    if (S.settings.audioMode !== 'off') speakStop(w.stops[i]);
   }
   // Next, Previous, or a tap on a pin: stop following the walker and show that stop on the map.
   function showStop(i) { S.follow = 'off'; S.bookFollow = false; S.stopFocus = true; goTo(i); }
@@ -737,6 +738,7 @@ function blocksHtml(blocks, stopId) {
     stopSpeak(); prog.current = i;
     if (w.stops[i].look && !prog.visited.includes(i)) prog.visited.push(i); // looked at from her line: nothing to walk to
     persist(); render();
+    if (S.settings.audioMode === 'read') speakStop(w.stops[i]);
   }
   // The demo follows Veneeta's red route line between stops (scripts/georef/routes.py), straight where it isn't traced.
   let simPath = null, simFor = null;
@@ -948,7 +950,7 @@ function blocksHtml(blocks, stopId) {
         <label class="small" for="mg">Side margins</label><input id="mg" type="range" min="6" max="28" step="2" value="${st.margin}">
         <label class="small" for="ls">Line spacing</label><input id="ls" type="range" min="0.9" max="1.4" step="0.05" value="${st.spacing}"></div>
       <div class="label">Walking</div><div class="card">${sw('alerts', 'Arrival alerts', 'Tell me when I reach a stop')}<label class="small" for="ar">Arrival distance: <span id="arv">${st.arrival}</span> m</label><input id="ar" type="range" min="15" max="80" step="5" value="${st.arrival}"></div>
-      <div class="label">Read aloud</div><div class="card">${sw('autoNarrate', 'Read each stop on arrival', 'Great with headphones')}<label class="small" for="rt">Speed: <span id="rtv">${st.rate.toFixed(2)}</span>×</label><input id="rt" type="range" min="0.7" max="1.3" step="0.05" value="${st.rate}"><p class="small">The app uses the phone’s own voices (Siri on iPhone, Google on Android). Recorded narration can replace them later.</p></div>
+      <div class="label">Read aloud</div><div class="card"><label class="small" for="rt">Speed: <span id="rtv">${st.rate.toFixed(2)}</span>×</label><input id="rt" type="range" min="0.7" max="1.3" step="0.05" value="${st.rate}"><p class="small">Narration is recorded from the book. Choose Read aloud, GPS linked, or Off on the walk screen.</p></div>
       <div class="label">Privacy</div><div class="card small">Your location is used on your phone to place you on the map and detect arrivals. It is not sent to a server.</div>
       <button class="btn outline" data-reset>Reset walk progress</button></div>`);
     m.addEventListener('click', (e) => {
@@ -1163,7 +1165,8 @@ function blocksHtml(blocks, stopId) {
         m.addEventListener('click', (e) => { if (!e.target.closest('[data-reset]')) return; m.remove(); if (S.active === w.id) { stopSim(); stopSpeak(); S.active = null; } delete S.progress[w.id]; persist(); toast('Walk reset. It will start from stop 1.'); render(); });
         return;
       }
-      if (a === 'autoread') { S.settings.autoNarrate = !S.settings.autoNarrate; if (!S.settings.autoNarrate) stopSpeak(); persist(); toast(S.settings.autoNarrate ? 'Audio mode on: each stop is read aloud when you arrive.' : 'Audio mode off. Tap the headphones to hear a stop.'); return render(); }
+      if (a === 'audiomode') { S.settings.audioMode = el.dataset.mode; if (el.dataset.mode === 'off') stopSpeak(); persist(); toast({ read: 'Read aloud: each stop is read as you open it.', gps: 'GPS linked: each stop is read when you arrive.', off: 'Audio off.' }[el.dataset.mode]); return render(); }
+      if (a === 'stopread') return stopSpeak();
       if (a === 'start') { if (S.active === S.walkId) { S.view = 'go'; return render(); } return startWalk(); }
       if (a === 'paywall') return openPaywall();
       if (a === 'auth') return openAuth();
