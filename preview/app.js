@@ -537,6 +537,20 @@ function blocksHtml(blocks, stopId) {
     return between(w, i, i + 1);
   }
   // The main route through the stops her map prints, skipping side-trip stops.
+  // The lock pin sits off her line, so the line ends where a perpendicular from the pin meets it (Nick, 26 Nov 2026).
+  function cutAtLock(path, lock) {
+    if (path.length < 3) return path;
+    const k = Math.cos(21.3 * Math.PI / 180), xy = ([la, ln]) => [ln * 111320 * k, la * 110574];
+    const last = path[path.length - 1], body = Math.abs(last[0] - lock.lat) < 1e-9 && Math.abs(last[1] - lock.lng) < 1e-9 ? path.slice(0, -1) : path;
+    const P = xy([lock.lat, lock.lng]); let best = null;
+    for (let i = 0; i < body.length - 1; i++) {
+      const A = xy(body[i]), B = xy(body[i + 1]), dx = B[0] - A[0], dy = B[1] - A[1], L2 = dx * dx + dy * dy;
+      const t = L2 ? Math.max(0, Math.min(1, ((P[0] - A[0]) * dx + (P[1] - A[1]) * dy) / L2)) : 0;
+      const d = Math.hypot(A[0] + t * dx - P[0], A[1] + t * dy - P[1]);
+      if (!best || d < best.d - 1e-6) best = { d, i, pt: [body[i][0] + t * (body[i + 1][0] - body[i][0]), body[i][1] + t * (body[i + 1][1] - body[i][1])] };
+    }
+    return best ? body.slice(0, best.i + 1).concat([best.pt]) : body;
+  }
   function walkPath(w, upto) {
     const idx = w.stops.map((s, i) => (onMain(s) && (upto == null || i <= upto) ? i : -1)).filter((i) => i >= 0), out = [];
     idx.forEach((i, k) => { const j = idx[k + 1]; if (j === undefined) out.push([w.stops[i].lat, w.stops[i].lng]); else out.push(...between(w, i, j).slice(0, -1)); });
@@ -563,7 +577,7 @@ function blocksHtml(blocks, stopId) {
     const mapPts = w.stops.filter((st, i) => onMap(st) && (i <= lim || i === lockIdx)).map((st) => [st.lat, st.lng]);
     // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
     // Free trial: the line runs the whole walk, open stops show numbers, the next one shows a lock.
-    const route = lockIdx >= 0 ? walkPath(w, lockIdx) : walkPath(w);  // her dotted line, cut at the lock when the walk is not fully open (Nick, 26 Nov 2026)
+    const route = lockIdx >= 0 ? cutAtLock(walkPath(w, lockIdx), w.stops[lockIdx]) : walkPath(w);  // her dotted line, cut at the lock when the walk is not fully open (Nick, 26 Nov 2026)
     L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 4, dashArray: '9 7', lineCap: 'butt' }).addTo(map);
     const sideStops = w.stops.filter((st) => st.side && onMap(st));
     sidePaths(w).forEach((p, k) => { if (w.stops.indexOf(sideStops[k]) <= lim) L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map); });
