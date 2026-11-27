@@ -16,21 +16,24 @@ How this file is used:
 | I-b | I-27 | "the newly created Centennial Park" | renovated 2026, not new | drop "newly created" | 22 Nov | waiting |
 | I-c | I-28 | "Waikīkī Beach Walk, is a recently created walkway" | opened 2007 | "created in 2007" | 22 Nov | waiting |
 | I-d | I-5 | "A bridge is planned to span the canal to Kālaimoku Street." | still planned (Ala Pono) | no change | 22 Nov | waiting |
-| I-e | I-2 | Genki Balls "recently" | time word | drop "recently" | earlier list | waiting |
-| I-f | I-4 | "Until recently, the Mālia, a sacred canoe, was housed..." | time word | her wording | earlier list | waiting |
-| I-g | I-13 | "it was constructed 100 years ago, in 1927" (Waikīkī Fire Station No. 7) | time word: 1927 is 99 years before 2026, and the count grows each year | "it was constructed in 1927" (source: the book's own date) | 25 Nov | waiting |
+| I-e | I-2 | Genki Balls "recently" | time word | drop "recently" | earlier list | done (go 25 Nov: her "Delete recently") |
+| I-f | I-4 | "Until recently, the Mālia, a sacred canoe, was housed..." | time word | her wording | earlier list | done (go 25 Nov: her rewrite) |
+| I-g | I-13 | "it was constructed 100 years ago, in 1927." | 1927 is 99 years ago and the count grows | her rewrite: "it was constructed over 100 years ago." | her email 25 Nov | done (go 25 Nov) |
+| I-h | I-11 | (new paragraph after "In 1948 ... clubhouse was constructed.") | her addition | the Dance Palladium paragraph, her wording | her email 25 Nov | done (go 25 Nov) |
 
 ## Walk II
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
-| II-a | II-14 | "many of the trees have recently succumbed to the chopping block" | time word | drop "recently" | earlier list | waiting |
+| II-a | II-14 | "many of the trees have recently succumbed to the chopping block" | time word | drop "recently" | earlier list | done (go 25 Nov: her "delete recently") |
 
 ## Walk III
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | III-a | III-14 | Ho‘okela paragraph ("If you have time to spare ... true Hawaiian culture.") | | delete | her email 22 Nov | done (8be9a59) |
 | III-b | III-13 | pin in the water | | pin on land | her email 22 Nov | done (8be9a59) |
-| III-c | III-9 | "Historic tours are offered throughout the week" | tours twice a week, free for hotel guests | "offered twice a week" | 22 Nov | waiting |
+| III-c | III-9 | "Historic tours are offered throughout the week" | tours twice a week, free for hotel guests | "offered twice a week" | 22 Nov | done (go 25 Nov: her edit: "Historic tours are offered: check dates and times in the main lobby.") |
+| III-d | III-2 | "The little girl playing the ‘ukulele is Israel ‘Iz’ Kamakawiwo‘ole’s niece." | Outrigger's page for the mural names Kawena Kamakawiwo‘ole, "the grand-niece of Israel Kamakawiwo‘ole", at the bow of the canoe, and does not mention an ‘ukulele (https://outrigger.com/hawaii/oahu/outrigger-reef-waikiki-beach-resort/activities/artwork/kamea-hadar) | "The girl at the bow of the canoe is Israel ‘Iz’ Kamakawiwo‘ole’s grand-niece." (or her wording) | | new |
+| III-e | III-9 | "a plaque on the almost 100-year-old Banyan tree" | the book says the tree was planted in 1904, so it is about 122 years old, and the count grows each year | "a plaque on the Banyan tree, planted in 1904," (the book's own date) | | new |
 
 ## Walk IV
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -38,15 +41,17 @@ How this file is used:
 | IV-a | IV-23, V-19, V-15 | "Ho‘okela Hawaiian Heritage and Culture Center" | renamed Uluniu, daily programs | delete like Walk III, or rename to Uluniu | 22 Nov | waiting |
 | IV-b | IV-13 | "Waikīkī Business Plaza, which houses Top of Waikīkī" | closed 2020 | "which once housed" | 22 Nov | waiting |
 | IV-c | IV-28 | "St. Augustine Church and a related museum" | Damien and Marianne center, open status unclear | add "(check if open)" | 22 Nov | waiting |
+| IV-d | IV-23 | "A plaque behind one of the columns in the atrium recalls James Steiner (1860-1939) ..." | | delete the sentence | her email 25 Nov | done (go 25 Nov) |
+| IV-e | IV-13 | the three chant lines run together | | each Hawaiian line directly above its English, no blank line between, a blank line between pairs | her email 25 Nov | done (go 25 Nov) |
 
 ## Walks VI and VII
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | VII-a | VII-2 | "www.artonthezoofencehi.com" | site is artonthezoofence.com | fix address | 22 Nov | waiting |
 | VII-b | VII-5 | "open every day except Christmas Day" | also closed Honolulu Marathon day | add Marathon day | 22 Nov | waiting |
-| VII-c | VII-5 | "In 2021-2023 Hō‘ailona lived in California" | returned Sept 2025 | add "He returned to the aquarium in 2025." | 22 Nov | waiting |
+| VII-c | VII-5 | "In 2021-2023 Hō‘ailona lived in California" | returned Sept 2025 | add "He returned to the aquarium in 2025." | 22 Nov | done (go 25 Nov: her rewrite) |
 | VII-d | VII-6 | "will someday be renovated and restored" | future undecided | "its future is still being decided" | 22 Nov | waiting |
-| VII-e | VII-18 | "www.kuileicliffs.org" | could not confirm site works | remove link | 22 Nov | waiting |
+| VII-e | VII-18 | "www.kuileicliffs.org" | could not confirm site works | remove link | 22 Nov | done (go 25 Nov: her "Remove the entire line") |
 | VII-f | VII-1 | "recently renamed ... Queen’s Promenade" | time word | drop "recently" | 22 Nov | waiting |
 | VII-g | VII-7 | "Enjoy the newly installed beach showers!" | time word | "Enjoy the beach showers!" | 22 Nov | waiting |
 
@@ -54,7 +59,7 @@ How this file is used:
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | VIII-a | VIII-20 | "Queen Theater - with optimistic renovation plans afoot" | for sale June 2026; city reluctant to buy | "whose future is uncertain" | 22 Nov | waiting |
-| VIII-b | VIII-10, XII-11 | "7-foot telescope on its roof" | not confirmed | ask her | 22 Nov | waiting |
+| VIII-b | VIII-10, XII-11 | "7-foot telescope on its roof" | not confirmed | ask her | 22 Nov | done (go 25 Nov: she says the telescope is gone: both paragraphs deleted, with the web address) |
 
 ## Walk IX
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
@@ -75,12 +80,13 @@ How this file is used:
 | ID | Stop | Book text | Finding | Suggested change | Sent | Status |
 |---|---|---|---|---|---|---|
 | XII-a | XII-24 | "Stan Sheriff Center/ SimpliFi Arena" (title and text) | renamed Bankoh Arena, Aug 2025 | "Bankoh Arena" in both places | 22 Nov | waiting |
+| XII-b | XII-3 | "it was constructed in 1927." | same fire station as I-13 | "it was constructed over 100 years ago." (her note: "this change elsewhere - walk XII.3") | her email 25 Nov | done (go 25 Nov) |
 
 ## Look-at stops (scripts/georef/look_stops.json)
 | Walk | Stops | Sent | Status |
 |---|---|---|---|
 | III | 2, 5, 6, 8 | her call 22 Nov | done |
-| I | 3, 5, 13, 16, 21 | 22 Nov | waiting |
+| I | 9 only (was 3, 5, 13, 16, 21) | 22 Nov | go (this PR): her reply 25 Nov 21:23Z: "Walk I, Stop 9 is the only 'look at' stop in that walk." |
 | II | 4, 6, 17 | 22 Nov | waiting |
 | IV | 3, 7, 9, 10, 11, 13, 14, 15, 16, 21, 23, 24 | 22 Nov | waiting |
 | V | 4, 6, 16 | 22 Nov | waiting |
@@ -92,6 +98,8 @@ How this file is used:
 | XI | 4, 10, 22, 35, 43 | 22 Nov | waiting |
 | XII | 2, 7, 12, 14, 19, 26 | 22 Nov | waiting |
 
+Her answer for the other walks (25 Nov, 21:23Z, under the list): "No - most of these are different from Walk III, I'll review each walk separately." So the list for Walks II and IV to XII is not agreed; she will review each walk herself. They stay as listed until she does or Nick decides otherwise (asked in the 26 Nov PR). The live session on 25 Nov missed this answer and told her she marked none; the 26 Nov morning email corrected that.
+
 ## Other open questions for her
 | ID | Question | Status |
 |---|---|---|
@@ -100,7 +108,7 @@ How this file is used:
 | Q-3 | Walk X time and distance chips; Walk III "Lewers Street & Road" | waiting |
 
 ## Checked and still correct (22 Nov 2026)
-Army Museum (II-17), Hau Tree (II-13), Lappert's (II-12), Kani Ka Pila (III-2), Macy's (IV-17), Royal Hawaiian Band Sunday concerts, Art on the Zoo Fence hours (VI-13), South Shore Grill and Diamond Head Market, City Mill Kaimukī, Good Guys, Waiola Kapahulu, Nijiya and Longs, Mānoa Valley Inn, Mānoa Heritage Center, John Young Museum, whiteterns.org. Not yet checked: www.waimeavalley.net (III-6).
+Army Museum (II-17), Hau Tree (II-13), Lappert's (II-12), Kani Ka Pila (III-2), Macy's (IV-17), Royal Hawaiian Band Sunday concerts, Art on the Zoo Fence hours (VI-13), South Shore Grill and Diamond Head Market, City Mill Kaimukī, Good Guys, Waiola Kapahulu, Nijiya and Longs, Mānoa Valley Inn, Mānoa Heritage Center, John Young Museum, whiteterns.org. www.waimeavalley.net (III-6) loads (checked 26 Nov); its exhibit page shows ‘ulu maika as artifacts, and no page found today says whether the games area is still set up.
 
 Re-check 24 Nov 2026 (Walk I): Waikīkī-Kapahulu Public Library is open with regular programs (https://www.librarieshawaii.org/branch/waikiki-kapahulu-public-library/). Mānoa Falls trail (I-9): the book already says to check it is open, which still fits; DLNR closes it from time to time for maintenance (https://dlnr.hawaii.gov/?p=37808).
 
@@ -109,3 +117,4 @@ One line per run: date, walk checked, new items added (IDs) or "none".
 - 2026-11-22: all walks (first full pass).
 - 2026-11-24: Walk I. New: I-g.
 - 2026-11-25: Walk II. None. Checked: Army Museum (II-17) open after its 2023 reopening (https://home.army.mil/hawaii/my-fort/recreation/army-museum); Honolulu Star-Bulletin "now the Honolulu Star Advertiser" (II-9) still right; McDonald's on Ala Moana Boulevard at Discovery Bay (II-8) still listed (https://www.storeopeninghours.com/mcdonalds-ala-moana-boulevard-honolulu-hi), koa paneling not confirmable online. I-g sent to her 25 Nov.
+- 2026-11-26: Walk III. New: III-d, III-e. Checked and fine: Royal Hawaiian Hotel has Herb Kane's last painting on permanent display, at the entrance to the Monarch Room (https://www.hawaiimagazine.com/historic-hawaii-foundation-honors-herb-kane-unveils-big-island-artists-last-painting/, 2011); Moana's historical artifacts are in the second-floor lobby of the Banyan Wing, with tours (https://www.historichotels.org/us/hotels-resorts/moana-surfrider-a-westin-resort-and-spa); Kamea Hadar's mural is at the Outrigger Reef (link under III-d); waimeavalley.net loads. Not checked: the Sheraton beach walkway closure (III-3), no reliable current page found.

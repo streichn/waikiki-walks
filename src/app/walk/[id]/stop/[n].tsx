@@ -9,6 +9,7 @@ import { getWalk, walkNo } from '../../../../data';
 import type { Stop } from '../../../../data/types';
 import { canOpenStop, useIsPro } from '../../../../lib/access';
 import { stop as stopSpeech } from '../../../../lib/narration';
+import { useSettings } from '../../../../store';
 import { useTheme } from '../../../../theme';
 
 /**
@@ -22,6 +23,7 @@ export default function StopReader() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isPro = useIsPro();
+  const margin = useSettings((s) => s.sideMargin ?? 20);
   const [index, setIndex] = useState(Math.max(0, Math.min(walk.stops.length - 1, Number(n) || 0)));
   const list = useRef<FlatList<Stop>>(null);
 
@@ -53,7 +55,7 @@ export default function StopReader() {
           }
         }}
         renderItem={({ item, index: i }) => (
-          <ScrollView style={{ width }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: insets.top + 74, paddingBottom: insets.bottom + 110 }}>
+          <ScrollView style={{ width }} contentContainerStyle={{ paddingHorizontal: margin, paddingTop: insets.top + 74, paddingBottom: insets.bottom + 110 }}>
             <T variant="label" style={{ marginBottom: 6 }}>
               Stop {item.n} of {walk.stops.length}
             </T>

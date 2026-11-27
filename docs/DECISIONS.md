@@ -320,3 +320,9 @@ Sources:
 - What we chose: role "button" for actions that open a screen or change state, "link" for the legal links and Credits; a single combined label for Saved rows so walk, stop and title read as one phrase; disabled state on the profile name when signed out. No visual change.
 - Sources: https://reactnative.dev/docs/accessibility, https://commerce.nearform.com/open-source/react-native-ama/guidelines/accessibility-role
 
+## 2026-11-26 · Look-at stops are the author's call, walk by walk
+- How it is normally done: no outside research this run (the run was spent on her answers and the re-check). The standing rule here (HANDOFF, 22 Nov) is that the route and its stops come from her map and her word, never from our own judgment.
+- What we chose: a stop is a look-at stop only when Veneeta or Nick says so. Walk I now has one (stop 9), from her email of 25 Nov. The rule Claude used on 22 Nov to suggest look-at stops on the other walks (number off her line, "look across" in the text, a street name, or a pin far from the line) is only a suggestion list; she has said most of it is wrong and will review each walk.
+- Why: the author knows which places a walker actually goes to. A wrong look-at stop silently drops an arrival alert, which is the app's core promise.
+- Sources: her email of 25 Nov 2026 (thread "Delete this in Walk III"); scripts/georef/look_stops.json.
+

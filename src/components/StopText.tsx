@@ -19,6 +19,7 @@ import { LinkedText } from './WalkInfoBox';
 export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }) {
   const t = useTheme();
   const scale = useSettings((s) => s.textScale);
+  const ls = useSettings((s) => s.lineSpacing ?? 1);
   const speaking = useNarration((s) => (s.speakingStopId === stopId ? s.paragraph : -2));
   const [word, setWord] = useState<GlossaryEntry | null>(null);
   const firsts = useMemo(() => firstGlossaryHits(blocks), [blocks]);
@@ -32,7 +33,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
           return (
             <View key={i} accessible accessibilityLabel={`Walking direction. ${b.text}`} style={[styles.direction, { backgroundColor: t.dark ? '#103A3E' : '#E3F3F1', borderColor: active ? t.gold : 'transparent' }]}>
               <Ionicons name="walk" size={20} color={t.primary} style={{ marginTop: 2 }} />
-              <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ flex: 1, fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale, color: t.text }} />
+              <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ flex: 1, fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale * ls, color: t.text }} />
             </View>
           );
         }
@@ -48,21 +49,21 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
         }
         if (b.kind === 'caption') {
           return (
-            <T key={i} variant="small" style={{ fontStyle: 'italic', fontSize: 14 * scale, lineHeight: 19 * scale }}>
+            <T key={i} variant="small" style={{ fontStyle: 'italic', fontSize: 14 * scale, lineHeight: 19 * scale * ls }}>
               {b.text}
             </T>
           );
         }
         if (b.kind === 'tagline' || b.kind === 'heading') {
           return (
-            <T key={i} variant="italic" header style={{ color: t.leaf, fontSize: 18 * scale, lineHeight: 25 * scale }}>
+            <T key={i} variant="italic" header style={{ color: t.leaf, fontSize: 18 * scale, lineHeight: 25 * scale * ls }}>
               {b.text}
             </T>
           );
         }
         return (
           <View key={i} style={[active && { backgroundColor: t.dark ? '#3A2A10' : '#FFF0D6', borderRadius: 10, borderLeftWidth: 4, borderLeftColor: t.gold, marginHorizontal: -8, paddingHorizontal: 8 }]}>
-            <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 27 * scale, color: t.text }} />
+            <Rich text={b.text} hits={firsts[i]} onWord={setWord} style={{ fontFamily: t.font.body, fontSize: 17 * scale, lineHeight: 27 * scale * ls, color: t.text }} />
           </View>
         );
   };
@@ -79,7 +80,7 @@ export function StopText({ blocks, stopId }: { blocks: Block[]; stopId: string }
         if (i === start && b.text.length < 90 && b.text.trim().endsWith(':')) {
           readable += 1;
           inner.push(
-            <Text key={i} accessibilityRole="header" style={{ fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale, color: t.leaf, textAlign: 'center' }}>
+            <Text key={i} accessibilityRole="header" style={{ fontFamily: t.font.bodySemi, fontSize: 16 * scale, lineHeight: 23 * scale * ls, color: t.leaf, textAlign: 'center' }}>
               {b.text}
             </Text>,
           );

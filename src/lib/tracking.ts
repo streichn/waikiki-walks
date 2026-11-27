@@ -150,26 +150,38 @@ export async function startBackground(walk: Walk, fromIndex: number) {
   const perm = await Location.getBackgroundPermissionsAsync();
   if (perm.status !== 'granted') return;
   await Location.startGeofencingAsync(GEOFENCE_TASK, regionsFrom(walk, fromIndex));
-  if (!(await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK))) {
-    await Location.startLocationUpdatesAsync(LOCATION_TASK, {
-      accuracy: Location.Accuracy.Balanced,
-      distanceInterval: 25,
-      activityType: Location.ActivityType.Fitness,
-      showsBackgroundLocationIndicator: true,
-      pausesUpdatesAutomatically: false,
-      foregroundService: {
-        notificationTitle: `Walking: ${walk.title}`,
-        notificationBody: 'You will get an alert when you reach a stop on the map.',
-        notificationColor: '#0E6E74',
-      },
-    });
+  await startUpdates(walk, fromIndex);
+}
+
+/**
+ * Starts (or restarts) the background location updates. On Android their foreground-service notification is the
+ * walk's ongoing notification, and expo-location only sets its text when the updates start, so it is restarted
+ * as the walker advances or switches walks to keep the title and next stop current.
+ */
+async function startUpdates(walk: Walk, index: number) {
+  if (await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK).catch(() => false)) {
+    await Location.stopLocationUpdatesAsync(LOCATION_TASK).catch(() => undefined);
   }
+  const stop = walk.stops[index];
+  await Location.startLocationUpdatesAsync(LOCATION_TASK, {
+    accuracy: Location.Accuracy.Balanced,
+    distanceInterval: 25,
+    activityType: Location.ActivityType.Fitness,
+    showsBackgroundLocationIndicator: true,
+    pausesUpdatesAutomatically: false,
+    foregroundService: {
+      notificationTitle: `Walking: ${walk.title}`,
+      notificationBody: stop ? `Next: stop ${stop.n}, ${stop.title}` : 'You will get an alert when you reach a stop on the map.',
+      notificationColor: '#0E6E74',
+    },
+  });
 }
 
 /** Re-arm geofences as the walker progresses (keeps the next stops inside the iOS limit). */
 export async function advanceBackground(walk: Walk, index: number) {
   if (await Location.hasStartedGeofencingAsync(GEOFENCE_TASK)) {
     await Location.startGeofencingAsync(GEOFENCE_TASK, regionsFrom(walk, index));
+    if (Platform.OS === 'android') await startUpdates(walk, index).catch(() => undefined);
   }
 }
 
