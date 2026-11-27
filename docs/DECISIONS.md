@@ -314,3 +314,10 @@ Sources:
 - Why: the author knows which places a walker actually goes to. A wrong look-at stop silently drops an arrival alert, which is the app's core promise.
 - Sources: her email of 25 Nov 2026 (thread "Delete this in Walk III"); scripts/georef/look_stops.json.
 
+
+## 2026-11-27 · Sentences split by a page break, when the second part starts with a capital
+- How it is done: the build already rejoins a paragraph that stops mid-sentence when the next one starts in lower case (a PDF column or photo break). That rule cannot see a break before a capitalized word, such as a name.
+- What we found: three sentences were still cut in two, each confirmed against the printed page with `pdftotext -layout`: Walk III stop 2 ("...is Israel ‘Iz’" / "Kamakawiwo‘ole’s niece."), Walk X stop 36 ("..., a local" / "Hawaiian family, are buried..."), Walk X stop 43 ("...first director Dr. Harold" / "L. Lyon, a plant pathologist...").
+- What we chose: an explicit list, PARA_JOINS in scripts/build_data.py, keyed by stop with the exact end of the first part. Not a looser general rule, because a capital after an unpunctuated line is also how the book starts real new paragraphs, chant lines and bullet lists (Walk IV stop 13, Walk X stop 42). Each entry must still be found or the build stops, like TEXT_FIXES.
+- Why it matters: the app shows and reads aloud paragraph by paragraph, so a split sentence showed as a one-line paragraph and the voice paused in the middle of a name. Screen readers also announce each paragraph separately.
+- Sources: the book PDFs in book/ (the project's source of truth, CLAUDE.md). No outside research was needed for this cleanup.

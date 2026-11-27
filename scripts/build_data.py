@@ -86,6 +86,14 @@ BOOK_CORRECTIONS = [('Makiki Sream', 'Makiki Stream'), ('Chung Afong', 'Chun Afo
                     ('Archeology of O‘ahu', 'Archaeology of O‘ahu')]
 BOOK_CORRECTIONS_USED = set()
 
+# Sentences the PDF split across a page or column where the next part starts with a capital letter,
+# so the lower-case rule below can't see it. Keyed by stop; the value is how the first part ends.
+# Each was checked against the printed page (pdftotext -layout), and each must still be found.
+PARA_JOINS = {'III-02': ('is Israel ‘Iz’',),  # a line break in the column: "...is Israel ‘Iz’ / Kamakawiwo‘ole’s niece."
+              'X-36': ('a local',),  # page break after p. 171: "(of Woolsey Poi Factory fame), a local / Hawaiian family, are buried"
+              'X-43': ('director Dr. Harold',)}  # column break: "first director Dr. Harold / L. Lyon, a plant pathologist"
+PARA_JOINS_USED = set()
+
 
 def book_fix(o):
     if isinstance(o, str):
@@ -626,8 +634,11 @@ for k, w in enumerate(SRC['walks']):
         joined = []
         for b in blocks:
             a = joined[-1] if joined else None
+            pj = a and a['kind'] == b['kind'] == 'p' and any(a['text'].rstrip().endswith(t) for t in PARA_JOINS.get(f"{wid}-{s['n']:02d}", ()))
+            if pj:
+                PARA_JOINS_USED.add((f"{wid}-{s['n']:02d}", next(t for t in PARA_JOINS[f"{wid}-{s['n']:02d}"] if a['text'].rstrip().endswith(t))))
             if (a and a['kind'] == b['kind'] == 'p' and a.get('aside') == b.get('aside') and not a.get('box') and not b.get('box')
-                    and b['text'][:1].islower() and not a['text'].rstrip().endswith(('.', '!', '?', ':', '”', '’', ')', '"'))):
+                    and (pj or (b['text'][:1].islower() and not a['text'].rstrip().endswith(('.', '!', '?', ':', '”', '’', ')', '"'))))):
                 joined[-1] = {**a, 'text': join_text(a['text'], b['text'])}
             else:
                 joined.append(b)
@@ -991,6 +1002,9 @@ walks = book_fix(walks)
 _missing = [a for a, _ in BOOK_CORRECTIONS if a not in BOOK_CORRECTIONS_USED]
 if _missing:
     raise SystemExit(f'book corrections not found: {_missing}')
+_pj_missing = [(k, t) for k, ts in PARA_JOINS.items() for t in ts if (k, t) not in PARA_JOINS_USED]
+if _pj_missing:
+    raise SystemExit(f'paragraph joins not found: {_pj_missing}')
 json.dump(walks, open(f'{OUT}/walks.json', 'w'), ensure_ascii=False, indent=1)
 with open(f'{ROOT}/review/stops_review.csv', 'w', newline='') as fh:
     wr = csv.DictWriter(fh, fieldnames=list(review[0].keys()))
