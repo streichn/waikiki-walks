@@ -559,15 +559,16 @@ function blocksHtml(blocks, stopId) {
     const pts = w.stops.map((s) => [s.lat, s.lng]);
     // Only stops her book map prints get a pin, so this map shows what her map shows.
     const lim = lastOpen(w);
-    const mapPts = w.stops.filter((st, i) => onMap(st) && i <= lim).map((st) => [st.lat, st.lng]);
+    const lockIdx = w.stops.findIndex((st, i) => i > lim && onMap(st));  // the first stop still locked shows as a lock; nothing past it
+    const mapPts = w.stops.filter((st, i) => onMap(st) && (i <= lim || i === lockIdx)).map((st) => [st.lat, st.lng]);
     // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
-    // Before unlocking it runs only as far as the stops you can open.
-    const route = lim >= w.stops.length - 1 ? walkPath(w) : lim > 0 ? walkPath(w, lim) : [];
+    // Free trial: the line runs the whole walk, open stops show numbers, the next one shows a lock.
+    const route = walkPath(w);  // her whole dotted line, free or paid (Nick, 26 Nov 2026)
     L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 4, dashArray: '9 7', lineCap: 'butt' }).addTo(map);
     const sideStops = w.stops.filter((st) => st.side && onMap(st));
     sidePaths(w).forEach((p, k) => { if (w.stops.indexOf(sideStops[k]) <= lim) L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map); });
     const markers = w.stops.map((s, i) => {
-      if (!onMap(s) || i > lim) return null;
+      if (!onMap(s) || (i > lim && i !== lockIdx)) return null;
       const m = L.marker([s.lat, s.lng], { icon: L.divIcon({ className: '', html: '', iconSize: [28, 28] }) }).addTo(map);
       m.on('click', () => opts.onSelect && opts.onSelect(i));
       return m;
