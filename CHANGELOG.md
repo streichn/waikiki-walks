@@ -15,6 +15,13 @@
 - Starting a different walk while one is active now asks first, and saves your place in the current walk. Only one walk is active at a time.
 - Android: the walk's ongoing notification now names the next stop and follows you from stop to stop, and shows the right walk after a switch.
 
+## 2026-11-23 · Large text without broken screens
+- Reading text (stop stories, walk introductions, About) still grows as far as the phone's text size setting goes, with no limit.
+- Buttons, chips and the Map 1 / Map 2 page tabs now grow to twice their size at most and wrap onto a second line instead of being cut off. The Light / Dark / System switch grows to 1.6 times and wraps.
+- Stop numbers inside map pins grow a little (1.3 times) so they stay inside the pin.
+- The bottom tab labels (Walks, Map, Saved, Profile) keep their size, as iOS's own tab bars do; the tab bar has a fixed height.
+- Settings: under Text size, a line says it adds to the text size set on the phone.
+
 ## 2026-11-22
 
 - Look-at stops on every walk (75 in all), by the same rule as Walk III: her number sits off her line and the book says to look across or look for it, the place is gone, the stop is a street name, or the pin is too far from her line for an arrival alert. Each has its reason in scripts/georef/look_stops.json, for Veneeta to confirm.

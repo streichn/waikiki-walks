@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Card, T, tap } from '../../components/ui';
+import { Card, MAX_PIN_SCALE, T, tap } from '../../components/ui';
 import { walks, walkNo, onMap } from '../../data';
 import type { Walk } from '../../data/types';
 import { readableOn, useTheme } from '../../theme';
@@ -32,7 +32,7 @@ export default function Explore() {
               tracksViewChanges={false}
             >
               <View style={[styles.pin, { backgroundColor: w.color }]}>
-                <Text style={[styles.pinText, { color: readableOn(w.color) }]}>{sel ? s.n : w.id}</Text>
+                <Text maxFontSizeMultiplier={MAX_PIN_SCALE} style={[styles.pinText, { color: readableOn(w.color) }]}>{sel ? s.n : w.id}</Text>
               </View>
             </Marker>
           )),

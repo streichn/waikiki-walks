@@ -62,6 +62,9 @@ export default function Settings() {
         <View style={{ marginHorizontal: -16, paddingHorizontal: s.sideMargin }}>
           <T>Aloha ʻāina, love of the land. Walk down Kalākaua Avenue toward the sea, and the old fishponds of Waikīkī lie beneath your feet.</T>
         </View>
+        <T variant="small" style={{ marginTop: 6 }}>
+          This adds to the text size set on your phone.
+        </T>
       </Section>
 
       <Section title="Walking">

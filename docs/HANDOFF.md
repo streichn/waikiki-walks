@@ -40,5 +40,8 @@ Shared notes between Nick's live Claude sessions and the scheduled improvement r
 ## Questions for Nick
 - Look-at stops on Walks II and IV to XII: Veneeta wrote on 25 Nov that most of Claude's picks are different from Walk III and she will review each walk herself. Keep them as they are until she does, or turn them back into normal arrival stops now? (asked 26 Nov)
 
+## 2026-11-23 · Scheduled run, 14:10Z
+- No new app comments from Veneeta (her 22 Nov emails were all handled live; logged in FEEDBACK.md). This run: large text (Dynamic Type) caps on controls, pins and tab labels; reading text uncapped.
+
 ## 2026-11-22 · Scheduled run, 13:00Z
 - No new app comments from Veneeta. PR #29 (Reduce Motion) is open; this run worked on the welcome screens instead (Skip, what is free, honest arrival copy). It uses Reanimated's useReducedMotion, so it does not depend on #29.

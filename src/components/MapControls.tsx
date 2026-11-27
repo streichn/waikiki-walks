@@ -9,7 +9,7 @@ import { alongLine, lineUpTo } from '../lib/polyline';
 import type { Walk } from '../data/types';
 import { bookLabel, bookLegs, bookPages, bookXY, pageFor } from '../lib/bookmap';
 import { useTheme } from '../theme';
-import { T, tap } from './ui';
+import { MAX_CONTROL_SCALE, T, tap } from './ui';
 
 /**
  * Apple Maps-style controls.
@@ -253,7 +253,7 @@ export function BookMapPane({ walk, current, visited, finished, isLocked, me, he
         {pages.map((_, j) => (
           <Pressable key={j} accessibilityRole="tab" accessibilityState={{ selected: j === page }} onPress={() => { tap(); setPage(j); }}
             style={[styles.pageTab, j === page && styles.pageTabOn]}>
-            <Text style={[styles.pageTabText, j === page && { color: '#fff' }]}>Map {j + 1}</Text>
+            <Text maxFontSizeMultiplier={MAX_CONTROL_SCALE} style={[styles.pageTabText, j === page && { color: '#fff' }]}>Map {j + 1}</Text>
           </Pressable>
         ))}
       </View>

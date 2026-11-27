@@ -21,6 +21,8 @@ export default function TabLayout() {
           tabBarInactiveTintColor: t.textMuted,
           tabBarStyle: { backgroundColor: t.card, borderTopColor: t.border, height: tabH, paddingTop: 6 },
           tabBarLabelStyle: { fontFamily: t.font.bodySemi, fontSize: 11 },
+          // Like iOS's own tab bars, the labels keep their size with large text; the screens grow.
+          tabBarAllowFontScaling: false,
         }}
       >
         <Tabs.Screen name="index" options={{ title: 'Walks', tabBarIcon: ({ color, size }) => <Ionicons name="flower" size={size} color={color as string} /> }} />

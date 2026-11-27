@@ -5,7 +5,8 @@ import { legPath, onMap, PIN, PIN_HERE, ROUTE_DOTS, SIDE_TRIP, sidePaths, TRAIL,
 import { alongLine, lineUpTo } from '../lib/polyline';
 import MapView, { Marker, Polyline, type Region } from 'react-native-maps';
 import type { Walk } from '../data/types';
-import { readableOn, useTheme } from '../theme';
+import { useTheme } from '../theme';
+import { MAX_PIN_SCALE } from './ui';
 
 export type WalkMapHandle = { focusStop: (i: number) => void; fitAll: () => void; recenter: (lat: number, lng: number) => void; follow: (lat: number, lng: number, heading?: number) => void; zoomBy: (dir: 1 | -1) => void };
 
@@ -119,7 +120,7 @@ export const WalkMap = forwardRef<WalkMapHandle, Props>(function WalkMap({ walk,
         return (
           <Marker key={s.id} coordinate={coords[i]} onPress={() => onSelect?.(i)} tracksViewChanges={false} zIndex={isCur ? 10 : 1} accessibilityLabel={`Stop ${s.n}, ${s.title}`}>
             <View style={[styles.pin, { backgroundColor: bg }]}>
-              {locked ? <Ionicons name="lock-closed" size={11} color="#fff" /> : <Text style={styles.pinText}>{s.n}</Text>}
+              {locked ? <Ionicons name="lock-closed" size={11} color="#fff" /> : <Text maxFontSizeMultiplier={MAX_PIN_SCALE} style={styles.pinText}>{s.n}</Text>}
             </View>
             <View style={[styles.tail, { borderTopColor: bg }]} />
           </Marker>
