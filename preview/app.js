@@ -537,24 +537,36 @@ function blocksHtml(blocks, stopId) {
     return between(w, i, i + 1);
   }
   // The main route through the stops her map prints, skipping side-trip stops.
-  // The lock pin sits off her line, so the line ends where a perpendicular from the pin meets it (Nick, 26 Nov 2026).
-  function cutAtLock(path, lock) {
-    if (path.length < 3) return path;
-    const k = Math.cos(21.3 * Math.PI / 180), xy = ([la, ln]) => [ln * 111320 * k, la * 110574];
-    const last = path[path.length - 1], body = Math.abs(last[0] - lock.lat) < 1e-9 && Math.abs(last[1] - lock.lng) < 1e-9 ? path.slice(0, -1) : path;
-    const P = xy([lock.lat, lock.lng]); let best = null;
-    for (let i = 0; i < body.length - 1; i++) {
-      const A = xy(body[i]), B = xy(body[i + 1]), dx = B[0] - A[0], dy = B[1] - A[1], L2 = dx * dx + dy * dy;
+  // A stop's spot on her line: where a perpendicular from the printed number meets her dotted line (Nick, 27 Nov 2026).
+  // Walkers stand there, the blue trail ends there, and the line stops there at a lock, so nobody is put in the water.
+  function nearestOn(path, lat, lng) {
+    const k = Math.cos(21.3 * Math.PI / 180), xy = ([la, ln]) => [ln * 111320 * k, la * 110574], P = xy([lat, lng]); let best = null;
+    for (let i = 0; i < path.length - 1; i++) {
+      const A = xy(path[i]), B = xy(path[i + 1]), dx = B[0] - A[0], dy = B[1] - A[1], L2 = dx * dx + dy * dy;
       const t = L2 ? Math.max(0, Math.min(1, ((P[0] - A[0]) * dx + (P[1] - A[1]) * dy) / L2)) : 0;
       const d = Math.hypot(A[0] + t * dx - P[0], A[1] + t * dy - P[1]);
-      if (!best || d < best.d - 1e-6) best = { d, i, pt: [body[i][0] + t * (body[i + 1][0] - body[i][0]), body[i][1] + t * (body[i + 1][1] - body[i][1])] };
+      if (!best || d < best.d - 1e-6) best = { d, i, pt: [path[i][0] + t * (path[i + 1][0] - path[i][0]), path[i][1] + t * (path[i + 1][1] - path[i][1])] };
     }
-    return best ? body.slice(0, best.i + 1).concat([best.pt]) : body;
+    return best;
   }
+  const mainIdx = (w) => w.stops.map((s, i) => (onMain(s) ? i : -1)).filter((i) => i >= 0);
+  // Her line from the start to stop `upto`'s spot on it (the whole line when upto is omitted).
   function walkPath(w, upto) {
-    const idx = w.stops.map((s, i) => (onMain(s) && (upto == null || i <= upto) ? i : -1)).filter((i) => i >= 0), out = [];
-    idx.forEach((i, k) => { const j = idx[k + 1]; if (j === undefined) out.push([w.stops[i].lat, w.stops[i].lng]); else out.push(...between(w, i, j).slice(0, -1)); });
+    const all = mainIdx(w), idx = all.filter((i) => upto == null || i <= upto), out = [];
+    if (!idx.length) return out;
+    const last = idx[idx.length - 1], next = all[all.indexOf(last) + 1];
+    idx.slice(0, -1).forEach((i, k) => { const seg = between(w, i, idx[k + 1]); out.push(...(k < idx.length - 2 ? seg.slice(0, -1) : [])); });
+    const into = idx.length > 1 ? between(w, idx[idx.length - 2], last) : [], outof = next !== undefined && upto != null ? between(w, last, next) : [];
+    if (upto == null || next === undefined) { if (into.length) out.push(...into); else out.push([w.stops[last].lat, w.stops[last].lng]); return out; }
+    const cand = into.length ? into.slice(0, -1).concat(outof) : outof;
+    const f = cand.length > 1 && nearestOn(cand, w.stops[last].lat, w.stops[last].lng);
+    if (!f) { out.push(...into); return out; }
+    out.push(...cand.slice(0, f.i + 1), f.pt);
     return out;
+  }
+  function footAt(w, i) {
+    const s = w.stops[i]; if (!onMain(s)) return { lat: s.lat, lng: s.lng };
+    const p = walkPath(w, i), q = p[p.length - 1]; return q ? { lat: q[0], lng: q[1] } : { lat: s.lat, lng: s.lng };
   }
   function sidePaths(w) {
     return w.stops.flatMap((s, i) => {
@@ -577,7 +589,7 @@ function blocksHtml(blocks, stopId) {
     const mapPts = w.stops.filter((st, i) => onMap(st) && (i <= lim || i === lockIdx)).map((st) => [st.lat, st.lng]);
     // Her route as on her map: a dotted yellow line. The part walked fills in solid blue over it (Nick, 21 Nov 2026).
     // Free trial: the line runs the whole walk, open stops show numbers, the next one shows a lock.
-    const route = lockIdx >= 0 ? cutAtLock(walkPath(w, lockIdx), w.stops[lockIdx]) : walkPath(w);  // her dotted line, cut at the lock when the walk is not fully open (Nick, 26 Nov 2026)
+    const route = lockIdx >= 0 ? walkPath(w, lockIdx) : walkPath(w);  // her dotted line, cut at the lock when the walk is not fully open (Nick, 26 Nov 2026)
     L.polyline(route.length > 1 ? route : mapPts, { color: ROUTE_DOTS, weight: 4, dashArray: '9 7', lineCap: 'butt' }).addTo(map);
     const sideStops = w.stops.filter((st) => st.side && onMap(st));
     sidePaths(w).forEach((p, k) => { if (w.stops.indexOf(sideStops[k]) <= lim) L.polyline(p, { color: SIDE_TRIP, weight: 3, dashArray: '4 6' }).addTo(map); });
@@ -758,19 +770,18 @@ function blocksHtml(blocks, stopId) {
   // The demo follows Veneeta's red route line between stops (scripts/georef/routes.py), straight where it isn't traced.
   let simPath = null, simFor = null;
   // Where the walker stands for a stop: the end of her line into it (a look-at stop is seen from the line), else its pin.
-  function standAt(w, i) {
-    const leg = i > 0 && ((D.routes || {})[w.id] || {})[String(w.stops[i - 1].n)], s = w.stops[i];
-    return leg && leg.length ? { lat: leg[leg.length - 1][0], lng: leg[leg.length - 1][1] } : { lat: s.lat, lng: s.lng };
-  }
+  function standAt(w, i) { return footAt(w, i); }
   function tickSim() {
     const w = walk(S.walkId), prog = S.progress[w.id], target = w.stops[prog.current];
     // A stop her map doesn't print has no spot to walk to: the demo reads it and moves on.
     if (!onMap(target)) { if (!prog.visited.includes(prog.current)) { prog.visited.push(prog.current); persist(); } return; }
-    if (!S.me) { const prev = w.stops[Math.max(0, prog.current - 1)]; S.me = { lat: prev.lat - 0.0012, lng: prev.lng - 0.0009 }; }
+    if (!S.me) { const f = prog.current > 0 ? standAt(w, prog.current - 1) : null, prev = w.stops[Math.max(0, prog.current - 1)]; S.me = f || { lat: prev.lat - 0.0012, lng: prev.lng - 0.0009 }; }
     if (simFor !== w.id + ':' + prog.current) {
       simFor = w.id + ':' + prog.current;
-      const leg = prog.current > 0 && ((D.routes || {})[w.id] || {})[String(w.stops[prog.current - 1].n)];
-      simPath = (leg && dist(S.me, { lat: leg[0][0], lng: leg[0][1] }) < 80 ? leg.map(([lat, lng]) => ({ lat, lng })) : []).concat([standAt(w, prog.current)]);
+      // Walk along her line from the previous stop's spot to this one's.
+      const full = walkPath(w, prog.current), pre = prog.current > 0 ? walkPath(w, prog.current - 1) : [];
+      const tail = full.slice(Math.max(0, pre.length - 1)).map(([lat, lng]) => ({ lat, lng }));
+      simPath = (pre.length && dist(S.me, { lat: pre[pre.length - 1][0], lng: pre[pre.length - 1][1] }) < 80 ? tail : []).concat([standAt(w, prog.current)]);
     }
     if (!simPath || !simPath.length) simPath = [standAt(w, prog.current)];
     let budget = 18; // meters per tick (a brisk, sped-up walk)
@@ -1226,7 +1237,7 @@ function blocksHtml(blocks, stopId) {
       if (a === 'layers') return openLayers(w);
       if (a === 'pinchk') { S.showPins = !S.showPins; const sc = document.getElementById('bookpane').scrollTop; render(); const bp = document.getElementById('bookpane'); if (bp) { S.bookAuto = Date.now(); bp.scrollTop = sc; } return; }
       if (a === 'bookme') { S.bookFollow = true; return centerBookOnMe(true); }
-      if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = { lat: w.stops[p.current].lat, lng: w.stops[p.current].lng }; return arrive(p.current); }
+      if (a === 'here') { const p = S.progress[w.id]; simPath = null; S.me = standAt(w, p.current); return arrive(p.current); }
       if (a === 'next') return showStop(S.progress[w.id].current + 1);
       if (a === 'prev') return showStop(S.progress[w.id].current - 1);
       if (a === 'stopread') return stopSpeak();
