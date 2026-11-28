@@ -135,20 +135,22 @@
     const parts = [`Stop ${stop.n}. ${stop.title}.`, ...stop.blocks.filter((b) => ['p', 'direction', 'tagline'].includes(b.kind)).map((b) => prep(b.text))];
     let i = 0;
     // Recorded narration when this stop has it; the browser voice otherwise.
-    const rec = (window.WWAUDIO || {})[stop.id] === parts.length;
+    const starts = (window.WWAUDIO || {})[stop.id], rec = Array.isArray(starts) && starts.length === parts.length;
     if (!rec) { speaking.stopId = null; speaking.para = -1; markReading(); return toast('Narration for this stop is still being recorded.'); }
-    if (rec) {
-      const wid = stop.id.split('-')[0];
-      const nextRec = () => {
+    {
+      // One recorded file per stop; the part being read follows the playback time.
+      const a = new Audio(`audio/${stop.id.split('-')[0]}/${stop.id}.mp3`); speaking.audio = a;
+      a.playbackRate = Math.max(0.8, Math.min(1.5, S.settings.rate || 1));
+      speaking.stopId = stop.id; speaking.para = -1; markReading();
+      a.ontimeupdate = () => {
         if (tok !== speakTok) return;
-        if (i >= parts.length) { speaking.stopId = null; speaking.para = -1; speaking.audio = null; markReading(); return; }
-        speaking.stopId = stop.id; speaking.para = i - 1; markReading();
-        const a = new Audio(`audio/${wid}/${stop.id}/${String(i).padStart(2, '0')}.mp3`); speaking.audio = a;
-        a.playbackRate = Math.max(0.8, Math.min(1.5, S.settings.rate || 1));
-        a.onended = () => { i++; nextRec(); }; a.onerror = () => { i++; nextRec(); };
-        a.play().catch(() => { i++; nextRec(); });
+        let k = 0; while (k + 1 < starts.length && a.currentTime >= starts[k + 1]) k++;
+        if (speaking.para !== k - 1) { speaking.para = k - 1; markReading(); }
       };
-      return nextRec();
+      const done = () => { if (tok !== speakTok) return; speaking.stopId = null; speaking.para = -1; speaking.audio = null; markReading(); };
+      a.onended = done; a.onerror = done;
+      a.play().catch(done);
+      return;
     }
     const next = () => {
       if (tok !== speakTok) return;

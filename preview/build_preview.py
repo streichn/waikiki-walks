@@ -38,19 +38,31 @@ warp = {}
 for f in glob.glob(f'{P}/warped/*.webp'):
     warp[os.path.basename(f)[:-5]] = 'data:image/webp;base64,' + base64.b64encode(open(f, 'rb').read()).decode()
 open(f'{SITE}/warped.js', 'w').write('window.WWWARP=' + json.dumps(warp) + ';')
-# Recorded narration: copy every stop whose paragraphs are all recorded (see scripts/audio/make_narration.py).
+# Recorded narration: every stop whose paragraphs are all recorded (scripts/audio/make_narration.py) is
+# joined into one file per stop, audio/<walk>/<stop>.mp3, with the start time of each part, because an
+# artifact holds at most 512 files. The page plays the file and follows the parts by time.
 AUD = os.environ.get('WW_AUDIO_DIR', '/home/claude/waikiki-audio')
 audio = {}
 if os.path.isdir(AUD):
-    import shutil
+    import subprocess, tempfile
+    def dur(f):
+        return float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f], capture_output=True, text=True).stdout.strip())
     for w in walks:
         for st in w['stops']:
             need = 1 + sum(1 for b in st['blocks'] if b['kind'] in ('p', 'direction', 'tagline'))
             src = f"{AUD}/{w['id']}/{st['id']}"
-            if all(os.path.exists(f'{src}/{i:02d}.mp3') for i in range(need)):
-                os.makedirs(f"{SITE}/audio/{w['id']}/{st['id']}", exist_ok=True)
-                for i in range(need): shutil.copyfile(f'{src}/{i:02d}.mp3', f"{SITE}/audio/{w['id']}/{st['id']}/{i:02d}.mp3")
-                audio[st['id']] = need
+            clips = [f'{src}/{i:02d}.mp3' for i in range(need)]
+            if not all(os.path.exists(c) for c in clips): continue
+            os.makedirs(f"{SITE}/audio/{w['id']}", exist_ok=True)
+            out = f"{SITE}/audio/{w['id']}/{st['id']}.mp3"
+            if not os.path.exists(out) or os.path.getmtime(out) < max(os.path.getmtime(c) for c in clips):
+                with tempfile.NamedTemporaryFile('w', suffix='.txt', delete=False) as lst:
+                    lst.write(''.join(f"file '{c}'\n" for c in clips))
+                subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', lst.name, '-c:a', 'libmp3lame', '-b:a', '64k', out], check=True)
+                os.unlink(lst.name)
+            t, starts = 0.0, []
+            for c in clips: starts.append(round(t, 2)); t += dur(c)
+            audio[st['id']] = starts
 open(f'{SITE}/audio.js', 'w').write('window.WWAUDIO=' + json.dumps(audio) + ';')
 html = open(f'{P}/template.html').read().replace('/*LEAFLET_CSS*/', open(f'{P}/leaflet.css').read())
 open(f'{SITE}/index.html', 'w').write(html)
